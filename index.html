@@ -2064,7 +2064,12 @@ function renderTopicGrid(){
       '<span class="chevron">'+CHEVRON_SVG+'</span>';
     row.querySelector(".box").addEventListener("click", function(e){
       e.stopPropagation();
-      selectedTags[t.id] = (state === "full") ? new Set() : new Set(tags);
+      if(!expanded){
+        // první klik na sbalené téma jen otevře náhled, nic nevybere
+        expandedTopics[t.id] = true;
+      } else {
+        selectedTags[t.id] = (state === "full") ? new Set() : new Set(tags);
+      }
       renderTopicGrid();
       updateStartBtn();
     });
