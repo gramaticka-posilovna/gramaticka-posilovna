@@ -252,16 +252,6 @@
   }
   .subtopic-row .box svg{ display:none; width:9px; height:9px; }
   .subtopic-row.selected .box svg{ display:block; }
-  .select-all-row{
-    padding: 8px 4px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid var(--line);
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--primary);
-    cursor: pointer;
-  }
-  .select-all-row:hover{ text-decoration: underline; }
 
   /* Segmented controls */
   .segmented{
@@ -2072,6 +2062,12 @@ function renderTopicGrid(){
       '<span class="box">'+(state === "partial" ? DASH_SVG : CHECK_SVG)+'</span>' +
       '<span class="txt"><strong>'+t.name+'</strong><span>'+t.desc+'</span></span>' +
       '<span class="chevron">'+CHEVRON_SVG+'</span>';
+    row.querySelector(".box").addEventListener("click", function(e){
+      e.stopPropagation();
+      selectedTags[t.id] = (state === "full") ? new Set() : new Set(tags);
+      renderTopicGrid();
+      updateStartBtn();
+    });
     row.addEventListener("click", function(){
       expandedTopics[t.id] = !expanded;
       renderTopicGrid();
@@ -2079,17 +2075,6 @@ function renderTopicGrid(){
 
     const body = document.createElement("div");
     body.className = "topic-pill-body";
-
-    const selectAllRow = document.createElement("div");
-    selectAllRow.className = "select-all-row";
-    selectAllRow.textContent = (state === "full") ? "Zrušit celý výběr" : "Vybrat vše v tomto tématu";
-    selectAllRow.addEventListener("click", function(e){
-      e.stopPropagation();
-      selectedTags[t.id] = (state === "full") ? new Set() : new Set(tags);
-      renderTopicGrid();
-      updateStartBtn();
-    });
-    body.appendChild(selectAllRow);
 
     tags.forEach(function(tag){
       const isSel = !!(sel && sel.has(tag));
