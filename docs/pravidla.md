@@ -19,7 +19,7 @@ Každá otázka má:
 * `type` + typová pole (fill-in, multi-part, choice — podle existující appky).
 * `rule` — vysvětlení, které appka zobrazí po odpovědi. Povinné u každé otázky bez výjimky, appka to má i technicky vynucené.
 
-Mix otázky (kombinující dvě podtémata v kontrastu) dostávají vlastní tag ve tvaru `Mix: Podtéma A vs. Podtéma B`, aby šly sledovat odděleně od čistých podtémat ve statistikách i v trackeru.
+Mix otázky (kombinující víc podtémat ze stejného tématu v kontrastu) dostávají jednotný tag `Mix` — jeden společný pro celé téma, ne samostatný pro každou konkrétní dvojici podtémat. Uživatel si kontrast sám sestaví zaškrtnutím konkrétních podtémat, appka pak `Mix` nabídne navíc jako doplňkovou volbu k zaškrtnutí. Jednotlivé části mix-otázky si i tak nesou svůj vlastní specifický tag (např. `tag:"Past simple"`) pro rozpad v progress dashboardu — jednotné je jen to, podle čeho se dá otázka jako celek vybrat/filtrovat.
 
 ## 3. CEFR pásma difficulty — závazné
 
@@ -35,12 +35,13 @@ Používej přesně tyto názvy podtémat jako `tag` v datech. `topic` slug pro 
 
 Mapa je dvouúrovňová: hlavní téma (`topic`) → konkrétní jmenovaná podtémata (`tag`), každé se svým CEFR rozpětím. Podtémata jsou to, co appka rozklikává (accordion) uvnitř hlavního tématu.
 
+**Zrnitost podtématu: jeden gramatický jev = jedna kolonka.** Podtéma se nedělí podle použití/nuance stejné gramatické formy (např. „Will (rozhodnutí)" / „Will (predikce)" / „Will (slib)" by byly tři kolonky pro jeden a týž jev) — všechny nuance jedné formy patří pod jedno podtéma a jejich rozlišení je na `rule` textu u konkrétní otázky, ne na struktuře výběru.
+
+Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix` (viz sekce 2) — ne samostatný záznam pro každou konkrétní kombinaci podtémat. Mapa proto `Mix` u jednotlivých témat nevypisuje znovu, platí automaticky pro všech 15 kategorií.
+
 1. Slovesné časy `[tenses]`
-   * Present simple (zvyky, fakta) — A1–A2 → basic
-   * Present continuous (probíhá teď) — A1–A2 → basic
-   * Present simple vs. continuous (stavová slovesa) — A2–B1 → basic, intermediate
-   * Present simple (rozvrh, budoucí) — A2–B1 → basic, intermediate
-   * Present continuous (budoucí plán) — A2–B1 → basic, intermediate
+   * Present simple — A1–B1 → basic, intermediate
+   * Present continuous — A1–B1 → basic, intermediate
    * Past simple — A2–B1 → basic, intermediate
    * Past continuous — A2–B1 → basic, intermediate
    * Present perfect — A2–C1 → basic, intermediate, advanced
@@ -48,9 +49,9 @@ Mapa je dvouúrovňová: hlavní téma (`topic`) → konkrétní jmenovaná podt
    * Past perfect — B1–B2 → intermediate, advanced
    * Past perfect continuous — B1–B2 → intermediate, advanced
    * Used to / would — B1–B2 → intermediate, advanced
-   * Will (rozhodnutí, slib, predikce, zápor) — A2–C1 → basic, intermediate, advanced
+   * Will — A2–C1 → basic, intermediate, advanced
    * Going to — A2–C1 → basic, intermediate, advanced
-   * Future continuous (+ zdvořilý dotaz) — B1–C1 → intermediate, advanced
+   * Future continuous — B1–C1 → intermediate, advanced
    * Be about to — C1 → advanced
    * Časová věta (when/after/before + present simple) — B1 → intermediate
    * Inverze v minulosti (Had I known...) — C1 → advanced
@@ -128,7 +129,19 @@ Mapa je dvouúrovňová: hlavní téma (`topic`) → konkrétní jmenovaná podt
     * So that, in order to (účel) — B1–B2 → intermediate, advanced
     * Diskurzní markery (however, moreover...) — B2–C1 → advanced
 
-(Slovní zásoba je samostatná kategorie mimo tuto mapu, appka ji už má — struktura slovíčko × 4 typy cvičení.)
+## 4a. Slovní zásoba `[vocab]` — samostatná mapa mimo gramatické kategorie
+
+Slovní zásoba má vlastní `topic` (`vocab`) a nepodléhá gramatické mapě výše, ale řídí se stejným principem podtémat a stejnou schémou otázky (sekce 2). `tag` u slovíček je **kategorie slovní zásoby**, ne jednotlivé slovo — appka tak nabízí rozklikávací výběr po kategoriích, ne desítky checkboxů po jednom slovíčku.
+
+Ke každému slovíčku 4 typy cvičení se stejným tagem i `id` základem (jen s pořadovým číslem 1–4): překlad CZ→EN, překlad EN→CZ, slovo v kontextu věty (`F`), a rozpoznání významu z možností (`C`).
+
+Zavedené kategorie (rozšiřovat průběžně, nikdy nepřejmenovávat už použitou):
+
+* Obecná slovní zásoba — basic, intermediate, advanced
+* Modální slovesa (vazby jako have to, supposed to, would rather) — basic, intermediate, advanced
+* Nepravidelná slovesa (minulý čas) — basic, intermediate, advanced
+
+Aktuální obsah (2026) je jen pár slovíček na vyzkoušení téhle struktury — několik na kategorii a úroveň. Doplňování dalších slovíček do stávajících kategorií je vždy bezpečné (nová `id`, stejný `tag`). Nová kategorie se přidává stejně jako nová gramatická kategorie — navrhne se název a slug, než se použije.
 
 ## 5. Co se smí měnit kdykoliv, bez rizika
 
