@@ -2828,6 +2828,11 @@ function subtopicsFor(topicId){
   QUESTIONS.forEach(function(q){
     if(q.topic === topicId && seen.indexOf(q.tag) === -1) seen.push(q.tag);
   });
+  const mixIndex = seen.indexOf("Mix");
+  if(mixIndex !== -1){
+    seen.splice(mixIndex, 1);
+    seen.push("Mix");
+  }
   return seen;
 }
 
