@@ -874,6 +874,51 @@ F("tenses-present-simple-habits-basic-07","tenses","basic","Present simple",
 F("tenses-present-simple-habits-basic-08","tenses","basic","Present simple",
   "Does he ", "play", " tennis on weekends?", ["play"],
   "V otázkách s does/do se sloveso vrací do základního tvaru — koncové -s zmizí, protože ho už „nese“ does."),
+F("tenses-present-simple-geography-intermediate-01","tenses","intermediate","Present simple",
+  "The Nile ", "flow", " through eleven different countries.", ["flows"],
+  "Present simple popisuje trvale platná geografická fakta — nemění se podle toho, kdy o nich mluvíme."),
+F("tenses-present-simple-stative-intermediate-02","tenses","intermediate","Present simple",
+  "I ", "not / understand", " why he said that.", ["don't understand","do not understand"],
+  "Stavová slovesa jako „understand“ popisují aktuální duševní stav, ale gramaticky se chovají jako present simple, ne continuous."),
+F("tenses-present-simple-scitruth-intermediate-03","tenses","intermediate","Present simple",
+  "Water ", "boil", " at 100°C at sea level.", ["boils"],
+  "Present simple je čas pro obecně platné vědecké zákonitosti — platí bez ohledu na okamžik promluvy."),
+F("tenses-present-simple-frequency-intermediate-04","tenses","intermediate","Present simple",
+  "She ", "rarely / be", " late for work.", ["is rarely"],
+  "U slovesa „be“ stojí příslovce frekvence až za ním (is rarely), na rozdíl od ostatních sloves, kde stojí před nimi."),
+F("tenses-present-simple-negation-intermediate-05","tenses","intermediate","Present simple",
+  "My brother ", "not / eat", " meat — he's been vegetarian for years.", ["doesn't eat","does not eat"],
+  "Zápor 3. osoby jednotného čísla je doesn't + základní tvar slovesa, bez koncového -s."),
+F("tenses-present-simple-instructions-intermediate-06","tenses","intermediate","Present simple",
+  "First, you ", "heat", " the oil, then add the onions.", ["heat"],
+  "Present simple se používá i pro popis postupu (recepty, návody) — kroky platí obecně, ne jen jednou."),
+F("tenses-present-simple-opinion-intermediate-07","tenses","intermediate","Present simple",
+  "I ", "think", " that honesty is the most important quality in a friend.", ["think"],
+  "Slovesa názoru a přesvědčení (think, believe, agree) vyjadřují aktuální postoj, ale jde o stav, ne děj — proto present simple."),
+F("tenses-present-simple-narrative-advanced-01","tenses","advanced","Present simple",
+  "So the guy just walks up to me and ", "say", " nothing at all.", ["says"],
+  "Vyprávěcí (narativní) present simple — v neformálním vyprávění historek se minulé události popisují v přítomném čase pro dramatický efekt."),
+F("tenses-present-simple-headline-advanced-02","tenses","advanced","Present simple",
+  "Scientists ", "discover", " new evidence of water on Mars.", ["discover"],
+  "Novinové titulky a úvodní věty zpráv používají present simple i pro nedávnou jednorázovou událost — zní to aktuálněji než minulý čas."),
+F("tenses-present-simple-timeclause-advanced-03","tenses","advanced","Present simple",
+  "If the weather ", "improve", ", we'll go hiking tomorrow.", ["improves"],
+  "Ve vedlejší větě podmínkové/časové odkazující k budoucnosti (if/when/as soon as) se používá present simple, „will“ patří jen do hlavní věty."),
+F("tenses-present-simple-permanent-advanced-04","tenses","advanced","Present simple",
+  "He ", "live", " in London, but this month he's staying with friends in Paris.", ["lives"],
+  "Present simple popisuje trvalý fakt (kde skutečně žije), present continuous v druhé části vedle něj popisuje jen dočasnou odchylku."),
+F("tenses-present-simple-document-advanced-05","tenses","advanced","Present simple",
+  "The contract ", "state", " that payment is due within 30 days.", ["states"],
+  "Present simple se v úředních/právních textech používá pro to, co dokument říká nebo stanovuje — platí to, dokud dokument existuje."),
+F("tenses-present-simple-report-advanced-06","tenses","advanced","Present simple",
+  "The study ", "conclude", " that the treatment is effective.", ["concludes"],
+  "Ve formálních zprávách a odborných textech se závěry uvádějí v present simple, i když byl výzkum provedený v minulosti."),
+F("tenses-present-simple-commentary-advanced-07","tenses","advanced","Present simple",
+  "Ronaldo receives the ball, turns, and ", "score", "!", ["scores"],
+  "Živý sportovní komentář popisuje děj probíhající přímo teď v present simple, ne v continuous — je to zavedená konvence žánru."),
+F("tenses-present-simple-trait-advanced-08","tenses","advanced","Present simple",
+  "She ", "never / complain", " about anything, no matter how bad things get.", ["never complains"],
+  "Present simple se „never“ zdůrazňuje trvalou osobnostní vlastnost — silnější a formálnější vyznění než běžné doesn't complain."),
 F("tenses-present-continuous-now-basic-01","tenses","basic","Present continuous",
   "Look! It ", "rain", " again.", ["is raining"],
   "„Look!“ signalizuje děj probíhající přímo v tuto chvíli — proto present continuous (is/are + -ing)."),
@@ -2029,10 +2074,10 @@ const CHECK_SVG = '<svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" 
 const DASH_SVG = '<svg viewBox="0 0 12 12" fill="none"><path d="M2 6H10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
 const CHEVRON_SVG = '<svg viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-function subtopicsFor(topicId, difficulty){
+function subtopicsFor(topicId){
   const seen = [];
   QUESTIONS.forEach(function(q){
-    if(q.topic === topicId && q.difficulty === difficulty && seen.indexOf(q.tag) === -1) seen.push(q.tag);
+    if(q.topic === topicId && seen.indexOf(q.tag) === -1) seen.push(q.tag);
   });
   return seen;
 }
@@ -2044,7 +2089,7 @@ function activeTopicCount(){
 function renderTopicGrid(){
   topicGrid.innerHTML = "";
   TOPICS.forEach(function(t){
-    const tags = subtopicsFor(t.id, selectedDifficulty);
+    const tags = subtopicsFor(t.id);
     const sel = selectedTags[t.id];
     const selCount = sel ? tags.filter(function(tag){ return sel.has(tag); }).length : 0;
     const state = selCount === 0 ? "none" : (selCount === tags.length ? "full" : "partial");

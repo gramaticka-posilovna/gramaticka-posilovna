@@ -21,113 +21,111 @@ Každá otázka má:
 
 Mix otázky (kombinující víc podtémat ze stejného tématu v kontrastu) dostávají jednotný tag `Mix` — jeden společný pro celé téma, ne samostatný pro každou konkrétní dvojici podtémat. Uživatel si kontrast sám sestaví zaškrtnutím konkrétních podtémat, appka pak `Mix` nabídne navíc jako doplňkovou volbu k zaškrtnutí. Jednotlivé části mix-otázky si i tak nesou svůj vlastní specifický tag (např. `tag:"Past simple"`) pro rozpad v progress dashboardu — jednotné je jen to, podle čeho se dá otázka jako celek vybrat/filtrovat.
 
-## 3. CEFR pásma difficulty — závazné
+## 3. CEFR a obtížnost — nezávislé na sobě
 
-* `basic` = A1–A2 (+ nejjednodušší vstupy do B1)
-* `intermediate` = B1–B2 jádro
-* `advanced` = B2–C1 nuance
+`difficulty` (`basic`/`intermediate`/`advanced`) je stupeň složitosti cvičení k danému gramatickému jevu, ne cílová CEFR úroveň studenta. **Každé podtéma má vždy všechny tři obtížnosti** — i u jevů, které se v reálné výuce typicky učí jen na jedné CEFR úrovni (např. Past perfect na B1). U basic verze jde o zjednodušenou variantu stejného jevu (jednodušší slovní zásoba/kontext, ne jiná gramatika), u advanced o náročnější kontext/nuance.
 
-Podtéma se v appce objevuje jen v těch obtížnostech, které odpovídají jeho CEFR rozpětí (viz sekce 4). Pokud podtéma pokrývá širší rozpětí, rozdíl mezi obtížnostmi dělá složitost věty/kontextu, ne jiný gramatický jev.
+Orientační CEFR úroveň (A1–C1) u sekce 4 zůstává jako informace pro autora otázek — pomáhá odhadnout, jak jednoduchou/náročnou slovní zásobu a kontext zvolit. Appka s ní funkčně nepočítá; u konkrétní otázky se může připojit jako poznámka na konci `rule` textu, např. „(CEFR: B1)", čistě informativně pro budoucí rozšíření (např. filtrování).
 
 ## 4. Obsahová mapa — 15 kategorií gramatiky
 
 Používej přesně tyto názvy podtémat jako `tag` v datech. `topic` slug pro existující kategorie zjisti přímo ze stávajícího souboru appky (nepřejmenovávat!). Pro nové kategorie navrhované slugy jsou v hranaté závorce — než je použiješ, zkontroluj, že appka ještě žádný jiný slug pro danou kategorii nepoužívá.
 
-Mapa je dvouúrovňová: hlavní téma (`topic`) → konkrétní jmenovaná podtémata (`tag`), každé se svým CEFR rozpětím. Podtémata jsou to, co appka rozklikává (accordion) uvnitř hlavního tématu.
+Mapa je dvouúrovňová: hlavní téma (`topic`) → konkrétní jmenovaná podtémata (`tag`), každé se svým orientačním CEFR rozpětím (viz sekce 3 — neediktuje, jen doporučuje, na které úrovni jev typicky žije). Podtémata jsou to, co appka rozklikává (accordion) uvnitř hlavního tématu, a v accordionu se zobrazují stejná pro všechny tři obtížnosti.
 
 **Zrnitost podtématu: jeden gramatický jev = jedna kolonka.** Podtéma se nedělí podle použití/nuance stejné gramatické formy (např. „Will (rozhodnutí)" / „Will (predikce)" / „Will (slib)" by byly tři kolonky pro jeden a týž jev) — všechny nuance jedné formy patří pod jedno podtéma a jejich rozlišení je na `rule` textu u konkrétní otázky, ne na struktuře výběru.
 
 Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix` (viz sekce 2) — ne samostatný záznam pro každou konkrétní kombinaci podtémat. Mapa proto `Mix` u jednotlivých témat nevypisuje znovu, platí automaticky pro všech 15 kategorií.
 
 1. Slovesné časy `[tenses]`
-   * Present simple — A1–B1 → basic, intermediate
-   * Present continuous — A1–B1 → basic, intermediate
-   * Past simple — A2–B1 → basic, intermediate
-   * Past continuous — A2–B1 → basic, intermediate
-   * Present perfect — A2–C1 → basic, intermediate, advanced
-   * Present perfect continuous — B1–B2 → intermediate
-   * Past perfect — B1–B2 → intermediate, advanced
-   * Past perfect continuous — B1–B2 → intermediate, advanced
-   * Used to / would — B1–B2 → intermediate, advanced
-   * Will — A2–C1 → basic, intermediate, advanced
-   * Going to — A2–C1 → basic, intermediate, advanced
-   * Future continuous — B1–C1 → intermediate, advanced
-   * Be about to — C1 → advanced
-   * Časová věta (when/after/before + present simple) — B1 → intermediate
-   * Inverze v minulosti (Had I known...) — C1 → advanced
+   * Present simple — A1–B1
+   * Present continuous — A1–B1
+   * Past simple — A2–B1
+   * Past continuous — A2–B1
+   * Present perfect — A2–C1
+   * Present perfect continuous — B1–B2
+   * Past perfect — B1–B2
+   * Past perfect continuous — B1–B2
+   * Used to / would — B1–B2
+   * Will — A2–C1
+   * Going to — A2–C1
+   * Future continuous — B1–C1
+   * Be about to — C1
+   * Časová věta (when/after/before + present simple) — B1
+   * Inverze v minulosti (Had I known...) — C1
 2. Podmínky a přání `[conditionals]`
-   * 0. kondicionál — A2 → basic
-   * 1. kondicionál — A2–B1 → basic, intermediate
-   * 2. kondicionál — A2–B1 → basic, intermediate
-   * 3. kondicionál — B2 → advanced
-   * Smíšený kondicionál — B2 → advanced
-   * Unless — B2–C1 → advanced
-   * Inverze v podmínce (Were I.../Had I...) — C1 → advanced
-   * Formální podmínka (should) — C1 → advanced
-   * Wish + minulost — B2–C1 → advanced
-   * If only + minulost — B2–C1 → advanced
-   * As if / as though + minulost — B2–C1 → advanced
+   * 0. kondicionál — A2
+   * 1. kondicionál — A2–B1
+   * 2. kondicionál — A2–B1
+   * 3. kondicionál — B2
+   * Smíšený kondicionál — B2
+   * Unless — B2–C1
+   * Inverze v podmínce (Were I.../Had I...) — C1
+   * Formální podmínka (should) — C1
+   * Wish + minulost — B2–C1
+   * If only + minulost — B2–C1
+   * As if / as though + minulost — B2–C1
 3. Trpný rod `[passive]`
-   * Přítomný a minulý čas prostý — A2–B1 → basic, intermediate
-   * Present perfect, budoucí časy — B1 → intermediate
-   * S modálními slovesy — B2 → advanced
-   * Have/get something done — B2 → advanced
+   * Přítomný a minulý čas prostý — A2–B1
+   * Present perfect, budoucí časy — B1
+   * S modálními slovesy — B2
+   * Have/get something done — B2
 4. Nepřímá řeč `[reported-speech]`
-   * Oznamovací věty — B1 → intermediate
-   * Otázky v nepřímé řeči — B1 → intermediate
-   * Rozkazy a žádosti — B1 → intermediate
-   * Posun časů (backshift) — B1–B2 → intermediate, advanced
+   * Oznamovací věty — B1
+   * Otázky v nepřímé řeči — B1
+   * Rozkazy a žádosti — B1
+   * Posun časů (backshift) — B1–B2
 5. Modální slovesa `[modals]`
-   * Schopnost (can/could/be able to) — A2 → basic
-   * Dovolení (can/may/could) — A2 → basic
-   * Povinnost a nutnost (must/have to/need to) — A2–B1 → basic, intermediate
-   * Zákaz vs. absence nutnosti (mustn't vs. don't have to) — B1 → intermediate
-   * Rada (should/ought to/had better) — B1 → intermediate
-   * Pravděpodobnost a dedukce v přítomnosti (must/might/can't be) — B1–B2 → intermediate, advanced
-   * Modály v minulosti (must have/might have/should have/needn't have) — B2 → advanced
+   * Schopnost (can/could/be able to) — A2
+   * Dovolení (can/may/could) — A2
+   * Povinnost a nutnost (must/have to/need to) — A2–B1
+   * Zákaz vs. absence nutnosti (mustn't vs. don't have to) — B1
+   * Rada (should/ought to/had better) — B1
+   * Pravděpodobnost a dedukce v přítomnosti (must/might/can't be) — B1–B2
+   * Modály v minulosti (must have/might have/should have/needn't have) — B2
 6. Členy `[articles]`
-   * A/an vs. the — A1–A2 → basic
-   * Nulový člen — B1 → intermediate
+   * A/an vs. the — A1–A2
+   * Nulový člen — B1
 7. Podstatná jména a determinery `[nouns]`
-   * Počitatelnost — A1–A2 → basic
-   * Množné číslo, nepravidelné tvary — A1–A2 → basic
-   * Some/any/no — A1–A2 → basic
-   * Much/many/a lot of — A1–A2 → basic
-   * (A) few / (a) little — A2–B1 → basic, intermediate
+   * Počitatelnost — A1–A2
+   * Množné číslo, nepravidelné tvary — A1–A2
+   * Some/any/no — A1–A2
+   * Much/many/a lot of — A1–A2
+   * (A) few / (a) little — A2–B1
 8. Zájmena `[pronouns]`
-   * Osobní a přivlastňovací — A1 → basic
-   * Zvratná (myself, yourself...) — A1 → basic
-   * Vztažná (who, which, that...) — B1 → intermediate
-   * Neurčitá (someone, anything...) — A2–B1 → basic, intermediate
+   * Osobní a přivlastňovací — A1
+   * Zvratná (myself, yourself...) — A1
+   * Vztažná (who, which, that...) — B1
+   * Neurčitá (someone, anything...) — A2–B1
 9. Vedlejší věty `[clauses]`
-   * Vztažné věty (defining/non-defining) — B1 → intermediate
-   * Podmětné, předmětné věty — B2 → advanced
+   * Vztažné věty (defining/non-defining) — B1
+   * Podmětné, předmětné věty — B2
 10. Infinitiv a gerundium `[infinitive-gerund]`
-    * Sloveso + to infinitiv — A2–B1 → basic, intermediate
-    * Sloveso + -ing — A2–B1 → basic, intermediate
-    * Rozdíly ve významu (remember, stop, try...) — B2 → advanced
-    * Participle clauses — C1 → advanced
+    * Sloveso + to infinitiv — A2–B1
+    * Sloveso + -ing — A2–B1
+    * Rozdíly ve významu (remember, stop, try...) — B2
+    * Participle clauses — C1
 11. Přídavná jména a příslovce `[adjectives-adverbs]`
-    * Stupňování — A1–A2 → basic
-    * Pořadí přídavných jmen — B1 → intermediate
-    * Tvorba a pozice příslovcí — A2 → basic
+    * Stupňování — A1–A2
+    * Pořadí přídavných jmen — B1
+    * Tvorba a pozice příslovcí — A2
 12. Předložky `[prepositions]`
-    * Místa a času — A1–A2 → basic
-    * Vazby se slovesy — B1–B2 → intermediate, advanced
-    * Vazby s přídavnými jmény — B1–B2 → intermediate, advanced
+    * Místa a času — A1–A2
+    * Vazby se slovesy — B1–B2
+    * Vazby s přídavnými jmény — B1–B2
 13. Slovosled a otázky `[word-order]`
-    * Nepřímé otázky — A2–C1 → basic, intermediate, advanced
-    * Záporné otázky — A2–C1 → basic, intermediate, advanced
-    * Tag questions — B1–B2 → intermediate, advanced
-    * Inverze po záporných příslovcích (Never had I...) — C1 → advanced
+    * Nepřímé otázky — A2–C1
+    * Záporné otázky — A2–C1
+    * Tag questions — B1–B2
+    * Inverze po záporných příslovcích (Never had I...) — C1
 14. Frázová slovesa `[phrasal-verbs]`
-    * Základní sada — A2–B1 → basic, intermediate
-    * Rozšířená sada — B2–C1 → advanced
+    * Základní sada — A2–B1
+    * Rozšířená sada — B2–C1
 15. Spojky a diskurzní markery `[conjunctions]`
-    * Although, despite, in spite of — B1 → intermediate
-    * Because, since, as (důvod) — B1 → intermediate
-    * So that, in order to (účel) — B1–B2 → intermediate, advanced
-    * Diskurzní markery (however, moreover...) — B2–C1 → advanced
+    * Although, despite, in spite of — B1
+    * Because, since, as (důvod) — B1
+    * So that, in order to (účel) — B1–B2
+    * Diskurzní markery (however, moreover...) — B2–C1
 
 ## 4a. Slovní zásoba `[vocab]` — samostatná mapa mimo gramatické kategorie
 
