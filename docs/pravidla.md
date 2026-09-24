@@ -60,10 +60,8 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * 3. kondicionál — B2
    * Smíšený kondicionál — B2
    * Unless — B2–C1
-   * Inverze v podmínce (Were I.../Had I...) — C1
-   * Formální podmínka (should) — C1
-   * Wish + minulost — B2–C1
-   * If only + minulost — B2–C1
+   * Inverze v podmínce (Were I.../Had I.../Should you...) — C1
+   * Wish + minulost (včetně If only — emocionálně silnější varianta stejného jevu) — B2–C1
    * As if / as though + minulost — B2–C1
 3. Trpný rod `[passive]`
    * Přítomný a minulý čas prostý — A2–B1
