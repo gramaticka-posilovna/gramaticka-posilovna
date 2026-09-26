@@ -833,6 +833,7 @@ const TOPICS = [
   { id:"conditionals", name:"Podmínkové věty",         desc:"0., 1., 2., 3. kondicionál" },
   { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze" },
   { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost" },
+  { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done" },
   { id:"vocab", name:"Slovní zásoba", desc:"Překlad oběma směry, slovo v kontextu i výběr z možností" }
 ];
 
@@ -1228,9 +1229,6 @@ F("p-a-3","tenses","advanced","Present perfect",
 F("p-a-4","tenses","advanced","Past perfect",
   "It was the first time he ", "fly", " in an airplane.", ["had flown"],
   "Po frázi „it was the first/second/... time“ následuje past perfect, protože se hodnotí zkušenost nashromážděná až do daného minulého okamžiku."),
-F("p-a-5","tenses","advanced","Inverze v minulosti",
-  "Never ", "I / see", " such heavy rain before that day.", ["had I seen"],
-  "Když věta začíná záporným příslovcem (Never...), sloveso v past perfect se obrací před podmět (inverze): had + podmět + 3. tvar."),
 F("p-a-6","tenses","advanced","Used to / would",
   "When I was young, I ", "would / visit", " my grandparents every summer.", ["would visit"],
   "Kromě „used to“ lze opakovaný zvyk v minulosti vyjádřit i pomocí „would“ + základní tvar — ale jen u dějů (ne stavů jako „be“ nebo „like“)."),
@@ -1247,13 +1245,6 @@ M("p-a-m1","tenses","advanced","Mix",
     {before:"she ", hint:"finish", after:" only half of her tasks.", answers:["had finished"], tag:"Past perfect"}
   ],
   "Když zdůrazňujeme trvání (deset hodin v kuse), použijeme past perfect continuous. Když jde o výsledek/dokončení (jen polovinu), použijeme past perfect."),
-M("p-a-m2","tenses","advanced","Mix",
-  "Rozliš inverzi po „hardly“ a past perfect continuous — použij slovesa „arrive“ a „wait“.",
-  [
-    {before:"Hardly ", hint:"we / arrive", after:" when it started to rain, and ", answers:["had we arrived"], tag:"Inverze v minulosti"},
-    {before:"we ", hint:"wait", after:" for the bus for twenty minutes already.", answers:["had been waiting"], tag:"Past perfect continuous"}
-  ],
-  "Po záporném příslovci „hardly“ na začátku věty se slovosled obrací (inverze): had + podmět + 3. tvar. Trvání děje se navíc vyjadřuje past perfect continuous."),
 F("p-a-9","tenses","advanced","Past perfect",
   "By the time help arrived, the fire ", "already / destroy", " half the building.", ["had already destroyed"],
   "Past perfect s „already“ ukazuje, že škoda vznikla ještě předtím, než nastal jiný minulý děj (help arrived)."),
@@ -1269,9 +1260,6 @@ F("p-a-12","tenses","advanced","Present perfect",
 F("p-a-13","tenses","advanced","Past perfect",
   "Nobody believed that he ", "climb", " the mountain alone.", ["had climbed"],
   "Past perfect ve vedlejší větě popisuje děj, který se odehrál dřív než hlavní děj (nobody believed) — zde jde o už dosaženou minulou zkušenost."),
-F("p-a-14","tenses","advanced","Inverze v minulosti",
-  "Seldom ", "I / witness", " such dedication.", ["had I witnessed"],
-  "Po záporném příslovci „seldom“ (zřídkakdy) na začátku věty následuje inverze: had + podmět + 3. tvar."),
 F("p-a-15","tenses","advanced","Used to / would",
   "This street ", "use to / be", " much quieter.", ["used to be"],
   "„Used to + základní tvar“ vyjadřuje minulý stav, který kontrastuje se současností — tady ulice bývala tišší, než je teď."),
@@ -1290,9 +1278,6 @@ F("p-a-19","conditionals","advanced","Wish + minulost",
 F("p-a-20","tenses","advanced","Past perfect continuous",
   "By the time the doctor arrived, he ", "suffer", " for hours.", ["had been suffering"],
   "Past perfect continuous zdůrazňuje, jak dlouho už děj trval před daným minulým okamžikem (doctor arrived)."),
-F("p-a-21","tenses","advanced","Inverze v minulosti",
-  "Not until much later ", "we / discover", " the truth.", ["did we discover"],
-  "„Not until“ na začátku věty vyžaduje inverzi: did + podmět + základní tvar slovesa, i když jde o jednorázový minulý děj."),
 F("p-a-22","conditionals","advanced","Wish + minulost",
   "He wished he ", "not / say", " something so rude.", ["hadn't said","had not said"],
   "Zápor po „wish“ vyjadřující lítost nad minulostí: hadn't + 3. tvar."),
@@ -1303,13 +1288,6 @@ M("p-a-m3","tenses","advanced","Mix",
     {before:"the car ", hint:"run out", after:" of fuel.", answers:["ran out"], tag:"Past simple"}
   ],
   "Delší děj probíhající před daným momentem (řízení šest hodin v kuse) je v past perfect continuous. Náhlá událost, která ho přeruší, zůstává v past simple."),
-M("p-a-m4","tenses","advanced","Mix",
-  "Rozliš inverzi po záporném příslovci a obyčejný past simple — použij slovesa „see“ a „miss“.",
-  [
-    {before:"Rarely ", hint:"we / see", after:" such a spectacular display, and ", answers:["had we seen"], tag:"Inverze v minulosti"},
-    {before:"we almost ", hint:"miss", after:" it.", answers:["missed"], tag:"Past simple"}
-  ],
-  "Po záporném příslovci „rarely“ na začátku věty následuje inverze s past perfect (had we seen). Druhá část zůstává v obyčejném past simple (missed).")
 );
 
 /* ---------------- TENSES: FUTURE ---------------- */
@@ -2109,69 +2087,6 @@ F("tenses-timeclause-clause-advanced-07","tenses","advanced","Časová věta (pr
 F("tenses-timeclause-unless-advanced-08","tenses","advanced","Časová věta (present simple)",
   "We'll proceed as planned unless something unexpected ", "happen", ".", ["happens"],
   "„Unless“ v budoucím významu (podobně jako „if not“) se pojí s present simple."),
-F("tenses-inversion-knowparty-basic-01","tenses","basic","Inverze v minulosti",
-  "Had I ", "know", " about the party, I would have come.", ["known"],
-  "„Had + podmět + minulé příčestí“ je formální náhrada za „If + podmět + had + minulé příčestí“ — inverze nahrazuje „if“."),
-F("tenses-inversion-study-basic-02","tenses","basic","Inverze v minulosti",
-  "Had she ", "study", " harder, she would have passed the test.", ["studied"],
-  "Inverzní tvar „Had she studied“ = „If she had studied“ — obě věty znamenají totéž, jen bez „if“."),
-F("tenses-inversion-bus-basic-03","tenses","basic","Inverze v minulosti",
-  "Had we ", "leave", " earlier, we wouldn't have missed the bus.", ["left"],
-  "Inverze v minulosti se používá hlavně ve formálnějším nebo psaném vyjádření podmínky."),
-F("tenses-inversion-askforhelp-basic-04","tenses","basic","Inverze v minulosti",
-  "Had he ", "ask", " for help, someone would have helped him.", ["asked"],
-  "„Had he asked“ zní formálněji než běžné „If he had asked“, význam je stejný."),
-F("tenses-inversion-tellsooner-basic-05","tenses","basic","Inverze v minulosti",
-  "Had you ", "tell", " me sooner, I could have fixed it.", ["told"],
-  "Inverzní podmínka v minulosti (Had you told me) se často používá k formálnímu vyjádření lítosti/výtky."),
-F("tenses-inversion-umbrellas-basic-06","tenses","basic","Inverze v minulosti",
-  "Had they ", "check", " the weather, they would have brought umbrellas.", ["checked"],
-  "„Had they checked“ nahrazuje „If they had checked“ bez ztráty významu."),
-F("tenses-inversion-trainontime-basic-07","tenses","basic","Inverze v minulosti",
-  "Had the train ", "arrive", " on time, we wouldn't have been late.", ["arrived"],
-  "Inverze funguje stejně i s neosobním podmětem (the train), ne jen s lidmi."),
-F("tenses-inversion-sign-basic-08","tenses","basic","Inverze v minulosti",
-  "Had I ", "see", " the sign, I would have stopped.", ["seen"],
-  "Inverzní tvar se skládá z „Had“ + podmět + minulé příčestí, bez „if“ a bez pomocného slovesa navíc."),
-F("tenses-inversion-invest-intermediate-01","tenses","intermediate","Inverze v minulosti",
-  "Had the company ", "invest", " earlier, it wouldn't have lost its market lead.", ["invested"],
-  "Inverzní podmínka v minulosti se běžně používá i v obchodním/analytickém kontextu."),
-F("tenses-inversion-hesitate-intermediate-02","tenses","intermediate","Inverze v minulosti",
-  "Had she ", "not / hesitate", ", she would have caught the opportunity.", ["not hesitated"],
-  "V záporné inverzní podmínce stojí „not“ hned za podmětem: Had she not hesitated."),
-F("tenses-inversion-doctors-intermediate-03","tenses","intermediate","Inverze v minulosti",
-  "Had the doctors ", "act", " sooner, the outcome might have been different.", ["acted"],
-  "Inverze v minulosti se často používá při hodnocení/lítosti nad tím, co se mohlo (ne)stát."),
-F("tenses-inversion-danger-intermediate-04","tenses","intermediate","Inverze v minulosti",
-  "Had I ", "realize", " the danger, I would never have gone there.", ["realized"],
-  "Inverzní tvar zdůrazňuje formálnější, promyšlenější vyjádření podmínky než běžné „if“."),
-F("tenses-inversion-team-intermediate-05","tenses","intermediate","Inverze v minulosti",
-  "Had the team ", "prepare", " better, the result could have been very different.", ["prepared"],
-  "Inverze v minulosti se pojí s modálními slovesy v hlavní větě (could have, might have), stejně jako běžný 3. kondicionál."),
-F("tenses-inversion-fullstory-intermediate-06","tenses","intermediate","Inverze v minulosti",
-  "Had we ", "know", " the full story, our decision would have been different.", ["known"],
-  "„Had we known“ je typický formální úvod věty vyjadřující podmínku vztahující se k celé situaci, ne jen jednomu faktu."),
-F("tenses-inversion-letter-intermediate-07","tenses","intermediate","Inverze v minulosti",
-  "Had the letter ", "arrive", " a day earlier, everything would have gone smoothly.", ["arrived"],
-  "Inverze v minulosti se stejně dobře pojí i s neživým podmětem (the letter)."),
-F("tenses-inversion-ignorewarning-intermediate-08","tenses","intermediate","Inverze v minulosti",
-  "Had he ", "not / ignore", " the warning, the accident could have been avoided.", ["not ignored"],
-  "Záporná inverzní podmínka (Had he not ignored) zdůrazňuje, co se dalo předejít."),
-F("tenses-inversion-foresee-advanced-01","tenses","advanced","Inverze v minulosti",
-  "Had the committee ", "foresee", " the consequences, the policy would never have been approved.", ["foreseen"],
-  "Inverze v minulosti je typická pro formální/analytický styl hodnotící minulá rozhodnutí."),
-F("tenses-inversion-evidence-advanced-02","tenses","advanced","Inverze v minulosti",
-  "Had the evidence ", "come to light", " sooner, the trial would have taken a very different course.", ["come to light"],
-  "Inverzní podmínka funguje i s frázovými slovesy — struktura zůstává „Had + podmět + minulé příčestí“."),
-F("tenses-inversion-markets-advanced-03","tenses","advanced","Inverze v minulosti",
-  "Had markets ", "anticipate", " the crisis, the damage would have been far less severe.", ["anticipated"],
-  "Inverze v minulosti v ekonomickém textu formuluje kontrafaktuální scénář bez použití „if“."),
-F("tenses-inversion-negotiators-advanced-04","tenses","advanced","Inverze v minulosti",
-  "Had the negotiators ", "show", " more flexibility, an agreement might well have been reached.", ["shown"],
-  "Inverze se v diplomatickém/formálním jazyce často kombinuje s modálním „might well have“."),
-F("tenses-inversion-warningsigns-advanced-05","tenses","advanced","Inverze v minulosti",
-  "Had the warning signs ", "not / be", " so easy to dismiss, action would have been taken much sooner.", ["not been"],
-  "Záporná inverze se slovesem „be“ (Had... not been) je běžná ve formálních rozborech příčin a následků.")
 );
 
 /* ---------------- TENSES: GAP FILL — Mix ---------------- */
@@ -3736,114 +3651,6 @@ F("gap20-tenses-timeclause-advanced-12","tenses","advanced","Časová věta (pre
   "Until the inquiry ", "deliver", " its verdict, no further comment will be made.", ["delivers"],
   "„Until“ ve formálním, právním kontextu odkazujícím k budoucnosti se pojí s present simple."),
 // ---- Inverze v minulosti ----
-F("gap20-tenses-inversion-basic-01","tenses","basic","Inverze v minulosti",
-  "Had I ", "wake up", " earlier, I wouldn't have missed the train.", ["woken up"],
-  "„Had + podmět + minulé příčestí“ nahrazuje „If + podmět + had + minulé příčestí“ — inverze bez „if“."),
-F("gap20-tenses-inversion-basic-02","tenses","basic","Inverze v minulosti",
-  "Had she ", "call", " me, I would have picked her up.", ["called"],
-  "Inverzní tvar „Had she called“ = „If she had called“."),
-F("gap20-tenses-inversion-basic-03","tenses","basic","Inverze v minulosti",
-  "Had we ", "book", " earlier, the tickets would have been cheaper.", ["booked"],
-  "Inverze v minulosti se používá hlavně ve formálnějším nebo psaném vyjádření podmínky."),
-F("gap20-tenses-inversion-basic-04","tenses","basic","Inverze v minulosti",
-  "Had they ", "listen", " to the advice, they wouldn't have failed.", ["listened"],
-  "„Had they listened“ zní formálněji než běžné „If they had listened“, význam je stejný."),
-F("gap20-tenses-inversion-basic-05","tenses","basic","Inverze v minulosti",
-  "Had you ", "ask", " earlier, I would have told you everything.", ["asked"],
-  "Inverzní podmínka v minulosti (Had you asked) často formálně vyjadřuje lítost nebo výtku."),
-F("gap20-tenses-inversion-basic-06","tenses","basic","Inverze v minulosti",
-  "Had he ", "lock", " the door, the thief wouldn't have got in.", ["locked"],
-  "„Had he locked“ nahrazuje „If he had locked“ bez ztráty významu."),
-F("gap20-tenses-inversion-basic-07","tenses","basic","Inverze v minulosti",
-  "Had the weather ", "be", " better, we would have gone hiking.", ["been"],
-  "Inverze funguje stejně i s neosobním podmětem (the weather)."),
-F("gap20-tenses-inversion-basic-08","tenses","basic","Inverze v minulosti",
-  "Had I ", "notice", " the mistake sooner, I would have fixed it.", ["noticed"],
-  "Inverzní tvar se skládá z „Had“ + podmět + minulé příčestí, bez „if“."),
-F("gap20-tenses-inversion-basic-09","tenses","basic","Inverze v minulosti",
-  "Had she ", "not / forget", " her passport, she wouldn't have missed the flight.", ["not forgotten"],
-  "V záporné inverzní podmínce stojí „not“ hned za podmětem: Had she not forgotten."),
-F("gap20-tenses-inversion-basic-10","tenses","basic","Inverze v minulosti",
-  "Had we ", "take", " a different route, we would have avoided the traffic.", ["taken"],
-  "Inverze v minulosti se pojí s modálními slovesy v hlavní větě (would have), stejně jako běžný 3. kondicionál."),
-F("gap20-tenses-inversion-basic-11","tenses","basic","Inverze v minulosti",
-  "Had the shop ", "be", " open, we would have bought some bread.", ["been"],
-  "Inverze se stejně dobře pojí i s neživým podmětem (the shop)."),
-F("gap20-tenses-inversion-basic-12","tenses","basic","Inverze v minulosti",
-  "Had I ", "save", " more money, I would have bought the car.", ["saved"],
-  "„Had I saved“ = „If I had saved“ — inverze jen mění slovosled, význam zůstává stejný."),
-F("gap20-tenses-inversion-intermediate-01","tenses","intermediate","Inverze v minulosti",
-  "Had the manager ", "approve", " the request sooner, we wouldn't have lost the client.", ["approved"],
-  "Inverzní podmínka v minulosti se běžně používá i v pracovním kontextu."),
-F("gap20-tenses-inversion-intermediate-02","tenses","intermediate","Inverze v minulosti",
-  "Had she ", "not / miss", " the deadline, she would have got the bonus.", ["not missed"],
-  "V záporné inverzní podmínce stojí „not“ hned za podmětem."),
-F("gap20-tenses-inversion-intermediate-03","tenses","intermediate","Inverze v minulosti",
-  "Had the driver ", "slow down", ", the accident might have been avoided.", ["slowed down"],
-  "Inverze v minulosti se často používá při hodnocení toho, co se mohlo (ne)stát."),
-F("gap20-tenses-inversion-intermediate-04","tenses","intermediate","Inverze v minulosti",
-  "Had they ", "back up", " the files, they wouldn't have lost all the data.", ["backed up"],
-  "Inverzní tvar zdůrazňuje formálnější, promyšlenější vyjádření podmínky než běžné „if“."),
-F("gap20-tenses-inversion-intermediate-05","tenses","intermediate","Inverze v minulosti",
-  "Had the team ", "communicate", " better, the project might have finished on time.", ["communicated"],
-  "Inverze v minulosti se pojí s modálními slovesy v hlavní větě (might have), stejně jako běžný 3. kondicionál."),
-F("gap20-tenses-inversion-intermediate-06","tenses","intermediate","Inverze v minulosti",
-  "Had we ", "read", " the contract carefully, we would have spotted the error.", ["read"],
-  "„Had we read“ je typický formální úvod věty vyjadřující podmínku vztahující se k celé situaci."),
-F("gap20-tenses-inversion-intermediate-07","tenses","intermediate","Inverze v minulosti",
-  "Had the email ", "arrive", " on time, she would have replied immediately.", ["arrived"],
-  "Inverze v minulosti se stejně dobře pojí i s neživým podmětem (the email)."),
-F("gap20-tenses-inversion-intermediate-08","tenses","intermediate","Inverze v minulosti",
-  "Had he ", "not / underestimate", " the competition, the company would still be leading the market.", ["not underestimated"],
-  "Záporná inverzní podmínka zdůrazňuje, co se dalo předejít."),
-F("gap20-tenses-inversion-intermediate-09","tenses","intermediate","Inverze v minulosti",
-  "Had she ", "double-check", " the figures, the error would have been caught earlier.", ["double-checked"],
-  "Inverzní podmínka v minulosti se běžně používá i v analytickém a pracovním kontextu."),
-F("gap20-tenses-inversion-intermediate-10","tenses","intermediate","Inverze v minulosti",
-  "Had the flight ", "not / be", " delayed, we would have made the connection.", ["not been"],
-  "Záporná inverze se slovesem „be“ (Had... not been) je běžná ve formálních rozborech příčin."),
-F("gap20-tenses-inversion-intermediate-11","tenses","intermediate","Inverze v minulosti",
-  "Had I ", "know", " you were coming, I would have prepared dinner.", ["known"],
-  "„Had I known“ je jeden z nejčastějších formálních úvodů vyjadřujících podmínku vztahující se k celé situaci."),
-F("gap20-tenses-inversion-intermediate-12","tenses","intermediate","Inverze v minulosti",
-  "Had the students ", "revise", " more thoroughly, the results would have been better.", ["revised"],
-  "Inverze v minulosti se běžně používá i ve školním hodnocení výsledků."),
-F("gap20-tenses-inversion-advanced-01","tenses","advanced","Inverze v minulosti",
-  "Had the auditors ", "scrutinise", " the accounts more closely, the fraud would have been uncovered years earlier.", ["scrutinised","scrutinized"],
-  "Inverze v minulosti v auditorském a finančním textu formuluje kontrafaktuální scénář bez „if“."),
-F("gap20-tenses-inversion-advanced-02","tenses","advanced","Inverze v minulosti",
-  "Had the government ", "act", " sooner, the outbreak might have been contained.", ["acted"],
-  "Inverze v minulosti se v politickém a zdravotnickém textu často kombinuje s modálním „might have“."),
-F("gap20-tenses-inversion-advanced-03","tenses","advanced","Inverze v minulosti",
-  "Had the engineers ", "detect", " the flaw earlier, the collapse could have been prevented.", ["detected"],
-  "Inverze v minulosti v technickém rozboru příčin katastrofy."),
-F("gap20-tenses-inversion-advanced-04","tenses","advanced","Inverze v minulosti",
-  "Had the witness ", "not / withhold", " key information, the case would have been resolved sooner.", ["not withheld"],
-  "Záporná inverze (Had... not withheld) je běžná ve formálních právních rozborech."),
-F("gap20-tenses-inversion-advanced-05","tenses","advanced","Inverze v minulosti",
-  "Never before ", "the alliance / face", " such a profound internal crisis.", ["had the alliance faced"],
-  "Po záporném příslovci „never before“ na začátku věty následuje inverze: had + podmět + minulé příčestí."),
-F("gap20-tenses-inversion-advanced-06","tenses","advanced","Inverze v minulosti",
-  "On no account ", "the committee / anticipate", " such a swift reversal.", ["had the committee anticipated"],
-  "Formální záporná fráze „on no account“ na začátku věty vyžaduje inverzi."),
-F("gap20-tenses-inversion-advanced-07","tenses","advanced","Inverze v minulosti",
-  "Not once ", "the auditors / raise", " a concern about the figures.", ["had the auditors raised"],
-  "„Not once“ na začátku věty jako záporný výraz vyžaduje inverzi: had + podmět + minulé příčestí."),
-F("gap20-tenses-inversion-advanced-08","tenses","advanced","Inverze v minulosti",
-  "Had the negotiators ", "concede", " less ground, the outcome might have favoured them.", ["conceded"],
-  "Inverze v minulosti v diplomatickém textu formuluje kontrafaktuální scénář."),
-F("gap20-tenses-inversion-advanced-09","tenses","advanced","Inverze v minulosti",
-  "Little did the board ", "realise", " how deep the losses actually ran.", ["realise","realize"],
-  "Po „little did...“ následuje základní tvar slovesa (did + podmět + infinitiv), i když jde o odhalení skryté minulé skutečnosti."),
-F("gap20-tenses-inversion-advanced-10","tenses","advanced","Inverze v minulosti",
-  "Had the report ", "reach", " the public sooner, the scandal would have broken much earlier.", ["reached"],
-  "Inverze v minulosti se stejně dobře pojí i s neživým podmětem (the report), typicky v investigativní žurnalistice."),
-F("gap20-tenses-inversion-advanced-11","tenses","advanced","Inverze v minulosti",
-  "Rarely in the company's history ", "profits / fall", " so sharply.", ["had profits fallen"],
-  "Po záporném příslovečném určení „rarely“ na začátku věty následuje inverze: had + podmět + minulé příčestí."),
-F("gap20-tenses-inversion-advanced-12","tenses","advanced","Inverze v minulosti",
-  "Had the evidence ", "not / be", " so overwhelming, the jury might have reached a different verdict.", ["not been"],
-  "Záporná inverze se slovesem „be“ (Had... not been) je běžná ve formálních rozborech soudních rozhodnutí."),
 // ---- Mix ----
 M("gap20-tenses-mix-basic-m01","tenses","basic","Mix",
   "Rozliš spontánní rozhodnutí a už dříve daný plán se slovesy „fix“ a „meet“.",
@@ -3887,13 +3694,6 @@ M("gap20-tenses-mix-basic-m06","tenses","basic","Mix",
     {before:"I think it ", hint:"take", after:" about an hour.", answers:["will take"], tag:"Will"}
   ],
   "Po časové spojce „when“ následuje present simple; hlavní věta s předpovědí používá will."),
-M("gap20-tenses-mix-basic-m07","tenses","basic","Mix",
-  "Rozliš inverzi v minulosti a obyčejný past simple se slovesy „know“ a „visit“.",
-  [
-    {before:"Had I ", hint:"know", after:" you were ill, I would have visited you.", answers:["known"], tag:"Inverze v minulosti"},
-    {before:"Instead, I ", hint:"not / visit", after:" you at all.", answers:["didn't visit"], tag:"Past simple"}
-  ],
-  "Inverzní „Had I known“ nahrazuje „If I had known“; druhá věta popisuje skutečnou minulou realitu v past simple."),
 M("gap20-tenses-mix-basic-m08","tenses","basic","Mix",
   "Rozliš zaniklý minulý stav a zkušenost trvající do teď se slovesy „live“ a „visit“.",
   [
@@ -3943,13 +3743,6 @@ M("gap20-tenses-mix-intermediate-m04","tenses","intermediate","Mix",
     {before:"Call me when you ", hint:"get", after:" here.", answers:["get"], tag:"Časová věta (present simple)"}
   ],
   "Future continuous popisuje děj probíhající v danou budoucí chvíli; po časové spojce „when“ následuje present simple."),
-M("gap20-tenses-mix-intermediate-m05","tenses","intermediate","Mix",
-  "Rozliš inverzi v minulosti a past perfect se slovesy „check“ a „take“.",
-  [
-    {before:"Had she ", hint:"check", after:" the map, she wouldn't have got lost.", answers:["checked"], tag:"Inverze v minulosti"},
-    {before:"She realised she ", hint:"take", after:" a wrong turn.", answers:["had taken"], tag:"Past perfect"}
-  ],
-  "Inverzní „Had she checked“ nahrazuje „If she had checked“; past perfect popisuje děj, který se stal ještě dřív, než si ho uvědomila."),
 M("gap20-tenses-mix-intermediate-m06","tenses","intermediate","Mix",
   "Rozliš ukončený minulý zvyk a zvyk trvající do teď se slovesem „jog“.",
   [
@@ -3978,13 +3771,6 @@ M("gap20-tenses-mix-intermediate-m09","tenses","intermediate","Mix",
     {before:"Luckily, my colleague ", hint:"lend", after:" me some cash.", answers:["lent"], tag:"Past simple"}
   ],
   "„Was about to“ popisuje, co se chystalo stát, těsně předtím, než ho přerušila jiná událost; past simple popisuje tu následnou událost."),
-M("gap20-tenses-mix-intermediate-m10","tenses","intermediate","Mix",
-  "Rozliš záporné inverzní podmínky a opakovaný minulý zvyk se slovesy „quit“ a „complain“.",
-  [
-    {before:"Had he ", hint:"not / quit", after:" his job, he would still be earning a steady income.", answers:["not quit"], tag:"Inverze v minulosti"},
-    {before:"He ", hint:"complain", after:" about it constantly, though.", answers:["used to complain","would complain"], tag:"Used to / would"}
-  ],
-  "Záporná inverze (Had he not quit) vyjadřuje kontrafaktuální situaci; used to/would popisuje jeho opakované chování v minulosti."),
 M("gap20-tenses-mix-intermediate-m11","tenses","intermediate","Mix",
   "Rozliš, co už bylo uděláno, a plán, který z toho vyplývá, se slovesy „book“ a „stay“.",
   [
@@ -3999,13 +3785,6 @@ M("gap20-tenses-mix-intermediate-m12","tenses","intermediate","Mix",
     {before:"I'm sure the flight ", hint:"not / be", after:" delayed.", answers:["won't be","will not be"], tag:"Will"}
   ],
   "Po „until“ v budoucím významu následuje present simple; will vyjadřuje předpověď založenou na přesvědčení mluvčího."),
-M("gap20-tenses-mix-advanced-m01","tenses","advanced","Mix",
-  "Rozliš kontrafaktuální scénář a dlouho trvající proces se slovesy „anticipate“ a „rely“.",
-  [
-    {before:"Had the analysts ", hint:"anticipate", after:" the downturn, the fund would have adjusted its strategy in time.", answers:["anticipated"], tag:"Inverze v minulosti"},
-    {before:"As it was, they ", hint:"still / rely", after:" on outdated models for months.", answers:["had still been relying"], tag:"Past perfect continuous"}
-  ],
-  "Inverzní podmínka formuluje kontrafaktuální scénář; past perfect continuous zdůrazňuje, jak dlouho spoléhali na zastaralé modely předtím."),
 M("gap20-tenses-mix-advanced-m02","tenses","advanced","Mix",
   "Rozliš zaniklý stav a změnu trvající dodnes se slovesy „rely“ a „diversify“.",
   [
@@ -4027,13 +3806,6 @@ M("gap20-tenses-mix-advanced-m04","tenses","advanced","Mix",
     {before:"Meanwhile, several firms ", hint:"be about to / withdraw", after:" from the market altogether.", answers:["are about to withdraw"], tag:"Be about to"}
   ],
   "Future continuous popisuje dlouhodobě probíhající proces v budoucnosti; be about to zdůrazňuje bezprostředně nastávající krok."),
-M("gap20-tenses-mix-advanced-m05","tenses","advanced","Mix",
-  "Rozliš časovou větu a inverzi v minulosti se slovesy „sign“ a „exist“.",
-  [
-    {before:"The agreement becomes binding once both parties ", hint:"sign", after:".", answers:["sign"], tag:"Časová věta (present simple)"},
-    {before:"Had the clause ", hint:"exist", after:" earlier, the dispute would never have arisen.", answers:["existed"], tag:"Inverze v minulosti"}
-  ],
-  "„Once“ odkazující k budoucnosti se pojí s present simple; inverze v minulosti formuluje kontrafaktuální scénář o dřívějším stavu."),
 M("gap20-tenses-mix-advanced-m06","tenses","advanced","Mix",
   "Rozliš opakovanou reakci zkušených lidí a dokončený děj předcházející jinému se slovesy „reassure“ a „lose“.",
   [
@@ -4062,13 +3834,6 @@ M("gap20-tenses-mix-advanced-m09","tenses","advanced","Mix",
     {before:"Once the round officially ", hint:"close", after:", disbursement will begin immediately.", answers:["closes"], tag:"Časová věta (present simple)"}
   ],
   "Future continuous popisuje probíhající proces v budoucím okamžiku; „once“ odkazující k budoucí podmínce se pojí s present simple."),
-M("gap20-tenses-mix-advanced-m10","tenses","advanced","Mix",
-  "Rozliš kontrafaktuální scénář a proces trvající do současnosti se slovesy „intervene“ a „take“.",
-  [
-    {before:"Had regulators ", hint:"intervene", after:" sooner, the crisis might have been averted.", answers:["intervened"], tag:"Inverze v minulosti"},
-    {before:"Instead, banks ", hint:"take", after:" excessive risks for years without consequence.", answers:["have been taking"], tag:"Present perfect continuous"}
-  ],
-  "Inverze v minulosti formuluje kontrafaktuální scénář; present perfect continuous popisuje proces trvající až do současnosti."),
 M("gap20-tenses-mix-advanced-m11","tenses","advanced","Mix",
   "Rozliš zaniklou dominanci a nevyhnutelný budoucí důsledek se slovesy „dominate“ a „lose“.",
   [
@@ -9201,6 +8966,1389 @@ F("vocab-irregular-advanced-swear-3","vocab","advanced","Nepravidelná slovesa (
 C("vocab-irregular-advanced-swear-4","vocab","advanced","Nepravidelná slovesa (minulý čas)","Který tvar je správný minulý čas slovesa „swear“?",
   ["swore","sweared","sworn","swaired"],0,
   "Nepravidelné sloveso: swear – swore – sworn. Pozor na rozdíl mezi minulým časem (swore) a příčestím (sworn).")
+);
+
+/* ---------------- TRPNY ROD: Pritomny a minuly cas prosty, Present perfect/budouci casy ---------------- */
+
+QUESTIONS.push(
+F("passive-simple-basic-01", "passive", "basic", "Přítomný a minulý čas prostý", "The kitchen ", "be / clean", " every Saturday.", ["is cleaned"], "Přítomný čas prostý trpný (is + 3. tvar 'cleaned'), protože se soustředíme na kuchyni (podmět), ne na to, kdo ji uklízí."),
+F("passive-simple-basic-02", "passive", "basic", "Přítomný a minulý čas prostý", "The window ", "be / break", " last night.", ["was broken"], "Minulý čas prostý trpný (was + 3. tvar 'broken'); zajímá nás, co se stalo s oknem, ne kdo ho rozbil."),
+F("passive-simple-basic-03", "passive", "basic", "Přítomný a minulý čas prostý", "The dishes ", "not / be / wash", " after breakfast.", ["aren't washed", "are not washed"], "Přítomný čas prostý trpný v záporu; podmět 'dishes' je množné číslo, proto 'aren't/are not washed'."),
+F("passive-simple-basic-04", "passive", "basic", "Přítomný a minulý čas prostý", "The letter ", "not / be / send", " yesterday.", ["wasn't sent", "was not sent"], "Minulý čas prostý trpný v záporu; dopis je podmětem, protože nás zajímá, že se neodeslal, ne kdo ho neodeslal."),
+F("passive-simple-basic-05", "passive", "basic", "Přítomný a minulý čas prostý", "Is the car ", "wash", " every month?", ["washed"], "Otázka v přítomném čase trpném – pomocné sloveso 'Is' stojí na začátku věty, doplňuje se jen 3. tvar slovesa 'wash'."),
+F("passive-simple-basic-06", "passive", "basic", "Přítomný a minulý čas prostý", "Was the cake ", "bake", " for the party?", ["baked"], "Otázka v minulém čase trpném – 'Was' stojí na začátku, doplňuje se 3. tvar slovesa 'bake'."),
+F("passive-simple-basic-07", "passive", "basic", "Přítomný a minulý čas prostý", "The bread ", "be / bake", " by my mother every morning.", ["is baked"], "Přítomný čas prostý trpný s uvedeným původcem děje (by my mother); důraz je na chleba, ne na maminku."),
+F("passive-simple-basic-08", "passive", "basic", "Přítomný a minulý čas prostý", "This house ", "be / design", " by a famous architect.", ["was designed"], "Minulý čas prostý trpný s původcem děje (by a famous architect); dům je podmětem, protože je pro nás důležitější než ten, kdo ho navrhl."),
+F("passive-simple-basic-09", "passive", "basic", "Přítomný a minulý čas prostý", "These books ", "be / keep", " in the library.", ["are kept"], "Přítomný čas prostý trpný; podmět 'these books' je množné číslo, proto 'are kept'."),
+F("passive-simple-basic-10", "passive", "basic", "Přítomný a minulý čas prostý", "The tickets ", "be / sell", " online last week.", ["were sold"], "Minulý čas prostý trpný; podmět 'tickets' je množné číslo, proto 'were sold'."),
+F("passive-simple-basic-11", "passive", "basic", "Přítomný a minulý čas prostý", "The door ", "not / be / lock", " at night.", ["isn't locked", "is not locked"], "Přítomný čas prostý trpný v záporu; podmět 'door' je jednotné číslo, proto 'isn't/is not locked'."),
+F("passive-simple-basic-12", "passive", "basic", "Přítomný a minulý čas prostý", "The windows ", "not / be / close", " before the storm.", ["weren't closed", "were not closed"], "Minulý čas prostý trpný v záporu; podmět 'windows' je množné číslo, proto 'weren't/were not closed'."),
+F("passive-simple-basic-13", "passive", "basic", "Přítomný a minulý čas prostý", "Are the plants ", "water", " every day?", ["watered"], "Otázka v přítomném čase trpném s množným podmětem 'plants'; 'Are' je na začátku, doplňuje se 3. tvar 'watered'."),
+F("passive-simple-basic-14", "passive", "basic", "Přítomný a minulý čas prostý", "Were the guests ", "invite", " to the wedding?", ["invited"], "Otázka v minulém čase trpném s množným podmětem 'guests'; 'Were' je na začátku, doplňuje se 3. tvar 'invited'."),
+F("passive-simple-basic-15", "passive", "basic", "Přítomný a minulý čas prostý", "The trash ", "be / collect", " on Mondays.", ["is collected"], "Přítomný čas prostý trpný – pravidelná činnost (on Mondays), proto 'is collected'."),
+F("passive-simple-basic-16", "passive", "basic", "Přítomný a minulý čas prostý", "The package ", "be / deliver", " to the wrong address.", ["was delivered"], "Minulý čas prostý trpný – jednorázová událost v minulosti, proto 'was delivered'."),
+M("passive-simple-basic-17", "passive", "basic", "Přítomný a minulý čas prostý", "Doplň trpný rod – nejprve přítomný čas, pak minulý čas (stejné sloveso).", [
+  {before: "Every invoice ", hint: "be / email", after: " to the client automatically.", answers: ["is emailed"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Yesterday's invoice ", hint: "be / email", after: " to the client by mistake.", answers: ["was emailed"], tag: "Přítomný a minulý čas prostý"}
+], "První věta popisuje pravidelnou činnost v přítomném čase prostém trpném, druhá jednorázovou minulou událost v minulém čase prostém trpném – sloveso 'email' zůstává stejné, mění se jen čas."),
+M("passive-simple-basic-18", "passive", "basic", "Přítomný a minulý čas prostý", "Nejprve aktivní věta, pak stejná věta v trpném rodě (přítomný čas).", [
+  {before: "The chef ", hint: "cook", after: " the soup every day.", answers: ["cooks"], tag: "Přítomný a minulý čas prostý"},
+  {before: "The soup ", hint: "be / cook", after: " every day by the chef.", answers: ["is cooked"], tag: "Přítomný a minulý čas prostý"}
+], "V aktivní větě je podmětem 'the chef', který koná děj, v trpné větě je podmětem 'the soup', na které se děj zaměřuje; čas (přítomný prostý) zůstává stejný."),
+M("passive-simple-basic-19", "passive", "basic", "Přítomný a minulý čas prostý", "Doplň trpný rod v kladné i záporné podobě (přítomný čas).", [
+  {before: "Breakfast ", hint: "be / serve", after: " until 10 a.m.", answers: ["is served"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Breakfast ", hint: "not / be / serve", after: " after 10 a.m.", answers: ["isn't served", "is not served"], tag: "Přítomný a minulý čas prostý"}
+], "Obě věty jsou v přítomném čase trpném, liší se jen kladnou a zápornou formou pomocného slovesa 'is/isn't'; 'breakfast' je v obou případech podmětem."),
+M("passive-simple-basic-20", "passive", "basic", "Přítomný a minulý čas prostý", "Doplň otázku v trpném rodě – nejprve přítomný čas, pak minulý čas.", [
+  {before: "Is plastic ", hint: "recycle", after: " in this town?", answers: ["recycled"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Was plastic ", hint: "recycle", after: " here last year?", answers: ["recycled"], tag: "Přítomný a minulý čas prostý"}
+], "Obě otázky jsou v trpném rodě; 'Is' vyjadřuje přítomnost, 'Was' minulost, sloveso 'recycled' (3. tvar) zůstává stejné."),
+F("passive-simple-intermediate-01", "passive", "intermediate", "Přítomný a minulý čas prostý", "The meeting ", "be / postpone", " because the manager was ill.", ["was postponed"], "Minulý čas prostý trpný ve větě se zdůvodňovací vedlejší větou (because...); schůzka je podmětem, protože nás zajímá, co se s ní stalo, ne kdo ji odložil."),
+F("passive-simple-intermediate-02", "passive", "intermediate", "Přítomný a minulý čas prostý", "This medicine ", "not / be / recommend", " if you are pregnant.", ["isn't recommended", "is not recommended"], "Přítomný čas prostý trpný v záporu s podmínkovou vedlejší větou (if...); lék je podmětem, protože je důležitější než ten, kdo doporučení nevydává."),
+F("passive-simple-intermediate-03", "passive", "intermediate", "Přítomný a minulý čas prostý", "Is the report ", "review", " before it is published?", ["reviewed"], "Otázka v přítomném čase trpném; pomocné 'Is' je na začátku, doplňuje se jen 3. tvar 'review' – vedlejší věta (before...) obsahuje další trpný tvar 'is published'."),
+F("passive-simple-intermediate-04", "passive", "intermediate", "Přítomný a minulý čas prostý", "Were the results ", "announce", " before the meeting ended?", ["announced"], "Otázka v minulém čase trpném s množným podmětem 'results'; vedlejší věta (before...) upřesňuje čas děje."),
+F("passive-simple-intermediate-05", "passive", "intermediate", "Přítomný a minulý čas prostý", "The annual budget ", "be / approve", " by the board of directors every March.", ["is approved"], "Přítomný čas prostý trpný s uvedeným původcem děje (by the board of directors); opakovaná roční činnost, důraz je na rozpočet."),
+F("passive-simple-intermediate-06", "passive", "intermediate", "Přítomný a minulý čas prostý", "The proposal ", "be / reject", " by the committee last week.", ["was rejected"], "Minulý čas prostý trpný s původcem děje (by the committee); návrh je podmětem, protože je pro nás důležitější než ti, kdo ho zamítli."),
+F("passive-simple-intermediate-07", "passive", "intermediate", "Přítomný a minulý čas prostý", "Overtime ", "not / be / pay", " unless it is approved in advance.", ["isn't paid", "is not paid"], "Přítomný čas prostý trpný v záporu s podmínkovou vedlejší větou (unless...); 'overtime' je nepočitatelné podstatné jméno, proto jednotné číslo."),
+F("passive-simple-intermediate-08", "passive", "intermediate", "Přítomný a minulý čas prostý", "The damage ", "not / be / repair", " until the following spring.", ["wasn't repaired", "was not repaired"], "Minulý čas prostý trpný v záporu; škoda je podmětem, protože se soustředíme na to, že se neopravila, ne kdo ji měl opravit."),
+F("passive-simple-intermediate-09", "passive", "intermediate", "Přítomný a minulý čas prostý", "New employees ", "be / train", " during their first two weeks.", ["are trained"], "Přítomný čas prostý trpný; podmět 'employees' je množné číslo, proto 'are trained'."),
+F("passive-simple-intermediate-10", "passive", "intermediate", "Přítomný a minulý čas prostý", "Several documents ", "be / translate", " into French for the conference.", ["were translated"], "Minulý čas prostý trpný; množný podmět 'documents', proto 'were translated'."),
+F("passive-simple-intermediate-11", "passive", "intermediate", "Přítomný a minulý čas prostý", "Are the machines ", "inspect", " regularly for safety reasons?", ["inspected"], "Otázka v přítomném čase trpném; pomocné 'Are' je na začátku, doplňuje se 3. tvar 'inspected'."),
+F("passive-simple-intermediate-12", "passive", "intermediate", "Přítomný a minulý čas prostý", "Were the workers ", "warn", " about the risks beforehand?", ["warned"], "Otázka v minulém čase trpném; pomocné 'Were' je na začátku, doplňuje se 3. tvar 'warned'."),
+F("passive-simple-intermediate-13", "passive", "intermediate", "Přítomný a minulý čas prostý", "The final decision ", "be / make", " by the CEO after long discussions.", ["is made"], "Přítomný čas prostý trpný s původcem děje (by the CEO); rozhodnutí je podmětem, protože je předmětem zájmu."),
+F("passive-simple-intermediate-14", "passive", "intermediate", "Přítomný a minulý čas prostý", "The bridge ", "be / close", " while the engineers inspected it.", ["was closed"], "Minulý čas prostý trpný ve větě s časovou vedlejší větou (while...); most je podmětem, protože nás zajímá jeho stav, ne kdo ho uzavřel."),
+F("passive-simple-intermediate-15", "passive", "intermediate", "Přítomný a minulý čas prostý", "These files ", "not / be / back up", " automatically, so save them manually.", ["aren't backed up", "are not backed up"], "Přítomný čas prostý trpný v záporu; podmět 'files' je množné číslo, proto 'aren't/are not backed up'."),
+F("passive-simple-intermediate-16", "passive", "intermediate", "Přítomný a minulý čas prostý", "The contract ", "be / sign", " shortly before the deadline.", ["was signed"], "Minulý čas prostý trpný; smlouva je podmětem, protože nás zajímá, co se s ní stalo, ne kdo ji podepsal."),
+M("passive-simple-intermediate-17", "passive", "intermediate", "Přítomný a minulý čas prostý", "Doplň trpný rod – nejprve přítomný čas, pak minulý čas (stejné sloveso).", [
+  {before: "The website ", hint: "be / update", after: " every Friday.", answers: ["is updated"], tag: "Přítomný a minulý čas prostý"},
+  {before: "The website ", hint: "be / update", after: " twice last month due to errors.", answers: ["was updated"], tag: "Přítomný a minulý čas prostý"}
+], "První věta popisuje pravidelnou činnost v přítomném čase prostém trpném, druhá jednorázovou minulou událost v minulém čase prostém trpném – sloveso 'update' zůstává stejné, mění se jen čas."),
+M("passive-simple-intermediate-18", "passive", "intermediate", "Přítomný a minulý čas prostý", "Nejprve aktivní věta, pak stejná věta v trpném rodě (minulý čas).", [
+  {before: "The supplier ", hint: "deliver", after: " the goods late because of the strike.", answers: ["delivered"], tag: "Přítomný a minulý čas prostý"},
+  {before: "The goods ", hint: "be / deliver", after: " late because of the strike.", answers: ["were delivered"], tag: "Přítomný a minulý čas prostý"}
+], "V aktivní větě koná děj podmět 'the supplier', v trpné větě je podmětem 'the goods', na které se děj zaměřuje; čas (minulý prostý) zůstává stejný, podmět je množný, proto 'were delivered'."),
+M("passive-simple-intermediate-19", "passive", "intermediate", "Přítomný a minulý čas prostý", "Doplň trpný rod v kladné i záporné podobě (přítomný čas).", [
+  {before: "A visa ", hint: "be / grant", after: " to applicants with a valid passport.", answers: ["is granted"], tag: "Přítomný a minulý čas prostý"},
+  {before: "A visa ", hint: "not / be / grant", after: " to applicants without proper documents.", answers: ["isn't granted", "is not granted"], tag: "Přítomný a minulý čas prostý"}
+], "Obě věty jsou v přítomném čase trpném, liší se kladnou a zápornou formou pomocného slovesa 'is/isn't'; 'a visa' je v obou případech podmětem."),
+M("passive-simple-intermediate-20", "passive", "intermediate", "Přítomný a minulý čas prostý", "Doplň otázku v trpném rodě – nejprve přítomný čas, pak minulý čas.", [
+  {before: "Is this magazine ", hint: "publish", after: " monthly or weekly?", answers: ["published"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Was the article ", hint: "publish", after: " before the deadline?", answers: ["published"], tag: "Přítomný a minulý čas prostý"}
+], "Obě otázky jsou v trpném rodě; 'Is' vyjadřuje přítomnost, 'Was' minulost, sloveso 'published' (3. tvar) zůstává stejné."),
+F("passive-simple-advanced-01", "passive", "advanced", "Přítomný a minulý čas prostý", "Strict new emissions targets ", "be / enforce", " under the revised legislation.", ["are enforced"], "Přítomný čas prostý trpný, množný podmět 'targets', proto 'are enforced'; věta popisuje obecně platný právní stav, ne konkrétní jednorázový děj."),
+F("passive-simple-advanced-02", "passive", "advanced", "Přítomný a minulý čas prostý", "The merger ", "be / finalize", " after months of negotiation.", ["was finalized", "was finalised"], "Minulý čas prostý trpný; fúze je podmětem, protože nás zajímá výsledek jednání, ne konkrétní osoby, které ho dojednaly."),
+F("passive-simple-advanced-03", "passive", "advanced", "Přítomný a minulý čas prostý", "Confidential client data ", "not / be / disclose", " to third parties under any circumstances.", ["isn't disclosed", "is not disclosed"], "Přítomný čas prostý trpný v záporu; 'data' je zde chápáno jako jednotné podstatné jméno, proto 'isn't/is not disclosed'."),
+F("passive-simple-advanced-04", "passive", "advanced", "Přítomný a minulý čas prostý", "The allegations ", "not / be / investigate", " thoroughly before the report was released.", ["weren't investigated", "were not investigated"], "Minulý čas prostý trpný v záporu, množný podmět 'allegations', proto 'weren't/were not investigated'."),
+F("passive-simple-advanced-05", "passive", "advanced", "Přítomný a minulý čas prostý", "Is the budget deficit ", "reduce", " significantly compared to last year?", ["reduced"], "Otázka v přítomném čase trpném; pomocné 'Is' je na začátku, doplňuje se 3. tvar 'reduced'."),
+F("passive-simple-advanced-06", "passive", "advanced", "Přítomný a minulý čas prostý", "Was the merger ", "approve", " by the regulatory authority?", ["approved"], "Otázka v minulém čase trpném; pomocné 'Was' je na začátku, doplňuje se 3. tvar 'approved'."),
+F("passive-simple-advanced-07", "passive", "advanced", "Přítomný a minulý čas prostý", "Monetary policy ", "be / set", " by the central bank independently of the government.", ["is set"], "Přítomný čas prostý trpný s uvedeným původcem děje (by the central bank); politika je podmětem, protože je předmětem zájmu, ne konkrétní osoby."),
+F("passive-simple-advanced-08", "passive", "advanced", "Přítomný a minulý čas prostý", "The scandal ", "be / expose", " by an anonymous whistleblower.", ["was exposed"], "Minulý čas prostý trpný s původcem děje (by an anonymous whistleblower); skandál je podmětem, protože je pro nás důležitější než konkrétní osoba, která ho odhalila."),
+F("passive-simple-advanced-09", "passive", "advanced", "Přítomný a minulý čas prostý", "Interest rates ", "be / review", " quarterly by the monetary policy committee.", ["are reviewed"], "Přítomný čas prostý trpný, množný podmět 'rates', proto 'are reviewed'; jde o pravidelnou institucionální činnost."),
+F("passive-simple-advanced-10", "passive", "advanced", "Přítomný a minulý čas prostý", "Thousands of jobs ", "be / eliminate", " during the restructuring.", ["were eliminated"], "Minulý čas prostý trpný, množný podmět 'jobs', proto 'were eliminated'."),
+F("passive-simple-advanced-11", "passive", "advanced", "Přítomný a minulý čas prostý", "Whistleblowers ", "not / be / protect", " adequately unless the new law is passed.", ["aren't protected", "are not protected"], "Přítomný čas prostý trpný v záporu s podmínkovou vedlejší větou (unless...); podmět 'whistleblowers' je množné číslo, proto 'aren't/are not protected'."),
+F("passive-simple-advanced-12", "passive", "advanced", "Přítomný a minulý čas prostý", "The evidence ", "not / be / present", " clearly, which led to the appeal.", ["wasn't presented", "was not presented"], "Minulý čas prostý trpný v záporu; 'evidence' je nepočitatelné podstatné jméno v jednotném čísle, proto 'wasn't/was not presented'."),
+F("passive-simple-advanced-13", "passive", "advanced", "Přítomný a minulý čas prostý", "Are these regulations ", "enforce", " consistently across all member states?", ["enforced"], "Otázka v přítomném čase trpném; pomocné 'Are' je na začátku, doplňuje se 3. tvar 'enforced'."),
+F("passive-simple-advanced-14", "passive", "advanced", "Přítomný a minulý čas prostý", "Were the redundancies ", "announce", " before the shareholders' meeting?", ["announced"], "Otázka v minulém čase trpném; pomocné 'Were' je na začátku, doplňuje se 3. tvar 'announced'."),
+F("passive-simple-advanced-15", "passive", "advanced", "Přítomný a minulý čas prostý", "Corporate tax ", "be / levy", " at a flat rate regardless of company size.", ["is levied"], "Přítomný čas prostý trpný; daň je podmětem, protože se soustředíme na to, jak se vybírá, ne kdo ji vybírá."),
+F("passive-simple-advanced-16", "passive", "advanced", "Přítomný a minulý čas prostý", "The subsidiary ", "be / acquire", " by a foreign investment fund in 2019.", ["was acquired"], "Minulý čas prostý trpný s původcem děje (by a foreign investment fund); dceřiná společnost je podmětem, protože je pro nás důležitější než kupující."),
+M("passive-simple-advanced-17", "passive", "advanced", "Přítomný a minulý čas prostý", "Doplň trpný rod – nejprve přítomný čas, pak minulý čas (stejné sloveso).", [
+  {before: "The pharmaceutical industry ", hint: "be / regulate", after: " strictly to protect public health.", answers: ["is regulated"], tag: "Přítomný a minulý čas prostý"},
+  {before: "The industry ", hint: "be / regulate", after: " far less strictly before the 2008 crisis.", answers: ["was regulated"], tag: "Přítomný a minulý čas prostý"}
+], "První věta popisuje současný stav v přítomném čase prostém trpném, druhá minulý stav před rokem 2008 v minulém čase prostém trpném; sloveso 'regulate' zůstává stejné."),
+M("passive-simple-advanced-18", "passive", "advanced", "Přítomný a minulý čas prostý", "Nejprve aktivní věta, pak stejná věta v trpném rodě (minulý čas).", [
+  {before: "A team of lawyers ", hint: "draft", after: " the new contract within two weeks.", answers: ["drafted"], tag: "Přítomný a minulý čas prostý"},
+  {before: "The new contract ", hint: "be / draft", after: " within two weeks by a team of lawyers.", answers: ["was drafted"], tag: "Přítomný a minulý čas prostý"}
+], "V aktivní větě koná děj podmět 'a team of lawyers', v trpné větě je podmětem 'the new contract', na který se děj zaměřuje; čas (minulý prostý) zůstává stejný."),
+M("passive-simple-advanced-19", "passive", "advanced", "Přítomný a minulý čas prostý", "Doplň trpný rod v kladné i záporné podobě (přítomný čas).", [
+  {before: "Renewable energy projects ", hint: "be / subsidize", after: " heavily by the government.", answers: ["are subsidized", "are subsidised"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Fossil fuel projects ", hint: "not / be / subsidize", after: " to the same extent.", answers: ["aren't subsidized", "are not subsidized", "aren't subsidised", "are not subsidised"], tag: "Přítomný a minulý čas prostý"}
+], "Obě věty jsou v přítomném čase trpném s množným podmětem ('projects', proto 'are'); liší se kladnou a zápornou formou."),
+M("passive-simple-advanced-20", "passive", "advanced", "Přítomný a minulý čas prostý", "Doplň otázku v trpném rodě – nejprve přítomný čas, pak minulý čas.", [
+  {before: "Is the treaty ", hint: "ratify", after: " by all member states this year?", answers: ["ratified"], tag: "Přítomný a minulý čas prostý"},
+  {before: "Was the treaty ", hint: "ratify", after: " by the previous parliament?", answers: ["ratified"], tag: "Přítomný a minulý čas prostý"}
+], "Obě otázky jsou v trpném rodě; 'Is' vyjadřuje přítomnost, 'Was' minulost, sloveso 'ratified' (3. tvar) zůstává stejné.")
+);
+
+QUESTIONS.push(
+F("passive-perfectfuture-basic-01", "passive", "basic", "Present perfect, budoucí časy", "The window ", "break", " by the storm.", ["has been broken"], "Predpřítomný čas trpný (has/have been + minulé příčestí) - okno je předmětem děje 'break', 'by the storm' uvádí původce děje; zdůrazňujeme výsledný stav okna teď."),
+F("passive-perfectfuture-basic-02", "passive", "basic", "Present perfect, budoucí časy", "The homework ", "not / do", " yet.", ["hasn't been done", "has not been done"], "Záporný predpřítomný čas trpný - 'homework' je předmětem děje 'do', 'yet' ukazuje, že děj do teď nebyl dokončen."),
+F("passive-perfectfuture-basic-03", "passive", "basic", "Present perfect, budoucí časy", "Has the car ", "wash", "?", ["been washed"], "Otázka v predpřítomném čase trpném - pomocné sloveso 'Has' je již na začátku věty, doplňuje se 'been + minulé příčestí', ptáme se, zda byl děj dokončen."),
+F("passive-perfectfuture-basic-04", "passive", "basic", "Present perfect, budoucí časy", "The letter ", "send", " tomorrow.", ["will be sent"], "Budoucí čas trpný (will be + minulé příčestí) - 'letter' je předmětem děje 'send', který se odehraje v budoucnosti."),
+F("passive-perfectfuture-basic-05", "passive", "basic", "Present perfect, budoucí časy", "The meeting ", "not / cancel", ".", ["won't be cancelled", "will not be cancelled"], "Záporný budoucí čas trpný - 'meeting' je předmětem děje 'cancel', vyjadřujeme, že se tato akce v budoucnu nestane."),
+F("passive-perfectfuture-basic-06", "passive", "basic", "Present perfect, budoucí časy", "Will the food ", "deliver", " soon?", ["be delivered"], "Otázka v budoucím čase trpném - 'Will' stojí na začátku věty, doplňuje se 'be + minulé příčestí', ptáme se na budoucí děj bez zdůraznění, kdo jídlo doveze."),
+F("passive-perfectfuture-basic-07", "passive", "basic", "Present perfect, budoucí časy", "The cake ", "bake", " by my mother.", ["has been baked"], "Predpřítomný čas trpný s uvedeným původcem děje pomocí 'by' - 'has been baked' zdůrazňuje výsledek (dort je hotový), 'by my mother' říká, kdo dort upekl."),
+F("passive-perfectfuture-basic-08", "passive", "basic", "Present perfect, budoucí časy", "The house ", "going to / sell", ".", ["is going to be sold"], "Trpný rod s vazbou 'going to' (is/are + going to be + minulé příčestí) vyjadřuje plánovaný nebo očekávaný budoucí děj - dům bude prodán, protože už je to rozhodnuto."),
+F("passive-perfectfuture-basic-09", "passive", "basic", "Present perfect, budoucí časy", "The dishes ", "dry", ".", ["have been dried"], "Predpřítomný čas trpný v množném čísle - podmět 'dishes' je v množném čísle, proto se pojí s 'have' (ne 'has') + been + minulé příčestí; nádobí je teď osušené."),
+M("passive-perfectfuture-basic-10", "passive", "basic", "Present perfect, budoucí časy", "Doplňte sloveso 'announce' ve správném trpném tvaru - predpřítomný čas trpný, nebo budoucí čas trpný:", [
+  { before: "The results ", hint: "announce", after: " already, so check the website.", answers: ["have been announced"], tag: "Present perfect, budoucí časy" },
+  { before: "The results ", hint: "announce", after: " next Friday.", answers: ["will be announced"], tag: "Present perfect, budoucí časy" }
+], "'already' naznačuje dokončený děj s dopadem na přítomnost -> predpřítomný čas trpný (have been announced); 'next Friday' naznačuje budoucí událost -> budoucí čas trpný (will be announced); v obou větách je 'results' příjemcem děje 'announce', ne jeho původcem."),
+F("passive-perfectfuture-basic-11", "passive", "basic", "Present perfect, budoucí časy", "The toys ", "not / put away", ".", ["haven't been put away", "have not been put away"], "Záporný predpřítomný čas trpný v množném čísle - 'toys' (množné číslo) + 'haven't been put away', protože hraček se dosud nikdo neujal."),
+F("passive-perfectfuture-basic-12", "passive", "basic", "Present perfect, budoucí časy", "Will the trophy ", "present", " by the mayor?", ["be presented"], "Otázka v budoucím čase trpném s původcem děje - 'Will' je na začátku věty, doplňuje se 'be presented', 'by the mayor' upřesňuje, kdo trofej předá."),
+F("passive-perfectfuture-basic-13", "passive", "basic", "Present perfect, budoucí časy", "My bike ", "repair", ".", ["has been repaired"], "Predpřítomný čas trpný - 'bike' je předmětem děje 'repair', zdůrazňujeme výsledný stav (kolo je teď opravené)."),
+F("passive-perfectfuture-basic-14", "passive", "basic", "Present perfect, budoucí časy", "The party ", "not / going to / hold", " outside.", ["isn't going to be held", "is not going to be held"], "Záporná vazba 'going to' v trpném rodě - 'isn't going to be held' vyjadřuje, že se plánovaná akce (konání večírku venku) neuskuteční."),
+F("passive-perfectfuture-basic-15", "passive", "basic", "Present perfect, budoucí časy", "The new prices ", "introduce", " next month.", ["will be introduced"], "Budoucí čas trpný - 'prices' je předmětem děje 'introduce', 'next month' ukazuje, že jde o budoucí událost."),
+F("passive-perfectfuture-basic-16", "passive", "basic", "Present perfect, budoucí časy", "Has the door ", "lock", "?", ["been locked"], "Otázka v predpřítomném čase trpném - 'Has' je na začátku, doplňuje se 'been locked', ptáme se, zda byl děj (zamknutí dveří) již dokončen."),
+F("passive-perfectfuture-basic-17", "passive", "basic", "Present perfect, budoucí časy", "The concert ", "not / postpone", " because of rain.", ["won't be postponed", "will not be postponed"], "Záporný budoucí čas trpný - 'concert' je předmětem děje 'postpone', věta popírá, že bude v budoucnu odložen kvůli dešti."),
+F("passive-perfectfuture-basic-18", "passive", "basic", "Present perfect, budoucí časy", "The picture ", "paint", " by a famous artist.", ["has been painted"], "Predpřítomný čas trpný s původcem děje - 'picture' je předmětem děje 'paint', 'by a famous artist' uvádí, kdo obraz namaloval."),
+F("passive-perfectfuture-basic-19", "passive", "basic", "Present perfect, budoucí časy", "The room ", "clean", " before the guests arrive.", ["will be cleaned"], "Budoucí čas trpný ve větě s vedlejší větou časovou - 'room' je předmětem děje 'clean', hlavní věta je v budoucím čase trpném, vedlejší věta 'before the guests arrive' je v přítomném čase (běžné pravidlo pro anglické časové věty)."),
+F("passive-perfectfuture-basic-20", "passive", "basic", "Present perfect, budoucí časy", "The bill ", "not / pay", " yet.", ["hasn't been paid", "has not been paid"], "Záporný predpřítomný čas trpný - 'bill' je předmětem děje 'pay', 'yet' naznačuje, že se očekává dokončení děje, ale zatím k němu nedošlo."),
+F("passive-perfectfuture-intermediate-01", "passive", "intermediate", "Present perfect, budoucí časy", "The contract ", "sign", " by both parties, so we can proceed.", ["has been signed"], "Predpřítomný čas trpný s původcem děje - 'contract' je předmětem děje 'sign', 'by both parties' uvádí, kdo smlouvu podepsal; vedlejší věta vyjadřuje důsledek dokončeného děje."),
+F("passive-perfectfuture-intermediate-02", "passive", "intermediate", "Present perfect, budoucí časy", "New employees ", "train", " before they start working independently.", ["will be trained"], "Budoucí čas trpný ve větě s vedlejší větou časovou - 'employees' jsou předmětem děje 'train', vedlejší věta 'before...' je v přítomném čase, i když se vztahuje k budoucnosti."),
+F("passive-perfectfuture-intermediate-03", "passive", "intermediate", "Present perfect, budoucí časy", "The bridge ", "not / repair", " since the flood last year.", ["hasn't been repaired", "has not been repaired"], "Záporný predpřítomný čas trpný s 'since' - 'bridge' je předmětem děje 'repair', 'since the flood last year' ukazuje, od kdy trvá stav nedokončené opravy až do přítomnosti."),
+F("passive-perfectfuture-intermediate-04", "passive", "intermediate", "Present perfect, budoucí časy", "Has the package ", "send", " to the wrong address again?", ["been sent"], "Otázka v predpřítomném čase trpném - 'Has' je na začátku věty, doplňuje se 'been sent', 'again' naznačuje opakování problému, který trvá do přítomnosti."),
+F("passive-perfectfuture-intermediate-05", "passive", "intermediate", "Present perfect, budoucí časy", "The festival ", "going to / postpone", " because of the weather forecast.", ["is going to be postponed"], "Vazba 'going to' v trpném rodě - 'festival' je předmětem děje 'postpone', 'going to' naznačuje, že se rozhodnutí o odložení opírá o aktuální předpověď počasí."),
+F("passive-perfectfuture-intermediate-06", "passive", "intermediate", "Present perfect, budoucí časy", "The documents ", "not / translate", " into French yet.", ["haven't been translated", "have not been translated"], "Záporný predpřítomný čas trpný v množném čísle - 'documents' + 'haven't been translated', 'yet' naznačuje očekávané, ale zatím nedokončené dokončení překladu."),
+F("passive-perfectfuture-intermediate-07", "passive", "intermediate", "Present perfect, budoucí časy", "Will the new policy ", "unveil", " at the conference next month?", ["be unveiled"], "Otázka v budoucím čase trpném - 'Will' stojí na začátku, doplňuje se 'be unveiled', 'next month' potvrzuje, že jde o budoucí událost."),
+F("passive-perfectfuture-intermediate-08", "passive", "intermediate", "Present perfect, budoucí časy", "The ancient ruins ", "damage", " by years of tourism.", ["have been damaged"], "Predpřítomný čas trpný s původcem děje - 'ruins' (množné číslo) + 'have been damaged', 'by years of tourism' uvádí dlouhodobou příčinu poškození, které trvá do přítomnosti."),
+F("passive-perfectfuture-intermediate-09", "passive", "intermediate", "Present perfect, budoucí časy", "The museum ", "not / reopen", " until the renovations are complete.", ["won't be reopened", "will not be reopened"], "Záporný budoucí čas trpný s vedlejší větou 'until' - 'museum' je předmětem děje 'reopen', vedlejší věta uvádí podmínku, po jejímž splnění se muzeum otevře."),
+M("passive-perfectfuture-intermediate-10", "passive", "intermediate", "Present perfect, budoucí časy", "Doplňte sloveso 'review' ve správném trpném tvaru - predpřítomný čas trpný, nebo budoucí čas trpný:", [
+  { before: "The application ", hint: "review", after: " already, according to the email.", answers: ["has been reviewed"], tag: "Present perfect, budoucí časy" },
+  { before: "The application ", hint: "review", after: " by next Friday, according to the email.", answers: ["will be reviewed"], tag: "Present perfect, budoucí časy" }
+], "'already' ukazuje na dokončený děj s dopadem na přítomnost -> predpřítomný čas trpný (has been reviewed); 'by next Friday' ukazuje na budoucí termín -> budoucí čas trpný (will be reviewed); v obou větách je 'application' příjemcem děje 'review'."),
+F("passive-perfectfuture-intermediate-11", "passive", "intermediate", "Present perfect, budoucí časy", "Several complaints ", "file", " against the company this year.", ["have been filed"], "Predpřítomný čas trpný v množném čísle - 'complaints' + 'have been filed', 'this year' ukazuje časové období, které pokračuje až do přítomnosti."),
+F("passive-perfectfuture-intermediate-12", "passive", "intermediate", "Present perfect, budoucí časy", "The new stadium ", "going to / build", " near the river.", ["is going to be built"], "Vazba 'going to' v trpném rodě - 'stadium' je předmětem děje 'build', 'going to' vyjadřuje již existující plán nebo rozhodnutí o výstavbě."),
+F("passive-perfectfuture-intermediate-13", "passive", "intermediate", "Present perfect, budoucí časy", "Has the manuscript ", "proofread", " by the editor yet?", ["been proofread"], "Otázka v predpřítomném čase trpném s původcem děje - 'Has' je na začátku, doplňuje se 'been proofread', 'by the editor' uvádí, kdo rukopis kontroluje, 'yet' se ptá, zda je děj již dokončen."),
+F("passive-perfectfuture-intermediate-14", "passive", "intermediate", "Present perfect, budoucí časy", "The injured hikers ", "rescue", " by helicopter as soon as possible.", ["will be rescued"], "Budoucí čas trpný s prostředkem děje - 'hikers' jsou předmětem děje 'rescue', 'by helicopter' zde neuvádí původce, ale prostředek záchrany."),
+F("passive-perfectfuture-intermediate-15", "passive", "intermediate", "Present perfect, budoucí časy", "The old factory ", "not / demolish", " despite the safety concerns.", ["hasn't been demolished", "has not been demolished"], "Záporný predpřítomný čas trpný s 'despite' - 'factory' je předmětem děje 'demolish', věta říká, že navzdory bezpečnostním obavám k demolici dosud nedošlo."),
+F("passive-perfectfuture-intermediate-16", "passive", "intermediate", "Present perfect, budoucí časy", "The candidates ", "interview", " individually next week.", ["will be interviewed"], "Budoucí čas trpný v množném čísle - 'candidates' jsou předmětem děje 'interview', 'next week' potvrzuje budoucí časový rámec."),
+F("passive-perfectfuture-intermediate-17", "passive", "intermediate", "Present perfect, budoucí časy", "The stolen paintings ", "recover", " by the police.", ["have been recovered"], "Predpřítomný čas trpný s původcem děje v množném čísle - 'paintings' + 'have been recovered', 'by the police' uvádí, kdo obrazy nalezl."),
+F("passive-perfectfuture-intermediate-18", "passive", "intermediate", "Present perfect, budoucí časy", "Won't the flight ", "delay", " if the storm continues?", ["be delayed"], "Záporná otázka v budoucím čase trpném - 'Won't' je na začátku věty, doplňuje se 'be delayed', podmínková věta 'if the storm continues' naznačuje možnou budoucí příčinu zpoždění."),
+F("passive-perfectfuture-intermediate-19", "passive", "intermediate", "Present perfect, budoucí časy", "The proposal ", "reject", " by the committee twice already.", ["has been rejected"], "Predpřítomný čas trpný s příslovcem četnosti - 'proposal' je předmětem děje 'reject', 'twice already' zdůrazňuje opakování děje až do současnosti, typické pro predpřítomný čas."),
+F("passive-perfectfuture-intermediate-20", "passive", "intermediate", "Present perfect, budoucí časy", "The city centre ", "going to / close", " to traffic during the parade.", ["is going to be closed"], "Vazba 'going to' v trpném rodě - 'city centre' je předmětem děje 'close', 'going to' naznačuje plánované uzavření kvůli známé budoucí události (přehlídce)."),
+F("passive-perfectfuture-advanced-01", "passive", "advanced", "Present perfect, budoucí časy", "The merger ", "approve", " by the regulatory authorities.", ["has been approved"], "Predpřítomný čas trpný s původcem děje - 'merger' je předmětem děje 'approve', 'by the regulatory authorities' uvádí formálního původce rozhodnutí."),
+F("passive-perfectfuture-advanced-02", "passive", "advanced", "Present perfect, budoucí časy", "The findings ", "publish", " in a peer-reviewed journal next spring.", ["will be published"], "Budoucí čas trpný v množném čísle - 'findings' jsou předmětem děje 'publish', 'next spring' potvrzuje budoucí časový rámec."),
+F("passive-perfectfuture-advanced-03", "passive", "advanced", "Present perfect, budoucí časy", "The allegations ", "not / substantiate", " by any credible evidence.", ["haven't been substantiated", "have not been substantiated"], "Záporný predpřítomný čas trpný v množném čísle - 'allegations' + 'haven't been substantiated', věta říká, že dosud nebyl předložen žádný důvěryhodný důkaz."),
+F("passive-perfectfuture-advanced-04", "passive", "advanced", "Present perfect, budoucí časy", "Has the treaty ", "ratify", " by all member states?", ["been ratified"], "Otázka v predpřítomném čase trpném s původcem děje - 'Has' je na začátku, doplňuje se 'been ratified', 'by all member states' uvádí, kdo má smlouvu schválit."),
+F("passive-perfectfuture-advanced-05", "passive", "advanced", "Present perfect, budoucí časy", "The suspect's assets ", "going to / freeze", " pending investigation.", ["are going to be frozen"], "Vazba 'going to' v trpném rodě v množném čísle - 'assets' (množné číslo) + 'are going to be frozen', vyjadřuje oficiálně plánovaný krok, dokud vyšetřování neskončí."),
+F("passive-perfectfuture-advanced-06", "passive", "advanced", "Present perfect, budoucí časy", "The infrastructure project ", "fund", " jointly by three governments.", ["will be funded"], "Budoucí čas trpný s původcem děje - 'project' je předmětem děje 'fund', 'by three governments' uvádí, kdo bude projekt financovat."),
+F("passive-perfectfuture-advanced-07", "passive", "advanced", "Present perfect, budoucí časy", "The controversial decision ", "not / reverse", " despite public outcry.", ["hasn't been reversed", "has not been reversed"], "Záporný predpřítomný čas trpný s 'despite' - 'decision' je předmětem děje 'reverse', věta zdůrazňuje, že navzdory veřejnému tlaku rozhodnutí dosud nebylo zvráceno."),
+F("passive-perfectfuture-advanced-08", "passive", "advanced", "Present perfect, budoucí časy", "Will the CEO's resignation ", "accept", " by the board tomorrow?", ["be accepted"], "Otázka v budoucím čase trpném s původcem děje - 'Will' je na začátku, doplňuje se 'be accepted', 'by the board' uvádí, kdo má o rezignaci rozhodnout."),
+F("passive-perfectfuture-advanced-09", "passive", "advanced", "Present perfect, budoucí časy", "The company's reputation ", "severely / damage", " by the scandal.", ["has been severely damaged"], "Predpřítomný čas trpný s příslovcem míry - 'reputation' je předmětem děje 'damage', příslovce 'severely' zesiluje míru poškození, 'by the scandal' uvádí původce."),
+M("passive-perfectfuture-advanced-10", "passive", "advanced", "Present perfect, budoucí časy", "Doplňte sloveso 'release' ve správném trpném tvaru - predpřítomný čas trpný, nebo budoucí čas trpný:", [
+  { before: "The full report ", hint: "release", after: " to the press already.", answers: ["has been released"], tag: "Present perfect, budoucí časy" },
+  { before: "The full report ", hint: "release", after: " to the press once the inquiry concludes.", answers: ["will be released"], tag: "Present perfect, budoucí časy" }
+], "'already' odkazuje na dokončený děj s dopadem na přítomnost -> predpřítomný čas trpný (has been released); 'once the inquiry concludes' odkazuje na budoucí podmínku -> budoucí čas trpný (will be released); v obou větách je 'report' příjemcem děje 'release'."),
+F("passive-perfectfuture-advanced-11", "passive", "advanced", "Present perfect, budoucí časy", "The refugees ", "grant", " asylum once their applications are processed.", ["will be granted"], "Budoucí čas trpný ve větě s vedlejší větou časovou - 'refugees' jsou předmětem děje 'grant' (be granted something), vedlejší věta 'once...' je v přítomném čase, i když se týká budoucnosti."),
+F("passive-perfectfuture-advanced-12", "passive", "advanced", "Present perfect, budoucí časy", "The outdated legislation ", "not / repeal", " for over a decade.", ["hasn't been repealed", "has not been repealed"], "Záporný predpřítomný čas trpný s 'for' - 'legislation' je předmětem děje 'repeal', 'for over a decade' udává dobu trvání stavu až do přítomnosti."),
+F("passive-perfectfuture-advanced-13", "passive", "advanced", "Present perfect, budoucí časy", "The negotiations ", "going to / resume", " after a brief recess.", ["are going to be resumed"], "Vazba 'going to' v trpném rodě v množném čísle - 'negotiations' + 'are going to be resumed', vyjadřuje již dohodnutý plán pokračovat po krátké přestávce."),
+F("passive-perfectfuture-advanced-14", "passive", "advanced", "Present perfect, budoucí časy", "The whistleblower's identity ", "protect", " by strict confidentiality laws.", ["has been protected"], "Predpřítomný čas trpný s původcem děje - 'identity' je předmětem děje 'protect', 'by strict confidentiality laws' uvádí, co totožnost chrání."),
+F("passive-perfectfuture-advanced-15", "passive", "advanced", "Present perfect, budoucí časy", "Won't the sanctions ", "lift", " if the ceasefire holds?", ["be lifted"], "Záporná otázka v budoucím čase trpném v množném čísle - 'Won't' je na začátku, doplňuje se 'be lifted', podmínková věta 'if the ceasefire holds' udává podmínku pro budoucí zrušení sankcí."),
+F("passive-perfectfuture-advanced-16", "passive", "advanced", "Present perfect, budoucí časy", "The disputed territory ", "recognise", " by only a handful of nations.", ["has been recognised", "has been recognized"], "Predpřítomný čas trpný s příslovečným určením míry - 'territory' je předmětem děje 'recognise', 'by only a handful of nations' ukazuje omezený rozsah mezinárodního uznání."),
+F("passive-perfectfuture-advanced-17", "passive", "advanced", "Present perfect, budoucí časy", "The quarterly earnings ", "disclose", " before the markets open.", ["will be disclosed"], "Budoucí čas trpný ve větě s vedlejší větou časovou - 'earnings' jsou předmětem děje 'disclose', vedlejší věta 'before the markets open' je v přítomném čase, přestože odkazuje k budoucnosti."),
+F("passive-perfectfuture-advanced-18", "passive", "advanced", "Present perfect, budoucí časy", "The controversial policy ", "not / implement", " in most rural regions.", ["hasn't been implemented", "has not been implemented"], "Záporný predpřítomný čas trpný - 'policy' je předmětem děje 'implement', věta říká, že ve většině venkovských oblastí zavedení politiky dosud neproběhlo."),
+F("passive-perfectfuture-advanced-19", "passive", "advanced", "Present perfect, budoucí časy", "Has the evidence ", "submit", " to the court in time?", ["been submitted"], "Otázka v predpřítomném čase trpném - 'Has' je na začátku, doplňuje se 'been submitted', ptáme se, zda byl důkaz doručen soudu včas."),
+F("passive-perfectfuture-advanced-20", "passive", "advanced", "Present perfect, budoucí časy", "The endangered species ", "going to / reintroduce", " into its natural habitat.", ["is going to be reintroduced"], "Vazba 'going to' v trpném rodě - 'species' (zde v jednotném čísle) je předmětem děje 'reintroduce', 'going to' vyjadřuje oficiálně naplánovaný krok ochrany přírody.")
+);
+
+/* ---------------- TRPNY ROD: S modalnimi slovesy, Have/get something done, Mix ---------------- */
+
+QUESTIONS.push(
+F(
+  "passive-modals-basic-01",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The tickets ",
+  "can / buy",
+  " online.",
+  ["can be bought"],
+  "Trpný rod s modálním slovesem: can + be + trpné příčestí (bought, od buy). Podmět 'tickets' je předmětem děje 'koupit', proto pasivum; can vyjadřuje možnost."
+),
+F(
+  "passive-modals-basic-02",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "This form ",
+  "must / sign",
+  " by tomorrow.",
+  ["must be signed"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (signed, od sign). 'This form' je předmětem děje 'podepsat', proto pasivum; must vyjadřuje povinnost."
+),
+F(
+  "passive-modals-basic-03",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The meeting ",
+  "should / reschedule",
+  ".",
+  ["should be rescheduled"],
+  "Trpný rod s modálním slovesem: should + be + trpné příčestí (rescheduled, od reschedule). 'The meeting' je předmětem děje 'přeložit', proto pasivum; should vyjadřuje doporučení."
+),
+F(
+  "passive-modals-basic-04",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "It ",
+  "might / fix",
+  " by then.",
+  ["might be fixed"],
+  "Trpný rod s modálním slovesem: might + be + trpné příčestí (fixed, od fix). Podmět 'it' je předmětem opravy, proto pasivum; might vyjadřuje menší jistotu možnosti."
+),
+F(
+  "passive-modals-basic-05",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The rules ",
+  "have to / follow",
+  ".",
+  ["have to be followed"],
+  "Trpný rod s modálním slovesem: have to + be + trpné příčestí (followed, od follow). 'The rules' je množné číslo, proto 'have to' (ne 'has to'); vyjadřuje vnější nutnost."
+),
+F(
+  "passive-modals-basic-06",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "This door ",
+  "cannot / open",
+  ".",
+  ["can't be opened", "cannot be opened"],
+  "Trpný rod se záporným modálním slovesem: cannot/can't + be + trpné příčestí (opened, od open). 'This door' je předmětem děje 'otevřít'; zápor vyjadřuje nemožnost."
+),
+F(
+  "passive-modals-basic-07",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Loud music ",
+  "must not / play",
+  " after 10 pm.",
+  ["must not be played", "mustn't be played"],
+  "Trpný rod se záporným modálním slovesem: must not/mustn't + be + trpné příčestí (played, od play). 'Loud music' je předmětem děje 'hrát'; zápor vyjadřuje zákaz."
+),
+F(
+  "passive-modals-basic-08",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Should the letter ",
+  "send",
+  " today?",
+  ["be sent"],
+  "Otázka v trpném rodě: modální sloveso should je na začátku otázky, doplňuje se jen be + trpné příčestí (sent, od send). 'The letter' je předmětem děje 'poslat'."
+),
+F(
+  "passive-modals-basic-09",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Visitors ",
+  "may / ask",
+  " to show ID.",
+  ["may be asked"],
+  "Trpný rod s modálním slovesem: may + be + trpné příčestí (asked, od ask). 'Visitors' je předmětem děje 'požádat', proto pasivum; may vyjadřuje možnost/povolení."
+),
+F(
+  "passive-modals-basic-10",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The homework ",
+  "will / check",
+  " tomorrow.",
+  ["will be checked"],
+  "Trpný rod s modálním slovesem: will + be + trpné příčestí (checked, od check). 'The homework' je předmětem děje 'zkontrolovat', proto pasivum; will vyjadřuje jistotu budoucí události."
+),
+F(
+  "passive-modals-basic-11",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "This car ",
+  "need to / wash",
+  ".",
+  ["needs to be washed"],
+  "Trpný rod s modálním slovesem: need to + be + trpné příčestí (washed, od wash). Podmět 'this car' je v jednotném čísle, proto se 'need' mění na 'needs'."
+),
+F(
+  "passive-modals-basic-12",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The dishes ",
+  "not have to / wash",
+  " tonight.",
+  ["don't have to be washed", "do not have to be washed"],
+  "Trpný rod se záporným 'have to': don't have to + be + trpné příčestí (washed, od wash). 'The dishes' je množné číslo, proto 'don't'; zápor vyjadřuje absenci nutnosti."
+),
+F(
+  "passive-modals-basic-13",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Can this bag ",
+  "open",
+  ", please?",
+  ["be opened"],
+  "Otázka v trpném rodě: modální sloveso can je na začátku otázky, doplňuje se jen be + trpné příčestí (opened, od open). 'This bag' je předmětem děje 'otevřít'."
+),
+F(
+  "passive-modals-basic-14",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Photos ",
+  "must not / take",
+  " inside the museum.",
+  ["must not be taken", "mustn't be taken"],
+  "Trpný rod se záporným modálním slovesem: must not/mustn't + be + trpné příčestí (taken, od take). 'Photos' je předmětem děje 'fotit'; zápor vyjadřuje zákaz."
+),
+F(
+  "passive-modals-basic-15",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "This exercise ",
+  "could / do",
+  " later.",
+  ["could be done"],
+  "Trpný rod s modálním slovesem: could + be + trpné příčestí (done, od do). 'This exercise' je předmětem děje 'udělat', proto pasivum; could vyjadřuje zdvořilou možnost."
+),
+F(
+  "passive-modals-basic-16",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "This message ",
+  "should not / ignore",
+  ".",
+  ["should not be ignored", "shouldn't be ignored"],
+  "Trpný rod se záporným modálním slovesem: should not/shouldn't + be + trpné příčestí (ignored, od ignore). 'This message' je předmětem děje 'ignorovat'; zápor vyjadřuje nedoporučení."
+),
+F(
+  "passive-modals-basic-17",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "Does this letter have to ",
+  "sign",
+  "?",
+  ["be signed"],
+  "Otázka se 'have to' v trpném rodě: pomocné 'does' patří k have to, doplňuje se jen be + trpné příčestí (signed, od sign). 'This letter' je předmětem děje 'podepsat'."
+),
+F(
+  "passive-modals-basic-18",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The bill ",
+  "must / pay",
+  " by Friday.",
+  ["must be paid"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (paid, od pay). 'The bill' je předmětem děje 'zaplatit', proto pasivum; must vyjadřuje povinnost."
+),
+F(
+  "passive-modals-basic-19",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The flight ",
+  "might not / cancel",
+  ".",
+  ["might not be cancelled", "might not be canceled"],
+  "Trpný rod se záporným modálním slovesem: might not + be + trpné příčestí (cancelled/canceled, od cancel). 'The flight' je předmětem děje 'zrušit'; might not vyjadřuje nejistou možnost, že se to nestane."
+),
+F(
+  "passive-modals-basic-20",
+  "passive",
+  "basic",
+  "S modálními slovesy",
+  "The event ",
+  "will not / postpone",
+  ".",
+  ["won't be postponed", "will not be postponed"],
+  "Trpný rod se záporným modálním slovesem: will not/won't + be + trpné příčestí (postponed, od postpone). 'The event' je předmětem děje 'odložit'; zápor vyjadřuje jistotu, že se to nestane."
+),
+F(
+  "passive-modals-intermediate-01",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Before the contract is signed, all clauses ",
+  "must / review",
+  " by a lawyer.",
+  ["must be reviewed"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (reviewed, od review), s uvedením konatele 'by a lawyer'. 'All clauses' je předmětem děje 'zkontrolovat'; must vyjadřuje povinnost."
+),
+F(
+  "passive-modals-intermediate-02",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "If the software crashes again, the issue ",
+  "should / report",
+  " immediately.",
+  ["should be reported"],
+  "Trpný rod s modálním slovesem: should + be + trpné příčestí (reported, od report). 'The issue' je předmětem děje 'nahlásit', proto pasivum; should vyjadřuje doporučení v podmínkové větě."
+),
+F(
+  "passive-modals-intermediate-03",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Because the venue is small, tickets ",
+  "have to / reserve",
+  " in advance.",
+  ["have to be reserved"],
+  "Trpný rod s modálním slovesem: have to + be + trpné příčestí (reserved, od reserve). 'Tickets' je množné číslo, proto 'have to'; vyjadřuje vnější nutnost danou okolností."
+),
+F(
+  "passive-modals-intermediate-04",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "The negotiations are delicate, so the deadline ",
+  "might / extend",
+  ".",
+  ["might be extended"],
+  "Trpný rod s modálním slovesem: might + be + trpné příčestí (extended, od extend). 'The deadline' je předmětem děje 'prodloužit', proto pasivum; might vyjadřuje nejistou možnost."
+),
+F(
+  "passive-modals-intermediate-05",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "This decision ",
+  "cannot / overturn",
+  " by a single committee member.",
+  ["cannot be overturned", "can't be overturned"],
+  "Trpný rod se záporným modálním slovesem: cannot/can't + be + trpné příčestí (overturned, od overturn), s konatelem 'by a single committee member'. Zápor vyjadřuje nemožnost."
+),
+F(
+  "passive-modals-intermediate-06",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "May the witness ",
+  "cross-examine",
+  " by the defence?",
+  ["be cross-examined"],
+  "Otázka v trpném rodě: modální sloveso may je na začátku otázky, doplňuje se jen be + trpné příčestí (cross-examined, od cross-examine), s konatelem 'by the defence'."
+),
+F(
+  "passive-modals-intermediate-07",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Every proposal ",
+  "need to / approve",
+  " by the board before it proceeds.",
+  ["needs to be approved"],
+  "Trpný rod s modálním slovesem: need to + be + trpné příčestí (approved, od approve), s konatelem 'by the board'. 'Every proposal' je jednotné číslo, proto 'needs'."
+),
+F(
+  "passive-modals-intermediate-08",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Confidential files ",
+  "must not / share",
+  " with unauthorised staff.",
+  ["must not be shared", "mustn't be shared"],
+  "Trpný rod se záporným modálním slovesem: must not/mustn't + be + trpné příčestí (shared, od share). 'Confidential files' je předmětem děje 'sdílet'; zápor vyjadřuje zákaz."
+),
+F(
+  "passive-modals-intermediate-09",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "If the budget allows, the office ",
+  "could / renovate",
+  " next year.",
+  ["could be renovated"],
+  "Trpný rod s modálním slovesem: could + be + trpné příčestí (renovated, od renovate). 'The office' je předmětem děje 'zrenovovat', proto pasivum; could vyjadřuje možnost podmíněnou okolností."
+),
+F(
+  "passive-modals-intermediate-10",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Such comments ",
+  "should not / tolerate",
+  " in a professional workplace.",
+  ["shouldn't be tolerated", "should not be tolerated"],
+  "Trpný rod se záporným modálním slovesem: should not/shouldn't + be + trpné příčestí (tolerated, od tolerate). 'Such comments' je předmětem děje 'tolerovat'; zápor vyjadřuje nedoporučení."
+),
+F(
+  "passive-modals-intermediate-11",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Will the results ",
+  "announce",
+  " before the end of the week?",
+  ["be announced"],
+  "Otázka v trpném rodě: modální sloveso will je na začátku otázky, doplňuje se jen be + trpné příčestí (announced, od announce). 'The results' je předmětem děje 'oznámit'."
+),
+F(
+  "passive-modals-intermediate-12",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "The applicant ",
+  "not have to / interview",
+  " twice.",
+  ["doesn't have to be interviewed", "does not have to be interviewed"],
+  "Trpný rod se záporným 'have to': doesn't have to + be + trpné příčestí (interviewed, od interview). 'The applicant' je jednotné číslo, proto 'doesn't'; zápor vyjadřuje absenci nutnosti."
+),
+F(
+  "passive-modals-intermediate-13",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "According to the new policy, every complaint ",
+  "must / acknowledge",
+  " by a manager within 48 hours.",
+  ["must be acknowledged"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (acknowledged, od acknowledge), s konatelem 'by a manager'. 'Every complaint' je předmětem děje 'potvrdit přijetí'; must vyjadřuje povinnost."
+),
+F(
+  "passive-modals-intermediate-14",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Given the delays, the shipment ",
+  "might not / deliver",
+  " on time.",
+  ["might not be delivered"],
+  "Trpný rod se záporným modálním slovesem: might not + be + trpné příčestí (delivered, od deliver). 'The shipment' je předmětem děje 'doručit'; might not vyjadřuje nejistou možnost, že se to nestane."
+),
+F(
+  "passive-modals-intermediate-15",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Minor errors ",
+  "can / correct",
+  " by the editor before publication.",
+  ["can be corrected"],
+  "Trpný rod s modálním slovesem: can + be + trpné příčestí (corrected, od correct), s konatelem 'by the editor'. 'Minor errors' je předmětem děje 'opravit'; can vyjadřuje možnost."
+),
+F(
+  "passive-modals-intermediate-16",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Does the equipment have to ",
+  "inspect",
+  " before each use?",
+  ["be inspected"],
+  "Otázka se 'have to' v trpném rodě: pomocné 'does' patří k have to, doplňuje se jen be + trpné příčestí (inspected, od inspect). 'The equipment' je předmětem děje 'zkontrolovat'."
+),
+F(
+  "passive-modals-intermediate-17",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Whenever a conflict arises, it ",
+  "should / resolve",
+  " through mediation.",
+  ["should be resolved"],
+  "Trpný rod s modálním slovesem: should + be + trpné příčestí (resolved, od resolve). 'It' (= conflict) je předmětem děje 'vyřešit', proto pasivum; should vyjadřuje doporučení."
+),
+F(
+  "passive-modals-intermediate-18",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "The proposal ",
+  "will not / approve",
+  " by the committee without more evidence.",
+  ["won't be approved", "will not be approved"],
+  "Trpný rod se záporným modálním slovesem: will not/won't + be + trpné příčestí (approved, od approve), s konatelem 'by the committee'. Zápor vyjadřuje jistotu, že se to nestane."
+),
+F(
+  "passive-modals-intermediate-19",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "Refunds ",
+  "may / issue",
+  " at the manager's discretion.",
+  ["may be issued"],
+  "Trpný rod s modálním slovesem: may + be + trpné příčestí (issued, od issue). 'Refunds' je předmětem děje 'vydat', proto pasivum; may vyjadřuje formální možnost/povolení."
+),
+F(
+  "passive-modals-intermediate-20",
+  "passive",
+  "intermediate",
+  "S modálními slovesy",
+  "The documents ",
+  "not need to / translate",
+  " for this office.",
+  ["don't need to be translated", "do not need to be translated"],
+  "Trpný rod se záporným 'need to': don't need to + be + trpné příčestí (translated, od translate). 'The documents' je množné číslo, proto 'don't'; zápor vyjadřuje absenci nutnosti."
+),
+F(
+  "passive-modals-advanced-01",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Pursuant to the agreement, all disputes ",
+  "must / settle",
+  " through arbitration.",
+  ["must be settled"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (settled, od settle). 'All disputes' je předmětem děje 'urovnat', proto pasivum; must vyjadřuje smluvní povinnost."
+),
+F(
+  "passive-modals-advanced-02",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "The board recommended that the merger ",
+  "should / finalise",
+  " before the fiscal year ends.",
+  ["should be finalised", "should be finalized"],
+  "Trpný rod s modálním slovesem: should + be + trpné příčestí (finalised/finalized, od finalise/finalize). 'The merger' je předmětem děje 'dokončit'; should vyjadřuje doporučení ve vedlejší větě."
+),
+F(
+  "passive-modals-advanced-03",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Under this clause, liability ",
+  "cannot / waive",
+  " by either party.",
+  ["cannot be waived", "can't be waived"],
+  "Trpný rod se záporným modálním slovesem: cannot/can't + be + trpné příčestí (waived, od waive), s konatelem 'by either party'. Zápor vyjadřuje smluvní nemožnost."
+),
+F(
+  "passive-modals-advanced-04",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "The minister announced that the policy ",
+  "may / revise",
+  " in light of new data.",
+  ["may be revised"],
+  "Trpný rod s modálním slovesem: may + be + trpné příčestí (revised, od revise). 'The policy' je předmětem děje 'revidovat', proto pasivum; may vyjadřuje formální možnost."
+),
+F(
+  "passive-modals-advanced-05",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Under no circumstances must the evidence ",
+  "tamper with",
+  ".",
+  ["be tampered with"],
+  "Trpný rod s modálním slovesem a frázovým slovesem: must + be + tampered with (od tamper with). Záporný výraz 'Under no circumstances' na začátku věty způsobuje inverzi (must předchází podmětu); samotný zákaz už je vyjádřen tímto výrazem, takže sloveso zůstává v kladném tvaru."
+),
+F(
+  "passive-modals-advanced-06",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Analysts warned that the forecast ",
+  "might / revise",
+  " downward next quarter.",
+  ["might be revised"],
+  "Trpný rod s modálním slovesem: might + be + trpné příčestí (revised, od revise). 'The forecast' je předmětem děje 'revidovat', proto pasivum; might vyjadřuje nejistou možnost."
+),
+F(
+  "passive-modals-advanced-07",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "In accordance with the statute, the notice ",
+  "have to / serve",
+  " within thirty days.",
+  ["has to be served"],
+  "Trpný rod s modálním slovesem: have to + be + trpné příčestí (served, od serve). 'The notice' je jednotné číslo, proto 'has to'; vyjadřuje zákonnou nutnost."
+),
+F(
+  "passive-modals-advanced-08",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Will shareholders ",
+  "consult",
+  " before the decision is implemented?",
+  ["be consulted"],
+  "Otázka v trpném rodě: modální sloveso will je na začátku otázky, doplňuje se jen be + trpné příčestí (consulted, od consult). 'Shareholders' je předmětem děje 'konzultovat s'."
+),
+F(
+  "passive-modals-advanced-09",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Such discrepancies ",
+  "need to / address",
+  " before the audit concludes.",
+  ["need to be addressed"],
+  "Trpný rod s modálním slovesem: need to + be + trpné příčestí (addressed, od address). 'Such discrepancies' je množné číslo, proto 'need'; vyjadřuje nutnost."
+),
+F(
+  "passive-modals-advanced-10",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Sensitive data ",
+  "should not / disclose",
+  " without explicit consent.",
+  ["shouldn't be disclosed", "should not be disclosed"],
+  "Trpný rod se záporným modálním slovesem: should not/shouldn't + be + trpné příčestí (disclosed, od disclose). 'Sensitive data' je předmětem děje 'zveřejnit'; zápor vyjadřuje nedoporučení."
+),
+F(
+  "passive-modals-advanced-11",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Under the new framework, exceptions ",
+  "can / grant",
+  " only by senior management.",
+  ["can be granted"],
+  "Trpný rod s modálním slovesem: can + be + trpné příčestí (granted, od grant), s konatelem 'by senior management'. 'Exceptions' je předmětem děje 'udělit'; can vyjadřuje možnost/oprávnění."
+),
+F(
+  "passive-modals-advanced-12",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Officials confirmed that the bridge ",
+  "must / close",
+  " to traffic during repairs.",
+  ["must be closed"],
+  "Trpný rod s modálním slovesem: must + be + trpné příčestí (closed, od close). 'The bridge' je předmětem děje 'uzavřít', proto pasivum; must vyjadřuje nutnost."
+),
+F(
+  "passive-modals-advanced-13",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Without prior authorisation, the funds ",
+  "may not / transfer",
+  " abroad.",
+  ["may not be transferred"],
+  "Trpný rod se záporným modálním slovesem: may not + be + trpné příčestí (transferred, od transfer). 'The funds' je předmětem děje 'převést'; zápor vyjadřuje formální zákaz."
+),
+F(
+  "passive-modals-advanced-14",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "If the merger proceeds, thousands of jobs ",
+  "could / affect",
+  ".",
+  ["could be affected"],
+  "Trpný rod s modálním slovesem: could + be + trpné příčestí (affected, od affect). 'Thousands of jobs' je předmětem děje 'ovlivnit', proto pasivum; could vyjadřuje podmíněnou možnost."
+),
+F(
+  "passive-modals-advanced-15",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "According to the ruling, the company ",
+  "not have to / notify",
+  " in advance.",
+  ["doesn't have to be notified", "does not have to be notified"],
+  "Trpný rod se záporným 'have to': doesn't have to + be + trpné příčestí (notified, od notify). 'The company' je jednotné číslo, proto 'doesn't'; zápor vyjadřuje absenci povinnosti."
+),
+F(
+  "passive-modals-advanced-16",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "The government stated that the reform ",
+  "will / implement",
+  " gradually.",
+  ["will be implemented"],
+  "Trpný rod s modálním slovesem: will + be + trpné příčestí (implemented, od implement). 'The reform' je předmětem děje 'zavést', proto pasivum; will vyjadřuje jistotu budoucí události."
+),
+F(
+  "passive-modals-advanced-17",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Must the contract ",
+  "ratify",
+  " by both parties before it takes effect?",
+  ["be ratified"],
+  "Otázka v trpném rodě: modální sloveso must je na začátku otázky, doplňuje se jen be + trpné příčestí (ratified, od ratify), s konatelem 'by both parties'."
+),
+F(
+  "passive-modals-advanced-18",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Critics argue that the risks ",
+  "might not / fully / understand",
+  " by regulators.",
+  ["might not be fully understood"],
+  "Trpný rod se záporným modálním slovesem a příslovcem uprostřed vazby: might not + be + fully + trpné příčestí (understood, od understand). Příslovce 'fully' stojí mezi be a příčestím; konatel je 'by regulators'."
+),
+F(
+  "passive-modals-advanced-19",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "The tribunal held that compensation ",
+  "should / award",
+  " to the claimant.",
+  ["should be awarded"],
+  "Trpný rod s modálním slovesem: should + be + trpné příčestí (awarded, od award). 'Compensation' je předmětem děje 'přiznat', proto pasivum; should vyjadřuje doporučení/rozhodnutí tribunálu."
+),
+F(
+  "passive-modals-advanced-20",
+  "passive",
+  "advanced",
+  "S modálními slovesy",
+  "Can the losses ",
+  "offset",
+  " against future profits?",
+  ["be offset"],
+  "Otázka v trpném rodě: modální sloveso can je na začátku otázky, doplňuje se jen be + trpné příčestí (offset, nepravidelné sloveso se stejným tvarem). 'The losses' je předmětem děje 'kompenzovat'."
+)
+);
+
+QUESTIONS.push(
+F("passive-havegetdone-basic-01", "passive", "basic", "Have/get something done", "I ", "have / hair / cut", " every six weeks.", ["have my hair cut"], "Podmět (já) si nechává ostříhat vlasy někým jiným, nedělá to sám. Vazba have + předmět + minulé příčestí (cut) vyjadřuje, že akci provádí pro nás jiná osoba."),
+F("passive-havegetdone-basic-02", "passive", "basic", "Have/get something done", "She ", "get / car / wash", " yesterday.", ["got her car washed", "had her car washed"], "Minulý čas prostý get/have + předmět + trpné příčestí. Podmět si nechal auto umýt někým jiným, sám ho neumýval; have i get jsou zde přirozeně zaměnitelné."),
+F("passive-havegetdone-basic-03", "passive", "basic", "Have/get something done", "We are ", "have / house / paint", " this week.", ["having the house painted"], "Přítomný čas průběhový (are + -ing) vazby have something done. Dům si necháváme malovat právě v tomto období, dělá to najatý malíř."),
+F("passive-havegetdone-basic-04", "passive", "basic", "Have/get something done", "He hasn't ", "have / teeth / check", " this year.", ["had his teeth checked"], "Předpřítomný čas v záporu (hasn't had). Podmět si dosud nenechal zkontrolovat zuby zubařem, sám si je nekontroloval."),
+F("passive-havegetdone-basic-05", "passive", "basic", "Have/get something done", "Have you ever ", "have / photo / take", " by a professional?", ["had your photo taken"], "Předpřítomný čas, otázka. Ptáme se, zda si podmět nechal někdy vyfotit fotografii profesionálem, ne že fotil sám sebe."),
+F("passive-havegetdone-basic-06", "passive", "basic", "Have/get something done", "They're going to ", "get / windows / clean", " next Monday.", ["get their windows cleaned"], "Vazba going to pro plán do budoucna. Plánují si nechat vyčistit okna firmou, sami je čistit nebudou."),
+F("passive-havegetdone-basic-07", "passive", "basic", "Have/get something done", "My grandmother ", "have / nails / do", " every Friday.", ["has her nails done"], "Přítomný čas prostý, 3. osoba jednotného čísla (has). Babička si nechává dělat nehty v salonu, nedělá si je sama."),
+F("passive-havegetdone-basic-08", "passive", "basic", "Have/get something done", "We will ", "have / roof / repair", " before winter.", ["have our roof repaired"], "Budoucí čas s will. Podmět si zařídí opravu střechy odborníkem před zimou, sám střechu neopravuje."),
+F("passive-havegetdone-basic-09", "passive", "basic", "Have/get something done", "I didn't ", "have / watch / fix", " last month.", ["have my watch fixed"], "Minulý čas prostý v záporu (didn't have). Podmět si minulý měsíc nenechal opravit hodinky hodinářem."),
+F("passive-havegetdone-basic-10", "passive", "basic", "Have/get something done", "Are you ", "have / carpet / clean", " tomorrow?", ["having your carpet cleaned"], "Přítomný čas průběhový, otázka. Ptáme se, zda si podmět zítra nechá vyčistit koberec firmou."),
+F("passive-havegetdone-basic-11", "passive", "basic", "Have/get something done", "He ", "get / suit / dry-clean", " for the wedding.", ["got his suit dry-cleaned", "had his suit dry-cleaned"], "Minulý čas prostý. Nechal si vyčistit oblek v čistírně, sám ho nečistil; have i get jsou zde přirozeně zaměnitelné."),
+F("passive-havegetdone-basic-12", "passive", "basic", "Have/get something done", "We've ", "have / garden / mow", " twice this summer.", ["had our garden mowed"], "Předpřítomný čas (have had). Necháváme si sekat zahradu zahradníkem, letos v létě opakovaně."),
+F("passive-havegetdone-basic-13", "passive", "basic", "Have/get something done", "She isn't ", "get / bike / repair", " until Saturday.", ["getting her bike repaired"], "Přítomný čas průběhový v záporu. Kolo si nechá opravit až v sobotu, opravu neprovádí sama."),
+F("passive-havegetdone-basic-14", "passive", "basic", "Have/get something done", "I need to ", "have / keys / cut", " this afternoon.", ["have my keys cut"], "Vazba need to + have something done. Potřebuji si nechat udělat klíče u zámečníka, ne udělat je sám."),
+F("passive-havegetdone-basic-15", "passive", "basic", "Have/get something done", "Did you ", "have / car / service", " last week?", ["have your car serviced"], "Minulý čas, otázka s did. Ptáme se, zda si podmět nechal minulý týden udělat servis auta v servisu."),
+F("passive-havegetdone-basic-16", "passive", "basic", "Have/get something done", "We're ", "get / kitchen / renovate", " next spring.", ["getting our kitchen renovated"], "Přítomný čas průběhový pro plán do budoucna. Kuchyni si necháme přebudovat řemeslníky, sami stavět nebudeme."),
+F("passive-havegetdone-basic-17", "passive", "basic", "Have/get something done", "He hasn't ", "have / locks / change", " since he moved in.", ["had his locks changed"], "Předpřítomný čas v záporu. Od nastěhování si dosud nenechal vyměnit zámky zámečníkem."),
+F("passive-havegetdone-basic-18", "passive", "basic", "Have/get something done", "I'll ", "have / parcel / deliver", " to your office.", ["have this parcel delivered"], "Budoucí čas s will (I'll). Zařídím, aby balík doručil někdo jiný, sám ho nevozím."),
+F("passive-havegetdone-basic-19", "passive", "basic", "Have/get something done", "They ", "get / tires / replace", " before the trip.", ["got their tires replaced", "had their tires replaced"], "Minulý čas prostý. Nechali si vyměnit pneumatiky v servisu před cestou; have i get jsou zde přirozeně zaměnitelné."),
+F("passive-havegetdone-basic-20", "passive", "basic", "Have/get something done", "My brother is ", "have / beard / trim", " at the barber's.", ["having his beard trimmed"], "Přítomný čas průběhový. Bratr si právě nechává upravovat vousy u holiče, sám je nestříhá."),
+F("passive-havegetdone-intermediate-01", "passive", "intermediate", "Have/get something done", "Because the printer broke down, we ", "have / documents / print", " at a copy shop nearby.", ["had our documents printed"], "Minulý čas prostý ve vedlejší větě příčinné. Dokumenty nechali vytisknout v copy shopu, protože tiskárna nefungovala; netiskli je sami."),
+F("passive-havegetdone-intermediate-02", "passive", "intermediate", "Have/get something done", "Since she doesn't trust her own driving, she always ", "have / car / inspect", " by a mechanic before long journeys.", ["has her car inspected"], "Přítomný čas prostý s příslovcem always. Pravidelně si nechává prohlédnout auto mechanikem před delšími cestami."),
+F("passive-havegetdone-intermediate-03", "passive", "intermediate", "Have/get something done", "If the storm damages the roof again, we'll ", "have / it / repair", " immediately.", ["have it repaired"], "Podmínková věta (typ 1) s will v hlavní větě. V případě poškození střechy ji necháme okamžitě opravit odborníkem, sami ji opravovat nebudeme."),
+F("passive-havegetdone-intermediate-04", "passive", "intermediate", "Have/get something done", "Although it was expensive, they ", "have / entire house / rewire", " last year.", ["had their entire house rewired"], "Minulý čas prostý ve vedlejší větě přípustkové. I přes vysokou cenu si nechali udělat novou elektroinstalaci v celém domě elektrikářem."),
+F("passive-havegetdone-intermediate-05", "passive", "intermediate", "Have/get something done", "She hasn't ", "have / wedding dress / alter", " yet, even though the wedding is next month.", ["had her wedding dress altered"], "Předpřítomný čas v záporu. Dosud si nenechala upravit svatební šaty krejčovou, přestože svatba je za měsíc."),
+F("passive-havegetdone-intermediate-06", "passive", "intermediate", "Have/get something done", "We're ", "have / old fence / take down", " before the new one arrives.", ["having the old fence taken down"], "Přítomný čas průběhový. Starý plot necháváme odstranit dělníky, než přijede nový; sami ho nebourají."),
+F("passive-havegetdone-intermediate-07", "passive", "intermediate", "Have/get something done", "By the time we move in, we will ", "have / whole apartment / redecorate", ".", ["have had the whole apartment redecorated"], "Budoucí předpřítomný čas (future perfect) s vazbou have something done. Do doby nastěhování bude byt kompletně vymalován a upraven najatými řemeslníky."),
+F("passive-havegetdone-intermediate-08", "passive", "intermediate", "Have/get something done", "Instead of fixing the laptop himself, he decided to ", "get / it / repair", " by a specialist.", ["get it repaired"], "Infinitiv po decided to. Rozhodl se nechat notebook opravit odborníkem místo toho, aby ho opravoval sám."),
+F("passive-havegetdone-intermediate-09", "passive", "intermediate", "Have/get something done", "The neighbours are ", "get / driveway / resurface", ", which is why the street is blocked.", ["getting their driveway resurfaced"], "Přítomný čas průběhový. Sousedé si nechávají předělat povrch příjezdové cesty firmou, proto je ulice zablokovaná."),
+F("passive-havegetdone-intermediate-10", "passive", "intermediate", "Have/get something done", "Did you ", "have / contract / translate", " before you signed it?", ["have the contract translated"], "Otázka v minulém čase s did. Ptáme se, zda si nechal smlouvu přeložit překladatelem, než ji podepsal."),
+F("passive-havegetdone-intermediate-11", "passive", "intermediate", "Have/get something done", "Now that the baby has arrived, they've ", "have / spare room / turn into a nursery", ".", ["had the spare room turned into a nursery"], "Předpřítomný čas. Po narození miminka si nechali přestavět volný pokoj na dětský pokoj, sami stavební práce neprováděli."),
+F("passive-havegetdone-intermediate-12", "passive", "intermediate", "Have/get something done", "We haven't ", "have / swimming pool / clean", " since last summer, so it looks terrible.", ["had the swimming pool cleaned"], "Předpřítomný čas v záporu. Od loňského léta si nenechali vyčistit bazén, proto vypadá hrozně."),
+F("passive-havegetdone-intermediate-13", "passive", "intermediate", "Have/get something done", "Whenever the sign gets damaged, the shop owner ", "have / it / repaint", " straight away.", ["has it repainted"], "Přítomný čas prostý pro opakovaný děj. Kdykoli se cedule poškodí, majitel obchodu si ji nechá ihned přetřít malířem."),
+F("passive-havegetdone-intermediate-14", "passive", "intermediate", "Have/get something done", "He's ", "get / old motorbike / restore", " by a specialist workshop this winter.", ["getting his old motorbike restored"], "Přítomný čas průběhový. Nechává si letos v zimě renovovat starou motorku specializovanou dílnou, sám ji nerenovuje."),
+F("passive-havegetdone-intermediate-15", "passive", "intermediate", "Have/get something done", "Even though it wasn't cheap, we ", "have / antique clock / repair", " rather than throw it away.", ["had the antique clock repaired"], "Minulý čas prostý ve vedlejší větě přípustkové. Přestože to nebylo levné, nechali si opravit starožitné hodiny hodinářem, místo aby je vyhodili."),
+F("passive-havegetdone-intermediate-16", "passive", "intermediate", "Have/get something done", "The company is going to have ", "logo / redesign", " to look more modern.", ["its logo redesigned"], "Vazba going to have something done. Firma si nechá předělat logo grafikem, aby vypadalo modernější, ne že by ho navrhla sama."),
+F("passive-havegetdone-intermediate-17", "passive", "intermediate", "Have/get something done", "We're not ", "have / walls / repaint", " until after the party.", ["having the walls repainted"], "Přítomný čas průběhový v záporu. Zdi si nenecháváme přetřít malířem až do doby po večírku."),
+F("passive-havegetdone-intermediate-18", "passive", "intermediate", "Have/get something done", "After the accident, she ", "have / whiplash injury / examine", " by a specialist.", ["had her whiplash injury examined"], "Minulý čas prostý. Po nehodě si nechala vyšetřit poranění krční páteře odborníkem, sama se nevyšetřovala."),
+F("passive-havegetdone-intermediate-19", "passive", "intermediate", "Have/get something done", "They won't ", "have / invitations / print", " in time unless they order them today.", ["have the invitations printed"], "Budoucí čas v záporu (won't) v podmínkové větě. Pokud dnes neobjednají tisk, nestihnou si nechat vytisknout pozvánky tiskárnou."),
+F("passive-havegetdone-intermediate-20", "passive", "intermediate", "Have/get something done", "Has your father ever ", "have / portrait / paint", "?", ["had his portrait painted"], "Předpřítomný čas, otázka. Ptáme se, zda si otec někdy nechal namalovat portrét malířem, sám se maloval."),
+F("passive-havegetdone-advanced-01", "passive", "advanced", "Have/get something done", "The board has decided to ", "have / contract / review", " by external counsel before signing.", ["have the contract reviewed"], "Infinitiv po decided to. Představenstvo se rozhodlo nechat smlouvu prověřit externím právníkem, ne posoudit ji samo."),
+F("passive-havegetdone-advanced-02", "passive", "advanced", "Have/get something done", "We are ", "have / annual report / translate", " into three languages this quarter.", ["having the annual report translated"], "Přítomný čas průběhový. Výroční zprávu si necháváme přeložit překladatelskou agenturou do tří jazyků."),
+F("passive-havegetdone-advanced-03", "passive", "advanced", "Have/get something done", "The firm ", "have / financial statements / audit", " independently before the merger.", ["had its financial statements audited"], "Minulý čas prostý. Firma si nechala nezávisle prověřit účetní závěrku auditorem před fúzí."),
+F("passive-havegetdone-advanced-04", "passive", "advanced", "Have/get something done", "Given the complexity of the case, the client will ", "have / documents / notarise", " abroad.", ["have the documents notarised"], "Budoucí čas s will. Klient si nechá dokumenty úředně ověřit notářem v zahraničí, sám je neověřuje."),
+F("passive-havegetdone-advanced-05", "passive", "advanced", "Have/get something done", "Rather than draft the will themselves, most clients ", "have / it / draft", " by a solicitor.", ["have it drafted"], "Přítomný čas prostý. Většina klientů si nechává závěť sepsat advokátem, místo aby ji psali sami."),
+F("passive-havegetdone-advanced-06", "passive", "advanced", "Have/get something done", "The startup is ", "get / software / update", " to comply with the new regulations.", ["getting its software updated"], "Přítomný čas průběhový. Startup si nechává aktualizovat software vývojáři, aby vyhověl novým předpisům."),
+F("passive-havegetdone-advanced-07", "passive", "advanced", "Have/get something done", "The board wants to ", "have / data / analyse", " by an independent statistician before accepting the results.", ["have the data analysed"], "Infinitiv po wants to. Představenstvo chce nechat data analyzovat nezávislým statistikem, dříve než výsledky přijme; samo je neanalyzuje."),
+F("passive-havegetdone-advanced-08", "passive", "advanced", "Have/get something done", "Because they hadn't ", "have / premises / inspect", " beforehand, the company faced heavy fines after the incident.", ["had the premises inspected"], "Předminulý čas (past perfect) v záporu. Protože si předem nenechali zkontrolovat prostory inspektorem, firma dostala po incidentu vysoké pokuty."),
+F("passive-havegetdone-advanced-09", "passive", "advanced", "Have/get something done", "The publisher ", "have / manuscript / proofread", " twice before sending it to print.", ["had the manuscript proofread"], "Minulý čas prostý. Nakladatel si nechal rukopis dvakrát zkorigovat korektorem, než ho poslal do tisku."),
+F("passive-havegetdone-advanced-10", "passive", "advanced", "Have/get something done", "We should ", "have / presentation / review", " by the legal team before the client meeting.", ["have the presentation reviewed"], "Modální sloveso should + have something done. Měli bychom si nechat prezentaci zkontrolovat právním týmem před schůzkou s klientem."),
+F("passive-havegetdone-advanced-11", "passive", "advanced", "Have/get something done", "Instead of designing the website in-house, the startup ", "get / it / design", " by a specialist agency.", ["got it designed"], "Minulý čas prostý (got). Startup si nechal navrhnout web specializovanou agenturou místo toho, aby ho navrhoval interně."),
+F("passive-havegetdone-advanced-12", "passive", "advanced", "Have/get something done", "Once the invoice has been issued, we'll ", "have / it / send", " to the client's accounting department.", ["have it sent"], "Budoucí čas s will. Jakmile bude faktura vystavena, necháme ji poslat účetnímu oddělení klienta; nejde o to, že ji pošleme osobně."),
+F("passive-havegetdone-advanced-13", "passive", "advanced", "Have/get something done", "The museum is ", "have / several paintings / restore", " ahead of the exhibition.", ["having several paintings restored"], "Přítomný čas průběhový. Muzeum si nechává restaurovat několik obrazů restaurátorem před výstavou."),
+F("passive-havegetdone-advanced-14", "passive", "advanced", "Have/get something done", "Have the new employees ", "have / contracts / check", " by HR yet?", ["had their contracts checked"], "Předpřítomný čas, otázka. Ptáme se, zda si noví zaměstnanci již nechali zkontrolovat smlouvy personálním oddělením."),
+F("passive-havegetdone-advanced-15", "passive", "advanced", "Have/get something done", "The committee won't ", "have / proposal / assess", " until all the members have submitted feedback.", ["have the proposal assessed"], "Budoucí čas v záporu (won't). Výbor si nenechá posoudit návrh hodnotitelem, dokud všichni členové nezašlou zpětnou vazbu."),
+F("passive-havegetdone-advanced-16", "passive", "advanced", "Have/get something done", "By next year, the university will ", "have / curriculum / revise", " to meet new accreditation standards.", ["have had its curriculum revised"], "Budoucí předpřítomný čas (future perfect) s vazbou have something done. Do příštího roku budou mít osnovy revidované akreditační komisí, ne univerzitou samotnou."),
+F("passive-havegetdone-advanced-17", "passive", "advanced", "Have/get something done", "She's ", "get / qualifications / recognise / formally", " before applying for the position.", ["getting her qualifications formally recognised"], "Přítomný čas průběhový. Nechává si formálně uznat kvalifikaci příslušným úřadem, než se přihlásí na pozici."),
+F("passive-havegetdone-advanced-18", "passive", "advanced", "Have/get something done", "Why did the manager ", "have / report / rewrite", " at the last minute?", ["have the report rewritten"], "Otázka v minulém čase s did. Ptáme se, proč si manažer nechal zprávu přepsat někým jiným na poslední chvíli."),
+F("passive-havegetdone-advanced-19", "passive", "advanced", "Have/get something done", "Unless the merger is finalised soon, they won't ", "have / new contracts / sign off", " by both parties.", ["have the new contracts signed off"], "Budoucí čas v záporu v podmínkové větě. Pokud se fúze brzy nedokončí, nenechají si nové smlouvy schválit oběma stranami."),
+F("passive-havegetdone-advanced-20", "passive", "advanced", "Have/get something done", "The company has decided to ", "have / entire supply chain / audit", " following the scandal.", ["have the entire supply chain audited"], "Infinitiv po decided to. Firma se rozhodla nechat celý dodavatelský řetězec prověřit auditorem po skandálu.")
+);
+
+QUESTIONS.push(
+M("passive-mix-basic-m01","passive","basic","Mix",
+  "Porovnej přítomný čas prostý a budoucí čas v trpném rodě se slovesem „clean“ (podmět: the office).",
+  [
+    {before:"The office ", hint:"be / clean", after:" every Friday afternoon.", answers:["is cleaned"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Don't worry, it ", hint:"will / be / clean", after:" before the guests arrive tomorrow.", answers:["will be cleaned"], tag:"Present perfect, budoucí časy"}
+  ],
+  "První věta popisuje pravidelně se opakující děj (přítomný čas prostý: is cleaned), druhá slibuje děj, který se odehraje v budoucnu, než hosté dorazí (budoucí čas trpný: will be cleaned)."),
+
+M("passive-mix-basic-m02","passive","basic","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „fix“ (podmět: the car).",
+  [
+    {before:"The car ", hint:"be / fix", after:" yesterday at the garage.", answers:["was fixed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"It ", hint:"must / be / fix", after:" before we can drive to the coast.", answers:["must be fixed"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje dokončenou opravu v minulosti (was fixed), zatímco modální sloveso „must“ vyjadřuje nutnost, která má nastat v budoucnu (must be fixed)."),
+
+M("passive-mix-basic-m03","passive","basic","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „cut“ (podmět: Tom).",
+  [
+    {before:"Tom's hair ", hint:"be / cut", after:" every month by the same barber.", answers:["is cut"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Yesterday he ", hint:"have / his hair / cut", after:" at a new salon downtown.", answers:["had his hair cut"], tag:"Have/get something done"}
+  ],
+  "V první větě je podmětem přímo vlasy, které jsou pravidelně stříhány (is cut), ve druhé Tom nechává službu provést pro sebe, proto vazba have something done (had his hair cut)."),
+
+M("passive-mix-basic-m04","passive","basic","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „deliver“ (podmět: the pizza).",
+  [
+    {before:"The pizza ", hint:"have / already / be / deliver", after:" — I can see the box on the table.", answers:["has already been delivered"], tag:"Present perfect, budoucí časy"},
+    {before:"The next order ", hint:"should / be / deliver", after:" within thirty minutes.", answers:["should be delivered"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect (has already been delivered) spojuje minulý děj s výsledkem viditelným v přítomnosti, zatímco „should“ vyjadřuje očekávání týkající se budoucí objednávky (should be delivered)."),
+
+M("passive-mix-basic-m05","passive","basic","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „paint“ (podmět: the fence).",
+  [
+    {before:"The fence ", hint:"will / be / paint", after:" next weekend if the weather is good.", answers:["will be painted"], tag:"Present perfect, budoucí časy"},
+    {before:"Last year we ", hint:"have / the fence / paint", after:" by a professional company.", answers:["had the fence painted"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný popisuje plánovaný děj (will be painted), zatímco have something done zdůrazňuje, že službu pro nás loni provedl někdo jiný (had the fence painted)."),
+
+M("passive-mix-basic-m06","passive","basic","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „wash“ (podmět: the windows).",
+  [
+    {before:"These windows ", hint:"can / be / wash", after:" only with a special cleaner.", answers:["can be washed"], tag:"S modálními slovesy"},
+    {before:"We usually ", hint:"get / the windows / wash", after:" twice a year.", answers:["get the windows washed"], tag:"Have/get something done"}
+  ],
+  "Modální „can“ vyjadřuje možnost, jak lze okna umýt (can be washed), zatímco get something done popisuje, že mytí pro nás pravidelně zajišťuje někdo jiný (get the windows washed)."),
+
+M("passive-mix-basic-m07","passive","basic","Mix",
+  "Porovnej minulý čas prostý a present perfect v trpném rodě se slovesem „build“ (podmět: the bridge).",
+  [
+    {before:"The old bridge ", hint:"be / build", after:" in 1950.", answers:["was built"], tag:"Přítomný a minulý čas prostý"},
+    {before:"The new one ", hint:"have / already / be / build", after:", so traffic can move again.", answers:["has already been built"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý uvádí přesný rok dokončení (was built in 1950), present perfect zdůrazňuje výsledek platný pro současnou dopravní situaci (has already been built)."),
+
+M("passive-mix-basic-m08","passive","basic","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „steal“ (podmět: her bike).",
+  [
+    {before:"Her bike ", hint:"be / steal", after:" from the yard last night.", answers:["was stolen"], tag:"Přítomný a minulý čas prostý"},
+    {before:"If you leave it unlocked again, it ", hint:"could / be / steal", after:" a second time.", answers:["could be stolen"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje jednorázovou událost krádeže v minulosti (was stolen), modální „could“ vyjadřuje možnost, že se to stane znovu v budoucnu, pokud kolo zůstane odemčené (could be stolen)."),
+
+M("passive-mix-basic-m09","passive","basic","Mix",
+  "Porovnej přítomný čas prostý a vazbu „get something done“ v trpném rodě se slovesem „feed“ (podmět: the cat).",
+  [
+    {before:"The cat ", hint:"be / feed", after:" twice a day at the shelter.", answers:["is fed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"While we're on holiday, we ", hint:"get / the cat / feed", after:" by our neighbour.", answers:["get the cat fed"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje pravidelnou péči v útulku (is fed), zatímco get something done zdůrazňuje, že o krmení během dovolené žádáme souseda (get the cat fed)."),
+
+M("passive-mix-basic-m10","passive","basic","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „lock“ (podmět: the door).",
+  [
+    {before:"The door ", hint:"have / already / be / lock", after:", so we can't get inside.", answers:["has already been locked"], tag:"Present perfect, budoucí časy"},
+    {before:"At night, this door ", hint:"should / be / lock", after:" for safety reasons.", answers:["should be locked"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje výsledek platný právě teď (has already been locked), modální „should“ vyjadřuje doporučení týkající se obecného pravidla (should be locked)."),
+
+M("passive-mix-basic-m11","passive","basic","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „repair“ (podmět: the roof).",
+  [
+    {before:"The roof ", hint:"will / be / repair", after:" as soon as the weather improves.", answers:["will be repaired"], tag:"Present perfect, budoucí časy"},
+    {before:"Last month we ", hint:"have / the roof / repair", after:" after the storm damaged it.", answers:["had the roof repaired"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný popisuje plánovanou opravu (will be repaired), have something done vyjadřuje, že opravu si necháváme udělat od odborníků (had the roof repaired)."),
+
+M("passive-mix-basic-m12","passive","basic","Mix",
+  "Porovnej modální sloveso a vazbu „have something done“ v trpném rodě se slovesem „serve“ (podmět: dinner).",
+  [
+    {before:"Dinner ", hint:"can / be / serve", after:" on the terrace if it doesn't rain.", answers:["can be served"], tag:"S modálními slovesy"},
+    {before:"For our anniversary, we ", hint:"have / dinner / serve", after:" in our hotel room.", answers:["had dinner served"], tag:"Have/get something done"}
+  ],
+  "Modální „can“ vyjadřuje možnost podávání večeře (can be served), zatímco have something done popisuje, že jsme si servis nechali zařídit pro sebe (had dinner served)."),
+
+M("passive-mix-basic-m13","passive","basic","Mix",
+  "Porovnej minulý čas prostý a budoucí čas v trpném rodě se slovesem „invite“ (podmět: the guests).",
+  [
+    {before:"All the guests ", hint:"be / invite", after:" to the wedding last spring.", answers:["were invited"], tag:"Přítomný a minulý čas prostý"},
+    {before:"The new colleagues ", hint:"will / be / invite", after:" to the party next Friday.", answers:["will be invited"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý popisuje dokončenou událost (were invited), budoucí čas trpný vyjadřuje plán na příští týden (will be invited)."),
+
+M("passive-mix-basic-m14","passive","basic","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „break“ (podmět: the window).",
+  [
+    {before:"The window ", hint:"be / break", after:" during the storm last night.", answers:["was broken"], tag:"Přítomný a minulý čas prostý"},
+    {before:"It ", hint:"might / be / break", after:" again if we don't fix the frame.", answers:["might be broken"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje konkrétní událost minulé noci (was broken), modální „might“ vyjadřuje možnost, že se to stane znovu v budoucnu (might be broken)."),
+
+M("passive-mix-basic-m15","passive","basic","Mix",
+  "Porovnej přítomný čas prostý a vazbu „get something done“ v trpném rodě se slovesem „print“ (podmět: the tickets).",
+  [
+    {before:"The tickets ", hint:"be / print", after:" at the office every Monday.", answers:["are printed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"For the concert, we ", hint:"get / the tickets / print", after:" at a local shop.", answers:["get the tickets printed"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje pravidelnou kancelářskou rutinu (are printed), get something done zdůrazňuje, že si tisk necháváme udělat jinde pro konkrétní účel (get the tickets printed)."),
+
+M("passive-mix-basic-m16","passive","basic","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „check“ (podmět: the engine).",
+  [
+    {before:"The engine ", hint:"have / already / be / check", after:" — it sounds fine now.", answers:["has already been checked"], tag:"Present perfect, budoucí časy"},
+    {before:"Before every flight, the engine ", hint:"must / be / check", after:" by a qualified mechanic.", answers:["must be checked"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje výsledek nedávné kontroly (has already been checked), modální „must“ vyjadřuje povinné pravidlo platné pro každý let (must be checked)."),
+
+M("passive-mix-basic-m17","passive","basic","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „send“ (podmět: the package).",
+  [
+    {before:"The package ", hint:"will / be / send", after:" tomorrow morning by courier.", answers:["will be sent"], tag:"Present perfect, budoucí časy"},
+    {before:"Because it was fragile, we ", hint:"have / the package / send", after:" by a specialised company.", answers:["had the package sent"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný popisuje plánované odeslání (will be sent), have something done zdůrazňuje, že jsme odeslání svěřili specializované firmě (had the package sent)."),
+
+M("passive-mix-basic-m18","passive","basic","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „iron“ (podmět: the shirts).",
+  [
+    {before:"These shirts ", hint:"should / be / iron", after:" on a low heat setting.", answers:["should be ironed"], tag:"S modálními slovesy"},
+    {before:"I don't have time, so I usually ", hint:"get / my shirts / iron", after:" at the laundry service.", answers:["get my shirts ironed"], tag:"Have/get something done"}
+  ],
+  "Modální „should“ radí, jak látku žehlit (should be ironed), get something done popisuje, že žehlení pro sebe nechávám dělat prádelnu (get my shirts ironed)."),
+
+M("passive-mix-basic-m19","passive","basic","Mix",
+  "Porovnej přítomný čas prostý a budoucí čas v trpném rodě se slovesem „sell“ (podmět: the furniture).",
+  [
+    {before:"This furniture ", hint:"be / sell", after:" only in our main store.", answers:["is sold"], tag:"Přítomný a minulý čas prostý"},
+    {before:"The old sofa ", hint:"will / be / sell", after:" at the garage sale next Saturday.", answers:["will be sold"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Přítomný čas prostý popisuje obecné pravidlo, kde se nábytek prodává (is sold), budoucí čas trpný oznamuje konkrétní plánovaný prodej staré pohovky (will be sold)."),
+
+M("passive-mix-basic-m20","passive","basic","Mix",
+  "Porovnej modální sloveso a vazbu „have something done“ v trpném rodě se slovesem „plant“ (podmět: the trees).",
+  [
+    {before:"These young trees ", hint:"must / be / plant", after:" carefully, or they won't survive the winter.", answers:["must be planted"], tag:"S modálními slovesy"},
+    {before:"Last autumn, we ", hint:"have / new trees / plant", after:" along the driveway.", answers:["had new trees planted"], tag:"Have/get something done"}
+  ],
+  "Modální „must“ vyjadřuje nutnou podmínku pro přežití stromků (must be planted), have something done popisuje, že výsadbu jsme si loni nechali provést od zahradníků (had new trees planted)."),
+
+M("passive-mix-intermediate-m01","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „postpone“ (podmět: the meeting).",
+  [
+    {before:"The meeting ", hint:"be / postpone", after:" until further notice last week.", answers:["was postponed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Given the current circumstances, it ", hint:"may / be / postpone", after:" again next month.", answers:["may be postponed"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý oznamuje, že odklad se již stal (was postponed), modální „may“ vyjadřuje nejistou možnost dalšího odkladu v budoucnu (may be postponed)."),
+
+M("passive-mix-intermediate-m02","passive","intermediate","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „renovate“ (podmět: the apartment).",
+  [
+    {before:"This historic apartment ", hint:"be / renovate", after:" once every decade to preserve its character.", answers:["is renovated"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Before we moved in, we ", hint:"have / the apartment / renovate", after:" from top to bottom.", answers:["had the apartment renovated"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje pravidelnou obnovu bytu obecně (is renovated), have something done zdůrazňuje, že rekonstrukci jsme si před nastěhováním nechali udělat na zakázku (had the apartment renovated)."),
+
+M("passive-mix-intermediate-m03","passive","intermediate","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „distribute“ (podmět: the leaflets).",
+  [
+    {before:"All the leaflets ", hint:"have / already / be / distribute", after:", so there's no need to print more.", answers:["have already been distributed"], tag:"Present perfect, budoucí časy"},
+    {before:"According to company policy, leaflets ", hint:"must / be / distribute", after:" only in designated public areas.", answers:["must be distributed"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje výsledek dokončeného rozdávání letáků (have already been distributed), modální „must“ vyjadřuje závaznou firemní politiku (must be distributed)."),
+
+M("passive-mix-intermediate-m04","passive","intermediate","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „inspect“ (podmět: the machinery).",
+  [
+    {before:"The machinery ", hint:"will / be / inspect", after:" thoroughly before the factory reopens.", answers:["will be inspected"], tag:"Present perfect, budoucí časy"},
+    {before:"To comply with safety regulations, the company ", hint:"have / the machinery / inspect", after:" every six months.", answers:["has the machinery inspected"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný oznamuje jednorázovou kontrolu před znovuotevřením továrny (will be inspected), have something done popisuje pravidelně zajišťovanou službu inspekce (has the machinery inspected)."),
+
+M("passive-mix-intermediate-m05","passive","intermediate","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „translate“ (podmět: the document).",
+  [
+    {before:"This document ", hint:"should / be / translate", after:" into at least three languages before publication.", answers:["should be translated"], tag:"S modálními slovesy"},
+    {before:"Since none of us speaks Japanese, we ", hint:"get / the document / translate", after:" by a professional agency.", answers:["get the document translated"], tag:"Have/get something done"}
+  ],
+  "Modální „should“ doporučuje, do kolika jazyků dokument přeložit (should be translated), get something done zdůrazňuje, že překlad si necháváme zajistit externí agenturou (get the document translated)."),
+
+M("passive-mix-intermediate-m06","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a present perfect v trpném rodě se slovesem „publish“ (podmět: the report).",
+  [
+    {before:"The annual report ", hint:"be / publish", after:" last October, right on schedule.", answers:["was published"], tag:"Přítomný a minulý čas prostý"},
+    {before:"This year's report ", hint:"have / not / be / publish", after:" yet, so figures remain unavailable.", answers:["has not been published","hasn't been published"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý uvádí konkrétní datum vydání loňské zprávy (was published last October), present perfect zdůrazňuje, že letošní zpráva dosud nevyšla a situace trvá (has not been published yet)."),
+
+M("passive-mix-intermediate-m07","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „recall“ (podmět: the vehicles).",
+  [
+    {before:"Thousands of vehicles ", hint:"be / recall", after:" after the defect was discovered.", answers:["were recalled"], tag:"Přítomný a minulý čas prostý"},
+    {before:"If further faults appear, more models ", hint:"could / be / recall", after:" in the coming months.", answers:["could be recalled"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje dokončenou akci svolání vozidel (were recalled), modální „could“ naznačuje možnost, že se stejná situace bude opakovat v budoucnu (could be recalled)."),
+
+M("passive-mix-intermediate-m08","passive","intermediate","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „assemble“ (podmět: the furniture).",
+  [
+    {before:"In this factory, the furniture ", hint:"be / assemble", after:" entirely by hand.", answers:["is assembled"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Since we lack the tools, we usually ", hint:"have / our furniture / assemble", after:" by the delivery team.", answers:["have our furniture assembled"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje výrobní proces v továrně (is assembled), have something done vyjadřuje, že si sestavení necháváme udělat od dodavatelské služby (have our furniture assembled)."),
+
+M("passive-mix-intermediate-m09","passive","intermediate","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „enforce“ (podmět: the new regulation).",
+  [
+    {before:"The new regulation ", hint:"have / already / be / enforce", after:" in three neighbouring countries.", answers:["has already been enforced"], tag:"Present perfect, budoucí časy"},
+    {before:"According to the new law, it ", hint:"must / be / enforce", after:" in every member state without exception.", answers:["must be enforced"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje, že nařízení už začalo platit v některých zemích (has already been enforced), modální „must“ vyjadřuje závaznost dodržování zákona ve všech členských státech (must be enforced)."),
+
+M("passive-mix-intermediate-m10","passive","intermediate","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „dispatch“ (podmět: the shipment).",
+  [
+    {before:"The shipment ", hint:"will / be / dispatch", after:" as soon as customs clearance is granted.", answers:["will be dispatched"], tag:"Present perfect, budoucí časy"},
+    {before:"Because the deadline was tight, the client ", hint:"have / the shipment / dispatch", after:" overnight instead of by standard post.", answers:["had the shipment dispatched"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný oznamuje, co se stane po vyřízení celního odbavení (will be dispatched), have something done popisuje, že klient si urychlené odeslání nechal zajistit sám (had the shipment dispatched)."),
+
+M("passive-mix-intermediate-m11","passive","intermediate","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „verify“ (podmět: your identity).",
+  [
+    {before:"Before opening an account, your identity ", hint:"must / be / verify", after:" by an official document.", answers:["must be verified"], tag:"S modálními slovesy"},
+    {before:"To speed up the process, applicants can ", hint:"get / their identity / verify", after:" online instead of visiting a branch.", answers:["get their identity verified"], tag:"Have/get something done"}
+  ],
+  "Modální „must“ vyjadřuje povinný požadavek banky (must be verified), get something done popisuje, že si žadatelé mohou ověření nechat provést online (get their identity verified)."),
+
+M("passive-mix-intermediate-m12","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a budoucí čas v trpném rodě se slovesem „revise“ (podmět: the curriculum).",
+  [
+    {before:"The curriculum ", hint:"be / revise", after:" completely five years ago.", answers:["was revised"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Following the recent review, it ", hint:"will / be / revise", after:" again next academic year.", answers:["will be revised"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý popisuje uzavřenou revizi před pěti lety (was revised), budoucí čas trpný oznamuje plánovanou revizi v příštím akademickém roce (will be revised)."),
+
+M("passive-mix-intermediate-m13","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „negotiate“ (podmět: the contract).",
+  [
+    {before:"The contract ", hint:"be / negotiate", after:" over several long meetings last year.", answers:["was negotiated"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Given the disagreements, some terms ", hint:"may / be / negotiate", after:" once more before signing.", answers:["may be negotiated"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje již proběhlé vyjednávání (was negotiated), modální „may“ naznačuje nejistou možnost dalšího vyjednávání v budoucnu (may be negotiated)."),
+
+M("passive-mix-intermediate-m14","passive","intermediate","Mix",
+  "Porovnej přítomný čas prostý a vazbu „get something done“ v trpném rodě se slovesem „install“ (podmět: the software).",
+  [
+    {before:"On company laptops, the software ", hint:"be / install", after:" automatically overnight.", answers:["is installed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Since the update failed, I had to ", hint:"get / the software / install", after:" manually by the IT department.", answers:["get the software installed"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje automatizovaný firemní proces (is installed), get something done zdůrazňuje, že instalaci si necháváme udělat od IT oddělení, protože automatická aktualizace selhala (get the software installed)."),
+
+M("passive-mix-intermediate-m15","passive","intermediate","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „audit“ (podmět: the accounts).",
+  [
+    {before:"The company's accounts ", hint:"have / never / be / audit", after:" by an external firm before this year.", answers:["have never been audited"], tag:"Present perfect, budoucí časy"},
+    {before:"Under the new rules, every branch's accounts ", hint:"must / be / audit", after:" annually.", answers:["must be audited"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje, že externí audit se dosud nikdy neuskutečnil (have never been audited), modální „must“ zavádí novou povinnost pravidelné roční kontroly (must be audited)."),
+
+M("passive-mix-intermediate-m16","passive","intermediate","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „upgrade“ (podmět: the network).",
+  [
+    {before:"The whole network ", hint:"will / be / upgrade", after:" during the scheduled maintenance window.", answers:["will be upgraded"], tag:"Present perfect, budoucí časy"},
+    {before:"Because of frequent outages, the company ", hint:"have / its network / upgrade", after:" by an external contractor last quarter.", answers:["had its network upgraded"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný oznamuje naplánovanou údržbu (will be upgraded), have something done popisuje, že firma si upgrade nechala provést externím dodavatelem již minulé čtvrtletí (had its network upgraded)."),
+
+M("passive-mix-intermediate-m17","passive","intermediate","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „service“ (podmět: the elevator).",
+  [
+    {before:"For safety reasons, the elevator ", hint:"should / be / service", after:" at least twice a year.", answers:["should be serviced"], tag:"S modálními slovesy"},
+    {before:"After the strange noise started, the building manager ", hint:"get / the elevator / service", after:" immediately.", answers:["got the elevator serviced"], tag:"Have/get something done"}
+  ],
+  "Modální „should“ vyjadřuje doporučenou četnost servisu (should be serviced), get something done popisuje, že správce budovy si servis nechal urychleně zajistit po zaznamenání závady (got the elevator serviced)."),
+
+M("passive-mix-intermediate-m18","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a present perfect v trpném rodě se slovesem „submit“ (podmět: the application).",
+  [
+    {before:"Her application ", hint:"be / submit", after:" two weeks before the deadline.", answers:["was submitted"], tag:"Přítomný a minulý čas prostý"},
+    {before:"All the required documents ", hint:"have / finally / be / submit", after:", so the process can now continue.", answers:["have finally been submitted"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý uvádí konkrétní okamžik podání žádosti (was submitted), present perfect zdůrazňuje, že všechny dokumenty jsou nyní konečně kompletní a proces může pokračovat (have finally been submitted)."),
+
+M("passive-mix-intermediate-m19","passive","intermediate","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „relocate“ (podmět: the department).",
+  [
+    {before:"The whole department ", hint:"be / relocate", after:" to the new building last March.", answers:["was relocated"], tag:"Přítomný a minulý čas prostý"},
+    {before:"If the merger goes ahead, other departments ", hint:"might / be / relocate", after:" as well.", answers:["might be relocated"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje již proběhlé přestěhování oddělení (was relocated), modální „might“ vyjadřuje nejistou možnost přestěhování dalších oddělení v budoucnu (might be relocated)."),
+
+M("passive-mix-intermediate-m20","passive","intermediate","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „evacuate“ (podmět: the building).",
+  [
+    {before:"During a fire drill, the building ", hint:"be / evacuate", after:" within five minutes.", answers:["is evacuated"], tag:"Přítomný a minulý čas prostý"},
+    {before:"After the gas leak was discovered, the fire department ", hint:"have / the building / evacuate", after:" within minutes.", answers:["had the building evacuated"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje nacvičený postup při požárním cvičení (is evacuated), have something done zdůrazňuje, že hasiči nechali budovu vyklidit jako zásah po zjištění úniku plynu (had the building evacuated)."),
+
+M("passive-mix-advanced-m01","passive","advanced","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „amend“ (podmět: the legislation).",
+  [
+    {before:"This legislation ", hint:"be / amend", after:" periodically to reflect changing economic conditions.", answers:["is amended"], tag:"Přítomný a minulý čas prostý"},
+    {before:"To close the loophole, the ministry ", hint:"have / the legislation / amend", after:" before the end of the session.", answers:["had the legislation amended"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje obecnou praxi průběžných úprav zákona (is amended), have something done zdůrazňuje, že ministerstvo nechalo úpravu prosadit záměrně, aby uzavřelo mezeru v zákoně (had the legislation amended)."),
+
+M("passive-mix-advanced-m02","passive","advanced","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „ratify“ (podmět: the treaty).",
+  [
+    {before:"The treaty ", hint:"have / finally / be / ratify", after:" by all member states after years of negotiation.", answers:["has finally been ratified"], tag:"Present perfect, budoucí časy"},
+    {before:"Under the constitution, no international agreement ", hint:"may / be / ratify", after:" without parliamentary approval.", answers:["may be ratified"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje výsledek dlouhého vyjednávacího procesu, který právě skončil (has finally been ratified), modální „may“ vyjadřuje ústavní podmínku přípustnosti ratifikace (may be ratified)."),
+
+M("passive-mix-advanced-m03","passive","advanced","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „settle“ (podmět: the dispute).",
+  [
+    {before:"The dispute ", hint:"will / be / settle", after:" out of court if both parties agree to mediation.", answers:["will be settled"], tag:"Present perfect, budoucí časy"},
+    {before:"Rather than pursue lengthy litigation, the corporation ", hint:"have / the dispute / settle", after:" through private arbitration.", answers:["had the dispute settled"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný popisuje podmíněnou možnost mimosoudního urovnání (will be settled), have something done zdůrazňuje, že korporace záměrně zvolila a nechala spor vyřešit prostřednictvím soukromé arbitráže (had the dispute settled)."),
+
+M("passive-mix-advanced-m04","passive","advanced","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „authenticate“ (podmět: the document).",
+  [
+    {before:"For the certificate to be valid abroad, the document ", hint:"must / be / authenticate", after:" by a notary public.", answers:["must be authenticated"], tag:"S modálními slovesy"},
+    {before:"Before submitting the application, applicants typically ", hint:"get / their documents / authenticate", after:" at the consulate.", answers:["get their documents authenticated"], tag:"Have/get something done"}
+  ],
+  "Modální „must“ vyjadřuje formální požadavek platnosti dokumentu v zahraničí (must be authenticated), get something done popisuje, že žadatelé si ověření nechávají provést na konzulátu (get their documents authenticated)."),
+
+M("passive-mix-advanced-m05","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a budoucí čas v trpném rodě se slovesem „revoke“ (podmět: the licence).",
+  [
+    {before:"The company's licence ", hint:"be / revoke", after:" last year following repeated violations.", answers:["was revoked"], tag:"Přítomný a minulý čas prostý"},
+    {before:"If the audit reveals further breaches, the permit ", hint:"will / be / revoke", after:" immediately.", answers:["will be revoked"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý popisuje již provedené odebrání licence (was revoked), budoucí čas trpný vyjadřuje podmíněný důsledek, který nastane v případě dalších zjištěných porušení (will be revoked)."),
+
+M("passive-mix-advanced-m06","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „indict“ (podmět: the executives).",
+  [
+    {before:"Two senior executives ", hint:"be / indict", after:" on charges of fraud last month.", answers:["were indicted"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Pending further evidence, additional board members ", hint:"could / be / indict", after:" as the investigation continues.", answers:["could be indicted"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje již proběhlé obvinění dvou vedoucích pracovníků (were indicted), modální „could“ naznačuje možnost dalšího obvinění v průběhu pokračujícího vyšetřování (could be indicted)."),
+
+M("passive-mix-advanced-m07","passive","advanced","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „declassify“ (podmět: the documents).",
+  [
+    {before:"Under current policy, sensitive documents ", hint:"be / declassify", after:" automatically after thirty years.", answers:["are declassified"], tag:"Přítomný a minulý čas prostý"},
+    {before:"To satisfy the journalist's request, the agency ", hint:"have / the file / declassify", after:" ahead of schedule.", answers:["had the file declassified"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje automatické pravidlo odtajnění po třiceti letech (are declassified), have something done zdůrazňuje, že agentura záměrně zajistila předčasné odtajnění konkrétního spisu na žádost novináře (had the file declassified)."),
+
+M("passive-mix-advanced-m08","passive","advanced","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „corroborate“ (podmět: the testimony).",
+  [
+    {before:"The witness's testimony ", hint:"have / not / be / corroborate", after:" by any physical evidence so far.", answers:["has not been corroborated","hasn't been corroborated"], tag:"Present perfect, budoucí časy"},
+    {before:"For the claim to hold up in court, it ", hint:"must / be / corroborate", after:" by at least one independent source.", answers:["must be corroborated"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje, že dosud nebyl nalezen žádný potvrzující důkaz (has not been corroborated), modální „must“ stanovuje formální požadavek pro uznatelnost tvrzení u soudu (must be corroborated)."),
+
+M("passive-mix-advanced-m09","passive","advanced","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „impose“ (podmět: sanctions).",
+  [
+    {before:"Further sanctions ", hint:"will / be / impose", after:" if the ceasefire is violated again.", answers:["will be imposed"], tag:"Present perfect, budoucí časy"},
+    {before:"Frustrated by the delay, the coalition ", hint:"have / sanctions / impose", after:" ahead of the original timetable.", answers:["had sanctions imposed"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný oznamuje podmíněný důsledek v případě porušení příměří (will be imposed), have something done zdůrazňuje, že koalice aktivně prosadila jejich zavedení dříve, než bylo původně plánováno (had sanctions imposed)."),
+
+M("passive-mix-advanced-m10","passive","advanced","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „review“ (podmět: the verdict).",
+  [
+    {before:"Under the appeals procedure, the verdict ", hint:"may / be / review", after:" by a higher court.", answers:["may be reviewed"], tag:"S modálními slovesy"},
+    {before:"Believing the trial was unfair, the defendant's lawyers ", hint:"get / the verdict / review", after:" by an independent panel.", answers:["got the verdict reviewed"], tag:"Have/get something done"}
+  ],
+  "Modální „may“ vyjadřuje procesní možnost přezkumu rozsudku vyšším soudem (may be reviewed), get something done popisuje, že obhájci aktivně zajistili přezkum nezávislým panelem, protože pokládali proces za nespravedlivý (got the verdict reviewed)."),
+
+M("passive-mix-advanced-m11","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a present perfect v trpném rodě se slovesem „annul“ (podmět: the election).",
+  [
+    {before:"The disputed election ", hint:"be / annul", after:" by the constitutional court two years ago.", answers:["was annulled"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Since then, no subsequent vote ", hint:"have / ever / be / annul", after:" on similar grounds.", answers:["has ever been annulled"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý uvádí konkrétní historickou událost (was annulled two years ago), present perfect shrnuje zkušenost od té doby až dosud, kdy se nic podobného nestalo (has ever been annulled)."),
+
+M("passive-mix-advanced-m12","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „subsidise“ (podmět: the industry).",
+  [
+    {before:"For decades, the steel industry ", hint:"be / subsidise", after:" heavily by the state.", answers:["was subsidised"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Under the new competition rules, it ", hint:"can / no longer / be / subsidise", after:" without prior approval from the commission.", answers:["can no longer be subsidised"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje dlouhodobou minulou praxi státních dotací (was subsidised for decades), modální „can“ ve spojení s „no longer“ vyjadřuje novou legislativní podmínku platnou od teď (can no longer be subsidised)."),
+
+M("passive-mix-advanced-m13","passive","advanced","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „encrypt“ (podmět: the data).",
+  [
+    {before:"All customer data ", hint:"be / encrypt", after:" before it leaves our servers, in line with the regulation.", answers:["is encrypted"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Following the breach, the firm ", hint:"have / its entire database / encrypt", after:" by an external security consultancy.", answers:["had its entire database encrypted"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje standardní bezpečnostní postup předepsaný nařízením (is encrypted), have something done zdůrazňuje, že firma po úniku dat nechala celou databázi zabezpečit externí konzultační firmou (had its entire database encrypted)."),
+
+M("passive-mix-advanced-m14","passive","advanced","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „substantiate“ (podmět: the allegations).",
+  [
+    {before:"None of the allegations ", hint:"have / be / substantiate", after:" by the internal investigation.", answers:["have been substantiated"], tag:"Present perfect, budoucí časy"},
+    {before:"For disciplinary action to proceed, each claim ", hint:"should / be / substantiate", after:" with documented evidence.", answers:["should be substantiated"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect shrnuje výsledek dokončeného interního šetření (have been substantiated), modální „should“ stanovuje procesní doporučení pro budoucí disciplinární řízení (should be substantiated)."),
+
+M("passive-mix-advanced-m15","passive","advanced","Mix",
+  "Porovnej budoucí čas a vazbu „have something done“ v trpném rodě se slovesem „restructure“ (podmět: the debt).",
+  [
+    {before:"Under the proposed plan, the national debt ", hint:"will / be / restructure", after:" over the next decade.", answers:["will be restructured"], tag:"Present perfect, budoucí časy"},
+    {before:"Facing insolvency, the company ", hint:"have / its debt / restructure", after:" by a team of external advisers.", answers:["had its debt restructured"], tag:"Have/get something done"}
+  ],
+  "Budoucí čas trpný popisuje dlouhodobý plán reformy státního dluhu (will be restructured), have something done zdůrazňuje, že firma čelící insolvenci si restrukturalizaci nechala provést externími poradci (had its debt restructured)."),
+
+M("passive-mix-advanced-m16","passive","advanced","Mix",
+  "Porovnej modální sloveso a vazbu „get something done“ v trpném rodě se slovesem „notarise“ (podmět: the deposition).",
+  [
+    {before:"To be admissible as evidence, the deposition ", hint:"must / be / notarise", after:" in the presence of both parties.", answers:["must be notarised"], tag:"S modálními slovesy"},
+    {before:"Unable to travel abroad, the witness ", hint:"get / her statement / notarise", after:" at the local consulate instead.", answers:["got her statement notarised"], tag:"Have/get something done"}
+  ],
+  "Modální „must“ stanovuje formální podmínku přípustnosti výpovědi jako důkazu (must be notarised), get something done popisuje, že svědkyně si ověření nechala zajistit na konzulátu, protože nemohla vycestovat (got her statement notarised)."),
+
+M("passive-mix-advanced-m17","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a budoucí čas v trpném rodě se slovesem „repeal“ (podmět: the statute).",
+  [
+    {before:"The controversial statute ", hint:"be / repeal", after:" by parliament shortly after the change of government.", answers:["was repealed"], tag:"Přítomný a minulý čas prostý"},
+    {before:"According to the coalition agreement, two further outdated laws ", hint:"will / be / repeal", after:" within the first year in office.", answers:["will be repealed"], tag:"Present perfect, budoucí časy"}
+  ],
+  "Minulý čas prostý popisuje již dokončené zrušení kontroverzního zákona (was repealed), budoucí čas trpný oznamuje závazek zrušit další zákony podle koaliční smlouvy (will be repealed)."),
+
+M("passive-mix-advanced-m18","passive","advanced","Mix",
+  "Porovnej minulý čas prostý a modální sloveso v trpném rodě se slovesem „adjudicate“ (podmět: the claim).",
+  [
+    {before:"The insurance claim ", hint:"be / adjudicate", after:" in the claimant's favour last spring.", answers:["was adjudicated"], tag:"Přítomný a minulý čas prostý"},
+    {before:"Under the revised policy, disputed claims ", hint:"must / be / adjudicate", after:" within ninety days.", answers:["must be adjudicated"], tag:"S modálními slovesy"}
+  ],
+  "Minulý čas prostý popisuje konkrétní vyřešený případ z minulosti (was adjudicated in the claimant's favour), modální „must“ zavádí novou lhůtu, kterou je nutné dodržet u sporných nároků (must be adjudicated)."),
+
+M("passive-mix-advanced-m19","passive","advanced","Mix",
+  "Porovnej přítomný čas prostý a vazbu „have something done“ v trpném rodě se slovesem „digitise“ (podmět: the archive).",
+  [
+    {before:"Under the preservation programme, the national archive ", hint:"be / digitise", after:" section by section over several years.", answers:["is digitised"], tag:"Přítomný a minulý čas prostý"},
+    {before:"To meet the grant deadline, the museum ", hint:"have / its entire collection / digitise", after:" by a specialist team within six months.", answers:["had its entire collection digitised"], tag:"Have/get something done"}
+  ],
+  "Přítomný čas prostý popisuje postupný, dlouhodobý program digitalizace archivu (is digitised section by section), have something done zdůrazňuje, že muzeum si digitalizaci celé sbírky nechalo urychleně zajistit specializovaným týmem kvůli termínu grantu (had its entire collection digitised)."),
+
+M("passive-mix-advanced-m20","passive","advanced","Mix",
+  "Porovnej present perfect a modální sloveso v trpném rodě se slovesem „sanction“ (podmět: the regime).",
+  [
+    {before:"The regime ", hint:"have / already / be / sanction", after:" by several international bodies over the past year.", answers:["has already been sanctioned"], tag:"Present perfect, budoucí časy"},
+    {before:"If the violations continue, it ", hint:"might / be / sanction", after:" even more severely.", answers:["might be sanctioned"], tag:"S modálními slovesy"}
+  ],
+  "Present perfect zdůrazňuje, že sankce už byly v uplynulém roce uvaleny několika mezinárodními institucemi (has already been sanctioned), modální „might“ naznačuje nejistou možnost přísnějších sankcí v budoucnu, pokud porušování bude pokračovat (might be sanctioned).")
 );
 
 /* ============================================================

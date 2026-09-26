@@ -52,7 +52,14 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Future continuous — B1–C1
    * Be about to — C1
    * Časová věta (when/after/before + present simple) — B1
-   * Inverze v minulosti (Had I known...) — C1
+   * Future perfect — B2 (zatím bez otázek)
+   * Future perfect continuous — C1 (zatím bez otázek)
+   * Stavová slovesa (state verbs: love, know, believe...) — A2–B1 (zatím bez otázek)
+   * Přítomné časy pro budoucnost (jízdní řády, rozvrhy, naplánované děje) — B1 (zatím bez otázek)
+   * Budoucnost v minulosti (was going to / would) — B2 (zatím bez otázek)
+   * Be used to / get used to — B1–B2 (zatím bez otázek)
+
+   *(Pozn.: „Inverze v minulosti (Had I known...)" byla odsud odebrána — patří koncepčně do `[conditionals]` → „Inverze v podmínce". Obsahový přesun proběhl: 60 duplicitních otázek (stejný jev jako „Had I..." varianta pod „Inverze v podmínce") bylo smazáno, stejně jako 8 Mix otázek, které tento tag kombinovaly s jinými tenses jevy. Tenses/Mix má proto teď dočasně méně než 20 otázek na obtížnost (19/18/15) — čeká na doplnění.)*
 2. Podmínky a přání `[conditionals]`
    * 0. kondicionál — A2
    * 1. kondicionál — A2–B1
@@ -63,16 +70,26 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Inverze v podmínce (Were I.../Had I.../Should you...) — C1
    * Wish + minulost (včetně If only — emocionálně silnější varianta stejného jevu) — B2–C1
    * As if / as though + minulost — B2–C1
+   * Wish + would (stěžování na cizí opakované/rušivé chování) — B2 (zatím bez otázek)
+   * Would rather / It's time + minulý čas (přání/nutnost týkající se chování druhé osoby) — B2–C1 (zatím bez otázek)
+   * Provided / as long as / in case — B2 (zatím bez otázek)
+
+   *(Pozn.: „It's time + minulý čas" sloučeno s „Would rather + minulý čas" — oba vyjadřují nepřímý nátlak/přání ohledně chování druhé osoby přes minulý čas s přítomným/budoucím významem.)*
 3. Trpný rod `[passive]`
    * Přítomný a minulý čas prostý — A2–B1
    * Present perfect, budoucí časy — B1
    * S modálními slovesy — B2
    * Have/get something done — B2
+   * Průběhové časy v trpném rodě (is being done / was being done) — B2 (zatím bez otázek)
+   * Věty se dvěma předměty (I was given a book.) — B2 (zatím bez otázek)
+   * Trpný infinitiv a gerundium (to be done / being done) — C1 (zatím bez otázek)
+   * Vazby It is said that.../He is said to... — C1 (zatím bez otázek)
 4. Nepřímá řeč `[reported-speech]`
    * Oznamovací věty — B1
    * Otázky v nepřímé řeči — B1
    * Rozkazy a žádosti — B1
    * Posun časů (backshift) — B1–B2
+   * Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...) — B2
 5. Modální slovesa `[modals]`
    * Schopnost (can/could/be able to) — A2
    * Dovolení (can/may/could) — A2
@@ -81,49 +98,96 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Rada (should/ought to/had better) — B1
    * Pravděpodobnost a dedukce v přítomnosti (must/might/can't be) — B1–B2
    * Modály v minulosti (must have/might have/should have/needn't have) — B2
+   * Needn't have vs. didn't need to — C1 (zatím bez otázek)
+   * Be supposed to — B1–B2 (zatím bez otázek)
+   * Náhradní tvary (be able to, be allowed to, have to v jiných časech) — B1–B2 (zatím bez otázek)
+
+   *(Pozn.: „Had better" se nakonec nepřidává jako samostatné podtéma — zůstává jen jako jedna z forem pod „Rada (should/ought to/had better)", protože jde sloučit a samostatně by mělo malou variabilitu.)*
 6. Členy `[articles]`
    * A/an vs. the — A1–A2
-   * Nulový člen — B1
+   * Nulový člen (vč. institucí: go to school/bed/work/prison) — B1
+   * Členy se zeměpisnými názvy — B2
+   * Obecná tvrzení (generalizace pomocí členů) — B1
+
+   *(Pozn.: „Instituce (go to school vs. go to the school)" sloučena do „Nulový člen" — jde o stejný jev, nulový člen u podstatného jména použitého ve své typické funkci.)*
 7. Podstatná jména a determinery `[nouns]`
-   * Počitatelnost — A1–A2
+   * Počitatelnost (vč. hromadných podstatných jmen: the police, the team) — A1–B2
    * Množné číslo, nepravidelné tvary — A1–A2
    * Some/any/no — A1–A2
    * Much/many/a lot of — A1–A2
    * (A) few / (a) little — A2–B1
+   * All/both/each/every/either/neither/none — A2–B1
+   * Přivlastňovací 's vs. of — A2–B1
+
+   *(Pozn.: „Hromadná podstatná jména (the police, the team)" sloučena do „Počitatelnost" — jde o hraniční případ počitatelnosti/shody se slovesem.)*
 8. Zájmena `[pronouns]`
-   * Osobní a přivlastňovací — A1
-   * Zvratná (myself, yourself...) — A1
-   * Vztažná (who, which, that...) — B1
+   * Osobní a přivlastňovací — A1 (méně než 20/buňku — uzavřená sada tvarů, nedá se smysluplně sloučit)
+   * Zvratná a vzájemná zájmena (myself.../each other, one another) — A1–B1
    * Neurčitá (someone, anything...) — A2–B1
+   * Ukazovací (this/that/these/those) — A1–A2 (méně než 20/buňku — jen 4 tvary, nedá se smysluplně sloučit)
+   * One/ones — A2–B1
+   * There is vs. it is — A1–A2
+
+   *(Pozn.: „Vztažná (who, which, that...)" odsud odebrána — patří koncepčně do `[clauses]`, kde je teď rozdělená na tři podtémata vztažných vět. „Each other / one another" sloučeno se „Zvratná" — reflexivní a vzájemná zájmena se běžně učí v kontrastu (blamed themselves vs. blamed each other), spojení dává víc prostoru pro 20 různých vět.)*
 9. Vedlejší věty `[clauses]`
-   * Vztažné věty (defining/non-defining) — B1
+   * Určující vztažné věty (defining relative clauses) — B1
+   * Neurčující vztažné věty (non-defining relative clauses) — B1–B2
+   * Zkrácené vztažné věty (redukce vztažné věty pomocí příčestí/infinitivu) — C1
    * Podmětné, předmětné věty — B2
+   * Participle clauses — C1
+
+   *(Pozn.: „Participle clauses" přesunuty sem z `[infinitive-gerund]`; „Vztažné věty (defining/non-defining)" rozdělené na tři samostatná podtémata podle typu.)*
 10. Infinitiv a gerundium `[infinitive-gerund]`
     * Sloveso + to infinitiv — A2–B1
     * Sloveso + -ing — A2–B1
     * Rozdíly ve významu (remember, stop, try...) — B2
-    * Participle clauses — C1
+    * Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go) — B1–B2
+    * Předložka + -ing — B1
+    * Perfektní infinitiv (seem to have done) — C1
+
+    *(Pozn.: „Holý infinitiv (make/let)" sloučen se „Sloveso + předmět + infinitiv" — jde o stejný vzorec, jednou s „to" a jednou bez; spojení zvětšuje slovní zásobu k dispozici.)*
 11. Přídavná jména a příslovce `[adjectives-adverbs]`
-    * Stupňování — A1–A2
+    * Stupňování (vč. stupňovatelných vs. absolutních přídavných jmen: very tired / absolutely exhausted) — A1–B2
     * Pořadí přídavných jmen — B1
     * Tvorba a pozice příslovcí — A2
+    * Too/enough — A2–B1
+    * So/such — B1
+    * As...as / the more..., the more... — B1–B2
+    * Přídavná jména na -ed/-ing (bored/boring) — A2–B1
+
+    *(Pozn.: „Stupňovatelná vs. absolutní přídavná jména" sloučena do „Stupňování" — je to výjimka/hranice téhož jevu.)*
 12. Předložky `[prepositions]`
     * Místa a času — A1–A2
     * Vazby se slovesy — B1–B2
     * Vazby s přídavnými jmény — B1–B2
+    * Vazby s podstatnými jmény (reason for, increase in) — B1–B2
+    * Předložka na konci věty — B2
 13. Slovosled a otázky `[word-order]`
     * Nepřímé otázky — A2–C1
     * Záporné otázky — A2–C1
     * Tag questions — B1–B2
     * Inverze po záporných příslovcích (Never had I...) — C1
+    * Otázky na podmět a předmět (Who called you? / Who did you call?) — A2–B1 (zatím bez otázek)
+    * Vytýkací věty (It was John who... / What I need is...) — B2–C1 (zatím bez otázek)
+    * Pozice příslovcí frekvence — A2–B1 (zatím bez otázek)
+    * Krátké odpovědi, elipsa a důrazové do/did (So do I / Neither do I, I think so / I hope not, emphatic do) — B1–B2 (zatím bez otázek)
+
+    *(Pozn.: „So do I / Neither do I", „Důrazové do/did" a „Elipsa a substituce" sloučeny do jednoho podtématu — všechny řeší, jak se vyhnout opakování celé věty pomocí pomocného slovesa.)*
 14. Frázová slovesa `[phrasal-verbs]`
     * Základní sada — A2–B1
     * Rozšířená sada — B2–C1
+    * Dělitelná vs. nedělitelná frázová slovesa (turn it off / look after it) — B1
 15. Spojky a diskurzní markery `[conjunctions]`
     * Although, despite, in spite of — B1
     * Because, since, as (důvod) — B1
     * So that, in order to (účel) — B1–B2
     * Diskurzní markery (however, moreover...) — B2–C1
+    * Whereas/while — B1–B2
+    * However vs. although — B1
+    * Both...and / either...or / neither...nor — A2–B1
+    * Even though vs. even if — B2
+
+    *(Unless zůstává výhradně v `[conditionals]`, sem se nepřidává.)*
 
 ## 4a. Slovní zásoba `[vocab]` — samostatná mapa mimo gramatické kategorie
 
