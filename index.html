@@ -834,6 +834,7 @@ const TOPICS = [
   { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze" },
   { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost" },
   { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done" },
+  { id:"reported-speech", name:"Nepřímá řeč", desc:"Oznamovací věty, otázky, rozkazy a žádosti, posun časů, uvozovací slovesa" },
   { id:"vocab", name:"Slovní zásoba", desc:"Překlad oběma směry, slovo v kontextu i výběr z možností" }
 ];
 
@@ -10349,6 +10350,1961 @@ M("passive-mix-advanced-m20","passive","advanced","Mix",
     {before:"If the violations continue, it ", hint:"might / be / sanction", after:" even more severely.", answers:["might be sanctioned"], tag:"S modálními slovesy"}
   ],
   "Present perfect zdůrazňuje, že sankce už byly v uplynulém roce uvaleny několika mezinárodními institucemi (has already been sanctioned), modální „might“ naznačuje nejistou možnost přísnějších sankcí v budoucnu, pokud porušování bude pokračovat (might be sanctioned).")
+);
+
+/* ---------------- NEPRIMA REC: Oznamovaci vety, Otazky v neprime reci ---------------- */
+
+QUESTIONS.push(
+F("reported-statements-basic-01", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am tired today,\" Emma said. Emma said",
+  "I / be / tired / today",
+  ".",
+  ["she was tired that day", "that she was tired that day"],
+  "„I“ se mění na „she“ (mluvíme o Emmě ve 3. osobě), přítomný čas „am“ se posouvá do minulého „was“ a časový výraz „today“ se mění na „that day“, protože reportujeme jiný den, než kdy to bylo řečeno."
+),
+M("reported-statements-basic-02", "reported-speech", "basic", "Oznamovací věty",
+  "Doplňte reportovanou větu dvěma způsoby – se „said“ a s „told“.",
+  [
+    { before: "\"I live here,\" Petr said to Anna. Petr said", hint: "I / live / here", after: ".", answers: ["he lived there", "that he lived there"], tag: "Oznamovací věty" },
+    { before: "\"I live here,\" Petr said to Anna. Petr told Anna", hint: "I / live / here", after: ".", answers: ["he lived there", "that he lived there"], tag: "Oznamovací věty" }
+  ],
+  "„Said“ se pojí bez přímého předmětu, zatímco „told“ vyžaduje předmět (komu – Anna). V obou větách se „I“ mění na „he“, sloveso „live“ se posouvá do minulého času „lived“ a příslovce místa „here“ se mění na „there“, protože reportujeme na jiném místě, než kde to bylo řečeno."
+),
+F("reported-statements-basic-03", "reported-speech", "basic", "Oznamovací věty",
+  "\"We are hungry now,\" the children said. The children said",
+  "we / be / hungry / now",
+  ".",
+  ["they were hungry then", "that they were hungry then"],
+  "„We“ se mění na „they“, „are“ se posouvá do minulého „were“ a „now“ se mění na „then“, protože reportujeme v jiném čase, než kdy to bylo řečeno."
+),
+F("reported-statements-basic-04", "reported-speech", "basic", "Oznamovací věty",
+  "\"My brother works here,\" Lucy said. Lucy said",
+  "my / brother / work / here",
+  ".",
+  ["her brother worked there", "that her brother worked there"],
+  "Přivlastňovací zájmeno „my“ se mění na „her“ (jde o Lucyina bratra), přítomný čas „works“ se posouvá do minulého „worked“ a „here“ se mění na „there“."
+),
+F("reported-statements-basic-05", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am watching a film now,\" Ben said. Ben said",
+  "I / watch / a film / now",
+  ".",
+  ["he was watching a film then", "that he was watching a film then"],
+  "„I“ se mění na „he“, průběhový přítomný čas „am watching“ se posouvá do průběhového minulého „was watching“ a „now“ se mění na „then“."
+),
+F("reported-statements-basic-06", "reported-speech", "basic", "Oznamovací věty",
+  "\"I need your help today,\" Mia said to David. Mia told David",
+  "I / need / your / help / today",
+  ".",
+  ["she needed his help that day", "that she needed his help that day"],
+  "„I“ se mění na „she“, „your“ se mění na „his“ (pomoc patří Davidovi), sloveso „need“ se posouvá do minulého „needed“ a „today“ na „that day“. Použito „told“ s předmětem (David), protože jde o konkrétního posluchače."
+),
+F("reported-statements-basic-07", "reported-speech", "basic", "Oznamovací věty",
+  "\"We live here now,\" the Browns said. The Browns said",
+  "we / live / here / now",
+  ".",
+  ["they lived there then", "that they lived there then"],
+  "„We“ se mění na „they“, „live“ se posouvá do minulého „lived“, „here“ na „there“ a „now“ na „then“ – dvě časové a místní změny najednou."
+),
+F("reported-statements-basic-08", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am busy this morning,\" Paul said. Paul said",
+  "I / be / busy / this morning",
+  ".",
+  ["he was busy that morning", "that he was busy that morning"],
+  "„I“ se mění na „he“, „am“ na „was“ a „this morning“ na „that morning“, protože se nejedná o dopoledne, kdy věta zazněla."
+),
+F("reported-statements-basic-09", "reported-speech", "basic", "Oznamovací věty",
+  "\"Our car is here,\" the twins said. The twins said",
+  "our / car / be / here",
+  ".",
+  ["their car was there", "that their car was there"],
+  "„Our“ se mění na „their“, „is“ na „was“ a „here“ na „there“."
+),
+F("reported-statements-basic-10", "reported-speech", "basic", "Oznamovací věty",
+  "\"I like this book,\" Sara said to me. Sara told me",
+  "I / like / this / book",
+  ".",
+  ["she liked that book", "that she liked that book"],
+  "„I“ se mění na „she“, „like“ se posouvá do minulého „liked“ a ukazovací zájmeno „this“ se mění na „that“, protože kniha už není v bezprostřední blízkosti mluvčího v okamžiku reportování."
+),
+F("reported-statements-basic-11", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am cooking dinner now,\" Mum said. Mum said",
+  "I / cook / dinner / now",
+  ".",
+  ["she was cooking dinner then", "that she was cooking dinner then"],
+  "„I“ se mění na „she“, průběhový čas „am cooking“ na „was cooking“ a „now“ na „then“."
+),
+F("reported-statements-basic-12", "reported-speech", "basic", "Oznamovací věty",
+  "\"I work here today,\" the new colleague said. The new colleague said",
+  "I / work / here / today",
+  ".",
+  ["he worked there that day", "that he worked there that day"],
+  "„I“ se mění na „he“, „work“ na „worked“, „here“ na „there“ a „today“ na „that day“."
+),
+F("reported-statements-basic-13", "reported-speech", "basic", "Oznamovací věty",
+  "\"We need this room today,\" the students said to the teacher. The students told the teacher",
+  "we / need / this room / today",
+  ".",
+  ["they needed that room that day", "that they needed that room that day"],
+  "„We“ se mění na „they“, „need“ na „needed“, „this“ na „that“ a „today“ na „that day“. Použito „told“ s předmětem „the teacher“."
+),
+F("reported-statements-basic-14", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am waiting here now,\" Jack said. Jack said",
+  "I / wait / here / now",
+  ".",
+  ["he was waiting there then", "that he was waiting there then"],
+  "„I“ se mění na „he“, „am waiting“ na „was waiting“, „here“ na „there“ a „now“ na „then“."
+),
+F("reported-statements-basic-15", "reported-speech", "basic", "Oznamovací věty",
+  "\"My key is here,\" Grandma said. Grandma said",
+  "my / key / be / here",
+  ".",
+  ["her key was there", "that her key was there"],
+  "„My“ se mění na „her“, „is“ na „was“ a „here“ na „there“."
+),
+F("reported-statements-basic-16", "reported-speech", "basic", "Oznamovací věty",
+  "\"I feel great today,\" Nina said to her friend. Nina told her friend",
+  "I / feel / great / today",
+  ".",
+  ["she felt great that day", "that she felt great that day"],
+  "„I“ se mění na „she“, „feel“ se posouvá do minulého „felt“ a „today“ na „that day“."
+),
+F("reported-statements-basic-17", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am flying to Rome tomorrow,\" the pilot said. The pilot said",
+  "I / fly / to Rome / tomorrow",
+  ".",
+  ["he was flying to Rome the next day", "that he was flying to Rome the next day"],
+  "„I“ se mění na „he“, „am flying“ na „was flying“ a „tomorrow“ na „the next day“, protože reportujeme jiný den, než kdy to bylo řečeno."
+),
+F("reported-statements-basic-18", "reported-speech", "basic", "Oznamovací věty",
+  "\"We are staying here tonight,\" the guests said. The guests said",
+  "we / stay / here / tonight",
+  ".",
+  ["they were staying there that night", "that they were staying there that night"],
+  "„We“ se mění na „they“, „are staying“ na „were staying“, „here“ na „there“ a „tonight“ na „that night“."
+),
+F("reported-statements-basic-19", "reported-speech", "basic", "Oznamovací věty",
+  "\"I finished the project yesterday,\" Laura said to her boss. Laura told her boss",
+  "I / finish / the project / yesterday",
+  ".",
+  ["she finished the project the day before", "that she finished the project the day before", "she had finished the project the day before", "that she had finished the project the day before"],
+  "„I“ se mění na „she“ a „yesterday“ na „the day before“; sloveso může zůstat v minulém čase „finished“, protože souslednost je jasná z kontextu (posun do předminulého „had finished“ je možný, ale není nutný)."
+),
+F("reported-statements-basic-20", "reported-speech", "basic", "Oznamovací věty",
+  "\"I am leaving next week,\" the manager said. The manager said",
+  "I / leave / next week",
+  ".",
+  ["she was leaving the following week", "that she was leaving the following week"],
+  "„I“ se mění na „she“, „am leaving“ na „was leaving“ a „next week“ na „the following week“."
+),
+F("reported-statements-intermediate-01", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am organizing the meeting today,\" the assistant said. The assistant said",
+  "I / organize / the meeting / today",
+  ".",
+  ["she was organizing the meeting that day", "that she was organizing the meeting that day"],
+  "„I“ se mění na „she“, průběhový čas „am organizing“ na „was organizing“ a „today“ na „that day“."
+),
+F("reported-statements-intermediate-02", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"My colleagues are arriving here tomorrow,\" the manager said to the board. The manager told the board",
+  "my / colleagues / arrive / here / tomorrow",
+  ".",
+  ["his colleagues were arriving there the next day", "that his colleagues were arriving there the next day"],
+  "„My“ se mění na „his“, průběhový čas „are arriving“ na „were arriving“, „here“ na „there“ a „tomorrow“ na „the next day“ – čtyři posuny najednou."
+),
+F("reported-statements-intermediate-03", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"We are renovating our house this year,\" the neighbours said. The neighbours said",
+  "we / renovate / our house / this year",
+  ".",
+  ["they were renovating their house that year", "that they were renovating their house that year"],
+  "„We“ se mění na „they“, „our“ na „their“, průběhový čas „are renovating“ na „were renovating“ a „this year“ na „that year“."
+),
+F("reported-statements-intermediate-04", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am considering a new job now,\" Rachel said to her sister. Rachel told her sister",
+  "I / consider / a new job / now",
+  ".",
+  ["she was considering a new job then", "that she was considering a new job then"],
+  "„I“ se mění na „she“, „am considering“ na „was considering“ a „now“ na „then“."
+),
+F("reported-statements-intermediate-05", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"Our team is preparing the report today,\" the supervisor said. The supervisor said",
+  "our team / prepare / the report / today",
+  ".",
+  ["their team was preparing the report that day", "that their team was preparing the report that day"],
+  "„Our“ se mění na „their“, „is preparing“ na „was preparing“ a „today“ na „that day“."
+),
+M("reported-statements-intermediate-06", "reported-speech", "intermediate", "Oznamovací věty",
+  "Doplňte reportovanou větu dvěma způsoby – se „said“ a s „told“.",
+  [
+    { before: "\"I trust your judgment on this matter,\" the client said to the lawyer. The client said", hint: "I / trust / your / judgment / on / this matter", after: ".", answers: ["she trusted his judgment on that matter", "that she trusted his judgment on that matter"], tag: "Oznamovací věty" },
+    { before: "\"I trust your judgment on this matter,\" the client said to the lawyer. The client told the lawyer", hint: "I / trust / your / judgment / on / this matter", after: ".", answers: ["she trusted his judgment on that matter", "that she trusted his judgment on that matter"], tag: "Oznamovací věty" }
+  ],
+  "„Said“ se pojí bez předmětu, „told“ vyžaduje předmět (the lawyer). „I“ se mění na „she“, „your“ na „his“ (posudek patří právníkovi), „trust“ na „trusted“ a „this“ na „that“."
+),
+F("reported-statements-intermediate-07", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am moving to this city next month,\" Daniel said. Daniel said",
+  "I / move / to this city / next month",
+  ".",
+  ["he was moving to that city the following month", "that he was moving to that city the following month"],
+  "„I“ se mění na „he“, „am moving“ na „was moving“, „this“ na „that“ a „next month“ na „the following month“."
+),
+F("reported-statements-intermediate-08", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"We appreciate your effort today,\" the director said to the staff. The director told the staff",
+  "we / appreciate / your / effort / today",
+  ".",
+  ["they appreciated their effort that day", "that they appreciated their effort that day"],
+  "„We“ se mění na „they“, „your“ na „their“ (týká se zaměstnanců), „appreciate“ na „appreciated“ a „today“ na „that day“."
+),
+F("reported-statements-intermediate-09", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am reviewing this contract now,\" the lawyer said. The lawyer said",
+  "I / review / this contract / now",
+  ".",
+  ["she was reviewing that contract then", "that she was reviewing that contract then"],
+  "„I“ se mění na „she“, „am reviewing“ na „was reviewing“, „this“ na „that“ a „now“ na „then“."
+),
+F("reported-statements-intermediate-10", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"My assistant is preparing the documents here today,\" the CEO said to investors. The CEO told investors",
+  "my assistant / prepare / the documents / here / today",
+  ".",
+  ["her assistant was preparing the documents there that day", "that her assistant was preparing the documents there that day"],
+  "„My“ se mění na „her“, „is preparing“ na „was preparing“, „here“ na „there“ a „today“ na „that day“ – čtyři posuny současně."
+),
+F("reported-statements-intermediate-11", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"We are launching the product next week,\" the marketing team said. The marketing team said",
+  "we / launch / the product / next week",
+  ".",
+  ["they were launching the product the following week", "that they were launching the product the following week"],
+  "„We“ se mění na „they“, „are launching“ na „were launching“ a „next week“ na „the following week“."
+),
+F("reported-statements-intermediate-12", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"The current strategy doesn't work,\" the analyst said to the committee. The analyst told the committee",
+  "the current strategy / not / work",
+  ".",
+  ["the current strategy didn't work", "that the current strategy didn't work"],
+  "Podmět „the current strategy“ zůstává beze změny (není to osobní zájmeno), pouze se zápor v přítomném čase „doesn't work“ posouvá do minulého záporu „didn't work“."
+),
+F("reported-statements-intermediate-13", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I own this apartment,\" the landlord said to the tenants. The landlord told the tenants",
+  "I / own / this apartment",
+  ".",
+  ["he owned that apartment", "that he owned that apartment"],
+  "„I“ se mění na „he“, „own“ na „owned“ a „this“ na „that“."
+),
+F("reported-statements-intermediate-14", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"We are meeting the client here this afternoon,\" Ms. Novak said. Ms. Novak said",
+  "we / meet / the client / here / this afternoon",
+  ".",
+  ["they were meeting the client there that afternoon", "that they were meeting the client there that afternoon"],
+  "„We“ se mění na „they“, „are meeting“ na „were meeting“, „here“ na „there“ a „this afternoon“ na „that afternoon“."
+),
+F("reported-statements-intermediate-15", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"Our sales are increasing this quarter,\" the CFO said. The CFO said",
+  "our sales / increase / this quarter",
+  ".",
+  ["their sales were increasing that quarter", "that their sales were increasing that quarter"],
+  "„Our“ se mění na „their“, „are increasing“ na „were increasing“ a „this quarter“ na „that quarter“."
+),
+F("reported-statements-intermediate-16", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am relying on your support now,\" the candidate said to voters. The candidate told voters",
+  "I / rely / on / your / support / now",
+  ".",
+  ["she was relying on their support then", "that she was relying on their support then"],
+  "„I“ se mění na „she“, „your“ na „their“ (podpora patří voličům), „am relying“ na „was relying“ a „now“ na „then“."
+),
+F("reported-statements-intermediate-17", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"We respect your decision today,\" the board said to the CEO. The board told the CEO",
+  "we / respect / your / decision / today",
+  ".",
+  ["they respected his decision that day", "that they respected his decision that day"],
+  "„We“ se mění na „they“, „your“ na „his“ (rozhodnutí patří řediteli), „respect“ na „respected“ a „today“ na „that day“."
+),
+F("reported-statements-intermediate-18", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am attending this conference next week,\" the professor said. The professor said",
+  "I / attend / this conference / next week",
+  ".",
+  ["he was attending that conference the following week", "that he was attending that conference the following week"],
+  "„I“ se mění na „he“, „am attending“ na „was attending“, „this“ na „that“ a „next week“ na „the following week“."
+),
+F("reported-statements-intermediate-19", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"My department needs more staff here,\" the head of HR said to management. The head of HR told management",
+  "my department / need / more staff / here",
+  ".",
+  ["her department needed more staff there", "that her department needed more staff there"],
+  "„My“ se mění na „her“, „needs“ na „needed“ a „here“ na „there“."
+),
+F("reported-statements-intermediate-20", "reported-speech", "intermediate", "Oznamovací věty",
+  "\"I am inspecting this equipment here today,\" the technician said. The technician said",
+  "I / inspect / this equipment / here / today",
+  ".",
+  ["he was inspecting that equipment there that day", "that he was inspecting that equipment there that day"],
+  "„I“ se mění na „he“, „am inspecting“ na „was inspecting“, „this“ na „that“, „here“ na „there“ a „today“ na „that day“ – pět prvků najednou (slovesný čas i čtyři zájmenné/časové posuny)."
+),
+F("reported-statements-advanced-01", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We are confident in our strategy today,\" the CEO said. The CEO said",
+  "we / be / confident / in / our strategy / today",
+  ".",
+  ["they were confident in their strategy that day", "that they were confident in their strategy that day"],
+  "„We“ se mění na „they“, „our“ na „their“, „are“ na „were“ a „today“ na „that day“."
+),
+F("reported-statements-advanced-02", "reported-speech", "advanced", "Oznamovací věty",
+  "\"Our economy is recovering here,\" the finance minister said to reporters. The finance minister told reporters",
+  "our economy / recover / here",
+  ".",
+  ["their economy was recovering there", "that their economy was recovering there"],
+  "„Our“ se mění na „their“, „is recovering“ na „was recovering“ a „here“ na „there“."
+),
+F("reported-statements-advanced-03", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am optimistic about this merger,\" the chairman said. The chairman said",
+  "I / be / optimistic / about / this merger",
+  ".",
+  ["he was optimistic about that merger", "that he was optimistic about that merger"],
+  "„I“ se mění na „he“, „am“ na „was“ a „this“ na „that“."
+),
+F("reported-statements-advanced-04", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We are monitoring the situation closely today,\" the spokesperson said to journalists. The spokesperson told journalists",
+  "we / monitor / the situation / closely / today",
+  ".",
+  ["they were monitoring the situation closely that day", "that they were monitoring the situation closely that day"],
+  "„We“ se mění na „they“, „are monitoring“ na „were monitoring“ a „today“ na „that day“."
+),
+F("reported-statements-advanced-05", "reported-speech", "advanced", "Oznamovací věty",
+  "\"Our models are outdated now,\" the economist said to the panel. The economist told the panel",
+  "our models / be / outdated / now",
+  ".",
+  ["their models were outdated then", "that their models were outdated then"],
+  "„Our“ se mění na „their“, „are“ na „were“ a „now“ na „then“."
+),
+F("reported-statements-advanced-06", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We are expanding our operations here,\" the executive said to shareholders. The executive told shareholders",
+  "we / expand / our operations / here",
+  ".",
+  ["they were expanding their operations there", "that they were expanding their operations there"],
+  "„We“ se mění na „they“, „our“ na „their“, „are expanding“ na „were expanding“ a „here“ na „there“."
+),
+M("reported-statements-advanced-07", "reported-speech", "advanced", "Oznamovací věty",
+  "Doplňte reportovanou větu dvěma způsoby – se „said“ a s „told“.",
+  [
+    { before: "\"I acknowledge your concerns today,\" the minister said to the committee. The minister said", hint: "I / acknowledge / your / concerns / today", after: ".", answers: ["she acknowledged their concerns that day", "that she acknowledged their concerns that day"], tag: "Oznamovací věty" },
+    { before: "\"I acknowledge your concerns today,\" the minister said to the committee. The minister told the committee", hint: "I / acknowledge / your / concerns / today", after: ".", answers: ["she acknowledged their concerns that day", "that she acknowledged their concerns that day"], tag: "Oznamovací věty" }
+  ],
+  "„Said“ je bez předmětu, „told“ vyžaduje předmět (the committee). „I“ se mění na „she“, „your“ na „their“ (obavy patří výboru), „acknowledge“ na „acknowledged“ a „today“ na „that day“."
+),
+F("reported-statements-advanced-08", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We are committed to this policy,\" the government said. The government said",
+  "we / be / committed / to / this policy",
+  ".",
+  ["they were committed to that policy", "that they were committed to that policy"],
+  "„We“ se mění na „they“, „are“ na „were“ a „this“ na „that“."
+),
+F("reported-statements-advanced-09", "reported-speech", "advanced", "Oznamovací věty",
+  "\"Our reputation matters here,\" the CEO said to employees. The CEO told employees",
+  "our reputation / matter / here",
+  ".",
+  ["their reputation mattered there", "that their reputation mattered there"],
+  "„Our“ se mění na „their“, „matters“ na „mattered“ a „here“ na „there“."
+),
+F("reported-statements-advanced-10", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am reconsidering this proposal now,\" the board member said. The board member said",
+  "I / reconsider / this proposal / now",
+  ".",
+  ["he was reconsidering that proposal then", "that he was reconsidering that proposal then"],
+  "„I“ se mění na „he“, „am reconsidering“ na „was reconsidering“, „this“ na „that“ a „now“ na „then“."
+),
+F("reported-statements-advanced-11", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We anticipate strong demand this quarter,\" the analyst said to investors. The analyst told investors",
+  "we / anticipate / strong demand / this quarter",
+  ".",
+  ["they anticipated strong demand that quarter", "that they anticipated strong demand that quarter"],
+  "„We“ se mění na „they“, „anticipate“ na „anticipated“ a „this quarter“ na „that quarter“."
+),
+F("reported-statements-advanced-12", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am aware of your objections today,\" the judge said to the defence. The judge told the defence",
+  "I / be / aware / of / your / objections / today",
+  ".",
+  ["she was aware of their objections that day", "that she was aware of their objections that day"],
+  "„I“ se mění na „she“, „your“ na „their“ (námitky patří obhajobě), „am“ na „was“ a „today“ na „that day“."
+),
+F("reported-statements-advanced-13", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am withdrawing this offer now,\" the buyer said to the seller. The buyer told the seller",
+  "I / withdraw / this offer / now",
+  ".",
+  ["he was withdrawing that offer then", "that he was withdrawing that offer then"],
+  "„I“ se mění na „he“, „am withdrawing“ na „was withdrawing“, „this“ na „that“ a „now“ na „then“."
+),
+F("reported-statements-advanced-14", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I foresee complications with this approach,\" the diplomat said to reporters. The diplomat told reporters",
+  "I / foresee / complications / with / this approach",
+  ".",
+  ["he foresaw complications with that approach", "that he foresaw complications with that approach"],
+  "„I“ se mění na „he“, nepravidelné sloveso „foresee“ se posouvá do minulého tvaru „foresaw“ a „this“ na „that“."
+),
+F("reported-statements-advanced-15", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We value your partnership today,\" the CEO said to shareholders. The CEO told shareholders",
+  "we / value / your / partnership / today",
+  ".",
+  ["they valued their partnership that day", "that they valued their partnership that day"],
+  "„We“ se mění na „they“, „your“ na „their“ (partnerství se týká akcionářů), „value“ na „valued“ a „today“ na „that day“."
+),
+F("reported-statements-advanced-16", "reported-speech", "advanced", "Oznamovací věty",
+  "\"Our findings support this conclusion,\" the researcher said. The researcher said",
+  "our findings / support / this conclusion",
+  ".",
+  ["their findings supported that conclusion", "that their findings supported that conclusion"],
+  "„Our“ se mění na „their“, „support“ na „supported“ a „this“ na „that“."
+),
+F("reported-statements-advanced-17", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am concerned about this trend now,\" the regulator said to the board. The regulator told the board",
+  "I / be / concerned / about / this trend / now",
+  ".",
+  ["she was concerned about that trend then", "that she was concerned about that trend then"],
+  "„I“ se mění na „she“, „am“ na „was“, „this“ na „that“ a „now“ na „then“."
+),
+F("reported-statements-advanced-18", "reported-speech", "advanced", "Oznamovací věty",
+  "\"We are reviewing this case here today,\" the inspector said. The inspector said",
+  "we / review / this case / here / today",
+  ".",
+  ["they were reviewing that case there that day", "that they were reviewing that case there that day"],
+  "„We“ se mění na „they“, „are reviewing“ na „were reviewing“, „this“ na „that“, „here“ na „there“ a „today“ na „that day“ – čtyři prvky se mění současně."
+),
+F("reported-statements-advanced-19", "reported-speech", "advanced", "Oznamovací věty",
+  "\"Our projections indicate growth this year,\" the CFO said to the board. The CFO told the board",
+  "our projections / indicate / growth / this year",
+  ".",
+  ["their projections indicated growth that year", "that their projections indicated growth that year"],
+  "„Our“ se mění na „their“, „indicate“ na „indicated“ a „this year“ na „that year“."
+),
+F("reported-statements-advanced-20", "reported-speech", "advanced", "Oznamovací věty",
+  "\"I am transferring this responsibility to my successor now,\" the outgoing director said. The outgoing director said",
+  "I / transfer / this responsibility / to / my successor / now",
+  ".",
+  ["he was transferring that responsibility to his successor then", "that he was transferring that responsibility to his successor then"],
+  "„I“ se mění na „he“, „my“ na „his“, „am transferring“ na „was transferring“, „this“ na „that“ a „now“ na „then“ – pět prvků najednou."
+)
+);
+
+QUESTIONS.push(
+F("reported-questions-basic-01", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Do you like coffee?" She asked me ',
+  "if / whether / I / like",
+  ".",
+  ["if I liked coffee", "whether I liked coffee"],
+  "Ano/ne otázka se v nepřímé řeči uvozuje spojkou if nebo whether, bez pomocného slovesa do/does/did; slovosled je jako v oznamovací větě (I liked), přítomný čas like se posouvá do minulého liked."
+),
+
+F("reported-questions-basic-02", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Are you coming to the party?" He asked me ',
+  "if / whether / I / be",
+  ".",
+  ["if I was coming to the party", "whether I was coming to the party"],
+  "Otázka s be + -ing se uvozuje if/whether, sloveso be se posouvá z am/are do was, žádné pomocné do/does/did se nepoužívá; tvar coming zůstává beze změny."
+),
+
+F("reported-questions-basic-03", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Where do you live?" She asked me ',
+  "I / live",
+  ".",
+  ["where I lived"],
+  "Where zůstává na začátku vedlejší věty, ale bez pomocného slovesa do; live se mění na minulý čas lived a slovosled je jako v oznamovací větě, ne jako v otázce."
+),
+
+F("reported-questions-basic-04", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"What is your name?" The man asked me ',
+  "my / be",
+  ".",
+  ["what my name was"],
+  "Přivlastňovací zájmeno your se mění na my, is se posouvá do minulého was, slovosled zůstává oznamovací (what my name was), ne tázací (was my name)."
+),
+
+F("reported-questions-basic-05", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Can you swim?" He asked me ',
+  "if / whether / I / can",
+  ".",
+  ["if I could swim", "whether I could swim"],
+  "Modální sloveso can se v nepřímé řeči posouvá na could; otázka ano/ne se uvozuje if/whether a slovosled je jako ve větě oznamovací."
+),
+
+F("reported-questions-basic-06", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Do you have a car?" She asked me ',
+  "if / whether / I / have",
+  ".",
+  ["if I had a car", "whether I had a car"],
+  "Pomocné do se v nepřímé otázce vypouští; have se mění na minulý čas had; otázka se uvozuje if/whether."
+),
+
+F("reported-questions-basic-07", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Where are you going?" My mother asked me ',
+  "I / be",
+  ".",
+  ["where I was going"],
+  "Where zůstává, ale bez pomocného slovesa; přítomný průběhový čas se posouvá do minulého průběhového (was going), slovosled je oznamovací."
+),
+
+F("reported-questions-basic-08", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"What time is it?" He asked me ',
+  "it / be",
+  ".",
+  ["what time it was"],
+  "Sloveso is se posouvá na was a slovosled se mění na oznamovací (it was), ne tázací (was it)."
+),
+
+F("reported-questions-basic-09", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Are you hungry?" She asked me ',
+  "if / whether / I / be",
+  ".",
+  ["if I was hungry", "whether I was hungry"],
+  "Ano/ne otázka se slovesem be se uvozuje if/whether, are se mění na was a slovosled je jako v oznamovací větě."
+),
+
+F("reported-questions-basic-10", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Do you speak English?" The tourist asked me ',
+  "if / whether / I / speak",
+  ".",
+  ["if I spoke English", "whether I spoke English"],
+  "Do se v nepřímé otázce vypouští, speak se mění na minulý čas spoke, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-basic-11", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Where do you work?" She asked me ',
+  "I / work",
+  ".",
+  ["where I worked"],
+  "Where zůstává na začátku, pomocné do se vypouští, work se mění na worked, slovosled je oznamovací."
+),
+
+F("reported-questions-basic-12", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"What do you want?" He asked me ',
+  "I / want",
+  ".",
+  ["what I wanted"],
+  "What zůstává, do se vypouští, want se posouvá do minulého wanted, slovosled je bez inverze."
+),
+
+F("reported-questions-basic-13", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Is your sister at home?" She asked me ',
+  "if / whether / my / be",
+  ".",
+  ["if my sister was at home", "whether my sister was at home"],
+  "Your se mění na my, is se posouvá na was, otázka ano/ne se uvozuje if/whether."
+),
+
+F("reported-questions-basic-14", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Do you play tennis?" He asked me ',
+  "if / whether / I / play",
+  ".",
+  ["if I played tennis", "whether I played tennis"],
+  "Do se vypouští, play se mění na played, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-basic-15", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Where is the station?" The woman asked me ',
+  "be",
+  ".",
+  ["where the station was"],
+  "Is se posouvá na was, slovosled je jako v oznamovací větě (the station was), ne tázací (was the station)."
+),
+
+F("reported-questions-basic-16", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"What are you doing?" She asked me ',
+  "I / be",
+  ".",
+  ["what I was doing"],
+  "Are se posouvá na was, doing zůstává, slovosled je bez inverze."
+),
+
+F("reported-questions-basic-17", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Do you know him?" He asked me ',
+  "if / whether / I / know",
+  ".",
+  ["if I knew him", "whether I knew him"],
+  "Do se vypouští, know se mění na minulé knew, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-basic-18", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"Are your parents here?" She asked me ',
+  "if / whether / my / be",
+  ".",
+  ["if my parents were here", "whether my parents were here"],
+  "Your se mění na my, are se posouvá na were (množné číslo parents), otázka se uvozuje if/whether."
+),
+
+F("reported-questions-basic-19", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  '"What is your favourite colour?" He asked me ',
+  "my / be",
+  ".",
+  ["what my favourite colour was"],
+  "Your se mění na my, is se posouvá na was, slovosled zůstává oznamovací (what my favourite colour was)."
+),
+
+M("reported-questions-basic-20", "reported-speech", "basic", "Otázky v nepřímé řeči",
+  "Doplňte obě nepřímé otázky.",
+  [
+    { before: '"Are you tired?" She asked me ', hint: "if / whether / I / be", after: ".", answers: ["if I was tired", "whether I was tired"], tag: "Otázky v nepřímé řeči" },
+    { before: '"Why are you tired?" She asked me ', hint: "I / be", after: ".", answers: ["why I was tired"], tag: "Otázky v nepřímé řeči" }
+  ],
+  "U otázky ano/ne (Are you tired?) je nutné if/whether, protože věta nemá tázací slovo. U otázky s tázacím slovem why (Why are you tired?) se if/whether nepoužívá, why zůstává na začátku. V obou větách are se mění na was a slovosled je oznamovací, bez inverze."
+),
+
+F("reported-questions-intermediate-01", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Have you finished your homework?" The teacher asked me ',
+  "if / whether / I / have / finish / my",
+  ".",
+  ["if I had finished my homework", "whether I had finished my homework"],
+  "Předpřítomný čas (have finished) se v nepřímé řeči posouvá do předminulého (had finished); your se mění na my; otázka ano/ne se uvozuje if/whether bez pomocného slovesa."
+),
+
+F("reported-questions-intermediate-02", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Will you help me tomorrow?" She asked me ',
+  "if / whether / I / will / help / her / next",
+  ".",
+  ["if I would help her the next day", "whether I would help her the next day"],
+  "Will se v nepřímé řeči mění na would; časový výraz tomorrow se mění na the next day, protože se hlásí později; otázka se uvozuje if/whether."
+),
+
+F("reported-questions-intermediate-03", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"What did you buy yesterday?" He asked me ',
+  "I / buy / day / before",
+  ".",
+  ["what I had bought the day before"],
+  "Minulý čas prostý (did buy) se v nepřímé řeči posouvá do předminulého (had bought); yesterday se mění na the day before; slovosled je oznamovací, bez pomocného did."
+),
+
+F("reported-questions-intermediate-04", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Where have you been?" She asked me ',
+  "I / have / be",
+  ".",
+  ["where I had been"],
+  "Předpřítomný čas (have been) se posouvá na předminulý (had been); where zůstává na začátku; slovosled je bez inverze."
+),
+
+F("reported-questions-intermediate-05", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Why are you laughing?" He asked me ',
+  "I / be",
+  ".",
+  ["why I was laughing"],
+  "Are se posouvá na was, laughing zůstává beze změny, slovosled je oznamovací (why I was laughing)."
+),
+
+F("reported-questions-intermediate-06", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"How long have you lived here?" She asked me ',
+  "I / have / live / there",
+  ".",
+  ["how long I had lived there"],
+  "Předpřítomný čas (have lived) se posouvá na předminulý (had lived); here se mění na there; slovosled zůstává oznamovací."
+),
+
+F("reported-questions-intermediate-07", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Did you see the news last night?" He asked me ',
+  "if / whether / I / see / night / before",
+  ".",
+  ["if I had seen the news the night before", "whether I had seen the news the night before"],
+  "Minulý čas s did se posouvá na předminulý (had seen); last night se mění na the night before; otázka se uvozuje if/whether bez did."
+),
+
+F("reported-questions-intermediate-08", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Should I call you later?" He asked me ',
+  "if / whether / he / call / me",
+  ".",
+  ["if he should call me later", "whether he should call me later"],
+  "Modální sloveso should se nemění, protože nemá zvláštní tvar minulého času; zájmena I/you se otáčí na he/me podle toho, kdo je mluvčí; otázka se uvozuje if/whether."
+),
+
+F("reported-questions-intermediate-09", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"What are you going to do next year?" She asked me ',
+  "I / be / following",
+  ".",
+  ["what I was going to do the following year"],
+  "Vazba be going to se posouvá do minulého času (was going to); next year se mění na the following year; slovosled je oznamovací."
+),
+
+F("reported-questions-intermediate-10", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Who told you that?" He asked me ',
+  "have / tell / me",
+  ".",
+  ["who had told me that"],
+  "Protože who je podmětem otázky, přímá otázka nemá pomocné sloveso did; minulý čas told se v nepřímé řeči posouvá na předminulý had told, you se mění na me."
+),
+
+F("reported-questions-intermediate-11", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"How much does this cost?" She asked me ',
+  "that / cost",
+  ".",
+  ["how much that cost"],
+  "Pomocné sloveso does se vypouští, this se mění na that; sloveso cost má stejný tvar v přítomném i minulém čase; slovosled je oznamovací (that cost), ne tázací (did that cost)."
+),
+
+F("reported-questions-intermediate-12", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Can you speak French?" He asked me ',
+  "if / whether / I / can / speak",
+  ".",
+  ["if I could speak French", "whether I could speak French"],
+  "Can se mění na could, otázka ano/ne se uvozuje if/whether, slovosled je oznamovací."
+),
+
+F("reported-questions-intermediate-13", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"What were you doing at that time?" She asked me ',
+  "I / have / be / do",
+  ".",
+  ["what I had been doing at that time"],
+  "Minulý čas průběhový (were doing) se v nepřímé řeči posouvá na předminulý průběhový (had been doing); slovosled zůstává oznamovací."
+),
+
+F("reported-questions-intermediate-14", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Do you want to come with us?" She asked me ',
+  "if / whether / I / want / them",
+  ".",
+  ["if I wanted to come with them", "whether I wanted to come with them"],
+  "Do se vypouští, want se mění na wanted, us se mění na them, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-intermediate-15", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Why didn\'t you call me?" He asked me ',
+  "I / have / call / him",
+  ".",
+  ["why I hadn't called him", "why I had not called him"],
+  "Zápor s did (didn't) se posouvá na předminulý čas záporný (hadn't called), me se mění na him, slovosled zůstává oznamovací bez pomocného did."
+),
+
+F("reported-questions-intermediate-16", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"What will you do if it rains?" She asked me ',
+  "I / will / rain",
+  ".",
+  ["what I would do if it rained"],
+  "Will se mění na would; přítomný čas v podmínkové části (rains) se posouvá na minulý (rained); slovosled hlavní otázky zůstává oznamovací."
+),
+
+F("reported-questions-intermediate-17", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Have you ever been abroad?" He asked me ',
+  "if / whether / I / have / be",
+  ".",
+  ["if I had ever been abroad", "whether I had ever been abroad"],
+  "Předpřítomný čas (have been) se posouvá na předminulý (had been), otázka se uvozuje if/whether."
+),
+
+F("reported-questions-intermediate-18", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"Where did you put my keys?" She asked me ',
+  "I / have / put / her",
+  ".",
+  ["where I had put her keys"],
+  "Minulý čas s did (did put) se posouvá na předminulý (had put), my se mění na her, slovosled je oznamovací bez pomocného did."
+),
+
+F("reported-questions-intermediate-19", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  '"What\'s wrong with you?" She asked me ',
+  "be / me",
+  ".",
+  ["what was wrong with me"],
+  "Is (what's = what is) se posouvá na was, you se mění na me, slovosled zůstává oznamovací."
+),
+
+M("reported-questions-intermediate-20", "reported-speech", "intermediate", "Otázky v nepřímé řeči",
+  "Doplňte obě nepřímé otázky.",
+  [
+    { before: '"Are you leaving today?" He asked me ', hint: "if / whether / I / be / that", after: ".", answers: ["if I was leaving that day", "whether I was leaving that day"], tag: "Otázky v nepřímé řeči" },
+    { before: '"When are you leaving?" He asked me ', hint: "I / be", after: ".", answers: ["when I was leaving"], tag: "Otázky v nepřímé řeči" }
+  ],
+  "U otázky bez tázacího slova (Are you leaving today?) je nutné if/whether; today se navíc mění na that day, protože se hlásí v jiný den. U otázky s tázacím slovem when se if/whether nepoužívá a časový výraz se nemění. V obou větách are se mění na was a slovosled je oznamovací."
+),
+
+F("reported-questions-advanced-01", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Are you willing to compromise on this issue?" The negotiator asked them ',
+  "if / whether / they / be / that",
+  ".",
+  ["if they were willing to compromise on that issue", "whether they were willing to compromise on that issue"],
+  "This se mění na that, are se posouvá na were, otázka ano/ne se uvozuje if/whether bez inverze."
+),
+
+F("reported-questions-advanced-02", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"What measures will the government take to address inflation?" The journalist asked him ',
+  "government / will",
+  ".",
+  ["what measures the government would take to address inflation"],
+  "Will se mění na would, slovosled zůstává oznamovací (the government would take), ne tázací (would the government take)."
+),
+
+F("reported-questions-advanced-03", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Have you considered the long-term consequences of this decision?" The interviewer asked him ',
+  "if / whether / he / have / consider / that",
+  ".",
+  ["if he had considered the long-term consequences of that decision", "whether he had considered the long-term consequences of that decision"],
+  "Předpřítomný čas (have considered) se posouvá na předminulý (had considered), this se mění na that, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-advanced-04", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Why did the company fail to meet its targets?" The reporter asked him ',
+  "have / fail",
+  ".",
+  ["why the company had failed to meet its targets"],
+  "Minulý čas s did (did fail) se posouvá na předminulý (had failed), slovosled zůstává oznamovací bez pomocného did."
+),
+
+F("reported-questions-advanced-05", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Can the two sides reach an agreement before the deadline?" The analyst asked ',
+  "if / whether / can",
+  ".",
+  ["if the two sides could reach an agreement before the deadline", "whether the two sides could reach an agreement before the deadline"],
+  "Can se mění na could, otázka ano/ne se uvozuje if/whether, slovosled je bez inverze."
+),
+
+F("reported-questions-advanced-06", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"What is your assessment of the current situation?" The correspondent asked him ',
+  "his / be",
+  ".",
+  ["what his assessment of the current situation was"],
+  "Your se mění na his, is se posouvá na was, slovosled je oznamovací (his assessment ... was), ne tázací."
+),
+
+F("reported-questions-advanced-07", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Do you regret the decisions you made?" The journalist asked him ',
+  "if / whether / he / regret / have / make",
+  ".",
+  ["if he regretted the decisions he had made", "whether he regretted the decisions he had made"],
+  "Hlavní sloveso regret (z do you regret) se posouvá na minulý čas regretted; vedlejší minulý čas (you made) se posouvá ještě dál, na předminulý (he had made); otázka se uvozuje if/whether."
+),
+
+F("reported-questions-advanced-08", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"How will this affect ordinary citizens?" The reporter asked ',
+  "that / will",
+  ".",
+  ["how that would affect ordinary citizens"],
+  "This se mění na that, will se mění na would, slovosled zůstává oznamovací."
+),
+
+F("reported-questions-advanced-09", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Were the allegations against the minister true?" The committee asked ',
+  "if / whether / have / be",
+  ".",
+  ["if the allegations against the minister had been true", "whether the allegations against the minister had been true"],
+  "Minulý čas (were) se v nepřímé řeči posouvá na předminulý (had been), otázka ano/ne se uvozuje if/whether."
+),
+
+F("reported-questions-advanced-10", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"What prompted the sudden resignation?" The journalist asked ',
+  "have / prompt",
+  ".",
+  ["what had prompted the sudden resignation"],
+  "Protože what je podmětem, otázka nemá pomocné do; minulý čas prompted se posouvá na předminulý had prompted."
+),
+
+F("reported-questions-advanced-11", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Will the negotiations continue despite the setback?" The spokesperson asked ',
+  "if / whether / will",
+  ".",
+  ["if the negotiations would continue despite the setback", "whether the negotiations would continue despite the setback"],
+  "Will se mění na would, otázka ano/ne se uvozuje if/whether, slovosled je bez inverze."
+),
+
+F("reported-questions-advanced-12", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Has the committee reached a verdict?" The reporter asked ',
+  "if / whether / have / reach",
+  ".",
+  ["if the committee had reached a verdict", "whether the committee had reached a verdict"],
+  "Předpřítomný čas (has reached) se posouvá na předminulý (had reached), otázka se uvozuje if/whether."
+),
+
+F("reported-questions-advanced-13", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"What evidence do you have to support that claim?" The lawyer asked him ',
+  "he / have",
+  ".",
+  ["what evidence he had to support that claim"],
+  "Do se vypouští, have se mění na had, you se mění na he, slovosled zůstává oznamovací (he had), ne tázací (did he have)."
+),
+
+F("reported-questions-advanced-14", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Why should taxpayers bear this cost?" The citizen asked ',
+  "that",
+  ".",
+  ["why taxpayers should bear that cost"],
+  "Should se nemění, protože nemá zvláštní tvar minulého času; this se mění na that; slovosled zůstává oznamovací."
+),
+
+F("reported-questions-advanced-15", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Do you plan to appeal the verdict?" The reporter asked him ',
+  "if / whether / he / plan",
+  ".",
+  ["if he planned to appeal the verdict", "whether he planned to appeal the verdict"],
+  "Do se vypouští, plan se mění na planned, you se mění na he, otázka se uvozuje if/whether."
+),
+
+F("reported-questions-advanced-16", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"What impact will the merger have on employment?" The economist asked ',
+  "will",
+  ".",
+  ["what impact the merger would have on employment"],
+  "Will se mění na would, slovosled zůstává oznamovací (the merger would have), ne tázací."
+),
+
+F("reported-questions-advanced-17", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Could the crisis have been avoided?" The historian asked ',
+  "if / whether",
+  ".",
+  ["if the crisis could have been avoided", "whether the crisis could have been avoided"],
+  "Modální tvar could have been avoided se nemění, protože už vyjadřuje minulost; otázka ano/ne se uvozuje if/whether a slovosled se narovnává (the crisis could), bez inverze."
+),
+
+F("reported-questions-advanced-18", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Who is responsible for the failure?" The board asked ',
+  "be",
+  ".",
+  ["who was responsible for the failure"],
+  "Protože who je podmětem, otázka nemá pomocné do; is se posouvá na was."
+),
+
+F("reported-questions-advanced-19", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  '"Are the two companies planning to merge?" The analyst asked ',
+  "if / whether / be",
+  ".",
+  ["if the two companies were planning to merge", "whether the two companies were planning to merge"],
+  "Are se posouvá na were, otázka ano/ne se uvozuje if/whether, průběhový tvar planning zůstává beze změny."
+),
+
+M("reported-questions-advanced-20", "reported-speech", "advanced", "Otázky v nepřímé řeči",
+  "Doplňte obě nepřímé otázky.",
+  [
+    { before: '"Do you support the new legislation?" The interviewer asked him ', hint: "if / whether / he / support", after: ".", answers: ["if he supported the new legislation", "whether he supported the new legislation"], tag: "Otázky v nepřímé řeči" },
+    { before: '"Why do you support the new legislation?" The interviewer asked him ', hint: "he / support", after: ".", answers: ["why he supported the new legislation"], tag: "Otázky v nepřímé řeči" }
+  ],
+  "U otázky bez tázacího slova (Do you support...?) je nutné if/whether, protože věta nemá jiný signál, že jde o otázku. U otázky s tázacím slovem why se if/whether nepoužívá, why zůstává na začátku. V obou případech se do vypouští a support se mění na minulý čas supported, you se mění na he."
+)
+);
+
+/* ---------------- NEPRIMA REC: Rozkazy a zadosti, Posun casu, Uvozovaci slovesa, Mix ---------------- */
+
+QUESTIONS.push(
+F("reported-commands-basic-01","reported-speech","basic","Rozkazy a žádosti","\"Close the door!\" she said to him. → She ","tell/him/close/the/door",".",["told him to close the door"],"Rozkaz se do nepřímé řeči převádí pomocí 'tell' + předmět (him) + to-infinitiv (to close); 'tell' je neutrální sloveso pro podání rozkazu."),
+F("reported-commands-basic-02","reported-speech","basic","Rozkazy a žádosti","\"Sit down!\" the teacher said to the students. → The teacher ","tell/them/sit/down",".",["told them to sit down"],"Učitel má přirozenou autoritu nad studenty, proto se rozkaz převádí pomocí 'tell' + them + to-infinitiv."),
+F("reported-commands-basic-03","reported-speech","basic","Rozkazy a žádosti","\"Be quiet!\" the man said to us. → The man ","tell/us/be/quiet",".",["told us to be quiet"],"Přímý rozkaz 'Be quiet!' se v nepřímé řeči mění na 'tell' + předmět (us) + to-infinitiv (to be quiet)."),
+F("reported-commands-basic-04","reported-speech","basic","Rozkazy a žádosti","\"Come here!\" she said to me. → She ","tell/me/come/here",".",["told me to come here"],"Vzorec 'tell' + předmět (me) + to-infinitiv se používá pro jednoduchý rozkaz adresovaný mluvčímu samotnému."),
+F("reported-commands-basic-05","reported-speech","basic","Rozkazy a žádosti","\"Stand up!\" he said to her. → He ","tell/her/stand/up",".",["told her to stand up"],"Rozkaz 'Stand up!' se převádí na 'tell' + her + to-infinitiv; předmět 'her' odpovídá osobě, které byl rozkaz určen."),
+F("reported-commands-basic-06","reported-speech","basic","Rozkazy a žádosti","\"Turn off the TV!\" dad said to them. → Dad ","tell/them/turn/off/the/TV",".",["told them to turn off the TV"],"'Tell' + them + to-infinitiv se používá pro běžný rodinný rozkaz bez zvláštní zdvořilosti."),
+F("reported-commands-basic-07","reported-speech","basic","Rozkazy a žádosti","\"Wait here!\" the police officer said to us. → The police officer ","order/us/wait/here",".",["ordered us to wait here"],"Policista má úřední autoritu, proto se použije silnější sloveso 'order' + předmět + to-infinitiv místo 'tell'."),
+F("reported-commands-basic-08","reported-speech","basic","Rozkazy a žádosti","\"Stop the car!\" the officer said to the driver. → The officer ","order/him/stop/the/car",".",["ordered him to stop the car"],"'Order' + předmět (him) + to-infinitiv vyjadřuje úřední rozkaz s autoritou, typický pro policistu."),
+F("reported-commands-basic-09","reported-speech","basic","Rozkazy a žádosti","\"Could you help me?\" she said to him. → She ","ask/him/help/her",".",["asked him to help her"],"Zdvořilá žádost 'Could you...?' se převádí na 'ask' + předmět + to-infinitiv, ne 'tell', protože nejde o rozkaz; 'me' se mění na 'her', protože jde o mluvčí samotnou."),
+F("reported-commands-basic-10","reported-speech","basic","Rozkazy a žádosti","\"Could you pass the salt?\" he said to her. → He ","ask/her/pass/the/salt",".",["asked her to pass the salt"],"Zdvořilá otázka vyjadřující žádost se v nepřímé řeči mění na 'ask' + předmět + to-infinitiv."),
+F("reported-commands-basic-11","reported-speech","basic","Rozkazy a žádosti","\"Please open the window.\" she said to him. → She ","ask/him/open/the/window",".",["asked him to open the window"],"Slovo 'please' signalizuje zdvořilou žádost, proto se použije 'ask' + předmět + to-infinitiv místo 'tell'."),
+F("reported-commands-basic-12","reported-speech","basic","Rozkazy a žádosti","\"Please sign here.\" the clerk said to me. → The clerk ","ask/me/sign/here",".",["asked me to sign here"],"Zdvořilý pokyn úředníka se převádí pomocí 'ask' + předmět (me) + to-infinitiv."),
+F("reported-commands-basic-13","reported-speech","basic","Rozkazy a žádosti","\"Don't touch that!\" he said to her. → He ","tell/her/not/touch/that",".",["told her not to touch that"],"Záporný rozkaz 'Don't + infinitiv' se v nepřímé řeči mění na 'tell' + předmět + 'not to' + infinitiv."),
+F("reported-commands-basic-14","reported-speech","basic","Rozkazy a žádosti","\"Don't be late!\" mom said to him. → Mom ","tell/him/not/be/late",".",["told him not to be late"],"Záporný rozkaz se převádí na 'tell' + předmět (him) + 'not to' + infinitiv (to be late)."),
+F("reported-commands-basic-15","reported-speech","basic","Rozkazy a žádosti","\"Don't run in the hall!\" the teacher said to the children. → The teacher ","tell/them/not/run/in/the/hall",".",["told them not to run in the hall"],"Zákaz 'Don't run!' se v nepřímé řeči vyjadřuje pomocí 'tell' + them + 'not to' + infinitiv."),
+F("reported-commands-basic-16","reported-speech","basic","Rozkazy a žádosti","\"Help me, please!\" she said to them. → She ","ask/them/help/her",".",["asked them to help her"],"Prosba s 'please' se převádí na 'ask' + předmět + to-infinitiv; 'me' se mění na 'her', protože jde o mluvčí."),
+F("reported-commands-basic-17","reported-speech","basic","Rozkazy a žádosti","\"Give me the book!\" he said to her. → He ","tell/her/give/him/the/book",".",["told her to give him the book"],"'Me' v přímé řeči odkazuje na mluvčího (he), proto se v nepřímé řeči mění na 'him'; použit vzorec 'tell' + her + to-infinitiv."),
+F("reported-commands-basic-18","reported-speech","basic","Rozkazy a žádosti","\"Wait for me!\" she said to him. → She ","tell/him/wait/for/her",".",["told him to wait for her"],"'Me' odkazuje na mluvčí (she), proto se mění na 'her'; vzorec 'tell' + him + to-infinitiv."),
+F("reported-commands-basic-19","reported-speech","basic","Rozkazy a žádosti","\"Take a seat!\" the doctor said to the patient. → The doctor ","tell/him/take/a/seat",".",["told him to take a seat"],"Zdvořilý, ale jasný pokyn lékaře se převádí pomocí 'tell' + předmět + to-infinitiv."),
+M("reported-commands-basic-20","reported-speech","basic","Rozkazy a žádosti","Doplňte obě věty v nepřímé řeči.",[{before:"\"Close the window!\" the mother said to her son. → She ",hint:"tell/him/close/the/window",after:".",answers:["told him to close the window"]},{before:"\"Don't open it again!\" the mother said to her son. → She ",hint:"tell/him/not/open/it/again",after:".",answers:["told him not to open it again"]}],"Kladný rozkaz se převádí 'tell' + předmět + to-infinitiv, zatímco záporný rozkaz 'Don't...' se převádí 'tell' + předmět + 'not to' + infinitiv; obě věty používají stejné reportující sloveso 'tell', protože jde o rozkaz matky synovi."),
+F("reported-commands-intermediate-01","reported-speech","intermediate","Rozkazy a žádosti","\"Remember to lock the door!\" she said to him. → She ","remind/him/lock/the/door",".",["reminded him to lock the door"],"'Remind' + předmět + to-infinitiv se používá, když mluvčí připomíná povinnost, na kterou by adresát mohl zapomenout."),
+F("reported-commands-intermediate-02","reported-speech","intermediate","Rozkazy a žádosti","\"Be careful on the ice!\" he said to her. → He ","warn/her/be/careful/on/the/ice",".",["warned her to be careful on the ice"],"'Warn' + předmět + to-infinitiv vyjadřuje upozornění na nebezpečí, zde náledí."),
+F("reported-commands-intermediate-03","reported-speech","intermediate","Rozkazy a žádosti","\"See a doctor!\" the friend said to him. → The friend ","advise/him/see/a/doctor",".",["advised him to see a doctor"],"'Advise' + předmět + to-infinitiv se používá pro radu, ne příkaz, protože jde o doporučení přítele."),
+F("reported-commands-intermediate-04","reported-speech","intermediate","Rozkazy a žádosti","\"Come to my party!\" she said to them. → She ","invite/them/come/to/her/party",".",["invited them to come to her party"],"'Invite' + předmět + to-infinitiv vyjadřuje zvání; 'my' se mění na 'her', protože jde o mluvčí."),
+F("reported-commands-intermediate-05","reported-speech","intermediate","Rozkazy a žádosti","\"Don't be late for the meeting!\" the boss said to the employees. → The boss ","warn/them/not/be/late/for/the/meeting",".",["warned them not to be late for the meeting"],"Záporný rozkaz s důrazem na následky se převádí 'warn' + předmět + 'not to' + infinitiv."),
+F("reported-commands-intermediate-06","reported-speech","intermediate","Rozkazy a žádosti","\"Please don't smoke here.\" the manager said to the customer. → The manager ","ask/him/not/smoke/here",".",["asked him not to smoke here"],"Zdvořilá záporná žádost s 'please' se převádí 'ask' + předmět + 'not to' + infinitiv."),
+F("reported-commands-intermediate-07","reported-speech","intermediate","Rozkazy a žádosti","\"Remember to bring your passport!\" she said to him. → She ","remind/him/bring/his/passport",".",["reminded him to bring his passport"],"'Remind' + předmět + to-infinitiv připomíná povinnost; 'your' se mění na 'his'."),
+F("reported-commands-intermediate-08","reported-speech","intermediate","Rozkazy a žádosti","\"Don't drink and drive!\" the officer said to the driver. → The officer ","warn/him/not/drink/and/drive",".",["warned him not to drink and drive"],"'Warn' + předmět + 'not to' + infinitiv se používá pro varování před nebezpečným jednáním."),
+F("reported-commands-intermediate-09","reported-speech","intermediate","Rozkazy a žádosti","\"Study harder!\" the teacher said to the student. → The teacher ","advise/him/study/harder",".",["advised him to study harder"],"'Advise' + předmět + to-infinitiv vyjadřuje doporučení učitele, ne strohý rozkaz."),
+F("reported-commands-intermediate-10","reported-speech","intermediate","Rozkazy a žádosti","\"Join us for dinner!\" she said to her neighbors. → She ","invite/them/join/her/for/dinner",".",["invited them to join her for dinner"],"'Invite' + předmět + to-infinitiv vyjadřuje pozvání; 'us' se mění na 'her', protože mluvčí mluví za sebe."),
+F("reported-commands-intermediate-11","reported-speech","intermediate","Rozkazy a žádosti","\"Don't waste your money!\" his father said to him. → His father ","advise/him/not/waste/his/money",".",["advised him not to waste his money"],"Záporná rada se převádí 'advise' + předmět + 'not to' + infinitiv."),
+F("reported-commands-intermediate-12","reported-speech","intermediate","Rozkazy a žádosti","\"Take an umbrella!\" she said to him. → She ","remind/him/take/an/umbrella",".",["reminded him to take an umbrella"],"'Remind' + předmět + to-infinitiv se používá, protože jde o připomenutí něčeho užitečného, ne o nový příkaz."),
+F("reported-commands-intermediate-13","reported-speech","intermediate","Rozkazy a žádosti","\"Watch out for the dog!\" she said to the children. → She ","warn/them/watch/out/for/the/dog",".",["warned them to watch out for the dog"],"'Warn' + předmět + to-infinitiv upozorňuje na možné nebezpečí."),
+F("reported-commands-intermediate-14","reported-speech","intermediate","Rozkazy a žádosti","\"Don't touch the wires!\" the electrician said to the workers. → The electrician ","warn/them/not/touch/the/wires",".",["warned them not to touch the wires"],"'Warn' + předmět + 'not to' + infinitiv se používá pro varování před nebezpečím úrazu."),
+F("reported-commands-intermediate-15","reported-speech","intermediate","Rozkazy a žádosti","\"Have some more cake!\" the host said to the guests. → The host ","invite/them/have/some/more/cake",".",["invited them to have some more cake"],"'Invite' + předmět + to-infinitiv se používá pro pohostinnou nabídku, ne rozkaz."),
+F("reported-commands-intermediate-16","reported-speech","intermediate","Rozkazy a žádosti","\"Save your money!\" grandma said to me. → Grandma ","advise/me/save/my/money",".",["advised me to save my money"],"'Advise' + předmět (me) + to-infinitiv vyjadřuje radu babičky; 'your' se mění na 'my'."),
+F("reported-commands-intermediate-17","reported-speech","intermediate","Rozkazy a žádosti","\"Don't quit your job!\" his wife said to him. → His wife ","advise/him/not/quit/his/job",".",["advised him not to quit his job"],"Záporná rada manželky se převádí 'advise' + předmět + 'not to' + infinitiv."),
+F("reported-commands-intermediate-18","reported-speech","intermediate","Rozkazy a žádosti","\"Set your alarm!\" she said to him. → She ","remind/him/set/his/alarm",".",["reminded him to set his alarm"],"'Remind' + předmět + to-infinitiv připomíná praktický úkol; 'your' se mění na 'his'."),
+F("reported-commands-intermediate-19","reported-speech","intermediate","Rozkazy a žádosti","\"Don't miss the deadline!\" the boss said to the team. → The boss ","remind/them/not/miss/the/deadline",".",["reminded them not to miss the deadline"],"'Remind' + předmět + 'not to' + infinitiv se používá, když šéf připomíná tým na dodržení termínu."),
+M("reported-commands-intermediate-20","reported-speech","intermediate","Rozkazy a žádosti","Doplňte obě věty v nepřímé řeči.",[{before:"\"Watch your step!\" the guide said to the tourists. → The guide ",hint:"warn/them/watch/their/step",after:".",answers:["warned them to watch their step"]},{before:"\"Don't run on the stairs!\" the guide said to the tourists. → The guide ",hint:"warn/them/not/run/on/the/stairs",after:".",answers:["warned them not to run on the stairs"]}],"Kladné i záporné varování se u 'warn' tvoří stejně: 'warn' + předmět + (not) to-infinitiv; průvodce používá totéž sloveso pro obě upozornění turistům."),
+F("reported-commands-advanced-01","reported-speech","advanced","Rozkazy a žádosti","\"Submit the report by Friday.\" the manager said to the employee. → The manager ","instruct/him/submit/the/report/by/Friday",".",["instructed him to submit the report by Friday"],"'Instruct' + předmět + to-infinitiv se používá ve formálním pracovním kontextu, kdy nadřízený dává pracovní pokyn."),
+F("reported-commands-advanced-02","reported-speech","advanced","Rozkazy a žádosti","\"Please reconsider your decision.\" the diplomat said to the minister. → The diplomat ","urge/him/reconsider/his/decision",".",["urged him to reconsider his decision"],"'Urge' + předmět + to-infinitiv vyjadřuje naléhavé, ale zdvořilé nabádání typické pro diplomatické jednání."),
+F("reported-commands-advanced-03","reported-speech","advanced","Rozkazy a žádosti","\"Don't sign the contract without a lawyer.\" the advisor said to the client. → The advisor ","caution/him/not/sign/the/contract/without/a/lawyer",".",["cautioned him not to sign the contract without a lawyer"],"'Caution' + předmět + 'not to' + infinitiv se používá pro formální varování před rizikem."),
+F("reported-commands-advanced-04","reported-speech","advanced","Rozkazy a žádosti","\"Please, help me!\" she pleaded with the guard. → She ","implore/him/help/her",".",["implored him to help her"],"'Implore' + předmět + to-infinitiv vyjadřuje zoufalou, naléhavou prosbu, silnější než 'ask'."),
+F("reported-commands-advanced-05","reported-speech","advanced","Rozkazy a žádosti","\"Evacuate the building immediately.\" the fire chief said to the staff. → The fire chief ","order/them/evacuate/the/building/immediately",".",["ordered them to evacuate the building immediately"],"'Order' + předmět + to-infinitiv se používá pro formální rozkaz z pozice autority, zde velitele hasičů."),
+F("reported-commands-advanced-06","reported-speech","advanced","Rozkazy a žádosti","\"Do not disclose this information.\" the lawyer said to the witness. → The lawyer ","instruct/him/not/disclose/this/information",".",["instructed him not to disclose this information"],"'Instruct' + předmět + 'not to' + infinitiv se používá pro formální zákaz od právníka."),
+F("reported-commands-advanced-07","reported-speech","advanced","Rozkazy a žádosti","\"Please reduce emissions.\" the committee said to the corporation's representatives. → The committee ","urge/them/reduce/emissions",".",["urged them to reduce emissions"],"'Urge' + předmět + to-infinitiv vyjadřuje silné, ale formální nabádání výboru."),
+F("reported-commands-advanced-08","reported-speech","advanced","Rozkazy a žádosti","\"Don't leave the country before the trial.\" the judge said to the defendant. → The judge ","instruct/him/not/leave/the/country/before/the/trial",".",["instructed him not to leave the country before the trial"],"'Instruct' + předmět + 'not to' + infinitiv se používá pro formální soudní příkaz."),
+F("reported-commands-advanced-09","reported-speech","advanced","Rozkazy a žádosti","\"Please spare my son's life!\" she begged the general. → She ","implore/him/spare/her/son's/life",".",["implored him to spare her son's life"],"'Implore' + předmět + to-infinitiv vyjadřuje zoufalou prosbu o milost; 'my' se mění na 'her'."),
+F("reported-commands-advanced-10","reported-speech","advanced","Rozkazy a žádosti","\"Proceed carefully with the merger.\" the advisor said to the board. → The advisor ","caution/them/proceed/carefully/with/the/merger",".",["cautioned them to proceed carefully with the merger"],"'Caution' + předmět + to-infinitiv se používá pro formální doporučení opatrnosti."),
+F("reported-commands-advanced-11","reported-speech","advanced","Rozkazy a žádosti","\"Please consider the proposal.\" the ambassador said to the delegates. → The ambassador ","urge/them/consider/the/proposal",".",["urged them to consider the proposal"],"'Urge' + předmět + to-infinitiv vyjadřuje naléhavé nabádání v diplomatickém jednání."),
+F("reported-commands-advanced-12","reported-speech","advanced","Rozkazy a žádosti","\"Vacate the premises by noon.\" the landlord said to the tenants. → The landlord ","instruct/them/vacate/the/premises/by/noon",".",["instructed them to vacate the premises by noon"],"'Instruct' + předmět + to-infinitiv se používá pro formální pokyn pronajímatele."),
+F("reported-commands-advanced-13","reported-speech","advanced","Rozkazy a žádosti","\"Don't release the statement yet.\" the press secretary said to the journalists. → The press secretary ","urge/them/not/release/the/statement/yet",".",["urged them not to release the statement yet"],"'Urge' + předmět + 'not to' + infinitiv vyjadřuje naléhavou, ale ne autoritativní žádost mluvčího tisku."),
+F("reported-commands-advanced-14","reported-speech","advanced","Rozkazy a žádosti","\"Please forgive me.\" the defendant said to the victim's family. → The defendant ","implore/them/forgive/him",".",["implored them to forgive him"],"'Implore' + předmět + to-infinitiv vyjadřuje pokorné, naléhavé prosby obžalovaného."),
+F("reported-commands-advanced-15","reported-speech","advanced","Rozkazy a žádosti","\"Don't exceed the speed limit in the fog.\" the instructor said to the driver. → The instructor ","caution/him/not/exceed/the/speed/limit/in/the/fog",".",["cautioned him not to exceed the speed limit in the fog"],"'Caution' + předmět + 'not to' + infinitiv se používá pro formální varování instruktora."),
+F("reported-commands-advanced-16","reported-speech","advanced","Rozkazy a žádosti","\"Comply with the new regulations.\" the inspector said to the factory owner. → The inspector ","order/him/comply/with/the/new/regulations",".",["ordered him to comply with the new regulations"],"'Order' + předmět + to-infinitiv se používá, protože inspektor jedná z pozice úřední autority."),
+F("reported-commands-advanced-17","reported-speech","advanced","Rozkazy a žádosti","\"Please reconsider the budget cuts.\" the union said to the management. → The union ","urge/them/reconsider/the/budget/cuts",".",["urged them to reconsider the budget cuts"],"'Urge' + předmět + to-infinitiv vyjadřuje silné, formální nabádání odborů vůči vedení."),
+F("reported-commands-advanced-18","reported-speech","advanced","Rozkazy a žádosti","\"Please don't testify against him.\" the lawyer said to the witness. → The lawyer ","implore/her/not/testify/against/him",".",["implored her not to testify against him"],"'Implore' + předmět + 'not to' + infinitiv vyjadřuje naléhavou prosbu právníka; 'her' je svědkyně, 'him' obžalovaný."),
+F("reported-commands-advanced-19","reported-speech","advanced","Rozkazy a žádosti","\"Submit your resignation in writing.\" the HR director said to the employee. → The HR director ","instruct/him/submit/his/resignation/in/writing",".",["instructed him to submit his resignation in writing"],"'Instruct' + předmět + to-infinitiv se používá pro formální pracovní pokyn personálního ředitele."),
+M("reported-commands-advanced-20","reported-speech","advanced","Rozkazy a žádosti","Doplňte obě věty v nepřímé řeči.",[{before:"\"Wear protective gear!\" the supervisor said to the workers. → The supervisor ",hint:"caution/them/wear/protective/gear",after:".",answers:["cautioned them to wear protective gear"]},{before:"\"Don't enter without authorization!\" the supervisor said to the workers. → The supervisor ",hint:"caution/them/not/enter/without/authorization",after:".",answers:["cautioned them not to enter without authorization"]}],"'Caution' se používá stejně pro kladný i záporný pokyn: 'caution' + předmět + (not) to-infinitiv; nadřízený tak formálně upozorňuje pracovníky na bezpečnostní pravidla.")
+);
+
+QUESTIONS.push(
+F("reported-backshift-basic-01","reported-speech","basic","Posun časů (backshift)",
+"\"I like coffee,\" Tom said. Tom said (that) he",
+"like",
+" coffee.",
+["liked"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-02","reported-speech","basic","Posun časů (backshift)",
+"\"She works in a bank,\" he said. He said (that) she",
+"work",
+" in a bank.",
+["worked"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-03","reported-speech","basic","Posun časů (backshift)",
+"\"I play tennis every Sunday,\" Mia said. Mia said (that) she",
+"play",
+" tennis every Sunday.",
+["played"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-04","reported-speech","basic","Posun časů (backshift)",
+"\"We live in London,\" they said. They said (that) they",
+"live",
+" in London.",
+["lived"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-05","reported-speech","basic","Posun časů (backshift)",
+"\"He wants a new phone,\" she said. She said (that) he",
+"want",
+" a new phone.",
+["wanted"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-06","reported-speech","basic","Posun časů (backshift)",
+"\"I go to school by bus,\" the boy said. The boy said (that) he",
+"go",
+" to school by bus.",
+["went"],
+"present simple → past simple: přítomný čas prostý se v nepřímé řeči posouvá o jeden čas zpět do minulého času prostého."
+),
+F("reported-backshift-basic-07","reported-speech","basic","Posun časů (backshift)",
+"\"I am reading a book,\" Anna said. Anna said (that) she",
+"be/read",
+" a book.",
+["was reading"],
+"present continuous → past continuous: přítomný čas průběhový se v nepřímé řeči posouvá do minulého času průběhového."
+),
+F("reported-backshift-basic-08","reported-speech","basic","Posun časů (backshift)",
+"\"We are watching TV,\" the children said. The children said (that) they",
+"be/watch",
+" TV.",
+["were watching"],
+"present continuous → past continuous: přítomný čas průběhový se v nepřímé řeči posouvá do minulého času průběhového."
+),
+F("reported-backshift-basic-09","reported-speech","basic","Posun časů (backshift)",
+"\"He is cooking dinner,\" Sam said. Sam said (that) he",
+"be/cook",
+" dinner.",
+["was cooking"],
+"present continuous → past continuous: přítomný čas průběhový se v nepřímé řeči posouvá do minulého času průběhového."
+),
+F("reported-backshift-basic-10","reported-speech","basic","Posun časů (backshift)",
+"\"I am waiting for the bus,\" Peter said. Peter said (that) he",
+"be/wait",
+" for the bus.",
+["was waiting"],
+"present continuous → past continuous: přítomný čas průběhový se v nepřímé řeči posouvá do minulého času průběhového."
+),
+F("reported-backshift-basic-11","reported-speech","basic","Posun časů (backshift)",
+"\"They are playing football,\" Lucy said. Lucy said (that) they",
+"be/play",
+" football.",
+["were playing"],
+"present continuous → past continuous: přítomný čas průběhový se v nepřímé řeči posouvá do minulého času průběhového."
+),
+F("reported-backshift-basic-12","reported-speech","basic","Posun časů (backshift)",
+"\"I will call her tomorrow,\" Jack said. Jack said (that) he",
+"will/call",
+" her tomorrow.",
+["would call"],
+"will → would: modální sloveso 'will' se v nepřímé řeči mění na 'would'."
+),
+F("reported-backshift-basic-13","reported-speech","basic","Posun časů (backshift)",
+"\"We will help Anna,\" they said. They said (that) they",
+"will/help",
+" Anna.",
+["would help"],
+"will → would: modální sloveso 'will' se v nepřímé řeči mění na 'would'."
+),
+F("reported-backshift-basic-14","reported-speech","basic","Posun časů (backshift)",
+"\"She will arrive late,\" he said. He said (that) she",
+"will/arrive",
+" late.",
+["would arrive"],
+"will → would: modální sloveso 'will' se v nepřímé řeči mění na 'would'."
+),
+F("reported-backshift-basic-15","reported-speech","basic","Posun časů (backshift)",
+"\"I will finish the report,\" Kate said. Kate said (that) she",
+"will/finish",
+" the report.",
+["would finish"],
+"will → would: modální sloveso 'will' se v nepřímé řeči mění na 'would'."
+),
+F("reported-backshift-basic-16","reported-speech","basic","Posun časů (backshift)",
+"\"It will rain tomorrow,\" the forecaster said. The forecaster said (that) it",
+"will/rain",
+" tomorrow.",
+["would rain"],
+"will → would: modální sloveso 'will' se v nepřímé řeči mění na 'would'."
+),
+F("reported-backshift-basic-17","reported-speech","basic","Posun časů (backshift)",
+"\"I can swim,\" Ben said. Ben said (that) he",
+"can/swim",
+".",
+["could swim"],
+"can → could: modální sloveso 'can' se v nepřímé řeči mění na 'could'."
+),
+F("reported-backshift-basic-18","reported-speech","basic","Posun časů (backshift)",
+"\"We can help Anna,\" they said. They said (that) they",
+"can/help",
+" Anna.",
+["could help"],
+"can → could: modální sloveso 'can' se v nepřímé řeči mění na 'could'."
+),
+F("reported-backshift-basic-19","reported-speech","basic","Posun časů (backshift)",
+"\"She can speak French,\" he said. He said (that) she",
+"can/speak",
+" French.",
+["could speak"],
+"can → could: modální sloveso 'can' se v nepřímé řeči mění na 'could'."
+),
+F("reported-backshift-basic-20","reported-speech","basic","Posun časů (backshift)",
+"\"I can drive a car,\" Mark said. Mark said (that) he",
+"can/drive",
+" a car.",
+["could drive"],
+"can → could: modální sloveso 'can' se v nepřímé řeči mění na 'could'."
+),
+F("reported-backshift-intermediate-01","reported-speech","intermediate","Posun časů (backshift)",
+"\"I have finished my homework,\" Peter said. Peter said (that) he",
+"have/finish",
+" his homework.",
+["had finished"],
+"present perfect → past perfect: přítomný čas dokonavý se v nepřímé řeči posouvá do předminulého času."
+),
+F("reported-backshift-intermediate-02","reported-speech","intermediate","Posun časů (backshift)",
+"\"She has lost her keys,\" Mark said. Mark said (that) she",
+"have/lose",
+" her keys.",
+["had lost"],
+"present perfect → past perfect: přítomný čas dokonavý se v nepřímé řeči posouvá do předminulého času."
+),
+F("reported-backshift-intermediate-03","reported-speech","intermediate","Posun časů (backshift)",
+"\"We have eaten lunch,\" they told Anna. They told Anna (that) they",
+"have/eat",
+" lunch.",
+["had eaten"],
+"present perfect → past perfect: přítomný čas dokonavý se v nepřímé řeči posouvá do předminulého času."
+),
+F("reported-backshift-intermediate-04","reported-speech","intermediate","Posun časů (backshift)",
+"\"He has moved to Berlin,\" Julia said. Julia said (that) he",
+"have/move",
+" to Berlin.",
+["had moved"],
+"present perfect → past perfect: přítomný čas dokonavý se v nepřímé řeči posouvá do předminulého času."
+),
+F("reported-backshift-intermediate-05","reported-speech","intermediate","Posun časů (backshift)",
+"\"I have seen that film twice,\" Tom said. Tom said (that) he",
+"have/see",
+" that film twice.",
+["had seen"],
+"present perfect → past perfect: přítomný čas dokonavý se v nepřímé řeči posouvá do předminulého času."
+),
+F("reported-backshift-intermediate-06","reported-speech","intermediate","Posun časů (backshift)",
+"\"I finished the exam,\" Laura said. Laura said (that) she",
+"finish",
+" the exam.",
+["had finished"],
+"past simple → past perfect: minulý čas prostý se v nepřímé řeči posouvá o jeden čas zpět do předminulého času, protože děj proběhl ještě dříve, než se o něm mluví."
+),
+F("reported-backshift-intermediate-07","reported-speech","intermediate","Posun časů (backshift)",
+"\"He called his mother,\" Nina said. Nina said (that) he",
+"call",
+" his mother.",
+["had called"],
+"past simple → past perfect: minulý čas prostý se v nepřímé řeči posouvá o jeden čas zpět do předminulého času, protože děj proběhl ještě dříve, než se o něm mluví."
+),
+F("reported-backshift-intermediate-08","reported-speech","intermediate","Posun časů (backshift)",
+"\"They bought a new car,\" Peter said. Peter said (that) they",
+"buy",
+" a new car.",
+["had bought"],
+"past simple → past perfect: minulý čas prostý se v nepřímé řeči posouvá o jeden čas zpět do předminulého času, protože děj proběhl ještě dříve, než se o něm mluví."
+),
+F("reported-backshift-intermediate-09","reported-speech","intermediate","Posun časů (backshift)",
+"\"I missed the train,\" Sam said. Sam said (that) he",
+"miss",
+" the train.",
+["had missed"],
+"past simple → past perfect: minulý čas prostý se v nepřímé řeči posouvá o jeden čas zpět do předminulého času, protože děj proběhl ještě dříve, než se o něm mluví."
+),
+F("reported-backshift-intermediate-10","reported-speech","intermediate","Posun časů (backshift)",
+"\"We visited Prague,\" they said. They said (that) they",
+"visit",
+" Prague.",
+["had visited"],
+"past simple → past perfect: minulý čas prostý se v nepřímé řeči posouvá o jeden čas zpět do předminulého času, protože děj proběhl ještě dříve, než se o něm mluví."
+),
+F("reported-backshift-intermediate-11","reported-speech","intermediate","Posun časů (backshift)",
+"\"I may be late,\" Helen said. Helen said (that) she",
+"may/be",
+" late.",
+["might be"],
+"may → might: modální sloveso 'may' se v nepřímé řeči mění na 'might'."
+),
+F("reported-backshift-intermediate-12","reported-speech","intermediate","Posun časů (backshift)",
+"\"It may rain later,\" the guide said. The guide said (that) it",
+"may/rain",
+" later.",
+["might rain"],
+"may → might: modální sloveso 'may' se v nepřímé řeči mění na 'might'."
+),
+F("reported-backshift-intermediate-13","reported-speech","intermediate","Posun časů (backshift)",
+"\"She may know the answer,\" Tom said. Tom said (that) she",
+"may/know",
+" the answer.",
+["might know"],
+"may → might: modální sloveso 'may' se v nepřímé řeči mění na 'might'."
+),
+F("reported-backshift-intermediate-14","reported-speech","intermediate","Posun časů (backshift)",
+"\"We may need more time,\" the team said. The team said (that) they",
+"may/need",
+" more time.",
+["might need"],
+"may → might: modální sloveso 'may' se v nepřímé řeči mění na 'might'."
+),
+F("reported-backshift-intermediate-15","reported-speech","intermediate","Posun časů (backshift)",
+"\"I must finish this report,\" Alex said. Alex said (that) he",
+"must/finish",
+" the report.",
+["had to finish"],
+"must → had to: modální sloveso 'must' ve významu povinnosti se v nepřímé řeči mění na 'had to'."
+),
+F("reported-backshift-intermediate-16","reported-speech","intermediate","Posun časů (backshift)",
+"\"We must leave early,\" they said. They said (that) they",
+"must/leave",
+" early.",
+["had to leave"],
+"must → had to: modální sloveso 'must' ve významu povinnosti se v nepřímé řeči mění na 'had to'."
+),
+F("reported-backshift-intermediate-17","reported-speech","intermediate","Posun časů (backshift)",
+"\"She must call her boss,\" Nina said. Nina said (that) she",
+"must/call",
+" her boss.",
+["had to call"],
+"must → had to: modální sloveso 'must' ve významu povinnosti se v nepřímé řeči mění na 'had to'."
+),
+F("reported-backshift-intermediate-18","reported-speech","intermediate","Posun časů (backshift)",
+"\"I must study for the exam,\" Mia said. Mia said (that) she",
+"must/study",
+" for the exam.",
+["had to study"],
+"must → had to: modální sloveso 'must' ve významu povinnosti se v nepřímé řeči mění na 'had to'."
+),
+F("reported-backshift-intermediate-19","reported-speech","intermediate","Posun časů (backshift)",
+"\"Shall I carry your bag?\" Tom asked. Tom asked if he",
+"shall",
+" carry her bag.",
+["should"],
+"shall → should: modální sloveso 'shall' použité v nabídce se v nepřímé řeči mění na 'should'."
+),
+F("reported-backshift-intermediate-20","reported-speech","intermediate","Posun časů (backshift)",
+"\"Shall we begin the meeting?\" the manager asked. The manager asked if they",
+"shall",
+" begin the meeting.",
+["should"],
+"shall → should: modální sloveso 'shall' použité v návrhu se v nepřímé řeči mění na 'should'."
+),
+F("reported-backshift-advanced-01","reported-speech","advanced","Posun časů (backshift)",
+"\"I was studying all night,\" Laura said. Laura said (that) she",
+"have/be/study",
+" all night.",
+["had been studying"],
+"past continuous → past perfect continuous: minulý čas průběhový se v nepřímé řeči může posunout dál do předminulého času průběhového, zejména když se zdůrazňuje trvání děje před jiným okamžikem v minulosti."
+),
+F("reported-backshift-advanced-02","reported-speech","advanced","Posun časů (backshift)",
+"\"We were waiting for the train,\" they said. They said (that) they",
+"have/be/wait",
+" for the train.",
+["had been waiting"],
+"past continuous → past perfect continuous: minulý čas průběhový se v nepřímé řeči může posunout dál do předminulého času průběhového, zejména když se zdůrazňuje trvání děje před jiným okamžikem v minulosti."
+),
+F("reported-backshift-advanced-03","reported-speech","advanced","Posun časů (backshift)",
+"\"He was working on the project,\" Mark said. Mark said (that) he",
+"have/be/work",
+" on the project.",
+["had been working"],
+"past continuous → past perfect continuous: minulý čas průběhový se v nepřímé řeči může posunout dál do předminulého času průběhového, zejména když se zdůrazňuje trvání děje před jiným okamžikem v minulosti."
+),
+F("reported-backshift-advanced-04","reported-speech","advanced","Posun časů (backshift)",
+"\"I have been waiting for an hour,\" Peter said. Peter said (that) he",
+"have/be/wait",
+" for an hour.",
+["had been waiting"],
+"present perfect continuous → past perfect continuous: přítomný čas dokonavý průběhový se v nepřímé řeči posouvá do předminulého času průběhového."
+),
+F("reported-backshift-advanced-05","reported-speech","advanced","Posun časů (backshift)",
+"\"She has been studying English for years,\" Anna said. Anna said (that) she",
+"have/be/study",
+" English for years.",
+["had been studying"],
+"present perfect continuous → past perfect continuous: přítomný čas dokonavý průběhový se v nepřímé řeči posouvá do předminulého času průběhového."
+),
+F("reported-backshift-advanced-06","reported-speech","advanced","Posun časů (backshift)",
+"\"We have been living in Prague since May,\" they said. They said (that) they",
+"have/be/live",
+" in Prague since May.",
+["had been living"],
+"present perfect continuous → past perfect continuous: přítomný čas dokonavý průběhový se v nepřímé řeči posouvá do předminulého času průběhového."
+),
+F("reported-backshift-advanced-07","reported-speech","advanced","Posun časů (backshift)",
+"\"Water boils at 100 degrees Celsius,\" the teacher said. The teacher said (that) water",
+"boil",
+" at 100 degrees Celsius.",
+["boils"],
+"žádný posun času: obecně platná pravda (vědecký fakt) zůstává v nepřímé řeči v přítomném čase prostém, protože platí vždy bez ohledu na čas uvozovacího slovesa."
+),
+F("reported-backshift-advanced-08","reported-speech","advanced","Posun časů (backshift)",
+"\"The Earth orbits the Sun,\" the astronomer said. The astronomer said (that) the Earth",
+"orbit",
+" the Sun.",
+["orbits"],
+"žádný posun času: obecně platná pravda (vědecký fakt) zůstává v nepřímé řeči v přítomném čase prostém, protože platí vždy bez ohledu na čas uvozovacího slovesa."
+),
+F("reported-backshift-advanced-09","reported-speech","advanced","Posun časů (backshift)",
+"\"Light travels faster than sound,\" the professor said. The professor said (that) light",
+"travel",
+" faster than sound.",
+["travels"],
+"žádný posun času: obecně platná pravda (vědecký fakt) zůstává v nepřímé řeči v přítomném čase prostém, protože platí vždy bez ohledu na čas uvozovacího slovesa."
+),
+F("reported-backshift-advanced-10","reported-speech","advanced","Posun časů (backshift)",
+"\"I work as a translator,\" Eva said. Eva said (that) she",
+"work",
+" as a translator.",
+["works","worked"],
+"žádný posun času není povinný: skutečnost je stále pravdivá i v době reprodukování výroku (Eva stále pracuje jako překladatelka), takže přítomný čas lze zachovat, i když posun do minulého času prostého je také možný."
+),
+F("reported-backshift-advanced-11","reported-speech","advanced","Posun časů (backshift)",
+"\"I live in Berlin,\" Jonas said. Jonas said (that) he",
+"live",
+" in Berlin.",
+["lives","lived"],
+"žádný posun času není povinný: fakt je stále pravdivý v době reprodukování výroku, takže přítomný čas lze zachovat, i když posun do minulého času prostého je také možný."
+),
+F("reported-backshift-advanced-12","reported-speech","advanced","Posun časů (backshift)",
+"\"Our office is located in the city centre,\" the manager said. The manager said (that) their office",
+"be/locate",
+" in the city centre.",
+["is located","was located"],
+"žádný posun času není povinný: umístění kanceláře je stále aktuální skutečností, proto lze přítomný čas zachovat, i když posun do minulého času je také možný."
+),
+F("reported-backshift-advanced-13","reported-speech","advanced","Posun časů (backshift)",
+"\"You should see a doctor,\" the nurse said. The nurse said (that) he",
+"should/see",
+" a doctor.",
+["should see"],
+"žádný posun času: 'should' nemá v angličtině samostatný tvar pro minulost, a proto se v nepřímé řeči nemění."
+),
+F("reported-backshift-advanced-14","reported-speech","advanced","Posun časů (backshift)",
+"\"I would love a cup of tea,\" Grace said. Grace said (that) she",
+"would/love",
+" a cup of tea.",
+["would love"],
+"žádný posun času: 'would' je již tvar bez zvláštní minulé podoby, a proto se v nepřímé řeči nemění."
+),
+F("reported-backshift-advanced-15","reported-speech","advanced","Posun časů (backshift)",
+"\"I could speak French when I was young,\" Grandma said. Grandma said (that) she",
+"could/speak",
+" French when she was young.",
+["could speak"],
+"žádný posun času: 'could' nemá v angličtině samostatný tvar pro minulost, a proto se v nepřímé řeči nemění."
+),
+F("reported-backshift-advanced-16","reported-speech","advanced","Posun časů (backshift)",
+"\"It might snow later,\" the forecaster said. The forecaster said (that) it",
+"might/snow",
+" later.",
+["might snow"],
+"žádný posun času: 'might' nemá v angličtině samostatný tvar pro minulost, a proto se v nepřímé řeči nemění."
+),
+F("reported-backshift-advanced-17","reported-speech","advanced","Posun časů (backshift)",
+"\"You ought to apologise,\" Helen said. Helen said (that) he",
+"ought to/apologise",
+".",
+["ought to apologise"],
+"žádný posun času: 'ought to' nemá v angličtině samostatný tvar pro minulost, a proto se v nepřímé řeči nemění."
+),
+F("reported-backshift-advanced-18","reported-speech","advanced","Posun časů (backshift)",
+"\"You mustn't smoke in this room,\" the guard said. The guard said (that) we",
+"mustn't/smoke",
+" in that room.",
+["mustn't smoke"],
+"žádný posun času: 'mustn't' ve významu zákazu nemá jiný tvar pro minulost a v nepřímé řeči zůstává beze změny (na rozdíl od 'must' ve významu povinnosti, které se mění na 'had to')."
+),
+F("reported-backshift-advanced-19","reported-speech","advanced","Posun časů (backshift)",
+"\"He must be tired after the trip,\" Nora said. Nora said (that) he",
+"must/be",
+" tired after the trip.",
+["must be"],
+"žádný posun času: 'must' vyjadřující silnou domněnku (dedukci) zůstává v nepřímé řeči beze změny; na 'had to' se mění pouze 'must' ve významu povinnosti."
+),
+F("reported-backshift-advanced-20","reported-speech","advanced","Posun časů (backshift)",
+"\"Employees must wear a helmet on site,\" the manager said. The manager said (that) employees",
+"must/wear",
+" a helmet on site.",
+["must wear"],
+"žádný posun času: 'must' vyjadřující trvale platné pravidlo zůstává v nepřímé řeči beze změny, protože pravidlo platí i v době reprodukce výroku."
+)
+);
+
+QUESTIONS.push(
+F("reported-verbs-basic-01", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Let's go to the cinema tonight,\" she said. She ", "suggest / go", " to the cinema that night.", ["suggested going"], "Suggest + -ing (gerundium) - po suggest následuje buď that-clause, nebo -ing tvar, nikdy vazba s infinitivem \"to\"."),
+F("reported-verbs-basic-02", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You should see a doctor,\" she told him. She ", "suggest / that / he / see", " a doctor.", ["suggested that he see", "suggested that he should see"], "Suggest + that-clause - ve vedlejší větě se používá holý tvar slovesa (subjunktiv) nebo \"should + infinitiv\"; nikdy \"suggest to do\"."),
+F("reported-verbs-basic-03", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You should rest for a few days,\" the doctor said to me. The doctor ", "advise / me / rest", " for a few days.", ["advised me to rest"], "Advise + object + to infinitiv - je-li uveden konkrétní adresát rady, advise se pojí s předmětem a infinitivem s \"to\"."),
+F("reported-verbs-basic-04", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You should exercise more,\" the doctor said in general. The doctor ", "advise / exercise", " more.", ["advised exercising"], "Advise + -ing - bez vyjádřeného předmětu se advise pojí s gerundiem (-ing tvarem)."),
+F("reported-verbs-basic-05", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You should apply for the job,\" my friend said to me. My friend ", "advise / me / apply", " for the job.", ["advised me to apply"], "Advise + object + to infinitiv - sloveso advise s vyjádřeným předmětem vyžaduje infinitiv s \"to\"."),
+F("reported-verbs-basic-06", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will call you tomorrow,\" he said. He ", "promise / call", " the next day.", ["promised to call"], "Promise + to infinitiv - promise se pojí s infinitivem s \"to\", nikdy s -ing tvarem."),
+F("reported-verbs-basic-07", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will finish the report by Friday,\" she said. She ", "promise / finish", " the report by Friday.", ["promised to finish"], "Promise + to infinitiv - vyjadřuje slib do budoucna, vždy s infinitivem s \"to\"."),
+F("reported-verbs-basic-08", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I won't tell anyone your secret,\" she said. She ", "promise / not / tell", " anyone the secret.", ["promised not to tell"], "Promise + to infinitiv (záporná částice \"not\" stojí před infinitivem) - promise se pojí s infinitivem s \"to\"."),
+F("reported-verbs-basic-09", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will carry your bags,\" the young man said. The young man ", "offer / carry", " her bags.", ["offered to carry"], "Offer + to infinitiv - offer se pojí s infinitivem s \"to\", nikdy s -ing tvarem."),
+F("reported-verbs-basic-10", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will drive you to the station,\" Tom said. Tom ", "offer / drive", " her to the station.", ["offered to drive"], "Offer + to infinitiv - vyjadřuje nabídku pomoci, vždy s infinitivem s \"to\"."),
+F("reported-verbs-basic-11", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will pay for the dinner,\" she said. She ", "offer / pay", " for the dinner.", ["offered to pay"], "Offer + to infinitiv - sloveso offer vyjadřuje nabídku a pojí se s infinitivem s \"to\"."),
+F("reported-verbs-basic-12", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will not answer that question,\" the politician said. The politician ", "refuse / answer", " that question.", ["refused to answer"], "Refuse + to infinitiv - refuse se pojí s infinitivem s \"to\", nikdy s -ing tvarem."),
+F("reported-verbs-basic-13", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will not sign the contract,\" he said. He ", "refuse / sign", " the contract.", ["refused to sign"], "Refuse + to infinitiv - vyjadřuje odmítnutí, vždy s infinitivem s \"to\"."),
+F("reported-verbs-basic-14", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will not leave the building,\" the protester said. The protester ", "refuse / leave", " the building.", ["refused to leave"], "Refuse + to infinitiv - sloveso refuse se pojí pouze s infinitivem s \"to\", nikdy s gerundiem."),
+F("reported-verbs-basic-15", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Don't forget to lock the door,\" she said to her son. She ", "remind / her son / lock", " the door.", ["reminded her son to lock"], "Remind + object + to infinitiv - remind vyžaduje vyjádřený předmět a infinitiv s \"to\"."),
+F("reported-verbs-basic-16", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Don't forget to bring your passport,\" the agent said to the tourists. The agent ", "remind / the tourists / bring", " their passports.", ["reminded the tourists to bring"], "Remind + object + to infinitiv - po remind vždy následuje osoba (předmět) a infinitiv s \"to\"."),
+F("reported-verbs-basic-17", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Don't forget to call your mother,\" he said to me. He ", "remind / me / call", " my mother.", ["reminded me to call"], "Remind + object + to infinitiv - sloveso remind se pojí s předmětem (koho připomínáme) a infinitivem s \"to\"."),
+F("reported-verbs-basic-18", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Try the new Italian restaurant downtown,\" she said. She ", "recommend / try", " the new Italian restaurant downtown.", ["recommended trying"], "Recommend + -ing - recommend se pojí s gerundiem, když není uveden konkrétní předmět."),
+F("reported-verbs-basic-19", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You should book the tickets early,\" the agent said. The agent ", "recommend / that / we / book", " the tickets early.", ["recommended that we book", "recommended that we should book"], "Recommend + that-clause - ve vedlejší větě lze použít holý tvar slovesa (subjunktiv) nebo \"should + infinitiv\"."),
+M("reported-verbs-basic-20", "reported-speech", "basic", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "Doplňte obě věty správným tvarem podle uvozovacího slovesa v závorce.", [
+  { before: "\"Let's take a taxi,\" Mia said. Mia ", hint: "suggest / take", after: " a taxi.", answers: ["suggested taking"] },
+  { before: "\"You should take a taxi,\" the receptionist said. The receptionist ", hint: "recommend / that / we / take", after: " a taxi.", answers: ["recommended that we take", "recommended that we should take"] }
+], "Suggest i recommend mají podobný význam, ale suggest se běžně pojí s -ing (suggested taking), zatímco recommend lze použít i s that-clause (recommended that we take/should take) - suggest nikdy s infinitivem \"to\"."),
+F("reported-verbs-intermediate-01", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I didn't take the money,\" he said. He ", "deny / take", " the money.", ["denied taking"], "Deny + -ing - deny se pojí s gerundiem, nikdy s infinitivem s \"to\"."),
+F("reported-verbs-intermediate-02", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I didn't break the window,\" the boy said. The boy ", "deny / break", " the window.", ["denied breaking"], "Deny + -ing - sloveso deny vyjadřuje popření a pojí se výhradně s -ing tvarem."),
+F("reported-verbs-intermediate-03", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I didn't know about the meeting,\" she said. She ", "deny / know", " about the meeting.", ["denied knowing"], "Deny + -ing - po deny následuje gerundium, i když se popírá dřívější stav či znalost."),
+F("reported-verbs-intermediate-04", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I didn't see the accident,\" the witness said. The witness ", "deny / see", " the accident.", ["denied seeing"], "Deny + -ing - deny se pojí s gerundiem (-ing), nikoli s infinitivem s \"to\"."),
+F("reported-verbs-intermediate-05", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I took the money,\" he confessed. He ", "admit / take", " the money.", ["admitted taking"], "Admit + -ing - admit se pojí s gerundiem, když přiznáváme vlastní čin."),
+F("reported-verbs-intermediate-06", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I lied to you,\" she said. She ", "admit / lie", " to him.", ["admitted lying"], "Admit + -ing - po admit následuje -ing tvar, nikdy infinitiv s \"to\"."),
+F("reported-verbs-intermediate-07", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I was wrong about the plan,\" he said. He ", "admit / that / he / be / wrong", " about the plan.", ["admitted that he was wrong"], "Admit + that-clause - admit se může pojit i s vedlejší větou uvozenou \"that\", ve které se sloveso normálně časuje (souslednost časová)."),
+F("reported-verbs-intermediate-08", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I forgot her birthday,\" he said. He ", "admit / forget", " her birthday.", ["admitted forgetting"], "Admit + -ing - vyjadřuje přiznání vlastního jednání, sloveso admit se pojí s gerundiem."),
+F("reported-verbs-intermediate-09", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I'm sorry I'm late,\" she said. She ", "apologise / for / be", " late.", ["apologised for being"], "Apologise for + -ing - apologise se pojí s předložkou \"for\" a gerundiem, nikdy jen s infinitivem."),
+F("reported-verbs-intermediate-10", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I'm sorry I forgot your name,\" he said. He ", "apologise / for / forget", " her name.", ["apologised for forgetting"], "Apologise for + -ing - po předložce \"for\" následuje vždy gerundium (-ing tvar)."),
+F("reported-verbs-intermediate-11", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I'm sorry I broke your vase,\" the child said. The child ", "apologise / for / break", " the vase.", ["apologised for breaking"], "Apologise for + -ing - apologise vyjadřuje omluvu a vyžaduje předložku \"for\" následovanou -ing tvarem."),
+F("reported-verbs-intermediate-12", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I'm sorry I shouted at you,\" she said. She ", "apologise / for / shout", " at him.", ["apologised for shouting"], "Apologise for + -ing - vazba apologise for + -ing platí bez ohledu na to, zda je omluva za jednorázový, nebo opakovaný čin."),
+F("reported-verbs-intermediate-13", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I am definitely right about this,\" he said. He ", "insist / that / he / be / right", " about it.", ["insisted that he was right"], "Insist + that-clause (tvrzení) - vyjadřuje-li insist trvání na pravdivosti výroku, sloveso ve vedlejší větě se časuje běžně (oznamovací způsob), zde \"was\"."),
+F("reported-verbs-intermediate-14", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will pay for the meal,\" she said, and would not change her mind. She ", "insist / on / pay", " for the meal.", ["insisted on paying"], "Insist on + -ing - vyjadřuje-li insist trvání na nějaké činnosti, pojí se s předložkou \"on\" a gerundiem."),
+F("reported-verbs-intermediate-15", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"We must invite everyone,\" he said firmly. He ", "insist / on / invite", " everyone.", ["insisted on inviting"], "Insist on + -ing - vazba insist on + -ing vyjadřuje trvání na tom, že se něco musí stát."),
+F("reported-verbs-intermediate-16", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You must stay for dinner,\" she told us. She ", "insist / that / we / stay", " for dinner.", ["insisted that we stay", "insisted that we should stay"], "Insist + that-clause (požadavek) - vyjadřuje-li insist požadavek či nátlak, ve vedlejší větě se používá holý tvar slovesa (subjunktiv) nebo \"should + infinitiv\", podobně jako u suggest."),
+F("reported-verbs-intermediate-17", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Don't go near the edge,\" the guide said to the tourists. The guide ", "warn / the tourists / not / go", " near the edge.", ["warned the tourists not to go"], "Warn + object + not + to infinitiv - varuje-li warn před konkrétním jednáním, pojí se s předmětem a záporným infinitivem s \"to\"."),
+F("reported-verbs-intermediate-18", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Be careful when you cross this road, it's dangerous,\" the officer said to the visitors. The officer ", "warn / the visitors / about / cross", " that road.", ["warned the visitors about crossing"], "Warn + object + about + -ing - varování před obecně nebezpečným jednáním se vyjadřuje předložkou \"about\" a gerundiem."),
+F("reported-verbs-intermediate-19", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Don't invest all your money in one company,\" the advisor said to his client. The advisor ", "warn / his client / against / invest", " all his money in one company.", ["warned his client against investing"], "Warn + object + against + -ing - předložka \"against\" s gerundiem vyjadřuje varování před nevhodným jednáním, podobně jako \"about\"."),
+M("reported-verbs-intermediate-20", "reported-speech", "intermediate", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "Doplňte obě věty správným tvarem slovesa v závorce.", [
+  { before: "\"I broke the vase,\" the child said honestly. The child ", hint: "admit / break", after: " the vase.", answers: ["admitted breaking"] },
+  { before: "\"I didn't break the vase,\" the other child said. The other child ", hint: "deny / break", after: " the vase.", answers: ["denied breaking"] }
+], "Admit i deny se pojí s -ing tvarem, liší se však významem - admit znamená přiznat (že se něco stalo), zatímco deny znamená popřít (že se něco stalo); obě vazby nikdy nepoužívají infinitiv s \"to\"."),
+F("reported-verbs-advanced-01", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You stole my ideas and presented them as your own,\" the manager said to his colleague. The manager ", "accuse / his colleague / of / steal", " his ideas.", ["accused his colleague of stealing"], "Accuse + object + of + -ing - accuse vyžaduje předmět a předložku \"of\" následovanou gerundiem."),
+F("reported-verbs-advanced-02", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You deliberately misled the shareholders,\" the lawyer said to the CEO. The lawyer ", "accuse / the CEO / of / mislead", " the shareholders.", ["accused the CEO of misleading"], "Accuse + object + of + -ing - ve formálním (např. právním) kontextu se accuse pojí s předmětem, předložkou \"of\" a gerundiem."),
+F("reported-verbs-advanced-03", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You have been leaking confidential information to the press,\" the director said to the employee. The director ", "accuse / the employee / of / leak", " confidential information.", ["accused the employee of leaking"], "Accuse + object + of + -ing - vazba accuse of + -ing se používá i pro opakované nebo dlouhodobé jednání."),
+F("reported-verbs-advanced-04", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You falsified the financial records,\" the auditor said to the accountant. The auditor ", "accuse / the accountant / of / falsify", " the financial records.", ["accused the accountant of falsifying"], "Accuse + object + of + -ing - ve formálním vyjádření obvinění je předložka \"of\" povinná a nelze ji nahradit jinou."),
+F("reported-verbs-advanced-05", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will resign if the board does not reconsider,\" the director said. The director ", "threaten / resign", " if the board did not reconsider.", ["threatened to resign"], "Threaten + to infinitiv - threaten se pojí s infinitivem s \"to\", nikdy s -ing tvarem."),
+F("reported-verbs-advanced-06", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"We will take legal action if the debt is not paid,\" the company said. The company ", "threaten / take", " legal action if the debt was not paid.", ["threatened to take"], "Threaten + to infinitiv - vyjadřuje formální hrozbu a vyžaduje infinitiv s \"to\"."),
+F("reported-verbs-advanced-07", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will sue the company for damages,\" the client said. The client ", "threaten / sue", " the company for damages.", ["threatened to sue"], "Threaten + to infinitiv - sloveso threaten se ve formálních textech pojí výhradně s infinitivem s \"to\"."),
+F("reported-verbs-advanced-08", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I will cancel the contract unless you deliver on time,\" the client warned. The client ", "threaten / cancel", " the contract unless delivery was on time.", ["threatened to cancel"], "Threaten + to infinitiv - i v podmínkových formálních výhrůžkách zůstává vazba threaten + to infinitiv."),
+F("reported-verbs-advanced-09", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Well done on winning the tender,\" the chairman said to the sales team. The chairman ", "congratulate / the sales team / on / win", " the tender.", ["congratulated the sales team on winning"], "Congratulate + object + on + -ing - congratulate se pojí s předmětem a předložkou \"on\" následovanou gerundiem."),
+F("reported-verbs-advanced-10", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Congratulations on being promoted to director,\" the HR manager said to her. The HR manager ", "congratulate / her / on / be", " promoted to director.", ["congratulated her on being"], "Congratulate + object + on + -ing - předložka \"on\" je u congratulate vždy povinná a následuje ji -ing tvar."),
+F("reported-verbs-advanced-11", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Congratulations on passing the bar exam,\" the professor said to his student. The professor ", "congratulate / his student / on / pass", " the bar exam.", ["congratulated his student on passing"], "Congratulate + object + on + -ing - vazba se používá bez ohledu na formálnost kontextu, vždy s \"on\" + -ing."),
+F("reported-verbs-advanced-12", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"Congratulations on securing the merger deal,\" the board said to the CEO. The board ", "congratulate / the CEO / on / secure", " the merger deal.", ["congratulated the CEO on securing"], "Congratulate + object + on + -ing - v obchodním kontextu je tato vazba běžná pro formální blahopřání k dosaženému úspěchu."),
+F("reported-verbs-advanced-13", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You caused the delay in the project,\" the client said to the contractor. The client ", "blame / the contractor / for / cause", " the delay in the project.", ["blamed the contractor for causing"], "Blame + object + for + -ing - blame se pojí s předmětem a předložkou \"for\" následovanou gerundiem."),
+F("reported-verbs-advanced-14", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You mismanaged the budget,\" the board said to the finance director. The board ", "blame / the finance director / for / mismanage", " the budget.", ["blamed the finance director for mismanaging"], "Blame + object + for + -ing - ve formálním pracovním kontextu vyjadřuje připisování viny za konkrétní jednání."),
+F("reported-verbs-advanced-15", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You leaked the merger details to journalists,\" the executives said to the spokesperson. The executives ", "blame / the spokesperson / for / leak", " the merger details.", ["blamed the spokesperson for leaking"], "Blame + object + for + -ing - předložka \"for\" je u blame povinná a nelze ji zaměnit za \"of\" (ta patří k accuse)."),
+F("reported-verbs-advanced-16", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"You failed to notify us of the breach in time,\" the regulator said to the bank. The regulator ", "blame / the bank / for / fail", " to notify them of the breach in time.", ["blamed the bank for failing"], "Blame + object + for + -ing - vazba blame for + -ing platí i tehdy, je-li vytýkané jednání vyjádřeno jako opomenutí (failing to)."),
+F("reported-verbs-advanced-17", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"The service in this restaurant is far too slow,\" the customer said in the formal letter. The customer ", "complain / that / the service / be / slow", " in the formal letter.", ["complained that the service was slow"], "Complain + that-clause - complain se ve formálním vyjádření stížnosti běžně pojí s vedlejší větou uvozenou \"that\"."),
+F("reported-verbs-advanced-18", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"I keep being disturbed by noise at night,\" the tenant said in his letter to the landlord. The tenant ", "complain / about / be", " disturbed by noise at night.", ["complained about being"], "Complain about + -ing - complain se pojí s předložkou \"about\" následovanou gerundiem, stěžuje-li si mluvčí na to, co se mu děje nebo co zažívá."),
+F("reported-verbs-advanced-19", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "\"The council never repairs the road on time,\" the residents said in the petition. The residents ", "complain / that / the council / never / repair", " the road on time.", ["complained that the council never repaired"], "Complain + that-clause - po complain následuje vedlejší věta uvozená \"that\", ve které se sloveso posouvá do minulého času (souslednost časová), zde z přítomného \"repairs\" na minulé \"repaired\"."),
+M("reported-verbs-advanced-20", "reported-speech", "advanced", "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)", "Doplňte obě věty správnou vazbou podle uvozovacího slovesa v závorce.", [
+  { before: "\"You stole confidential files,\" the director said to the intern. The director ", hint: "accuse / the intern / of / steal", after: " confidential files.", answers: ["accused the intern of stealing"] },
+  { before: "\"You lost the confidential files,\" the director said to the intern the next day. The director ", hint: "blame / the intern / for / lose", after: " the confidential files.", answers: ["blamed the intern for losing"] }
+], "Accuse i blame se pojí s předmětem a gerundiem, liší se však předložkou a významem - accuse vyjadřuje obvinění z provinění (of + -ing), zatímco blame vyjadřuje připsání viny/odpovědnosti (for + -ing).")
+);
+
+QUESTIONS.push(
+M("reported-mix-basic-m01","reported-speech","basic","Mix",
+  "Porovnej oznámení a zjišťovací otázku v nepřímé řeči: „I am tired.“ / „Are you tired?“",
+  [
+    {before:"Tom ", hint:"say/he/be", after:" tired.", answers:["said he was"], tag:"Oznamovací věty"},
+    {before:"Ann asked Tom ", hint:"if/he/be", after:" tired.", answers:["if he was","whether he was"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První věta je oznámení (said + that-clause, is→was), druhá je zjišťovací otázka v nepřímé řeči (ask + if, bez pomocného slovesa do, přímý slovosled)."),
+
+M("reported-mix-basic-m02","reported-speech","basic","Mix",
+  "Porovnej oznámení faktu a rozkaz v nepřímé řeči: „I like pizza.“ / „Close the door!“",
+  [
+    {before:"She ", hint:"say/she/like", after:" pizza.", answers:["said she liked"], tag:"Oznamovací věty"},
+    {before:"She ", hint:"tell/him/close", after:" the door.", answers:["told him to close"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část ukazuje oznámení faktu (said + that-clause), druhá předává rozkaz (tell + předmět + infinitiv s to) — sloveso say se s předmětem nepojí, tell ano."),
+
+M("reported-mix-basic-m03","reported-speech","basic","Mix",
+  "Porovnej běžný posun času a posun modálního slovesa will→would: „I am hungry.“ / „I will call you.“",
+  [
+    {before:"Sam said ", hint:"he/be", after:" hungry.", answers:["he was"], tag:"Oznamovací věty"},
+    {before:"Sam said ", hint:"he/will/call", after:" me back.", answers:["he would call"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je běžný posun přítomného času na minulý (am→was) v oznámení, druhá ukazuje posun modálního slovesa will→would, typický pro backshift."),
+
+M("reported-mix-basic-m04","reported-speech","basic","Mix",
+  "Porovnej oznámení a návrh se slovesem suggest: „I like the movie.“ / „Let's go to the cinema.“",
+  [
+    {before:"Kate said ", hint:"she/like", after:" the movie.", answers:["she liked"], tag:"Oznamovací věty"},
+    {before:"Kate ", hint:"suggest/go", after:" to the cinema.", answers:["suggested going"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je prosté oznámení (said + that-clause), druhá používá sloveso suggest, které se pojí s gerundiem (-ing), ne s infinitivem."),
+
+M("reported-mix-basic-m05","reported-speech","basic","Mix",
+  "Porovnej nepřímou otázku a žádost v nepřímé řeči: „Where do you live?“ / „Wait here.“",
+  [
+    {before:"He asked ", hint:"where/I/live", after:".", answers:["where I lived"], tag:"Otázky v nepřímé řeči"},
+    {before:"She ", hint:"tell/him/wait", after:" here.", answers:["told him to wait"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka s tázacím slovem (where + přímý slovosled, bez do), druhá je žádost (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-basic-m06","reported-speech","basic","Mix",
+  "Porovnej nepřímou otázku a posun předpřítomného času: „What time is it?“ / „I have finished my homework.“",
+  [
+    {before:"She asked ", hint:"what time/it/be", after:".", answers:["what time it was"], tag:"Otázky v nepřímé řeči"},
+    {before:"He said ", hint:"he/have/finish", after:" his homework.", answers:["he had finished"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je nepřímá otázka s tázacím slovem (what time + přímý slovosled), druhá ukazuje posun předpřítomného času na předminulý (have finished→had finished)."),
+
+M("reported-mix-basic-m07","reported-speech","basic","Mix",
+  "Porovnej zjišťovací otázku a sloveso deny s gerundiem: „Did you break the vase?“ / „I didn't break it.“",
+  [
+    {before:"She asked ", hint:"if/I/break", after:" the vase.", answers:["if I had broken","whether I had broken"], tag:"Otázky v nepřímé řeči"},
+    {before:"He ", hint:"deny/break", after:" it.", answers:["denied breaking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je zjišťovací otázka s if a posunem minulého času na předminulý (broke→had broken), druhá používá sloveso deny, které se pojí s gerundiem."),
+
+M("reported-mix-basic-m08","reported-speech","basic","Mix",
+  "Porovnej rozkaz a posun modálního slovesa can→could: „Open your books.“ / „I can help you.“",
+  [
+    {before:"The teacher ", hint:"tell/them/open", after:" their books.", answers:["told them to open"], tag:"Rozkazy a žádosti"},
+    {before:"She said ", hint:"she/can/help", after:" me.", answers:["she could help"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je rozkaz (tell + předmět + to-infinitiv), druhá ukazuje posun modálního slovesa can→could."),
+
+M("reported-mix-basic-m09","reported-speech","basic","Mix",
+  "Porovnej žádost a sloveso apologise s for + gerundium: „Eat your vegetables.“ / „I'm sorry I broke your phone.“",
+  [
+    {before:"Mom ", hint:"tell/him/eat", after:" his vegetables.", answers:["told him to eat"], tag:"Rozkazy a žádosti"},
+    {before:"He ", hint:"apologise/for/break", after:" her phone.", answers:["apologised for breaking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je žádost (tell + předmět + to-infinitiv), druhá používá sloveso apologise, které se pojí s for + gerundium."),
+
+M("reported-mix-basic-m10","reported-speech","basic","Mix",
+  "Porovnej posun will→would a sloveso admit s gerundiem: „I will come tomorrow.“ / „I ate the cake.“",
+  [
+    {before:"He said ", hint:"he/will/come", after:" the next day.", answers:["he would come"], tag:"Posun časů (backshift)"},
+    {before:"She ", hint:"admit/eat", after:" the cake.", answers:["admitted eating"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje posun modálního slovesa will→would i změnu časového výrazu (tomorrow→the next day), druhá používá sloveso admit, které se pojí s gerundiem."),
+
+M("reported-mix-basic-m11","reported-speech","basic","Mix",
+  "Porovnej oznámení a otázku se stejnou změnou časového výrazu: „I am busy today.“ / „Are you busy today?“",
+  [
+    {before:"Lucy said ", hint:"she/be/busy", after:" that day.", answers:["she was busy"], tag:"Oznamovací věty"},
+    {before:"Peter asked ", hint:"if/she/be/busy", after:" that day.", answers:["if she was busy","whether she was busy"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První část je oznámení (said + that-clause) se změnou časového výrazu (today→that day), druhá je stejná změna přenesená do zjišťovací otázky (ask + if)."),
+
+M("reported-mix-basic-m12","reported-speech","basic","Mix",
+  "Porovnej oznámení a rozkaz v nepřímé řeči: „I am cold.“ / „Turn off the TV.“",
+  [
+    {before:"Ben said ", hint:"he/be", after:" cold.", answers:["he was"], tag:"Oznamovací věty"},
+    {before:"Dad ", hint:"tell/him/turn off", after:" the TV.", answers:["told him to turn off"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je jednoduché oznámení s posunem is→was, druhá je rozkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-basic-m13","reported-speech","basic","Mix",
+  "Porovnej běžný posun have→had a nepravidelný posun must→had to: „I have a new bike.“ / „I must leave now.“",
+  [
+    {before:"Mia said ", hint:"she/have", after:" a new bike.", answers:["she had"], tag:"Oznamovací věty"},
+    {before:"Leo said ", hint:"he/must/leave", after:" then.", answers:["he had to leave"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je oznámení s posunem have→had, druhá ukazuje nepravidelný posun modálního slovesa must→had to."),
+
+M("reported-mix-basic-m14","reported-speech","basic","Mix",
+  "Porovnej oznámení a sloveso insist s that-clause: „I am happy.“ / „I paid for the tickets.“",
+  [
+    {before:"Grace said ", hint:"she/be", after:" happy.", answers:["she was"], tag:"Oznamovací věty"},
+    {before:"Jake insisted that ", hint:"he/have/pay", after:" for the tickets.", answers:["he had paid"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je jednoduché oznámení (said + that-clause), druhá používá sloveso insist s vedlejší that-clause a posunem have paid→had paid."),
+
+M("reported-mix-basic-m15","reported-speech","basic","Mix",
+  "Porovnej nepřímou otázku a rozkaz v nepřímé řeči: „What is your name?“ / „Run faster.“",
+  [
+    {before:"Anna asked ", hint:"what/my name/be", after:".", answers:["what my name was"], tag:"Otázky v nepřímé řeči"},
+    {before:"The coach ", hint:"tell/them/run", after:" faster.", answers:["told them to run"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka s tázacím slovem what (přímý slovosled, bez do), druhá je rozkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-basic-m16","reported-speech","basic","Mix",
+  "Porovnej nepřímou otázku a posun modálního slovesa can→could: „Where is the key?“ / „I can drive.“",
+  [
+    {before:"Nina asked ", hint:"where/the key/be", after:".", answers:["where the key was"], tag:"Otázky v nepřímé řeči"},
+    {before:"Omar said ", hint:"he/can/drive", after:".", answers:["he could drive"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je nepřímá otázka s tázacím slovem where, druhá ukazuje posun modálního slovesa can→could."),
+
+M("reported-mix-basic-m17","reported-speech","basic","Mix",
+  "Porovnej nepřímou otázku s posunem průběhového času a sloveso deny s gerundiem: „Why are you crying?“ / „I didn't take the money.“",
+  [
+    {before:"The boy asked ", hint:"why/she/cry", after:".", answers:["why she was crying"], tag:"Otázky v nepřímé řeči"},
+    {before:"Ella ", hint:"deny/take", after:" the money.", answers:["denied taking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je nepřímá otázka s why a posunem průběhového přítomného času na průběhový minulý (are crying→was crying), druhá používá sloveso deny s gerundiem."),
+
+M("reported-mix-basic-m18","reported-speech","basic","Mix",
+  "Porovnej rozkaz a posun modálního slovesa will→would: „Take this medicine.“ / „I will visit my aunt.“",
+  [
+    {before:"The nurse ", hint:"tell/him/take", after:" the medicine.", answers:["told him to take"], tag:"Rozkazy a žádosti"},
+    {before:"Sara said ", hint:"she/will/visit", after:" her aunt.", answers:["she would visit"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je rozkaz (tell + předmět + to-infinitiv), druhá ukazuje posun modálního slovesa will→would."),
+
+M("reported-mix-basic-m19","reported-speech","basic","Mix",
+  "Porovnej zápor v rozkazu a sloveso admit s gerundiem: „Don't touch the plates.“ / „I broke the window.“",
+  [
+    {before:"The waiter ", hint:"tell/us/not/touch", after:" the plates.", answers:["told us not to touch"], tag:"Rozkazy a žádosti"},
+    {before:"Max ", hint:"admit/break", after:" the window.", answers:["admitted breaking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je zápor v rozkazu (tell + předmět + not + to-infinitiv), druhá používá sloveso admit s gerundiem."),
+
+M("reported-mix-basic-m20","reported-speech","basic","Mix",
+  "Porovnej nepravidelný posun may→might a sloveso suggest s gerundiem: „I may be late.“ / „Let's watch a film.“",
+  [
+    {before:"Dana said ", hint:"she/may/be", after:" late.", answers:["she might be"], tag:"Posun časů (backshift)"},
+    {before:"Tim ", hint:"suggest/watch", after:" a film.", answers:["suggested watching"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje nepravidelný posun modálního slovesa may→might, druhá používá sloveso suggest s gerundiem."),
+
+M("reported-mix-intermediate-m01","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a zjišťovací otázku: „The meeting is postponed.“ / „Is the meeting postponed?“",
+  [
+    {before:"The manager said ", hint:"the meeting/be/postpone", after:".", answers:["the meeting was postponed"], tag:"Oznamovací věty"},
+    {before:"The employee asked ", hint:"if/the meeting/be/postpone", after:".", answers:["if the meeting was postponed","whether the meeting was postponed"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První část je oznámení s that-clause (is→was), druhá je zjišťovací otázka (ask + if, bez pomocného slovesa, přímý slovosled)."),
+
+M("reported-mix-intermediate-m02","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a příkaz v nepřímé řeči: „The report is ready.“ / „Submit your report by Friday.“",
+  [
+    {before:"She said ", hint:"the report/be/ready", after:".", answers:["the report was ready"], tag:"Oznamovací věty"},
+    {before:"The manager ", hint:"tell/them/submit", after:" their report by Friday.", answers:["told them to submit"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je oznámení faktu, druhá je žádost/příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-intermediate-m03","reported-speech","intermediate","Mix",
+  "Porovnej běžný posun a posun předpřítomného času: „The flight is delayed.“ / „I have already submitted the application.“",
+  [
+    {before:"She said ", hint:"the flight/be/delay", after:".", answers:["the flight was delayed"], tag:"Oznamovací věty"},
+    {before:"He said ", hint:"he/have/already/submit", after:" the application.", answers:["he had already submitted"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je jednoduchý posun is→was v oznámení, druhá ukazuje posun předpřítomného času na předminulý (have submitted→had submitted)."),
+
+M("reported-mix-intermediate-m04","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a návrh se slovesem suggest: „The price is too high.“ / „Let's revise the proposal.“",
+  [
+    {before:"The client said ", hint:"the price/be/too high", after:".", answers:["the price was too high"], tag:"Oznamovací věty"},
+    {before:"The colleague ", hint:"suggest/revise", after:" the proposal.", answers:["suggested revising"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je oznámení faktu, druhá používá suggest s gerundiem místo infinitivu."),
+
+M("reported-mix-intermediate-m05","reported-speech","intermediate","Mix",
+  "Porovnej nepřímou otázku a příkaz: „When will the project be finished?“ / „Reschedule the meeting for Monday.“",
+  [
+    {before:"The client asked ", hint:"when/the project/will/be/finish", after:".", answers:["when the project would be finished"], tag:"Otázky v nepřímé řeči"},
+    {before:"The manager ", hint:"tell/her/reschedule", after:" the meeting for Monday.", answers:["told her to reschedule"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka s tázacím slovem when a posunem will→would, druhá je příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-intermediate-m06","reported-speech","intermediate","Mix",
+  "Porovnej zjišťovací otázku a posun will→would: „Have you contacted the client?“ / „I will attend the conference.“",
+  [
+    {before:"She asked ", hint:"if/I/have/contact", after:" the client.", answers:["if I had contacted","whether I had contacted"], tag:"Otázky v nepřímé řeči"},
+    {before:"He said ", hint:"he/will/attend", after:" the conference.", answers:["he would attend"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je zjišťovací otázka (if, bez do) s posunem předpřítomného času, druhá ukazuje posun modálního slovesa will→would."),
+
+M("reported-mix-intermediate-m07","reported-speech","intermediate","Mix",
+  "Porovnej nepřímou otázku a sloveso accuse: „Why did the company reject the offer?“ / „You stole the documents.“",
+  [
+    {before:"The journalist asked ", hint:"why/the company/reject", after:" the offer.", answers:["why the company had rejected"], tag:"Otázky v nepřímé řeči"},
+    {before:"She ", hint:"accuse/him/of/steal", after:" the documents.", answers:["accused him of stealing"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je nepřímá otázka s why a posunem minulého času na předminulý, druhá používá accuse + of + gerundium."),
+
+M("reported-mix-intermediate-m08","reported-speech","intermediate","Mix",
+  "Porovnej příkaz a posun must→had to: „Hand in your essays.“ / „The company must reduce its costs.“",
+  [
+    {before:"The teacher ", hint:"tell/them/hand in", after:" their essays.", answers:["told them to hand in"], tag:"Rozkazy a žádosti"},
+    {before:"The director said ", hint:"the company/must/reduce", after:" its costs.", answers:["the company had to reduce"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je příkaz (tell + předmět + to-infinitiv), druhá ukazuje nepravidelný posun modálního slovesa must→had to."),
+
+M("reported-mix-intermediate-m09","reported-speech","intermediate","Mix",
+  "Porovnej žádost a sloveso recommend: „Take this medicine twice a day.“ / „You should book the flights early.“",
+  [
+    {before:"The doctor ", hint:"tell/him/take", after:" the medicine twice a day.", answers:["told him to take"], tag:"Rozkazy a žádosti"},
+    {before:"The consultant ", hint:"recommend/book", after:" the flights early.", answers:["recommended booking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je žádost (tell + předmět + to-infinitiv), druhá používá recommend s gerundiem."),
+
+M("reported-mix-intermediate-m10","reported-speech","intermediate","Mix",
+  "Porovnej posun can→could a sloveso deny: „I can finish the presentation by tomorrow.“ / „I didn't leak the information.“",
+  [
+    {before:"She said ", hint:"she/can/finish", after:" the presentation by the next day.", answers:["she could finish"], tag:"Posun časů (backshift)"},
+    {before:"He ", hint:"deny/leak", after:" the information.", answers:["denied leaking"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje posun modálního slovesa can→could i změnu časového výrazu, druhá používá deny s gerundiem."),
+
+M("reported-mix-intermediate-m11","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a otázku se stejným obsahem: „The heating doesn't work.“ / „Does the heating work?“",
+  [
+    {before:"The tenant said ", hint:"the heating/not/work", after:".", answers:["the heating didn't work","the heating did not work"], tag:"Oznamovací věty"},
+    {before:"The landlord asked ", hint:"if/the heating/work", after:".", answers:["if the heating worked","whether the heating worked"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První část je oznámení se záporem (didn't), druhá je stejná informace přenesená do zjišťovací otázky (if + kladný slovosled)."),
+
+M("reported-mix-intermediate-m12","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a příkaz: „The results are disappointing.“ / „Revise the budget immediately.“",
+  [
+    {before:"She said ", hint:"the results/be/disappointing", after:".", answers:["the results were disappointing"], tag:"Oznamovací věty"},
+    {before:"The supervisor ", hint:"tell/her/revise", after:" the budget immediately.", answers:["told her to revise"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je oznámení (are→were), druhá je příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-intermediate-m13","reported-speech","intermediate","Mix",
+  "Porovnej běžný posun a posun may→might: „The company is expanding.“ / „We may reconsider the offer.“",
+  [
+    {before:"He said ", hint:"the company/be/expand", after:".", answers:["the company was expanding"], tag:"Oznamovací věty"},
+    {before:"She said ", hint:"they/may/reconsider", after:" the offer.", answers:["they might reconsider"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je běžný posun is→was v oznámení, druhá ukazuje nepravidelný posun modálního slovesa may→might."),
+
+M("reported-mix-intermediate-m14","reported-speech","intermediate","Mix",
+  "Porovnej oznámení a sloveso complain: „The noise is unbearable.“ / „The music is too loud every night.“",
+  [
+    {before:"The neighbour said ", hint:"the noise/be/unbearable", after:".", answers:["the noise was unbearable"], tag:"Oznamovací věty"},
+    {before:"She ", hint:"complain/about/the music/be", after:" too loud every night.", answers:["complained about the music being"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je oznámení faktu, druhá používá complain about + gerundium (podstatné jméno + -ing)."),
+
+M("reported-mix-intermediate-m15","reported-speech","intermediate","Mix",
+  "Porovnej nepřímou otázku a příkaz: „Where do you keep the documents?“ / „Provide your identification.“",
+  [
+    {before:"The inspector asked ", hint:"where/they/keep", after:" the documents.", answers:["where they kept"], tag:"Otázky v nepřímé řeči"},
+    {before:"The officer ", hint:"tell/him/provide", after:" his identification.", answers:["told him to provide"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka s where (přímý slovosled, bez do), druhá je příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-intermediate-m16","reported-speech","intermediate","Mix",
+  "Porovnej zjišťovací otázku a posun must→had to: „Do you know the new policy?“ / „I must renew my contract.“",
+  [
+    {before:"She asked ", hint:"if/he/know", after:" the new policy.", answers:["if he knew","whether he knew"], tag:"Otázky v nepřímé řeči"},
+    {before:"He said ", hint:"he/must/renew", after:" his contract.", answers:["he had to renew"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je zjišťovací otázka (if, bez do), druhá ukazuje nepravidelný posun modálního slovesa must→had to."),
+
+M("reported-mix-intermediate-m17","reported-speech","intermediate","Mix",
+  "Porovnej nepřímou otázku a sloveso apologise: „Why has the invoice not been paid?“ / „I forgot to send the email.“",
+  [
+    {before:"The auditor asked ", hint:"why/the invoice/have/not/pay", after:".", answers:["why the invoice had not been paid"], tag:"Otázky v nepřímé řeči"},
+    {before:"The employee ", hint:"apologise/for/forget", after:" to send the email.", answers:["apologised for forgetting"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je nepřímá otázka why v trpném rodě s posunem předpřítomného na předminulý čas, druhá používá apologise for + gerundium."),
+
+M("reported-mix-intermediate-m18","reported-speech","intermediate","Mix",
+  "Porovnej příkaz a posun will→would: „Reinforce the foundations.“ / „I will negotiate a better deal.“",
+  [
+    {before:"The architect ", hint:"tell/them/reinforce", after:" the foundations.", answers:["told them to reinforce"], tag:"Rozkazy a žádosti"},
+    {before:"She said ", hint:"she/will/negotiate", after:" a better deal.", answers:["she would negotiate"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je příkaz (tell + předmět + to-infinitiv), druhá ukazuje posun modálního slovesa will→would."),
+
+M("reported-mix-intermediate-m19","reported-speech","intermediate","Mix",
+  "Porovnej zápor v příkazu a sloveso admit: „Don't discuss salaries with colleagues.“ / „I missed the deadline.“",
+  [
+    {before:"The HR manager ", hint:"tell/them/not/discuss", after:" salaries with colleagues.", answers:["told them not to discuss"], tag:"Rozkazy a žádosti"},
+    {before:"He ", hint:"admit/miss", after:" the deadline.", answers:["admitted missing"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je zápor v příkazu (tell + předmět + not + to-infinitiv), druhá používá admit s gerundiem."),
+
+M("reported-mix-intermediate-m20","reported-speech","intermediate","Mix",
+  "Porovnej posun předpřítomného času a sloveso encourage: „The results have improved significantly.“ / „You should apply for the promotion.“",
+  [
+    {before:"They said ", hint:"the results/have/improve", after:" significantly.", answers:["the results had improved"], tag:"Posun časů (backshift)"},
+    {before:"She ", hint:"encourage/him/apply", after:" for the promotion.", answers:["encouraged him to apply"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje posun předpřítomného času na předminulý (have improved→had improved), druhá používá encourage + předmět + to-infinitiv."),
+
+M("reported-mix-advanced-m01","reported-speech","advanced","Mix",
+  "Porovnej formální oznámení a otázku: „The policy will be reviewed.“ / „Will the policy be reviewed?“",
+  [
+    {before:"The minister said ", hint:"the policy/will/be/review", after:".", answers:["the policy would be reviewed"], tag:"Oznamovací věty"},
+    {before:"The journalist asked ", hint:"if/the policy/will/be/review", after:".", answers:["if the policy would be reviewed","whether the policy would be reviewed"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První část je oznámení s posunem will→would, druhá je zjišťovací otázka se stejným posunem, ale se spojkou if/whether a přímým slovosledem místo otázky."),
+
+M("reported-mix-advanced-m02","reported-speech","advanced","Mix",
+  "Porovnej oznámení a příkaz: „The allegations are unfounded.“ / „Submit the compliance report by the end of the quarter.“",
+  [
+    {before:"The spokesperson said ", hint:"the allegations/be/unfounded", after:".", answers:["the allegations were unfounded"], tag:"Oznamovací věty"},
+    {before:"The board ", hint:"tell/the department/submit", after:" the compliance report by the end of the quarter.", answers:["told the department to submit"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je oznámení (are→were), druhá je formální příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-advanced-m03","reported-speech","advanced","Mix",
+  "Porovnej běžný posun a posun may→might: „The market is volatile.“ / „Inflation may exceed expectations.“",
+  [
+    {before:"The analyst said ", hint:"the market/be/volatile", after:".", answers:["the market was volatile"], tag:"Oznamovací věty"},
+    {before:"The economist said ", hint:"inflation/may/exceed", after:" expectations.", answers:["inflation might exceed"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je běžný posun is→was v oznámení, druhá ukazuje nepravidelný posun modálního slovesa may→might."),
+
+M("reported-mix-advanced-m04","reported-speech","advanced","Mix",
+  "Porovnej oznámení a sloveso suggest: „The evidence is inconclusive.“ / „The company should disclose the losses.“",
+  [
+    {before:"The witness said ", hint:"the evidence/be/inconclusive", after:".", answers:["the evidence was inconclusive"], tag:"Oznamovací věty"},
+    {before:"The auditor ", hint:"suggest/disclose", after:" the losses.", answers:["suggested disclosing"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je oznámení faktu, druhá používá suggest s gerundiem."),
+
+M("reported-mix-advanced-m05","reported-speech","advanced","Mix",
+  "Porovnej nepřímou otázku a příkaz: „When will the treaty be ratified?“ / „Present your findings to the committee.“",
+  [
+    {before:"The delegate asked ", hint:"when/the treaty/will/be/ratify", after:".", answers:["when the treaty would be ratified"], tag:"Otázky v nepřímé řeči"},
+    {before:"The chair ", hint:"tell/her/present", after:" her findings to the committee.", answers:["told her to present"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka s when a posunem will→would, druhá je formální příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-advanced-m06","reported-speech","advanced","Mix",
+  "Porovnej zjišťovací otázku a posun must→had to: „Has the government implemented the reforms?“ / „Relations must improve before negotiations resume.“",
+  [
+    {before:"The reporter asked ", hint:"if/the government/have/implement", after:" the reforms.", answers:["if the government had implemented","whether the government had implemented"], tag:"Otázky v nepřímé řeči"},
+    {before:"The ambassador said ", hint:"relations/must/improve", after:" before negotiations resumed.", answers:["relations had to improve"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je zjišťovací otázka (if, bez do) s posunem předpřítomného času, druhá ukazuje nepravidelný posun modálního slovesa must→had to."),
+
+M("reported-mix-advanced-m07","reported-speech","advanced","Mix",
+  "Porovnej nepřímou otázku a sloveso deny: „Why did the corporation withhold the documents?“ / „We manipulated the figures.“",
+  [
+    {before:"The tribunal asked ", hint:"why/the corporation/withhold", after:" the documents.", answers:["why the corporation had withheld"], tag:"Otázky v nepřímé řeči"},
+    {before:"The executive ", hint:"deny/manipulate", after:" the figures.", answers:["denied manipulating"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je nepřímá otázka why s posunem minulého času na předminulý, druhá používá deny s gerundiem."),
+
+M("reported-mix-advanced-m08","reported-speech","advanced","Mix",
+  "Porovnej příkaz a posun can→could: „Comply with the new standards immediately.“ / „The merger can proceed next quarter.“",
+  [
+    {before:"The regulator ", hint:"tell/the firm/comply", after:" with the new standards immediately.", answers:["told the firm to comply"], tag:"Rozkazy a žádosti"},
+    {before:"The chairman said ", hint:"the merger/can/proceed", after:" next quarter.", answers:["the merger could proceed"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je formální příkaz (tell + předmět + to-infinitiv), druhá ukazuje posun modálního slovesa can→could."),
+
+M("reported-mix-advanced-m09","reported-speech","advanced","Mix",
+  "Porovnej příkaz a sloveso apologise: „Submit the documents to the court.“ / „I misled parliament about the figures.“",
+  [
+    {before:"The judge ", hint:"tell/the lawyer/submit", after:" the documents to the court.", answers:["told the lawyer to submit"], tag:"Rozkazy a žádosti"},
+    {before:"The minister ", hint:"apologise/for/mislead", after:" parliament about the figures.", answers:["apologised for misleading"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je příkaz (tell + předmět + to-infinitiv), druhá používá apologise for + gerundium."),
+
+M("reported-mix-advanced-m10","reported-speech","advanced","Mix",
+  "Porovnej posun will→would a sloveso admit: „Shareholders will receive compensation.“ / „I concealed the losses from investors.“",
+  [
+    {before:"The board said ", hint:"shareholders/will/receive", after:" compensation.", answers:["shareholders would receive"], tag:"Posun časů (backshift)"},
+    {before:"The CEO ", hint:"admit/conceal", after:" the losses from investors.", answers:["admitted concealing"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje posun modálního slovesa will→would, druhá používá admit s gerundiem."),
+
+M("reported-mix-advanced-m11","reported-speech","advanced","Mix",
+  "Porovnej oznámení a otázku se stejným trpným tvarem: „The theory has been discredited.“ / „Has the theory been discredited?“",
+  [
+    {before:"The professor said ", hint:"the theory/have/be/discredit", after:".", answers:["the theory had been discredited"], tag:"Oznamovací věty"},
+    {before:"The student asked ", hint:"if/the theory/have/be/discredit", after:".", answers:["if the theory had been discredited","whether the theory had been discredited"], tag:"Otázky v nepřímé řeči"}
+  ],
+  "První část je oznámení s posunem trpného předpřítomného času na předminulý (has been discredited→had been discredited), druhá je stejný posun přenesený do zjišťovací otázky."),
+
+M("reported-mix-advanced-m12","reported-speech","advanced","Mix",
+  "Porovnej oznámení a rozkaz: „Sanctions are inevitable.“ / „Withdraw the troops immediately.“",
+  [
+    {before:"The diplomat said ", hint:"sanctions/be/inevitable", after:".", answers:["sanctions were inevitable"], tag:"Oznamovací věty"},
+    {before:"The general ", hint:"tell/his officers/withdraw", after:" the troops immediately.", answers:["told his officers to withdraw"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je oznámení (are→were), druhá je formální rozkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-advanced-m13","reported-speech","advanced","Mix",
+  "Porovnej běžný posun a posun předpřítomného času: „The archive is incomplete.“ / „The delegation has already departed.“",
+  [
+    {before:"The historian said ", hint:"the archive/be/incomplete", after:".", answers:["the archive was incomplete"], tag:"Oznamovací věty"},
+    {before:"The secretary said ", hint:"the delegation/have/already/depart", after:".", answers:["the delegation had already departed"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je běžný posun is→was, druhá ukazuje posun předpřítomného času na předminulý (has departed→had departed)."),
+
+M("reported-mix-advanced-m14","reported-speech","advanced","Mix",
+  "Porovnej oznámení a sloveso recommend: „The proposal is unrealistic.“ / „The ministry should postpone the decision.“",
+  [
+    {before:"The critic said ", hint:"the proposal/be/unrealistic", after:".", answers:["the proposal was unrealistic"], tag:"Oznamovací věty"},
+    {before:"The panel ", hint:"recommend/postpone", after:" the decision.", answers:["recommended postponing"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je oznámení faktu, druhá používá recommend s gerundiem."),
+
+M("reported-mix-advanced-m15","reported-speech","advanced","Mix",
+  "Porovnej nepřímou otázku a příkaz: „Why is the negotiation stalled?“ / „Investigate the allegations thoroughly.“",
+  [
+    {before:"The correspondent asked ", hint:"why/the negotiation/be/stall", after:".", answers:["why the negotiation was stalled"], tag:"Otázky v nepřímé řeči"},
+    {before:"The commissioner ", hint:"tell/the agency/investigate", after:" the allegations thoroughly.", answers:["told the agency to investigate"], tag:"Rozkazy a žádosti"}
+  ],
+  "První část je nepřímá otázka why (přímý slovosled, bez do), druhá je formální příkaz (tell + předmět + to-infinitiv)."),
+
+M("reported-mix-advanced-m16","reported-speech","advanced","Mix",
+  "Porovnej zjišťovací otázku a posun must→had to: „Does the treaty apply retroactively?“ / „The proposal must be revised before the vote.“",
+  [
+    {before:"The analyst asked ", hint:"if/the treaty/apply", after:" retroactively.", answers:["if the treaty applied","whether the treaty applied"], tag:"Otázky v nepřímé řeči"},
+    {before:"The councillor said ", hint:"the proposal/must/be/revise", after:" before the vote.", answers:["the proposal had to be revised"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je zjišťovací otázka (if, bez do) beze změny modálního slovesa, druhá ukazuje nepravidelný posun must→had to v trpném rodě."),
+
+M("reported-mix-advanced-m17","reported-speech","advanced","Mix",
+  "Porovnej nepřímou otázku a sloveso accuse: „Where were the funds transferred?“ / „You falsified the records.“",
+  [
+    {before:"The prosecutor asked ", hint:"where/the funds/have/be/transfer", after:".", answers:["where the funds had been transferred"], tag:"Otázky v nepřímé řeči"},
+    {before:"The official ", hint:"accuse/him/of/falsify", after:" the records.", answers:["accused him of falsifying"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je nepřímá otázka where s posunem trpného předpřítomného na předminulý čas, druhá používá accuse + of + gerundium."),
+
+M("reported-mix-advanced-m18","reported-speech","advanced","Mix",
+  "Porovnej příkaz a posun will→would: „Draft a revised proposal by Friday.“ / „The negotiations will resume next month.“",
+  [
+    {before:"The chairwoman ", hint:"tell/the committee/draft", after:" a revised proposal by Friday.", answers:["told the committee to draft"], tag:"Rozkazy a žádosti"},
+    {before:"The envoy said ", hint:"the negotiations/will/resume", after:" next month.", answers:["the negotiations would resume"], tag:"Posun časů (backshift)"}
+  ],
+  "První část je formální příkaz (tell + předmět + to-infinitiv), druhá ukazuje posun modálního slovesa will→would."),
+
+M("reported-mix-advanced-m19","reported-speech","advanced","Mix",
+  "Porovnej zápor v příkazu a sloveso admit: „Do not disclose the findings prematurely.“ / „I underestimated the risks.“",
+  [
+    {before:"The regulator ", hint:"tell/them/not/disclose", after:" the findings prematurely.", answers:["told them not to disclose"], tag:"Rozkazy a žádosti"},
+    {before:"The director ", hint:"admit/underestimate", after:" the risks.", answers:["admitted underestimating"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část je zápor v příkazu (tell + předmět + not + to-infinitiv), druhá používá admit s gerundiem."),
+
+M("reported-mix-advanced-m20","reported-speech","advanced","Mix",
+  "Porovnej posun must→had to a sloveso insist: „The subsidiary must divest its assets.“ / „The department followed proper procedure.“",
+  [
+    {before:"The board said ", hint:"the subsidiary/must/divest", after:" its assets.", answers:["the subsidiary had to divest"], tag:"Posun časů (backshift)"},
+    {before:"The chief insisted that ", hint:"the department/have/follow", after:" proper procedure.", answers:["the department had followed"], tag:"Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)"}
+  ],
+  "První část ukazuje nepravidelný posun modálního slovesa must→had to, druhá používá insist s that-clause a posunem předpřítomného na předminulý čas.")
 );
 
 /* ============================================================
