@@ -222,7 +222,6 @@
   .topic-pill.selected .topic-pill-row .box svg, .topic-pill.partial .topic-pill-row .box svg{ display:block; }
   .topic-pill .txt{ flex:1; }
   .topic-pill .txt strong{ display:block; font-size: 14.5px; font-weight: 600; }
-  .topic-pill .txt span{ display:block; font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
   .topic-pill .chevron{
     flex-shrink: 0;
     margin-top: 3px;
@@ -233,7 +232,12 @@
   .topic-pill-body{
     display: none;
     border-top: 1px solid var(--line);
-    padding: 2px 16px 8px 44px;
+    padding: 10px 16px 8px 44px;
+  }
+  .topic-pill-desc{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
   }
   .topic-pill.expanded .topic-pill-body{ display: block; }
   .subtopic-row{
@@ -15674,7 +15678,7 @@ function renderTopicGrid(){
     row.className = "topic-pill-row";
     row.innerHTML =
       '<span class="box">'+(state === "partial" ? DASH_SVG : CHECK_SVG)+'</span>' +
-      '<span class="txt"><strong>'+t.name+'</strong><span>'+t.desc+'</span></span>' +
+      '<span class="txt"><strong>'+t.name+'</strong></span>' +
       '<span class="chevron">'+CHEVRON_SVG+'</span>';
     row.querySelector(".box").addEventListener("click", function(e){
       e.stopPropagation();
@@ -15689,6 +15693,11 @@ function renderTopicGrid(){
 
     const body = document.createElement("div");
     body.className = "topic-pill-body";
+
+    const desc = document.createElement("p");
+    desc.className = "topic-pill-desc";
+    desc.textContent = t.desc;
+    body.appendChild(desc);
 
     tags.forEach(function(tag){
       const isSel = !!(sel && sel.has(tag));
