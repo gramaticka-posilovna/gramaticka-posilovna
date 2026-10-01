@@ -843,6 +843,7 @@ const TOPICS = [
   { id:"nouns", name:"Podstatná jména a determinery", desc:"Počitatelnost, množné číslo, some/any/no, much/many, few/little, přivlastňovací pád" },
   { id:"pronouns", name:"Zájmena", desc:"Osobní a přivlastňovací, zvratná a vzájemná, neurčitá, ukazovací, one/ones, there is vs. it is" },
   { id:"clauses", name:"Vedlejší věty", desc:"Určující a neurčující vztažné věty, zkrácené vztažné věty, podmětné a předmětné věty, participle clauses" },
+  { id:"infinitive-gerund", name:"Infinitiv a gerundium", desc:"Sloveso + to infinitiv / -ing, rozdíly ve významu, sloveso + předmět + infinitiv, předložka + -ing, perfektní infinitiv" },
   { id:"vocab", name:"Slovní zásoba", desc:"Překlad oběma směry, slovo v kontextu i výběr z možností" }
 ];
 
@@ -16186,6 +16187,863 @@ M("clauses-mix-advanced-m20","clauses","advanced","Mix",
     {before:"Legal experts still dispute ", hint:"manner", after:" the case should have been handled from the outset.", answers:["how"], tag:"Podmětné, předmětné věty"}
   ],
   "„The jurisdiction where the crime had been committed“ je určující vztažná věta s příslovcem „where“ upřesňujícím, o kterou jurisdikci jde; „how the case should have been handled“ je předmětná věta vyjadřující nepřímou otázku po slovese „dispute“."),
+
+);
+
+QUESTIONS.push(
+/* ---------------- INFINITIVE-GERUND ---------------- */
+/* ---- Sloveso + to infinitiv ---- */
+F("infgerund-toinf-basic-01","infinitive-gerund","basic","Sloveso + to infinitiv","She decided ","(go)"," to the party alone.",["to go"],"Po slovese „decide“ následuje infinitiv s „to“, proto „to go“, nikoli holý infinitiv „go“ nebo tvar s „-ing“ „going“."),
+F("infgerund-toinf-basic-02","infinitive-gerund","basic","Sloveso + to infinitiv","I want ","(travel)"," to Japan someday.",["to travel"],"Sloveso „want“ se pojí s infinitivem s „to“ — „want to travel“. Tvar „wanting“ by byl chybný."),
+F("infgerund-toinf-basic-03","infinitive-gerund","basic","Sloveso + to infinitiv","We hope ","(pass)"," the exam next week.",["to pass"],"Po „hope“ následuje infinitiv s „to“ — „hope to pass“. Podmět slovesa „hope“ a podmět „pass“ jsou stejní (my)."),
+F("infgerund-toinf-basic-04","infinitive-gerund","basic","Sloveso + to infinitiv","He promised ","(call)"," as soon as he arrived.",["to call"],"Sloveso „promise“ vyžaduje infinitiv s „to“ — „promised to call“, ne „promised that he calls“."),
+F("infgerund-toinf-basic-05","infinitive-gerund","basic","Sloveso + to infinitiv","They agreed ","(help)"," with the project.",["to help"],"Po „agree“ následuje infinitiv s „to“ — „agreed to help“."),
+F("infgerund-toinf-basic-06","infinitive-gerund","basic","Sloveso + to infinitiv","She refused ","(sign)"," the contract.",["to sign"],"Sloveso „refuse“ se pojí s infinitivem s „to“ — „refused to sign“, nikoli s „-ing“ tvarem „signing“."),
+F("infgerund-toinf-basic-07","infinitive-gerund","basic","Sloveso + to infinitiv","He offered ","(carry)"," my bags.",["to carry"],"Po „offer“ následuje infinitiv s „to“ — „offered to carry“."),
+F("infgerund-toinf-basic-08","infinitive-gerund","basic","Sloveso + to infinitiv","I managed ","(finish)"," the report on time.",["to finish"],"Sloveso „manage“ (ve smyslu „zvládnout, podařit se“) se pojí s infinitivem s „to“ — „managed to finish“."),
+F("infgerund-toinf-basic-09","infinitive-gerund","basic","Sloveso + to infinitiv","We can't afford ","(buy)"," a new car right now.",["to buy"],"Po „afford“ následuje infinitiv s „to“ — „afford to buy“. Zápor je vyjádřen modálním slovesem „can't“, infinitiv zůstává kladný."),
+F("infgerund-toinf-basic-10","infinitive-gerund","basic","Sloveso + to infinitiv","My son is learning ","(swim)",".",["to swim"],"Ve významu „učit se něco dělat“ se používá „learn to“ + infinitiv — „learning to swim“, nikoli „learning swimming“."),
+F("infgerund-toinf-basic-11","infinitive-gerund","basic","Sloveso + to infinitiv","She seems ","(know)"," the answer.",["to know"],"Sloveso „seem“ se pojí s infinitivem s „to“ — „seems to know“. Podmět „she“ platí pro obě slovesa."),
+F("infgerund-toinf-basic-12","infinitive-gerund","basic","Sloveso + to infinitiv","He pretended ","(be)"," sick to skip school.",["to be"],"Po „pretend“ následuje infinitiv s „to“ — „pretended to be“, ne „pretended being“."),
+F("infgerund-toinf-basic-13","infinitive-gerund","basic","Sloveso + to infinitiv","The bus failed ","(arrive)"," on time.",["to arrive"],"Sloveso „fail“ (ve smyslu „nepodařit se“) se pojí s infinitivem s „to“ — „failed to arrive“."),
+F("infgerund-toinf-basic-14","infinitive-gerund","basic","Sloveso + to infinitiv","We arranged ","(meet)"," at six.",["to meet"],"Po „arrange“ následuje infinitiv s „to“ — „arranged to meet“."),
+F("infgerund-toinf-basic-15","infinitive-gerund","basic","Sloveso + to infinitiv","She threatened ","(quit)"," her job.",["to quit"],"Sloveso „threaten“ se pojí s infinitivem s „to“ — „threatened to quit“."),
+F("infgerund-toinf-basic-16","infinitive-gerund","basic","Sloveso + to infinitiv","He chose ","(stay)"," at home instead.",["to stay"],"Po „choose“ následuje infinitiv s „to“ — „chose to stay“, ne „chose staying“."),
+F("infgerund-toinf-basic-17","infinitive-gerund","basic","Sloveso + to infinitiv","I intend ","(study)"," medicine next year.",["to study"],"Sloveso „intend“ se pojí s infinitivem s „to“ — „intend to study“."),
+F("infgerund-toinf-basic-18","infinitive-gerund","basic","Sloveso + to infinitiv","Few employees dare ","(question)"," the new policy openly.",["to question"],"Sloveso „dare“ jako plnovýznamové sloveso se pojí s infinitivem s „to“ — „dare to question“."),
+F("infgerund-toinf-basic-19","infinitive-gerund","basic","Sloveso + to infinitiv","She swore ","(not tell)"," anyone about the surprise party.",["not to tell"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „swore not to tell“, nikoli „didn't swear to tell“."),
+C("infgerund-toinf-basic-20","infinitive-gerund","basic","Sloveso + to infinitiv","She wants ___ a doctor one day.",["to become","becoming","that she becomes"],0,"Po slovese „want“ následuje infinitiv s „to“ — „wants to become“. Tvar s „-ing“ („becoming“) ani vedlejší věta s „that“ nejsou po „want“ možné, na rozdíl od češtiny, kde se běžně používá spojka „že“."),
+F("infgerund-toinf-intermediate-01","infinitive-gerund","intermediate","Sloveso + to infinitiv","John appeared ","(be)"," upset after the meeting, though nobody knew why.",["to be"],"Sloveso „appear“ ve významu „zdát se“ se pojí s infinitivem s „to“ — „appeared to be“."),
+F("infgerund-toinf-intermediate-02","infinitive-gerund","intermediate","Sloveso + to infinitiv","People who work night shifts tend ","(drink)"," more coffee than others.",["to drink"],"Sloveso „tend“ (ve smyslu „mít tendenci“) se pojí s infinitivem s „to“ — „tend to drink“."),
+F("infgerund-toinf-intermediate-03","infinitive-gerund","intermediate","Sloveso + to infinitiv","We happened ","(take)"," the same train that morning.",["to take"],"Sloveso „happen“ (ve smyslu „náhodou se stát“) se pojí s infinitivem s „to“ — „happened to take“."),
+F("infgerund-toinf-intermediate-04","infinitive-gerund","intermediate","Sloveso + to infinitiv","The climbers attempted ","(reach)"," the summit before the storm arrived, but had to turn back.",["to reach"],"Sloveso „attempt“ se pojí s infinitivem s „to“ — „attempted to reach“, ne s „-ing“ tvarem „reaching“."),
+F("infgerund-toinf-intermediate-05","infinitive-gerund","intermediate","Sloveso + to infinitiv","After the accident, she struggled ","(walk)"," without help for months.",["to walk"],"Sloveso „struggle“ se pojí s infinitivem s „to“ — „struggled to walk“."),
+F("infgerund-toinf-intermediate-06","infinitive-gerund","intermediate","Sloveso + to infinitiv","After years of hard work, he deserves ","(take)"," a break.",["to take"],"Sloveso „deserve“ se pojí s infinitivem s „to“ — „deserves to take“."),
+F("infgerund-toinf-intermediate-07","infinitive-gerund","intermediate","Sloveso + to infinitiv","If you ever need advice, don't hesitate ","(contact)"," me.",["to contact"],"Sloveso „hesitate“ se pojí s infinitivem s „to“ — „hesitate to contact“."),
+F("infgerund-toinf-intermediate-08","infinitive-gerund","intermediate","Sloveso + to infinitiv","Living abroad, she longed ","(see)"," her family again.",["to see"],"Sloveso „long“ (ve smyslu „toužit“) se pojí s infinitivem s „to“ — „longed to see“."),
+F("infgerund-toinf-intermediate-09","infinitive-gerund","intermediate","Sloveso + to infinitiv","Two students volunteered ","(show)"," the visiting professor around campus.",["to show"],"Sloveso „volunteer“ se pojí s infinitivem s „to“ — „volunteered to show“."),
+F("infgerund-toinf-intermediate-10","infinitive-gerund","intermediate","Sloveso + to infinitiv","By the time the results came in, they had already decided ","(not accept)"," the offer.",["not to accept"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „decided not to accept“. Předminulý čas „had decided“ ukazuje souslednost s dřívějším dějem."),
+F("infgerund-toinf-intermediate-11","infinitive-gerund","intermediate","Sloveso + to infinitiv","He claimed he had managed ","(not tell)"," anyone about the accident, though his sister said otherwise.",["not to tell"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „managed not to tell“. V nepřímé řeči po „claimed“ zůstává vazba „managed + infinitiv“ nezměněná, česká spojka „že“ se do angličtiny nepřekládá."),
+F("infgerund-toinf-intermediate-12","infinitive-gerund","intermediate","Sloveso + to infinitiv","She told me she would promise ","(not be)"," late for the ceremony again.",["not to be"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „promise not to be“. Po „promise“ nenásleduje vedlejší věta s „that“, i když by to český mluvčí čekal."),
+F("infgerund-toinf-intermediate-13","infinitive-gerund","intermediate","Sloveso + to infinitiv","According to the lawyer, the documents are arranged ","(sign)"," before Friday.",["to be signed"],"Sloveso „arrange“ se pojí s infinitivem s „to“; protože podmět „documents“ sám dokument nepodepisuje, ale je podepsán, používá se trpný infinitiv „to be signed“."),
+F("infgerund-toinf-intermediate-14","infinitive-gerund","intermediate","Sloveso + to infinitiv","Even under pressure, he refused ","(change)"," his position, insisting he was right.",["to change"],"Sloveso „refuse“ se pojí s infinitivem s „to“ — „refused to change“."),
+F("infgerund-toinf-intermediate-15","infinitive-gerund","intermediate","Sloveso + to infinitiv","Realizing she was struggling, he offered ","(help)"," her with the boxes.",["to help"],"Sloveso „offer“ se pojí s infinitivem s „to“ — „offered to help“. Zájmeno „her“ je předmětem infinitivu „help“, nestojí mezi „offered“ a „to“."),
+F("infgerund-toinf-intermediate-16","infinitive-gerund","intermediate","Sloveso + to infinitiv","She seemed ","(miss)"," the point of the joke completely.",["to miss"],"Sloveso „seem“ se pojí s infinitivem s „to“ — „seemed to miss“."),
+C("infgerund-toinf-intermediate-17","infinitive-gerund","intermediate","Sloveso + to infinitiv","After much thought, he chose ___ the job in London.",["to take","that he takes","taking"],0,"Po slovese „choose“ následuje infinitiv s „to“ — „chose to take“. Vedlejší věta s „that“ ani tvar s „-ing“ zde nejsou možné, přestože by odpovídaly českému „rozhodl se, že...“."),
+F("infgerund-toinf-intermediate-18","infinitive-gerund","intermediate","Sloveso + to infinitiv","Despite months of training, she failed ","(achieve)"," the qualifying time by just two seconds.",["to achieve"],"Sloveso „fail“ se pojí s infinitivem s „to“ — „failed to achieve“."),
+F("infgerund-toinf-intermediate-19","infinitive-gerund","intermediate","Sloveso + to infinitiv","The workers threatened ","(strike)"," unless their demands were met.",["to strike"],"Sloveso „threaten“ se pojí s infinitivem s „to“ — „threatened to strike“."),
+F("infgerund-toinf-intermediate-20","infinitive-gerund","intermediate","Sloveso + to infinitiv","The company aims ","(reduce)"," its carbon emissions by half within the decade.",["to reduce"],"Sloveso „aim“ (ve smyslu „mít za cíl“) se pojí s infinitivem s „to“ — „aims to reduce“."),
+F("infgerund-toinf-advanced-01","infinitive-gerund","advanced","Sloveso + to infinitiv","The contractor undertook ","(upgrade)"," the building to the new safety code within six months.",["to upgrade"],"Formální sloveso „undertake“ (zavázat se) se pojí s infinitivem s „to“ — „undertook to upgrade“."),
+F("infgerund-toinf-advanced-02","infinitive-gerund","advanced","Sloveso + to infinitiv","Many young diplomats aspire ","(become)"," ambassador one day.",["to become"],"Formální sloveso „aspire“ (touží, usiluje) se pojí s infinitivem s „to“ — „aspire to become“."),
+F("infgerund-toinf-advanced-03","infinitive-gerund","advanced","Sloveso + to infinitiv","The committee endeavoured ","(ensure)"," a fair outcome for everyone involved.",["to ensure"],"Formální sloveso „endeavour“ (snažit se, usilovat) se pojí s infinitivem s „to“ — „endeavoured to ensure“."),
+F("infgerund-toinf-advanced-04","infinitive-gerund","advanced","Sloveso + to infinitiv","After the scandal, she resolved ","(withdraw)"," from public life altogether.",["to withdraw"],"Formální sloveso „resolve“ (rozhodnout se, odhodlat se) se pojí s infinitivem s „to“ — „resolved to withdraw“."),
+F("infgerund-toinf-advanced-05","infinitive-gerund","advanced","Sloveso + to infinitiv","The witness eventually consented ","(testify)"," before the tribunal.",["to testify"],"Formální sloveso „consent“ (souhlasit) se pojí s infinitivem s „to“ — „consented to testify“."),
+F("infgerund-toinf-advanced-06","infinitive-gerund","advanced","Sloveso + to infinitiv","He vowed ","(remain)"," silent about the negotiations, no matter the pressure.",["to remain"],"Formální sloveso „vow“ (slíbit, odpřisáhnout) se pojí s infinitivem s „to“ — „vowed to remain“."),
+F("infgerund-toinf-advanced-07","infinitive-gerund","advanced","Sloveso + to infinitiv","The suspect professed ","(not know)"," anything about the missing funds.",["not to know"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „professed not to know“. Sloveso „profess“ (tvrdit, prohlašovat) se pojí s infinitivem s „to“, nikoli s vedlejší větou uvedenou spojkou „that“, i když by to český mluvčí čekal."),
+F("infgerund-toinf-advanced-08","infinitive-gerund","advanced","Sloveso + to infinitiv","The document purports ","(sign)"," by all three parties, though one signature looks forged.",["to have been signed"],"Sloveso „purport“ (vydávat se za) se pojí s infinitivem s „to“. Protože jde o děj předcházející a trpný (dokument byl podepsán), používá se trpný perfektní infinitiv „to have been signed“."),
+F("infgerund-toinf-advanced-09","infinitive-gerund","advanced","Sloveso + to infinitiv","Somehow, the smugglers contrived ","(pass)"," the checkpoint without being searched.",["to pass"],"Formální sloveso „contrive“ (vymyslet, dokázat lstí) se pojí s infinitivem s „to“ — „contrived to pass“."),
+F("infgerund-toinf-advanced-10","infinitive-gerund","advanced","Sloveso + to infinitiv","Several shareholders elected ","(not attend)"," the emergency meeting.",["not to attend"],"Zápor infinitivu se tvoří pomocí „not“ před „to“ — „elected not to attend“. Sloveso „elect“ (ve smyslu „rozhodnout se“) se pojí s infinitivem s „to“."),
+F("infgerund-toinf-advanced-11","infinitive-gerund","advanced","Sloveso + to infinitiv","The minister declined ","(comment)"," on the matter until the inquiry concluded.",["to comment"],"Formální sloveso „decline“ (odmítnout) se pojí s infinitivem s „to“ — „declined to comment“."),
+F("infgerund-toinf-advanced-12","infinitive-gerund","advanced","Sloveso + to infinitiv","The researchers strive ","(verify)"," the results before publishing them, however long it takes.",["to verify"],"Formální sloveso „strive“ (usilovat) se pojí s infinitivem s „to“ — „strive to verify“."),
+F("infgerund-toinf-advanced-13","infinitive-gerund","advanced","Sloveso + to infinitiv","The manuscript seems ","(write)"," by someone other than the credited author.",["to have been written"],"Sloveso „seem“ se pojí s infinitivem s „to“. Protože jde o děj předcházející a trpný (rukopis byl napsán), používá se trpný perfektní infinitiv „to have been written“."),
+F("infgerund-toinf-advanced-14","infinitive-gerund","advanced","Sloveso + to infinitiv","The negotiations appear ","(progress)"," well before the deadline was suddenly moved.",["to have been progressing"],"Sloveso „appear“ se pojí s infinitivem s „to“. Protože jde o děj probíhající před současným okamžikem, používá se průběhový perfektní infinitiv „to have been progressing“."),
+F("infgerund-toinf-advanced-15","infinitive-gerund","advanced","Sloveso + to infinitiv","He pretended ","(not know)"," anything about the merger, although he had chaired the meeting himself.",["not to have known"],"Zápor infinitivu se tvoří pomocí „not“ před „to“. Protože jde o děj předcházející okamžiku předstírání, používá se perfektní infinitiv „not to have known“."),
+F("infgerund-toinf-advanced-16","infinitive-gerund","advanced","Sloveso + to infinitiv","The old estate has managed ","(remain)"," intact despite decades of neglect.",["to remain"],"Sloveso „manage“ se pojí s infinitivem s „to“ — „has managed to remain“."),
+F("infgerund-toinf-advanced-17","infinitive-gerund","advanced","Sloveso + to infinitiv","Critics say the reform failed ","(address)"," any of the problems it was meant to solve.",["to address"],"Sloveso „fail“ se pojí s infinitivem s „to“ — „failed to address“."),
+F("infgerund-toinf-advanced-18","infinitive-gerund","advanced","Sloveso + to infinitiv","Few analysts dared ","(speak)"," against the prevailing consensus at the time.",["to speak"],"Sloveso „dare“ jako plnovýznamové sloveso se pojí s infinitivem s „to“ — „dared to speak“."),
+F("infgerund-toinf-advanced-19","infinitive-gerund","advanced","Sloveso + to infinitiv","Whatever one thinks of his politics, he deserves ","(treat)"," fairly by the press.",["to be treated"],"Sloveso „deserve“ se pojí s infinitivem s „to“. Protože podmět „he“ je tím, s kým se jedná (je léčen/zpracováván tiskem), používá se trpný infinitiv „to be treated“."),
+C("infgerund-toinf-advanced-20","infinitive-gerund","advanced","Sloveso + to infinitiv","The board resolved ___ the proposal without further debate.",["to adopt","adopting","that it adopts"],0,"Formální sloveso „resolve“ (rozhodnout se) se pojí s infinitivem s „to“ — „resolved to adopt“. Vedlejší věta s „that“ ani tvar s „-ing“ zde nejsou možné, přestože by odpovídaly českému „rozhodla se, že...“."),
+
+/* ---- Sloveso + -ing ---- */
+F("infgerund-ing-basic-01","infinitive-gerund","basic","Sloveso + -ing","I really enjoy ","(swim)"," in the sea during summer.",["swimming"],"Po slovese „enjoy“ následuje vždy gerundium (-ing), nikoli infinitiv – proto „swimming“, ne „to swim“."),
+F("infgerund-ing-basic-02","infinitive-gerund","basic","Sloveso + -ing","She always avoids ","(talk)"," about her past.",["talking"],"Sloveso „avoid“ se pojí pouze s gerundiem, proto „talking“; infinitiv „to talk“ by byl chybný, i když by v češtině znělo přirozeně „vyhýbá se mluvit“."),
+F("infgerund-ing-basic-03","infinitive-gerund","basic","Sloveso + -ing","He suggested ","(go)"," to the cinema tonight.",["going"],"Po slovese „suggest“ následuje gerundium, ne infinitiv – „suggest to go“ je typická chyba způsobená českým „navrhl jít“."),
+F("infgerund-ing-basic-04","infinitive-gerund","basic","Sloveso + -ing","Would you mind ","(open)"," the window, please?",["opening"],"Zdvořilá otázka „Would you mind“ se vždy pojí s gerundiem – „mind to open“ neexistuje."),
+F("infgerund-ing-basic-05","infinitive-gerund","basic","Sloveso + -ing","We finished ","(eat)"," dinner at nine o'clock.",["eating"],"Sloveso „finish“ vyjadřující dokončení činnosti vyžaduje gerundium, proto „eating“."),
+F("infgerund-ing-basic-06","infinitive-gerund","basic","Sloveso + -ing","He denied ","(break)"," the vase.",["breaking"],"Po slovese „deny“ (popírat) následuje gerundium – „deny to break“ je vždy chybně."),
+F("infgerund-ing-basic-07","infinitive-gerund","basic","Sloveso + -ing","She admitted ","(make)"," a mistake.",["making"],"Sloveso „admit“ (přiznat) se pojí s gerundiem, ne s infinitivem."),
+F("infgerund-ing-basic-08","infinitive-gerund","basic","Sloveso + -ing","I can't imagine ","(live)"," without music.",["living"],"„Imagine“ se pojí výhradně s gerundiem, protože vyjadřuje představu o probíhající činnosti."),
+F("infgerund-ing-basic-09","infinitive-gerund","basic","Sloveso + -ing","He risked ","(lose)"," his job by arriving late so often.",["losing"],"Po slovese „risk“ (riskovat) následuje gerundium – „risk to lose“ je chyba."),
+F("infgerund-ing-basic-10","infinitive-gerund","basic","Sloveso + -ing","My father quit ","(smoke)"," last year.",["smoking"],"„Quit“ (přestat) se pojí s gerundiem, podobně jako „stop“."),
+F("infgerund-ing-basic-11","infinitive-gerund","basic","Sloveso + -ing","You should practice ","(speak)"," English every day.",["speaking"],"Sloveso „practice“ (cvičit se v něčem) vyžaduje gerundium."),
+F("infgerund-ing-basic-12","infinitive-gerund","basic","Sloveso + -ing","They postponed ","(start)"," the meeting until Monday.",["starting"],"„Postpone“ (odložit) se pojí s gerundiem, nikdy s infinitivem."),
+F("infgerund-ing-basic-13","infinitive-gerund","basic","Sloveso + -ing","We delayed ","(leave)"," because of the heavy rain.",["leaving"],"Podobně jako „postpone“ i „delay“ (zdržet, odložit) vyžaduje po sobě gerundium."),
+F("infgerund-ing-basic-14","infinitive-gerund","basic","Sloveso + -ing","I couldn't resist ","(eat)"," the last piece of cake.",["eating"],"„Resist“ (odolat) se pojí s gerundiem – vyjadřuje neschopnost ubránit se činnosti."),
+F("infgerund-ing-basic-15","infinitive-gerund","basic","Sloveso + -ing","She can't tolerate ","(wait)"," in long queues.",["waiting"],"Sloveso „tolerate“ (tolerovat, snést) vyžaduje gerundium jako předmět."),
+F("infgerund-ing-basic-16","infinitive-gerund","basic","Sloveso + -ing","I really appreciate ","(get)"," so much support from my friends.",["getting"],"„Appreciate“ (oceňovat, být rád za) se pojí s gerundiem, nikdy s infinitivem."),
+F("infgerund-ing-basic-17","infinitive-gerund","basic","Sloveso + -ing","The doctor recommended ","(exercise)"," regularly.",["exercising"],"Po slovese „recommend“ následuje gerundium, pokud nemá sloveso vlastní podmět (jinak by byla jiná konstrukce s „that“)."),
+F("infgerund-ing-basic-18","infinitive-gerund","basic","Sloveso + -ing","He gave up ","(play)"," football after the injury.",["playing"],"Frázové sloveso „give up“ (vzdát se) se pojí s gerundiem, stejně jako většina frázových sloves."),
+F("infgerund-ing-basic-19","infinitive-gerund","basic","Sloveso + -ing","She kept ","(ask)"," the same question again and again.",["asking"],"„Keep“ ve významu „neustále něco dělat“ se pojí s gerundiem."),
+F("infgerund-ing-basic-20","infinitive-gerund","basic","Sloveso + -ing","I can't stand ","(wait)"," in traffic every morning.",["waiting"],"Vazba „can't stand“ (nesnášet) vyžaduje po sobě gerundium."),
+F("infgerund-ing-intermediate-01","infinitive-gerund","intermediate","Sloveso + -ing","After thinking it over for weeks, she finally considered ","(change)"," careers completely.",["changing"],"„Consider“ (zvažovat) se pojí s gerundiem; infinitiv „to change“ by byl chybný, i když česká věta „zvažovala změnit“ svádí k infinitivu."),
+F("infgerund-ing-intermediate-02","infinitive-gerund","intermediate","Sloveso + -ing","Closing this deal will involve ","(negotiate)"," with several difficult suppliers.",["negotiating"],"„Involve“ (obnášet, zahrnovat) se pojí výhradně s gerundiem, i když jde o neosobní podmět jako „closing this deal“."),
+F("infgerund-ing-intermediate-03","infinitive-gerund","intermediate","Sloveso + -ing","He couldn't justify ","(spend)"," so much money on a car he rarely used.",["spending"],"„Justify“ (zdůvodnit, ospravedlnit) vyžaduje po sobě gerundium, ne infinitiv."),
+F("infgerund-ing-intermediate-04","infinitive-gerund","intermediate","Sloveso + -ing","The company anticipated ","(face)"," serious problems once the new law came into force.",["facing"],"„Anticipate“ (předpokládat, očekávat) se pojí s gerundiem, i ve vedlejší časové větě."),
+F("infgerund-ing-intermediate-05","infinitive-gerund","intermediate","Sloveso + -ing","After the argument with her boss, she seriously contemplated ","(resign)"," from her position.",["resigning"],"„Contemplate“ (uvažovat o něčem) se pojí s gerundiem."),
+F("infgerund-ing-intermediate-06","infinitive-gerund","intermediate","Sloveso + -ing","He resented ","(have)"," to work overtime every weekend.",["having"],"„Resent“ (mít někomu/něčemu za zlé) se pojí s gerundiem – zde „having to work“, ne „to have to work“."),
+F("infgerund-ing-intermediate-07","infinitive-gerund","intermediate","Sloveso + -ing","The player denied ","(not / cheat)"," during the match.",["not cheating"],"Zápor gerundia se tvoří pomocí „not“ přímo před -ing tvarem, proto „not cheating“, nikoli „to not cheat“."),
+F("infgerund-ing-intermediate-08","infinitive-gerund","intermediate","Sloveso + -ing","She admitted ","(not / practice)"," enough before the exam.",["not practicing"],"Stejně jako v předchozím případě se zápor gerundia tvoří slovem „not“ před -ing tvarem: „not practicing“."),
+F("infgerund-ing-intermediate-09","infinitive-gerund","intermediate","Sloveso + -ing","Despite the heavy rain, the workers carried on ","(build)"," the bridge.",["building"],"Frázové sloveso „carry on“ (pokračovat) se pojí s gerundiem stejně jako „keep on“."),
+F("infgerund-ing-intermediate-10","infinitive-gerund","intermediate","Sloveso + -ing","I can't help ","(laugh)"," whenever I see that photo.",["laughing"],"Vazba „can't help“ (nemůže si pomoct, aby ne-) se vždy pojí s gerundiem."),
+F("infgerund-ing-intermediate-11","infinitive-gerund","intermediate","Sloveso + -ing","He risked ","(not / finish)"," the project on time.",["not finishing"],"Zápor gerundia „not finishing“ ukazuje, že riziko se týká nedokončení, ne dokončení."),
+F("infgerund-ing-intermediate-12","infinitive-gerund","intermediate","Sloveso + -ing","By the time we arrived, she had already suggested ","(postpone)"," the whole event.",["postponing"],"I v souvětí s předminulým časem („had already suggested“) zůstává po „suggest“ gerundium."),
+F("infgerund-ing-intermediate-13","infinitive-gerund","intermediate","Sloveso + -ing","The manual recommends ","(avoid)"," direct sunlight when storing the batteries.",["avoiding"],"„Recommend“ se pojí s gerundiem; zde následuje další gerundium po „avoid“, což je běžná kombinace dvou takových sloves za sebou."),
+F("infgerund-ing-intermediate-14","infinitive-gerund","intermediate","Sloveso + -ing","Eventually, he quit ","(complain)"," about things he couldn't change.",["complaining"],"„Quit“ se pojí s gerundiem stejně jako „stop“ nebo „give up“."),
+F("infgerund-ing-intermediate-15","infinitive-gerund","intermediate","Sloveso + -ing","The teacher won't tolerate ","(not / do)"," homework any longer.",["not doing"],"Zápor gerundia „not doing“ ukazuje, že se netoleruje samotné neplnění úkolů."),
+F("infgerund-ing-intermediate-16","infinitive-gerund","intermediate","Sloveso + -ing","Ten years ago, nobody could have imagined ","(work)"," entirely from home.",["working"],"I v minulé podmínkové konstrukci „could have imagined“ zůstává po „imagine“ gerundium."),
+F("infgerund-ing-intermediate-17","infinitive-gerund","intermediate","Sloveso + -ing","We would appreciate ","(receive)"," your feedback as soon as possible.",["receiving"],"Formální vazba „would appreciate“ se pojí s gerundiem, typická pro obchodní korespondenci."),
+F("infgerund-ing-intermediate-18","infinitive-gerund","intermediate","Sloveso + -ing","The board decided to delay ","(announce)"," the merger until next quarter.",["announcing"],"„Delay“ se pojí s gerundiem i ve formálním, korporátním kontextu."),
+F("infgerund-ing-intermediate-19","infinitive-gerund","intermediate","Sloveso + -ing","Despite the setbacks, the team kept on ","(develop)"," the new software.",["developing"],"„Keep on“ (pokračovat) se pojí s gerundiem stejně jako „keep“."),
+F("infgerund-ing-intermediate-20","infinitive-gerund","intermediate","Sloveso + -ing","Even though he was on a diet, he couldn't resist ","(order)"," dessert at the end of the meal.",["ordering"],"„Resist“ se pojí s gerundiem i v delším souvětí s přípustkovou větou („even though...“)."),
+F("infgerund-ing-advanced-01","infinitive-gerund","advanced","Sloveso + -ing","Having reviewed the proposal thoroughly, the committee members admitted ","(underestimate)"," the initial costs.",["underestimating"],"I po participiální vazbě „having reviewed“ zůstává hlavní sloveso „admit“ vázáno na gerundium – vazba mezi slovesem a -ing formou se nemění vlivem předchozí věty."),
+F("infgerund-ing-advanced-02","infinitive-gerund","advanced","Sloveso + -ing","The negotiators risked ","(jeopardize)"," the entire agreement by refusing to compromise.",["jeopardizing"],"„Risk“ se i ve formálním, odborném kontextu pojí s gerundiem, nikdy s infinitivem."),
+F("infgerund-ing-advanced-03","infinitive-gerund","advanced","Sloveso + -ing","She strongly resented ","(not / receive)"," any recognition for her years of dedicated service.",["not receiving"],"Zápor gerundia „not receiving“ vyjadřuje, že jí vadí samotná absence uznání, ne uznání samotné."),
+F("infgerund-ing-advanced-04","infinitive-gerund","advanced","Sloveso + -ing","The board decided to postpone ","(disclose)"," the financial results until the audit was complete.",["disclosing"],"„Postpone“ se pojí s gerundiem i v korporátním, formálním stylu."),
+F("infgerund-ing-advanced-05","infinitive-gerund","advanced","Sloveso + -ing","The report anticipated ","(encounter)"," significant resistance from local communities.",["encountering"],"„Anticipate“ v abstraktním, formálním stylu (např. zprávy, analýzy) se stále pojí s gerundiem."),
+F("infgerund-ing-advanced-06","infinitive-gerund","advanced","Sloveso + -ing","He denied ","(deliberately / mislead)"," the shareholders about the company's finances.",["deliberately misleading"],"Příslovce („deliberately“) může stát mezi slovesem a gerundiem, aniž by to ovlivnilo vazbu „deny + gerundium“."),
+F("infgerund-ing-advanced-07","infinitive-gerund","advanced","Sloveso + -ing","The board contemplated ","(restructure)"," the entire department before the end of the fiscal year.",["restructuring"],"„Contemplate“ se pojí s gerundiem i v korporátním, formálním jazyce."),
+F("infgerund-ing-advanced-08","infinitive-gerund","advanced","Sloveso + -ing","Nothing could justify ","(withhold)"," such crucial information from the public.",["withholding"],"„Justify“ se pojí s gerundiem bez ohledu na abstraktnost podmětu (zde „nothing“)."),
+F("infgerund-ing-advanced-09","infinitive-gerund","advanced","Sloveso + -ing","After years of trying, the researchers finally gave up ","(search)"," for a conventional cure and explored alternative methods.",["searching"],"„Give up“ se pojí s gerundiem i v delším souvětí s časovým údajem („after years of trying“)."),
+F("infgerund-ing-advanced-10","infinitive-gerund","advanced","Sloveso + -ing","The union couldn't tolerate ","(be / exploit)"," any longer.",["being exploited"],"Gerundium může být i v trpném rodě („being exploited“), pokud podmět děj nekoná, ale je jím zasažen."),
+F("infgerund-ing-advanced-11","infinitive-gerund","advanced","Sloveso + -ing","The scientist couldn't help ","(speculate)"," about the implications of the discovery.",["speculating"],"„Can't help“ zůstává vázáno na gerundium i v odborném, formálním kontextu."),
+F("infgerund-ing-advanced-12","infinitive-gerund","advanced","Sloveso + -ing","Successfully completing the merger involved ","(not / disclose)"," certain sensitive details to competitors.",["not disclosing"],"Zápor gerundia „not disclosing“ ukazuje, co proces vyžadoval neudělat, ne co udělat."),
+F("infgerund-ing-advanced-13","infinitive-gerund","advanced","Sloveso + -ing","Having already postponed the launch twice, the executives couldn't justify ","(delay)"," it a third time.",["delaying"],"I po participiální vazbě v minulosti („having already postponed“) zůstává „justify“ vázáno na gerundium."),
+F("infgerund-ing-advanced-14","infinitive-gerund","advanced","Sloveso + -ing","The auditors recommended ","(immediately / review)"," all outstanding contracts.",["immediately reviewing"],"Příslovce může stát mezi slovesem a gerundiem, aniž by narušilo vazbu „recommend + gerundium“."),
+F("infgerund-ing-advanced-15","infinitive-gerund","advanced","Sloveso + -ing","The defendant's lawyer admitted ","(withhold)"," certain details during the initial investigation.",["withholding"],"I v právním jazyce se po „admit“ používá gerundium."),
+F("infgerund-ing-advanced-16","infinitive-gerund","advanced","Sloveso + -ing","Employees who keep on ","(disregard)"," safety regulations will face disciplinary action.",["disregarding"],"„Keep on“ se pojí s gerundiem i ve vedlejší vztažné větě („who keep on...“)."),
+F("infgerund-ing-advanced-17","infinitive-gerund","advanced","Sloveso + -ing","The committee couldn't tolerate ","(ignore)"," the new safety regulations any further.",["ignoring"],"„Tolerate“ se pojí s gerundiem i v delší, formální větě."),
+F("infgerund-ing-advanced-18","infinitive-gerund","advanced","Sloveso + -ing","After weeks of stalling, she finally admitted ","(avoid)"," the difficult conversation on purpose.",["avoiding"],"I v delším souvětí s časovým údajem („after weeks of stalling“) zůstává „admit“ vázáno na gerundium."),
+F("infgerund-ing-advanced-19","infinitive-gerund","advanced","Sloveso + -ing","The negotiators anticipated ","(have to / make)"," several concessions before reaching an agreement.",["having to make"],"Vazba „have to“ lze převést do gerundia jako „having to“, a celé sousloví pak stojí za „anticipate“."),
+F("infgerund-ing-advanced-20","infinitive-gerund","advanced","Sloveso + -ing","Even the most experienced pilots can't help ","(feel)"," nervous during severe turbulence.",["feeling"],"„Can't help“ se pojí s gerundiem i v obecném výroku s podmětem v množném čísle a superlativem („the most experienced pilots“)."),
+
+/* ---- Rozdily ve vyznamu ---- */
+F("infgerund-meaning-basic-01","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","Please remember ","(lock)"," the door before you leave.",["to lock"],"„Remember to do“ znamená nezapomenout udělat něco v budoucnu — proto „to lock“, ne „locking“, které by znamenalo vzpomínat si na minulou událost."),
+F("infgerund-meaning-basic-02","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I remember ","(meet)"," her at the party last year.",["meeting"],"„Remember doing“ znamená vzpomínat si na něco, co se už stalo — proto „meeting“, ne „to meet“, které by vyjadřovalo budoucí úkol, na který se nesmí zapomenout."),
+F("infgerund-meaning-basic-03","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","Don't forget ","(bring)"," your umbrella tomorrow.",["to bring"],"„Forget to do“ znamená zapomenout udělat něco, co je potřeba — proto „to bring“, ne „bringing“."),
+F("infgerund-meaning-basic-04","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I'll never forget ","(see)"," the Northern Lights.",["seeing"],"„Forget doing“ (vzácnější, ale existující vazba) znamená nezapomenout na zážitek z minulosti — proto „seeing“, ne „to see“."),
+F("infgerund-meaning-basic-05","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","We stopped ","(buy)"," some coffee on the way.",["to buy"],"„Stop to do“ znamená zastavit se, aby se udělalo něco jiného — proto „to buy“, ne „buying“, které by znamenalo přestat kávu kupovat."),
+F("infgerund-meaning-basic-06","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","He stopped ","(smoke)"," two years ago.",["smoking"],"„Stop doing“ znamená přestat s danou činností — proto „smoking“, ne „to smoke“."),
+F("infgerund-meaning-basic-07","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I tried ","(open)"," the jar, but it was too tight.",["to open"],"„Try to do“ znamená vynaložit úsilí, které se může i nepodařit — proto „to open“, ne „opening“."),
+F("infgerund-meaning-basic-08","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","Try ","(add)"," more salt if the soup is bland.",["adding"],"„Try doing“ znamená vyzkoušet něco jako možné řešení — proto „adding“, ne „to add“."),
+F("infgerund-meaning-basic-09","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I regret ","(inform)"," you that the flight is cancelled.",["to inform"],"„Regret to say/inform“ je formální vazba používaná při oznamování nepříjemné zprávy — proto „to inform“, ne „informing“."),
+F("infgerund-meaning-basic-10","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","She regrets ","(say)"," such unkind words.",["saying"],"„Regret doing“ znamená litovat něčeho, co se v minulosti udělalo — proto „saying“, ne „to say“."),
+F("infgerund-meaning-basic-11","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I didn't mean ","(hurt)"," your feelings.",["to hurt"],"„Mean to do“ znamená mít v úmyslu něco udělat — proto „to hurt“, ne „hurting“."),
+F("infgerund-meaning-basic-12","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","Winning this match means ","(train)"," even harder.",["training"],"„Mean doing“ znamená, že z něčeho vyplývá určitý důsledek — proto „training“, ne „to train“."),
+F("infgerund-meaning-basic-13","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","After university, he went on ","(become)"," a famous chef.",["to become"],"„Go on to do“ znamená přejít k jiné, nové činnosti — proto „to become“, ne „becoming“."),
+F("infgerund-meaning-basic-14","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","She went on ","(talk)"," for another hour.",["talking"],"„Go on doing“ znamená pokračovat ve stejné činnosti — proto „talking“, ne „to talk“."),
+F("infgerund-meaning-basic-15","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","You need ","(finish)"," your homework before dinner.",["to finish"],"„Need to do“ má aktivní význam — někdo (ty) musí danou věc udělat — proto „to finish“, ne „finishing“."),
+F("infgerund-meaning-basic-16","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","This shirt needs ","(iron)",".",["ironing"],"„Need doing“ má pasivní význam — samotná věc potřebuje, aby s ní bylo něco uděláno (= needs to be ironed) — proto „ironing“, ne „to iron“."),
+F("infgerund-meaning-basic-17","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I like ","(check)"," my email every morning before work.",["to check"],"„Like to do“ vyjadřuje zvyk nebo věc, kterou považujeme za správnou či rozumnou dělat — proto „to check“, ne „checking“."),
+F("infgerund-meaning-basic-18","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","I like ","(dance)"," at parties.",["dancing"],"„Like doing“ vyjadřuje, že z dané činnosti máme radost — proto „dancing“, ne „to dance“."),
+F("infgerund-meaning-basic-19","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","Remember ","(turn off)"," the lights when you leave the room.",["to turn off"],"„Remember to do“ se používá pro úkol, na který se nemá zapomenout — proto „to turn off“, ne „turning off“."),
+F("infgerund-meaning-basic-20","infinitive-gerund","basic","Rozdíly ve významu (remember, stop, try...)","The grass is very long. It needs ","(cut)",".",["cutting"],"„Need doing“ (= needs to be cut) vyjadřuje, že trávník sám potřebuje zásah — proto „cutting“, ne „to cut“."),
+F("infgerund-meaning-intermediate-01","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","Could you remember ","(water)"," the plants while we're away next week?",["to water"],"Jde o budoucí úkol, na který se nemá zapomenout, proto „remember to do“ — „to water“, ne „watering“."),
+F("infgerund-meaning-intermediate-02","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","I clearly remember ","(lock)"," the front door, so I don't understand why it was open.",["locking"],"Mluvčí si vybavuje konkrétní minulou událost, proto „remember doing“ — „locking“, ne „to lock“."),
+F("infgerund-meaning-intermediate-03","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","He forgot ","(set)"," his alarm, so he missed the early train.",["to set"],"Nesplnil povinnost, kterou měl udělat předem, proto „forget to do“ — „to set“, ne „setting“."),
+F("infgerund-meaning-intermediate-04","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","I'll never forget ","(stand)"," on that stage for the first time.",["standing"],"Jde o nezapomenutelný zážitek z minulosti, proto vzácnější vazba „forget doing“ — „standing“, ne „to stand“."),
+F("infgerund-meaning-intermediate-05","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","On our way home, we stopped ","(ask)"," a stranger for directions.",["to ask"],"Zastavili se, aby udělali něco jiného, proto „stop to do“ — „to ask“, ne „asking“."),
+F("infgerund-meaning-intermediate-06","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","The company stopped ","(produce)"," that model last year because of low sales.",["producing"],"Přestali s danou činností úplně, proto „stop doing“ — „producing“, ne „to produce“."),
+F("infgerund-meaning-intermediate-07","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","However hard she tried ","(persuade)"," him, he refused to change his mind.",["to persuade"],"Jde o snahu, která se nemusela podařit, proto „try to do“ — „to persuade“, ne „persuading“."),
+F("infgerund-meaning-intermediate-08","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","If the printer isn't working, try ","(restart)"," the computer first.",["restarting"],"Jde o vyzkoušení možného řešení, proto „try doing“ — „restarting“, ne „to restart“."),
+F("infgerund-meaning-intermediate-09","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","We regret ","(announce)"," that tonight's performance has been cancelled.",["to announce"],"Formální oznámení nepříjemné zprávy vyžaduje vazbu „regret to say/announce“ — „to announce“, ne „announcing“."),
+F("infgerund-meaning-intermediate-10","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","He deeply regrets ","(quit)"," his job without having another one lined up.",["quitting"],"Lituje něčeho, co v minulosti udělal, proto „regret doing“ — „quitting“, ne „to quit“."),
+F("infgerund-meaning-intermediate-11","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","I meant ","(call)"," you earlier, but the meeting ran late.",["to call"],"Vyjadřuje úmysl, který se nepodařilo splnit, proto „mean to do“ — „to call“, ne „calling“."),
+F("infgerund-meaning-intermediate-12","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","Getting the promotion would mean ","(relocate)"," to another city.",["relocating"],"Vyjadřuje důsledek, který z dané věci vyplývá, proto „mean doing“ — „relocating“, ne „to relocate“."),
+F("infgerund-meaning-intermediate-13","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","After finishing her degree, she went on ","(open)"," her own law firm.",["to open"],"Přešla k nové, odlišné činnosti, proto „go on to do“ — „to open“, ne „opening“."),
+F("infgerund-meaning-intermediate-14","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","Despite the criticism, the band went on ","(release)"," albums for another decade.",["releasing"],"Pokračovali ve stejné činnosti i přes kritiku, proto „go on doing“ — „releasing“, ne „to release“."),
+F("infgerund-meaning-intermediate-15","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","The manager needs ","(approve)"," the budget before we can proceed.",["to approve"],"Manažer je aktivním činitelem, který musí něco udělat, proto „need to do“ — „to approve“, ne „approving“."),
+F("infgerund-meaning-intermediate-16","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","The roof has been leaking for months; it really needs ","(repair)",".",["repairing"],"Samotná střecha potřebuje zásah (= needs to be repaired), proto pasivní „need doing“ — „repairing“, ne „to repair“."),
+F("infgerund-meaning-intermediate-17","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","As a rule, our teacher likes ","(arrive)"," at least ten minutes early.",["to arrive"],"Jde o zvyk či osvědčený postup, který učitel považuje za správný, proto „like to do“ — „to arrive“, ne „arriving“."),
+F("infgerund-meaning-intermediate-18","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","Unlike his brother, he likes ","(spend)"," his weekends alone in the countryside.",["spending"],"Vyjadřuje, že ho tato činnost baví, proto „like doing“ — „spending“, ne „to spend“."),
+F("infgerund-meaning-intermediate-19","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","Make sure you don't forget ","(submit)"," the report by Friday.",["to submit"],"Jde o povinnost, kterou je třeba splnit v budoucnu, proto „forget to do“ — „to submit“, ne „submitting“."),
+F("infgerund-meaning-intermediate-20","infinitive-gerund","intermediate","Rozdíly ve významu (remember, stop, try...)","The hikers stopped ","(rest)"," halfway up the mountain.",["to rest"],"Zastavili se (přerušili chůzi), aby udělali něco jiného — odpočinuli si, proto „stop to do“ — „to rest“, ne „resting“."),
+F("infgerund-meaning-advanced-01","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Board members must remember ","(declare)"," any conflict of interest prior to the vote.",["to declare"],"Jde o povinnost do budoucna, na kterou se nesmí zapomenout, proto „remember to do“ — „to declare“, ne „declaring“."),
+F("infgerund-meaning-advanced-02","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","I distinctly remember ","(sign)"," the contract, yet the company claims no record of it exists.",["signing"],"Mluvčí si vybavuje konkrétní minulou událost, proto „remember doing“ — „signing“, ne „to sign“."),
+F("infgerund-meaning-advanced-03","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Having forgotten ","(renew)"," his passport, he was denied boarding at the gate.",["to renew"],"Nesplnil povinnost, kterou měl udělat předem, proto „forget to do“ — „to renew“, ne „renewing“."),
+F("infgerund-meaning-advanced-04","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","She could not forget ","(witness)"," the accident, and it haunted her for years.",["witnessing"],"Jde o vzpomínku na traumatický zážitek z minulosti, proto vzácnější vazba „forget doing“ — „witnessing“, ne „to witness“."),
+F("infgerund-meaning-advanced-05","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","En route to the summit, the expedition stopped ","(recalibrate)"," their equipment before pressing on.",["to recalibrate"],"Zastavili se, aby udělali něco jiného — přerušili postup, proto „stop to do“ — „to recalibrate“, ne „recalibrating“."),
+F("infgerund-meaning-advanced-06","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","The committee stopped ","(deliberate)"," once a clear consensus had emerged.",["deliberating"],"Přestali s danou činností (jednáním) samotnou, proto „stop doing“ — „deliberating“, ne „to deliberate“."),
+F("infgerund-meaning-advanced-07","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Despite repeated setbacks, the negotiators tried ","(reach)"," a compromise acceptable to both parties.",["to reach"],"Jde o snahu, která se mohla i nepodařit, proto „try to do“ — „to reach“, ne „reaching“."),
+F("infgerund-meaning-advanced-08","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","If the current strategy fails, the board suggested trying ","(restructure)"," the department entirely.",["restructuring"],"Jde o vyzkoušení možného postupu jako experimentu, proto „try doing“ — „restructuring“, ne „to restructure“."),
+F("infgerund-meaning-advanced-09","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","We regret ","(inform)"," shareholders that this year's dividend will be suspended.",["to inform"],"Formální oznámení nepříjemné zprávy vyžaduje „regret to say/inform“ — „to inform“, ne „informing“."),
+F("infgerund-meaning-advanced-10","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","He never regretted ","(turn down - odmítnout)"," the offer, even though it would have paid considerably more.",["turning down"],"Jde o hodnocení něčeho, co v minulosti udělal, proto „regret doing“ — „turning down“, ne „to turn down“."),
+F("infgerund-meaning-advanced-11","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","The minister meant ","(clarify)"," the policy, but his remarks only caused further confusion.",["to clarify"],"Vyjadřuje úmysl, který se nepodařilo naplnit, proto „mean to do“ — „to clarify“, ne „clarifying“."),
+F("infgerund-meaning-advanced-12","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Accepting the merger would mean ","(surrender)"," a significant degree of operational independence.",["surrendering"],"Vyjadřuje důsledek vyplývající z dané situace, proto „mean doing“ — „surrendering“, ne „to surrender“."),
+F("infgerund-meaning-advanced-13","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Having established the company, she went on ","(serve)"," as its chief executive for two decades.",["to serve"],"Přešla k nové, odlišné roli, proto „go on to do“ — „to serve“, ne „serving“."),
+F("infgerund-meaning-advanced-14","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Critics dismissed the film, yet the director went on ","(make)"," increasingly ambitious projects.",["making"],"Pokračoval ve stejném druhu činnosti, proto „go on doing“ — „making“, ne „to make“."),
+F("infgerund-meaning-advanced-15","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","The committee needs ","(approve)"," the proposal before it can take effect.",["to approve"],"Výbor je aktivním činitelem, který musí něco udělat, proto „need to do“ — „to approve“, ne „approving“."),
+F("infgerund-meaning-advanced-16","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","This old manuscript is extremely fragile; it needs ","(handle)"," with the utmost care.",["handling"],"Samotný rukopis potřebuje, aby s ním bylo zacházeno určitým způsobem (= needs to be handled), proto pasivní „need doing“ — „handling“, ne „to handle“."),
+F("infgerund-meaning-advanced-17","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","As a matter of professional courtesy, executives like ","(acknowledge)"," emails within twenty-four hours.",["to acknowledge"],"Jde o zavedenou praxi, kterou považují za správnou, proto „like to do“ — „to acknowledge“, ne „acknowledging“."),
+F("infgerund-meaning-advanced-18","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Surprisingly, given her reputation for formality, she likes ","(improvise)"," during lectures rather than following a script.",["improvising"],"Vyjadřuje, že z dané činnosti má radost, proto „like doing“ — „improvising“, ne „to improvise“."),
+F("infgerund-meaning-advanced-19","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","Having forgotten ","(mention)"," the deadline change, the coordinator had to send a follow-up email to the entire team.",["to mention"],"Nesplnila povinnost, kterou měla udělat, proto „forget to do“ — „to mention“, ne „mentioning“."),
+F("infgerund-meaning-advanced-20","infinitive-gerund","advanced","Rozdíly ve významu (remember, stop, try...)","He stopped ","(check)"," his phone constantly after realizing how much it was affecting his concentration.",["checking"],"Přestal s danou činností úplně, proto „stop doing“ — „checking“, ne „to check“."),
+
+/* ---- Sloveso + predmet + infinitiv ---- */
+F("infgerund-objectinf-basic-01","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","I want him ","(go)"," to the store.",["to go"],"Po slovese „want“ následuje předmět a „to-infinitiv“ („want somebody to do something“), proto „to go“, nikoli holý infinitiv."),
+F("infgerund-objectinf-basic-02","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Let him ","(go)"," home early.",["go"],"Sloveso „let“ se pojí s předmětem a holým infinitivem bez „to“ („let somebody do something“), proto pouze „go“, nikoli „to go“."),
+F("infgerund-objectinf-basic-03","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","She told us ","(wait)"," outside.",["to wait"],"Po slovese „tell“ v konstrukci „tell somebody to do something“ následuje „to-infinitiv“, proto „to wait“."),
+F("infgerund-objectinf-basic-04","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","My parents made me ","(clean)"," my room.",["clean"],"Sloveso „make“ v aktivním rodě se pojí s předmětem a holým infinitivem („make somebody do something“), proto „clean“, nikoli „to clean“."),
+F("infgerund-objectinf-basic-05","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The teacher asked the students ","(open)"," their books.",["to open"],"Po slovese „ask“ v konstrukci „ask somebody to do something“ následuje „to-infinitiv“, proto „to open“."),
+F("infgerund-objectinf-basic-06","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Please let me ","(know)"," if you need anything.",["know"],"„Let“ vyžaduje holý infinitiv bez „to“ („let somebody know“), proto „know“."),
+F("infgerund-objectinf-basic-07","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","He wants his sister ","(help)"," him with homework.",["to help"],"Po slovese „want“ následuje předmět a „to-infinitiv“, proto „to help“, i když by se dalo čekat holý infinitiv jako po „make/let“."),
+F("infgerund-objectinf-basic-08","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Our boss made everyone ","(stay)"," late yesterday.",["stay"],"„Make“ se pojí s holým infinitivem („make somebody do something“), proto „stay“, nikoli „to stay“."),
+F("infgerund-objectinf-basic-09","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","I'll have my assistant ","(send)"," you the report.",["send"],"Sloveso „have“ v kauzativním významu (=„zařídit, aby někdo něco udělal“) se v aktivním rodě pojí s holým infinitivem, proto „send“, nikoli „to send“."),
+F("infgerund-objectinf-basic-10","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Let the children ","(play)"," outside.",["play"],"„Let“ + předmět + holý infinitiv, proto „play“."),
+F("infgerund-objectinf-basic-11","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The police officer told the driver ","(stop)"," the car.",["to stop"],"„Tell somebody to do something“ vyžaduje „to-infinitiv“, proto „to stop“."),
+F("infgerund-objectinf-basic-12","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","She helped her brother ","(carry)"," the boxes.",["carry","to carry"],"Sloveso „help“ je výjimka — po předmětu může následovat „to-infinitiv“ i holý infinitiv, oba tvary jsou správné, proto „carry“ i „to carry“."),
+F("infgerund-objectinf-basic-13","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The manager didn't allow us ","(leave)"," early.",["to leave"],"„Allow somebody to do something“ vyžaduje „to-infinitiv“, proto „to leave“."),
+F("infgerund-objectinf-basic-14","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","My father never lets me ","(drive)"," his car.",["drive"],"„Let“ + předmět + holý infinitiv bez „to“, proto „drive“."),
+F("infgerund-objectinf-basic-15","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","I expect you ","(be)"," on time tomorrow.",["to be"],"„Expect somebody to do something“ vyžaduje „to-infinitiv“, proto „to be“."),
+F("infgerund-objectinf-basic-16","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The dentist advised her ","(brush)"," her teeth twice a day.",["to brush"],"„Advise somebody to do something“ vyžaduje „to-infinitiv“, proto „to brush“."),
+F("infgerund-objectinf-basic-17","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Don't make him ","(wait)"," outside in the rain.",["wait"],"„Make“ + předmět + holý infinitiv, proto „wait“, nikoli „to wait“."),
+F("infgerund-objectinf-basic-18","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","They invited us ","(join)"," their team.",["to join"],"„Invite somebody to do something“ vyžaduje „to-infinitiv“, proto „to join“."),
+F("infgerund-objectinf-basic-19","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Can you remind me ","(buy)"," milk after work?",["to buy"],"„Remind somebody to do something“ vyžaduje „to-infinitiv“, proto „to buy“."),
+F("infgerund-objectinf-basic-20","infinitive-gerund","basic","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Our coach makes us ","(train)"," every single day.",["train"],"„Make“ + předmět + holý infinitiv, proto „train“, nikoli „to train“."),
+F("infgerund-objectinf-intermediate-01","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Because the flight was delayed, the airline let passengers ","(wait)"," in the lounge instead of the gate.",["wait"],"„Let“ + předmět + holý infinitiv bez „to“, proto „wait“, nikoli „to wait“, i v delší souštné konstrukci."),
+F("infgerund-objectinf-intermediate-02","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The general ordered the soldiers ","(retreat)"," before the storm hit.",["to retreat"],"„Order somebody to do something“ vyžaduje „to-infinitiv“, proto „to retreat“."),
+F("infgerund-objectinf-intermediate-03","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","After the accident, the officer made the driver ","(take)"," a breathalyzer test.",["take"],"„Make“ se pojí s holým infinitivem bez „to“ („make somebody do something“), proto „take“, nikoli „to take“."),
+F("infgerund-objectinf-intermediate-04","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Her manager persuaded her ","(accept)"," the promotion, even though she had doubts.",["to accept"],"„Persuade somebody to do something“ vyžaduje „to-infinitiv“, proto „to accept“."),
+F("infgerund-objectinf-intermediate-05","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The strict headmaster never allows students ","(use)"," their phones during lessons.",["to use"],"„Allow somebody to do something“ vyžaduje „to-infinitiv“, proto „to use“."),
+F("infgerund-objectinf-intermediate-06","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","When I was a child, my grandmother taught me ","(bake)"," bread from scratch.",["to bake"],"„Teach somebody to do something“ vyžaduje „to-infinitiv“, proto „to bake“."),
+F("infgerund-objectinf-intermediate-07","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The company required all new employees ","(sign)"," a confidentiality agreement.",["to sign"],"„Require somebody to do something“ vyžaduje „to-infinitiv“, proto „to sign“."),
+F("infgerund-objectinf-intermediate-08","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Since the workers were protesting, the supervisor had to let them ","(leave)"," early.",["leave"],"I když je ve větě „had to“, hlavní vazbou zůstává „let somebody do something“ s holým infinitivem, proto „leave“, nikoli „to leave“."),
+F("infgerund-objectinf-intermediate-09","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The professor warned the students ","(submit)"," their essays before the deadline.",["to submit"],"„Warn somebody to do something“ vyžaduje „to-infinitiv“, proto „to submit“."),
+F("infgerund-objectinf-intermediate-10","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Instead of scolding him, she simply had her son ","(apologize)"," to his sister.",["apologize"],"Kauzativní „have somebody do something“ (=„zařídit, aby někdo něco udělal“) se v aktivním rodě pojí s holým infinitivem, proto „apologize“, nikoli „to apologize“."),
+F("infgerund-objectinf-intermediate-11","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The customs officer made every passenger ","(open)"," their suitcase.",["open"],"„Make“ + předmět + holý infinitiv, proto „open“, nikoli „to open“."),
+F("infgerund-objectinf-intermediate-12","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","He was so persuasive that he convinced the committee ","(fund)"," his research project.",["to fund"],"„Convince somebody to do something“ se chová stejně jako „persuade“ a vyžaduje „to-infinitiv“, proto „to fund“."),
+F("infgerund-objectinf-intermediate-13","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The landlord forbids tenants ","(keep)"," pets in the building.",["to keep"],"„Forbid somebody to do something“ vyžaduje „to-infinitiv“, proto „to keep“."),
+F("infgerund-objectinf-intermediate-14","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Because she was late again, her boss finally made her ","(explain)"," herself in front of everyone.",["explain"],"„Make“ + předmět + holý infinitiv, proto „explain“, nikoli „to explain“, bez ohledu na délku souštní."),
+F("infgerund-objectinf-intermediate-15","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The negotiators encouraged both sides ","(compromise)"," before the talks collapsed.",["to compromise"],"„Encourage somebody to do something“ vyžaduje „to-infinitiv“, proto „to compromise“."),
+F("infgerund-objectinf-intermediate-16","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","My doctor advised me ","(cut down)"," on sugar after the test results came back.",["to cut down"],"„Advise somebody to do something“ vyžaduje „to-infinitiv“, proto „to cut down“."),
+F("infgerund-objectinf-intermediate-17","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The babysitter let the twins ","(stay up)"," a bit later since it was a special occasion.",["stay up"],"„Let“ + předmět + holý infinitiv, proto „stay up“, nikoli „to stay up“."),
+F("infgerund-objectinf-intermediate-18","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The airline reminded passengers ","(check in)"," online at least two hours before departure.",["to check in"],"„Remind somebody to do something“ vyžaduje „to-infinitiv“, proto „to check in“."),
+F("infgerund-objectinf-intermediate-19","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Rather than firing him, the director had him ","(retrain)"," in a different department.",["retrain"],"Kauzativní „have somebody do something“ se pojí s holým infinitivem, proto „retrain“, nikoli „to retrain“."),
+F("infgerund-objectinf-intermediate-20","infinitive-gerund","intermediate","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The judge permitted the witness ","(leave)"," the courtroom after giving her testimony.",["to leave"],"„Permit somebody to do something“ vyžaduje „to-infinitiv“, proto „to leave“."),
+F("infgerund-objectinf-advanced-01","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The committee insisted that the funds be allocated properly, and eventually persuaded the board ","(reconsider)"," the entire budget proposal.",["to reconsider"],"„Persuade somebody to do something“ vyžaduje „to-infinitiv“, proto „to reconsider“, bez ohledu na to, že věta obsahuje i jinou konstrukci se spojkou „that“."),
+F("infgerund-objectinf-advanced-02","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","He was made ","(testify)"," in court, even though he had originally refused to cooperate.",["to testify"],"V trpném rodě se „to“ u slovesa „make“ vrací zpět — „be made to do something“, proto „to testify“, na rozdíl od aktivního rodu „make somebody do something“ s holým infinitivem."),
+F("infgerund-objectinf-advanced-03","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The CEO had the legal department ","(draft)"," a revised contract before the merger was finalized.",["draft"],"Kauzativní „have somebody do something“ v aktivním rodě se pojí s holým infinitivem, proto „draft“, nikoli „to draft“."),
+F("infgerund-objectinf-advanced-04","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Despite mounting criticism, the government refused to let independent auditors ","(examine)"," its financial records.",["examine"],"„Let“ + předmět + holý infinitiv, proto „examine“, nikoli „to examine“."),
+F("infgerund-objectinf-advanced-05","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The senator's aides persuaded him ","(withdraw)"," the controversial amendment before the vote.",["to withdraw"],"„Persuade somebody to do something“ vyžaduje „to-infinitiv“, proto „to withdraw“."),
+F("infgerund-objectinf-advanced-06","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Employees who arrive late three times are required ","(submit)"," a written explanation to human resources.",["to submit"],"I v trpném rodě „be required to do something“ zůstává „to-infinitiv“, proto „to submit“."),
+F("infgerund-objectinf-advanced-07","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The prisoners were made ","(work)"," in the fields from dawn until dusk.",["to work"],"V trpném rodě se u „make“ na rozdíl od aktivního tvaru objevuje „to“ — „be made to do something“, proto „to work“."),
+F("infgerund-objectinf-advanced-08","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Rather than dismiss the allegations, the board had an independent investigator ","(review)"," every transaction.",["review"],"Kauzativní „have somebody do something“ se pojí s holým infinitivem, proto „review“, nikoli „to review“."),
+F("infgerund-objectinf-advanced-09","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The strict immigration officer wouldn't let the travelers ","(proceed)"," without the correct documentation.",["proceed"],"„Let“ + předmět + holý infinitiv, proto „proceed“, nikoli „to proceed“."),
+F("infgerund-objectinf-advanced-10","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","After years of lobbying, the activists finally persuaded lawmakers ","(amend)"," the outdated legislation.",["to amend"],"„Persuade somebody to do something“ vyžaduje „to-infinitiv“, proto „to amend“."),
+F("infgerund-objectinf-advanced-11","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The general's orders forbade the troops ","(retreat)"," under any circumstances.",["to retreat"],"„Forbid somebody to do something“ vyžaduje „to-infinitiv“, proto „to retreat“."),
+F("infgerund-objectinf-advanced-12","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Her supervisor had her ","(redo)"," the entire report after discovering several inconsistencies.",["redo"],"Kauzativní „have somebody do something“ se pojí s holým infinitivem, proto „redo“, nikoli „to redo“."),
+F("infgerund-objectinf-advanced-13","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The witness was made ","(repeat)"," her statement three times by the increasingly skeptical lawyer.",["to repeat"],"V trpném rodě „be made to do something“ se „to“ vrací, proto „to repeat“, na rozdíl od aktivního „make somebody do something“."),
+F("infgerund-objectinf-advanced-14","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The scholarship committee requires every applicant ","(submit)"," two letters of recommendation.",["to submit"],"„Require somebody to do something“ vyžaduje „to-infinitiv“, proto „to submit“."),
+F("infgerund-objectinf-advanced-15","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Rather than punishing the interns directly, the manager simply let them ","(face)"," the consequences of their own mistakes.",["face"],"„Let“ + předmět + holý infinitiv, proto „face“, nikoli „to face“."),
+F("infgerund-objectinf-advanced-16","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The regulator compelled the bank ","(disclose)"," its hidden losses to shareholders.",["to disclose"],"„Compel somebody to do something“ se chová jako „force“ a vyžaduje „to-infinitiv“, proto „to disclose“."),
+F("infgerund-objectinf-advanced-17","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Because the evidence was overwhelming, the defense attorney had no choice but to let his client ","(confess)",".",["confess"],"„Let“ + předmět + holý infinitiv, proto „confess“, nikoli „to confess“."),
+F("infgerund-objectinf-advanced-18","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The board of directors wouldn't allow the merger ","(proceed)"," without a thorough antitrust review.",["to proceed"],"„Allow something to do something“ vyžaduje „to-infinitiv“, proto „to proceed“."),
+F("infgerund-objectinf-advanced-19","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","The commanding officer had the recruits ","(repeat)"," the drill until it was flawless.",["repeat"],"Kauzativní „have somebody do something“ se pojí s holým infinitivem, proto „repeat“, nikoli „to repeat“."),
+F("infgerund-objectinf-advanced-20","infinitive-gerund","advanced","Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)","Under the new policy, offenders can be made ","(pay)"," compensation directly to their victims.",["to pay"],"V trpném rodě „be made to do something“ se „to“ vrací zpět, proto „to pay“, na rozdíl od aktivního „make somebody do something“."),
+
+/* ---- Predlozka + -ing ---- */
+F("infgerund-prepositioning-basic-01","infinitive-gerund","basic","Předložka + -ing","She is interested in ","(hear)"," the details of the plan.",["hearing"],"„in“ je v tomto spojení předložka, a po předložce v angličtině vždy následuje gerundium („-ing“), nikoli infinitiv — proto „hearing“, ne „to hear“."),
+F("infgerund-prepositioning-basic-02","infinitive-gerund","basic","Předložka + -ing","He is good at ","(play)"," chess.",["playing"],"Po předložce „at“ následuje gerundium („playing“), protože předložky se v angličtině nikdy nepojí s infinitivem."),
+F("infgerund-prepositioning-basic-03","infinitive-gerund","basic","Předložka + -ing","I'm afraid of ","(fly)"," in small planes.",["flying"],"„of“ je předložka, a po předložce stojí tvar „-ing“ — proto „flying“, nikoli „to fly“."),
+F("infgerund-prepositioning-basic-04","infinitive-gerund","basic","Předložka + -ing","We are tired of ","(wait)"," for the bus.",["waiting"],"Po předložce „of“ musí následovat gerundium; infinitiv „to wait“ by byl chybný."),
+F("infgerund-prepositioning-basic-05","infinitive-gerund","basic","Předložka + -ing","Before ","(leave)"," the house, check that the door is locked.",["leaving"],"„Before“ zde funguje jako předložka uvozující vedlejší část věty, a po předložce následuje gerundium („leaving“), nikoli infinitiv."),
+F("infgerund-prepositioning-basic-06","infinitive-gerund","basic","Předložka + -ing","Instead of ","(watch)"," TV, he decided to study.",["watching"],"„Instead of“ je předložková vazba, po které vždy stojí „-ing“ tvar — proto „watching“."),
+F("infgerund-prepositioning-basic-07","infinitive-gerund","basic","Předložka + -ing","She left without ","(say)"," a word.",["saying"],"Po předložce „without“ následuje gerundium („saying“), protože po jakékoli předložce se v angličtině používá „-ing“ tvar, ne infinitiv."),
+F("infgerund-prepositioning-basic-08","infinitive-gerund","basic","Předložka + -ing","I look forward to ","(see)"," you next week.",["seeing"],"Ve vazbě „look forward to“ je „to“ předložka, ne infinitivní částice — proto po ní následuje gerundium „seeing“, nikoli „to see“."),
+F("infgerund-prepositioning-basic-09","infinitive-gerund","basic","Předložka + -ing","They are thinking about ","(move)"," to a new city.",["moving"],"Po předložce „about“ stojí gerundium („moving“); infinitiv „to move“ by byl v tomto spojení chybný."),
+F("infgerund-prepositioning-basic-10","infinitive-gerund","basic","Předložka + -ing","He is keen on ","(try)"," new kinds of food.",["trying"],"„on“ je předložka, a po předložce následuje „-ing“ tvar — proto „trying“."),
+F("infgerund-prepositioning-basic-11","infinitive-gerund","basic","Předložka + -ing","She is worried about ","(lose)"," her job.",["losing"],"Po předložce „about“ se používá gerundium („losing“), nikoli infinitiv „to lose“."),
+F("infgerund-prepositioning-basic-12","infinitive-gerund","basic","Předložka + -ing","He is responsible for ","(clean)"," the classroom.",["cleaning"],"Po předložce „for“ následuje gerundium („cleaning“); infinitiv by zde nebyl gramaticky správný."),
+F("infgerund-prepositioning-basic-13","infinitive-gerund","basic","Předložka + -ing","I'm really bad at ","(cook)"," pasta.",["cooking"],"Předložka „at“ se pojí s gerundiem („cooking“), nikoli s infinitivem."),
+F("infgerund-prepositioning-basic-14","infinitive-gerund","basic","Předložka + -ing","She dreams of ","(travel)"," around the world.",["traveling","travelling"],"Po předložce „of“ stojí gerundium — proto „traveling“ (americký pravopis) nebo „travelling“ (britský pravopis), nikoli infinitiv „to travel“."),
+F("infgerund-prepositioning-basic-15","infinitive-gerund","basic","Předložka + -ing","He insisted on ","(pay)"," for dinner.",["paying"],"Po předložce „on“ následuje „-ing“ tvar („paying“), nikoli infinitiv „to pay“."),
+F("infgerund-prepositioning-basic-16","infinitive-gerund","basic","Předložka + -ing","After ","(finish)"," his homework, he watched a movie.",["finishing"],"„After“ tu funguje jako předložka, a po předložce vždy stojí gerundium („finishing“)."),
+F("infgerund-prepositioning-basic-17","infinitive-gerund","basic","Předložka + -ing","I feel like ","(eat)"," pizza tonight.",["eating"],"Ve vazbě „feel like“ je „like“ předložka ve významu „mít chuť na“, a po předložce následuje gerundium („eating“)."),
+F("infgerund-prepositioning-basic-18","infinitive-gerund","basic","Předložka + -ing","She is proud of ","(win)"," the race.",["winning"],"Po předložce „of“ stojí gerundium („winning“), nikoli infinitiv „to win“."),
+F("infgerund-prepositioning-basic-19","infinitive-gerund","basic","Předložka + -ing","He is fond of ","(read)"," mystery novels.",["reading"],"Předložka „of“ se pojí s „-ing“ tvarem („reading“), ne s infinitivem."),
+F("infgerund-prepositioning-basic-20","infinitive-gerund","basic","Předložka + -ing","I'm sick of ","(argue)"," with my sister.",["arguing"],"Po předložce „of“ následuje gerundium („arguing“); infinitiv „to argue“ by byl chybný."),
+F("infgerund-prepositioning-intermediate-01","infinitive-gerund","intermediate","Předložka + -ing","After years in the army, he became accustomed to ","(work)"," early morning shifts.",["working"],"Ve vazbě „accustomed to“ je „to“ předložka (ne infinitivní částice), proto po ní následuje gerundium „working“, nikoli infinitiv „to work“."),
+F("infgerund-prepositioning-intermediate-02","infinitive-gerund","intermediate","Předložka + -ing","The new software is capable of ","(solve)"," problems that used to take hours.",["solving"],"Po předložce „of“ stojí gerundium („solving“); povšimni si také „used to take“ — to je zcela jiná vazba (zvyk v minulosti), po které naopak následuje holý infinitiv."),
+F("infgerund-prepositioning-intermediate-03","infinitive-gerund","intermediate","Předložka + -ing","This small town has always been famous for ","(make)"," the best cheese in the region.",["making"],"Po předložce „for“ se používá gerundium („making“), nikoli infinitiv."),
+F("infgerund-prepositioning-intermediate-04","infinitive-gerund","intermediate","Předložka + -ing","The witness was accused of ","(lie)"," to the police during the investigation.",["lying"],"Ve vazbě „accuse someone of“ je „of“ předložka, a po ní vždy stojí gerundium („lying“), nikoli infinitiv."),
+F("infgerund-prepositioning-intermediate-05","infinitive-gerund","intermediate","Předložka + -ing","Everyone congratulated her on ","(pass)"," the bar exam on her first attempt.",["passing"],"Po předložce „on“ ve vazbě „congratulate someone on“ následuje gerundium („passing“)."),
+F("infgerund-prepositioning-intermediate-06","infinitive-gerund","intermediate","Předložka + -ing","He apologized for ","(be)"," late, explaining that the train had been delayed.",["being"],"Po předložce „for“ stojí gerundium („being“), nikoli infinitiv „to be“."),
+F("infgerund-prepositioning-intermediate-07","infinitive-gerund","intermediate","Předložka + -ing","His parents don't approve of ","(spend)"," so much money on video games.",["spending"],"Po předložce „of“ musí následovat „-ing“ tvar („spending“), ne infinitiv."),
+F("infgerund-prepositioning-intermediate-08","infinitive-gerund","intermediate","Předložka + -ing","The residents objected to the council ","(build)"," a new road through the park.",["building"],"Po předložce „to“ ve vazbě „object to“ následuje gerundium („building“); „to“ je tu předložka, ne infinitivní částice."),
+F("infgerund-prepositioning-intermediate-09","infinitive-gerund","intermediate","Předložka + -ing","Despite ","(feel)"," exhausted, she finished the marathon in record time.",["feeling"],"„Despite“ je předložka, a po předložce vždy následuje gerundium („feeling“), nikoli infinitiv ani věta s „that“."),
+F("infgerund-prepositioning-intermediate-10","infinitive-gerund","intermediate","Předložka + -ing","In spite of ","(know)"," the risks, he decided to go ahead with the investment.",["knowing"],"„In spite of“ je předložková vazba vyžadující gerundium („knowing“), na rozdíl od „decided to go“, kde je „to go“ skutečný infinitiv po slovese „decide“."),
+F("infgerund-prepositioning-intermediate-11","infinitive-gerund","intermediate","Předložka + -ing","Small businesses often rely on ","(get)"," support from local communities.",["getting"],"Po předložce „on“ ve vazbě „rely on“ následuje gerundium („getting“)."),
+F("infgerund-prepositioning-intermediate-12","infinitive-gerund","intermediate","Předložka + -ing","The coach told the team to focus on ","(improve)"," their defense before the final.",["improving"],"Po předložce „on“ stojí gerundium („improving“); všimni si kontrastu s „told the team to focus“, kde je „to focus“ infinitiv po slovese „tell“."),
+F("infgerund-prepositioning-intermediate-13","infinitive-gerund","intermediate","Předložka + -ing","The engineer was blamed for ","(cause)"," the delay in production.",["causing"],"Po předložce „for“ následuje gerundium („causing“)."),
+F("infgerund-prepositioning-intermediate-14","infinitive-gerund","intermediate","Předložka + -ing","I want to thank you for ","(help)"," me move last weekend.",["helping"],"Po předložce „for“ stojí gerundium („helping“); srovnej s „want to thank“, kde je „to thank“ infinitiv po slovese „want“."),
+F("infgerund-prepositioning-intermediate-15","infinitive-gerund","intermediate","Předložka + -ing","After long discussions, they decided against ","(buy)"," the old house.",["buying"],"Po předložce „against“ následuje gerundium („buying“), nikoli infinitiv."),
+F("infgerund-prepositioning-intermediate-16","infinitive-gerund","intermediate","Předložka + -ing","The lawyer succeeded in ","(convince)"," the jury of his client's innocence.",["convincing"],"Po předložce „in“ ve vazbě „succeed in“ následuje gerundium („convincing“)."),
+F("infgerund-prepositioning-intermediate-17","infinitive-gerund","intermediate","Předložka + -ing","My grandfather always believed in ","(tell)"," the truth, even when it hurt.",["telling"],"Po předložce „in“ stojí gerundium („telling“), nikoli infinitiv „to tell“."),
+F("infgerund-prepositioning-intermediate-18","infinitive-gerund","intermediate","Předložka + -ing","The police warned drivers about ","(drive)"," too fast in the fog.",["driving"],"Po předložce „about“ následuje gerundium („driving“)."),
+F("infgerund-prepositioning-intermediate-19","infinitive-gerund","intermediate","Předložka + -ing","Heavy snow prevented the plane from ","(leave)"," on time.",["leaving"],"Po předložce „from“ ve vazbě „prevent someone from“ stojí gerundium („leaving“), nikoli infinitiv."),
+F("infgerund-prepositioning-intermediate-20","infinitive-gerund","intermediate","Předložka + -ing","They argued for hours and ended up ","(work)"," on separate projects.",["working"],"Ve vazbě „end up“ je „up“ příslovce chovající se jako předložková částice, po které následuje gerundium („working“)."),
+F("infgerund-prepositioning-advanced-01","infinitive-gerund","advanced","Předložka + -ing","In addition to ","(submit)"," the final report, the team had to present their findings to the board.",["submitting"],"Ve vazbě „in addition to“ je „to“ předložka, ne infinitivní částice, proto po ní následuje gerundium „submitting“; naproti tomu „had to present“ obsahuje skutečný infinitiv po vazbě „had to“."),
+F("infgerund-prepositioning-advanced-02","infinitive-gerund","advanced","Předložka + -ing","The company signed the contract with a view to ","(expand)"," into international markets.",["expanding"],"„With a view to“ je formální předložková vazba znamenající „s cílem“, a „to“ v ní je předložka — proto musí následovat gerundium „expanding“, nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-03","infinitive-gerund","advanced","Předložka + -ing","When it comes to ","(negotiate)"," contracts, experience matters more than confidence.",["negotiating"],"Ve vazbě „when it comes to“ je „to“ opět předložka, po které následuje gerundium („negotiating“), nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-04","infinitive-gerund","advanced","Předložka + -ing","Several board members were strongly opposed to ","(implement)"," the new policy without further review.",["implementing"],"Po předložce „to“ ve vazbě „opposed to“ stojí gerundium („implementing“); toto „to“ nikdy neuvozuje infinitiv."),
+F("infgerund-prepositioning-advanced-05","infinitive-gerund","advanced","Předložka + -ing","The senior staff objected to ","(be)"," asked to work unpaid overtime.",["being"],"Po předložce „to“ ve vazbě „object to“ stojí gerundium, zde v trpném tvaru „being asked“; „to“ tu opět funguje jako předložka, nikoli jako infinitivní částice."),
+F("infgerund-prepositioning-advanced-06","infinitive-gerund","advanced","Předložka + -ing","It took him months to get used to ","(commute)"," two hours each way to work.",["commuting"],"Ve vazbě „be/get used to“ znamenající „být/stát se zvyklý na“ je „to“ předložka vyžadující gerundium („commuting“); nezaměňuj s modálním „used to + infinitiv“ („I used to commute“ = zvyk v minulosti), což je odlišná konstrukce."),
+F("infgerund-prepositioning-advanced-07","infinitive-gerund","advanced","Předložka + -ing","Despite ","(have)"," advance warning about the storm, many residents were unprepared.",["having"],"Po předložce „despite“ následuje gerundium („having“), nikoli infinitiv ani věta s „that“."),
+F("infgerund-prepositioning-advanced-08","infinitive-gerund","advanced","Předložka + -ing","In spite of ","(be)"," given only a week's notice, the department managed to reorganize successfully.",["being"],"Po předložkové vazbě „in spite of“ stojí gerundium, zde trpný tvar „being given“."),
+F("infgerund-prepositioning-advanced-09","infinitive-gerund","advanced","Předložka + -ing","The manager insisted on handling everything herself instead of ","(delegate)"," tasks to her team.",["delegating"],"Po předložkové vazbě „instead of“ následuje gerundium („delegating“); všimni si i „insisted on handling“, kde po předložce „on“ rovněž stojí gerundium."),
+F("infgerund-prepositioning-advanced-10","infinitive-gerund","advanced","Předložka + -ing","The director approved the budget without ","(consult)"," the finance department.",["consulting"],"Po předložce „without“ následuje gerundium („consulting“), nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-11","infinitive-gerund","advanced","Předložka + -ing","The board congratulated the CEO on ","(achieve)"," record profits despite the economic downturn.",["achieving"],"Po předložce „on“ následuje gerundium („achieving“); povšimni si i „despite“, po kterém rovněž musí stát gerundium, nikoli podstatné jméno s určující větou."),
+F("infgerund-prepositioning-advanced-12","infinitive-gerund","advanced","Předložka + -ing","The auditor accused the firm of ","(falsify)"," its financial statements.",["falsifying"],"Po předložce „of“ ve vazbě „accuse someone of“ stojí gerundium („falsifying“)."),
+F("infgerund-prepositioning-advanced-13","infinitive-gerund","advanced","Předložka + -ing","The committee insisted on ","(review)"," every application personally before making a decision.",["reviewing"],"Po předložce „on“ následuje gerundium („reviewing“); srovnej s „before making a decision“, kde po předložce „before“ rovněž stojí gerundium."),
+F("infgerund-prepositioning-advanced-14","infinitive-gerund","advanced","Předložka + -ing","After weeks of negotiation, the union succeeded in ","(persuade)"," management to raise wages.",["persuading"],"Po předložce „in“ stojí gerundium („persuading“); naproti tomu „to raise“ je infinitiv po slovese „persuade“, což je jiná konstrukce."),
+F("infgerund-prepositioning-advanced-15","infinitive-gerund","advanced","Předložka + -ing","The new director is fully capable of ","(manage)"," a team of this size.",["managing"],"Po předložce „of“ stojí gerundium („managing“), nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-16","infinitive-gerund","advanced","Předložka + -ing","As head of operations, she is responsible for ","(oversee)"," all logistics across three continents.",["overseeing"],"Po předložce „for“ následuje gerundium („overseeing“)."),
+F("infgerund-prepositioning-advanced-17","infinitive-gerund","advanced","Předložka + -ing","The scientist became famous for ","(pioneer)"," a new approach to renewable energy storage.",["pioneering"],"Po předložce „for“ stojí gerundium („pioneering“), nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-18","infinitive-gerund","advanced","Předložka + -ing","Investors were keen on ","(invest)"," in companies with a strong environmental record.",["investing"],"Po předložce „on“ následuje gerundium („investing“)."),
+F("infgerund-prepositioning-advanced-19","infinitive-gerund","advanced","Předložka + -ing","The analysts were worried about ","(miss)"," crucial warning signs in the market data.",["missing"],"Po předložce „about“ stojí gerundium („missing“), nikoli infinitiv."),
+F("infgerund-prepositioning-advanced-20","infinitive-gerund","advanced","Předložka + -ing","The board is seriously thinking of ","(relocate)"," the headquarters to reduce operating costs.",["relocating"],"Po předložce „of“ ve vazbě „think of“ následuje gerundium („relocating“); povšimni si kontrastu s „to reduce“, kde je „to reduce“ skutečný infinitiv vyjadřující účel."),
+
+/* ---- Perfektni infinitiv ---- */
+F("infgerund-perfectinf-basic-01","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He seems ","(leave)"," his keys at home.",["to have left"],"Sloveso „seem“ + dokonalý infinitiv „to have left“ ukazuje, že zapomenutí klíčů proběhlo dřív, než platí aktuální dojem „seems“ — proto „to have left“, ne prostý infinitiv „to leave“."),
+F("infgerund-perfectinf-basic-02","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","She appears ","(send)"," the email already.",["to have sent"],"Slovo „already“ napovídá, že odeslání e-mailu předchází okamžiku, kdy to „appears“ platí, proto se použije dokonalý infinitiv „to have sent“, ne „to send“."),
+F("infgerund-perfectinf-basic-03","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He claims ","(run)"," the marathon in under three hours.",["to have run"],"Uběhnutí maratonu je dřívější děj než samotné tvrzení „claims“, proto následuje dokonalý infinitiv „to have run“, ne prostý „to run“."),
+F("infgerund-perfectinf-basic-04","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","The boy pretended ","(do)"," his homework, but he hadn't touched it.",["to have done"],"Chlapec předstíral, že úkol už je hotový, tedy dříve dokončený — proto dokonalý infinitiv „to have done“, ne prostý „to do“."),
+F("infgerund-perfectinf-basic-05","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","I happen ","(read)"," that book, so I can lend it to you.",["to have read"],"Vazba „happen to have done“ vyjadřuje, že se něco už stalo (kniha byla přečtena dříve), proto „to have read“, ne „to read“."),
+F("infgerund-perfectinf-basic-06","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","The rumour turned out ","(be)"," true.",["to have been"],"„Turn out to have been“ ukazuje, že pravdivost fámy se potvrdila až zpětně, tedy vztahuje se k dřívějšímu stavu — proto dokonalý infinitiv „to have been“, ne „to be“."),
+F("infgerund-perfectinf-basic-07","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He is said ","(leave)"," the country last night.",["to have left"],"„Last night“ ukazuje, že odjezd proběhl před okamžikem, kdy se o tom mluví, proto se použije dokonalý infinitiv „to have left“, ne prostý „to leave“."),
+F("infgerund-perfectinf-basic-08","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","She is believed ","(write)"," the letter herself.",["to have written"],"Napsání dopisu předchází současnému přesvědčení „is believed“, proto dokonalý infinitiv „to have written“, ne „to write“."),
+F("infgerund-perfectinf-basic-09","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","The suspect is reported ","(flee)"," from the scene.",["to have fled"],"Útěk z místa činu proběhl dřív, než se o něm nyní referuje, proto „to have fled“, ne prostý infinitiv „to flee“."),
+F("infgerund-perfectinf-basic-10","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","The vase is thought ","(make)"," in the 18th century.",["to have been made"],"Váza byla vyrobena někým jiným, proto je potřeba trpný dokonalý infinitiv „to have been made“, ne aktivní „to have made“."),
+F("infgerund-perfectinf-basic-11","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He is known ","(speak)"," several languages.",["to have spoken"],"Schopnost mluvit jazyky se vztahuje k jeho dřívějšímu životu, proto dokonalý infinitiv „to have spoken“, ne „to speak“."),
+F("infgerund-perfectinf-basic-12","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","We were lucky ","(catch)"," the last train.",["to have caught"],"Stihnutí vlaku předchází okamžiku, kdy o tom mluvíme jako o štěstí, proto dokonalý infinitiv „to have caught“, ne prostý „to catch“."),
+F("infgerund-perfectinf-basic-13","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","I'm glad ","(see)"," you before you left.",["to have seen"],"Setkání proběhlo dříve, než vzniklo mínění „I'm glad“, proto se použije dokonalý infinitiv „to have seen“, ne „to see“."),
+F("infgerund-perfectinf-basic-14","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","I'm sorry ","(upset)"," you.",["to have upset"],"Omluva se vztahuje k dřívějšímu rozrušení, proto dokonalý infinitiv „to have upset“, ne prostý „to upset“."),
+F("infgerund-perfectinf-basic-15","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","She was relieved ","(pass)"," the exam.",["to have passed"],"Složení zkoušky předchází pocitu úlevy, proto dokonalý infinitiv „to have passed“, ne „to pass“."),
+F("infgerund-perfectinf-basic-16","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He was the first ","(reach)"," the summit.",["to have reached"],"Vazba „the first to have done“ ukazuje, že dosažení vrcholu je dříve uzavřený děj, proto dokonalý infinitiv „to have reached“, ne prostý „to reach“."),
+F("infgerund-perfectinf-basic-17","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","She was the last ","(see)"," him alive.",["to have seen"],"„The last to have done“ odkazuje k dřívější události před tím, než zmizel, proto dokonalý infinitiv „to have seen“, ne „to see“."),
+F("infgerund-perfectinf-basic-18","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","I would like ","(meet)"," you in person, but there wasn't time.",["to have met"],"„Would like to have done“ vyjadřuje nesplněné přání vztahující se k minulosti, proto dokonalý infinitiv „to have met“, ne prostý „to meet“."),
+F("infgerund-perfectinf-basic-19","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","By next year, we hope ","(finish)"," the project.",["to have finished"],"„By next year“ ukazuje, že dokončení projektu má nastat před daným budoucím okamžikem, proto dokonalý infinitiv „to have finished“, ne prostý „to finish“."),
+F("infgerund-perfectinf-basic-20","infinitive-gerund","basic","Perfektní infinitiv (seem to have done)","He seems not ","(receive)"," the message.",["to have received"],"Zápor „seems not to have done“ ukazuje, že zpráva pravděpodobně nedorazila dříve, proto dokonalý infinitiv „to have received“, ne prostý „to receive“."),
+F("infgerund-perfectinf-intermediate-01","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Although he seems calm now, he seems ","(be)"," terribly anxious just before the interview.",["to have been"],"Věta kontrastuje současný klid („seems calm now“) s dřívějším stavem před pohovorem, proto druhý výskyt vyžaduje dokonalý infinitiv „to have been“, ne prostý „to be“."),
+F("infgerund-perfectinf-intermediate-02","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The company claims ","(reduce)"," its emissions by 30% over the last decade, although critics doubt the figures.",["to have reduced"],"Snížení emisí se týká uplynulé dekády, tedy děje před tvrzením „claims“, proto dokonalý infinitiv „to have reduced“, ne „to reduce“."),
+F("infgerund-perfectinf-intermediate-03","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Having lost the documents, she pretended ","(send)"," them to her colleague the previous week.",["to have sent"],"„The previous week“ ukazuje, že odeslání mělo proběhnout dříve, proto dokonalý infinitiv „to have sent“, ne prostý „to send“."),
+F("infgerund-perfectinf-intermediate-04","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","We happened ","(live)"," in the same town at the time, though neither of us realised it until years later.",["to have lived"],"Společné bydlení ve stejném městě je dřívější shoda okolností, proto dokonalý infinitiv „to have lived“, ne prostý „to live“."),
+F("infgerund-perfectinf-intermediate-05","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The manuscript is believed ","(write)"," by monks sometime in the twelfth century, long before the printing press existed.",["to have been written"],"Rukopis napsal někdo jiný (monaši), proto je potřeba trpný dokonalý infinitiv „to have been written“, ne aktivní „to have written“."),
+F("infgerund-perfectinf-intermediate-06","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Several witnesses claim ","(see)"," the accused near the scene shortly before the fire broke out.",["to have seen"],"Spatření obviněného předchází požáru, proto dokonalý infinitiv „to have seen“, ne prostý „to see“."),
+F("infgerund-perfectinf-intermediate-07","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The bridge, which is reported ","(damage)"," during the war, was only rebuilt in the 1960s.",["to have been damaged"],"Most byl poškozen něčím jiným (válkou), proto trpný dokonalý infinitiv „to have been damaged“, ne aktivní „to have damaged“."),
+F("infgerund-perfectinf-intermediate-08","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","He turned out ","(know)"," the truth all along, even though nobody believed him at the time.",["to have known"],"„All along“ ukazuje, že pravdu znal už dříve, proto dokonalý infinitiv „to have known“, ne prostý „to know“."),
+F("infgerund-perfectinf-intermediate-09","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","I would like ","(spend)"," more time with my grandmother before she passed away, but life got in the way.",["to have spent"],"Věta vyjadřuje nesplněné přání z minulosti, proto dokonalý infinitiv „to have spent“, ne prostý „to spend“."),
+F("infgerund-perfectinf-intermediate-10","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","By the time the ambulance arrived, the patient seemed ","(lose)"," consciousness twice already.",["to have lost"],"„By the time... arrived“ a „already“ ukazují děj předcházející příjezdu sanitky, proto dokonalý infinitiv „to have lost“, ne prostý „to lose“."),
+F("infgerund-perfectinf-intermediate-11","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The twins are said ","(separate)"," apart at birth and reunited only decades later.",["to have been separated"],"Dvojčata oddělil někdo jiný, proto trpný dokonalý infinitiv „to have been separated“, ne aktivní „to have separated“."),
+F("infgerund-perfectinf-intermediate-12","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","She appears ","(change)"," her decision overnight, since her tone in this email is completely different from yesterday's.",["to have changed"],"Změna rozhodnutí proběhla před napsáním tohoto e-mailu, proto dokonalý infinitiv „to have changed“, ne prostý „to change“."),
+F("infgerund-perfectinf-intermediate-13","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Contrary to the official report, the bridge collapse is now believed ","(cause)"," by a design flaw rather than the storm.",["to have been caused"],"Zřícení mostu způsobila vada konstrukce, tedy jiná příčina než sám most, proto trpný dokonalý infinitiv „to have been caused“, ne aktivní „to have caused“."),
+F("infgerund-perfectinf-intermediate-14","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","He claims ","(know)"," nothing about the merger, although his own emails suggest otherwise.",["to have known"],"Tvrzení se vztahuje k dřívějšímu stavu nevědomosti, proto dokonalý infinitiv „to have known“, ne prostý „to know“."),
+F("infgerund-perfectinf-intermediate-15","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The negotiators seem not ","(make)"," any progress since the talks resumed last month.",["to have made"],"Zápor „seem not to have done“ spojený s „since“ ukazuje, že k žádnému pokroku nedošlo v uplynulém období, proto dokonalý infinitiv „to have made“, ne prostý „to make“."),
+F("infgerund-perfectinf-intermediate-16","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","She was the first student in the school's history ","(win)"," the award twice in a row.",["to have won"],"„The first ... to have done“ odkazuje k již dokončenému výkonu, proto dokonalý infinitiv „to have won“, ne prostý „to win“."),
+F("infgerund-perfectinf-intermediate-17","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Given how exhausted he looked, he appears ","(work)"," all night on the report.",["to have worked"],"Vyčerpání je důsledkem noční práce, která proběhla dříve, proto dokonalý infinitiv „to have worked“, ne prostý „to work“."),
+F("infgerund-perfectinf-intermediate-18","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","The vase, now on display in the museum, is thought ","(shape)"," by hand rather than on a wheel.",["to have been shaped"],"Vázu tvaroval řemeslník, proto trpný dokonalý infinitiv „to have been shaped“, ne aktivní „to have shaped“."),
+F("infgerund-perfectinf-intermediate-19","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","I'm relieved ","(find)"," my keys back before the locksmith arrived; it would have cost a fortune otherwise.",["to have found"],"Nalezení klíčů proběhlo dříve, než přijel zámečník, proto dokonalý infinitiv „to have found“, ne prostý „to find“."),
+F("infgerund-perfectinf-intermediate-20","infinitive-gerund","intermediate","Perfektní infinitiv (seem to have done)","Analysts had expected the currency to weaken further, yet it seems ","(recover)"," some of its value already.",["to have recovered"],"Slovo „already“ ukazuje, že zotavení měny proběhlo dříve, než platí toto zjištění, proto dokonalý infinitiv „to have recovered“, ne prostý „to recover“."),
+F("infgerund-perfectinf-advanced-01","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The defendant is alleged ","(embezzle)"," funds from the charity over a period of several years, though the trial has yet to establish this conclusively.",["to have embezzled"],"Zpronevěra je vznesené obvinění vztahující se k minulému období, proto dokonalý infinitiv „to have embezzled“, ne prostý „to embezzle“."),
+F("infgerund-perfectinf-advanced-02","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The artefact, now housed in a private collection, is reputed ","(remove)"," from a royal tomb sometime in the nineteenth century.",["to have been removed"],"Artefakt odnesl někdo jiný z hrobky, proto trpný dokonalý infinitiv „to have been removed“, ne aktivní „to have removed“."),
+F("infgerund-perfectinf-advanced-03","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Having apparently vanished without a trace, the explorer is presumed ","(perish)"," somewhere in the northern mountains.",["to have perished"],"Předpoklad se vztahuje k události, která už proběhla v minulosti, proto dokonalý infinitiv „to have perished“, ne prostý „to perish“."),
+F("infgerund-perfectinf-advanced-04","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The minister, who resigned last week, is rumoured ","(mislead)"," the board about the losses for months before the scandal broke.",["to have misled"],"Uvádění v omyl probíhalo měsíce před vypuknutím skandálu, proto dokonalý infinitiv „to have misled“, ne prostý „to mislead“."),
+F("infgerund-perfectinf-advanced-05","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Far from being a recent forgery, the manuscript now appears ","(compose)"," well before the printing press was even invented.",["to have been composed"],"Rukopis sepsal někdo jiný dávno předtím, proto trpný dokonalý infinitiv „to have been composed“, ne aktivní „to have composed“."),
+F("infgerund-perfectinf-advanced-06","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The committee was fortunate ","(secure)"," the funding before the budget cuts were announced.",["to have secured"],"Zajištění financí proběhlo dříve, než byly oznámeny škrty, proto dokonalý infinitiv „to have secured“, ne prostý „to secure“."),
+F("infgerund-perfectinf-advanced-07","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Rather than admitting any wrongdoing, the executive pretended ","(be)"," unaware of the irregularities his own department had flagged months earlier.",["to have been"],"Předstíraná nevědomost se vztahuje k dřívějšímu stavu, na který oddělení upozornilo už měsíce předtím, proto dokonalý infinitiv „to have been“, ne prostý „to be“."),
+F("infgerund-perfectinf-advanced-08","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The treaty, which took decades to negotiate, is widely regarded as unlikely ","(succeed)"," without the mediation of a neutral third party.",["to have succeeded"],"„Unlikely to have succeeded“ hodnotí zpětně již proběhlý (hypotetický) výsledek jednání, proto dokonalý infinitiv „to have succeeded“, ne prostý „to succeed“."),
+F("infgerund-perfectinf-advanced-09","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Despite the overwhelming evidence, the corporation continues to claim ","(have)"," any knowledge of the contamination before the inspection.",["to have had"],"Popíraná znalost se vztahuje k době před inspekcí, proto dokonalý infinitiv „to have had“, ne prostý „to have“."),
+F("infgerund-perfectinf-advanced-10","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The species, long assumed extinct, now appears ","(survive)"," in remote parts of the rainforest all along.",["to have survived"],"„All along“ ukazuje, že přežití probíhalo po celou dobu už v minulosti, proto dokonalý infinitiv „to have survived“, ne prostý „to survive“."),
+F("infgerund-perfectinf-advanced-11","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","He seems not ","(grasp)"," the gravity of the situation until it was far too late to intervene.",["to have grasped"],"Zápor „seems not to have done“ spolu s „until it was too late“ ukazuje na dřívější neschopnost pochopit situaci, proto dokonalý infinitiv „to have grasped“, ne prostý „to grasp“."),
+F("infgerund-perfectinf-advanced-12","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The scandal, which nearly ended her career, turned out ","(fabricate)"," by a single disgruntled former employee.",["to have been fabricated"],"Skandál vymyslel bývalý zaměstnanec, proto trpný dokonalý infinitiv „to have been fabricated“, ne aktivní „to have fabricated“."),
+F("infgerund-perfectinf-advanced-13","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","I would love ","(have)"," the chance to address the board myself, rather than leaving the explanation to my assistant.",["to have had"],"„Would love to have done“ vyjadřuje nesplněné přání z minulosti, proto dokonalý infinitiv „to have had“, ne prostý „to have“."),
+F("infgerund-perfectinf-advanced-14","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The prisoner is thought ","(smuggle)"," across the border disguised as a merchant, though no one can confirm the route he took.",["to have been smuggled"],"Vězně přes hranici propašoval někdo jiný, proto trpný dokonalý infinitiv „to have been smuggled“, ne aktivní „to have smuggled“."),
+F("infgerund-perfectinf-advanced-15","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Had the auditors examined the accounts more closely, the discrepancy would seem ","(detect)"," far earlier than it eventually was.",["to have been detected"],"Nesrovnalost by odhalil někdo jiný (auditoři), proto trpný dokonalý infinitiv „to have been detected“, ne aktivní „to have detected“."),
+F("infgerund-perfectinf-advanced-16","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The negotiations, contrary to the leaked memo, are claimed ","(conclude)"," amicably, with both sides parting on good terms.",["to have concluded"],"„Conclude“ je zde použito nepřechodně (jednání samo skončilo), proto dokonalý infinitiv „to have concluded“, ne trpný tvar „to have been concluded“."),
+F("infgerund-perfectinf-advanced-17","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","She was the last known person ","(speak to)"," the philosopher before his disappearance, according to the inquiry's final report.",["to have spoken to"],"„The last ... to have done“ odkazuje k poslednímu dřívějšímu setkání před zmizením, proto dokonalý infinitiv „to have spoken to“, ne prostý „to speak to“."),
+F("infgerund-perfectinf-advanced-18","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The vaccine's side effects were, at the time, presumed ","(be)"," exaggerated by the tabloid press rather than grounded in clinical evidence.",["to have been"],"Domněnka se vztahuje k dřívějšímu hodnocení vedlejších účinků, proto dokonalý infinitiv „to have been“, ne prostý „to be“."),
+F("infgerund-perfectinf-advanced-19","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","Given the sheer scale of the fraud, the accountant could hardly claim ","(know)"," nothing about the missing millions.",["to have known"],"Tvrzení o nevědomosti se vztahuje k minulému stavu před odhalením podvodu, proto dokonalý infinitiv „to have known“, ne prostý „to know“."),
+F("infgerund-perfectinf-advanced-20","infinitive-gerund","advanced","Perfektní infinitiv (seem to have done)","The old bridge is believed ","(build)"," by Roman engineers, long before the surrounding town even existed.",["to have been built"],"Most postavili římští inženýři, proto trpný dokonalý infinitiv „to have been built“, ne aktivní „to have built“."),
+
+/* ---- Mix ---- */
+M("infgerund-mix-basic-m01","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso, po kterém následuje „to“ infinitiv, a sloveso, po kterém následuje „-ing“ tvar.",
+  [
+    {before:"She wants ", hint:"go", after:" to the cinema tonight.", answers:["to go"], tag:"Sloveso + to infinitiv"},
+    {before:"She enjoys ", hint:"go", after:" to the cinema.", answers:["going"], tag:"Sloveso + -ing"}
+  ],
+  "Po slovese „want“ následuje „to“ infinitiv („wants to go“), protože vyjadřuje záměr nebo přání; po slovese „enjoy“ následuje tvar na „-ing“ („enjoys going“), protože vyjadřuje libost z dané činnosti — obě slovesa patří do pevně daných skupin, které je nutné se naučit."),
+
+M("infgerund-mix-basic-m02","infinitive-gerund","basic","Mix",
+  "Porovnej „to“ jako součást infinitivu po slovese a „to“ jako předložku, po které následuje tvar na „-ing“.",
+  [
+    {before:"I decided ", hint:"leave", after:" early.", answers:["to leave"], tag:"Sloveso + to infinitiv"},
+    {before:"I'm looking forward ", hint:"see", after:" you again.", answers:["to seeing"], tag:"Předložka + -ing"}
+  ],
+  "Po slovese „decide“ je „to“ infinitivní částice uvádějící infinitiv („decided to leave“); ve vazbě „look forward to“ je „to“ předložka, a protože po předložce musí následovat tvar na „-ing“, píšeme „looking forward to seeing“, nikoli „to see“."),
+
+M("infgerund-mix-basic-m03","infinitive-gerund","basic","Mix",
+  "Porovnej běžné sloveso s „to“ infinitivem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam.",
+  [
+    {before:"He promised ", hint:"call", after:" me tomorrow.", answers:["to call"], tag:"Sloveso + to infinitiv"},
+    {before:"Please remember ", hint:"lock", after:" the door before you leave.", answers:["to lock"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „promise“ se vždy pojí s „to“ infinitivem bez rozdílu významu; sloveso „remember“ patří do skupiny sloves, kde „remember to lock“ znamená nezapomenout to udělat v budoucnu, zatímco „remember locking“ by znamenalo vzpomínat si na minulou událost."),
+
+M("infgerund-mix-basic-m04","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso s předmětem a „to“ infinitivem.",
+  [
+    {before:"They suggested ", hint:"meet", after:" at the station.", answers:["meeting"], tag:"Sloveso + -ing"},
+    {before:"They asked us ", hint:"meet", after:" at the station.", answers:["to meet"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „suggest“ se pojí přímo s tvarem na „-ing“ („suggested meeting“); sloveso „ask“ naopak potřebuje předmět, který danou věc dělá, následovaný „to“ infinitivem („asked us to meet“)."),
+
+M("infgerund-mix-basic-m05","infinitive-gerund","basic","Mix",
+  "Porovnej běžný „to“ infinitiv vyjadřující stejný čas a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"I plan ", hint:"visit", after:" my grandmother this weekend.", answers:["to visit"], tag:"Sloveso + to infinitiv"},
+    {before:"She seems ", hint:"visit", after:" her grandmother already.", answers:["to have visited"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Plan to visit“ popisuje budoucí záměr, proto stačí běžný infinitiv; „seems to have visited“ vyjadřuje, že návštěva už proběhla dříve, než se o ní mluví, a proto se používá perfektní infinitiv „to have + minulé příčestí“."),
+
+M("infgerund-mix-basic-m06","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam.",
+  [
+    {before:"He admitted ", hint:"break", after:" the window.", answers:["breaking"], tag:"Sloveso + -ing"},
+    {before:"We stopped ", hint:"talk", after:" when the teacher came in.", answers:["talking"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „admit“ se vždy pojí s tvarem na „-ing“ („admitted breaking“); sloveso „stop“ patří do skupiny sloves s odlišným významem — „stopped talking“ znamená, že přestali mluvit, zatímco „stopped to talk“ by znamenalo, že se zastavili, aby si promluvili."),
+
+M("infgerund-mix-basic-m07","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „to“ infinitivem bez předmětu a sloveso s předmětem a „to“ infinitivem.",
+  [
+    {before:"She hopes ", hint:"pass", after:" the exam.", answers:["to pass"], tag:"Sloveso + to infinitiv"},
+    {before:"She wants him ", hint:"pass", after:" the exam.", answers:["to pass"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „hope“ se pojí přímo s „to“ infinitivem a vztahuje se k podmětu samotnému („she hopes to pass“); sloveso „want“ potřebuje mezi sebou a infinitivem předmět, protože vyjadřuje přání týkající se jiné osoby („wants him to pass“)."),
+
+M("infgerund-mix-basic-m08","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „-ing“ tvarem bez předložky a vazbu s předložkou, po které musí následovat tvar na „-ing“.",
+  [
+    {before:"I don't mind ", hint:"wait", after:" a few minutes.", answers:["waiting"], tag:"Sloveso + -ing"},
+    {before:"I'm used ", hint:"wait", after:" for the bus every morning.", answers:["to waiting"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „mind“ se pojí přímo s tvarem na „-ing“ bez předložky („mind waiting“); ve vazbě „be used to“ je „to“ předložka, a proto po ní musí následovat také tvar na „-ing“ („used to waiting“), nikoli infinitiv."),
+
+M("infgerund-mix-basic-m09","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a sloveso s předmětem a holým infinitivem.",
+  [
+    {before:"I need ", hint:"fix", after:" this bike today.", answers:["to fix"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"My dad made me ", hint:"fix", after:" this bike today.", answers:["fix"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "„I need to fix this bike“ znamená, že tu práci udělám sám; po slovese „make“ v aktivním významu „přinutit“ následuje holý infinitiv bez „to“ („made me fix“), na rozdíl od sloves jako „want“ nebo „tell“, která „to“ vyžadují."),
+
+M("infgerund-mix-basic-m10","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"She denied ", hint:"take", after:" the money.", answers:["taking"], tag:"Sloveso + -ing"},
+    {before:"He appears ", hint:"take", after:" the wrong bag.", answers:["to have taken"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „deny“ se pojí přímo s tvarem na „-ing“ bez ohledu na čas („denied taking“); sloveso „appear“ naopak vyžaduje perfektní infinitiv „to have taken“, pokud chceme vyjádřit, že se daná věc stala dříve, než o ní mluvíme."),
+
+M("infgerund-mix-basic-m11","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a vazbu s předložkou, po které následuje tvar na „-ing“.",
+  [
+    {before:"I'll never forget ", hint:"see", after:" the sea for the first time.", answers:["seeing"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"I'm excited about ", hint:"see", after:" the sea again.", answers:["seeing"], tag:"Předložka + -ing"}
+  ],
+  "„Forget seeing“ znamená vzpomínat na zážitek z minulosti, který si pamatujeme (na rozdíl od „forget to do“, což se týká zapomenuté povinnosti); v „excited about seeing“ je „about“ předložka, po které podle obecného pravidla následuje tvar na „-ing“."),
+
+M("infgerund-mix-basic-m12","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a vazbu s předložkou, po které následuje tvar na „-ing“.",
+  [
+    {before:"The teacher told us ", hint:"be", after:" quiet.", answers:["to be"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"The teacher insisted on ", hint:"be", after:" quiet in the library.", answers:["being"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „tell“ vyžaduje předmět a „to“ infinitiv („told us to be“); ve vazbě „insist on“ je „on“ předložka, a proto po ní musí následovat tvar na „-ing“ („insisted on being“)."),
+
+M("infgerund-mix-basic-m13","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"I regret ", hint:"tell", after:" you the bad news.", answers:["to tell"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"He claims ", hint:"tell", after:" her already.", answers:["to have told"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Regret to tell“ je formální vazba pro oznámení něčeho nepříjemného právě teď; „claims to have told“ vyjadřuje, že k oznámení podle jeho slov došlo dříve, proto je potřeba perfektní infinitiv „to have told“."),
+
+M("infgerund-mix-basic-m14","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"I expect him ", hint:"arrive", after:" on time.", answers:["to arrive"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"He is said ", hint:"arrive", after:" already.", answers:["to have arrived"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Expect him to arrive“ vyjadřuje očekávání budoucí události; „is said to have arrived“ popisuje, že podle toho, co se říká, k příjezdu už došlo, a proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-basic-m15","infinitive-gerund","basic","Mix",
+  "Porovnej vazbu s předložkou, po které následuje tvar na „-ing“, a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"He apologized for ", hint:"be", after:" late.", answers:["being"], tag:"Předložka + -ing"},
+    {before:"He is thought ", hint:"be", after:" late for the meeting yesterday.", answers:["to have been"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Ve vazbě „apologize for“ následuje po předložce „for“ tvar na „-ing“ („apologized for being“); „is thought to have been“ vyjadřuje domněnku o něčem, co se stalo v minulosti, a proto vyžaduje perfektní infinitiv."),
+
+M("infgerund-mix-basic-m16","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso, po kterém následuje „to“ infinitiv, a sloveso, po kterém následuje „-ing“ tvar.",
+  [
+    {before:"We agreed ", hint:"help", after:" them with the move.", answers:["to help"], tag:"Sloveso + to infinitiv"},
+    {before:"We avoided ", hint:"help", after:" them with the move.", answers:["helping"], tag:"Sloveso + -ing"}
+  ],
+  "Sloveso „agree“ se pojí s „to“ infinitivem, protože vyjadřuje souhlas s budoucím činem („agreed to help“); sloveso „avoid“ se naopak pojí s tvarem na „-ing“ ve smyslu vyhýbat se dané činnosti („avoided helping“)."),
+
+M("infgerund-mix-basic-m17","infinitive-gerund","basic","Mix",
+  "Porovnej „to“ jako součást infinitivu po slovese a „to“ jako předložku, po které následuje tvar na „-ing“.",
+  [
+    {before:"He refused ", hint:"answer", after:" the question.", answers:["to answer"], tag:"Sloveso + to infinitiv"},
+    {before:"He is used ", hint:"answer", after:" difficult questions in interviews.", answers:["to answering"], tag:"Předložka + -ing"}
+  ],
+  "Po slovese „refuse“ je „to“ infinitivní částice uvádějící infinitiv („refused to answer“); ve vazbě „be used to“ je „to“ předložka, po které musí následovat tvar na „-ing“ („used to answering“)."),
+
+M("infgerund-mix-basic-m18","infinitive-gerund","basic","Mix",
+  "Porovnej běžné sloveso s „to“ infinitivem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam.",
+  [
+    {before:"I managed ", hint:"finish", after:" the report on time.", answers:["to finish"], tag:"Sloveso + to infinitiv"},
+    {before:"Try ", hint:"open", after:" the window if it's too hot.", answers:["opening"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „manage“ se vždy pojí s „to“ infinitivem bez rozdílu významu; sloveso „try“ patří do skupiny sloves, kde „try opening“ znamená vyzkoušet to jako možné řešení, zatímco „try to open“ by znamenalo snažit se otevřít (např. něco zaseknutého)."),
+
+M("infgerund-mix-basic-m19","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam.",
+  [
+    {before:"She considered ", hint:"change", after:" jobs last year.", answers:["changing"], tag:"Sloveso + -ing"},
+    {before:"She went on ", hint:"work", after:" at the same company for years.", answers:["working"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „consider“ se vždy pojí s tvarem na „-ing“ („considered changing“); sloveso „go on“ patří do skupiny sloves s odlišným významem — „go on working“ znamená pokračovat ve stejné činnosti, zatímco „go on to work“ by znamenalo přejít k jiné činnosti."),
+
+M("infgerund-mix-basic-m20","infinitive-gerund","basic","Mix",
+  "Porovnej sloveso s „to“ infinitivem bez předmětu a sloveso s předmětem a „to“ infinitivem.",
+  [
+    {before:"They offered ", hint:"pay", after:" for the damage.", answers:["to pay"], tag:"Sloveso + to infinitiv"},
+    {before:"They expected him ", hint:"pay", after:" for the damage.", answers:["to pay"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „offer“ se pojí přímo s „to“ infinitivem a vztahuje se k podmětu samotnému („offered to pay“); sloveso „expect“ potřebuje mezi sebou a infinitivem předmět, protože vyjadřuje očekávání týkající se jiné osoby („expected him to pay“)."),
+
+M("infgerund-mix-intermediate-m01","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso, po kterém následuje „to“ infinitiv, a sloveso, po kterém následuje „-ing“ tvar, v delší souvislé větě.",
+  [
+    {before:"After months of hesitation, she finally decided ", hint:"apply", after:" for the scholarship, even though the deadline was close.", answers:["to apply"], tag:"Sloveso + to infinitiv"},
+    {before:"Despite the pressure, she kept ", hint:"doubt", after:" whether she had made the right choice.", answers:["doubting"], tag:"Sloveso + -ing"}
+  ],
+  "Sloveso „decide“ se pojí s „to“ infinitivem bez ohledu na délku věty („decided to apply“); sloveso „keep“ vyjadřující opakování nebo trvání se váže s tvarem na „-ing“ („kept doubting“), protože popisuje pokračující činnost."),
+
+M("infgerund-mix-intermediate-m02","infinitive-gerund","intermediate","Mix",
+  "Porovnej „to“ jako infinitivní částici po slovese a „to“ jako předložku ve formálnější vazbě, po které následuje tvar na „-ing“.",
+  [
+    {before:"The committee agreed ", hint:"postpone", after:" the decision until the next meeting.", answers:["to postpone"], tag:"Sloveso + to infinitiv"},
+    {before:"Several members objected ", hint:"postpone", after:" the decision any further.", answers:["to postponing"], tag:"Předložka + -ing"}
+  ],
+  "Po slovese „agree“ je „to“ běžná infinitivní částice („agreed to postpone“); ve vazbě „object to“ je „to“ předložka, a proto po ní následuje tvar na „-ing“ („objected to postponing“), i když věta zní na první poslech podobně."),
+
+M("infgerund-mix-intermediate-m03","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „to“ infinitivem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v kontextu minulého slibu.",
+  [
+    {before:"He promised his boss ", hint:"submit", after:" the report by Friday, no matter what happened.", answers:["to submit"], tag:"Sloveso + to infinitiv"},
+    {before:"Unfortunately, he will always remember ", hint:"miss", after:" that very deadline two years ago.", answers:["missing"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "„Promise to submit“ vyjadřuje slib týkající se budoucí povinnosti; „remember missing“ se vztahuje k minulé zkušenosti, kterou si pamatuje — pokud by šlo o budoucí povinnost nezapomenout, použili bychom „remember to submit“."),
+
+M("infgerund-mix-intermediate-m04","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „to“ infinitivem bez předmětu a sloveso s předmětem a „to“ infinitivem v kontextu formální žádosti.",
+  [
+    {before:"The manager hoped ", hint:"resolve", after:" the dispute without involving lawyers.", answers:["to resolve"], tag:"Sloveso + to infinitiv"},
+    {before:"The manager persuaded both sides ", hint:"resolve", after:" the dispute without involving lawyers.", answers:["to resolve"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „hope“ se vztahuje přímo k podmětu a pojí se s „to“ infinitivem bez předmětu („hoped to resolve“); sloveso „persuade“ vyjadřuje přesvědčování jiné osoby, proto potřebuje předmět před infinitivem („persuaded both sides to resolve“)."),
+
+M("infgerund-mix-intermediate-m05","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v souvislosti s nepříjemnou vzpomínkou.",
+  [
+    {before:"She admitted ", hint:"ignore", after:" all the warnings her colleagues had given her.", answers:["ignoring"], tag:"Sloveso + -ing"},
+    {before:"The airline regrets ", hint:"inform", after:" passengers that all flights have been cancelled today.", answers:["to inform"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „admit“ se vždy pojí s tvarem na „-ing“ bez ohledu na význam („admitted ignoring“); sloveso „regret“ patří do skupiny sloves, kde „regrets to inform“ je formální vazba pro oznámení nepříjemné zprávy právě teď, na rozdíl od „regret doing“, což by vyjadřovalo litování nad minulým činem."),
+
+M("infgerund-mix-intermediate-m06","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso s předmětem a „to“ infinitivem v kontextu návrhu a žádosti.",
+  [
+    {before:"The consultant recommended ", hint:"restructure", after:" the entire department before the merger.", answers:["restructuring"], tag:"Sloveso + -ing"},
+    {before:"The consultant advised the board ", hint:"restructure", after:" the entire department before the merger.", answers:["to restructure"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „recommend“ se pojí přímo s tvarem na „-ing“ bez předmětu („recommended restructuring“); sloveso „advise“ vyjadřuje radu konkrétní osobě, proto potřebuje předmět a „to“ infinitiv („advised the board to restructure“)."),
+
+M("infgerund-mix-intermediate-m07","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „-ing“ tvarem bez předložky a vazbu s předložkou, po které následuje tvar na „-ing“, v kontextu kariérního rozhodnutí.",
+  [
+    {before:"After the scandal, she couldn't risk ", hint:"lose", after:" the trust of her remaining clients.", answers:["losing"], tag:"Sloveso + -ing"},
+    {before:"She succeeded in ", hint:"keep", after:" most of her clients despite the scandal.", answers:["keeping"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „risk“ se pojí přímo s tvarem na „-ing“ bez předložky („risk losing“); ve vazbě „succeed in“ je „in“ předložka, po které musí následovat tvar na „-ing“ („succeeded in keeping“)."),
+
+M("infgerund-mix-intermediate-m08","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu vyšetřování.",
+  [
+    {before:"The suspect denied ", hint:"enter", after:" the building that night.", answers:["entering"], tag:"Sloveso + -ing"},
+    {before:"Witnesses claim he appears ", hint:"enter", after:" through the back door around midnight.", answers:["to have entered"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „deny“ se pojí přímo s tvarem na „-ing“ bez ohledu na čas („denied entering“); sloveso „appear“ naopak vyžaduje perfektní infinitiv „to have entered“, pokud se dřívější děj vztahuje k pozdějšímu okamžiku, kdy o něm mluvíme."),
+
+M("infgerund-mix-intermediate-m09","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a sloveso s předmětem a holým infinitivem.",
+  [
+    {before:"He tried ", hint:"persuade", after:" his partner for over an hour, but nothing worked.", answers:["to persuade"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"In the end, he let her ", hint:"decide", after:" on her own.", answers:["decide"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "„Tried to persuade“ znamená, že se o něco snažil, ale úspěch nebyl jistý; po slovese „let“ ve významu „dovolit“ následuje holý infinitiv bez „to“ („let her decide“), na rozdíl od sloves jako „want“ nebo „persuade“, která „to“ vyžadují."),
+
+M("infgerund-mix-intermediate-m10","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a vazbu s předložkou, po které následuje tvar na „-ing“.",
+  [
+    {before:"The driver stopped ", hint:"check", after:" the engine when he noticed the smoke.", answers:["to check"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"He was worried about ", hint:"cause", after:" an accident on the motorway.", answers:["causing"], tag:"Předložka + -ing"}
+  ],
+  "„Stopped to check“ znamená, že zastavil, aby zkontroloval motor (účel), nikoli že přestal kontrolovat; ve vazbě „worried about“ je „about“ předložka, po které podle obecného pravidla následuje tvar na „-ing“ („worried about causing“)."),
+
+M("infgerund-mix-intermediate-m11","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"She needs ", hint:"rewrite", after:" the whole introduction before the deadline.", answers:["to rewrite"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"He is believed ", hint:"rewrite", after:" the whole introduction twice before submitting it.", answers:["to have rewritten"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Needs to rewrite“ vyjadřuje, že subjekt má tuto povinnost splnit v budoucnu, proto následuje běžný „to“ infinitiv; „is believed to have rewritten“ vyjadřuje domněnku o něčem, co se podle všeho stalo už dříve, a proto se používá perfektní infinitiv „to have rewritten“."),
+
+M("infgerund-mix-intermediate-m12","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a vazbu s předložkou, po které následuje tvar na „-ing“, v kontextu pracovní porady.",
+  [
+    {before:"The director asked everyone ", hint:"arrive", after:" fifteen minutes earlier than usual.", answers:["to arrive"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"Everyone is accustomed to ", hint:"arrive", after:" early for important meetings.", answers:["arriving"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „ask“ vyžaduje předmět a „to“ infinitiv („asked everyone to arrive“); ve vazbě „be accustomed to“ je „to“ předložka, a proto po ní musí následovat tvar na „-ing“ („accustomed to arriving“)."),
+
+M("infgerund-mix-intermediate-m13","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"The police ordered the protesters ", hint:"leave", after:" the square immediately.", answers:["to leave"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"Several organizers are reported ", hint:"leave", after:" the country shortly after the protest.", answers:["to have left"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „order“ vyžaduje předmět a „to“ infinitiv vztahující se k budoucímu činu („ordered the protesters to leave“); „are reported to have left“ vyjadřuje, že podle zpráv k odjezdu došlo už dříve, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-intermediate-m14","infinitive-gerund","intermediate","Mix",
+  "Porovnej vazbu s předložkou, po které následuje tvar na „-ing“, a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"He was accused of ", hint:"falsify", after:" the company's financial records.", answers:["falsifying"], tag:"Předložka + -ing"},
+    {before:"He is believed ", hint:"falsify", after:" the records over several years.", answers:["to have falsified"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Ve vazbě „accuse of“ je „of“ předložka, po které následuje tvar na „-ing“ („accused of falsifying“); „is believed to have falsified“ vyjadřuje domněnku o něčem, co se stalo v minulosti, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-intermediate-m15","infinitive-gerund","intermediate","Mix",
+  "Porovnej běžný „to“ infinitiv vyjadřující stejný čas a perfektní infinitiv vyjadřující děj, který proběhl dříve.",
+  [
+    {before:"The committee expects ", hint:"announce", after:" the results next week.", answers:["to announce"], tag:"Sloveso + to infinitiv"},
+    {before:"The jury is said ", hint:"announce", after:" the winner already, even though it's officially still secret.", answers:["to have announced"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Expects to announce“ vyjadřuje budoucí záměr („to announce“ se vztahuje k příštímu týdnu); „is said to have announced“ vyjadřuje domněnku, že k oznámení už došlo dříve, než se o tom mluví, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-intermediate-m16","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso, po kterém následuje „to“ infinitiv, a sloveso, po kterém následuje „-ing“ tvar, v kontextu dlouhého rozhodovacího procesu.",
+  [
+    {before:"After weeks of negotiation, the two companies finally arranged ", hint:"merge", after:" their operations by the end of the year.", answers:["to merge"], tag:"Sloveso + to infinitiv"},
+    {before:"Many employees had spent months ", hint:"worry", after:" about the possible merger.", answers:["worrying"], tag:"Sloveso + -ing"}
+  ],
+  "Sloveso „arrange“ se pojí s „to“ infinitivem, protože vyjadřuje dohodu o budoucím kroku („arranged to merge“); vazba „spend + čas + -ing“ vyjadřuje, jak byl čas strávený, a proto následuje tvar na „-ing“ („spent months worrying“)."),
+
+M("infgerund-mix-intermediate-m17","infinitive-gerund","intermediate","Mix",
+  "Porovnej „to“ jako infinitivní částici po slovese a „to“ jako předložku, po které následuje tvar na „-ing“, v souvislosti s dlouhodobým zvykem.",
+  [
+    {before:"She has always intended ", hint:"travel", after:" around South America one day.", answers:["to travel"], tag:"Sloveso + to infinitiv"},
+    {before:"She is not used ", hint:"travel", after:" such long distances alone.", answers:["to traveling"], tag:"Předložka + -ing"}
+  ],
+  "Po slovese „intend“ je „to“ infinitivní částice („intended to travel“); ve vazbě „be used to“ je „to“ předložka, po které následuje tvar na „-ing“ („used to traveling“)."),
+
+M("infgerund-mix-intermediate-m18","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso s předmětem a „to“ infinitivem v kontextu rodičovského rozhodnutí.",
+  [
+    {before:"The parents considered ", hint:"move", after:" to a different school district altogether.", answers:["moving"], tag:"Sloveso + -ing"},
+    {before:"The parents wanted their children ", hint:"adapt", after:" to the new school gradually.", answers:["to adapt"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „consider“ se pojí přímo s tvarem na „-ing“ bez předmětu („considered moving“); sloveso „want“ vyjadřuje přání týkající se jiné osoby, proto potřebuje předmět před infinitivem („wanted their children to adapt“)."),
+
+M("infgerund-mix-intermediate-m19","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a sloveso s předmětem a holým infinitivem.",
+  [
+    {before:"He meant ", hint:"call", after:" you earlier, but the meeting ran late.", answers:["to call"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"His boss had him ", hint:"call", after:" every client personally instead.", answers:["call"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "„Meant to call“ vyjadřuje záměr, který se nepodařilo splnit; po slovese „have“ ve významu „nechat někoho něco udělat“ následuje holý infinitiv bez „to“ („had him call“), na rozdíl od sloves jako „want“ nebo „ask“, která „to“ vyžadují."),
+
+M("infgerund-mix-intermediate-m20","infinitive-gerund","intermediate","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a vazbu s předložkou, po které následuje tvar na „-ing“, v kontextu formální stížnosti.",
+  [
+    {before:"The residents asked the council ", hint:"repair", after:" the road before winter.", answers:["to repair"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"The council is responsible for ", hint:"repair", after:" all local roads.", answers:["repairing"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „ask“ vyžaduje předmět a „to“ infinitiv („asked the council to repair“); ve vazbě „be responsible for“ je „for“ předložka, a proto po ní musí následovat tvar na „-ing“ („responsible for repairing“)."),
+
+M("infgerund-mix-advanced-m01","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „to“ infinitivem a sloveso s „-ing“ tvarem ve formálním, abstraktním kontextu.",
+  [
+    {before:"The board has resolved ", hint:"restructure", after:" the entire organization within eighteen months.", answers:["to restructure"], tag:"Sloveso + to infinitiv"},
+    {before:"Several analysts recommended ", hint:"postpone", after:" the restructuring until the market stabilized.", answers:["postponing"], tag:"Sloveso + -ing"}
+  ],
+  "Sloveso „resolve“ ve formálním významu „rozhodnout se“ se pojí s „to“ infinitivem („resolved to restructure“); sloveso „recommend“ se pojí s tvarem na „-ing“ bez ohledu na formálnost kontextu („recommended postponing“)."),
+
+M("infgerund-mix-advanced-m02","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „to“ infinitivem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v abstraktní úvaze o budoucnosti.",
+  [
+    {before:"Economists expect the policy ", hint:"stabilize", after:" inflation over the coming decade.", answers:["to stabilize"], tag:"Sloveso + to infinitiv"},
+    {before:"Few people would go on ", hint:"argue", after:" that the policy had no drawbacks whatsoever.", answers:["to argue"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "„Expect the policy to stabilize“ vyjadřuje předpoklad o budoucím účinku; sloveso „go on“ patří do skupiny s rozdílným významem — „go on to argue“ znamená přejít k dalšímu bodu a začít argumentovat, zatímco „go on arguing“ by znamenalo pokračovat ve stejné hádce."),
+
+M("infgerund-mix-advanced-m03","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „to“ infinitivem bez předmětu a sloveso s předmětem a „to“ infinitivem v kontextu diplomatického jednání.",
+  [
+    {before:"The delegation agreed ", hint:"resume", after:" negotiations only under strict confidentiality.", answers:["to resume"], tag:"Sloveso + to infinitiv"},
+    {before:"The delegation urged both governments ", hint:"resume", after:" negotiations without further delay.", answers:["to resume"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „agree“ se vztahuje přímo k podmětu a pojí se s „to“ infinitivem bez předmětu („agreed to resume“); sloveso „urge“ vyjadřuje naléhání na jiné strany, proto potřebuje předmět před infinitivem („urged both governments to resume“)."),
+
+M("infgerund-mix-advanced-m04","infinitive-gerund","advanced","Mix",
+  "Porovnej „to“ jako infinitivní částici po slovese a „to“ jako předložku ve formální vazbě, po které následuje tvar na „-ing“.",
+  [
+    {before:"The minister declined ", hint:"comment", after:" on the allegations during the press conference.", answers:["to comment"], tag:"Sloveso + to infinitiv"},
+    {before:"The minister's office objected strongly to ", hint:"publish", after:" the leaked documents.", answers:["publishing"], tag:"Předložka + -ing"}
+  ],
+  "Po slovese „decline“ je „to“ běžná infinitivní částice („declined to comment“); ve vazbě „object to“ je „to“ předložka, a proto po ní následuje tvar na „-ing“ („objected to publishing“), přestože obě vazby na první pohled vypadají podobně."),
+
+M("infgerund-mix-advanced-m05","infinitive-gerund","advanced","Mix",
+  "Porovnej běžný „to“ infinitiv a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu právního vyšetřování.",
+  [
+    {before:"Investigators intend ", hint:"interview", after:" every witness before the trial begins.", answers:["to interview"], tag:"Sloveso + to infinitiv"},
+    {before:"The main suspect is claimed ", hint:"destroy", after:" crucial evidence before the investigation even started.", answers:["to have destroyed"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Intend to interview“ vyjadřuje plán do budoucna; „is claimed to have destroyed“ vyjadřuje tvrzení o něčem, co se podle všeho stalo dříve, než vyšetřování začalo, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m06","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v kontextu firemní etiky.",
+  [
+    {before:"The whistleblower risked ", hint:"lose", after:" her job by exposing the fraud.", answers:["losing"], tag:"Sloveso + -ing"},
+    {before:"She will never regret ", hint:"expose", after:" the fraud, whatever the consequences.", answers:["exposing"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „risk“ se vždy pojí s tvarem na „-ing“ („risked losing“); sloveso „regret“ patří do skupiny sloves s odlišným významem — „regret exposing“ vyjadřuje litování nad minulým činem, zatímco formální „regret to inform“ by se používalo pro oznámení nepříjemné zprávy právě teď."),
+
+M("infgerund-mix-advanced-m07","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso s předmětem a holým infinitivem v kontextu vyjednávání.",
+  [
+    {before:"The union postponed ", hint:"announce", after:" the strike until further talks had taken place.", answers:["announcing"], tag:"Sloveso + -ing"},
+    {before:"Management's refusal to negotiate made the workers ", hint:"walk", after:" out immediately.", answers:["walk"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "Sloveso „postpone“ se pojí přímo s tvarem na „-ing“ („postponed announcing“); po slovese „make“ ve významu „přinutit“ následuje holý infinitiv bez „to“ („made the workers walk“)."),
+
+M("infgerund-mix-advanced-m08","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem bez předložky a vazbu s předložkou, po které následuje tvar na „-ing“, v abstraktní diskusi.",
+  [
+    {before:"The philosopher's argument involves ", hint:"redefine", after:" the very concept of free will.", answers:["redefining"], tag:"Sloveso + -ing"},
+    {before:"Many critics are opposed to ", hint:"redefine", after:" such a fundamental concept so radically.", answers:["redefining"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „involve“ se pojí přímo s tvarem na „-ing“ bez předložky („involves redefining“); ve vazbě „be opposed to“ je „to“ předložka, po které musí následovat tvar na „-ing“ („opposed to redefining“), i když obě věty na povrchu vypadají podobně."),
+
+M("infgerund-mix-advanced-m09","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu historického pramene.",
+  [
+    {before:"The general's biographers admit ", hint:"exaggerate", after:" his role in the final battle.", answers:["exaggerating"], tag:"Sloveso + -ing"},
+    {before:"The general is believed ", hint:"exaggerate", after:" his own achievements throughout his memoirs.", answers:["to have exaggerated"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „admit“ se pojí přímo s tvarem na „-ing“ bez ohledu na čas („admit exaggerating“); „is believed to have exaggerated“ vyjadřuje domněnku o něčem, co se stalo v minulosti, před okamžikem, kdy o tom mluvíme, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m10","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a sloveso s předmětem a holým infinitivem, v kontextu soudního líčení.",
+  [
+    {before:"The lawyer tried ", hint:"discredit", after:" the witness by questioning her memory of events.", answers:["to discredit"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"The judge had the witness ", hint:"repeat", after:" her statement word for word.", answers:["repeat"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"}
+  ],
+  "„Tried to discredit“ znamená, že se o to pokoušel, aniž by byl výsledek jistý; po slovese „have“ ve významu „nechat někoho něco udělat“ následuje holý infinitiv bez „to“ („had the witness repeat“)."),
+
+M("infgerund-mix-advanced-m11","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a vazbu s předložkou, po které následuje tvar na „-ing“, v odborném textu.",
+  [
+    {before:"The committee needs ", hint:"clarify", after:" its own guidelines before the next review.", answers:["to clarify"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"Several members are in favor of ", hint:"simplify", after:" the entire procedure altogether.", answers:["simplifying"], tag:"Předložka + -ing"}
+  ],
+  "„Needs to clarify“ vyjadřuje aktivní povinnost výboru tuto věc vyjasnit; ve vazbě „be in favor of“ je „of“ předložka, a proto po ní musí následovat tvar na „-ing“ („in favor of simplifying“)."),
+
+M("infgerund-mix-advanced-m12","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu diplomatické krize.",
+  [
+    {before:"The ambassador stopped ", hint:"negotiate", after:" when the ceasefire was unexpectedly announced.", answers:["negotiating"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"The rebel leader is claimed ", hint:"negotiate", after:" secretly with foreign powers long before the ceasefire.", answers:["to have negotiated"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Stopped negotiating“ znamená, že vyjednávání přestalo probíhat; „is claimed to have negotiated“ vyjadřuje tvrzení o něčem, co se stalo dříve, než k příměří došlo, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m13","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a vazbu s předložkou, po které následuje tvar na „-ing“, v kontextu akademického posudku.",
+  [
+    {before:"The reviewers required the authors ", hint:"revise", after:" the methodology section substantially.", answers:["to revise"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"The authors eventually succeeded in ", hint:"revise", after:" the methodology to everyone's satisfaction.", answers:["revising"], tag:"Předložka + -ing"}
+  ],
+  "Sloveso „require“ vyžaduje předmět a „to“ infinitiv („required the authors to revise“); ve vazbě „succeed in“ je „in“ předložka, po které musí následovat tvar na „-ing“ („succeeded in revising“)."),
+
+M("infgerund-mix-advanced-m14","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s předmětem a „to“ infinitivem a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu finančního auditu.",
+  [
+    {before:"The regulator required the bank ", hint:"disclose", after:" all hidden liabilities immediately.", answers:["to disclose"], tag:"Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)"},
+    {before:"The bank is now reported ", hint:"conceal", after:" significant losses for several years.", answers:["to have concealed"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „require“ vyžaduje předmět a „to“ infinitiv vztahující se k budoucímu kroku („required the bank to disclose“); „is reported to have concealed“ vyjadřuje, že podle zpráv ke skrývání ztrát došlo už dříve, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m15","infinitive-gerund","advanced","Mix",
+  "Porovnej vazbu s předložkou, po které následuje tvar na „-ing“, a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu korupčního skandálu.",
+  [
+    {before:"The official was found guilty of ", hint:"accept", after:" bribes from several contractors.", answers:["accepting"], tag:"Předložka + -ing"},
+    {before:"He is now believed ", hint:"launder", after:" the money through offshore accounts years earlier.", answers:["to have laundered"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Ve vazbě „guilty of“ je „of“ předložka, po které následuje tvar na „-ing“ („guilty of accepting“); „is believed to have laundered“ vyjadřuje domněnku o něčem, co se stalo dříve, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m16","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „to“ infinitivem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v kontextu redakční politiky.",
+  [
+    {before:"The editor planned ", hint:"shorten", after:" the article considerably before publication.", answers:["to shorten"], tag:"Sloveso + to infinitiv"},
+    {before:"The journalist will never forget ", hint:"receive", after:" that anonymous tip years ago.", answers:["receiving"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „plan“ se vždy pojí s „to“ infinitivem bez rozdílu významu; sloveso „forget“ patří do skupiny sloves, kde „forget receiving“ se vztahuje k minulé zkušenosti, kterou si pamatujeme, na rozdíl od „forget to do“, což by znamenalo zapomenout splnit povinnost."),
+
+M("infgerund-mix-advanced-m17","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, v kontextu zdravotní reformy.",
+  [
+    {before:"The ministry delayed ", hint:"implement", after:" the reform despite mounting public pressure.", answers:["implementing"], tag:"Sloveso + -ing"},
+    {before:"Critics went on ", hint:"warn", after:" that further delay would be disastrous.", answers:["to warn"], tag:"Rozdíly ve významu (remember, stop, try...)"}
+  ],
+  "Sloveso „delay“ se vždy pojí s tvarem na „-ing“ („delayed implementing“); sloveso „go on“ patří do skupiny s odlišným významem — „go on to warn“ znamená přejít k dalšímu bodu a varovat, zatímco „go on warning“ by znamenalo pokračovat ve stejném varování."),
+
+M("infgerund-mix-advanced-m18","infinitive-gerund","advanced","Mix",
+  "Porovnej běžný „to“ infinitiv a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu archeologického nálezu.",
+  [
+    {before:"Archaeologists hope ", hint:"uncover", after:" more artifacts at the site next season.", answers:["to uncover"], tag:"Sloveso + to infinitiv"},
+    {before:"The settlement is thought ", hint:"exist", after:" for several centuries before it was abandoned.", answers:["to have existed"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Hope to uncover“ vyjadřuje záměr do budoucna; „is thought to have existed“ vyjadřuje domněnku o něčem, co trvalo v minulosti, před okamžikem, o kterém mluvíme, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m19","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso s „-ing“ tvarem a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu vědeckého sporu.",
+  [
+    {before:"The researchers kept ", hint:"question", after:" the validity of the original data set.", answers:["questioning"], tag:"Sloveso + -ing"},
+    {before:"The original study is now thought ", hint:"misrepresent", after:" the results significantly.", answers:["to have misrepresented"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "Sloveso „keep“ ve významu opakování se pojí s tvarem na „-ing“ („kept questioning“); „is thought to have misrepresented“ vyjadřuje domněnku o něčem, co se stalo dříve, než byl problém odhalen, proto se používá perfektní infinitiv."),
+
+M("infgerund-mix-advanced-m20","infinitive-gerund","advanced","Mix",
+  "Porovnej sloveso ze skupiny, kde výběr infinitivu nebo „-ing“ tvaru mění význam, a perfektní infinitiv vyjadřující děj, který proběhl dříve, v kontextu literárního plagiátorství.",
+  [
+    {before:"The author tried ", hint:"defend", after:" her original work against the accusations.", answers:["to defend"], tag:"Rozdíly ve významu (remember, stop, try...)"},
+    {before:"She is now claimed ", hint:"plagiarize", after:" entire passages from an obscure novel decades earlier.", answers:["to have plagiarized"], tag:"Perfektní infinitiv (seem to have done)"}
+  ],
+  "„Tried to defend“ znamená, že se o obhajobu pokoušela, aniž by byl výsledek jistý; „is claimed to have plagiarized“ vyjadřuje tvrzení o něčem, co se stalo dávno předtím, proto se používá perfektní infinitiv."),
 
 );
 
