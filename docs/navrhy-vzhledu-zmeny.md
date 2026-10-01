@@ -10,6 +10,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 2 | `navrhy-vzhledu-2.html` | Letecká pošta+ **v1** · Sešit · Kondice (fitness kroužky) |
 | 3 | `navrhy-vzhledu-3.html` | Letecká pošta+ **v2** · Činka (originální „posilovna“) |
 | 4 | `navrhy-vzhledu-4.html` | Letecká pošta+ **v3** (se srdcem) · Korektura · Mozaika |
+| 5 | `navrhy-vzhledu-5.html` | Letecká pošta+ **v4a** Měkké 3D · **v4b** Papír na stole · **v4c** Sklo a nebe |
 
 ## Zpětná vazba
 
@@ -19,6 +20,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
   - Sešit — vůbec se nelíbí, vyřazeno.
   - Kondice — dobrý směr kvůli názvu „Gramatická posilovna“, ale kopíruje fitness aplikace (kroužky jako v iPhonu), kterých je spousta. Chce to něco originálního.
 - **Kolo 3:** Letecká pošta+ v2 se líbí nejvíc a má se rozvíjet dál, „dát do ní srdce“. K Čince bez komentáře. Zadání: ještě pár opravdu dobrých moderních návrhů s využitím technik kreativních lidí.
+- **Kolo 4:** nepochopeno zadání. v3 (Ella, album, dopis od autora), Korektura ani Mozaika se nelíbí. Zpět k v2 a **jen udělat vizuál líbivější, např. víc 3D**. Tři návrhy.
 
 ## Letecká pošta+ — historie verzí
 
@@ -42,6 +44,13 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Album pohlednic:** 15 témat = 15 měst, trasa B1 → B2 přesunuta z úvodu sem.
 - **Cestovní pas s osobním dopisem od autora** (text je ukázka, musí se přepsat pravdivě).
 - Ručně psané písmo Caveat jen pro „lidské“ prvky (Ella, poznámky, autor).
+
+### v4a / v4b / v4c (kolo 5) — vychází z v2, ne z v3
+- Obsah, rozvržení i texty obrazovek **přesně jako v2** (stejné HTML), mění se jen CSS. Barevná emoji místo plochých symbolů (obálka, letadlo, pas).
+- Společné: razítko „doručeno“ posunuto výš, aby nepřekrývalo text.
+- **v4a Měkké 3D:** zaoblenější „nafouklé“ karty se světlem shora a stínem zespodu, tlačítka se spodní hranou, vypouklý ukazatel pokroku a trasa, známky a razítko vrhají stín, pohlednice mírně natočená.
+- **v4b Papír na stole:** pozadí z balicího papíru, karty jako listy papíru se dalšími listy pod sebou a lepicí páskou, mírně natočené; razítko jako inkoust.
+- **v4c Sklo a nebe:** pozadí ranní obloha s mraky, karty z matného skla, ukazatel pokroku od broskvové po námořní modrou.
 
 ## Činka — historie verzí
 
