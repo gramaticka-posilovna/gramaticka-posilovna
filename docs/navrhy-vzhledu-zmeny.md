@@ -17,6 +17,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 9 | `navrhy-vzhledu-9.html` | Posilovna **v8** (z v7.4: dnešní den, série jako kotouč) + možnosti série B a C |
 | 10 | `navrhy-vzhledu-10.html` | Posilovna v8 · úvod s 10 barvami pozadí (6× světle modrá, krémová, šalvějová, beton, levandulová) |
 | 11 | `navrhy-vzhledu-11.html` | Vybraná Šedomodrá + 6 návrhů úprav (grafitové / žluté tlačítko, Oswald, tmavá hlavička, kotouče v pozadí, ostřejší karty) |
+| 12 | `navrhy-vzhledu-12.html` | **Posilovna v9 · Šedomodrá — všech 14 obrazovek appky** |
 
 ## Zpětná vazba
 
@@ -33,6 +34,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 8:** vybrána **v7.4 Co funguje**. Doplnit zvýraznění dnešního dne; štítek „8 dní v řadě“ nahoře se nelíbí, předělat.
 - **Kolo 9:** v8 se moc líbí (série jako kotouč, zvýrazněný dnešní den). Další krok: zkusit světle modré pozadí ve více odstínech, případně jinou vhodnou barvu.
 - **Kolo 10:** vybráno pozadí **4 · Šedomodrá** (`#F3F6F9` → `#E1E8EF` → `#CDD7E2`). Další krok: ukázat ji jako první a vedle vlastní návrhy, co by mohlo fungovat.
+- **Kolo 11:** z návrhů úprav nic, platí **čistá Šedomodrá**. Ukázat ji na všech obrazovkách appky.
 
 ## Letecká pošta+ — historie verzí
 
@@ -94,6 +96,12 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 
 ### Návrhy nad Šedomodrou (kolo 11) — jen úvod, každý mění jednu věc
 - 1 Grafitové tlačítko (barva kotoučů) · 2 Žluté tlačítko (žlutý kotouč) · 3 Pozdrav a čísla písmem Oswald velkými písmeny · 4 Tmavá hlavička s pozdravem a sérií · 5 Jemné obrysy kotoučů v pozadí · 6 Čistě bílé karty s tenkým okrajem a menším stínem.
+
+### v9 (kolo 12) — Šedomodrá, celá appka
+- Spodní lišta se 4 záložkami (Domů, Témata, Pokrok, Nastavení) místo horních tlačítek Procvičit / Pokrok.
+- Domů: kvůli liště menší mezery, menší dlaždice a kratší věta „1 náhradní den v záloze“.
+- Nové obrazovky: Témata (seznam s pokrokem a filtrem), Nastavení kola (spodní panel: obtížnost s barevnými tečkami zelená/žlutá/červená, počet 5/10/15/20), Otázka doplňování (pole, „Nevím, ukaž odpověď“), Po chybě (korálový 3D odznak ✕, vysvětlení, „zopakujeme“), Výběr z možností, Mix s více mezerami, Výsledek podle jevů (pruhy zelená/žlutá/korálová, doporučení, Zkusit znovu / Těžší úroveň), Pokrok (3 čísla, graf po týdnech, slabá místa), Nastavení (jazyk CZ/EN, denní cíl, připomínka, zvuky, nákupy, smazání), Potvrzení smazání.
+- Odstraněny zbylé krémové odstíny (tlačítka „Hotovo na dnes“ apod., stíny karet) ve prospěch šedomodré.
 
 ## Činka — historie verzí
 
