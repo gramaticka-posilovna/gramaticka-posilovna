@@ -16,6 +16,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 8 | `navrhy-vzhledu-8.html` | Posilovna **v7.1** Kreativní · **v7.2** Odvážná · **v7.3** Lehké vylepšení · **v7.4** Co funguje |
 | 9 | `navrhy-vzhledu-9.html` | Posilovna **v8** (z v7.4: dnešní den, série jako kotouč) + možnosti série B a C |
 | 10 | `navrhy-vzhledu-10.html` | Posilovna v8 · úvod s 10 barvami pozadí (6× světle modrá, krémová, šalvějová, beton, levandulová) |
+| 11 | `navrhy-vzhledu-11.html` | Vybraná Šedomodrá + 6 návrhů úprav (grafitové / žluté tlačítko, Oswald, tmavá hlavička, kotouče v pozadí, ostřejší karty) |
 
 ## Zpětná vazba
 
@@ -31,6 +32,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 7:** **vybrána varianta B · Posilovna** (v6B). Zadání: 4 úpravy, tedy kreativní, odvážná, lehké vylepšení a „co funguje“.
 - **Kolo 8:** vybrána **v7.4 Co funguje**. Doplnit zvýraznění dnešního dne; štítek „8 dní v řadě“ nahoře se nelíbí, předělat.
 - **Kolo 9:** v8 se moc líbí (série jako kotouč, zvýrazněný dnešní den). Další krok: zkusit světle modré pozadí ve více odstínech, případně jinou vhodnou barvu.
+- **Kolo 10:** vybráno pozadí **4 · Šedomodrá** (`#F3F6F9` → `#E1E8EF` → `#CDD7E2`). Další krok: ukázat ji jako první a vedle vlastní návrhy, co by mohlo fungovat.
 
 ## Letecká pošta+ — historie verzí
 
@@ -89,6 +91,9 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Barvy pozadí (kolo 10) — jen úvod v8
 - Přes CSS proměnné se mění pozadí a s ním nádech karet, prázdné kotouče, dráha pruhu a barva stínů; tmavé kotouče, modré tlačítko a zelená beze změny.
 - 0 Krémová (dnešní) `#F4E9D2` · 1 Ledová `#EAF2FB` · 2 Nebeská `#DDEBFA` · 3 Pastelově modrá `#D0E3FA` · 4 Šedomodrá `#E1E8EF` · 5 Azurová `#D8F1F8` · 6 Modrofialová `#E1E5FA` · 7 Šalvějová `#E3EFE5` · 8 Beton `#E9E7E3` · 9 Levandulová `#ECE5F6` (uvedena prostřední barva přechodu).
+
+### Návrhy nad Šedomodrou (kolo 11) — jen úvod, každý mění jednu věc
+- 1 Grafitové tlačítko (barva kotoučů) · 2 Žluté tlačítko (žlutý kotouč) · 3 Pozdrav a čísla písmem Oswald velkými písmeny · 4 Tmavá hlavička s pozdravem a sérií · 5 Jemné obrysy kotoučů v pozadí · 6 Čistě bílé karty s tenkým okrajem a menším stínem.
 
 ## Činka — historie verzí
 
