@@ -141,6 +141,14 @@
   .nav-links button:hover:not(.active){
     color: #fff;
   }
+  .topbar-right{ display:flex; align-items:center; gap: 8px; }
+  .lang-switch button{ padding: 8px 10px; font-size: 12.5px; font-weight: 600; }
+  @media (max-width: 480px){
+    .topbar{ padding: 18px 16px; }
+    .brand-name{ display: none; }
+    .nav-links button{ padding: 7px 11px; font-size: 13px; }
+    .lang-switch button{ padding: 7px 8px; }
+  }
 
   .view{ display:none; }
   .view.active{ display:block; }
@@ -694,11 +702,17 @@
   <div class="topbar-inner">
     <div class="brand">
       <div class="brand-mark">G</div>
-      <div class="brand-name">Gramatická posilovna</div>
+      <div class="brand-name" data-i18n="brand">Gramatická posilovna</div>
     </div>
-    <div class="nav-links">
-      <button id="nav-setup" class="active">Procvičit</button>
-      <button id="nav-progress">Pokrok</button>
+    <div class="topbar-right">
+      <div class="nav-links">
+        <button id="nav-setup" class="active" data-i18n="navPractice">Procvičit</button>
+        <button id="nav-progress" data-i18n="navProgress">Pokrok</button>
+      </div>
+      <div class="nav-links lang-switch">
+        <button data-lang="cs" class="active">CZ</button>
+        <button data-lang="en">EN</button>
+      </div>
     </div>
   </div>
 </div>
@@ -709,23 +723,23 @@
   <!-- ===================== SETUP VIEW ===================== -->
   <div class="view active" id="view-setup">
     <div class="intro">
-      <h1>Co dnes procvičíme?</h1>
-      <p>Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
+      <h1 data-i18n="setupTitle">Co dnes procvičíme?</h1>
+      <p data-i18n="setupIntro">Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
     </div>
 
     <div class="card">
-      <p class="card-label">Téma (můžeš vybrat víc)</p>
+      <p class="card-label" data-i18n="labelTopic">Téma (můžeš vybrat víc)</p>
       <div class="pill-grid" id="topic-grid"></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Obtížnost</p>
+      <p class="card-label" data-i18n="labelDifficulty">Obtížnost</p>
       <div class="segmented" id="diff-grid"></div>
       <div class="diff-desc" id="diff-desc"></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Počet otázek</p>
+      <p class="card-label" data-i18n="labelCount">Počet otázek</p>
       <div class="segmented" id="count-grid"></div>
     </div>
 
@@ -739,7 +753,7 @@
         <span class="tag tag-topic" id="quiz-tag-topic"></span>
         <span class="tag tag-diff" id="quiz-tag-diff"></span>
       </div>
-      <button class="exit-btn" id="quiz-exit">Ukončit kolo</button>
+      <button class="exit-btn" id="quiz-exit" data-i18n="quizExit">Ukončit kolo</button>
     </div>
     <div class="progress-track"><div class="progress-fill" id="quiz-progress-fill"></div></div>
     <div class="q-counter" id="quiz-counter"></div>
@@ -750,7 +764,7 @@
   <!-- ===================== RESULTS VIEW ===================== -->
   <div class="view" id="view-results">
     <div class="card score-hero">
-      <p class="score-title">Výsledek kola</p>
+      <p class="score-title" data-i18n="resultsTitle">Výsledek kola</p>
       <div class="score-ring">
         <svg viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="52" stroke="#EFE7D3" stroke-width="12" fill="none"/>
@@ -764,51 +778,51 @@
     </div>
 
     <div class="card">
-      <p class="card-label">Rozpad podle gramatických jevů</p>
+      <p class="card-label" data-i18n="labelBreakdown">Rozpad podle gramatických jevů</p>
       <div id="breakdown-list"></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Doporučení</p>
+      <p class="card-label" data-i18n="labelRecommend">Doporučení</p>
       <div class="recommend-box" id="recommend-box"></div>
     </div>
 
     <div class="btn-row">
-      <button class="btn-secondary" id="btn-retry">Zkusit znovu</button>
-      <button class="btn-primary" id="btn-harder">Těžší úroveň</button>
+      <button class="btn-secondary" id="btn-retry" data-i18n="btnRetry">Zkusit znovu</button>
+      <button class="btn-primary" id="btn-harder" data-i18n="btnHarder">Těžší úroveň</button>
     </div>
     <div class="btn-row">
-      <button class="btn-secondary" id="btn-back-setup">Zpět na výběr</button>
+      <button class="btn-secondary" id="btn-back-setup" data-i18n="btnBack">Zpět na výběr</button>
     </div>
   </div>
 
   <!-- ===================== PROGRESS VIEW ===================== -->
   <div class="view" id="view-progress">
     <div class="intro">
-      <h1>Tvůj pokrok</h1>
-      <p>Přehled toho, jak ti to jde napříč všemi koly.</p>
+      <h1 data-i18n="progressTitle">Tvůj pokrok</h1>
+      <p data-i18n="progressIntro">Přehled toho, jak ti to jde napříč všemi koly.</p>
     </div>
 
     <div class="stat-grid">
-      <div class="stat-box"><div class="num" id="stat-rounds">0</div><div class="lbl">odehraných kol</div></div>
-      <div class="stat-box"><div class="num" id="stat-accuracy">0%</div><div class="lbl">celková úspěšnost</div></div>
-      <div class="stat-box"><div class="num" id="stat-answers">0</div><div class="lbl">zodpovězených úloh</div></div>
+      <div class="stat-box"><div class="num" id="stat-rounds">0</div><div class="lbl" data-i18n="statRounds">odehraných kol</div></div>
+      <div class="stat-box"><div class="num" id="stat-accuracy">0%</div><div class="lbl" data-i18n="statAccuracy">celková úspěšnost</div></div>
+      <div class="stat-box"><div class="num" id="stat-answers">0</div><div class="lbl" data-i18n="statAnswers">zodpovězených úloh</div></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Vývoj úspěšnosti v čase</p>
+      <p class="card-label" data-i18n="labelChart">Vývoj úspěšnosti v čase</p>
       <div class="chart-wrap" id="chart-wrap"></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Na co se zaměřit</p>
+      <p class="card-label" data-i18n="labelWeak">Na co se zaměřit</p>
       <div id="weak-list"></div>
     </div>
 
     <div class="card">
-      <p class="card-label">Historie kol</p>
+      <p class="card-label" data-i18n="labelHistory">Historie kol</p>
       <div id="history-list"></div>
-      <button class="reset-link" id="reset-progress">Smazat veškerý pokrok</button>
+      <button class="reset-link" id="reset-progress" data-i18n="resetProgress">Smazat veškerý pokrok</button>
     </div>
   </div>
 
@@ -818,8 +832,8 @@
   <div class="modal-card">
     <p id="confirm-modal-text"></p>
     <div class="btn-row">
-      <button class="btn-secondary" id="confirm-modal-cancel">Zpět</button>
-      <button class="btn-primary" id="confirm-modal-ok">Ano, pokračovat</button>
+      <button class="btn-secondary" id="confirm-modal-cancel" data-i18n="modalCancel">Zpět</button>
+      <button class="btn-primary" id="confirm-modal-ok" data-i18n="modalOk">Ano, pokračovat</button>
     </div>
   </div>
 </div>
@@ -833,28 +847,47 @@
    ============================================================ */
 
 const TOPICS = [
-  { id:"tenses",      name:"Slovesné časy",            desc:"Past simple, continuous, perfect, present perfect, will, going to, future continuous" },
-  { id:"conditionals", name:"Podmínkové věty",         desc:"0., 1., 2., 3. kondicionál" },
-  { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze" },
-  { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost" },
-  { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done" },
-  { id:"reported-speech", name:"Nepřímá řeč", desc:"Oznamovací věty, otázky, rozkazy a žádosti, posun časů, uvozovací slovesa" },
-  { id:"articles", name:"Členy", desc:"A/an vs. the, nulový člen, zeměpisné názvy, obecná tvrzení" },
-  { id:"nouns", name:"Podstatná jména a determinery", desc:"Počitatelnost, množné číslo, some/any/no, much/many, few/little, přivlastňovací pád" },
-  { id:"pronouns", name:"Zájmena", desc:"Osobní a přivlastňovací, zvratná a vzájemná, neurčitá, ukazovací, one/ones, there is vs. it is" },
-  { id:"clauses", name:"Vedlejší věty", desc:"Určující a neurčující vztažné věty, zkrácené vztažné věty, podmětné a předmětné věty, participle clauses" },
-  { id:"infinitive-gerund", name:"Infinitiv a gerundium", desc:"Sloveso + to infinitiv / -ing, rozdíly ve významu, sloveso + předmět + infinitiv, předložka + -ing, perfektní infinitiv" },
-  { id:"adjectives-adverbs", name:"Přídavná jména a příslovce", desc:"Stupňování, pořadí přídavných jmen, tvorba příslovcí, too/enough, so/such, as...as, -ed/-ing přídavná jména" },
-  { id:"prepositions", name:"Předložky", desc:"Místo a čas, vazby se slovesy, přídavnými a podstatnými jmény, předložka na konci věty" },
-  { id:"phrasal-verbs", name:"Frázová slovesa", desc:"Základní a rozšířená sada, dělitelná vs. nedělitelná frázová slovesa" },
-  { id:"conjunctions", name:"Spojky a diskurzní markery", desc:"Although/despite, because/since/as, so that/in order to, diskurzní markery, whereas/while, however vs. although, both/either/neither, even though vs. even if" },
-  { id:"vocab", name:"Slovní zásoba", desc:"Překlad oběma směry, slovo v kontextu i výběr z možností" }
+  { id:"tenses",      name:"Slovesné časy",            desc:"Past simple, continuous, perfect, present perfect, will, going to, future continuous",
+    nameEn:"Verb tenses", descEn:"Past simple, continuous, perfect, present perfect, will, going to, future continuous" },
+  { id:"conditionals", name:"Podmínkové věty",         desc:"0., 1., 2., 3. kondicionál",
+    nameEn:"Conditionals", descEn:"Zero, first, second and third conditional" },
+  { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze",
+    nameEn:"Word order and questions", descEn:"Indirect questions, negative questions, tag questions, inversion" },
+  { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost",
+    nameEn:"Modal verbs", descEn:"Ability, permission, obligation, prohibition, advice, probability" },
+  { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done",
+    nameEn:"Passive voice", descEn:"Present and past simple, present perfect, modal verbs, have/get something done" },
+  { id:"reported-speech", name:"Nepřímá řeč", desc:"Oznamovací věty, otázky, rozkazy a žádosti, posun časů, uvozovací slovesa",
+    nameEn:"Reported speech", descEn:"Statements, questions, commands and requests, backshift, reporting verbs" },
+  { id:"articles", name:"Členy", desc:"A/an vs. the, nulový člen, zeměpisné názvy, obecná tvrzení",
+    nameEn:"Articles", descEn:"A/an vs. the, zero article, geographical names, generalisations" },
+  { id:"nouns", name:"Podstatná jména a determinery", desc:"Počitatelnost, množné číslo, some/any/no, much/many, few/little, přivlastňovací pád",
+    nameEn:"Nouns and determiners", descEn:"Countability, plurals, some/any/no, much/many, few/little, possessive 's" },
+  { id:"pronouns", name:"Zájmena", desc:"Osobní a přivlastňovací, zvratná a vzájemná, neurčitá, ukazovací, one/ones, there is vs. it is",
+    nameEn:"Pronouns", descEn:"Personal and possessive, reflexive and reciprocal, indefinite, demonstrative, one/ones, there is vs. it is" },
+  { id:"clauses", name:"Vedlejší věty", desc:"Určující a neurčující vztažné věty, zkrácené vztažné věty, podmětné a předmětné věty, participle clauses",
+    nameEn:"Subordinate clauses", descEn:"Defining and non-defining relative clauses, reduced relative clauses, subject and object clauses, participle clauses" },
+  { id:"infinitive-gerund", name:"Infinitiv a gerundium", desc:"Sloveso + to infinitiv / -ing, rozdíly ve významu, sloveso + předmět + infinitiv, předložka + -ing, perfektní infinitiv",
+    nameEn:"Infinitive and gerund", descEn:"Verb + to-infinitive / -ing, changes in meaning, verb + object + infinitive, preposition + -ing, perfect infinitive" },
+  { id:"adjectives-adverbs", name:"Přídavná jména a příslovce", desc:"Stupňování, pořadí přídavných jmen, tvorba příslovcí, too/enough, so/such, as...as, -ed/-ing přídavná jména",
+    nameEn:"Adjectives and adverbs", descEn:"Comparison, adjective order, adverb formation, too/enough, so/such, as...as, -ed/-ing adjectives" },
+  { id:"prepositions", name:"Předložky", desc:"Místo a čas, vazby se slovesy, přídavnými a podstatnými jmény, předložka na konci věty",
+    nameEn:"Prepositions", descEn:"Place and time, prepositions after verbs, adjectives and nouns, prepositions at the end of a sentence" },
+  { id:"phrasal-verbs", name:"Frázová slovesa", desc:"Základní a rozšířená sada, dělitelná vs. nedělitelná frázová slovesa",
+    nameEn:"Phrasal verbs", descEn:"Core and extended set, separable vs. inseparable phrasal verbs" },
+  { id:"conjunctions", name:"Spojky a diskurzní markery", desc:"Although/despite, because/since/as, so that/in order to, diskurzní markery, whereas/while, however vs. although, both/either/neither, even though vs. even if",
+    nameEn:"Conjunctions and discourse markers", descEn:"Although/despite, because/since/as, so that/in order to, discourse markers, whereas/while, however vs. although, both/either/neither, even though vs. even if" },
+  { id:"vocab", name:"Slovní zásoba", desc:"Překlad oběma směry, slovo v kontextu i výběr z možností",
+    nameEn:"Vocabulary", descEn:"Translation both ways, words in context and multiple choice" }
 ];
 
 const DIFFICULTIES = [
-  { id:"basic",        name:"Základní",   desc:"Jedna otázka s jasným kontextem nebo signálním slovem — základní slovní zásoba a jevy. Ideální na rozehřátí." },
-  { id:"intermediate", name:"Střední",    desc:"Delší nebo spojené věty, méně obvyklá slova a konstrukce, souslednost časů." },
-  { id:"advanced",     name:"Pokročilá",  desc:"Kombinace více jevů, formální vazby, přesnější a abstraktnější slovní zásoba." }
+  { id:"basic",        name:"Základní",   desc:"Jedna otázka s jasným kontextem nebo signálním slovem — základní slovní zásoba a jevy. Ideální na rozehřátí.",
+    nameEn:"Basic", descEn:"One question with a clear context or signal word — basic vocabulary and structures. Ideal for warming up." },
+  { id:"intermediate", name:"Střední",    desc:"Delší nebo spojené věty, méně obvyklá slova a konstrukce, souslednost časů.",
+    nameEn:"Intermediate", descEn:"Longer or linked sentences, less common words and structures, sequence of tenses." },
+  { id:"advanced",     name:"Pokročilá",  desc:"Kombinace více jevů, formální vazby, přesnější a abstraktnější slovní zásoba.",
+    nameEn:"Advanced", descEn:"Combinations of several structures, formal patterns, more precise and abstract vocabulary." }
 ];
 
 // Pomocná zkratka pro čitelnější zápis položek
@@ -20835,6 +20868,203 @@ navSetup.addEventListener("click", function(){ showView("setup"); });
 navProgress.addEventListener("click", function(){ renderProgress(); showView("progress"); });
 
 /* ============================================================
+   5b. JAZYK ROZHRANÍ (CZ / EN)
+   Překládá se jen rozhraní a názvy témat/podtémat. Tagy v datech
+   zůstávají české (jsou to klíče pro uložený pokrok), anglicky se
+   jen zobrazují přes TAG_EN. Vysvětlení u otázek jsou zatím česky.
+   ============================================================ */
+
+const LANG_KEY = "grammarLabLangV1";
+let lang = "cs";
+try{ if(window.localStorage.getItem(LANG_KEY) === "en") lang = "en"; }catch(e){}
+
+const I18N = {
+  cs: {
+    brand: "Gramatická posilovna",
+    navPractice: "Procvičit", navProgress: "Pokrok",
+    setupTitle: "Co dnes procvičíme?",
+    setupIntro: "Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.",
+    labelTopic: "Téma (můžeš vybrat víc)", labelDifficulty: "Obtížnost", labelCount: "Počet otázek",
+    pickTopic: "Vyber alespoň jedno téma",
+    startRound: function(n){ return "Spustit kolo (" + n + " otázek)"; },
+    noQuestions: "Pro tuto kombinaci tématu a obtížnosti zatím nejsou k dispozici otázky.",
+    quizExit: "Ukončit kolo", exitConfirm: "Ukončit kolo bez uložení výsledku?",
+    nTopics: function(n){ return n + " témata"; },
+    questionOf: function(i, n){ return "Otázka " + i + " / " + n; },
+    hint: "nápověda: ", check: "Zkontrolovat",
+    correct: "Správně!", wrong: "Ještě to nesedí", correctAnswer: "Správně: ",
+    showResult: "Zobrazit výsledek", next: "Pokračovat",
+    resultsTitle: "Výsledek kola", labelBreakdown: "Rozpad podle gramatických jevů", labelRecommend: "Doporučení",
+    btnRetry: "Zkusit znovu", btnHarder: "Těžší úroveň", btnBack: "Zpět na výběr",
+    recPerfect: "Perfektní kolo! Klidně zkus vyšší obtížnost nebo přidej další téma.",
+    recWeak: function(tagHtml, p){ return "Příště se zaměř na: " + tagHtml + " (" + p + "% úspěšnost v tomto kole). Tyto otázky se ti budou objevovat častěji, dokud v nich nebudeš jistější."; },
+    recKeep: "Pokračuj ve stejném duchu a zkus další kolo.",
+    progressTitle: "Tvůj pokrok", progressIntro: "Přehled toho, jak ti to jde napříč všemi koly.",
+    statRounds: "odehraných kol", statAccuracy: "celková úspěšnost", statAnswers: "zodpovězených úloh",
+    labelChart: "Vývoj úspěšnosti v čase", labelWeak: "Na co se zaměřit", labelHistory: "Historie kol",
+    resetProgress: "Smazat veškerý pokrok",
+    chartEmpty: "Zatím nemáš žádná odehraná kola. Zkus si první kolo procvičit!",
+    weakEmpty: "Zatím nemáme dost dat — po pár odehraných kolech se tu objeví tvé nejslabší jevy.",
+    historyEmpty: "Historie kol se zobrazí, jakmile dohraješ první kolo.",
+    resetConfirm: "Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.",
+    modalCancel: "Zpět", modalOk: "Ano, pokračovat",
+    olderTopic: "Starší téma", unknownDiff: "Neznámá obtížnost",
+    dateLocale: "cs-CZ"
+  },
+  en: {
+    brand: "Grammar Gym",
+    navPractice: "Practice", navProgress: "Progress",
+    setupTitle: "What shall we practise today?",
+    setupIntro: "Choose a topic, difficulty and number of questions. The app remembers what you're good at and what you find hard, and adapts the questions to you.",
+    labelTopic: "Topic (you can choose more than one)", labelDifficulty: "Difficulty", labelCount: "Number of questions",
+    pickTopic: "Choose at least one topic",
+    startRound: function(n){ return "Start round (" + n + " questions)"; },
+    noQuestions: "There are no questions for this combination of topic and difficulty yet.",
+    quizExit: "End round", exitConfirm: "End the round without saving your result?",
+    nTopics: function(n){ return n + " topics"; },
+    questionOf: function(i, n){ return "Question " + i + " / " + n; },
+    hint: "hint: ", check: "Check",
+    correct: "Correct!", wrong: "Not quite", correctAnswer: "Correct answer: ",
+    showResult: "See results", next: "Continue",
+    resultsTitle: "Round result", labelBreakdown: "Breakdown by grammar point", labelRecommend: "Recommendation",
+    btnRetry: "Try again", btnHarder: "Harder level", btnBack: "Back to selection",
+    recPerfect: "Perfect round! Try a higher difficulty or add another topic.",
+    recWeak: function(tagHtml, p){ return "Next time, focus on: " + tagHtml + " (" + p + "% correct in this round). These questions will come up more often until you feel more confident."; },
+    recKeep: "Keep it up and try another round.",
+    progressTitle: "Your progress", progressIntro: "An overview of how you're doing across all rounds.",
+    statRounds: "rounds played", statAccuracy: "overall accuracy", statAnswers: "items answered",
+    labelChart: "Accuracy over time", labelWeak: "What to focus on", labelHistory: "Round history",
+    resetProgress: "Delete all progress",
+    chartEmpty: "You haven't played any rounds yet. Try your first one!",
+    weakEmpty: "Not enough data yet — your weakest areas will appear here after a few rounds.",
+    historyEmpty: "Your round history will appear once you finish your first round.",
+    resetConfirm: "Do you really want to delete all your saved progress? This cannot be undone.",
+    modalCancel: "Back", modalOk: "Yes, continue",
+    olderTopic: "Older topic", unknownDiff: "Unknown difficulty",
+    dateLocale: "en-GB"
+  }
+};
+
+function tx(key){
+  const v = I18N[lang][key];
+  return typeof v === "function" ? v.apply(null, Array.prototype.slice.call(arguments, 1)) : v;
+}
+
+// Název/popis tématu nebo obtížnosti v aktuálním jazyce (pole name/nameEn, desc/descEn).
+function localized(obj, field){
+  return (lang === "en" && obj[field + "En"]) || obj[field];
+}
+
+// Anglické názvy podtémat; tagy, které jsou už anglicky, tu nejsou.
+const TAG_EN = {
+  "0. kondicionál": "Zero conditional",
+  "1. kondicionál": "First conditional",
+  "2. kondicionál": "Second conditional",
+  "3. kondicionál": "Third conditional",
+  "As if + minulost": "As if + past",
+  "Because, since, as (důvod)": "Because, since, as (reason)",
+  "Diskurzní markery (however, moreover...)": "Discourse markers (however, moreover...)",
+  "Dovolení (can/may/could)": "Permission (can/may/could)",
+  "Dělitelná vs. nedělitelná frázová slovesa (turn it off / look after it)": "Separable vs. inseparable phrasal verbs (turn it off / look after it)",
+  "Inverze po záporných příslovcích": "Inversion after negative adverbials",
+  "Inverze v podmínce": "Conditional inversion",
+  "Množné číslo, nepravidelné tvary": "Plurals, irregular forms",
+  "Modální slovesa": "Modal verbs",
+  "Modály v minulosti (must have/might have/should have/needn't have)": "Past modals (must have/might have/should have/needn't have)",
+  "Místa a času": "Place and time",
+  "Nepravidelná slovesa (minulý čas)": "Irregular verbs (past tense)",
+  "Nepřímé otázky": "Indirect questions",
+  "Neurčitá (someone, anything...)": "Indefinite pronouns (someone, anything...)",
+  "Neurčující vztažné věty (non-defining relative clauses)": "Non-defining relative clauses",
+  "Nulový člen (vč. institucí: go to school/bed/work/prison)": "Zero article (incl. institutions: go to school/bed/work/prison)",
+  "Obecná slovní zásoba": "General vocabulary",
+  "Obecná tvrzení (generalizace pomocí členů)": "Generalisations with articles",
+  "Osobní a přivlastňovací": "Personal and possessive pronouns",
+  "Otázky v nepřímé řeči": "Reported questions",
+  "Oznamovací věty": "Reported statements",
+  "Perfektní infinitiv (seem to have done)": "Perfect infinitive (seem to have done)",
+  "Podmětné, předmětné věty": "Subject and object clauses",
+  "Posun časů (backshift)": "Backshift of tenses",
+  "Povinnost a nutnost (must/have to/need to)": "Obligation and necessity (must/have to/need to)",
+  "Počitatelnost (vč. hromadných podstatných jmen: the police, the team)": "Countability (incl. collective nouns: the police, the team)",
+  "Pořadí přídavných jmen": "Adjective order",
+  "Pravděpodobnost a dedukce v přítomnosti (must/might/can't be)": "Present probability and deduction (must/might/can't be)",
+  "Present perfect, budoucí časy": "Present perfect, future tenses",
+  "Předložka + -ing": "Preposition + -ing",
+  "Předložka na konci věty": "Prepositions at the end of a sentence",
+  "Přivlastňovací 's vs. of": "Possessive 's vs. of",
+  "Přídavná jména na -ed/-ing (bored/boring)": "-ed/-ing adjectives (bored/boring)",
+  "Přítomný a minulý čas prostý": "Present and past simple",
+  "Rada (should/ought to/had better)": "Advice (should/ought to/had better)",
+  "Rozdíly ve významu (remember, stop, try...)": "Changes in meaning (remember, stop, try...)",
+  "Rozkazy a žádosti": "Reported commands and requests",
+  "Rozšířená sada": "Extended set",
+  "S modálními slovesy": "With modal verbs",
+  "Schopnost (can/could/be able to)": "Ability (can/could/be able to)",
+  "Sloveso + -ing": "Verb + -ing",
+  "Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)": "Verb + object + infinitive, incl. bare infinitive (want/tell/ask him to go vs. make/let him go)",
+  "Sloveso + to infinitiv": "Verb + to-infinitive",
+  "Smíšený kondicionál": "Mixed conditional",
+  "So that, in order to (účel)": "So that, in order to (purpose)",
+  "Stupňování (vč. stupňovatelných vs. absolutních přídavných jmen: very tired / absolutely exhausted)": "Comparison (incl. gradable vs. absolute adjectives: very tired / absolutely exhausted)",
+  "Tvorba a pozice příslovcí": "Adverb formation and position",
+  "Tvorba otázky": "Question formation",
+  "Ukazovací (this/that/these/those)": "Demonstratives (this/that/these/those)",
+  "Určující vztažné věty (defining relative clauses)": "Defining relative clauses",
+  "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)": "Reporting verbs and their patterns (suggest, advise, deny, apologise...)",
+  "Vazby s podstatnými jmény (reason for, increase in)": "Noun + preposition (reason for, increase in)",
+  "Vazby s přídavnými jmény": "Adjective + preposition",
+  "Vazby se slovesy": "Verb + preposition",
+  "Wish + minulost": "Wish + past",
+  "Zkrácené vztažné věty (redukce vztažné věty pomocí příčestí/infinitivu)": "Reduced relative clauses (participle/infinitive)",
+  "Zvratná a vzájemná zájmena (myself.../each other, one another)": "Reflexive and reciprocal pronouns (myself.../each other, one another)",
+  "Zákaz vs. absence nutnosti (mustn't vs. don't have to)": "Prohibition vs. lack of necessity (mustn't vs. don't have to)",
+  "Základní sada": "Core set",
+  "Záporné otázky": "Negative questions",
+  "Časová věta (present simple)": "Time clauses (present simple)",
+  "Členy se zeměpisnými názvy": "Articles with geographical names"
+};
+
+function tagLabel(tag){
+  return (lang === "en" && TAG_EN[tag]) || tag;
+}
+
+let lastResults = null; // argumenty posledního renderResults – kvůli přepnutí jazyka na obrazovce výsledků
+
+// Přepíše všechny texty v aktuálním jazyce. Volá se při startu a po přepnutí.
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.title = tx("brand");
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    el.textContent = tx(el.getAttribute("data-i18n"));
+  });
+  document.querySelectorAll(".lang-switch button").forEach(function(btn){
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+  });
+  if(lang === "en") delete selectedTags.vocab;
+  renderTopicGrid();
+  renderDiffGrid();
+  renderCountGrid();
+  updateStartBtn();
+  renderProgress();
+  if(views.quiz.classList.contains("active")){
+    renderQuizTopbar();
+    if(!currentAnswered) renderQuestion();
+  }
+  if(views.results.classList.contains("active") && lastResults){
+    renderResults.apply(null, lastResults);
+  }
+}
+
+document.querySelectorAll(".lang-switch button").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    lang = btn.getAttribute("data-lang");
+    try{ window.localStorage.setItem(LANG_KEY, lang); }catch(e){}
+    applyLang();
+  });
+});
+
+/* ============================================================
    6. RENDER: SETUP VIEW
    ============================================================ */
 
@@ -20873,6 +21103,8 @@ function activeTopicCount(){
 function renderTopicGrid(){
   topicGrid.innerHTML = "";
   TOPICS.forEach(function(t){
+    // Slovní zásoba je postavená na češtině, v anglické verzi se nenabízí.
+    if(lang === "en" && t.id === "vocab") return;
     const tags = subtopicsFor(t.id);
     const sel = selectedTags[t.id];
     const selCount = sel ? tags.filter(function(tag){ return sel.has(tag); }).length : 0;
@@ -20889,7 +21121,7 @@ function renderTopicGrid(){
     row.className = "topic-pill-row";
     row.innerHTML =
       '<span class="box">'+(state === "partial" ? DASH_SVG : CHECK_SVG)+'</span>' +
-      '<span class="txt"><strong>'+t.name+'</strong></span>' +
+      '<span class="txt"><strong>'+localized(t, "name")+'</strong></span>' +
       '<span class="chevron">'+CHEVRON_SVG+'</span>';
     row.querySelector(".box").addEventListener("click", function(e){
       e.stopPropagation();
@@ -20907,14 +21139,14 @@ function renderTopicGrid(){
 
     const desc = document.createElement("p");
     desc.className = "topic-pill-desc";
-    desc.textContent = t.desc;
+    desc.textContent = localized(t, "desc");
     body.appendChild(desc);
 
     tags.forEach(function(tag){
       const isSel = !!(sel && sel.has(tag));
       const sr = document.createElement("div");
       sr.className = "subtopic-row" + (isSel ? " selected" : "");
-      sr.innerHTML = '<span class="box">'+CHECK_SVG+'</span><span>'+tag+'</span>';
+      sr.innerHTML = '<span class="box">'+CHECK_SVG+'</span><span>'+tagLabel(tag)+'</span>';
       sr.addEventListener("click", function(e){
         e.stopPropagation();
         if(!selectedTags[t.id]) selectedTags[t.id] = new Set();
@@ -20935,7 +21167,7 @@ function renderDiffGrid(){
   diffGrid.innerHTML = "";
   DIFFICULTIES.forEach(function(d){
     const btn = document.createElement("button");
-    btn.textContent = d.name;
+    btn.textContent = localized(d, "name");
     btn.className = d.id === selectedDifficulty ? "selected" : "";
     btn.addEventListener("click", function(){
       selectedDifficulty = d.id;
@@ -20946,7 +21178,7 @@ function renderDiffGrid(){
     diffGrid.appendChild(btn);
   });
   const active = DIFFICULTIES.find(function(d){ return d.id === selectedDifficulty; });
-  diffDesc.textContent = active.desc;
+  diffDesc.textContent = localized(active, "desc");
 }
 
 function renderCountGrid(){
@@ -20966,15 +21198,15 @@ function renderCountGrid(){
 function updateStartBtn(){
   if(activeTopicCount() === 0){
     startBtn.disabled = true;
-    startBtn.textContent = "Vyber alespoň jedno téma";
+    startBtn.textContent = tx("pickTopic");
   } else {
     startBtn.disabled = false;
-    startBtn.textContent = "Spustit kolo (" + selectedCount + " otázek)";
+    startBtn.textContent = tx("startRound", selectedCount);
   }
 }
 
 startBtn.addEventListener("click", function(){
-  startBtn.textContent = "Spustit kolo (" + selectedCount + " otázek)";
+  startBtn.textContent = tx("startRound", selectedCount);
   startRound();
 });
 
@@ -21035,12 +21267,12 @@ const quizCard = document.getElementById("quiz-card");
 const quizExit = document.getElementById("quiz-exit");
 
 function topicName(id){
-  const t = TOPICS.find(function(t){return t.id===id;});
-  return t ? t.name : "Starší téma";
+  const tp = TOPICS.find(function(tp){return tp.id===id;});
+  return tp ? localized(tp, "name") : tx("olderTopic");
 }
 function diffName(id){
   const d = DIFFICULTIES.find(function(d){return d.id===id;});
-  return d ? d.name : "Neznámá obtížnost";
+  return d ? localized(d, "name") : tx("unknownDiff");
 }
 
 function startRound(){
@@ -21054,7 +21286,7 @@ function startRound(){
   roundIndex = 0;
   roundResults = [];
   if(roundQuestions.length === 0){
-    alert("Pro tuto kombinaci tématu a obtížnosti zatím nejsou k dispozici otázky.");
+    alert(tx("noQuestions"));
     return;
   }
   showView("quiz");
@@ -21067,12 +21299,12 @@ function renderQuizTopbar(){
   if(roundTopics.length === 1){
     quizTagTopic.textContent = topicName(roundTopics[0]);
   } else {
-    quizTagTopic.textContent = roundTopics.length + " témata";
+    quizTagTopic.textContent = tx("nTopics", roundTopics.length);
   }
 }
 
 quizExit.addEventListener("click", function(){
-  showConfirm("Ukončit kolo bez uložení výsledku?", function(){
+  showConfirm(tx("exitConfirm"), function(){
     showView("setup");
   });
 });
@@ -21082,7 +21314,7 @@ function renderQuestion(){
   const q = roundQuestions[roundIndex];
   const pct = Math.round((roundIndex / roundQuestions.length) * 100);
   quizProgressFill.style.width = pct + "%";
-  quizCounter.textContent = "Otázka " + (roundIndex+1) + " / " + roundQuestions.length;
+  quizCounter.textContent = tx("questionOf", roundIndex+1, roundQuestions.length);
 
   let html = "";
   if(q.type === "fill"){
@@ -21091,7 +21323,7 @@ function renderQuestion(){
             '<input type="text" class="blank-input" id="blank-0" autocomplete="off" autocapitalize="off" spellcheck="false">' +
             escapeHtml(q.after) + '</div>';
     if(q.hint){
-      html += '<span class="hint">nápověda: ' + escapeHtml(q.hint) + '</span>';
+      html += '<span class="hint">' + tx("hint") + escapeHtml(q.hint) + '</span>';
     }
   } else if(q.type === "choice"){
     html += '<p class="choice-question">' + escapeHtml(q.question) + '</p>';
@@ -21115,14 +21347,14 @@ function renderQuestion(){
               '<input type="text" class="blank-input" id="blank-'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false">' +
               escapeHtml(p.after) + '</div>';
       if(p.hint){
-        html += '<span class="hint">nápověda: ' + escapeHtml(p.hint) + '</span>';
+        html += '<span class="hint">' + tx("hint") + escapeHtml(p.hint) + '</span>';
       }
       html += '</div>';
     });
   }
   html += '<div id="feedback-slot"></div>';
   html += '<div style="margin-top:20px;"><button class="btn-primary" id="check-btn"' +
-          (q.type === "choice" ? ' style="display:none;"' : '') + '>Zkontrolovat</button></div>';
+          (q.type === "choice" ? ' style="display:none;"' : '') + '>' + tx("check") + '</button></div>';
 
   quizCard.innerHTML = html;
 
@@ -21221,18 +21453,18 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines){
   let fb = '<div class="feedback-panel ' + (allCorrect ? "ok" : "bad") + '">';
   fb += '<div class="feedback-head"><span class="feedback-icon">' +
         (allCorrect ? CHECK_SVG.replace('white','white') : '<svg viewBox="0 0 12 12" fill="none"><path d="M2.5 2.5L9.5 9.5M9.5 2.5L2.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>') +
-        '</span>' + (allCorrect ? "Správně!" : "Ještě to nesedí") + '</div>';
+        '</span>' + (allCorrect ? tx("correct") : tx("wrong")) + '</div>';
   if(!allCorrect){
     revealLines.forEach(function(line){
-      fb += '<p class="correction-line">Správně: ' + line + '</p>';
+      fb += '<p class="correction-line">' + tx("correctAnswer") + line + '</p>';
     });
   }
-  fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(q.tag) + '</span><br>' + escapeHtml(q.rule) + '</div>';
+  fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
   fb += '</div>';
   slot.innerHTML = fb;
 
   const checkBtn = document.getElementById("check-btn");
-  checkBtn.textContent = (roundIndex === roundQuestions.length - 1) ? "Zobrazit výsledek" : "Pokračovat";
+  checkBtn.textContent = (roundIndex === roundQuestions.length - 1) ? tx("showResult") : tx("next");
   checkBtn.style.display = "";
   // Vstupní pole/tlačítka se po vyhodnocení deaktivují a přestanou zachytávat Enter,
   // proto přesuneme fokus na tlačítko — Enter pak spustí "Pokračovat"/"Zobrazit výsledek".
@@ -21290,6 +21522,7 @@ const breakdownList = document.getElementById("breakdown-list");
 const recommendBox = document.getElementById("recommend-box");
 
 function renderResults(pct, correct, total, byTag){
+  lastResults = [pct, correct, total, byTag];
   const circumference = 2 * Math.PI * 52;
   const offset = circumference * (1 - pct/100);
   scoreRingFg.setAttribute("stroke-dasharray", circumference.toFixed(1));
@@ -21309,7 +21542,7 @@ function renderResults(pct, correct, total, byTag){
     const p = Math.round((s.correct/s.seen)*100);
     const color = p >= 70 ? "#3F7A55" : (p >= 40 ? "#C17F2E" : "#B03A2E");
     return '<div class="breakdown-row">' +
-      '<div class="breakdown-label">' + escapeHtml(tag) + '</div>' +
+      '<div class="breakdown-label">' + escapeHtml(tagLabel(tag)) + '</div>' +
       '<div class="breakdown-bar-track"><div class="breakdown-bar-fill" style="width:'+p+'%;background:'+color+'"></div></div>' +
       '<div class="breakdown-pct">' + p + '%</div>' +
     '</div>';
@@ -21318,12 +21551,12 @@ function renderResults(pct, correct, total, byTag){
   const weakest = tags.length ? tags[0] : null;
   let recText;
   if(pct === 100){
-    recText = "Perfektní kolo! Klidně zkus vyšší obtížnost nebo přidej další téma.";
+    recText = tx("recPerfect");
   } else if(weakest){
     const wPct = Math.round((byTag[weakest].correct/byTag[weakest].seen)*100);
-    recText = "Příště se zaměř na: <strong>" + escapeHtml(weakest) + "</strong> (" + wPct + "% úspěšnost v tomto kole). Tyto otázky se ti budou objevovat častěji, dokud v nich nebudeš jistější.";
+    recText = tx("recWeak", "<strong>" + escapeHtml(tagLabel(weakest)) + "</strong>", wPct);
   } else {
-    recText = "Pokračuj ve stejném duchu a zkus další kolo.";
+    recText = tx("recKeep");
   }
   recommendBox.innerHTML = recText;
 }
@@ -21369,7 +21602,7 @@ function renderProgress(){
   statAccuracy.textContent = totalParts === 0 ? "0%" : Math.round((correctParts/totalParts)*100) + "%";
 
   if(rounds.length === 0){
-    chartWrap.innerHTML = '<div class="chart-empty">Zatím nemáš žádná odehraná kola. Zkus si první kolo procvičit!</div>';
+    chartWrap.innerHTML = '<div class="chart-empty">' + tx("chartEmpty") + '</div>';
   } else {
     const recent = rounds.slice(-15);
     const w = 700, h = 140, barGap = 6;
@@ -21403,22 +21636,22 @@ function renderProgress(){
     .slice(0,6);
 
   if(weakTags.length === 0){
-    weakList.innerHTML = '<div class="empty-state"><p>Zatím nemáme dost dat — po pár odehraných kolech se tu objeví tvé nejslabší jevy.</p></div>';
+    weakList.innerHTML = '<div class="empty-state"><p>' + tx("weakEmpty") + '</p></div>';
   } else {
     weakList.innerHTML = weakTags.map(function(w, i){
       return '<div class="weak-row"><span class="weak-rank">'+(i+1)+'</span>' +
-        '<span class="weak-name">'+escapeHtml(w.tag)+'</span>' +
+        '<span class="weak-name">'+escapeHtml(tagLabel(w.tag))+'</span>' +
         '<span class="weak-pct">'+w.pct+'%</span></div>';
     }).join("");
   }
 
   if(rounds.length === 0){
-    historyList.innerHTML = '<div class="empty-state"><p>Historie kol se zobrazí, jakmile dohraješ první kolo.</p></div>';
+    historyList.innerHTML = '<div class="empty-state"><p>' + tx("historyEmpty") + '</p></div>';
   } else {
     historyList.innerHTML = rounds.slice().reverse().slice(0,20).map(function(r){
       const p = r.totalParts === 0 ? 0 : Math.round((r.correctParts/r.totalParts)*100);
       const d = new Date(r.date);
-      const dateStr = d.toLocaleDateString("cs-CZ", { day:"numeric", month:"numeric", year:"numeric" });
+      const dateStr = d.toLocaleDateString(tx("dateLocale"), { day:"numeric", month:"numeric", year:"numeric" });
       const topicsStr = r.topics.map(topicName).join(", ");
       return '<div class="history-row"><span class="history-date">'+dateStr+' · '+escapeHtml(topicsStr)+' · '+diffName(r.difficulty)+'</span>' +
         '<span class="history-score">'+p+'%</span></div>';
@@ -21427,7 +21660,7 @@ function renderProgress(){
 }
 
 document.getElementById("reset-progress").addEventListener("click", function(){
-  showConfirm("Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.", function(){
+  showConfirm(tx("resetConfirm"), function(){
     state = defaultState();
     saveState();
     renderProgress();
@@ -21436,6 +21669,7 @@ document.getElementById("reset-progress").addEventListener("click", function(){
 
 /* Úvodní vykreslení */
 renderProgress();
+applyLang();
 
 })();
 </script>
