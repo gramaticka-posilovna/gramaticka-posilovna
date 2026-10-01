@@ -201,7 +201,7 @@ Zavedené kategorie (rozšiřovat průběžně, nikdy nepřejmenovávat už pou�
 * Modální slovesa (vazby jako have to, supposed to, would rather) — basic, intermediate, advanced
 * Nepravidelná slovesa (minulý čas) — basic, intermediate, advanced
 
-Aktuální obsah (2026) je jen pár slovíček na vyzkoušení téhle struktury — několik na kategorii a úroveň. Doplňování dalších slovíček do stávajících kategorií je vždy bezpečné (nová `id`, stejný `tag`). Nová kategorie se přidává stejně jako nová gramatická kategorie — navrhne se název a slug, než se použije.
+Aktuální obsah (2026) je 5 slovíček na kategorii a úroveň (tj. 20 cvičení na buňku, stejně jako u gramatiky). Doplňování dalších slovíček do stávajících kategorií je vždy bezpečné (nová `id`, stejný `tag`). Nová kategorie se přidává stejně jako nová gramatická kategorie — navrhne se název a slug, než se použije.
 
 ## 5. Co se smí měnit kdykoliv, bez rizika
 
