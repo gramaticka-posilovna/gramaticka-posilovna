@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Statické návrhy obrazovek — NEJSOU součástí appky, jen podklad pro výběr vzhledu. */
+  :root{ --page:#EDEAE4; --page-ink:#22252B; --page-soft:#6A6F78; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--page); color:var(--page-ink); font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:32px 16px 64px; }
+  header.page h1{ font-family:Fraunces, serif; font-size:30px; margin:0 0 8px; }
+  header.page p{ color:var(--page-soft); margin:0 0 6px; max-width:720px; line-height:1.5; }
+  section.dir{ margin-top:48px; }
+  .dir-head h2{ font-size:22px; margin:0 0 6px; }
+  .dir-head p{ margin:0 0 4px; color:var(--page-soft); max-width:760px; line-height:1.5; font-size:14.5px; }
+  .dir-head .tags{ display:flex; gap:6px; flex-wrap:wrap; margin:10px 0 0; }
+  .dir-head .tags span{ font-size:12px; background:#fff; border:1px solid #D9D4CA; border-radius:999px; padding:3px 10px; }
+  .phones{ display:flex; gap:22px; overflow-x:auto; padding:22px 4px 10px; scroll-snap-type:x mandatory; }
+  .phone{ flex:0 0 auto; width:300px; height:630px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; scroll-snap-align:start; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .phone .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:92px; height:24px; background:#15171B; border-radius:14px; z-index:5; }
+  .screen{ height:100%; overflow:hidden; padding:44px 18px 18px; display:flex; flex-direction:column; gap:12px; }
+  .caption{ font-size:12.5px; color:var(--page-soft); text-align:center; margin-top:8px; }
+  .phone-col{ display:flex; flex-direction:column; }
+
+  /* ================= A: Letecká pošta (vylepšená současnost) ================= */
+  .a .screen{ background:#F5EEDC; color:#1B2A41; font-family:Inter, sans-serif; }
+  .a .top{ display:flex; justify-content:space-between; align-items:center; }
+  .a .hello{ font-family:Fraunces, serif; font-size:22px; font-weight:700; line-height:1.15; }
+  .a .stamp{ width:54px; height:54px; border:2px dashed #B5543B; border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#B5543B; transform:rotate(6deg); background:#FFF8EA; }
+  .a .stamp b{ font-family:Fraunces, serif; font-size:20px; line-height:1; }
+  .a .stamp small{ font-size:9px; font-weight:700; letter-spacing:.06em; }
+  .a .card{ background:#fff; border-radius:16px; padding:14px; box-shadow:0 1px 0 #E4D9BC, 0 6px 16px rgba(27,42,65,.06); }
+  .a .label{ font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#6E8F5C; margin:0 0 8px; }
+  .a .goal{ display:flex; align-items:center; gap:12px; }
+  .a .ring{ width:46px; height:46px; border-radius:50%; background:conic-gradient(#1E3A5F 0 65%, #EFE7D3 65% 100%); display:grid; place-items:center; }
+  .a .ring i{ width:34px; height:34px; border-radius:50%; background:#fff; display:grid; place-items:center; font-style:normal; font-size:11px; font-weight:700; }
+  .a .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .a .tile{ border:1.5px solid #E4D9BC; border-radius:12px; padding:10px; font-size:13px; font-weight:600; }
+  .a .tile em{ display:block; font-style:normal; font-family:Fraunces, serif; font-size:22px; color:#1E3A5F; }
+  .a .topic{ display:flex; justify-content:space-between; align-items:center; font-size:13.5px; font-weight:600; padding:7px 0; border-bottom:1px solid #F1EAD8; }
+  .a .bar{ width:70px; height:6px; background:#EFE7D3; border-radius:6px; overflow:hidden; }
+  .a .bar span{ display:block; height:100%; background:#6E8F5C; }
+  .a .cta{ margin-top:auto; background:#1E3A5F; color:#fff; text-align:center; border-radius:14px; padding:14px; font-weight:600; }
+  .a .prog{ height:6px; background:#E4D9BC; border-radius:6px; overflow:hidden; }
+  .a .prog span{ display:block; height:100%; width:40%; background:linear-gradient(90deg,#6E8F5C,#1E3A5F); }
+  .a .chip{ display:inline-block; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px; background:#E7ECF2; color:#1E3A5F; margin-right:4px; }
+  .a .q{ font-family:Fraunces, serif; font-size:19px; line-height:1.45; }
+  .a .blank{ display:inline-block; min-width:96px; border-bottom:2.5px solid #3F7A55; color:#3F7A55; font-family:Inter, sans-serif; font-weight:700; font-size:16px; padding:0 4px; }
+  .a .hint{ font-size:12px; color:#5C6478; }
+  .a .fb{ background:#EAF3EC; border-radius:14px; padding:12px; font-size:12.5px; line-height:1.5; border-left:4px solid #3F7A55; }
+  .a .fb b{ color:#3F7A55; font-size:14px; }
+  .a .score{ text-align:center; }
+  .a .big-ring{ width:130px; height:130px; margin:6px auto; border-radius:50%; background:conic-gradient(#3F7A55 0 80%, #EFE7D3 80% 100%); display:grid; place-items:center; }
+  .a .big-ring i{ width:104px; height:104px; border-radius:50%; background:#F5EEDC; display:grid; place-items:center; font-style:normal; font-family:Fraunces, serif; font-size:30px; font-weight:700; }
+  .a .row{ display:flex; align-items:center; gap:8px; font-size:12px; margin:6px 0; }
+  .a .row .bar{ flex:1; }
+  .a .ghost{ text-align:center; border:1.5px solid #E4D9BC; border-radius:14px; padding:12px; font-weight:600; background:#fff; }
+
+  /* ================= B: Posilovna (hravá, sportovní) ================= */
+  .b .screen{ background:#F6F4FF; color:#211A3A; font-family:Nunito, sans-serif; }
+  .b .top{ display:flex; justify-content:space-between; align-items:center; }
+  .b .hello{ font-size:22px; font-weight:900; line-height:1.15; }
+  .b .pills{ display:flex; gap:6px; }
+  .b .pill{ background:#fff; border-radius:999px; padding:5px 10px; font-weight:800; font-size:13px; box-shadow:0 2px 0 #E2DCF7; white-space:nowrap; }
+  .b .card{ background:#fff; border-radius:20px; padding:14px; box-shadow:0 3px 0 #E2DCF7; }
+  .b .label{ font-size:12px; font-weight:800; color:#7A6FA8; margin:0 0 8px; }
+  .b .week{ display:flex; justify-content:space-between; }
+  .b .day{ width:30px; text-align:center; font-size:11px; font-weight:800; color:#9C93C2; }
+  .b .day i{ display:block; width:28px; height:28px; margin:3px auto 0; border-radius:50%; background:#EEEAFB; font-style:normal; line-height:28px; font-size:14px; }
+  .b .day.on i{ background:#FF8A3D; color:#fff; }
+  .b .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .b .btn3d{ border-radius:16px; padding:12px 10px; font-weight:900; font-size:14px; text-align:center; color:#fff; }
+  .b .violet{ background:#6C4CF1; box-shadow:0 4px 0 #4A2FC4; }
+  .b .coral{ background:#FF6B6B; box-shadow:0 4px 0 #D94848; }
+  .b .green{ background:#2BB673; box-shadow:0 4px 0 #1E8C57; }
+  .b .white{ background:#fff; color:#6C4CF1; box-shadow:0 4px 0 #E2DCF7; border:2px solid #E2DCF7; }
+  .b .btn3d small{ display:block; font-size:11px; font-weight:700; opacity:.85; }
+  .b .topics{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .b .t{ background:#fff; border-radius:16px; padding:10px; font-weight:800; font-size:12.5px; box-shadow:0 3px 0 #E2DCF7; }
+  .b .t .ic{ font-size:20px; }
+  .b .t .lv{ height:6px; background:#EEEAFB; border-radius:6px; margin-top:6px; overflow:hidden; }
+  .b .t .lv span{ display:block; height:100%; background:#2BB673; }
+  .b .prog{ height:12px; background:#E2DCF7; border-radius:12px; overflow:hidden; }
+  .b .prog span{ display:block; height:100%; width:40%; background:#2BB673; border-radius:12px; }
+  .b .q{ font-size:20px; font-weight:800; line-height:1.4; }
+  .b .blank{ display:inline-block; min-width:96px; background:#E9F8F0; border:2px solid #2BB673; border-radius:10px; color:#1E8C57; padding:0 6px; }
+  .b .hint{ font-size:13px; font-weight:700; color:#7A6FA8; }
+  .b .fb{ margin-top:auto; background:#E9F8F0; border-radius:20px 20px 0 0; margin-left:-18px; margin-right:-18px; margin-bottom:-18px; padding:16px 18px 18px; font-size:13px; line-height:1.5; font-weight:600; }
+  .b .fb b{ color:#1E8C57; font-size:17px; font-weight:900; }
+  .b .center{ text-align:center; }
+  .b .trophy{ font-size:54px; line-height:1; }
+  .b .xp{ display:flex; justify-content:center; gap:8px; }
+  .b .xp div{ background:#fff; border-radius:14px; padding:8px 12px; box-shadow:0 3px 0 #E2DCF7; font-weight:900; text-align:center; font-size:18px; }
+  .b .xp small{ display:block; font-size:10.5px; color:#7A6FA8; font-weight:800; }
+
+  /* ================= C: Tmavý klid (prémiový, minimalistický) ================= */
+  .c .screen{ background:#0F1115; color:#E8EAF0; font-family:Inter, sans-serif; }
+  .c .top{ display:flex; justify-content:space-between; align-items:center; }
+  .c .hello{ font-family:"Space Grotesk", sans-serif; font-size:24px; font-weight:700; line-height:1.15; letter-spacing:-.01em; }
+  .c .muted{ color:#8A90A0; font-size:12.5px; }
+  .c .streak{ font-family:"Space Grotesk"; font-weight:700; color:#F5B94C; font-size:15px; }
+  .c .card{ background:#181B22; border:1px solid #242833; border-radius:18px; padding:14px; }
+  .c .label{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8A90A0; margin:0 0 10px; }
+  .c .stat{ font-family:"Space Grotesk"; font-size:30px; font-weight:700; color:#7CE0C3; line-height:1; }
+  .c .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .c .tile{ background:#20242D; border-radius:14px; padding:12px; font-size:13px; font-weight:600; }
+  .c .tile em{ display:block; font-style:normal; font-family:"Space Grotesk"; font-size:22px; color:#E8EAF0; }
+  .c .tile.warm em{ color:#F5B94C; }
+  .c .tile.cool em{ color:#7CE0C3; }
+  .c .topic{ display:flex; justify-content:space-between; align-items:center; font-size:13.5px; padding:8px 0; border-bottom:1px solid #242833; }
+  .c .dots{ display:flex; gap:3px; }
+  .c .dots i{ width:7px; height:7px; border-radius:2px; background:#2A2F3A; }
+  .c .dots i.on{ background:#7CE0C3; }
+  .c .cta{ margin-top:auto; background:#7CE0C3; color:#0F1115; text-align:center; border-radius:14px; padding:14px; font-weight:700; }
+  .c .prog{ display:flex; gap:4px; }
+  .c .prog i{ flex:1; height:4px; border-radius:4px; background:#2A2F3A; }
+  .c .prog i.on{ background:#7CE0C3; }
+  .c .q{ font-family:"Space Grotesk"; font-size:21px; line-height:1.45; font-weight:500; }
+  .c .blank{ display:inline-block; min-width:96px; border-bottom:2px solid #7CE0C3; color:#7CE0C3; padding:0 4px; }
+  .c .fb{ background:#13261F; border:1px solid #1F4A3A; border-radius:16px; padding:12px; font-size:12.5px; line-height:1.55; color:#C9D2CE; }
+  .c .fb b{ color:#7CE0C3; font-size:14px; }
+  .c .big{ font-family:"Space Grotesk"; font-size:64px; font-weight:700; text-align:center; line-height:1; margin-top:10px; }
+  .c .row{ display:flex; align-items:center; gap:8px; font-size:12px; margin:7px 0; color:#C9CDD8; }
+  .c .row .track{ flex:1; height:6px; border-radius:6px; background:#2A2F3A; overflow:hidden; }
+  .c .row .track span{ display:block; height:100%; }
+  .c .ghost{ text-align:center; border:1px solid #2F3440; border-radius:14px; padding:12px; font-weight:600; }
+
+  footer.page{ margin-top:48px; color:var(--page-soft); font-size:13px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>Návrhy vzhledu — Gramatická posilovna</h1>
+    <p>Tři směry, každý na třech obrazovkách: úvod, otázka s vyhodnocením a výsledek kola. Jsou to jen statické obrázky — appky se nijak nedotýkají. Texty a otázky jsou skutečné z appky.</p>
+    <p>Všechny návrhy už počítají s prvky pro návrat uživatelů (série dní, denní cíl, Opakování / Co mi nejde). Ty zatím v appce nejsou kromě Opakování a Co mi nejde.</p>
+  </header>
+
+  <!-- ===================== A ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>A · Letecká pošta, vylepšená</h2>
+      <p>Evoluce současného vzhledu: stejné barvy (krémový papír, inkoustová modř, olivová), ale víc prostoru, měkké stíny a „poštovní razítko“ jako symbol splněného dne. Nejmenší riziko, appka zůstane rozpoznatelná.</p>
+      <div class="tags"><span>klidný</span><span>knižní / poctivý</span><span>pro dospělé i studenty</span><span>nejméně práce</span></div>
+    </div>
+    <div class="phones">
+      <div class="phone-col"><div class="phone a"><div class="notch"></div><div class="screen">
+        <div class="top">
+          <div class="hello">Dobré ráno!<br>Co dnes procvičíme?</div>
+          <div class="stamp"><b>7</b><small>DNÍ</small></div>
+        </div>
+        <div class="card goal">
+          <div class="ring"><i>13/20</i></div>
+          <div><div style="font-weight:700;font-size:14px;">Denní cíl</div><div style="font-size:12px;color:#5C6478;">Ještě 7 otázek a máš razítko</div></div>
+        </div>
+        <div class="card">
+          <p class="label">Doporučeno pro tebe</p>
+          <div class="duo">
+            <div class="tile"><em>12</em>Opakování</div>
+            <div class="tile"><em>8</em>Co mi nejde</div>
+          </div>
+        </div>
+        <div class="card">
+          <p class="label">Témata</p>
+          <div class="topic">Slovesné časy<div class="bar"><span style="width:72%"></span></div></div>
+          <div class="topic">Podmínkové věty<div class="bar"><span style="width:45%"></span></div></div>
+          <div class="topic">Členy<div class="bar"><span style="width:20%"></span></div></div>
+        </div>
+        <div class="cta">Pokračovat v tréninku</div>
+      </div></div><div class="caption">Úvod</div></div>
+
+      <div class="phone-col"><div class="phone a"><div class="notch"></div><div class="screen">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#5C6478;"><span>Otázka 4 / 10</span><span>✕</span></div>
+        <div class="prog"><span></span></div>
+        <div><span class="chip">Spojky</span><span class="chip">Střední</span></div>
+        <div class="card">
+          <div class="q">She took the job <span class="blank">although</span> it meant moving abroad.</div>
+          <div class="hint" style="margin-top:8px;">nápověda: although / despite</div>
+        </div>
+        <div class="fb"><b>Správně!</b><br>Za mezerou je celá věta (it meant…), proto spojka „although“. „Despite“ by vyžadovalo podstatné jméno nebo tvar -ing.</div>
+        <div class="cta">Pokračovat</div>
+      </div></div><div class="caption">Otázka po odpovědi</div></div>
+
+      <div class="phone-col"><div class="phone a"><div class="notch"></div><div class="screen">
+        <div class="score">
+          <div style="font-family:Fraunces;font-size:20px;font-weight:700;">Výsledek kola</div>
+          <div class="big-ring"><i>80 %</i></div>
+          <div style="font-size:13px;color:#5C6478;">8 z 10 správně · razítko na dnešek získáno</div>
+        </div>
+        <div class="card">
+          <p class="label">Rozpad podle jevů</p>
+          <div class="row">However vs. although<div class="bar"><span style="width:100%"></span></div>100 %</div>
+          <div class="row">Even though vs. even if<div class="bar"><span style="width:67%;background:#C17F2E"></span></div>67 %</div>
+          <div class="row">Whereas/while<div class="bar"><span style="width:50%;background:#C17F2E"></span></div>50 %</div>
+        </div>
+        <div class="cta" style="margin-top:auto;">Těžší úroveň</div>
+        <div class="ghost">Zpět na výběr</div>
+      </div></div><div class="caption">Výsledek</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== B ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>B · Posilovna (hravá, sportovní)</h2>
+      <p>Staví na názvu appky: trénink, série, kondice. Světlé fialové pozadí, „3D“ tlačítka, ikony témat, odměny po kole. Nejvíc motivuje k návratu a k placení, podobný princip jako Duolingo, ale vlastní téma. Hodí se pro studenty a mladší dospělé.</p>
+      <div class="tags"><span>energický</span><span>herní prvky</span><span>studenti</span><span>nejvíc práce</span></div>
+    </div>
+    <div class="phones">
+      <div class="phone-col"><div class="phone b"><div class="notch"></div><div class="screen">
+        <div class="top">
+          <div class="hello">Ahoj! 💪<br>Jdeme makat?</div>
+          <div class="pills"><div class="pill">🔥 7</div><div class="pill">⚡ 340</div></div>
+        </div>
+        <div class="card">
+          <p class="label">Tvoje série</p>
+          <div class="week">
+            <div class="day on">Po<i>✓</i></div><div class="day on">Út<i>✓</i></div><div class="day on">St<i>✓</i></div><div class="day">Čt<i></i></div><div class="day">Pá<i></i></div><div class="day">So<i></i></div><div class="day">Ne<i></i></div>
+          </div>
+        </div>
+        <div class="duo">
+          <div class="btn3d violet">Opakování<small>12 otázek</small></div>
+          <div class="btn3d coral">Slabá místa<small>8 otázek</small></div>
+        </div>
+        <div class="topics">
+          <div class="t"><div class="ic">⏳</div>Slovesné časy<div class="lv"><span style="width:72%"></span></div></div>
+          <div class="t"><div class="ic">🔀</div>Podmínky<div class="lv"><span style="width:45%"></span></div></div>
+          <div class="t"><div class="ic">🔗</div>Spojky<div class="lv"><span style="width:30%"></span></div></div>
+          <div class="t"><div class="ic">📍</div>Předložky<div class="lv"><span style="width:58%"></span></div></div>
+        </div>
+        <div class="btn3d green" style="margin-top:auto;">Začít trénink</div>
+      </div></div><div class="caption">Úvod</div></div>
+
+      <div class="phone-col"><div class="phone b"><div class="notch"></div><div class="screen">
+        <div style="display:flex;align-items:center;gap:10px;"><span style="font-weight:900;color:#9C93C2;">✕</span><div class="prog" style="flex:1"><span></span></div><span style="font-weight:900;">🔥 3</span></div>
+        <div class="label" style="margin-top:6px;">Doplň spojku</div>
+        <div class="q">She took the job <span class="blank">although</span> it meant moving abroad.</div>
+        <div class="hint">nápověda: although / despite</div>
+        <div class="fb"><b>Paráda! +10 ⚡</b><br>Za mezerou je celá věta (it meant…), proto spojka „although“. „Despite“ by vyžadovalo podstatné jméno.<div class="btn3d green" style="margin-top:12px;">Pokračovat</div></div>
+      </div></div><div class="caption">Otázka po odpovědi</div></div>
+
+      <div class="phone-col"><div class="phone b"><div class="notch"></div><div class="screen center">
+        <div class="trophy" style="margin-top:14px;">🏆</div>
+        <div style="font-size:22px;font-weight:900;">Trénink hotový!</div>
+        <div style="font-size:13px;font-weight:700;color:#7A6FA8;">8 z 10 správně</div>
+        <div class="xp">
+          <div>+80<small>bodů ⚡</small></div>
+          <div>🔥 8<small>dní v řadě</small></div>
+          <div>80 %<small>úspěšnost</small></div>
+        </div>
+        <div class="card" style="text-align:left;">
+          <p class="label">Ještě potrénuj</p>
+          <div style="font-weight:800;font-size:14px;">Whereas/while · 50 %</div>
+          <div style="font-size:12px;font-weight:700;color:#7A6FA8;">Tyhle otázky ti budeme dávat častěji.</div>
+        </div>
+        <div class="btn3d violet" style="margin-top:auto;">Další kolo</div>
+        <div class="btn3d white">Hotovo na dnes</div>
+      </div></div><div class="caption">Výsledek</div></div>
+    </div>
+  </section>
+
+  <!-- ===================== C ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>C · Tmavý klid (prémiový, minimalistický)</h2>
+      <p>Tmavé pozadí, hodně vzduchu, čísla a typografie v hlavní roli, mátová a jantarová jako jediné barvy. Působí jako placený nástroj pro dospělé — vhodné, pokud cílíš na lidi, kteří se připravují na zkoušky nebo práci. Šetří baterii a oči večer.</p>
+      <div class="tags"><span>soustředěný</span><span>prémiový</span><span>dospělí / zkoušky</span><span>střední práce</span></div>
+    </div>
+    <div class="phones">
+      <div class="phone-col"><div class="phone c"><div class="notch"></div><div class="screen">
+        <div class="top">
+          <div><div class="muted">Čtvrtek</div><div class="hello">Gramatika</div></div>
+          <div class="streak">7 dní ◆</div>
+        </div>
+        <div class="card">
+          <p class="label">Dnes</p>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+            <div><div class="stat">13<span style="font-size:16px;color:#8A90A0;"> / 20</span></div><div class="muted" style="margin-top:4px;">otázek z denního cíle</div></div>
+            <div class="muted">82 % úspěšnost</div>
+          </div>
+        </div>
+        <div class="duo">
+          <div class="tile cool"><em>12</em>Opakování</div>
+          <div class="tile warm"><em>8</em>Co mi nejde</div>
+        </div>
+        <div class="card">
+          <p class="label">Témata</p>
+          <div class="topic">Slovesné časy<div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="topic">Podmínkové věty<div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+          <div class="topic" style="border:none;">Členy<div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="cta">Začít</div>
+      </div></div><div class="caption">Úvod</div></div>
+
+      <div class="phone-col"><div class="phone c"><div class="notch"></div><div class="screen">
+        <div style="display:flex;justify-content:space-between;" class="muted"><span>Spojky · Střední</span><span>4 / 10</span></div>
+        <div class="prog"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="q" style="margin-top:22px;">She took the job <span class="blank">although</span> it meant moving abroad.</div>
+        <div class="muted">although / despite</div>
+        <div class="fb" style="margin-top:auto;"><b>Správně</b><br>Za mezerou je celá věta (it meant…), proto spojka „although“. „Despite“ by vyžadovalo podstatné jméno nebo tvar -ing.</div>
+        <div class="cta" style="margin-top:0;">Pokračovat</div>
+      </div></div><div class="caption">Otázka po odpovědi</div></div>
+
+      <div class="phone-col"><div class="phone c"><div class="notch"></div><div class="screen">
+        <div class="muted" style="text-align:center;margin-top:10px;">Kolo dokončeno</div>
+        <div class="big">80<span style="font-size:28px;color:#8A90A0;">%</span></div>
+        <div class="muted" style="text-align:center;">8 z 10 · série 8 dní</div>
+        <div class="card" style="margin-top:8px;">
+          <p class="label">Podle jevů</p>
+          <div class="row">However vs. although<div class="track"><span style="width:100%;background:#7CE0C3"></span></div>100</div>
+          <div class="row">Even though vs. even if<div class="track"><span style="width:67%;background:#F5B94C"></span></div>67</div>
+          <div class="row">Whereas/while<div class="track"><span style="width:50%;background:#F5B94C"></span></div>50</div>
+        </div>
+        <div class="cta">Procvičit slabá místa</div>
+        <div class="ghost">Hotovo</div>
+      </div></div><div class="caption">Výsledek</div></div>
+    </div>
+  </section>
+
+  <footer class="page">
+    Jak vybírat: A = nejbezpečnější a nejrychlejší, B = nejvíc táhne k návratu, ale je to největší přestavba a „dětštější“ dojem, C = nejvíc „prémiový“ pro dospělé. Jde i kombinovat (např. struktura a herní prvky z B, barvy z A). Tmavý režim lze přidat ke kterémukoli směru.
+  </footer>
+</div>
+</body>
+</html>
