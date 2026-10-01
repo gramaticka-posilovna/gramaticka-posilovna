@@ -11,6 +11,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 3 | `navrhy-vzhledu-3.html` | Letecká pošta+ **v2** · Činka (originální „posilovna“) |
 | 4 | `navrhy-vzhledu-4.html` | Letecká pošta+ **v3** (se srdcem) · Korektura · Mozaika |
 | 5 | `navrhy-vzhledu-5.html` | Letecká pošta+ **v4a** Měkké 3D · **v4b** Papír na stole · **v4c** Sklo a nebe |
+| 6 | `navrhy-vzhledu-6.html` | Měkké 3D **v5** (bez poštovních nápisů, nový odznak) |
 
 ## Zpětná vazba
 
@@ -21,6 +22,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
   - Kondice — dobrý směr kvůli názvu „Gramatická posilovna“, ale kopíruje fitness aplikace (kroužky jako v iPhonu), kterých je spousta. Chce to něco originálního.
 - **Kolo 3:** Letecká pošta+ v2 se líbí nejvíc a má se rozvíjet dál, „dát do ní srdce“. K Čince bez komentáře. Zadání: ještě pár opravdu dobrých moderních návrhů s využitím technik kreativních lidí.
 - **Kolo 4:** nepochopeno zadání. v3 (Ella, album, dopis od autora), Korektura ani Mozaika se nelíbí. Zpět k v2 a **jen udělat vizuál líbivější, např. víc 3D**. Tři návrhy.
+- **Kolo 5:** líbí se **v4a Měkké 3D**. Nechce nápisy typu „Pohlednice z kola“, „Cestovní pas“ a razítko „doručeno“ vymyslet jinak.
 
 ## Letecká pošta+ — historie verzí
 
@@ -51,6 +53,11 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **v4a Měkké 3D:** zaoblenější „nafouklé“ karty se světlem shora a stínem zespodu, tlačítka se spodní hranou, vypouklý ukazatel pokroku a trasa, známky a razítko vrhají stín, pohlednice mírně natočená.
 - **v4b Papír na stole:** pozadí z balicího papíru, karty jako listy papíru se dalšími listy pod sebou a lepicí páskou, mírně natočené; razítko jako inkoust.
 - **v4c Sklo a nebe:** pozadí ranní obloha s mraky, karty z matného skla, ukazatel pokroku od broskvové po námořní modrou.
+
+### v5 (kolo 6) — z v4a Měkké 3D
+- Poštovní nápisy nahrazeny obyčejnými: Dnešní dopis → Dnešní cíl, Razítka tento týden → Tento týden, náhradní razítko → náhradní den, Tvoje cesta → Tvůj pokrok, „62 % cesty“ → „62 % k úrovni B2“, „+1 do dnešního dopisu“ → „+1 k dnešnímu cíli“, Pohlednice z kola → Výsledek kola, Dnešní razítko získáno → Dnešní cíl splněn, Cestovní pas (🛂) → Plná verze (⭐), „Celá cesta od A2“ → „Všechny úrovně od A2“, náhradní razítka → náhradní dny, „den 8 tvé cesty“ → „8. den v řadě“.
+- Kulaté razítko „DORUČENO“ u správné odpovědi nahrazeno vypouklým zeleným 3D odznakem se zatržítkem a štítkem „+1“.
+- Beze změny zůstávají drobné poštovní prvky bez textu: ikonky obálky a letadla v rozích, dny jako známky, letadélko na pruhu, známka 8/10 na výsledku.
 
 ## Činka — historie verzí
 
