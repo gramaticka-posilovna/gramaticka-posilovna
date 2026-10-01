@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Statické návrhy obrazovek (4. kolo) — NEJSOU součástí appky. Historie verzí: navrhy-vzhledu-zmeny.md */
+  :root{ --page:#EDEAE4; --page-ink:#22252B; --page-soft:#6A6F78; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--page); color:var(--page-ink); font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1320px; margin:0 auto; padding:32px 16px 64px; }
+  header.page h1{ font-family:Fraunces, serif; font-size:30px; margin:0 0 8px; }
+  header.page p{ color:var(--page-soft); margin:0 0 6px; max-width:820px; line-height:1.55; }
+  .method{ background:#fff; border-radius:14px; padding:14px 18px; margin:16px 0 0; max-width:880px; font-size:13.5px; line-height:1.55; }
+  .method h3{ margin:0 0 6px; font-size:15px; }
+  .method ul{ margin:0; padding-left:18px; }
+  .method li{ margin:4px 0; }
+  section.dir{ margin-top:52px; }
+  .dir-head h2{ font-size:22px; margin:0 0 6px; }
+  .dir-head p{ margin:0 0 4px; color:var(--page-soft); max-width:860px; line-height:1.55; font-size:14.5px; }
+  .changes{ background:#fff; border-radius:12px; padding:10px 16px; margin:10px 0 0; max-width:860px; font-size:13px; line-height:1.55; }
+  .changes ul{ margin:4px 0 0; padding-left:18px; }
+  .phones{ display:flex; gap:22px; overflow-x:auto; padding:22px 4px 10px; scroll-snap-type:x mandatory; }
+  .phone-col{ display:flex; flex-direction:column; flex:0 0 300px; scroll-snap-align:start; }
+  .phone{ width:300px; height:630px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .phone .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:92px; height:24px; background:#15171B; border-radius:14px; z-index:5; }
+  .screen{ height:100%; overflow:hidden; padding:44px 16px 16px; display:flex; flex-direction:column; gap:10px; position:relative; }
+  .caption{ font-size:13px; font-weight:700; text-align:center; margin:10px 0 4px; }
+  .why{ font-size:12px; color:var(--page-soft); line-height:1.5; margin:0; padding-left:18px; }
+  .why li{ margin:3px 0; }
+  .mt-auto{ margin-top:auto; }
+
+  /* ================= Letecká pošta+ v3 (se srdcem) ================= */
+  .air .screen{ background:#F5EEDC; color:#1B2A41; font-family:Inter, sans-serif; }
+  .air .serif{ font-family:Fraunces, serif; }
+  .air .hand{ font-family:Caveat, cursive; color:#2B4C7E; }
+  .air .hello{ font-family:Fraunces, serif; font-size:22px; font-weight:700; line-height:1.15; }
+  .air .sub{ font-size:12px; color:#5C6478; }
+  .air .env{ background:#fff; border-radius:14px; padding:12px 13px; position:relative; box-shadow:0 6px 16px rgba(27,42,65,.07); }
+  .air .corner{ position:absolute; right:12px; top:10px; font-size:14px; color:#C9BB98; }
+  .air .label{ font-size:10.5px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 6px; }
+  .air .bar{ height:8px; background:#EFE7D3; border-radius:8px; overflow:hidden; }
+  .air .bar span{ display:block; height:100%; background:linear-gradient(90deg,#6E8F5C,#1E3A5F); border-radius:8px; }
+  .air .stamps{ display:flex; gap:6px; }
+  .air .st{ flex:1; aspect-ratio:.86; border-radius:2px; display:grid; place-items:center; font-size:9.5px; font-weight:800; color:#B9AC8A; background:#F6F1E4; border:3px dotted #fff; outline:1px solid #EFE7D3; outline-offset:-6px; }
+  .air .st.on{ background:#F3DCC9; color:#9C3F2B; outline-color:#D8A48E; transform:rotate(-4deg); }
+  .air .st.on:nth-child(even){ transform:rotate(4deg); }
+  .air .st.free{ background:#DDE5EF; color:#1E3A5F; outline-color:#A9BBD1; }
+  .air .route{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:13px; }
+  .air .route .line{ flex:1; height:2px; background:#E4D9BC; position:relative; border-radius:2px; }
+  .air .route .line::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:62%; background:#1E3A5F; border-radius:2px; }
+  .air .route .plane{ position:absolute; top:-9px; left:calc(62% - 8px); font-size:14px; color:#1E3A5F; }
+  .air .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .air .tile{ background:#fff; border:1.5px solid #E4D9BC; border-radius:12px; padding:9px 10px; font-size:12.5px; font-weight:700; }
+  .air .tile em{ display:block; font-style:normal; font-family:Fraunces, serif; font-size:21px; color:#1E3A5F; }
+  .air .tile small{ display:block; font-weight:500; color:#5C6478; font-size:11px; }
+  .air .cta{ background:#1E3A5F; color:#fff; text-align:center; border-radius:14px; padding:13px; font-weight:700; font-size:14.5px; }
+  .air .cta small{ display:block; font-weight:500; font-size:11px; opacity:.8; }
+  .air .ghost{ text-align:center; border:1.5px solid #E4D9BC; border-radius:14px; padding:11px; font-weight:600; background:#fff; font-size:14px; }
+  .air .q{ font-family:Fraunces, serif; font-size:19px; line-height:1.5; }
+  .air .blank{ display:inline-block; min-width:80px; border-bottom:2.5px solid #3F7A55; color:#3F7A55; font-family:Inter; font-weight:700; font-size:16px; padding:0 4px; }
+  .air .wrong{ font-family:Inter; font-size:15px; color:#B5543B; text-decoration:line-through; text-decoration-thickness:2px; margin-right:4px; }
+  /* v3: srdce — obálka s pečetí */
+  .air .mail{ position:relative; background:#FBF6EA; border-radius:14px; padding:68px 13px 12px; text-align:center; box-shadow:0 6px 16px rgba(27,42,65,.08); overflow:hidden; }
+  .air .mail .flap{ position:absolute; left:0; right:0; top:0; height:50px; background:#F0E4C8; clip-path:polygon(0 0,100% 0,50% 100%); }
+  .air .seal{ width:36px; height:36px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#D2735B,#A23E2C 70%); color:#FBE2D8; display:grid; place-items:center; font-size:15px; box-shadow:0 2px 0 rgba(0,0,0,.12), inset 0 0 0 3px rgba(255,255,255,.12); }
+  .air .mail .seal{ position:absolute; left:50%; top:30px; transform:translateX(-50%) rotate(-8deg); }
+  .air .mail .hand{ font-size:23px; line-height:1.05; font-weight:700; }
+  .air .fb{ border-radius:14px; padding:14px 12px 12px; font-size:12.5px; line-height:1.5; position:relative; margin-top:14px; }
+  .air .fb.kind{ background:#FBEDE4; }
+  .air .postmark{ position:absolute; right:12px; top:-16px; width:80px; height:80px; border:3px double #B5543B; border-radius:50%; display:grid; place-items:center; text-align:center; color:#B5543B; font-weight:800; font-size:9.5px; letter-spacing:.05em; transform:rotate(-12deg); background:rgba(251,237,228,.92); line-height:1.25; }
+  .air .note{ background:#FFFDF7; border-radius:10px; padding:6px 10px; margin-top:8px; font-size:19px; line-height:1.15; transform:rotate(-1deg); box-shadow:0 2px 6px rgba(27,42,65,.08); }
+  .air .pc-front{ border-radius:10px; overflow:hidden; position:relative; box-shadow:0 6px 16px rgba(27,42,65,.12); }
+  .air .pc-front svg{ display:block; width:100%; height:auto; }
+  .air .pc-front .greet{ position:absolute; left:10px; bottom:6px; font-family:Caveat; font-weight:700; color:#fff; font-size:20px; text-shadow:0 1px 3px rgba(0,0,0,.35); }
+  .air .pc-back{ background:#fff; border-radius:10px; padding:10px 12px; display:flex; gap:10px; box-shadow:0 6px 16px rgba(27,42,65,.10); transform:rotate(-1.2deg); }
+  .air .pc-back .txt{ flex:1; font-family:Caveat; font-size:17.5px; line-height:1.12; color:#2B4C7E; border-right:1px solid #EFE7D3; padding-right:8px; }
+  .air .pc-back u{ text-decoration:none; background:linear-gradient(transparent 60%, #D6EBD9 60%); color:#2F6A45; font-weight:700; }
+  .air .pc-back .side{ flex:0 0 46px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .air .minist{ width:40px; height:48px; background:#DDE5EF; border:3px dotted #fff; outline:1px solid #A9BBD1; outline-offset:-6px; display:grid; place-items:center; font-size:16px; transform:rotate(4deg); }
+  .air .album{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+  .air .pc{ aspect-ratio:1.3; border-radius:7px; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:4px 6px; font-family:Caveat; font-weight:700; font-size:15px; color:#fff; box-shadow:0 3px 8px rgba(27,42,65,.12); }
+  .air .pc.lock{ background:#ECE4D0; color:#B3A684; box-shadow:none; font-family:Inter; font-size:10px; font-weight:700; }
+  .air .pc .sun{ position:absolute; width:18px; height:18px; border-radius:50%; top:6px; right:8px; background:rgba(255,255,255,.55); }
+  .air .pc .hill{ position:absolute; left:-10%; right:-10%; bottom:-30%; height:65%; border-radius:50% 50% 0 0; background:rgba(0,0,0,.14); }
+  .air .pc span{ position:relative; }
+  .air .pc .prog{ position:absolute; left:0; bottom:0; height:4px; background:#1E3A5F; }
+  .air .author{ background:#FFFDF7; border-radius:14px; padding:12px 13px; box-shadow:0 6px 16px rgba(27,42,65,.08); position:relative; }
+  .air .author .hand{ font-size:19px; line-height:1.15; }
+  .air .author .seal{ position:absolute; right:12px; bottom:10px; width:30px; height:30px; font-size:13px; transform:rotate(10deg); }
+  .air .plan{ border:2px solid #E4D9BC; border-radius:14px; padding:9px 12px; background:#fff; display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+  .air .plan.best{ border-color:#1E3A5F; box-shadow:0 0 0 3px #E7ECF2; }
+  .air .plan b{ font-size:15px; }
+  .air .tagbest{ font-size:10px; font-weight:800; background:#1E3A5F; color:#fff; border-radius:6px; padding:2px 6px; }
+  .air .check{ font-size:12px; margin:3px 0; }
+  .air .check i{ font-style:normal; color:#6E8F5C; font-weight:800; margin-right:6px; }
+  .air .fine{ font-size:10.5px; color:#5C6478; text-align:center; }
+
+  /* ================= Korektura ================= */
+  .ed .screen{ background:#FAF9F6; color:#111; font-family:Inter, sans-serif; gap:12px; }
+  .ed .serif{ font-family:"Instrument Serif", serif; font-weight:400; }
+  .ed .top{ display:flex; justify-content:space-between; font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid #111; padding-bottom:7px; }
+  .ed .huge{ font-family:"Instrument Serif", serif; font-size:104px; line-height:.82; letter-spacing:-.03em; }
+  .ed .huge small{ font-size:34px; letter-spacing:0; color:#9A968E; }
+  .ed .meta{ font-size:12px; color:#6B6760; }
+  .ed .red{ color:#E0372A; }
+  .ed .line{ height:2px; background:#E5E2DB; position:relative; }
+  .ed .line span{ position:absolute; left:0; top:0; bottom:0; background:#111; }
+  .ed .line i{ position:absolute; top:-5px; width:2px; height:12px; background:#E0372A; }
+  .ed .h{ font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#6B6760; margin:0; }
+  .ed .toc{ display:flex; align-items:baseline; gap:8px; padding:6px 0; border-bottom:1px solid #E5E2DB; }
+  .ed .toc .n{ font-family:"Instrument Serif"; font-size:15px; color:#9A968E; width:18px; }
+  .ed .toc .t{ font-family:"Instrument Serif"; font-size:20px; flex:1; line-height:1.1; }
+  .ed .toc .p{ font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ed .links{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .ed .links div{ border-top:2px solid #111; padding-top:6px; font-size:12px; font-weight:600; }
+  .ed .links b{ display:block; font-family:"Instrument Serif"; font-weight:400; font-size:28px; line-height:1; }
+  .ed .cta{ background:#111; color:#FAF9F6; padding:14px; font-weight:600; font-size:14px; display:flex; justify-content:space-between; }
+  .ed .sent{ font-family:"Instrument Serif"; font-size:31px; line-height:1.28; letter-spacing:-.01em; }
+  .ed .ins{ position:relative; color:#E0372A; font-style:italic; white-space:nowrap; }
+  .ed .ins::before{ content:"‸"; position:absolute; left:50%; bottom:-.62em; transform:translateX(-50%); font-style:normal; font-family:Inter; font-size:22px; color:#E0372A; }
+  .ed .margin{ border-left:2px solid #E0372A; padding:2px 0 2px 12px; font-size:12.5px; line-height:1.5; color:#2A2724; }
+  .ed .margin b{ color:#E0372A; }
+  .ed .ok{ display:flex; align-items:center; gap:10px; }
+  .ed .ok .mark{ width:42px; height:42px; border:2px solid #E0372A; border-radius:50%; display:grid; place-items:center; color:#E0372A; font-size:22px; transform:rotate(-8deg); }
+  .ed .shelf{ display:flex; align-items:flex-end; gap:2px; height:96px; border-bottom:3px solid #111; padding:0 2px; }
+  .ed .shelf i{ display:block; width:9px; background:#2B2926; border-radius:1px 1px 0 0; }
+  .ed .shelf i:nth-child(3n){ background:#57524B; } .ed .shelf i:nth-child(4n){ background:#8D877D; } .ed .shelf i:nth-child(5n){ background:#C9C3B8; }
+  .ed .shelf i.today{ background:#E0372A; width:14px; }
+  .ed blockquote{ margin:0; font-family:"Instrument Serif"; font-style:italic; font-size:22px; line-height:1.25; }
+
+  /* ================= Mozaika ================= */
+  .mz .screen{ background:#F3F0E8; color:#1A1A1A; font-family:"Space Grotesk", Inter, sans-serif; }
+  .mz .kick{ font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#6F6A60; }
+  .mz .ttl{ font-size:24px; font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+  .mz .poster{ display:grid; grid-template-columns:repeat(4,1fr); aspect-ratio:4/5; background:#E3DED2; }
+  .mz .poster > div{ position:relative; }
+  .mz .poster > .e{ background:#E3DED2; box-shadow:inset 0 0 0 1px #F3F0E8; }
+  .mz .poster > .nx{ box-shadow:inset 0 0 0 3px #1A1A1A; background:#ECE8DE; }
+  .mz .big{ width:186px; margin:0 auto; box-shadow:0 10px 24px rgba(0,0,0,.10); }
+  .mz .row{ display:flex; justify-content:space-between; align-items:baseline; }
+  .mz .num{ font-size:30px; font-weight:700; letter-spacing:-.03em; }
+  .mz .gal{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .mz .gal .poster{ box-shadow:0 3px 8px rgba(0,0,0,.08); }
+  .mz .chips{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .mz .chip{ background:#fff; padding:9px 10px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:8px; }
+  .mz .chip b{ font-size:20px; }
+  .mz .chip .sw{ width:16px; height:16px; }
+  .mz .cta{ background:#1A1A1A; color:#F3F0E8; text-align:center; padding:14px; font-weight:700; font-size:15px; }
+  .mz .cta small{ display:block; font-weight:500; font-size:11px; opacity:.75; }
+  .mz .ghost{ text-align:center; padding:11px; font-weight:600; font-size:14px; border:2px solid #1A1A1A; }
+  .mz .q{ font-size:21px; font-weight:600; line-height:1.35; letter-spacing:-.01em; }
+  .mz .gap{ display:inline-block; min-width:70px; border-bottom:3px solid #1A1A1A; }
+  .mz .opt{ background:#fff; padding:12px 14px; font-weight:600; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
+  .mz .opt.sel{ background:#F0B323; }
+  .mz .fb{ display:flex; gap:12px; align-items:center; background:#fff; padding:10px; font-size:12.5px; line-height:1.45; }
+  .mz .fb .piece{ flex:0 0 46px; height:46px; }
+
+  footer.page{ margin-top:48px; color:var(--page-soft); font-size:13.5px; line-height:1.6; max-width:900px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>Návrhy vzhledu — 4. kolo</h1>
+    <p>Letecká pošta+ ve verzi 3, tentokrát se srdcem, a dva nové moderní směry. Pořád jsou to jen statické obrázky a appky se nedotýkají. Verze 1 a 2 zůstávají beze změny v souborech z 2. a 3. kola a všechny změny jsou zapsané v <b>docs/navrhy-vzhledu-zmeny.md</b>.</p>
+    <div class="method">
+      <h3>Jak jsem tentokrát přemýšlel: techniky kreativních lidí</h3>
+      <ul>
+        <li><b>Pixar „story spine“ (Emma Coats):</b> <i>„Bylo jednou… Každý den… Až jednoho dne…“</i> Appka má vyprávět příběh a ne jen ukazovat procenta. Z toho vzešla Ella, kamarádka na dopisy v Letecké poště v3.</li>
+        <li><b>Don Norman, Emotional Design:</b> tři vrstvy zážitku: <i>hezké na pohled</i>, <i>příjemné v ruce</i> a <i>něco, k čemu si vytvořím vztah</i>. Ta třetí vrstva v dosavadních návrzích chyběla, a právě to je to „srdce“.</li>
+        <li><b>Kathy Sierra, „Badass“:</b> lidé se nevracejí kvůli appce, ale kvůli tomu, <i>kým se díky ní stávají</i>. Odměnou proto není bod, ale důkaz schopnosti. Typicky dopis v angličtině, který si najednou sám přečteš.</li>
+        <li><b>Dieter Rams a Massimo Vignelli:</b> „méně, ale lépe“. Dvě písma, jedna barva a mřížka. Z toho vznikla Korektura.</li>
+        <li><b>Edward de Bono, laterální myšlení:</b> otočit roli: nejsi žák, kterého někdo zkouší, ale korektor, který opravuje text. Taky Korektura.</li>
+        <li><b>Josef Albers a Bauhaus:</b> barva a tvar jako radost samy o sobě. K tomu <b>Zeigarnikův efekt</b>: rozdělaný obraz nedá člověku spát. Z toho vznikla Mozaika.</li>
+        <li><b>Etika:</b> žádné temné vzorce, tedy žádné falešné odpočty, výčitky ani skryté platby. Motivace musí být pravdivá.</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===================== LETECKÁ POŠTA+ v3 ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>1 · Letecká pošta+ · verze 3: se srdcem</h2>
+      <p>Vzhled zůstává z v2, protože se ti líbí. Novinkou je <b>vztah</b>. Za každý splněný den ti napíše <b>Ella, kamarádka na dopisy z anglicky mluvícího světa</b>. Pohlednici píše ručně, v angličtině na tvé úrovni a s gramatikou, kterou jsi ten den procvičil. Odměnou tedy není bod, ale to, že dopisu od člověka <i>rozumíš</i>. Každé zvládnuté téma přidá do alba pohlednici z dalšího města.</p>
+      <div class="changes"><b>Změny proti v2:</b>
+        <ul>
+          <li>Nová postava <b>Ella</b>: obálka s červenou pečetí se srdcem na úvodu a ručně psaná pohlednice jako výsledek kola. Zvýrazněné jsou výrazy, které jsi ten den procvičil.</li>
+          <li><b>Laskavá chyba:</b> místo červeného „špatně“ razítko „vráceno s poznámkou“, ručně psaná poznámka a ujištění, že chyba nebere razítko dne.</li>
+          <li><b>Album pohlednic:</b> 15 témat = 15 měst. Cesta B1 → B2 se přesunula sem.</li>
+          <li><b>Pas s osobním dopisem od autora</b> místo obecného prodejního textu.</li>
+          <li>Ručně psané písmo (Caveat) jen pro „lidské“ prvky, tedy Ellu, poznámky a autora. Zbytek se nemění: barvy, Fraunces, Inter, známky i trasa jsou jako ve v2.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phones">
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div>
+          <div class="sub">Čtvrtek · den 8 tvé cesty</div>
+          <div class="hello">Dobré ráno, Jano.</div>
+        </div>
+        <div class="mail">
+          <div class="flap"></div><div class="seal">♥</div>
+          <div class="hand">Ella ti napsala z Edinburghu</div>
+          <div class="sub" style="margin-top:4px;">Otevřeš po dnešním dopise · zbývá 7 odpovědí</div>
+        </div>
+        <div class="env">
+          <span class="corner">✉</span>
+          <p class="label">Tvůj dnešní dopis</p>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><b class="serif" style="font-size:18px;">13 / 20 odpovědí</b><span class="sub">už jen 7</span></div>
+          <div class="bar" style="margin-top:6px;"><span style="width:65%"></span></div>
+        </div>
+        <div class="env">
+          <p class="label">Razítka tento týden</p>
+          <div class="stamps"><div class="st on">PO</div><div class="st on">ÚT</div><div class="st on">ST</div><div class="st">ČT</div><div class="st">PÁ</div><div class="st">SO</div><div class="st free">❄</div></div>
+        </div>
+        <div class="duo">
+          <div class="tile"><em>12</em>Opakování<small>asi 4 min</small></div>
+          <div class="tile"><em>8</em>Co mi nejde<small>asi 3 min</small></div>
+        </div>
+        <div class="cta mt-auto">Dopsat dnešní dopis<small>Spojky · zbývá 7 otázek</small></div>
+      </div></div>
+      <div class="caption">Úvod: schránka</div>
+      <ul class="why"><li><b>Zvědavost:</b> zalepená obálka se srdcem je důvod dokončit den. Odměna je konkrétní a lidská, ne odznak.</li><li><b>Oslovení jménem</b> a klidný tón. Nic neodpočítává a nic nestraší.</li><li>Tlačítko neříká „Pokračovat“, ale „Dopsat dnešní dopis“, takže pořád jde o příběh.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#5C6478;"><span>✕</span><span>Spojky</span><span>5 / 10</span></div>
+        <div class="bar" style="height:6px;"><span style="width:50%"></span></div>
+        <div class="env" style="margin-top:8px;">
+          <div class="q">She took the job <span class="wrong">despite</span><span class="blank">although</span> it meant moving abroad.</div>
+        </div>
+        <div class="fb kind">
+          <div class="postmark">VRÁCENO<br>S POZNÁMKOU</div>
+          <div style="padding-right:80px;"><b style="color:#9C3F2B;font-size:15px;">Skoro!</b><br>Tohle si plete většina lidí.</div>Za mezerou je celá věta (<i>it meant…</i>), proto <b>although</b>.
+          <div class="note hand">despite + -ing:<br>despite moving abroad ✓</div>
+          <div style="margin-top:10px;font-size:12px;color:#5C6478;">Uložili jsme si to a za dvě kola se k tomu vrátíme. <b style="color:#1B2A41;">Razítko dne ti chyba nevezme.</b></div>
+        </div>
+        <div class="cta mt-auto">Rozumím, další</div>
+      </div></div>
+      <div class="caption">Otázka po chybě</div>
+      <ul class="why"><li><b>Psychologické bezpečí (Carol Dweck, growth mindset):</b> chyba je poznámka na okraji, ne trest. Lidé, kteří se za chyby necítí hloupě, se vracejí.</li><li><b>Normalizace:</b> věta „Tohle si plete většina lidí“ bere chybě osten.</li><li>Ručně psaný lísteček ukazuje správný tvar s <i>despite</i>, takže se z chyby rovnou učíš.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div class="hello" style="font-size:20px;">Ella ti odepsala</div>
+        <div class="pc-front">
+          <svg viewBox="0 0 268 92" aria-hidden="true">
+            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2C9A0"/><stop offset="1" stop-color="#F7E4C8"/></linearGradient></defs>
+            <rect width="268" height="92" fill="url(#sky)"/>
+            <circle cx="214" cy="30" r="15" fill="#FBEFD9"/>
+            <path d="M118 92 Q170 18 236 64 Q252 74 268 70 V92Z" fill="#8C9F7E"/>
+            <path d="M0 92 V70 Q40 58 80 66 Q100 70 120 64 V92Z" fill="#6F8466"/>
+            <path d="M28 66 v-14 h5 v-5 h4 v5 h7 v-12 h3 v-4 h3 v4 h3 v12 h9 v-7 h5 v7 h9 v-10 h4 v-3 h3 v3 h4 v10 h7 v14z" fill="#3E4C61"/>
+            <rect x="0" y="80" width="268" height="12" fill="#5E7258"/>
+          </svg>
+          <div class="greet">Greetings from Edinburgh</div>
+        </div>
+        <div class="pc-back">
+          <div class="txt">Dear Jana,<br><u>Although</u> it rained all week, we climbed Arthur's Seat! <u>Despite</u> the wind, the view was magical. I thought of you.<br>Write soon! Ella ♥</div>
+          <div class="side"><div class="minist">🏰</div><div class="seal" style="width:28px;height:28px;font-size:12px;">♥</div></div>
+        </div>
+        <div class="sub" style="line-height:1.45;"><b style="color:#2F6A45;">Zvýrazněné výrazy jsi dnes procvičoval.</b> Teď je čteš v opravdovém dopise a rozumíš každé větě.</div>
+        <div class="sub">8 / 10 správně · 8 dní v řadě · razítko ČT ✓</div>
+        <div class="cta mt-auto">Odepsat Elle<small>krátké kolo · 5 otázek · asi 3 min</small></div>
+        <div class="ghost">Hotovo na dnes</div>
+      </div></div>
+      <div class="caption">Výsledek: pohlednice od Elly</div>
+      <ul class="why"><li><b>Odměna = důkaz schopnosti (Kathy Sierra):</b> nečteš „+80 bodů“, ale skutečný anglický text, kterému rozumíš díky dnešnímu kolu.</li><li><b>Reciprocita:</b> Ella napsala, tak jí „odepíšeš“. Další kolo je dobrovolné a vždy je vidět „Hotovo na dnes“.</li><li>Pohlednice se ukládají, takže za měsíc máš krabici dopisů, které jsi sám přečetl.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div>
+          <div class="hello" style="font-size:21px;">Tvoje album</div>
+          <div class="sub">15 témat = 15 měst. Pohlednici dostaneš, když téma zvládneš.</div>
+        </div>
+        <div class="env">
+          <p class="label">Tvoje cesta</p>
+          <div class="route">B1<div class="line"><span class="plane">✈</span></div>B2</div>
+          <div class="sub" style="margin-top:6px;">62 % cesty · 4 z 15 pohlednic</div>
+        </div>
+        <div class="album">
+          <div class="pc" style="background:#C98F6B;"><i class="sun"></i><i class="hill"></i><span>Edinburgh</span></div>
+          <div class="pc" style="background:#6E9A7A;"><i class="sun"></i><i class="hill"></i><span>Dublin</span></div>
+          <div class="pc" style="background:#5F7FA6;"><i class="sun"></i><i class="hill"></i><span>Toronto</span></div>
+          <div class="pc" style="background:#D3A44F;"><i class="sun"></i><i class="hill"></i><span>Sydney</span></div>
+          <div class="pc" style="background:#ECE4D0;color:#1E3A5F;box-shadow:inset 0 0 0 2px #1E3A5F;"><span style="font-size:14px;">Cape Town<br><small style="font-family:Inter;font-size:9.5px;font-weight:700;">Spojky · 65 %</small></span><i class="prog" style="width:65%"></i></div>
+          <div class="pc lock">New York</div>
+          <div class="pc lock">Wellington</div>
+          <div class="pc lock">Vancouver</div>
+          <div class="pc lock">London</div>
+        </div>
+        <div class="env" style="display:flex;gap:10px;align-items:center;">
+          <div class="seal" style="flex:0 0 34px;">♥</div>
+          <div class="sub">Od Elly máš <b style="color:#1B2A41;">8 dopisů</b>. Nejstarší: „My name is Ella and I live…“ z prvního dne.</div>
+        </div>
+      </div></div>
+      <div class="caption">Album pohlednic a dopisů</div>
+      <ul class="why"><li><b>Sbírka:</b> každé město je hmatatelný milník. Neodemyká se nákupem, jen učením.</li><li><b>Viditelný pokrok v čase:</b> první dopis od Elly byl jednoduchý, dnešní obsahuje spojky. Člověk vidí, jak roste.</li><li>„Na cestě“ (Cape Town) ukazuje, co je nejblíž. Rozdělané věci táhnou dokončit.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div style="text-align:center;">
+          <div class="hello" style="font-size:21px;">🛂 Cestovní pas</div>
+          <div class="sub">Celá cesta od A2 až po C1</div>
+        </div>
+        <div class="author">
+          <div class="hand">Ahoj, Gramatickou posilovnu dělám sám, po večerech. Žádná velká firma ani reklamy. Předplatným mi pomůžeš ji dál zlepšovat. Díky, že se učíš se mnou.</div>
+          <div class="hand" style="font-size:17px;margin-top:4px;">autor appky</div>
+          <div class="seal">♥</div>
+        </div>
+        <div>
+          <div class="check"><i>✓</i>Všech 15 témat · přes 6 600 otázek</div>
+          <div class="check"><i>✓</i>Dopisy od Elly každý den</div>
+          <div class="check"><i>✓</i>Neomezené Opakování a Co mi nejde</div>
+        </div>
+        <div class="plan best"><div><b>Roční</b> <span class="tagbest">nejvýhodnější</span><div class="sub">899 Kč · vychází 75 Kč měsíčně</div></div><span>◉</span></div>
+        <div class="plan"><div><b>Měsíční</b><div class="sub">149 Kč měsíčně</div></div><span>○</span></div>
+        <div class="cta mt-auto">Vyzkoušet 7 dní zdarma</div>
+        <div class="fine">Zrušíš kdykoli v nastavení iPhonu. Den před koncem zkoušky ti připomeneme.</div>
+      </div></div>
+      <div class="caption">Placená verze s dopisem od autora</div>
+      <ul class="why"><li><b>Autenticita:</b> u malých nezávislých appek osobní slovo autora prodává líp než seznam funkcí. Lidé rádi podpoří člověka.</li><li>Text musí být <b>pravdivý</b>, takže ho přepíšeš svými slovy. Tady je jen ukázka.</li><li>Férovost: připomínka před koncem zkoušky a snadné zrušení.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KOREKTURA ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>2 · Korektura (nový směr)</h2>
+      <p>Moderní redakční styl podle Ramse a Vignelliho: dvě písma, černá na papíře a <span style="color:#E0372A;font-weight:700;">jediná červená</span>, tedy červená tužka korektora. Laterální otočka podle de Bona: <b>nejsi žák u zkoušení, ale korektor, který text opravuje</b>. Každé kolo přidá stránku do tvé vlastní knihy vět. Hlavní hrdinou je velká typografie, ne ikonky.</p>
+    </div>
+    <div class="phones">
+
+      <div class="phone-col"><div class="phone ed"><div class="notch"></div><div class="screen">
+        <div class="top"><span>Gramatická posilovna</span><span>čt 1. 10.</span></div>
+        <div>
+          <div class="huge">13<small> / 20</small></div>
+          <div class="meta" style="margin-top:6px;">vět dnes opraveno · den 8 v řadě</div>
+        </div>
+        <div class="line"><span style="width:65%"></span><i style="left:65%"></i></div>
+        <div>
+          <p class="h">Obsah</p>
+          <div class="toc"><span class="n">01</span><span class="t">Slovesné časy</span><span class="p">88 %</span></div>
+          <div class="toc"><span class="n">02</span><span class="t">Podmínkové věty</span><span class="p">71 %</span></div>
+          <div class="toc"><span class="n">03</span><span class="t">Spojky <span class="red" style="font-size:14px;font-family:Inter;font-weight:700;">● rozepsáno</span></span><span class="p">62 %</span></div>
+          <div class="toc"><span class="n">04</span><span class="t">Členy</span><span class="p">40 %</span></div>
+        </div>
+        <div class="links">
+          <div><b>12</b>Opakování →</div>
+          <div><b class="red">8</b>Co mi nejde →</div>
+        </div>
+        <div class="cta mt-auto"><span>Pokračovat · Spojky</span><span>7 vět →</span></div>
+      </div></div>
+      <div class="caption">Úvod</div>
+      <ul class="why"><li><b>Rams:</b> jedno velké číslo říká všechno a nic dalšího nepřekáží. Klid působí prémiově a „dospěle“.</li><li>Témata jako <b>obsah knihy</b> s procenty místo čísel stránek.</li><li>Červená se používá jen pro to, co čeká na tebe (rozepsáno, Co mi nejde).</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone ed"><div class="notch"></div><div class="screen">
+        <div class="top"><span>Spojky · střední</span><span>4 / 10</span></div>
+        <div class="line"><span style="width:40%"></span></div>
+        <div class="sent" style="margin-top:14px;">She took the job <span class="ins">although</span> it meant moving abroad.</div>
+        <div class="ok" style="margin-top:10px;"><div class="mark">✓</div><div><b>Správně opraveno.</b><div class="meta">4 věty v řadě bez chyby</div></div></div>
+        <div class="margin"><b>Marginálie:</b> za mezerou je celá věta (<i>it meant…</i>), proto spojka <b>although</b>. <i>Despite</i> chce podstatné jméno nebo tvar -ing: <i>despite moving</i>.</div>
+        <div class="cta mt-auto"><span>Další věta</span><span>→</span></div>
+      </div></div>
+      <div class="caption">Otázka po odpovědi</div>
+      <ul class="why"><li><b>Velká věta ve stylu knižní sazby:</b> čte se jako literatura, ne jako test.</li><li><b>Korektorská značka ‸</b> ukazuje, kam tvoje slovo patří. Tvoje odpověď je v textu červeně jako oprava redaktora.</li><li>Pravidlo jako <b>poznámka na okraji</b>: krátké, věcné a vždy na stejném místě.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone ed"><div class="notch"></div><div class="screen">
+        <div class="top"><span>Hotovo</span><span>Spojky · střední</span></div>
+        <div>
+          <div class="huge" style="font-size:84px;">str. 23</div>
+          <div class="meta" style="margin-top:8px;">Do tvé knihy přibyla stránka: <b style="color:#111;">10 vět, 8 bez opravy.</b></div>
+        </div>
+        <div>
+          <div class="shelf"><i style="height:70%"></i><i style="height:82%"></i><i style="height:64%"></i><i style="height:90%"></i><i style="height:76%"></i><i style="height:68%"></i><i style="height:86%"></i><i style="height:72%"></i><i style="height:94%"></i><i style="height:66%"></i><i style="height:80%"></i><i style="height:74%"></i><i style="height:88%"></i><i style="height:70%"></i><i style="height:84%"></i><i style="height:62%"></i><i style="height:78%"></i><i style="height:92%"></i><i style="height:68%"></i><i style="height:86%"></i><i style="height:74%"></i><i style="height:80%"></i><i class="today" style="height:96%"></i></div>
+          <div class="meta" style="margin-top:6px;display:flex;justify-content:space-between;"><span>Tvoje kniha · 23 stran</span><span>412 vět</span></div>
+        </div>
+        <div>
+          <p class="h" style="margin-bottom:4px;">Věta dne</p>
+          <blockquote>„Despite the rain, we kept walking.“</blockquote>
+        </div>
+        <div class="margin">Příště: <b>whereas / while</b> (1 ze 2). Zařadili jsme to do Opakování.</div>
+        <div class="cta mt-auto"><span>Ještě 5 vět</span><span>→</span></div>
+      </div></div>
+      <div class="caption">Výsledek</div>
+      <ul class="why"><li><b>Efekt IKEA:</b> kniha, kterou sis „napsal“ sám, má větší cenu. Každý den je jeden hřbet, dnešní je červený.</li><li><b>Věta dne</b> je malý estetický zážitek. Lze ji sdílet jako obrázek.</li><li>Celek je velmi klidný, a proto snese i dlouhé používání a nezestárne.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOZAIKA ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>3 · Mozaika (nový směr)</h2>
+      <p>Bauhaus a Josef Albers: čtyři barvy, jednoduché tvary a radost z kompozice. <b>Každá buňka má 20 otázek, a tak má každá i obraz z 20 dílků.</b> Zvládnutá otázka vloží svůj dílek. Rozdělaný obraz láká k dokončení (Zeigarnikův efekt) a hotový obraz se ukládá do galerie. Dá se nastavit jako tapeta nebo sdílet. Dílek se počítá, až když otázku opravdu umíš (2× správně), aby obraz byl poctivý.</p>
+    </div>
+    <div class="phones">
+
+      <div class="phone-col"><div class="phone mz"><div class="notch"></div><div class="screen">
+        <div><div class="kick">Čtvrtek · den 8</div><div class="ttl">Spojky · Střední</div></div>
+        <div class="poster big" data-art="a" data-empty="2,7,10,13,15,17,18" data-next="7"></div>
+        <div class="row"><div><span class="num">13</span><span style="font-weight:600;"> / 20 dílků</span></div><span class="kick">ještě 7</span></div>
+        <div>
+          <div class="kick" style="margin-bottom:6px;">Tvoje galerie · 5 obrazů</div>
+          <div class="gal">
+            <div class="poster" data-art="b"></div><div class="poster" data-art="c"></div><div class="poster" data-art="d"></div><div class="poster" data-art="e"></div><div class="poster" data-art="b" data-empty="1,2,3,5,6,7,9,10,11,13,14,15,17,18,19"></div>
+          </div>
+        </div>
+        <div class="chips">
+          <div class="chip"><span class="sw" style="background:#2A4D9B"></span><b>12</b>Opakování</div>
+          <div class="chip"><span class="sw" style="background:#D9412B;border-radius:50%"></span><b>8</b>Co mi nejde</div>
+        </div>
+        <div class="cta mt-auto">Doskládat obraz<small>7 dílků · asi 5 min</small></div>
+      </div></div>
+      <div class="caption">Úvod</div>
+      <ul class="why"><li><b>Zeigarnikův efekt:</b> 13 z 20 dílků je skoro hotový obraz, a ten „svrbí“ dokončit.</li><li>Rámeček ukazuje, <b>kam padne příští dílek</b>. Malý cíl na jedno kliknutí.</li><li>Galerie: každý obraz je jiný, takže sbírka je opravdu tvoje.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone mz"><div class="notch"></div><div class="screen">
+        <div class="row" style="align-items:center;"><span style="font-size:13px;font-weight:600;">✕ &nbsp; Spojky · 4 / 10</span><div class="poster" data-art="a" data-empty="2,10,13,15,17,18" style="width:46px;"></div></div>
+        <div class="q" style="margin-top:6px;">She took the job <span class="gap"></span> it meant moving abroad.</div>
+        <div class="opt">despite <span>○</span></div>
+        <div class="opt sel">although <span>●</span></div>
+        <div class="opt">in spite of <span>○</span></div>
+        <div class="fb"><div class="piece" data-piece="a7"></div><div><b>Dílek zapadl.</b> Za mezerou je celá věta (<i>it meant…</i>), proto <b>although</b>. <i>Despite</i> + podstatné jméno / -ing.</div></div>
+        <div class="cta mt-auto">Další</div>
+      </div></div>
+      <div class="caption">Otázka po odpovědi</div>
+      <ul class="why"><li><b>Okamžitá, vizuální odměna:</b> dílek „zapadne“ do miniatury vpravo nahoře (v appce s krátkou animací).</li><li>Výběr odpovědi se zabarví do žluté z palety. Žádné zelené fajfky jako v každé appce.</li><li>Písmo Space Grotesk je moderní a technické, ale přátelské.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone mz"><div class="notch"></div><div class="screen">
+        <div><div class="kick">Obraz č. 6 · dokončeno</div><div class="ttl">Spojky · Střední</div></div>
+        <div class="poster big" data-art="a" style="width:224px;"></div>
+        <div class="row"><span class="kick">20 / 20 · 4 dny skládání</span><span class="kick">1. 10. 2026</span></div>
+        <div class="chips">
+          <div class="chip" style="justify-content:center;">Nastavit jako tapetu</div>
+          <div class="chip" style="justify-content:center;">Sdílet</div>
+        </div>
+        <div class="cta mt-auto">Další obraz: Spojky · Pokročilá<small>nové plátno · 20 dílků</small></div>
+        <div class="ghost">Hotovo na dnes</div>
+      </div></div>
+      <div class="caption">Dokončený obraz</div>
+      <ul class="why"><li><b>Hmatatelný výsledek:</b> hotový obraz je tvůj a dá se mít na tapetě nebo poslat kamarádovi. To je přirozená reklama bez žádosti o hodnocení.</li><li><b>Poctivost:</b> obraz je hotový, až když umíš všech 20 otázek, ne jen když je odklikáš.</li><li>Každý obraz je jiný (kompozice podle tématu a úrovně).</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page">
+    Na co se mě můžeš zeptat dál: Letecká pošta+ v4 (třeba bez Elly a jen s albem, nebo s Ellou méně často), Korektura s tmavou variantou a Mozaika s jinou paletou. Činka v1 zůstává v 3. kole, kdyby ses k ní chtěl vrátit. Nic z toho zatím nesahá na appku.
+  </footer>
+</div>
+
+<script>
+  // Mozaika: kompozice dlaždic (jen pro náhled). Typy: f=plná, q=čtvrtkruh, h=půlka, d=úhlopříčka, c=kruh
+  var R="#D9412B", B="#2A4D9B", Y="#F0B323", K="#1A1A1A", W="#F3F0E8";
+  function bg(t){
+    var s=t[0], a=t[1], b=t[2], r=t[3]||0;
+    if(s==="f") return a;
+    if(s==="h") return "linear-gradient("+(90+r)+"deg,"+a+" 50%,"+b+" 50%)";
+    if(s==="d") return "linear-gradient("+(135+r)+"deg,"+a+" 50%,"+b+" 50%)";
+    if(s==="c") return "radial-gradient(circle closest-side,"+a+" 0 86%,"+b+" 88%)";
+    var pos=["0 100%","0 0","100% 0","100% 100%"][r/90|0];
+    return "radial-gradient(circle at "+pos+","+a+" 0 70.5%,"+b+" 71%)";
+  }
+  var ARTS={
+    a:[["f",K],["q",Y,W,0],["h",B,W],["c",R,W],
+       ["d",Y,K],["c",W,B],["f",R],["q",B,Y,180],
+       ["h",W,Y],["f",K],["q",R,W,90],["d",B,W,90],
+       ["c",Y,K],["d",R,W],["h",K,W,90],["f",Y],
+       ["q",K,R,270],["f",B],["c",R,Y],["h",Y,K]],
+    b:[["c",R,Y],["f",B],["q",W,K,90],["h",Y,R],["d",K,W],["f",Y],["c",W,R],["q",B,W,0],["h",R,W,90],["c",K,Y],["d",B,Y],["f",W],["q",Y,B,180],["f",R],["h",K,W],["c",B,W],["d",Y,R],["q",R,K,270],["f",K],["c",Y,B]],
+    c:[["f",B],["f",B],["q",Y,B,270],["c",W,B],["h",B,R],["c",Y,K],["f",K],["q",R,W,0],["d",W,B],["f",Y],["q",B,Y,90],["h",R,K,90],["c",R,W],["d",K,Y,90],["f",W],["q",K,W,180],["h",Y,B],["f",R],["c",B,R],["d",W,K]],
+    d:[["q",R,W,0],["q",R,W,90],["f",K],["c",Y,K],["q",R,W,270],["q",R,W,180],["h",B,W,90],["f",Y],["f",B],["d",Y,B],["c",W,R],["q",K,Y,0],["h",K,Y],["c",R,B],["f",W],["d",R,K],["f",Y],["q",B,W,90],["c",K,W],["h",R,W]],
+    e:[["h",Y,K],["c",B,W],["f",R],["d",K,W],["q",Y,B,90],["f",W],["c",R,K],["h",B,Y,90],["c",K,Y],["d",R,B,90],["f",Y],["q",W,R,180],["f",B],["h",W,R],["q",K,Y,0],["c",Y,R],["d",B,W],["c",W,K],["f",K],["q",R,Y,270]]
+  };
+  document.querySelectorAll(".mz .poster").forEach(function(p){
+    var art=ARTS[p.dataset.art], empty=(p.dataset.empty||"").split(",").filter(Boolean).map(Number), next=+(p.dataset.next||-1);
+    art.forEach(function(t,i){
+      var d=document.createElement("div");
+      if(i===next) d.className="nx";
+      else if(empty.indexOf(i)>=0) d.className="e";
+      else d.style.background=bg(t);
+      p.appendChild(d);
+    });
+  });
+  document.querySelectorAll(".mz [data-piece]").forEach(function(el){
+    var k=el.dataset.piece; el.style.background=bg(ARTS[k[0]][+k.slice(1)]);
+  });
+</script>
+</body>
+</html>
