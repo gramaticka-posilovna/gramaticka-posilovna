@@ -15,6 +15,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 7 | `navrhy-vzhledu-7.html` | Měkké 3D **v6A** Čistě · **v6B** Posilovna · **v6C** Zahrada · **v6D** Krystaly |
 | 8 | `navrhy-vzhledu-8.html` | Posilovna **v7.1** Kreativní · **v7.2** Odvážná · **v7.3** Lehké vylepšení · **v7.4** Co funguje |
 | 9 | `navrhy-vzhledu-9.html` | Posilovna **v8** (z v7.4: dnešní den, série jako kotouč) + možnosti série B a C |
+| 10 | `navrhy-vzhledu-10.html` | Posilovna v8 · úvod s 10 barvami pozadí (6× světle modrá, krémová, šalvějová, beton, levandulová) |
 
 ## Zpětná vazba
 
@@ -29,6 +30,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 6:** nový odznak u správné odpovědi se líbí. Téma cestování se nelíbí, předělat i zbytek (známky, letadlo, ikonky). Víc návrhů: buď jen vizuálně vhodné, nebo jiné zajímavé téma, nechává na mně.
 - **Kolo 7:** **vybrána varianta B · Posilovna** (v6B). Zadání: 4 úpravy, tedy kreativní, odvážná, lehké vylepšení a „co funguje“.
 - **Kolo 8:** vybrána **v7.4 Co funguje**. Doplnit zvýraznění dnešního dne; štítek „8 dní v řadě“ nahoře se nelíbí, předělat.
+- **Kolo 9:** v8 se moc líbí (série jako kotouč, zvýrazněný dnešní den). Další krok: zkusit světle modré pozadí ve více odstínech, případně jinou vhodnou barvu.
 
 ## Letecká pošta+ — historie verzí
 
@@ -83,6 +85,10 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Série: místo štítku vpravo od pozdravu tmavý kotouč se žlutým číslem a „dní v řadě“ (styl jako skóre výsledku).
 - Oprava nesouladu: série na úvodu 7 dní (dnešek ještě nesplněn), 8 až na výsledku. Pod známkami jen „Máš 1 náhradní den…“.
 - Alternativy série (jen úvod): **B** velké číslo v kartě „Tento týden“, **C** věta pod pozdravem „Trénuješ už 7 dní v řadě. Dnes to bude osmý.“
+
+### Barvy pozadí (kolo 10) — jen úvod v8
+- Přes CSS proměnné se mění pozadí a s ním nádech karet, prázdné kotouče, dráha pruhu a barva stínů; tmavé kotouče, modré tlačítko a zelená beze změny.
+- 0 Krémová (dnešní) `#F4E9D2` · 1 Ledová `#EAF2FB` · 2 Nebeská `#DDEBFA` · 3 Pastelově modrá `#D0E3FA` · 4 Šedomodrá `#E1E8EF` · 5 Azurová `#D8F1F8` · 6 Modrofialová `#E1E5FA` · 7 Šalvějová `#E3EFE5` · 8 Beton `#E9E7E3` · 9 Levandulová `#ECE5F6` (uvedena prostřední barva přechodu).
 
 ## Činka — historie verzí
 
