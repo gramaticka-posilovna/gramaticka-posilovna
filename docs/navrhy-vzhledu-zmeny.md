@@ -14,6 +14,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 6 | `navrhy-vzhledu-6.html` | Měkké 3D **v5** (bez poštovních nápisů, nový odznak) |
 | 7 | `navrhy-vzhledu-7.html` | Měkké 3D **v6A** Čistě · **v6B** Posilovna · **v6C** Zahrada · **v6D** Krystaly |
 | 8 | `navrhy-vzhledu-8.html` | Posilovna **v7.1** Kreativní · **v7.2** Odvážná · **v7.3** Lehké vylepšení · **v7.4** Co funguje |
+| 9 | `navrhy-vzhledu-9.html` | Posilovna **v8** (z v7.4: dnešní den, série jako kotouč) + možnosti série B a C |
 
 ## Zpětná vazba
 
@@ -27,6 +28,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 5:** líbí se **v4a Měkké 3D**. Nechce nápisy typu „Pohlednice z kola“, „Cestovní pas“ a razítko „doručeno“ vymyslet jinak.
 - **Kolo 6:** nový odznak u správné odpovědi se líbí. Téma cestování se nelíbí, předělat i zbytek (známky, letadlo, ikonky). Víc návrhů: buď jen vizuálně vhodné, nebo jiné zajímavé téma, nechává na mně.
 - **Kolo 7:** **vybrána varianta B · Posilovna** (v6B). Zadání: 4 úpravy, tedy kreativní, odvážná, lehké vylepšení a „co funguje“.
+- **Kolo 8:** vybrána **v7.4 Co funguje**. Doplnit zvýraznění dnešního dne; štítek „8 dní v řadě“ nahoře se nelíbí, předělat.
 
 ## Letecká pošta+ — historie verzí
 
@@ -75,6 +77,12 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **v7.2 Odvážná:** tmavý vzhled (posilovna v noci), nadpisy Oswald velkými písmeny, žluté tlačítko se spodní hranou, splněné dny jako barevné soutěžní kotouče (červený, modrý, žlutý), skóre na červeném kotouči.
 - **v7.3 Lehké vylepšení:** kotouče s kovovým středem a otvorem, dnešní den se žlutým kroužkem, tyč pokroku s objímkou na konci a jezdcem jako kotouč, ikonky v rozích jako kreslené činky místo emoji, čísla na dlaždicích Oswald.
 - **v7.4 Co funguje:** štítek série nahoře, tlačítko „Dokončit dnešní cíl“ s odhadem času, srovnání s minulým kolem (6 → 8), přepínač připomínky „zítra v 18:00“, časová osa zkušební verze (dnes / za 5 dní připomínka / za 7 dní platba).
+
+### v8 (kolo 9) — z v7.4 Co funguje
+- Dnešní den: pod kotoučem nápis DNES a kolem žlutý prstenec, který se plní podle dnešního cíle (65 % = 13/20).
+- Série: místo štítku vpravo od pozdravu tmavý kotouč se žlutým číslem a „dní v řadě“ (styl jako skóre výsledku).
+- Oprava nesouladu: série na úvodu 7 dní (dnešek ještě nesplněn), 8 až na výsledku. Pod známkami jen „Máš 1 náhradní den…“.
+- Alternativy série (jen úvod): **B** velké číslo v kartě „Tento týden“, **C** věta pod pozdravem „Trénuješ už 7 dní v řadě. Dnes to bude osmý.“
 
 ## Činka — historie verzí
 
