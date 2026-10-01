@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Statické návrhy obrazovek (3. kolo) — NEJSOU součástí appky. Historie verzí: navrhy-vzhledu-zmeny.md */
+  :root{ --page:#EDEAE4; --page-ink:#22252B; --page-soft:#6A6F78; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--page); color:var(--page-ink); font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1320px; margin:0 auto; padding:32px 16px 64px; }
+  header.page h1{ font-family:Fraunces, serif; font-size:30px; margin:0 0 8px; }
+  header.page p{ color:var(--page-soft); margin:0 0 6px; max-width:800px; line-height:1.55; }
+  section.dir{ margin-top:52px; }
+  .dir-head h2{ font-size:22px; margin:0 0 6px; }
+  .dir-head p{ margin:0 0 4px; color:var(--page-soft); max-width:840px; line-height:1.55; font-size:14.5px; }
+  .changes{ background:#fff; border-radius:12px; padding:10px 16px; margin:10px 0 0; max-width:840px; font-size:13px; line-height:1.55; }
+  .changes ul{ margin:4px 0 0; padding-left:18px; }
+  .phones{ display:flex; gap:22px; overflow-x:auto; padding:22px 4px 10px; scroll-snap-type:x mandatory; }
+  .phone-col{ display:flex; flex-direction:column; flex:0 0 300px; scroll-snap-align:start; }
+  .phone{ width:300px; height:630px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .phone .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:92px; height:24px; background:#15171B; border-radius:14px; z-index:5; }
+  .screen{ height:100%; overflow:hidden; padding:44px 16px 16px; display:flex; flex-direction:column; gap:10px; position:relative; }
+  .caption{ font-size:13px; font-weight:700; text-align:center; margin:10px 0 4px; }
+  .why{ font-size:12px; color:var(--page-soft); line-height:1.5; margin:0; padding-left:18px; }
+  .why li{ margin:3px 0; }
+  .mt-auto{ margin-top:auto; }
+
+  /* ================= Letecká pošta+ v2 ================= */
+  .air .screen{ background:#F5EEDC; color:#1B2A41; font-family:Inter, sans-serif; }
+  .air .serif{ font-family:Fraunces, serif; }
+  .air .hello{ font-family:Fraunces, serif; font-size:22px; font-weight:700; line-height:1.15; }
+  .air .sub{ font-size:12px; color:#5C6478; }
+  .air .env{ background:#fff; border-radius:14px; padding:12px 13px; position:relative; box-shadow:0 6px 16px rgba(27,42,65,.07); }
+  /* v2: místo červeno-modrého pruhu jen jemná ikona v rohu karty */
+  .air .corner{ position:absolute; right:12px; top:10px; font-size:14px; color:#C9BB98; }
+  .air .label{ font-size:10.5px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 6px; }
+  .air .bar{ height:8px; background:#EFE7D3; border-radius:8px; overflow:hidden; }
+  .air .bar span{ display:block; height:100%; background:linear-gradient(90deg,#6E8F5C,#1E3A5F); border-radius:8px; }
+  .air .stamps{ display:flex; gap:6px; }
+  /* v2: zoubkovaný okraj jako skutečná známka (tečky v barvě karty "vykousnou" okraj) */
+  .air .st{ flex:1; aspect-ratio:.86; border-radius:2px; display:grid; place-items:center; font-size:9.5px; font-weight:800; color:#B9AC8A; background:#F6F1E4; border:3px dotted #fff; outline:1px solid #EFE7D3; outline-offset:-6px; }
+  .air .st.on{ background:#F3DCC9; color:#9C3F2B; outline-color:#D8A48E; transform:rotate(-4deg); }
+  .air .st.on:nth-child(even){ transform:rotate(4deg); }
+  .air .st.free{ background:#DDE5EF; color:#1E3A5F; outline-color:#A9BBD1; }
+  .air .route{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:13px; }
+  /* v2: plná tenká linka s vyznačenou ušlou částí místo tečkované čáry */
+  .air .route .line{ flex:1; height:2px; background:#E4D9BC; position:relative; border-radius:2px; }
+  .air .route .line::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:62%; background:#1E3A5F; border-radius:2px; }
+  .air .route .plane{ position:absolute; top:-9px; left:calc(62% - 8px); font-size:14px; color:#1E3A5F; }
+  .air .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .air .tile{ background:#fff; border:1.5px solid #E4D9BC; border-radius:12px; padding:9px 10px; font-size:12.5px; font-weight:700; }
+  .air .tile em{ display:block; font-style:normal; font-family:Fraunces, serif; font-size:21px; color:#1E3A5F; }
+  .air .tile small{ display:block; font-weight:500; color:#5C6478; font-size:11px; }
+  .air .cta{ background:#1E3A5F; color:#fff; text-align:center; border-radius:14px; padding:13px; font-weight:700; font-size:14.5px; }
+  .air .cta small{ display:block; font-weight:500; font-size:11px; opacity:.8; }
+  .air .ghost{ text-align:center; border:1.5px solid #E4D9BC; border-radius:14px; padding:11px; font-weight:600; background:#fff; font-size:14px; }
+  .air .q{ font-family:Fraunces, serif; font-size:19px; line-height:1.45; }
+  .air .blank{ display:inline-block; min-width:90px; border-bottom:2.5px solid #3F7A55; color:#3F7A55; font-family:Inter; font-weight:700; font-size:16px; padding:0 4px; }
+  .air .postmark{ position:absolute; right:14px; top:-14px; width:76px; height:76px; border:3px double #3F7A55; border-radius:50%; display:grid; place-items:center; text-align:center; color:#3F7A55; font-weight:800; font-size:10px; letter-spacing:.06em; transform:rotate(-14deg); background:rgba(234,243,236,.9); line-height:1.2; }
+  .air .fb{ background:#EAF3EC; border-radius:14px; padding:14px 12px 12px; font-size:12.5px; line-height:1.5; position:relative; margin-top:14px; }
+  .air .combo{ font-size:12px; font-weight:700; color:#B5543B; }
+  .air .postcard{ background:#fff; border-radius:12px; padding:14px; box-shadow:0 8px 20px rgba(27,42,65,.10); position:relative; border:1px solid #EFE7D3; }
+  .air .bigstamp{ flex:0 0 62px; width:62px; height:74px; background:#F3DCC9; border:4px dotted #fff; outline:1px solid #D8A48E; outline-offset:-8px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#9C3F2B; transform:rotate(5deg); }
+  .air .bigstamp b{ font-family:Fraunces; font-size:22px; }
+  .air .bigstamp small{ font-size:9px; font-weight:800; }
+  .air .win{ display:flex; gap:8px; align-items:flex-start; font-size:12.5px; margin:6px 0; }
+  .air .win i{ font-style:normal; color:#3F7A55; font-weight:800; }
+  .air .plan{ border:2px solid #E4D9BC; border-radius:14px; padding:10px 12px; background:#fff; display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+  .air .plan.best{ border-color:#1E3A5F; box-shadow:0 0 0 3px #E7ECF2; }
+  .air .plan b{ font-size:15px; }
+  .air .tagbest{ font-size:10px; font-weight:800; background:#1E3A5F; color:#fff; border-radius:6px; padding:2px 6px; }
+  .air .check{ font-size:12.5px; margin:4px 0; }
+  .air .check i{ font-style:normal; color:#6E8F5C; font-weight:800; margin-right:6px; }
+  .air .fine{ font-size:10.5px; color:#5C6478; text-align:center; }
+
+  /* ================= Činka ================= */
+  .gym .screen{ background:#E9E7E2; color:#1C1C1C; font-family:Inter, sans-serif; }
+  .gym .num{ font-family:Oswald, sans-serif; font-weight:700; letter-spacing:.01em; }
+  .gym .kicker{ font-family:Oswald; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#7A766E; }
+  .gym .title{ font-family:Oswald; font-size:26px; font-weight:700; text-transform:uppercase; line-height:1.05; }
+  .gym .card{ background:#fff; border-radius:12px; padding:12px; box-shadow:0 2px 0 #D6D2CA; }
+  .gym .label{ font-family:Oswald; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#7A766E; margin:0 0 8px; }
+  /* činka: tyč + kotouče */
+  .gym .bb{ position:relative; height:66px; display:flex; align-items:center; justify-content:center; }
+  .gym .bb .rod{ position:absolute; left:4px; right:4px; height:6px; background:linear-gradient(#C9CDD2,#8E949A); border-radius:3px; top:32px; }
+  .gym .bb .side{ position:relative; display:flex; align-items:center; gap:2px; z-index:1; }
+  .gym .bb .side.l{ margin-right:auto; margin-left:22px; flex-direction:row-reverse; }
+  .gym .bb .side.r{ margin-left:auto; margin-right:22px; }
+  .gym .bb .collar{ width:6px; height:20px; background:#6B7076; border-radius:2px; }
+  .gym .pl{ width:12px; border-radius:2px; box-shadow:inset -2px 0 0 rgba(0,0,0,.15); }
+  .gym .pl.g{ height:44px; background:#2E9E5B; }
+  .gym .pl.y{ height:54px; background:#F2C230; }
+  .gym .pl.r{ height:66px; background:#D7263D; }
+  .gym .pl.ghost{ height:44px; background:transparent; border:1.5px dashed #BDB8AE; }
+  .gym .lift{ display:flex; justify-content:space-between; align-items:baseline; }
+  .gym .lift .big{ font-family:Oswald; font-size:34px; font-weight:700; line-height:1; }
+  .gym .lift .of{ font-size:12px; color:#7A766E; }
+  .gym .duo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .gym .tile{ background:#fff; border-radius:12px; padding:10px; box-shadow:0 2px 0 #D6D2CA; font-size:12.5px; font-weight:700; }
+  .gym .tile .num{ font-size:24px; display:block; line-height:1.1; }
+  .gym .tile small{ display:block; font-weight:500; color:#7A766E; font-size:11px; }
+  .gym .ex{ display:flex; align-items:center; gap:10px; padding:4px 0; border-bottom:1px solid #EFEDE8; font-size:13px; font-weight:600; }
+  .gym .ex:last-child{ border:none; }
+  .gym .ex .dot{ width:10px; height:22px; border-radius:2px; }
+  .gym .ex .pr{ margin-left:auto; text-align:right; }
+  .gym .ex .pr .num{ font-size:16px; }
+  .gym .ex .pr small{ display:block; font-size:10px; color:#7A766E; font-weight:600; }
+  .gym .cta{ background:#1C1C1C; color:#fff; text-align:center; border-radius:12px; padding:13px; font-family:Oswald; font-size:17px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+  .gym .cta small{ display:block; font-family:Inter; font-size:11px; font-weight:500; letter-spacing:0; text-transform:none; opacity:.75; }
+  .gym .ghost{ text-align:center; background:#fff; border-radius:12px; padding:11px; font-weight:600; box-shadow:0 2px 0 #D6D2CA; }
+  .gym .q{ font-size:19px; font-weight:600; line-height:1.5; }
+  .gym .blank{ display:inline-block; min-width:90px; border-bottom:3px solid #F2C230; padding:0 4px; font-weight:700; }
+  .gym .fb{ background:#fff; border-radius:12px; padding:12px; font-size:12.5px; line-height:1.5; border-left:6px solid #F2C230; }
+  .gym .fb .num{ font-size:18px; }
+  .gym .pill{ display:inline-block; background:#1C1C1C; color:#fff; font-family:Oswald; font-size:12px; letter-spacing:.08em; padding:3px 9px; border-radius:6px; text-transform:uppercase; }
+  .gym .prbox{ background:#1C1C1C; color:#fff; border-radius:12px; padding:12px; display:flex; gap:12px; align-items:center; }
+  .gym .prbox .num{ font-size:30px; color:#F2C230; line-height:1; }
+  .gym .row{ display:flex; align-items:center; gap:8px; font-size:12px; margin:6px 0; }
+  .gym .row .track{ flex:1; height:8px; background:#EFEDE8; border-radius:3px; overflow:hidden; }
+  .gym .row .track span{ display:block; height:100%; }
+  .gym .cal{ display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
+  .gym .cal div{ aspect-ratio:1; border-radius:6px; background:#F3F1EC; display:flex; align-items:flex-end; justify-content:center; gap:1px; padding-bottom:4px; font-size:9px; color:#A9A49A; position:relative; }
+  .gym .cal div span{ position:absolute; top:3px; left:4px; }
+  .gym .cal i{ width:4px; border-radius:1px; }
+  .gym .cal i.g{ height:9px; background:#2E9E5B; } .gym .cal i.y{ height:11px; background:#F2C230; } .gym .cal i.r{ height:13px; background:#D7263D; }
+  .gym .legendp{ display:flex; gap:10px; font-size:10.5px; color:#7A766E; font-weight:600; }
+  .gym .legendp i{ display:inline-block; width:8px; height:12px; border-radius:2px; vertical-align:-2px; margin-right:4px; }
+
+  footer.page{ margin-top:48px; color:var(--page-soft); font-size:13.5px; line-height:1.6; max-width:900px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>Návrhy vzhledu — 3. kolo</h1>
+    <p>Letecká pošta+ ve verzi 2 (úpravy podle tvé zpětné vazby) a nový originální směr pro „posilovnu“. Jen statické obrázky — appky se nijak nedotýkají. Všechny verze a změny jsou zapsané v <b>docs/navrhy-vzhledu-zmeny.md</b>; verze 1 zůstává beze změny v navrhy-vzhledu-2.html pro porovnání.</p>
+  </header>
+
+  <!-- ===================== LETECKÁ POŠTA+ v2 ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>Letecká pošta+ · verze 2</h2>
+      <p>Stejný koncept cesty (dopis, razítka, cesta B1 → B2, pohlednice, cestovní pas), čistší provedení.</p>
+      <div class="changes"><b>Změny proti v1:</b>
+        <ul>
+          <li>Odstraněn červeno-modrý přerušovaný pruh ze všech karet; poštovní charakter teď nese jen jemná ikona v rohu.</li>
+          <li>Razítka dnů mají zoubkovaný okraj jako skutečná poštovní známka místo čárkovaného rámečku.</li>
+          <li>Cesta B1 → B2 je plná tenká linka s vyznačenou ušlou částí místo tečkované čáry.</li>
+          <li>Velká známka na pohlednici taky zoubkovaná. Jinak beze změny, ať jdou verze porovnat.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phones">
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div>
+          <div class="sub">Čtvrtek · den 8 tvé cesty</div>
+          <div class="hello">Dobré ráno!</div>
+        </div>
+        <div class="env">
+          <span class="corner">✉</span>
+          <p class="label">Dnešní dopis</p>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><b class="serif" style="font-size:18px;">13 / 20 odpovědí</b><span class="sub">už jen 7</span></div>
+          <div class="bar" style="margin-top:6px;"><span style="width:65%"></span></div>
+        </div>
+        <div class="env">
+          <p class="label">Razítka tento týden</p>
+          <div class="stamps"><div class="st on">PO</div><div class="st on">ÚT</div><div class="st on">ST</div><div class="st">ČT</div><div class="st">PÁ</div><div class="st">SO</div><div class="st free">❄</div></div>
+          <div class="sub" style="margin-top:6px;">7 dní v řadě · 1 náhradní razítko, kdyby to jeden den nevyšlo</div>
+        </div>
+        <div class="env">
+          <p class="label">Tvoje cesta</p>
+          <div class="route">B1<div class="line"><span class="plane">✈</span></div>B2</div>
+          <div class="sub" style="margin-top:6px;">62 % cesty · nejblíž cíli máš Spojky</div>
+        </div>
+        <div class="duo">
+          <div class="tile"><em>12</em>Opakování<small>asi 4 min</small></div>
+          <div class="tile"><em>8</em>Co mi nejde<small>asi 3 min</small></div>
+        </div>
+        <div class="cta mt-auto">Pokračovat: Spojky<small>rozdělané kolo · 6 otázek zbývá</small></div>
+      </div></div>
+      <div class="caption">Úvod</div>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#5C6478;"><span>✕</span><span class="combo">4× správně v řadě</span><span>4 / 10</span></div>
+        <div class="bar" style="height:6px;"><span style="width:40%"></span></div>
+        <div class="env" style="margin-top:8px;">
+          <div class="q">She took the job <span class="blank">although</span> it meant moving abroad.</div>
+          <div class="sub" style="margin-top:8px;">nápověda: although / despite</div>
+        </div>
+        <div class="fb">
+          <div class="postmark">DORUČENO<br>✓</div>
+          <b style="color:#3F7A55;font-size:15px;">Správně!</b><br>Za mezerou je celá věta (it meant…), proto spojka „although“. „Despite“ by vyžadovalo podstatné jméno nebo tvar -ing.
+          <div style="margin-top:8px;font-weight:700;font-size:12px;color:#1E3A5F;">+1 do dnešního dopisu · 14 / 20</div>
+        </div>
+        <div class="cta mt-auto">Další</div>
+      </div></div>
+      <div class="caption">Otázka po odpovědi</div>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div class="hello" style="font-size:20px;">Pohlednice z kola</div>
+        <div class="postcard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <div><div class="serif" style="font-size:16px;font-weight:700;">Spojky · Střední</div><div class="sub">čtvrtek 1. října</div></div>
+            <div class="bigstamp"><b>8/10</b><small>SPOJKY</small></div>
+          </div>
+          <p class="label">Povedlo se</p>
+          <div class="win"><i>✓</i>However vs. although — všechno správně</div>
+          <div class="win"><i>✓</i>Nový rekord: 6 správně v řadě</div>
+          <div class="win"><i>✓</i>Dnešní razítko získáno</div>
+          <p class="label" style="margin-top:10px;color:#B5543B;">Příště</p>
+          <div class="win" style="color:#5C6478;"><i style="color:#B5543B;">→</i>Whereas/while (1 ze 2) — přidáme ho do opakování</div>
+        </div>
+        <div class="env" style="display:flex;gap:10px;align-items:center;">
+          <div class="st on" style="width:40px;flex:0 0 40px;">ČT</div>
+          <div class="sub">8 dní v řadě. Zítra ráno ti pošleme připomínku.</div>
+        </div>
+        <div class="cta mt-auto">Ještě jedno krátké kolo<small>5 otázek · asi 3 min</small></div>
+        <div class="ghost">Hotovo na dnes</div>
+      </div></div>
+      <div class="caption">Výsledek</div>
+      </div>
+
+      <div class="phone-col"><div class="phone air"><div class="notch"></div><div class="screen">
+        <div style="text-align:center;">
+          <div style="font-size:34px;">🛂</div>
+          <div class="hello" style="font-size:21px;">Cestovní pas</div>
+          <div class="sub">Celá cesta od A2 až po C1</div>
+        </div>
+        <div class="env">
+          <span class="corner">✈</span>
+          <div class="check"><i>✓</i>Všech 15 témat · přes 6 600 otázek</div>
+          <div class="check"><i>✓</i>Neomezené Opakování a Co mi nejde</div>
+          <div class="check"><i>✓</i>Náhradní razítka pro sérii</div>
+          <div class="check"><i>✓</i>Podrobná statistika pokroku</div>
+        </div>
+        <div class="plan best"><div><b>Roční</b> <span class="tagbest">nejvýhodnější</span><div class="sub">899 Kč · vychází 75 Kč měsíčně</div></div><span>◉</span></div>
+        <div class="plan"><div><b>Měsíční</b><div class="sub">149 Kč měsíčně</div></div><span>○</span></div>
+        <div class="cta mt-auto">Vyzkoušet 7 dní zdarma</div>
+        <div class="fine">Zrušíš kdykoli v nastavení iPhonu. Den před koncem zkušební doby ti připomeneme. · Obnovit nákupy · Podmínky</div>
+      </div></div>
+      <div class="caption">Placená verze (ceny jsou jen ukázka)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ČINKA ===================== -->
+  <section class="dir">
+    <div class="dir-head">
+      <h2>Činka · verze 1 (originální „posilovna“)</h2>
+      <p>Místo kopírování fitness kroužků vlastní koncept, který vychází přímo z posilovny: <b>každá správná odpověď je kotouč na čince</b>. Barva a váha kotouče podle obtížnosti jako u olympijských kotoučů — <span style="color:#2E9E5B;font-weight:700;">zelený 10 kg</span> základní, <span style="color:#B8901A;font-weight:700;">žlutý 15 kg</span> střední, <span style="color:#D7263D;font-weight:700;">červený 25 kg</span> pokročilá. Kolo = sada, otázka = opakování, téma = cvik s osobním maximem, historie = tréninkový deník. Betonově šedé pozadí a úzké písmo jako cedule v posilovně.</p>
+    </div>
+    <div class="phones">
+
+      <div class="phone-col"><div class="phone gym"><div class="notch"></div><div class="screen">
+        <div><div class="kicker">Čtvrtek · trénink č. 23</div><div class="title">Dnešní trénink</div></div>
+        <div class="card">
+          <div class="lift"><div><span class="big">195</span> <span class="num" style="font-size:16px;">KG</span></div><div class="of">13 / 20 opakování</div></div>
+          <div class="bb">
+            <div class="rod"></div>
+            <div class="side l"><div class="collar"></div><div class="pl y"></div><div class="pl y"></div><div class="pl g"></div><div class="pl ghost"></div></div>
+            <div class="side r"><div class="collar"></div><div class="pl y"></div><div class="pl y"></div><div class="pl g"></div><div class="pl ghost"></div></div>
+          </div>
+          <div class="of" style="font-size:12px;color:#7A766E;">Ještě 7 opakování a máš dnešní cíl</div>
+        </div>
+        <div class="duo">
+          <div class="tile"><span class="num">12</span>Rozcvička<small>asi 4 min</small></div>
+          <div class="tile"><span class="num">8</span>Těžká sada<small>asi 3 min</small></div>
+        </div>
+        <div class="card">
+          <p class="label">Cviky · osobní maximum</p>
+          <div class="ex"><span class="dot" style="background:#D7263D"></span>Slovesné časy<div class="pr"><span class="num">250</span> kg<small>pokročilá</small></div></div>
+          <div class="ex"><span class="dot" style="background:#F2C230"></span>Spojky<div class="pr"><span class="num">120</span> kg<small>střední</small></div></div>
+          <div class="ex"><span class="dot" style="background:#2E9E5B"></span>Členy<div class="pr"><span class="num">80</span> kg<small>základní</small></div></div>
+        </div>
+        <div class="cta mt-auto">Jdu cvičit<small>pokračovat: Spojky · zbývá 6 opakování</small></div>
+      </div></div>
+      <div class="caption">Úvod</div>
+      <ul class="why"><li><b>Hmatatelný pokrok:</b> naložená činka je obraz, který si člověk zapamatuje — „dnes jsem zvedl 195 kg“.</li><li><b>Cíl na dosah:</b> prázdné místo na kotouč „svědí“ a chce se doplnit.</li><li><b>Osobní maximum u každého cviku</b> dává důvod se vracet a překonávat sám sebe.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone gym"><div class="notch"></div><div class="screen">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:#7A766E;font-weight:700;">✕</span><span class="pill">Opakování 4 / 10</span></div>
+        <div class="bb" style="height:62px;">
+          <div class="rod" style="top:28px;"></div>
+          <div class="side l"><div class="collar"></div><div class="pl y"></div><div class="pl y"></div><div class="pl y"></div></div>
+          <div class="side r"><div class="collar"></div><div class="pl y"></div><div class="pl y"></div><div class="pl y"></div></div>
+        </div>
+        <div class="kicker">Spojky · střední · 15 kg</div>
+        <div class="q">She took the job <span class="blank">although</span> it meant moving abroad.</div>
+        <div style="font-size:12px;color:#7A766E;">nápověda: although / despite</div>
+        <div class="fb mt-auto"><span class="num">ZVEDNUTO +15 KG</span><br>Za mezerou je celá věta (it meant…), proto spojka „although“. „Despite“ by vyžadovalo podstatné jméno nebo tvar -ing.</div>
+        <div class="cta">Další opakování</div>
+      </div></div>
+      <div class="caption">Otázka po odpovědi</div>
+      <ul class="why"><li><b>Okamžitá odměna:</b> kotouč „cvakne“ na činku (v appce krátká animace + jemná vibrace).</li><li><b>Chyba není trest:</b> kotouč se jen nepřidá, nic se neubírá.</li><li><b>Váha podle obtížnosti</b> motivuje zkoušet těžší úroveň — „červené kotouče“.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone gym"><div class="notch"></div><div class="screen">
+        <div><div class="kicker">Sada hotová</div><div class="title">Spojky · střední</div></div>
+        <div class="card" style="text-align:center;">
+          <div class="num" style="font-size:56px;line-height:1;">120 <span style="font-size:22px;">KG</span></div>
+          <div style="font-size:12.5px;color:#7A766E;">8 z 10 opakování</div>
+        </div>
+        <div class="prbox">
+          <div class="num">PR</div>
+          <div style="font-size:12.5px;line-height:1.45;"><b>Nové osobní maximum ve Spojkách!</b><br><span style="opacity:.75;">Předtím 90 kg · +30 kg</span></div>
+        </div>
+        <div class="card">
+          <p class="label">Rozbor sady</p>
+          <div class="row">However vs. although<div class="track"><span style="width:100%;background:#2E9E5B"></span></div>3/3</div>
+          <div class="row">Even though vs. even if<div class="track"><span style="width:67%;background:#F2C230"></span></div>2/3</div>
+          <div class="row">Whereas/while<div class="track"><span style="width:50%;background:#D7263D"></span></div>1/2</div>
+        </div>
+        <div class="cta mt-auto">Ještě jedna sada<small>5 opakování · asi 3 min</small></div>
+        <div class="ghost">Konec tréninku</div>
+      </div></div>
+      <div class="caption">Výsledek</div>
+      <ul class="why"><li><b>Osobní rekord (PR)</b> — v posilovně nejsilnější motivace; tady přirozeně sedí.</li><li><b>Konec na vysoké notě:</b> nejdřív výkon a rekord, rozbor až potom.</li><li><b>Malý další krok:</b> „ještě jedna sada“ je jazyk, kterému rozumí každý, kdo cvičí.</li></ul>
+      </div>
+
+      <div class="phone-col"><div class="phone gym"><div class="notch"></div><div class="screen">
+        <div><div class="kicker">Říjen</div><div class="title">Tréninkový deník</div></div>
+        <div class="card">
+          <div class="cal">
+            <div><span>1</span><i class="y"></i><i class="y"></i><i class="r"></i></div><div><span>2</span><i class="g"></i><i class="y"></i></div><div><span>3</span><i class="y"></i><i class="y"></i><i class="y"></i></div><div><span>4</span></div><div><span>5</span><i class="g"></i></div><div><span>6</span><i class="r"></i><i class="r"></i></div><div><span>7</span><i class="y"></i></div>
+            <div><span>8</span><i class="y"></i><i class="g"></i></div><div><span>9</span></div><div><span>10</span></div><div><span>11</span></div><div><span>12</span></div><div><span>13</span></div><div><span>14</span></div>
+          </div>
+          <div class="legendp" style="margin-top:8px;"><span><i style="background:#2E9E5B"></i>základní</span><span><i style="background:#F2C230"></i>střední</span><span><i style="background:#D7263D"></i>pokročilá</span></div>
+        </div>
+        <div class="card">
+          <p class="label">Tento týden</p>
+          <div class="lift"><div><span class="big">1 340</span> <span class="num" style="font-size:16px;">KG</span></div><div class="of">+18 % proti minulému</div></div>
+        </div>
+        <div class="card">
+          <p class="label">Rekordy</p>
+          <div class="ex">🏅 Spojky<div class="pr"><span class="num">120</span> kg<small>dnes</small></div></div>
+          <div class="ex">🏅 Nejdelší série<div class="pr"><span class="num">7</span> dní<small>právě běží</small></div></div>
+          <div class="ex" style="color:#7A766E;">Další milník: Podmínkové věty 150 kg<div class="pr"><small>chybí 30 kg</small></div></div>
+        </div>
+      </div></div>
+      <div class="caption">Tréninkový deník</div>
+      <ul class="why"><li><b>Deník jako v posilovně:</b> každý trénink zanechá stopu v kalendáři — prázdné dny jsou vidět, ale bez výčitek.</li><li><b>Týdenní objem</b> v kilech = jednoduché, srozumitelné měřítko práce.</li><li><b>Milník na dosah</b> („chybí 30 kg“) ukazuje konkrétní další cíl.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page">
+    Činka je zatím v1 — jestli se ti koncept líbí, můžu ji dál ladit (barvy, tmavá varianta, víc „železa“, méně „železa“). U Letecké pošty+ můžu pokračovat v3, v4… a všechny verze zůstanou uložené pro porovnání.
+  </footer>
+</div>
+</body>
+</html>
