@@ -20771,8 +20771,9 @@ function renderQuestion(){
     }
   } else if(q.type === "choice"){
     html += '<p class="choice-question">' + escapeHtml(q.question) + '</p>';
-    html += '<div class="choice-list">' + q.options.map(function(opt, i){
-      return '<button type="button" class="choice-btn" data-idx="'+i+'">' + escapeHtml(opt) + '</button>';
+    // Pořadí možností se míchá, data-idx nese původní index pro vyhodnocení.
+    html += '<div class="choice-list">' + shuffle(q.options.map(function(opt, i){ return i; })).map(function(i){
+      return '<button type="button" class="choice-btn" data-idx="'+i+'">' + escapeHtml(q.options[i]) + '</button>';
     }).join("") + '</div>';
   } else {
     html += '<p class="q-instruction">' + escapeHtml(q.instruction) + '</p>';
@@ -20875,7 +20876,8 @@ function handleChoiceClick(selectedIdx){
   const q = roundQuestions[roundIndex];
   const ok = selectedIdx === q.correctIndex;
 
-  quizCard.querySelectorAll(".choice-btn").forEach(function(btn, i){
+  quizCard.querySelectorAll(".choice-btn").forEach(function(btn){
+    const i = parseInt(btn.dataset.idx, 10);
     btn.disabled = true;
     if(i === q.correctIndex) btn.classList.add("state-correct");
     else if(i === selectedIdx) btn.classList.add("state-wrong");
