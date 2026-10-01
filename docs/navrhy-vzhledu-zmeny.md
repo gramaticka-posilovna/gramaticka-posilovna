@@ -13,6 +13,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 5 | `navrhy-vzhledu-5.html` | Letecká pošta+ **v4a** Měkké 3D · **v4b** Papír na stole · **v4c** Sklo a nebe |
 | 6 | `navrhy-vzhledu-6.html` | Měkké 3D **v5** (bez poštovních nápisů, nový odznak) |
 | 7 | `navrhy-vzhledu-7.html` | Měkké 3D **v6A** Čistě · **v6B** Posilovna · **v6C** Zahrada · **v6D** Krystaly |
+| 8 | `navrhy-vzhledu-8.html` | Posilovna **v7.1** Kreativní · **v7.2** Odvážná · **v7.3** Lehké vylepšení · **v7.4** Co funguje |
 
 ## Zpětná vazba
 
@@ -25,6 +26,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 4:** nepochopeno zadání. v3 (Ella, album, dopis od autora), Korektura ani Mozaika se nelíbí. Zpět k v2 a **jen udělat vizuál líbivější, např. víc 3D**. Tři návrhy.
 - **Kolo 5:** líbí se **v4a Měkké 3D**. Nechce nápisy typu „Pohlednice z kola“, „Cestovní pas“ a razítko „doručeno“ vymyslet jinak.
 - **Kolo 6:** nový odznak u správné odpovědi se líbí. Téma cestování se nelíbí, předělat i zbytek (známky, letadlo, ikonky). Víc návrhů: buď jen vizuálně vhodné, nebo jiné zajímavé téma, nechává na mně.
+- **Kolo 7:** **vybrána varianta B · Posilovna** (v6B). Zadání: 4 úpravy, tedy kreativní, odvážná, lehké vylepšení a „co funguje“.
 
 ## Letecká pošta+ — historie verzí
 
@@ -67,6 +69,12 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **B Posilovna:** dny = kotouče na činku (splněno tmavý), pruh = ocelová tyč s kotoučem, skóre = velký kotouč se žlutým číslem, ikonky 💪 🏋️, plná verze 🏆.
 - **C Zahrada:** dny = lístky, na pruhu roste klíček 🌱, skóre = jablko s lístkem, ikonky 🌿 🌳.
 - **D Krystaly:** dny = barevné vybroušené krystaly, jezdec 💎, skóre = velký krystal, ikonky 💎 ✨.
+
+### v7.1–v7.4 (kolo 8) — úpravy v6B Posilovna
+- **v7.1 Kreativní:** dnešní cíl jako činka z boku, každá správná odpověď = kotouč (nejnovější žlutý); u otázky malá činka místo ukazatele; texty „13 / 20 kotoučů“, „+1 kotouč na činku“, „Činka naložená: 20 / 20“.
+- **v7.2 Odvážná:** tmavý vzhled (posilovna v noci), nadpisy Oswald velkými písmeny, žluté tlačítko se spodní hranou, splněné dny jako barevné soutěžní kotouče (červený, modrý, žlutý), skóre na červeném kotouči.
+- **v7.3 Lehké vylepšení:** kotouče s kovovým středem a otvorem, dnešní den se žlutým kroužkem, tyč pokroku s objímkou na konci a jezdcem jako kotouč, ikonky v rozích jako kreslené činky místo emoji, čísla na dlaždicích Oswald.
+- **v7.4 Co funguje:** štítek série nahoře, tlačítko „Dokončit dnešní cíl“ s odhadem času, srovnání s minulým kolem (6 → 8), přepínač připomínky „zítra v 18:00“, časová osa zkušební verze (dnes / za 5 dní připomínka / za 7 dní platba).
 
 ## Činka — historie verzí
 
