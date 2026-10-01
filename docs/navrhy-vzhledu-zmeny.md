@@ -12,6 +12,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 4 | `navrhy-vzhledu-4.html` | Letecká pošta+ **v3** (se srdcem) · Korektura · Mozaika |
 | 5 | `navrhy-vzhledu-5.html` | Letecká pošta+ **v4a** Měkké 3D · **v4b** Papír na stole · **v4c** Sklo a nebe |
 | 6 | `navrhy-vzhledu-6.html` | Měkké 3D **v5** (bez poštovních nápisů, nový odznak) |
+| 7 | `navrhy-vzhledu-7.html` | Měkké 3D **v6A** Čistě · **v6B** Posilovna · **v6C** Zahrada · **v6D** Krystaly |
 
 ## Zpětná vazba
 
@@ -23,6 +24,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 3:** Letecká pošta+ v2 se líbí nejvíc a má se rozvíjet dál, „dát do ní srdce“. K Čince bez komentáře. Zadání: ještě pár opravdu dobrých moderních návrhů s využitím technik kreativních lidí.
 - **Kolo 4:** nepochopeno zadání. v3 (Ella, album, dopis od autora), Korektura ani Mozaika se nelíbí. Zpět k v2 a **jen udělat vizuál líbivější, např. víc 3D**. Tři návrhy.
 - **Kolo 5:** líbí se **v4a Měkké 3D**. Nechce nápisy typu „Pohlednice z kola“, „Cestovní pas“ a razítko „doručeno“ vymyslet jinak.
+- **Kolo 6:** nový odznak u správné odpovědi se líbí. Téma cestování se nelíbí, předělat i zbytek (známky, letadlo, ikonky). Víc návrhů: buď jen vizuálně vhodné, nebo jiné zajímavé téma, nechává na mně.
 
 ## Letecká pošta+ — historie verzí
 
@@ -58,6 +60,13 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Poštovní nápisy nahrazeny obyčejnými: Dnešní dopis → Dnešní cíl, Razítka tento týden → Tento týden, náhradní razítko → náhradní den, Tvoje cesta → Tvůj pokrok, „62 % cesty“ → „62 % k úrovni B2“, „+1 do dnešního dopisu“ → „+1 k dnešnímu cíli“, Pohlednice z kola → Výsledek kola, Dnešní razítko získáno → Dnešní cíl splněn, Cestovní pas (🛂) → Plná verze (⭐), „Celá cesta od A2“ → „Všechny úrovně od A2“, náhradní razítka → náhradní dny, „den 8 tvé cesty“ → „8. den v řadě“.
 - Kulaté razítko „DORUČENO“ u správné odpovědi nahrazeno vypouklým zeleným 3D odznakem se zatržítkem a štítkem „+1“.
 - Beze změny zůstávají drobné poštovní prvky bez textu: ikonky obálky a letadla v rozích, dny jako známky, letadélko na pruhu, známka 8/10 na výsledku.
+
+### v6 A–D (kolo 7) — z v5, bez zbytku cestování
+- Společné: texty, rozvržení, barvy a zelený 3D odznak z v5 beze změny. Dny týdne bez zoubkovaného okraje a natočení, odstraněno letadlo, ikonky obálky/letadla a známka 8/10.
+- **A Čistě:** dny = vypouklé kuličky (splněno zelená, náhradní modrá), na pruhu hladký jezdec, skóre = modrý 3D odznak, bez ikonek v rozích.
+- **B Posilovna:** dny = kotouče na činku (splněno tmavý), pruh = ocelová tyč s kotoučem, skóre = velký kotouč se žlutým číslem, ikonky 💪 🏋️, plná verze 🏆.
+- **C Zahrada:** dny = lístky, na pruhu roste klíček 🌱, skóre = jablko s lístkem, ikonky 🌿 🌳.
+- **D Krystaly:** dny = barevné vybroušené krystaly, jezdec 💎, skóre = velký krystal, ikonky 💎 ✨.
 
 ## Činka — historie verzí
 
