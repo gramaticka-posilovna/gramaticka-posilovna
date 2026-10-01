@@ -340,6 +340,9 @@
     transition: border-color 0.15s ease;
   }
   .btn-secondary:hover{ border-color: var(--primary); }
+  .btn-secondary:disabled{ opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary:disabled:hover{ border-color: var(--line); }
+  .smart-note{ font-size: 13px; color: var(--ink-soft); margin: 10px 0 0; }
 
   .btn-row{ display:flex; gap: 10px; margin-top: 6px; }
   .btn-row > *{ flex: 1; }
@@ -725,6 +728,15 @@
     <div class="intro">
       <h1 data-i18n="setupTitle">Co dnes procvičíme?</h1>
       <p data-i18n="setupIntro">Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
+    </div>
+
+    <div class="card" id="smart-card" style="display:none;">
+      <p class="card-label" data-i18n="labelSmart">Doporučeno pro tebe</p>
+      <div class="btn-row">
+        <button class="btn-secondary" id="btn-review"></button>
+        <button class="btn-secondary" id="btn-weak"></button>
+      </div>
+      <p class="smart-note" data-i18n="smartNote"></p>
     </div>
 
     <div class="card">
@@ -20796,12 +20808,16 @@ function shuffle(arr){
   return a;
 }
 
-function pickRoundQuestions(tagsByTopic, difficulty, count){
-  // Simulace plynutí času: každé nové kolo trochu "probudí" uspané otázky
+// Simulace plynutí času: každé nové kolo trochu "probudí" uspané otázky
+function tickCooldowns(){
   Object.keys(state.questionStats).forEach(function(id){
     const st = state.questionStats[id];
     if(st.cooldown > 0) st.cooldown -= 1;
   });
+}
+
+function pickRoundQuestions(tagsByTopic, difficulty, count){
+  tickCooldowns();
 
   const pool = QUESTIONS.filter(function(q){
     return tagsByTopic[q.topic] && tagsByTopic[q.topic].has(q.tag) && q.difficulty === difficulty;
@@ -20821,6 +20837,26 @@ function pickRoundQuestions(tagsByTopic, difficulty, count){
     chosen = chosen.concat(sleeping.slice(0, need).map(function(x){ return x.q; }));
   }
   return shuffle(chosen);
+}
+
+// Otázky pro speciální kola napříč tématy a obtížnostmi:
+// "review" = už viděné otázky, které jsou podle systému opakování na řadě,
+// "weak"   = otázky, které naposledy nevyšly nebo mají úspěšnost pod 60 %.
+// V anglické verzi se vynechává slovní zásoba (stejně jako ve výběru témat).
+function specialPool(mode){
+  const pool = [];
+  shuffle(QUESTIONS).forEach(function(q){
+    const st = state.questionStats[q.id];
+    if(!st || st.seen === 0) return;
+    if(lang === "en" && q.topic === "vocab") return;
+    const acc = st.correct / st.seen;
+    if(mode === "review" ? st.cooldown <= 0 : (st.streak === 0 || acc < 0.6)){
+      pool.push({ q: q, streak: st.streak, acc: acc });
+    }
+  });
+  // Nejdřív to, co nejvíc pokulhává; pořadí v rámci shody zůstává náhodné.
+  pool.sort(function(a,b){ return (a.streak - b.streak) || (a.acc - b.acc); });
+  return pool.map(function(x){ return x.q; });
 }
 
 function registerAnswer(question, allPartsCorrect, tagResults){
@@ -20857,6 +20893,7 @@ const navSetup = document.getElementById("nav-setup");
 const navProgress = document.getElementById("nav-progress");
 
 function showView(name){
+  if(name === "setup") renderSmartCard();
   Object.keys(views).forEach(function(k){ views[k].classList.remove("active"); });
   views[name].classList.add("active");
   navSetup.classList.toggle("active", name==="setup" || name==="quiz" || name==="results");
@@ -20909,6 +20946,12 @@ const I18N = {
     resetConfirm: "Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.",
     modalCancel: "Zpět", modalOk: "Ano, pokračovat",
     olderTopic: "Starší téma", unknownDiff: "Neznámá obtížnost",
+    labelSmart: "Doporučeno pro tebe",
+    btnReview: function(n){ return "Opakování (" + n + ")"; },
+    btnWeak: function(n){ return "Co mi nejde (" + n + ")"; },
+    smartNote: "Otázky napříč tématy a obtížnostmi z toho, co už jsi procvičoval. Délka kola podle Počtu otázek níže.",
+    reviewTitle: "Opakování", weakTitle: "Co mi nejde", mixedDiff: "Různé obtížnosti",
+    nothingToPractise: "Teď tu není nic k procvičení — zahraj pár běžných kol.",
     dateLocale: "cs-CZ"
   },
   en: {
@@ -20941,6 +20984,12 @@ const I18N = {
     resetConfirm: "Do you really want to delete all your saved progress? This cannot be undone.",
     modalCancel: "Back", modalOk: "Yes, continue",
     olderTopic: "Older topic", unknownDiff: "Unknown difficulty",
+    labelSmart: "Recommended for you",
+    btnReview: function(n){ return "Review (" + n + ")"; },
+    btnWeak: function(n){ return "My weak spots (" + n + ")"; },
+    smartNote: "Questions across topics and levels from what you've already practised. Round length follows Number of questions below.",
+    reviewTitle: "Review", weakTitle: "My weak spots", mixedDiff: "Mixed levels",
+    nothingToPractise: "There's nothing to practise here yet — play a few regular rounds first.",
     dateLocale: "en-GB"
   }
 };
@@ -21046,6 +21095,7 @@ function applyLang(){
   renderDiffGrid();
   renderCountGrid();
   updateStartBtn();
+  renderSmartCard();
   renderProgress();
   if(views.quiz.classList.contains("active")){
     renderQuizTopbar();
@@ -21215,6 +21265,22 @@ renderDiffGrid();
 renderCountGrid();
 updateStartBtn();
 
+function renderSmartCard(){
+  const review = specialPool("review").length;
+  const weak = specialPool("weak").length;
+  const anySeen = Object.keys(state.questionStats).some(function(id){ return state.questionStats[id].seen > 0; });
+  document.getElementById("smart-card").style.display = anySeen ? "" : "none";
+  const br = document.getElementById("btn-review");
+  const bw = document.getElementById("btn-weak");
+  br.textContent = tx("btnReview", review);
+  bw.textContent = tx("btnWeak", weak);
+  br.disabled = review === 0;
+  bw.disabled = weak === 0;
+}
+document.getElementById("btn-review").addEventListener("click", function(){ startSpecialRound("review"); });
+document.getElementById("btn-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
+renderSmartCard();
+
 /* re-render start label when count changes */
 const origRenderCountGrid = renderCountGrid;
 renderCountGrid = function(){
@@ -21256,6 +21322,7 @@ let roundIndex = 0;
 let roundTopics = [];
 let roundTags = {};
 let roundDifficulty = "basic";
+let roundMode = "normal"; // "normal" | "review" | "weak"
 let roundResults = []; // { question, allCorrect, tagResults:[{tag,correct}] }
 let currentAnswered = false;
 
@@ -21272,10 +21339,12 @@ function topicName(id){
 }
 function diffName(id){
   const d = DIFFICULTIES.find(function(d){return d.id===id;});
+  if(id === "mixed") return tx("mixedDiff");
   return d ? localized(d, "name") : tx("unknownDiff");
 }
 
 function startRound(){
+  roundMode = "normal";
   roundTags = {};
   Object.keys(selectedTags).forEach(function(id){
     if(selectedTags[id] && selectedTags[id].size > 0) roundTags[id] = new Set(selectedTags[id]);
@@ -21294,7 +21363,33 @@ function startRound(){
   renderQuestion();
 }
 
+// Kolo napříč tématy a obtížnostmi z otázek, které už má uživatel ve statistikách.
+function startSpecialRound(mode){
+  const questions = specialPool(mode).slice(0, selectedCount);
+  if(questions.length === 0){
+    alert(tx("nothingToPractise"));
+    return;
+  }
+  tickCooldowns();
+  roundMode = mode;
+  roundTags = {};
+  roundTopics = [];
+  questions.forEach(function(q){ if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic); });
+  roundDifficulty = "mixed";
+  roundQuestions = shuffle(questions);
+  roundIndex = 0;
+  roundResults = [];
+  showView("quiz");
+  renderQuizTopbar();
+  renderQuestion();
+}
+
 function renderQuizTopbar(){
+  if(roundMode !== "normal"){
+    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : "weakTitle");
+    quizTagDiff.textContent = tx("mixedDiff");
+    return;
+  }
   quizTagDiff.textContent = diffName(roundDifficulty);
   if(roundTopics.length === 1){
     quizTagTopic.textContent = topicName(roundTopics[0]);
@@ -21522,6 +21617,8 @@ const breakdownList = document.getElementById("breakdown-list");
 const recommendBox = document.getElementById("recommend-box");
 
 function renderResults(pct, correct, total, byTag){
+  // "Těžší úroveň" dává smysl jen u běžného kola s jednou obtížností.
+  document.getElementById("btn-harder").style.display = roundMode === "normal" ? "" : "none";
   lastResults = [pct, correct, total, byTag];
   const circumference = 2 * Math.PI * 52;
   const offset = circumference * (1 - pct/100);
@@ -21562,7 +21659,7 @@ function renderResults(pct, correct, total, byTag){
 }
 
 document.getElementById("btn-retry").addEventListener("click", function(){
-  startRound();
+  if(roundMode === "normal") startRound(); else startSpecialRound(roundMode);
 });
 document.getElementById("btn-back-setup").addEventListener("click", function(){
   showView("setup");
