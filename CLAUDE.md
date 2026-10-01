@@ -59,6 +59,15 @@ U vícekrokových úkolů sepiš krátký plán:
 
 Silná kritéria úspěchu ti umožní pracovat samostatně v cyklu. Slabá kritéria („udělej to, ať to funguje") vyžadují neustálé doptávání.
 
+## Synchronizace přes GitHub (vždy dodržuj)
+- Na začátku každé session, ještě před jakoukoli prací:
+  1. Zkontroluj `git status` — pokud existují nekomitnuté změny, nejdřív se zeptej, co s nimi, než se pokračuje dál (slepý pull přes rozdělanou práci by ji mohl zkomplikovat).
+  2. Spusť `git fetch` a `git pull --ff-only` hlavní větve main. Pokud fast-forward nejde (lokální a vzdálená větev se rozešly), nic nevynucuj ani neslučuj automaticky — zastav se a zeptej se.
+  3. Zkontroluj, jestli na GitHubu nejsou nesloučené větve (např. `claude/...`) z práce na mobilu nebo v cloudu. Pokud ano, řekni mi o nich a zeptej se, jestli je mám sloučit do main.
+- Po dokončení každého úkolu, který změnil soubory v repozitáři: commitni změny s krátkou výstižnou zprávou a pushni je do main.
+- Pokud pushnout do main nejde (např. v cloudu), vytvoř pull request a slouč ho do main.
+- Pokud nastane konflikt nebo hrozí přepsání cizích změn, nic nepřepisuj a zeptej se mě.
+
 ---
 
 Tato pravidla fungují, když: v diffech je méně zbytečných změn, méně přepisování kvůli překomplikování, a doptávání přichází před implementací, ne až po chybách.
