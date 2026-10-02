@@ -18,6 +18,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 10 | `navrhy-vzhledu-10.html` | Posilovna v8 · úvod s 10 barvami pozadí (6× světle modrá, krémová, šalvějová, beton, levandulová) |
 | 11 | `navrhy-vzhledu-11.html` | Vybraná Šedomodrá + 6 návrhů úprav (grafitové / žluté tlačítko, Oswald, tmavá hlavička, kotouče v pozadí, ostřejší karty) |
 | 12 | `navrhy-vzhledu-12.html` | **Posilovna v9 · Šedomodrá — všech 14 obrazovek appky** |
+| 13 | `navrhy-vzhledu-13.html` | v9 v barevných variantách: Šedomodrá + 8 palet (jen barvy) |
 
 ## Zpětná vazba
 
@@ -35,6 +36,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **Kolo 9:** v8 se moc líbí (série jako kotouč, zvýrazněný dnešní den). Další krok: zkusit světle modré pozadí ve více odstínech, případně jinou vhodnou barvu.
 - **Kolo 10:** vybráno pozadí **4 · Šedomodrá** (`#F3F6F9` → `#E1E8EF` → `#CDD7E2`). Další krok: ukázat ji jako první a vedle vlastní návrhy, co by mohlo fungovat.
 - **Kolo 11:** z návrhů úprav nic, platí **čistá Šedomodrá**. Ukázat ji na všech obrazovkách appky.
+- **Kolo 12:** v9 odsouhlasena. Před přestylováním appky ještě náhled barev: první vybraná Šedomodrá, pak (1) jen uklidňující pozadí a nejméně 6 dalších zajímavých barevných variant (barvy, co udrží pozornost apod.). Měnit **jen barvy**, ostatní se líbí.
 
 ## Letecká pošta+ — historie verzí
 
@@ -102,6 +104,17 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Domů: kvůli liště menší mezery, menší dlaždice a kratší věta „1 náhradní den v záloze“.
 - Nové obrazovky: Témata (seznam s pokrokem a filtrem), Nastavení kola (spodní panel: obtížnost s barevnými tečkami zelená/žlutá/červená, počet 5/10/15/20), Otázka doplňování (pole, „Nevím, ukaž odpověď“), Po chybě (korálový 3D odznak ✕, vysvětlení, „zopakujeme“), Výběr z možností, Mix s více mezerami, Výsledek podle jevů (pruhy zelená/žlutá/korálová, doporučení, Zkusit znovu / Těžší úroveň), Pokrok (3 čísla, graf po týdnech, slabá místa), Nastavení (jazyk CZ/EN, denní cíl, připomínka, zvuky, nákupy, smazání), Potvrzení smazání.
 - Odstraněny zbylé krémové odstíny (tlačítka „Hotovo na dnes“ apod., stíny karet) ve prospěch šedomodré.
+
+### Barevné palety (kolo 13) — v9, jen barvy (Domů, po správné, výsledek)
+- Vybraná Šedomodrá (beze změny).
+- **1 Šalvějová mlha:** jen pozadí `#F4F8F5 → #E2ECE5 → #CFDDD3`, uklidňující.
+- **2 Elektrická modř:** tlačítko `#2446E0`, akcent oranžová `#FF9F1C`, pozadí `#EBF0FF`.
+- **3 Energie:** korálová `#DC4B28`, akcent `#FFB020`, broskvové pozadí `#FDE9DD`.
+- **4 Fokus:** černá tlačítka s limetkovým textem, akcent limetka `#B5E31F`, šedobílé pozadí.
+- **5 Fialová motivace:** fialová `#5B3BD6`, zlatá `#FFC53D`, levandulové pozadí `#ECE8FB`.
+- **6 Teal a písek:** teal `#0F6B63`, akcent `#F2A93B`, pískové pozadí `#F1EBE1`.
+- **7 Noční oceán (tmavá):** pozadí `#132132`, tyrkys `#5ED3C6`, zlatá `#FFD166`.
+- **8 Grafit a žlutá (tmavá):** pozadí `#1D2025`, žlutá `#F2C230` (tlačítka, kotouče).
 
 ## Činka — historie verzí
 
