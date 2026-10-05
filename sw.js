@@ -26,7 +26,7 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET" || new URL(e.request.url).origin !== location.origin) return;
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, { cache: "no-cache" }) // vždy se zeptat serveru, ne brát starou kopii z paměti prohlížeče
       .then(res => {
         if (res.ok) {
           const copy = res.clone();
