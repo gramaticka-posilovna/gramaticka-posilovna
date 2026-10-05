@@ -22425,6 +22425,54 @@ function checkAnswer(userInput, acceptedAnswers){
   return acceptedAnswers.some(function(a){ return normalize(a) === n; });
 }
 
+// Odpuštění překlepu: liší-li se odpověď od uznané jen v jednom slově o jedno písmeno
+// (záměna, vynechání, přidání nebo prohození dvou sousedních), uzná se s upozorněním.
+// Gramatiku chrání tři podmínky: slovo má aspoň 5 písmen, chyba není v posledních dvou
+// písmenech (koncovky -s, -ed, -er, -ly… jsou samy gramatika) a napsané slovo není jiné
+// skutečné slovo (write × wrote, effect × affect). Za skutečná slova se berou všechna
+// slova z textů otázek. Vrací uznanou odpověď, nebo null.
+let knownWords = null;
+function isKnownWord(w){
+  if(!knownWords){
+    knownWords = {};
+    const add = function(t){ normalize(t).split(/[^a-z']+/).forEach(function(x){ if(x) knownWords[x] = true; }); };
+    QUESTIONS.forEach(function(q){
+      [q.before, q.after, q.question].forEach(add);
+      (q.answers || []).concat(q.options || []).forEach(add);
+      (q.parts || []).forEach(function(p){ add(p.before); add(p.after); p.answers.forEach(add); });
+    });
+  }
+  return !!knownWords[w];
+}
+
+// Pozice jediné úpravy, která z uznaného slova a udělá napsané slovo b, jinak -1.
+function oneEditAt(a, b){
+  if(a === b || Math.abs(a.length - b.length) > 1) return -1;
+  let i = 0;
+  while(i < a.length && i < b.length && a[i] === b[i]) i++;
+  if(a.length === b.length){
+    if(a.slice(i + 1) === b.slice(i + 1)) return i;
+    if(a[i] === b[i + 1] && a[i + 1] === b[i] && a.slice(i + 2) === b.slice(i + 2)) return i + 1;
+    return -1;
+  }
+  if(a.length > b.length) return a.slice(i + 1) === b.slice(i) ? i : -1;
+  return a.slice(i) === b.slice(i + 1) ? i : -1;
+}
+
+function typoMatch(userInput, acceptedAnswers){
+  const u = normalize(userInput).split(" ");
+  for(let k = 0; k < acceptedAnswers.length; k++){
+    const a = normalize(acceptedAnswers[k]).split(" ");
+    if(a.length !== u.length) continue;
+    let i = -1, n = 0;
+    a.forEach(function(w, j){ if(w !== u[j]){ i = j; n++; } });
+    if(n !== 1) continue;
+    const pos = oneEditAt(a[i], u[i]);
+    if(a[i].length >= 5 && pos >= 0 && pos < a[i].length - 2 && !isKnownWord(u[i])) return acceptedAnswers[k];
+  }
+  return null;
+}
+
 /* ============================================================
    3. STAV APLIKACE / PERZISTENCE
    ============================================================ */
@@ -22650,6 +22698,7 @@ const I18N = {
     placementNoPlan: "V testu ti všechno vyšlo – vyber si v Tématech, co tě zajímá.",
     labelPlan: "Tvůj plán z testu", planBtn: "Procvičit plán",
     cheatTitle: "Tahák k tématu",
+    typoNote: "Uznáno, jen pozor na překlep: ",
     mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
@@ -22714,6 +22763,7 @@ const I18N = {
     placementNoPlan: "No mistakes in the test – pick whatever interests you in Topics.",
     labelPlan: "Your plan from the test", planBtn: "Practise my plan",
     cheatTitle: "Cheat sheet (in Czech)",
+    typoNote: "Accepted – just watch the spelling: ",
     mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
@@ -23518,10 +23568,13 @@ function handleCheck(){
   const tagResults = [];
   const revealLines = [];
   const given = []; // co uživatel napsal do chybných mezer (pro „Projít chyby“)
+  const typoLines = []; // uznané odpovědi s překlepem – ukáže se správný pravopis
 
   if(q.type === "fill"){
     const input = document.getElementById("blank-0");
-    const ok = !dontKnow && checkAnswer(input.value, q.answers);
+    const typo = !dontKnow && !checkAnswer(input.value, q.answers) ? typoMatch(input.value, q.answers) : null;
+    const ok = !dontKnow && (typo !== null || checkAnswer(input.value, q.answers));
+    if(typo !== null) typoLines.push(escapeHtml(q.before) + "<b>" + escapeHtml(typo) + "</b>" + escapeHtml(q.after));
     if(!ok) given.push(dontKnow ? "" : input.value);
     input.disabled = true;
     input.classList.add(ok ? "state-correct" : "state-wrong");
@@ -23533,7 +23586,9 @@ function handleCheck(){
   } else {
     q.parts.forEach(function(p, i){
       const input = document.getElementById("blank-"+i);
-      const ok = !dontKnow && checkAnswer(input.value, p.answers);
+      const typo = !dontKnow && !checkAnswer(input.value, p.answers) ? typoMatch(input.value, p.answers) : null;
+      const ok = !dontKnow && (typo !== null || checkAnswer(input.value, p.answers));
+      if(typo !== null) typoLines.push(escapeHtml(p.before) + "<b>" + escapeHtml(typo) + "</b>" + escapeHtml(p.after));
       if(!ok) given.push(dontKnow ? "" : input.value);
       input.disabled = true;
       input.classList.add(ok ? "state-correct" : "state-wrong");
@@ -23545,7 +23600,7 @@ function handleCheck(){
     });
   }
 
-  finalizeAnswer(q, allCorrect, tagResults, revealLines, given);
+  finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines);
 }
 
 function handleChoiceClick(selectedIdx){
@@ -23570,7 +23625,7 @@ function handleChoiceClick(selectedIdx){
 // Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
 const REPORT_EMAIL = "";
 
-function finalizeAnswer(q, allCorrect, tagResults, revealLines, given){
+function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines){
   registerAnswer(q, allCorrect, tagResults);
   roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults, revealLines: revealLines, given: given });
 
@@ -23584,6 +23639,9 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given){
       fb += '<p class="correction-line">' + tx("correctAnswer") + line + '</p>';
     });
   }
+  (typoLines || []).forEach(function(line){
+    fb += '<p class="correction-line">' + tx("typoNote") + line + '</p>';
+  });
   fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
   if(REPORT_EMAIL){
     fb += '<a class="report-link" href="mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(tx("reportSubject", q.id)) + '">' + tx("reportLink") + '</a>';
