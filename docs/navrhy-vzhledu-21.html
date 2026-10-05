@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 21</title>
+<style>
+  /* Statické návrhy (21. kolo) — NEJSOU součástí appky. Maskot. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:880px; line-height:1.55; }
+  .rules{ background:#fff; border-radius:14px; padding:12px 18px; max-width:880px; font-size:13.5px; line-height:1.6; margin:14px 0 0; }
+  .rules ul{ margin:4px 0 0; padding-left:18px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, 300px); gap:30px 22px; padding:26px 4px 10px; }
+  .col{ display:flex; flex-direction:column; }
+  .portrait{ height:150px; background:linear-gradient(180deg,#F3F6F9,#DCE4EC); border-radius:22px; display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:12px; }
+  .portrait svg{ width:110px; height:110px; }
+  .portrait svg.small{ width:64px; height:64px; opacity:.9; }
+  .phone{ width:300px; height:420px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .cap{ font-size:14px; font-weight:800; margin:12px 0 2px; }
+  .cap small{ font-weight:600; color:#6A6F78; }
+  .why{ font-size:12px; color:#6A6F78; line-height:1.5; margin:4px 0 0; padding-left:18px; }
+  .why li{ margin:3px 0; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:2px; }
+
+  .app{ position:absolute; inset:0; width:350px; height:525px; transform:scale(.8); transform-origin:0 0; overflow:hidden; padding:58px 16px 0;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .card{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; box-shadow:0 10px 22px rgba(60,75,100,.16); }
+  .sent{ font:600 20px/1.6 Newsreader, serif; }
+  .inp{ display:inline-block; min-width:140px; border-radius:10px; box-shadow:inset 0 0 0 2px #4FA86A; background:#E5F2E8; font:600 16px Inter; padding:3px 10px; vertical-align:middle; }
+  .fb{ border-radius:16px; padding:12px 14px; background:linear-gradient(180deg,#F1F8F2,#DFEEE3); margin-top:14px; font-weight:800; color:#3F7A55; display:flex; align-items:center; gap:8px; }
+  .fb i{ width:24px; height:24px; border-radius:50%; background:radial-gradient(circle at 35% 28%, #9EDBAE 0%, #4FA86A 45%, #2E7D46 100%); display:grid; place-items:center; color:#fff; font-style:normal; font-size:13px; }
+  .cta{ text-align:center; color:#fff; border-radius:18px; padding:14px; font-weight:700; margin-top:16px; background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:0 5px 0 #132840; }
+  /* Maskot vykukuje zprava, zespodu */
+  .peek{ position:absolute; right:-26px; bottom:70px; width:120px; height:120px; transform:rotate(-12deg); }
+  .peek svg{ width:100%; height:100%; }
+  .bubble{ position:absolute; right:100px; bottom:150px; background:#1B2A41; color:#fff; font:700 14px Inter; padding:9px 13px; border-radius:14px 14px 4px 14px; white-space:nowrap; box-shadow:0 8px 18px rgba(0,0,0,.2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 21. kolo · maskot</h1>
+  <p class="lead">Šest možných maskotů. U každého je portrét (velký a malý, jak by byl vidět na telefonu) a ukázka, jak vykoukne z pravého kraje po správné odpovědi s krátkou bublinou.</p>
+  <div class="rules"><b>Jak často by se ukazoval</b> (stejné pro všechny):
+    <ul>
+      <li>Jen občas: náhodně asi u každé 8. odpovědi, vždy při combo ×5 a po splnění denního cíle. Na chvilku (2–3 s) a zase zmizí.</li>
+      <li>Po chybě jen výjimečně a vždy povzbudivě, nikdy se nesměje.</li>
+      <li>Nikdy v rozřazovacím testu. V Nastavení půjde vypnout.</li>
+      <li>Kreslený jednoduše plochými tvary v barvách appky (tmavý kotouč, žlutá, modrá), aby seděl k současnému vzhledu a dobře vypadal i ve tmavém režimu.</li>
+    </ul>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+// Společné části obličeje
+const eyes = (x1, x2, y, r = 7) => `<circle cx="${x1}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x2}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x1 + 1.5}" cy="${y + 1}" r="${r * .5}" fill="#1B2A41"/><circle cx="${x2 + 1.5}" cy="${y + 1}" r="${r * .5}" fill="#1B2A41"/><circle cx="${x1 + 3}" cy="${y - 1.5}" r="${r * .17}" fill="#fff"/><circle cx="${x2 + 3}" cy="${y - 1.5}" r="${r * .17}" fill="#fff"/>`;
+const smile = (cx, y, w = 14, c = "#fff") => `<path d="M${cx - w / 2} ${y} q${w / 2} ${w * .55} ${w} 0" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+
+const M = {
+  plate: `<svg viewBox="0 0 120 120">
+      <path d="M18 70 q-14 -6 -10 -22" stroke="#2F343C" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="7" cy="45" r="6" fill="#2F343C"/>
+      <circle cx="62" cy="62" r="46" fill="#2F343C"/>
+      <circle cx="62" cy="62" r="40" fill="none" stroke="#1D2026" stroke-width="5"/>
+      <circle cx="62" cy="62" r="27" fill="none" stroke="#9AA0A7" stroke-width="2.5"/>
+      <circle cx="62" cy="62" r="7" fill="#DCE3EB"/>
+      ${eyes(49, 75, 44, 8)}${smile(62, 80, 16, "#F2C230")}
+      <path d="M106 66 q14 -4 10 -20" stroke="#2F343C" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="115" cy="44" r="6" fill="#2F343C"/></svg>`,
+  barbell: `<svg viewBox="0 0 120 120">
+      <rect x="8" y="57" width="104" height="7" rx="3.5" fill="#9AA0A7"/>
+      <rect x="10" y="30" width="16" height="60" rx="6" fill="#2F343C"/><rect x="94" y="30" width="16" height="60" rx="6" fill="#2F343C"/>
+      <rect x="27" y="38" width="10" height="44" rx="4" fill="#F2C230"/><rect x="83" y="38" width="10" height="44" rx="4" fill="#F2C230"/>
+      <ellipse cx="60" cy="60" rx="20" ry="22" fill="#33598A"/>
+      ${eyes(53, 67, 54, 5.5)}${smile(60, 66, 11)}
+      <path d="M44 94 v14 M76 94 v14" stroke="#33598A" stroke-width="6" stroke-linecap="round"/>
+      <path d="M50 81 L44 96 M70 81 L76 96" stroke="#33598A" stroke-width="6" stroke-linecap="round"/></svg>`,
+  kettle: `<svg viewBox="0 0 120 120">
+      <path d="M36 50 q0 -34 24 -34 q24 0 24 34" stroke="#2F343C" stroke-width="11" fill="none"/>
+      <rect x="38" y="22" width="44" height="9" rx="4.5" fill="#F2C230"/>
+      <circle cx="60" cy="74" r="38" fill="#2F343C"/>
+      <rect x="44" y="104" width="32" height="8" rx="4" fill="#1D2026"/>
+      ${eyes(47, 71, 66, 8)}${smile(59, 86, 16, "#F2C230")}</svg>`,
+  apostrophe: `<svg viewBox="0 0 120 120">
+      <path d="M60 14 c22 0 30 16 30 30 c0 30 -20 52 -44 62 l-4 -8 c14 -8 22 -18 24 -30 c-20 0 -34 -12 -34 -28 c0 -16 12 -26 28 -26 z" fill="#33598A"/>
+      ${eyes(52, 72, 40, 6.5)}${smile(62, 54, 13)}
+      <path d="M33 58 q-16 2 -18 -14" stroke="#33598A" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="15" cy="40" r="8" fill="#33598A"/>
+      <path d="M86 58 q16 2 18 -14" stroke="#33598A" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="104" cy="40" r="8" fill="#33598A"/></svg>`,
+  letterG: `<svg viewBox="0 0 120 120">
+      <text x="60" y="100" text-anchor="middle" font-family="Newsreader, serif" font-weight="700" font-size="108" fill="#F2C230" stroke="#C99A12" stroke-width="2">G</text>
+      ${eyes(46, 66, 50, 6.5)}${smile(57, 66, 12, "#1B2A41")}
+      <path d="M20 62 q-12 -6 -8 -22" stroke="#F2C230" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="12" cy="38" r="8" fill="#F2C230"/>
+      <path d="M98 70 q14 -6 10 -22" stroke="#F2C230" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="108" cy="46" r="8" fill="#F2C230"/></svg>`,
+  hamster: `<svg viewBox="0 0 120 120">
+      <circle cx="36" cy="34" r="12" fill="#D9A46A"/><circle cx="84" cy="34" r="12" fill="#D9A46A"/>
+      <circle cx="36" cy="34" r="6" fill="#F3C9C0"/><circle cx="84" cy="34" r="6" fill="#F3C9C0"/>
+      <ellipse cx="60" cy="70" rx="44" ry="40" fill="#E8B77D"/>
+      <ellipse cx="60" cy="82" rx="28" ry="24" fill="#FBE8CF"/>
+      <rect x="22" y="40" width="76" height="11" rx="5.5" fill="#E0735A"/>
+      ${eyes(46, 70, 62, 6.5)}
+      <ellipse cx="60" cy="74" rx="4" ry="3" fill="#B5543B"/>${smile(60, 78, 10, "#1B2A41")}
+      <rect x="20" y="92" width="80" height="5" rx="2.5" fill="#9AA0A7"/>
+      <rect x="12" y="84" width="10" height="20" rx="3" fill="#2F343C"/><rect x="98" y="84" width="10" height="20" rx="3" fill="#2F343C"/></svg>`
+};
+const V = [
+  ["plate", "Kotoučík", "kotouč s očima", ["Kotouč z loga a ze série ožije, takže maskot je už vlastně v appce.", "Nejjednodušší a nejvíc „náš“.", "Může mávat, točit se (jako skrytý vtip), při combu zářit žlutě."], "Čistý zdvih!", true],
+  ["barbell", "Činka", "činka s obličejem uprostřed", ["Jasně „posilovna“, hned je poznat, o co jde.", "Široký tvar se hůř schovává za kraj obrazovky."], "Tohle šlo z bicepsu!"],
+  ["kettle", "Kettlík", "kettlebell se žlutou čelenkou", ["Kulatý a roztomilý, čelenka dodá povahu.", "Dobře vykukuje: nahoře ucho, pak oči."], "Ani ses nezapotil."],
+  ["apostrophe", "Apostrof", "svalnatý apostrof (don't, it's)", ["Spojuje gramatiku a sílu, originální nápad.", "Bez vysvětlení nemusí být jasné, co to je."], "Ten apostrof sedí!"],
+  ["letterG", "Gé", "písmeno G ze značky se svaly", ["Navazuje na ikonu appky (žluté G).", "Písmeno s obličejem je méně „živé“ než postavička."], "Gramaticky čistě!"],
+  ["hamster", "Křeček", "křeček v čelence s činkou", ["Nejroztomilejší, zvířátko lidi mají nejradši.", "Nejvíc se vzdaluje od současného střídmého vzhledu."], "Makáme dál!"]
+];
+document.getElementById("grid").innerHTML = V.map(([k, name, what, why, say, rec]) => `
+  <div class="col">
+    <div class="portrait">${M[k]}${M[k].replace("<svg", '<svg class="small"')}</div>
+    <div class="phone"><div class="app">
+      <div class="card"><div class="sent">I <span class="inp">was reading</span> a book when the phone rang.</div>
+      <div class="fb"><i>✓</i>Správně!</div><div class="cta">Pokračovat</div></div>
+      <div class="bubble">${say}</div><div class="peek">${M[k]}</div>
+    </div></div>
+    <p class="cap">${name} <small>· ${what}</small>${rec ? '<span class="rec">DOPORUČUJU</span>' : ""}</p>
+    <ul class="why">${why.map(w => `<li>${w}</li>`).join("")}</ul>
+  </div>`).join("");
+</script>
+</body>
+</html>

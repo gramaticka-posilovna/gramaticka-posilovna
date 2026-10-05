@@ -26,6 +26,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 18 | `navrhy-vzhledu-18.html` | Horní lišta, 7 přístupů: A bez lišty · B název uprostřed · C název + série · D datum · E dvoubarevný nápis · F tmavý pruh · G kotouč v řádku nad pozdravem |
 | 19 | `navrhy-vzhledu-19.html` | Místo „Dobrý den!“: 1 podle denní doby · 2 stav cíle · 3 co dnes procvičit · 4 datum · 5 anglická věta dne · 6 bez nadpisu |
 | 20 | `navrhy-vzhledu-20.html` | Úderný nadpis Domů: 1 Dnešní trénink · 2 Jdeme na to · 3 velké číslo · 4 minuty do cíle · 5 série · 6 úroveň · 7 Máš 5 minut? |
+| 21 | `navrhy-vzhledu-21.html` | Maskot: Kotoučík · Činka · Kettlík · Apostrof · Gé · Křeček |
 
 ## Zpětná vazba
 
@@ -179,3 +180,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Inspirace: fitness/výukové appky dávají na Domů stav dne (cíl, série, trénink), ne pozdrav.
 - 1 Dnešní trénink (statický, sedí k posilovně) · 2 Jdeme na to! / Ještě kousek! / Máš splněno · 3 velké číslo „8 odpovědí do cíle“ · **4 „6 minut do cíle“** (odhad ~45 s/odpověď; doporučeno) · 5 „6. den v řadě“ + kroužek dnešního cíle místo kotouče · 6 „Úroveň B1“ · 7 „Máš 5 minut?“.
 - **Kolo 20 výsledek:** vybrán **1 Dnešní trénink** → nasazeno spolu s lištou **B** z kola 18.
+
+### Maskot (kolo 21)
+- Zadání: maskot, který občas vyleze z boku nebo se ukáže při správné/špatné odpovědi. Trenérské hlášky zatím odloženy.
+- Pravidla: náhodně asi u každé 8. odpovědi, při combo ×5 a po splnění cíle, 2–3 s; po chybě výjimečně a povzbudivě; nikdy v rozřazovacím testu; vypínatelný v Nastavení.
+- **Kotoučík** (kotouč s očima a ručičkami; doporučeno) · Činka · Kettlík (žlutá čelenka) · Apostrof se svaly · Gé (žluté G se svaly) · Křeček v čelence.
