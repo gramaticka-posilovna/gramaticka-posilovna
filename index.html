@@ -1144,6 +1144,16 @@
         <span data-i18n="placementTitle">Rozřazovací test</span>
         <button class="srow-btn" id="settings-test" data-i18n="setTestBtn">Spustit ›</button>
       </div>
+      <div class="srow">
+        <span data-i18n="setBackup">Záloha pokroku</span>
+        <span>
+          <button class="srow-btn" id="backup-save" data-i18n="backupSave">Uložit</button>
+          ·
+          <button class="srow-btn" id="backup-load" data-i18n="backupLoad">Obnovit</button>
+          <input type="file" id="backup-file" accept=".json,application/json" hidden>
+        </span>
+      </div>
+      <p class="smart-note" id="backup-note" data-i18n="backupNote"></p>
     </div>
 
     <button class="reset-link" id="reset-progress" data-i18n="resetProgress">Smazat veškerý pokrok</button>
@@ -22715,13 +22725,16 @@ function defaultState(){
 let state = loadState();
 
 function loadState(){
+  let raw = null;
   try{
-    const raw = window.localStorage.getItem(STORAGE_KEY);
+    raw = window.localStorage.getItem(STORAGE_KEY);
     if(!raw) return defaultState();
     const parsed = JSON.parse(raw);
     const merged = Object.assign(defaultState(), parsed);
     return migrateState(merged);
   }catch(e){
+    // Pojistka: data, která se nepodařilo načíst, odložíme stranou, než je přepíše nový stav.
+    try{ if(raw) window.localStorage.setItem(STORAGE_KEY + "_broken", raw); }catch(e2){}
     return defaultState();
   }
 }
@@ -22963,6 +22976,11 @@ const I18N = {
     weakEmpty: "Zatím nemáme dost dat — po pár odehraných kolech se tu objeví tvé nejslabší jevy.",
     historyEmpty: "Historie kol se zobrazí, jakmile dohraješ první kolo.",
     resetConfirm: "Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.",
+    setBackup: "Záloha pokroku", backupSave: "Uložit", backupLoad: "Obnovit",
+    backupNote: "Záloha je soubor s celým pokrokem. Ulož si ho občas (třeba do Souborů nebo iCloudu) a při ztrátě dat ho tu obnovíš.",
+    backupBad: "Tenhle soubor není záloha Gramatické posilovny.",
+    backupDone: "Pokrok je obnovený ze zálohy.",
+    restoreConfirm: function(d){ const p = d.split("-"); return "Obnovit pokrok ze zálohy z " + (p.length === 3 ? +p[2] + ". " + +p[1] + ". " + p[0] : d) + "? Současný pokrok se nahradí."; },
     modalCancel: "Zpět", modalOk: "Ano, pokračovat",
     olderTopic: "Starší téma", unknownDiff: "Neznámá obtížnost",
     labelSmart: "Doporučeno pro tebe",
@@ -23029,6 +23047,11 @@ const I18N = {
     weakEmpty: "Not enough data yet — your weakest areas will appear here after a few rounds.",
     historyEmpty: "Your round history will appear once you finish your first round.",
     resetConfirm: "Do you really want to delete all your saved progress? This cannot be undone.",
+    setBackup: "Progress backup", backupSave: "Save", backupLoad: "Restore",
+    backupNote: "The backup is a file with all your progress. Save it now and then (e.g. to Files or iCloud) and restore it here if your data is lost.",
+    backupBad: "This file is not a Grammar Gym backup.",
+    backupDone: "Progress restored from the backup.",
+    restoreConfirm: function(d){ return "Restore progress from the backup of " + d + "? Your current progress will be replaced."; },
     modalCancel: "Back", modalOk: "Yes, continue",
     olderTopic: "Older topic", unknownDiff: "Unknown difficulty",
     labelSmart: "Recommended for you",
@@ -24132,6 +24155,49 @@ document.getElementById("reset-progress").addEventListener("click", function(){
     state = defaultState();
     saveState();
     renderProgress();
+  });
+});
+
+/* Záloha pokroku: uložení do souboru a obnovení ze souboru */
+const BACKUP_APP = "gramaticka-posilovna";
+const backupNote = document.getElementById("backup-note");
+const backupFile = document.getElementById("backup-file");
+document.getElementById("backup-save").addEventListener("click", function(){
+  const today = dayKey(new Date());
+  const json = JSON.stringify({ app: BACKUP_APP, backupVersion: 1, savedAt: today, state: state });
+  const name = "gramaticka-posilovna-zaloha-" + today + ".json";
+  const file = new File([json], name, { type: "application/json" });
+  // Na telefonu nabídneme sdílení (Uložit do Souborů, iCloud…), jinde klasické stažení.
+  if(window.matchMedia("(pointer: coarse)").matches && navigator.canShare && navigator.canShare({ files: [file] })){
+    navigator.share({ files: [file] }).catch(function(){});
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(file);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+});
+document.getElementById("backup-load").addEventListener("click", function(){ backupFile.click(); });
+backupFile.addEventListener("change", function(){
+  const f = backupFile.files[0];
+  backupFile.value = "";
+  if(!f) return;
+  f.text().then(function(text){
+    let data = null;
+    try{ data = JSON.parse(text); }catch(e){}
+    if(!data || data.app !== BACKUP_APP || !data.state || typeof data.state !== "object"){
+      backupNote.textContent = tx("backupBad");
+      return;
+    }
+    showConfirm(tx("restoreConfirm", data.savedAt || "?"), function(){
+      state = migrateState(Object.assign(defaultState(), data.state));
+      saveState();
+      applyLang();
+      backupNote.textContent = tx("backupDone");
+    });
   });
 });
 
