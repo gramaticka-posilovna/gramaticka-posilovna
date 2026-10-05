@@ -28,6 +28,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 20 | `navrhy-vzhledu-20.html` | Úderný nadpis Domů: 1 Dnešní trénink · 2 Jdeme na to · 3 velké číslo · 4 minuty do cíle · 5 série · 6 úroveň · 7 Máš 5 minut? |
 | 21 | `navrhy-vzhledu-21.html` | Maskot: Kotoučík · Činka · Kettlík · Apostrof · Gé · Křeček |
 | 22 | `navrhy-vzhledu-22.html` | Kotoučík doladěný: 5 výrazů, velikosti, tmavý režim, živé vykouknutí, hlášky podle situace |
+| 23 | `navrhy-vzhledu-23.html` | Kotoučík 3D (před/po, tmavý) · 5 míst vykouknutí · pravidla podle toho, co funguje |
 
 ## Zpětná vazba
 
@@ -193,3 +194,9 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Výrazy: Klid · Radost (mává) · Nadšení (hvězdičkové oči, žlutá aura) · Povzbuzení (palec nahoru) · Hotovo (spokojené oči, ruce nahoře). Tmavý režim: světlejší kotouč #4A525F.
 - Vykouknutí zprava zespodu, bublina ~2,5 s, klepnutím zmizí. Kdy: zhruba 1× z 10 správných, Combo ×5/×10, výjimečně po chybě (~1× z 6), po splnění cíle; nikdy v testu; vypínatelný.
 - Hlášky (výběr uživatele): správně 7, 13, 19, 24 · combo 27, 30, 31 · chyba 32, 33, 35, 38, 43 · cíl 45, 46 (návrh neutrálně „Dnes se makalo. Zítra zas.“), 47 → „Hotovo. Zasloužený odpočinek.“
+
+### Kotoučík 3D a kde vykoukne (kolo 23)
+- Zadání: víc 3D; pokaždé vylézt jinde; zjistit, co na lidi funguje.
+- 3D: přechody (světlo zleva nahoře), tmavý zkosený okraj, lesklý stříbrný proužek, vypouklé oči s odleskem, ručičky s odleskem, stín pod sebou.
+- Místa: 1 zprava zespodu · 2 zleva (zrcadlově) · 3 zespodu (jen oči a ručičky) · 4 shora vzhůru nohama (šetřit na Combo) · 5 zpoza okraje karty.
+- Pravidla: nepředvídatelně (~1× z 10, nikdy 2× stejné místo), max 2× za kolo, 2–3 s, nikdy přes políčko ani tlačítko, jistě jen u Combo ×5 a splněného cíle, po chybě výjimečně a laskavě, omezené animace = jen bublina, vypínatelný.

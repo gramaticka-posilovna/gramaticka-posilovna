@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 23</title>
+<style>
+  /* Statické návrhy (23. kolo) — NEJSOU součástí appky. Kotoučík ve 3D a pět míst, odkud vykoukne. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  h2{ font-size:20px; margin:44px 0 6px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:900px; line-height:1.55; }
+  .cmp{ display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; }
+  .box{ background:linear-gradient(180deg,#F3F6F9,#DCE4EC); border-radius:22px; padding:16px 18px 12px; text-align:center; }
+  .box.dark{ background:linear-gradient(180deg,#1D2633,#151C26); color:#E7EDF4; }
+  .box svg{ width:150px; height:150px; }
+  .box b{ display:block; font-size:14px; }
+  .box small{ display:block; font-size:12px; color:#6A6F78; }
+  .box.dark small{ color:#9AA6B8; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, 300px); gap:28px 22px; margin-top:18px; }
+  .col{ display:flex; flex-direction:column; }
+  .phone{ width:300px; height:520px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .cap{ font-size:14px; font-weight:800; margin:12px 0 2px; }
+  .why{ font-size:12px; color:#6A6F78; line-height:1.5; margin:4px 0 0; padding-left:18px; }
+  .app{ position:absolute; inset:0; width:350px; height:650px; transform:scale(.8); transform-origin:0 0; overflow:hidden; padding:70px 16px 0;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .card{ position:relative; z-index:2; background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; box-shadow:0 10px 22px rgba(60,75,100,.16); }
+  .sent{ font:600 20px/1.6 Newsreader, serif; }
+  .inp{ display:inline-block; min-width:140px; border-radius:10px; box-shadow:inset 0 0 0 2px #4FA86A; background:#E5F2E8; font:600 16px Inter; padding:3px 10px; vertical-align:middle; }
+  .fb{ border-radius:16px; padding:12px 14px; background:linear-gradient(180deg,#F1F8F2,#DFEEE3); margin-top:14px; font-weight:800; color:#3F7A55; }
+  .cta{ text-align:center; color:#fff; border-radius:18px; padding:14px; font-weight:700; margin-top:16px; background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:0 5px 0 #132840; }
+  .m{ position:absolute; width:120px; height:120px; z-index:3; }
+  .m svg{ width:100%; height:100%; overflow:visible; }
+  .m.behind{ z-index:1; }
+  .bubble{ position:absolute; z-index:4; background:#1B2A41; color:#fff; font:700 14px Inter; padding:9px 13px; border-radius:16px; white-space:nowrap; box-shadow:0 8px 18px rgba(0,0,0,.2); }
+  .rules{ background:#fff; border-radius:14px; padding:14px 20px; max-width:900px; font-size:14px; line-height:1.6; margin-top:14px; }
+  .rules ul{ margin:4px 0 0; padding-left:18px; }
+  .rules li{ margin:4px 0; }
+  .src{ font-size:12px; color:#6A6F78; margin-top:10px; }
+  .src a{ color:#33598A; }
+</style>
+</head>
+<body>
+<!-- Sdílené přechody pro 3D vzhled (používají je všechny obrázky na stránce) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="g-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <radialGradient id="g-body-d" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#7A838F"/><stop offset=".45" stop-color="#4E5662"/><stop offset="1" stop-color="#2A3038"/></radialGradient>
+    <linearGradient id="g-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="g-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#D6DADF"/></linearGradient>
+    <radialGradient id="g-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="g-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+    <radialGradient id="g-shadow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(20,28,40,.35)"/><stop offset="1" stop-color="rgba(20,28,40,0)"/></radialGradient>
+  </defs>
+</svg>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 23. kolo · Kotoučík 3D a kde vykoukne</h1>
+  <p class="lead">Kotoučík dostal hloubku jako ostatní prvky appky (měkké 3D): světlo zleva nahoře, zkosený okraj, lesklý stříbrný proužek, vypouklé oči a ručičky, stín pod sebou. A pět míst, odkud může vykouknout – pokaždé jinde.</p>
+
+  <h2>Před a po</h2>
+  <div class="cmp" id="cmp"></div>
+
+  <h2>Pět míst, odkud vykoukne</h2>
+  <div class="grid" id="grid"></div>
+
+  <h2>Co funguje na lidi (a jak to použít)</h2>
+  <div class="rules">
+    <ul>
+      <li><b>Nepředvídatelnost.</b> Odměna, kterou člověk čeká, přestane fungovat. Proto: náhodně, zhruba 1× z 10 odpovědí, a pokaždé z jiného místa (nikdy dvakrát za sebou stejně).</li>
+      <li><b>Únava z opakování.</b> Čím častěji se něco opakuje, tím míň to těší a tím víc to otravuje. Proto: krátce (2–3 s), střídat hlášky i výrazy, a když člověk hraje dlouho, ukazovat se méně (max. 2× za kolo).</li>
+      <li><b>Nepřekážet.</b> Nikdy přes políčko na odpověď ani tlačítko „Pokračovat“. Místo se vybírá jen z volných okrajů. Klepnutím zmizí hned.</li>
+      <li><b>Spojit s úspěchem.</b> Jistě se objeví jen u výjimečných chvil (Combo ×5, splněný cíl) – tak má jeho objevení váhu.</li>
+      <li><b>Laskavost.</b> Po chybě jen výjimečně a povzbudivě; žádné výčitky ani „smutný maskot“ (manipulativní triky jsme vyloučili).</li>
+      <li><b>Ohleduplnost.</b> Kdo má v telefonu omezené animace, uvidí jen bublinu bez pohybu; v Nastavení půjde vypnout.</li>
+    </ul>
+    <p class="src">Zdroje: <a href="https://www.appcues.com/blog/variable-rewards">Appcues – Variable rewards</a> · <a href="https://rauno.me/craft/novelty">Rauno – Novelty</a> · <a href="https://www.digia.tech/post/gamification-mobile-apps-streaks-rewards-retention/">Digia – Gamification in mobile apps</a></p>
+  </div>
+</div>
+<script>
+// 3D Kotoučík (přechody v <defs> nahoře)
+function kotoucik3d(mood, opts = {}){
+  const body = opts.dark ? "url(#g-body-d)" : "url(#g-body)";
+  const eye = (x, y) => `<ellipse cx="${x}" cy="${y + 1.5}" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="${x}" cy="${y}" rx="8.5" ry="9.5" fill="url(#g-eye)"/>
+    <circle cx="${x + 1.5}" cy="${y + 1.8}" r="4.6" fill="#1B2A41"/><circle cx="${x + 3.2}" cy="${y - 1.2}" r="1.8" fill="#fff"/>`;
+  const arm = (d) => `<path d="${d}" stroke="#16191E" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#3A414B" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+  const hand = (x, y) => `<circle cx="${x}" cy="${y}" r="8" fill="url(#g-hand)"/><circle cx="${x - 2.5}" cy="${y - 2.5}" r="2.2" fill="rgba(255,255,255,.35)"/>`;
+  let arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  let mouth = `<path d="M50 79 q12 13 24 0" stroke="#8A6A12" stroke-width="5.5" fill="none" stroke-linecap="round" opacity=".5"/><path d="M50 78 q12 13 24 0" stroke="url(#g-gold)" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
+  if(mood === "grip"){ // ručičky drží okraj (vykouknutí přes kartu / zespodu)
+    arms = arm("M24 84 q-6 10 -2 18") + hand(22, 104) + arm("M100 84 q6 10 2 18") + hand(102, 104);
+  }
+  return `<svg viewBox="-8 -4 140 140">
+    <ellipse cx="62" cy="122" rx="40" ry="7" fill="url(#g-shadow)"/>
+    ${arms}
+    <circle cx="62" cy="62" r="47" fill="url(#g-rim)"/>
+    <circle cx="62" cy="62" r="42.5" fill="${body}"/>
+    <circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="4"/>
+    <circle cx="62" cy="61" r="30" fill="none" stroke="url(#g-silver)" stroke-width="2.6"/>
+    <path d="M28 40 a40 40 0 0 1 26 -20" stroke="rgba(255,255,255,.28)" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M96 86 a40 40 0 0 1 -14 12" stroke="rgba(255,255,255,.08)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="63" r="4.2" fill="#0E1014" stroke="url(#g-silver)" stroke-width="1.2"/>
+    ${eye(47, 44)}${eye(77, 44)}
+    <path d="M40 31 L54 30 M70 30 L84 31" stroke="#E7EDF4" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    ${mouth}</svg>`;
+}
+// ploché (kolo 22) pro srovnání
+function flat(){
+  return `<svg viewBox="-6 0 136 124"><path d="M20 70 q-14 -4 -12 -22" stroke="#2F343C" stroke-width="8" fill="none" stroke-linecap="round"/><circle cx="8" cy="46" r="7" fill="#2F343C"/>
+    <path d="M104 74 q8 8 4 18" stroke="#2F343C" stroke-width="8" fill="none" stroke-linecap="round"/><circle cx="108" cy="93" r="7" fill="#2F343C"/>
+    <circle cx="62" cy="62" r="46" fill="#2F343C"/><circle cx="62" cy="62" r="41" fill="none" stroke="#1D2026" stroke-width="5"/>
+    <circle cx="62" cy="62" r="29" fill="none" stroke="#9AA0A7" stroke-width="2.5" opacity=".8"/><circle cx="62" cy="63" r="4" fill="#1D2026" stroke="#9AA0A7" stroke-width="1.2"/>
+    <ellipse cx="47" cy="44" rx="8" ry="9" fill="#fff"/><circle cx="48.5" cy="45.5" r="4.4" fill="#1B2A41"/><ellipse cx="77" cy="44" rx="8" ry="9" fill="#fff"/><circle cx="78.5" cy="45.5" r="4.4" fill="#1B2A41"/>
+    <path d="M50 80 q12 12 24 0" stroke="#F2C230" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`;
+}
+document.getElementById("cmp").innerHTML =
+  `<div class="box">${flat()}<b>Před (kolo 22)</b><small>plochý</small></div>` +
+  `<div class="box">${kotoucik3d("happy")}<b>Po · 3D</b><small>světlo, lesk, stín</small></div>` +
+  `<div class="box dark">${kotoucik3d("happy", { dark: true })}<b>3D v tmavém režimu</b><small>světlejší kotouč</small></div>`;
+
+const card = '<div class="card"><div class="sent">I <span class="inp">was reading</span> a book when the phone rang.</div><div class="fb">✓ Správně!</div><div class="cta">Pokračovat</div></div>';
+const P = [
+  ["1 · Zprava zespodu", `<div class="m" style="right:-34px;bottom:110px;transform:rotate(-14deg)">${kotoucik3d("happy")}</div><div class="bubble" style="right:96px;bottom:214px">Formu držíš.</div>`,
+    "Klasika z minulého kola. Volné místo pod kartou."],
+  ["2 · Zleva", `<div class="m" style="left:-36px;bottom:170px;transform:scaleX(-1) rotate(-14deg)">${kotoucik3d("happy")}</div><div class="bubble" style="left:84px;bottom:260px">Tak se to dělá.</div>`,
+    "Zrcadlově z levého kraje – překvapí, protože čekáš pravou stranu."],
+  ["3 · Zespodu", `<div class="m" style="left:120px;bottom:-24px">${kotoucik3d("grip")}</div><div class="bubble" style="left:96px;bottom:112px">Hezky, jedeme dál.</div>`,
+    "Vynoří se od spodního okraje, vidět jsou jen oči a ručičky. Jako by vylezl z podlahy posilovny."],
+  ["4 · Shora vzhůru nohama", `<div class="m" style="right:6px;top:-58px;transform:rotate(180deg)">${kotoucik3d("happy")}</div><div class="bubble" style="right:122px;top:14px">Lehce a s přehledem.</div>`,
+    "Spustí se shora jako pavouk na vlákně. Nejhravější, šetřit na výjimečné chvíle (Combo)."],
+  ["5 · Přes okraj karty", `<div class="m behind" style="right:40px;top:12px">${kotoucik3d("grip")}</div><div class="bubble" style="right:150px;top:24px">Jsi v ráži!</div>`,
+    "Vykoukne zpoza karty s otázkou a drží se jejího okraje. Nejvíc „živé“ – jako by bydlel v appce."]
+];
+document.getElementById("grid").innerHTML = P.map(([cap, html, why]) => `
+  <div class="col">
+    <div class="phone"><div class="app">${card}${html}</div></div>
+    <p class="cap">${cap}</p>
+    <ul class="why"><li>${why}</li></ul>
+  </div>`).join("");
+</script>
+</body>
+</html>
