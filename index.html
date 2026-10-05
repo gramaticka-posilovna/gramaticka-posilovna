@@ -12,6 +12,20 @@
 <meta name="theme-color" content="#F3F6F9">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
 <link rel="manifest" href="manifest.json?v=3">
+<script>
+  // Vzhled: "auto" (podle telefonu), "light" nebo "dark". Nastaví se ještě před vykreslením, ať stránka neprobliká.
+  var THEME_KEY = "grammarLabThemeV1";
+  var themePref = "auto";
+  try{ themePref = localStorage.getItem(THEME_KEY) || "auto"; }catch(e){}
+  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  function applyTheme(){
+    var dark = themePref === "dark" || (themePref === "auto" && darkQuery.matches);
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    document.querySelector("meta[name=theme-color]").setAttribute("content", dark ? "#151C26" : "#F3F6F9");
+  }
+  if(darkQuery.addEventListener) darkQuery.addEventListener("change", function(){ if(themePref === "auto") applyTheme(); });
+  applyTheme();
+</script>
 <style>
   /* Písma jsou součástí appky (fonts/, licence SIL OFL 1.1), aby fungovala offline a bez volání Googlu. */
   @font-face{ font-family:'Fraunces'; font-style:normal; font-weight:500 700; font-display:swap; src:url(fonts/fraunces-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -169,7 +183,7 @@
   .lang-switch button{ padding: 8px 10px; font-size: 12.5px; font-weight: 700; }
   @media (max-width: 480px){
     .topbar{ padding: 14px 16px; }
-    .brand-name{ display: none; }
+    .brand-name{ font-size: 19px; }
     .nav-links button{ padding: 7px 11px; font-size: 13px; }
     .lang-switch button{ padding: 7px 8px; }
   }
@@ -852,6 +866,76 @@
     padding: 4px 0; margin-top: 6px;
   }
   .reset-link:hover{ color: var(--error); }
+
+  /* ---------- Tmavý režim (docs/navrhy-vzhledu-14.html) ----------
+     data-theme nastavuje skript v <head> podle Nastavení / systému.
+     Stejná šedomodrá rodina, jen ztlumená; --primary je tu barva textu,
+     plná tlačítka mají vlastní tmavší modrou. */
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg: #151C26;
+    --bg-top: #1D2633;
+    --bg-bottom: #0F141C;
+    --surface: #212B39;
+    --surface-2: #1C2531;
+    --ink: #E7EDF4;
+    --ink-soft: #9AA6B8;
+    --primary: #8DB4E2;
+    --primary-light: #4675AE;
+    --primary-dark: #1A3456;
+    --primary-tint: #243650;
+    --gold: #9CC287;
+    --gold-tint: #1F2A35;
+    --success: #7CCB94;
+    --success-tint: #1E3326;
+    --error: #F29A84;
+    --error-tint: #3A2620;
+    --line: #2A3546;
+    --track: #2A3443;
+    --plate: #4A525F;
+    --plate-dark: #2E343D;
+    --shadow-sm: inset 0 1px 0 rgba(255,255,255,0.05), 0 6px 14px rgba(0,0,0,0.30);
+    --shadow-card: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 22px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.25);
+    --shadow-md: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  [data-theme="dark"] .topbar{ background: rgba(24,31,42,0.92); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+  [data-theme="dark"] .tabbar{ background: rgba(24,31,42,0.94); }
+  [data-theme="dark"] .nav-links button.active{ background: #34404F; box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
+  [data-theme="dark"] .btn-primary,
+  [data-theme="dark"] .segmented button.selected,
+  [data-theme="dark"] .topic-pill.selected .topic-pill-row .box,
+  [data-theme="dark"] .topic-pill.partial .topic-pill-row .box{ background: linear-gradient(180deg, #4675AE, #2E5689); }
+  [data-theme="dark"] .subtopic-row.selected .box{ background: #3F6CA3; }
+  [data-theme="dark"] .btn-primary:disabled{ background: linear-gradient(180deg, #3A4452, #323B48); box-shadow: 0 5px 0 #262E39; color: #8894A6; }
+  [data-theme="dark"] .topic-pill,
+  [data-theme="dark"] .tag-topic{ background: var(--surface); }
+  [data-theme="dark"] .word-chip{ background: #2A3443; }
+  [data-theme="dark"] .topic-pill .box,
+  [data-theme="dark"] .subtopic-row .box{ background: #18202B; border-color: #3D4A5C; }
+  [data-theme="dark"] .subtopic-row:hover{ background: rgba(255,255,255,0.04); }
+  [data-theme="dark"] .topic-pill:hover{ box-shadow: inset 0 0 0 1.5px #3D4B5E, var(--shadow-sm); }
+  [data-theme="dark"] .segmented button:not(.selected),
+  [data-theme="dark"] .btn-secondary,
+  [data-theme="dark"] .choice-btn{ background: linear-gradient(180deg, var(--surface), var(--surface-2)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 3px 0 #10151C, 0 6px 12px rgba(0,0,0,0.30); }
+  [data-theme="dark"] .choice-btn:hover:not(:disabled){ background: var(--primary-tint); }
+  [data-theme="dark"] .wp{ background: radial-gradient(circle, var(--bg) 0 13%, #1A222D 14% 62%, #161D27 63% 70%, #1A222D 71%); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+  [data-theme="dark"] .wp.on{ background: radial-gradient(circle, var(--bg) 0 13%, var(--plate) 14% 62%, var(--plate-dark) 63% 70%, var(--plate) 71%); }
+  [data-theme="dark"] .wp.free{ background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 70%, #5B7FB3 71%); }
+  [data-theme="dark"] .wp.today::after{ color: #D9B23A; }
+  [data-theme="dark"] .blank-input{ background: #18202B; box-shadow: inset 0 0 0 2px #4A6FA3, 0 4px 10px rgba(0,0,0,0.25); }
+  [data-theme="dark"] .blank-input:focus{ box-shadow: inset 0 0 0 2px var(--primary), 0 0 0 4px var(--primary-tint); }
+  [data-theme="dark"] .blank-input.state-correct{ background: var(--success-tint); box-shadow: inset 0 0 0 2px #5DB879; }
+  [data-theme="dark"] .blank-input.state-wrong{ background: var(--error-tint); box-shadow: inset 0 0 0 2px #E0806A; }
+  [data-theme="dark"] .choice-btn.state-correct{ background: linear-gradient(180deg, #1F3528, #1A2D22); color: var(--success); box-shadow: inset 0 0 0 2px #5DB879; }
+  [data-theme="dark"] .choice-btn.state-wrong{ background: linear-gradient(180deg, #3A2721, #30211C); box-shadow: inset 0 0 0 2px #E0806A; }
+  [data-theme="dark"] .feedback-panel.ok{ background: linear-gradient(180deg, #1F3528, #1A2D22); box-shadow: 0 8px 18px rgba(0,0,0,0.3); }
+  [data-theme="dark"] .feedback-panel.bad{ background: linear-gradient(180deg, #3A2721, #30211C); box-shadow: 0 8px 18px rgba(0,0,0,0.3); }
+  [data-theme="dark"] .rule-box{ border-top-color: var(--line); }
+  [data-theme="dark"] .rule-box .rule-tag{ background: rgba(255,255,255,0.08); }
+  [data-theme="dark"] .recommend-box{ color: #A9D8B6; }
+  [data-theme="dark"] .recommend-box strong{ color: #CBEBD4; }
+  [data-theme="dark"] .score-ring circle:first-child{ stroke: var(--track); }
+  [data-theme="dark"] .chart-wrap line{ stroke: var(--line); }
 </style>
 </head>
 <body>
@@ -1042,6 +1126,14 @@
         <div class="nav-links lang-switch">
           <button data-lang="cs" class="active">CZ</button>
           <button data-lang="en">EN</button>
+        </div>
+      </div>
+      <div class="srow">
+        <span data-i18n="setTheme">Vzhled</span>
+        <div class="nav-links" id="theme-switch">
+          <button data-theme-opt="auto" data-i18n="themeAuto">Auto</button>
+          <button data-theme-opt="light" data-i18n="themeLight">Světlý</button>
+          <button data-theme-opt="dark" data-i18n="themeDark">Tmavý</button>
         </div>
       </div>
       <div class="srow">
@@ -22819,6 +22911,7 @@ const I18N = {
     brand: "Gramatická posilovna",
     navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok", navSettings: "Nastavení",
     setLang: "Jazyk aplikace", setGoal: "Denní cíl (odpovědí)", setTestBtn: "Spustit ›",
+    setTheme: "Vzhled", themeAuto: "Auto", themeLight: "Světlý", themeDark: "Tmavý",
     freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
     placementTitle: "Rozřazovací test", placementNote: "5–20 otázek · zjistí, kde začít",
     levelTag: function(l){ return "Úroveň " + l; }, dontKnow: "Nevím",
@@ -22884,6 +22977,7 @@ const I18N = {
     brand: "Grammar Gym",
     navHome: "Home", navTopics: "Topics", navProgress: "Progress", navSettings: "Settings",
     setLang: "App language", setGoal: "Daily goal (answers)", setTestBtn: "Start ›",
+    setTheme: "Appearance", themeAuto: "Auto", themeLight: "Light", themeDark: "Dark",
     freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
     placementTitle: "Placement test", placementNote: "5–20 questions · finds where to start",
     levelTag: function(l){ return "Level " + l; }, dontKnow: "I don't know",
@@ -23408,6 +23502,22 @@ goalSwitch.addEventListener("click", function(e){
   renderGoalSwitch();
 });
 renderGoalSwitch();
+// Vzhled (applyTheme a themePref jsou ve skriptu v <head>)
+const themeSwitch = document.getElementById("theme-switch");
+function renderThemeSwitch(){
+  themeSwitch.querySelectorAll("button").forEach(function(btn){
+    btn.classList.toggle("active", btn.getAttribute("data-theme-opt") === themePref);
+  });
+}
+themeSwitch.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  themePref = btn.getAttribute("data-theme-opt");
+  try{ window.localStorage.setItem(THEME_KEY, themePref); }catch(e){}
+  applyTheme();
+  renderThemeSwitch();
+});
+renderThemeSwitch();
 document.getElementById("settings-test").addEventListener("click", function(){ startPlacement(); });
 
 /* re-render start label when count changes */
