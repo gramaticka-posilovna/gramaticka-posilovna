@@ -32,6 +32,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 24 | `navrhy-vzhledu-24.html` | Kotoučík: přivítání (8 situací) · velké oslavy (zámek, činka, zezlátnutí, medaile) |
 | 25 | `navrhy-vzhledu-25.html` | Velké oslavy dotažené: pódium se světlem a paprsky, 3D zámek/činka/mince/medaile, otřes, konfety, zlatý nápis |
 | 26 | `navrhy-vzhledu-26.html` | Oslavy: činka a medaile s plynulým pohybem po snímcích, žíněnka, vinětace |
+| 27 | `navrhy-vzhledu-27.html` | Zezlátnutí jako roztočená mince, zvuky (Web Audio), zámek pro novou úroveň, karta úrovně v Pokroku |
 
 ## Zpětná vazba
 
@@ -220,3 +221,10 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Činka i medaile se počítají po snímcích (JS), synchronně s nápisy. Činka: drží ji u břicha (soustředěné oči), přidřep, výraz nad hlavu s mírným přešvihnutím, ruce jsou vždy napojené na tyč a lokty se narovnávají, tyč se zhoupne a kotouče se pohnou, kapka potu, nahoře hvězdičky v očích; Kotoučík stojí na žíněnce.
 - Medaile: spustí se shora, stuha jako V přes spodek kotouče (pod pusou, konce schované v obrysu), disk visí pod ním a tlumeně dokývá, odlesk; Kotoučík se při dopadu přikrčí a nadme.
 - Jemné doladění: vinětace okrajů pod textem, podlaha se světlem.
+- **Kolo 26 výsledek:** zámek při obou příležitostech (obtížnost i nová úroveň), doladit systém hodnocení úrovní, hezčí otáčení u zezlátnutí, zvuky?
+
+### Mince, zvuky, úroveň (kolo 27)
+- Zezlátnutí po snímcích: přikrčení, výskok, 4 otáčky s rozjezdem a dojezdem, viditelná hrana a zadní strana („20 KG“), odlesk podle natočení, postupné zlátnutí, dopad s přikrčením, světelný kruh a jiskry, pak vznášení a občasný odlesk.
+- Zámek i pro novou úroveň („NOVÁ ÚROVEŇ · B2“).
+- Zvuky skládané ve Web Audio (bez souborů): ke každé oslavě vlastní (kutálení/náraz/praskání/střepy, švih/cinknutí činky, cinkání mince/třpyt, spuštění/cinknutí medaile) + fanfára; v appce správně, chyba (tlumeně), kombo, Kotoučík, denní cíl.
+- Karta „Tvoje úroveň“ v Pokroku (žebříček A2–C1, postup na další úroveň) a „Obtížnost“ (posledních 30 odpovědí, 80 %).
