@@ -784,6 +784,12 @@
   .fold summary::after{ content:"›"; font-size:20px; line-height:1; transform:rotate(90deg); transition:transform .15s ease; }
   .fold[open] summary::after{ transform:rotate(-90deg); }
   .fold[open] summary{ margin-bottom:14px; }
+  .cheat{ margin:12px 0 8px -30px; padding:12px 14px; border-radius:var(--radius-md); background:var(--surface-2); }
+  .cheat summary{ font-weight:700; color:var(--primary); }
+  .cheat-item{ padding:10px 0; border-top:1px solid var(--line); font-size:13.5px; line-height:1.5; }
+  .cheat summary + .cheat-item{ border-top:none; }
+  .cheat-item p{ margin:3px 0 0; }
+  .cheat-ex{ font-style:italic; color:var(--ink-soft); }
   .mistake{ padding:14px 0; border-top:1px solid var(--line); }
   .mistake:first-child{ border-top:none; padding-top:0; }
   .mistake-q{ font-weight:600; margin:0 0 6px; }
@@ -1236,6 +1242,134 @@ const TAG_CEFR = {
   "clauses|Zkrácené vztažné věty (redukce vztažné věty pomocí příčestí/infinitivu)": "C1",
   "clauses|Participle clauses": "C1",
   "infinitive-gerund|Perfektní infinitiv (seem to have done)": "C1"
+};
+
+// Tahák: ke každému podtématu stručné pravidlo a příklady. Klíč = tag z dat otázek.
+const CHEATSHEET = {
+  "tenses": {
+    "Present simple": ["Zvyky, opakované děje, obecné pravdy a rozvrhy. Ve 3. osobě č. j. se přidává -s/-es; otázka a zápor přes do/does.", "She works from home on Fridays. · Water boils at 100 °C. · Does he drive? He doesn't drive."],
+    "Present continuous": ["Děj probíhající právě teď nebo v tomto období a dočasné situace. Tvar: am/is/are + -ing. Stavová slovesa (know, like, want…) se v průběhovém tvaru obvykle nepoužívají.", "I'm cooking dinner right now. · She's staying with friends this week."],
+    "Past simple": ["Ukončený děj v minulosti, často s určeným časem (yesterday, last year, in 2010, ago). Pravidelná slovesa -ed, nepravidelná mají vlastní tvar; otázka a zápor přes did + základní tvar.", "We visited Rome last summer. · I didn't see him yesterday."],
+    "Past continuous": ["Děj probíhající v určitém okamžiku v minulosti, často přerušený jiným dějem v past simple. Tvar: was/were + -ing.", "I was reading when the phone rang. · At 8 p.m. they were having dinner."],
+    "Present perfect": ["Minulý děj s dopadem na přítomnost, zkušenost (ever, never) nebo stav trvající dodnes (for, since). Nepoužívá se s určeným minulým časem. Tvar: have/has + 3. tvar.", "I've lost my keys. · Have you ever been to Japan? · She has lived here since 2015."],
+    "Past perfect": ["Děj, který proběhl před jiným minulým dějem („předminulý“). Tvar: had + 3. tvar.", "When we arrived, the film had already started."],
+    "Present perfect continuous": ["Děj, který začal v minulosti a trvá dodnes (důraz na délku trvání), nebo nedávno skončil a jsou vidět jeho následky. Tvar: have/has been + -ing.", "I've been waiting for an hour. · You're out of breath – have you been running?"],
+    "Past perfect continuous": ["Délka trvání děje až do určitého okamžiku v minulosti. Tvar: had been + -ing.", "She was tired because she had been working all night."],
+    "Used to / would": ["Minulé zvyky a stavy, které už neplatí. Used to platí pro zvyky i stavy, would jen pro opakované děje (ne pro stavy jako be, have, live).", "I used to live in Brno. · Every summer we would go camping."],
+    "Going to": ["Záměr rozhodnutý předem a předpověď podle toho, co je vidět teď. Tvar: am/is/are going to + základní tvar.", "I'm going to start a new course in May. · Look at those clouds – it's going to rain."],
+    "Will": ["Rozhodnutí v okamžiku mluvení, nabídka, slib a předpověď podle názoru. Tvar: will + základní tvar.", "I'll help you with that. · I think she'll win."],
+    "Future continuous": ["Děj, který bude probíhat v určitém okamžiku v budoucnosti, nebo samozřejmě naplánovaný průběh. Tvar: will be + -ing.", "This time tomorrow I'll be flying to London."],
+    "Časová věta (present simple)": ["Po when, after, before, as soon as, until se o budoucnosti mluví v přítomném čase, ne s will. Will patří jen do hlavní věty.", "I'll call you when I get home. · We'll wait until she arrives."],
+    "Be about to": ["Děj, který nastane bezprostředně, „každou chvíli“. Tvar: am/is/are about to + základní tvar; v minulosti was/were about to.", "Hurry up, the train is about to leave. · I was about to call you."]
+  },
+  "conditionals": {
+    "0. kondicionál": ["Obecně platné pravdy a zákonitosti: if + přítomný čas, přítomný čas.", "If you heat ice, it melts."],
+    "1. kondicionál": ["Reálná podmínka v budoucnosti: if + přítomný čas, will + základní tvar. Po if se will nepoužívá.", "If it rains, we'll stay at home."],
+    "2. kondicionál": ["Nereálná nebo nepravděpodobná situace v přítomnosti či budoucnosti: if + minulý čas, would + základní tvar. U be se ve formálním stylu používá were i pro I/he/she.", "If I had more time, I would learn Spanish. · If I were you, I'd apologise."],
+    "3. kondicionál": ["Nereálná minulost – co se nestalo a jaké by to mělo následky: if + had + 3. tvar, would have + 3. tvar.", "If we had left earlier, we wouldn't have missed the train."],
+    "Smíšený kondicionál": ["Kombinace časů: minulá podmínka s přítomným následkem (if + had + 3. tvar, would + základní tvar), nebo trvalý stav s minulým následkem (if + minulý čas, would have + 3. tvar).", "If I had taken the job, I would live in Prague now. · If she were more careful, she wouldn't have crashed."],
+    "Unless": ["Unless = „pokud ne“, „ledaže“. Věta s unless je kladná, zápor je už ve spojce.", "You'll miss the bus unless you hurry. (= if you don't hurry)"],
+    "Wish + minulost": ["Lítost nebo přání, aby bylo něco jinak: o přítomnosti wish/if only + minulý čas, o minulosti wish/if only + had + 3. tvar. If only je emotivnější.", "I wish I knew the answer. · If only I hadn't said that."],
+    "As if + minulost": ["As if / as though + minulý čas = jako by (nereálné nebo nepravděpodobné v přítomnosti); + had + 3. tvar = jako by se to bylo stalo.", "He talks as if he knew everything. · She looked as though she had seen a ghost."],
+    "Inverze v podmínce": ["Formální podmínka bez if: Were + podmět + to/přídavné jméno (2. kondicionál), Had + podmět + 3. tvar (3. kondicionál), Should + podmět + základní tvar (1. kondicionál).", "Had I known, I would have helped. · Should you need anything, call me."]
+  },
+  "word-order": {
+    "Nepřímé otázky": ["Po úvodní frázi (Do you know…, Could you tell me…, I wonder…) má otázka slovosled oznamovací věty: podmět + sloveso, bez do/does/did. U zjišťovacích otázek se přidává if/whether.", "Do you know where the station is? · I wonder if she's coming."],
+    "Záporné otázky": ["Vyjadřují překvapení, výtku nebo očekávání souhlasu. Zápor se obvykle stahuje k pomocnému slovesu: Don't you…?, Isn't it…? Formálně: Do you not…?", "Don't you like coffee? · Isn't it a beautiful day?"],
+    "Tag questions": ["Krátká otázka na konci věty: kladná věta → záporný dovětek a naopak. Opakuje se pomocné sloveso, chybí-li, použije se do/does/did. Pozor: I am → aren't I?, Let's → shall we?", "She's French, isn't she? · You didn't call, did you? · Let's go, shall we?"],
+    "Inverze po záporných příslovcích": ["Po záporném nebo omezujícím výrazu na začátku věty (never, rarely, not only, no sooner, hardly, under no circumstances…) následuje pomocné sloveso před podmětem.", "Never have I seen such a mess. · Not only did he lie, but he also stole."]
+  },
+  "modals": {
+    "Schopnost (can/could/be able to)": ["Can = umím teď, could = uměl jsem obecně v minulosti. Pro jednorázový úspěch v minulosti a pro tvary, které can nemá (budoucnost, infinitiv, present perfect), se používá be able to.", "She can swim. · I could read at four. · After hours of trying, we were able to fix it."],
+    "Dovolení (can/may/could)": ["Can je běžné, could zdvořilejší, may formální. Na could v žádosti se odpovídá can, ne could.", "Can I open the window? · Could I ask you something? – Yes, of course you can. · May I come in?"],
+    "Povinnost a nutnost (must/have to/need to)": ["Must = povinnost podle mluvčího, have to = vnější povinnost (pravidla, okolnosti). Must nemá minulý čas – v minulosti had to. Need to = je to nutné.", "I must call my mum. · We have to wear a uniform. · Yesterday I had to work late."],
+    "Zákaz vs. absence nutnosti (mustn't vs. don't have to)": ["Mustn't = nesmíš (zákaz). Don't have to / needn't = nemusíš (není to nutné).", "You mustn't smoke here. · You don't have to come if you're busy."],
+    "Rada (should/ought to/had better)": ["Should a ought to = rada, doporučení. Had better (+ základní tvar, zápor had better not) = naléhavá rada s varováním před následky.", "You should see a doctor. · You'd better leave now or you'll miss the train."],
+    "Pravděpodobnost a dedukce v přítomnosti (must/might/can't be)": ["Must = jsem si jistý, že ano; can't = jsem si jistý, že ne; might/may/could = možná.", "She must be at home – the lights are on. · That can't be true. · He might be late."],
+    "Modály v minulosti (must have/might have/should have/needn't have)": ["Modální sloveso + have + 3. tvar: must have / can't have = dedukce o minulosti, might have = možná se stalo, should have = výčitka (mělo se, ale nestalo), needn't have = udělal jsi to zbytečně.", "He must have forgotten. · You should have told me. · You needn't have bought flowers."]
+  },
+  "passive": {
+    "Přítomný a minulý čas prostý": ["Trpný rod = be + 3. tvar; důležitý je děj, ne původce. Původce se připojuje přes by. Přítomný čas am/is/are, minulý was/were.", "English is spoken here. · The bridge was built in 1890 by a French company."],
+    "Present perfect, budoucí časy": ["Present perfect: has/have been + 3. tvar. Budoucnost: will be + 3. tvar, is going to be + 3. tvar.", "The report has been sent. · The results will be announced tomorrow."],
+    "S modálními slovesy": ["Modální sloveso + be + 3. tvar; o minulosti modální sloveso + have been + 3. tvar.", "The form must be signed. · It should have been checked earlier."],
+    "Have/get something done": ["Někdo pro nás něco udělá (služba): have/get + předmět + 3. tvar. Get je hovorovější. Stejně se vyjadřuje i něco nepříjemného, co se nám stalo.", "I had my hair cut yesterday. · We're getting the car repaired. · She had her bag stolen."]
+  },
+  "reported-speech": {
+    "Oznamovací věty": ["Po uvozovacím slovesu v minulém čase (said, told) se čas obvykle posouvá do minulosti a mění se zájmena i časové a místní výrazy. Say something (to somebody), ale tell somebody something.", "„I'm tired.“ → She said (that) she was tired. · He told me he was leaving."],
+    "Otázky v nepřímé řeči": ["Nepřímá otázka má slovosled oznamovací věty a bez do/does/did. Zjišťovací otázky uvozuje if/whether, doplňovací tázací slovo. Na konci není otazník.", "„Where do you live?“ → He asked me where I lived. · She asked if I was ready."],
+    "Rozkazy a žádosti": ["Tell/ask + osoba + to + základní tvar; zápor not to.", "„Close the door.“ → She told me to close the door. · He asked us not to be late."],
+    "Posun časů (backshift)": ["Přítomný čas → minulý, minulý a present perfect → past perfect, will → would, can → could, may → might, must → had to. Čas se nemusí posouvat, pokud výrok stále platí.", "„I will help.“ → He said he would help. · „I've finished.“ → She said she had finished."],
+    "Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)": ["Každé sloveso má svou vazbu: suggest + -ing nebo that…, advise/warn/remind + osoba + to…, deny/admit + -ing, apologise for + -ing, offer/refuse/promise + to…, accuse somebody of + -ing.", "She suggested going by train. · He denied taking the money. · They offered to help."]
+  },
+  "articles": {
+    "A/an vs. the": ["A/an = jeden z mnoha, zmiňuje se poprvé (a před souhláskou, an před samohláskou podle výslovnosti). The = konkrétní, už známé nebo jedinečné.", "I saw a dog. The dog was huge. · an hour, a university · the sun"],
+    "Nulový člen (vč. institucí: go to school/bed/work/prison)": ["Bez členu: obecně míněné množné číslo a nepočitatelná podstatná jména, jídla, sporty, jazyky a instituce v jejich hlavním účelu (go to school, be in hospital, go to bed). Jde-li o budovu jako místo, člen se použije.", "I love music. · She's in prison. · Her mother went to the prison to visit her."],
+    "Členy se zeměpisnými názvy": ["Bez členu: většina států, měst, kontinentů, jednotlivých hor a jezer. S the: řeky, moře, oceány, pohoří, skupiny ostrovů a státy s množným číslem nebo slovem republic/kingdom/states.", "France, Lake Geneva · the Thames, the Alps, the Czech Republic, the USA"],
+    "Obecná tvrzení (generalizace pomocí členů)": ["O věcech obecně mluvíme bez členu (množné číslo, nepočitatelná jména). The + jednotné číslo se používá u druhů zvířat, vynálezů a nástrojů, the + přídavné jméno u skupin lidí.", "Cats are independent. · The tiger is endangered. · The rich should pay more."]
+  },
+  "nouns": {
+    "Počitatelnost (vč. hromadných podstatných jmen: the police, the team)": ["Nepočitatelná podstatná jména (advice, information, news, furniture…) nemají množné číslo ani a/an; počítají se přes a piece of. The police má vždy sloveso v množném čísle, team/family/government mohou mít jednotné i množné.", "Can you give me some advice? · The police are investigating."],
+    "Množné číslo, nepravidelné tvary": ["Obvykle -s/-es, souhláska + y → -ies. Nepravidelné: man–men, woman–women, child–children, foot–feet, tooth–teeth, mouse–mice, person–people; některá jména se nemění (sheep, fish, series).", "two boxes, three cities, many children, five sheep"],
+    "Some/any/no": ["Some v kladných větách a v nabídkách a žádostech, any v záporech a otázkách (a v kladných větách ve významu „jakýkoli“). No = žádný; sloveso je pak kladné.", "Would you like some tea? · I don't have any money. · There's no milk left."],
+    "Much/many/a lot of": ["Many s počitatelnými, much s nepočitatelnými – hlavně v záporech a otázkách. A lot of / lots of se hodí do kladných vět s oběma.", "How many books? · I don't have much time. · She has a lot of friends."],
+    "(A) few / (a) little": ["Few (počitatelná) a little (nepočitatelná) = málo, nedostatek. A few / a little = trochu, několik, což stačí.", "Few people came, so it was quiet. · I have a little money – let's get a coffee."],
+    "All/both/each/every/either/neither/none": ["Both = oba, either = jeden nebo druhý, neither = ani jeden (ze dvou). Each = každý jednotlivě, every = každý bez výjimky (3 a více), all = všichni, none = žádný. Every a each mají sloveso v jednotném čísle.", "Both answers are correct. · Neither option is ideal. · Every student has a laptop."],
+    "Přivlastňovací 's vs. of": ["'s u osob a zvířat (v množném čísle na -s jen apostrof), of u věcí a abstraktních pojmů. 's také u časových údajů.", "my sister's car, my parents' house · the end of the film · today's news"]
+  },
+  "pronouns": {
+    "Osobní a přivlastňovací": ["Podmět I/he/she…, předmět me/him/her… Přivlastňovací přídavné jméno stojí před podstatným jménem (my, your, its), samostatné zájmeno ho nahrazuje (mine, yours, hers). Its bez apostrofu, it's = it is.", "This is my bike. The bike is mine. · The company changed its name."],
+    "Zvratná a vzájemná zájmena (myself.../each other, one another)": ["Myself, yourself… když podmět a předmět jsou stejná osoba nebo pro zdůraznění (sám). Each other / one another = navzájem.", "She hurt herself. · I did it myself. · They love each other."],
+    "Neurčitá (someone, anything...)": ["Some- v kladných větách, any- v záporech a otázkách, no- se záporným významem a kladným slovesem, every- = všichni/všechno. Sloveso je v jednotném čísle.", "Someone is at the door. · I didn't see anything. · Nobody knows."],
+    "Ukazovací (this/that/these/those)": ["This/these = blízko (místem či časem), that/those = daleko nebo už uplynulé. These/those pro množné číslo.", "This coffee is great. · Look at those mountains. · That was a great party."],
+    "One/ones": ["One (jednotné č.) / ones (množné č.) nahrazuje počitatelné podstatné jméno, aby se neopakovalo. U nepočitatelných se nepoužívá.", "I don't like the red shirt, I prefer the blue one. · These shoes are nicer than the old ones."],
+    "There is vs. it is": ["There is/are = něco existuje, je někde (poprvé zmíněné). It is = odkazuje na už zmíněnou věc nebo popisuje počasí, čas, vzdálenost.", "There's a café near here. It's very good. · It's cold today."]
+  },
+  "clauses": {
+    "Určující vztažné věty (defining relative clauses)": ["Určují, o kom/čem je řeč; bez čárek. Who pro osoby, which pro věci, that pro obojí, whose = jehož, where = kde. Je-li zájmeno předmětem, lze ho vynechat.", "The woman who lives next door is a doctor. · The book (that) I bought is great."],
+    "Neurčující vztažné věty (non-defining relative clauses)": ["Přidávají doplňující informaci; oddělují se čárkami. Nelze použít that ani zájmeno vynechat. Which může odkazovat i na celou předchozí větu.", "My brother, who lives in Oslo, is visiting. · He failed the test, which surprised everyone."],
+    "Zkrácené vztažné věty (redukce vztažné věty pomocí příčestí/infinitivu)": ["Vztažnou větu lze zkrátit: činný význam → -ing, trpný → 3. tvar, po first/last/only a superlativu → to + infinitiv.", "The man sitting by the window is my boss. · The car stolen last night was found. · She was the first to arrive."],
+    "Podmětné, předmětné věty": ["Celá vedlejší věta může být podmětem nebo předmětem: what = to, co; that = že; whether/if = zda. Sloveso po podmětné větě je v jednotném čísle.", "What she said surprised me. · I don't know whether he'll come. · That he lied is obvious."],
+    "Participle clauses": ["Příčestí nahrazuje vedlejší větu se stejným podmětem: -ing = současný děj nebo příčina, having + 3. tvar = děj proběhl dřív, 3. tvar = trpný význam.", "Feeling tired, I went to bed. · Having finished the report, she left. · Built in 1900, the house needs repairs."]
+  },
+  "infinitive-gerund": {
+    "Sloveso + to infinitiv": ["Po slovesech jako want, decide, hope, plan, promise, agree, refuse, manage, afford, seem, expect, learn následuje to + základní tvar.", "We decided to stay. · She managed to finish on time."],
+    "Sloveso + -ing": ["Po slovesech jako enjoy, avoid, mind, finish, suggest, consider, admit, deny, keep, miss, practise, can't stand následuje tvar -ing.", "I enjoy cooking. · Would you mind waiting?"],
+    "Rozdíly ve významu (remember, stop, try...)": ["Remember/forget + -ing = vzpomínka na minulost, + to = nezapomenout něco udělat. Stop + -ing = přestat, + to = zastavit se kvůli něčemu. Try + -ing = zkusit jako experiment, + to = snažit se. Regret + to = s lítostí oznámit, + -ing = litovat minulosti.", "I remember locking the door. · Remember to lock the door. · He stopped to rest."],
+    "Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)": ["Want/tell/ask/allow/expect/advise + osoba + to + základní tvar. Make a let + osoba + holý infinitiv (bez to); v trpném rodě be made to.", "She wants me to help. · My parents let me stay out late. · He made us wait."],
+    "Předložka + -ing": ["Po předložce vždy -ing, i když je to „to“ jako předložka: look forward to, be used to, object to, in addition to.", "She's good at drawing. · I'm looking forward to seeing you. · Thanks for helping."],
+    "Perfektní infinitiv (seem to have done)": ["To have + 3. tvar vyjadřuje děj, který proběhl před dějem hlavního slovesa (seem, appear, be said, be believed…).", "He seems to have left already. · She is said to have been a great dancer."]
+  },
+  "adjectives-adverbs": {
+    "Stupňování (vč. stupňovatelných vs. absolutních přídavných jmen: very tired / absolutely exhausted)": ["Krátká přídavná jména -er/-est, dlouhá more/most; nepravidelná good–better–best, bad–worse–worst, far–further. Very se pojí se stupňovatelnými (very cold), absolutely s absolutními (absolutely freezing).", "This is the best day ever. · It's much more expensive than I thought. · I'm absolutely exhausted."],
+    "Pořadí přídavných jmen": ["Názor – velikost – stáří – tvar – barva – původ – materiál – účel + podstatné jméno.", "a lovely small old round wooden table · a beautiful red Italian sports car"],
+    "Tvorba a pozice příslovcí": ["Příslovce způsobu se tvoří přidáním -ly (quick → quickly, happy → happily); good → well, fast a hard se nemění (hardly = sotva). Příslovce frekvence stojí před plnovýznamovým slovesem, ale za be.", "She speaks English fluently. · He always arrives late. · She is never late."],
+    "Too/enough": ["Too + přídavné jméno = příliš (víc, než je potřeba). Enough stojí za přídavným jménem, ale před podstatným jménem. Často následuje (for somebody) to + infinitiv.", "It's too hot to sleep. · He isn't old enough to drive. · We don't have enough time."],
+    "So/such": ["So + přídavné jméno/příslovce, such (a) + (přídavné jméno +) podstatné jméno. Následek se připojuje přes that.", "It was so cold that we stayed in. · It was such a cold day that we stayed in."],
+    "As...as / the more..., the more...": ["As + přídavné jméno + as = stejně jako; not as/so … as = ne tak jako. The + 2. stupeň…, the + 2. stupeň… = čím…, tím….", "She's as tall as her brother. · The more you practise, the better you get."],
+    "Přídavná jména na -ed/-ing (bored/boring)": ["-ed popisuje, jak se někdo cítí; -ing popisuje věc nebo osobu, která ten pocit vyvolává.", "I'm bored. The film is boring. · She was surprised by the surprising news."]
+  },
+  "prepositions": {
+    "Místa a času": ["Čas: at + hodina a svátek (at 5, at Christmas), on + den a datum, in + měsíc, rok, roční období a části dne. Místo: at = bod, in = uvnitř, on = na povrchu.", "on Monday, in July, at night · at the bus stop, in the room, on the table"],
+    "Vazby se slovesy": ["Mnoho sloves má pevnou předložku, kterou se vyplatí učit se spolu se slovesem: depend on, listen to, wait for, belong to, consist of, apply for, rely on.", "It depends on the weather. · She applied for the job."],
+    "Vazby s přídavnými jmény": ["Pevné vazby: good at, interested in, afraid of, responsible for, proud of, keen on, aware of, different from.", "He's interested in history. · She's afraid of spiders."],
+    "Vazby s podstatnými jmény (reason for, increase in)": ["Pevné vazby: reason for, increase/decrease in, demand for, solution to, effect on, advantage of, relationship with.", "There's been an increase in prices. · What's the reason for the delay?"],
+    "Předložka na konci věty": ["V otázkách, vztažných větách a v trpném rodě zůstává předložka u slovesa, na konci věty. Formálně lze dát předložku před whom/which.", "Who are you talking to? · This is the house I grew up in. · formálně: the person to whom I spoke"]
+  },
+  "phrasal-verbs": {
+    "Základní sada": ["Sloveso + částice mění význam: get up, turn on/off, look for, give up, find out, put on, take off, come back. Význam se učí jako celek.", "I gave up smoking. · Can you turn off the light?"],
+    "Rozšířená sada": ["Pokročilejší frázová slovesa s přeneseným významem: carry out, come up with, put up with, run out of, bring up, turn down, look into, set up.", "We ran out of milk. · She came up with a great idea."],
+    "Dělitelná vs. nedělitelná frázová slovesa (turn it off / look after it)": ["U dělitelných sloves může předmět stát mezi slovesem a částicí, zájmeno tam stát musí (turn it off, ne turn off it). U nedělitelných stojí předmět vždy až za částicí (look after it).", "Turn the TV off. / Turn it off. · She looks after her brother. / She looks after him."]
+  },
+  "conjunctions": {
+    "Although, despite, in spite of": ["Although/though + věta s podmětem a slovesem. Despite / in spite of + podstatné jméno nebo -ing (despite the fact that + věta).", "Although it was raining, we went out. · Despite the rain, we went out."],
+    "Because, since, as (důvod)": ["Because uvádí hlavní, novou informaci o důvodu. Since a as uvádějí důvod známý nebo zřejmý, často na začátku věty. Because of + podstatné jméno.", "I stayed home because I was ill. · As it's late, let's stop here."],
+    "So that, in order to (účel)": ["In order to / to + základní tvar, když je podmět stejný. So that + věta (často s can/could/would), hlavně když je podmět jiný.", "She left early in order to catch the train. · I'll speak slowly so that everyone can understand."],
+    "Diskurzní markery (however, moreover...)": ["Spojují věty a odstavce: however = avšak (kontrast), moreover/furthermore = navíc, therefore = proto, nevertheless = přesto. Obvykle stojí na začátku věty a za nimi je čárka.", "The plan is risky. However, it could work. · It's cheap. Moreover, it's fast."],
+    "Whereas/while": ["Whereas a while vyjadřují kontrast mezi dvěma fakty: „kdežto“, „zatímco“.", "My sister loves sport, whereas I prefer reading."],
+    "However vs. although": ["Although spojuje dvě věty v jedno souvětí. However je příslovce – začíná novou větu nebo stojí za středníkem a odděluje se čárkou.", "Although he tried, he failed. · He tried. However, he failed."],
+    "Both...and / either...or / neither...nor": ["Both … and = jak…, tak…; either … or = buď…, nebo…; neither … nor = ani…, ani… (sloveso je kladné).", "Both Tom and Anna came. · You can either stay or go. · Neither he nor she knew."],
+    "Even though vs. even if": ["Even though = přestože (je to skutečnost). Even if = i kdyby (hypotéza, nevíme, nebo to není pravda).", "Even though it was late, we kept working. · I'll go even if it rains."]
+  }
 };
 
 // Pomocná zkratka pro čitelnější zápis položek
@@ -22515,6 +22649,7 @@ const I18N = {
     placementPlan: function(list){ return "Tvůj plán – jevy, které ti v testu nevyšly: " + list + ". Najdeš ho na Domů."; },
     placementNoPlan: "V testu ti všechno vyšlo – vyber si v Tématech, co tě zajímá.",
     labelPlan: "Tvůj plán z testu", planBtn: "Procvičit plán",
+    cheatTitle: "Tahák k tématu",
     mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
@@ -22578,6 +22713,7 @@ const I18N = {
     placementPlan: function(list){ return "Your plan – the points you got wrong: " + list + ". You'll find it on Home."; },
     placementNoPlan: "No mistakes in the test – pick whatever interests you in Topics.",
     labelPlan: "Your plan from the test", planBtn: "Practise my plan",
+    cheatTitle: "Cheat sheet (in Czech)",
     mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
@@ -22757,6 +22893,7 @@ document.querySelectorAll(".lang-switch button").forEach(function(btn){
 
 let selectedTags = {};     // { topicId: Set<tag> } — jen podtémata s aspoň jedním zaškrtnutým tagem počítají jako "vybraný topic"
 let expandedTopics = {};   // { topicId: bool } — čistě UI stav accordionu
+let openCheats = {};       // { topicId: bool } — rozbalený tahák v accordionu
 let selectedDifficulty = state.placement ? state.placement.difficulty : "basic";
 let selectedCount = 10;
 
@@ -22843,6 +22980,19 @@ function renderTopicGrid(){
       });
       body.appendChild(sr);
     });
+
+    // Tahák: stručná pravidla k podtématům, schovaná pod rozkliknutím.
+    if(CHEATSHEET[t.id]){
+      const cheat = document.createElement("details");
+      cheat.className = "fold cheat";
+      cheat.open = !!openCheats[t.id];
+      cheat.innerHTML = '<summary>' + escapeHtml(tx("cheatTitle")) + '</summary>' + tags.filter(function(tag){ return CHEATSHEET[t.id][tag]; }).map(function(tag){
+        const c = CHEATSHEET[t.id][tag];
+        return '<div class="cheat-item"><b>' + escapeHtml(tagLabel(tag)) + '</b><p>' + escapeHtml(c[0]) + '</p><p class="cheat-ex">' + escapeHtml(c[1]) + '</p></div>';
+      }).join("");
+      cheat.querySelector("summary").addEventListener("click", function(){ openCheats[t.id] = !cheat.open; });
+      body.appendChild(cheat);
+    }
 
     card.appendChild(row);
     card.appendChild(body);
