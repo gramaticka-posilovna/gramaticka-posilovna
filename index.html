@@ -907,6 +907,20 @@
   @keyframes plate-fall{ to{ transform: translateY(115vh) rotate(540deg); } }
   .streak-plate.spin{ animation: plate-spin 1s cubic-bezier(.2,.8,.3,1); }
   @keyframes plate-spin{ to{ transform: rotate(1080deg); } }
+  /* ---------- Kotoučík (docs/navrhy-vzhledu-23.html): občas vykoukne z jiného místa ---------- */
+  .kt{ position: fixed; width: 120px; height: 120px; z-index: 110; pointer-events: none;
+    transition: transform .45s cubic-bezier(.2,.9,.3,1.15); }
+  .kt svg{ width: 100%; height: 100%; overflow: visible; }
+  .kt.behind{ z-index: 1; }
+  .kt.roll{ transition-duration: .9s; transition-timing-function: cubic-bezier(.3,.7,.3,1); }
+  .kt.hop{ transition: none; animation: kt-hop 1.1s cubic-bezier(.3,.7,.4,1) forwards; }
+  @keyframes kt-hop{ 0%{ transform: translateY(150px); } 45%{ transform: translateY(-30px); } 70%{ transform: translateY(6px); } 100%{ transform: translateY(0); } }
+  .kt-bubble{ position: fixed; z-index: 111; pointer-events: none; background: var(--ink); color: var(--surface); font-size: 14px; font-weight: 700;
+    padding: 9px 13px; border-radius: 16px; max-width: 220px; box-shadow: 0 8px 18px rgba(0,0,0,.2); opacity: 0; transition: opacity .25s ease; }
+  .kt-bubble.in{ opacity: 1; }
+  #quiz-card{ position: relative; z-index: 2; }
+  .kt-body{ fill: url(#kt-body); }
+  [data-theme="dark"] .kt-body{ fill: url(#kt-body-d); }
   .challenge-result{ font-size: 15px; line-height: 1.5; margin: 0 0 14px; }
   .share-link{ display:block; margin:14px auto 0; background:none; border:none; cursor:pointer; font: inherit; font-weight:700; color: var(--primary); padding: 10px; }
 
@@ -981,6 +995,18 @@
 </style>
 </head>
 <body>
+<!-- Přechody pro 3D Kotoučíka -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="kt-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <radialGradient id="kt-body-d" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#7A838F"/><stop offset=".45" stop-color="#4E5662"/><stop offset="1" stop-color="#2A3038"/></radialGradient>
+    <linearGradient id="kt-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="kt-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#D6DADF"/></linearGradient>
+    <radialGradient id="kt-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="kt-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="kt-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+  </defs>
+</svg>
 
 <div class="topbar">
   <div class="topbar-inner">
@@ -1169,6 +1195,13 @@
         <div class="nav-links lang-switch">
           <button data-lang="cs" class="active">CZ</button>
           <button data-lang="en">EN</button>
+        </div>
+      </div>
+      <div class="srow">
+        <span data-i18n="setMascot">Kotoučík</span>
+        <div class="nav-links" id="mascot-switch">
+          <button data-mascot="on" data-i18n="mascotOn">Zapnutý</button>
+          <button data-mascot="off" data-i18n="mascotOff">Vypnutý</button>
         </div>
       </div>
       <div class="srow">
@@ -22969,6 +23002,13 @@ const I18N = {
     navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok", navSettings: "Nastavení",
     setLang: "Jazyk aplikace", setGoal: "Denní cíl (odpovědí)", setTestBtn: "Spustit ›",
     setTheme: "Vzhled", themeAuto: "Auto", themeLight: "Světlý", themeDark: "Tmavý",
+    setMascot: "Kotoučík", mascotOn: "Zapnutý", mascotOff: "Vypnutý",
+    ktLines: {
+      happy: ["Lehce a s přehledem.", "Formu držíš.", "Hezky, jedeme dál.", "Tak se to dělá."],
+      combo: ["Jsi v ráži!", "Kdo tě zastaví?", "Posilovna hlásí rekord."],
+      cheer: ["I mistři začínali s lehčí váhou.", "Chyba je taky opakování.", "Tohle si ještě dáme.", "Teď víš, kde přidat.", "Tohle zařadíme do opakování."],
+      rest: ["Na dnešek máš odcvičeno.", "Dnes se makalo. Zítra zas.", "Hotovo. Zasloužený odpočinek."]
+    },
     freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
     placementTitle: "Rozřazovací test", placementNote: "5–20 otázek · zjistí, kde začít",
     levelTag: function(l){ return "Úroveň " + l; }, dontKnow: "Nevím",
@@ -23067,6 +23107,13 @@ const I18N = {
     navHome: "Home", navTopics: "Topics", navProgress: "Progress", navSettings: "Settings",
     setLang: "App language", setGoal: "Daily goal (answers)", setTestBtn: "Start ›",
     setTheme: "Appearance", themeAuto: "Auto", themeLight: "Light", themeDark: "Dark",
+    setMascot: "Plate buddy", mascotOn: "On", mascotOff: "Off",
+    ktLines: {
+      happy: ["Smooth and steady.", "You're in shape.", "Nice, keep going.", "That's how it's done."],
+      combo: ["You're on fire!", "Who can stop you?", "New gym record!"],
+      cheer: ["Even champions started with lighter weights.", "A mistake is a rep too.", "We'll do this one again.", "Now you know where to add weight.", "This one goes into your review."],
+      rest: ["Today's workout is done.", "Good work today. Same again tomorrow.", "Done. Well-earned rest."]
+    },
     freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
     placementTitle: "Placement test", placementNote: "5–20 questions · finds where to start",
     levelTag: function(l){ return "Level " + l; }, dontKnow: "I don't know",
@@ -23622,6 +23669,24 @@ themeSwitch.addEventListener("click", function(e){
   renderThemeSwitch();
 });
 renderThemeSwitch();
+// Kotoučík zapnutý / vypnutý (logika maskota je u vyhodnocení odpovědi)
+const MASCOT_KEY = "grammarLabMascotV1";
+let mascotOn = true;
+try{ mascotOn = window.localStorage.getItem(MASCOT_KEY) !== "off"; }catch(e){}
+const mascotSwitch = document.getElementById("mascot-switch");
+function renderMascotSwitch(){
+  mascotSwitch.querySelectorAll("button").forEach(function(btn){
+    btn.classList.toggle("active", (btn.getAttribute("data-mascot") === "on") === mascotOn);
+  });
+}
+mascotSwitch.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  mascotOn = btn.getAttribute("data-mascot") === "on";
+  try{ window.localStorage.setItem(MASCOT_KEY, mascotOn ? "on" : "off"); }catch(e){}
+  renderMascotSwitch();
+});
+renderMascotSwitch();
 document.getElementById("settings-test").addEventListener("click", function(){ startPlacement(); });
 
 /* re-render start label when count changes */
@@ -23970,6 +24035,102 @@ function handleChoiceClick(selectedIdx){
 // Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
 const REPORT_EMAIL = "";
 
+/* Kotoučík: maskot, který občas vykoukne pokaždé odjinud (docs/navrhy-vzhledu-23.html).
+   Nepředvídatelně (asi 1× z 10 správných, výjimečně po chybě), jistě při Combo ×5/×10
+   a po splnění denního cíle; nejvýš 2× za kolo; nikdy v rozřazovacím testu. */
+let mascotRound = null, mascotCount = 0, mascotLastSpot = "", mascotLastLine = "";
+
+function kotoucikSVG(mood){
+  const eye = function(x, y){
+    if(mood === "combo") return '<path d="M' + x + ' ' + (y - 9) + ' l2.6 6 6.4 .6 -4.9 4.2 1.5 6.3 -5.6 -3.4 -5.6 3.4 1.5 -6.3 -4.9 -4.2 6.4 -.6z" fill="url(#kt-gold)"/>';
+    if(mood === "rest") return '<path d="M' + (x - 7) + ' ' + (y + 2) + ' q7 -10 14 0" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>';
+    return '<ellipse cx="' + x + '" cy="' + (y + 1.5) + '" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="' + x + '" cy="' + y + '" rx="8.5" ry="9.5" fill="url(#kt-eye)"/>' +
+      '<circle cx="' + (x + 1.5) + '" cy="' + (y + 1.8) + '" r="4.6" fill="#1B2A41"/><circle cx="' + (x + 3.2) + '" cy="' + (y - 1.2) + '" r="1.8" fill="#fff"/>';
+  };
+  const arm = function(d){ return '<path d="' + d + '" stroke="#16191E" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="' + d + '" stroke="#3A414B" stroke-width="7" fill="none" stroke-linecap="round"/>'; };
+  const hand = function(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="8" fill="url(#kt-hand)"/><circle cx="' + (x - 2.5) + '" cy="' + (y - 2.5) + '" r="2.2" fill="rgba(255,255,255,.35)"/>'; };
+  let arms;
+  if(mood === "grip") arms = arm("M24 84 q-6 10 -2 18") + hand(22, 104) + arm("M100 84 q6 10 2 18") + hand(102, 104);
+  else if(mood === "combo" || mood === "rest") arms = arm("M20 66 q-12 -10 -6 -30") + hand(14, 34) + arm("M104 66 q12 -10 6 -30") + hand(110, 34);
+  else if(mood === "cheer") arms = arm("M20 74 q-8 8 -4 18") + hand(16, 93) + arm("M104 70 q14 0 14 -14") + '<rect x="110" y="34" width="9" height="16" rx="4.5" fill="#3A414B"/>' + hand(114.5, 52);
+  else arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  const brows = mood === "cheer" ? '<path d="M40 33 L54 29 M70 29 L84 33" stroke="#E7EDF4" stroke-width="3" stroke-linecap="round" opacity=".8"/>'
+    : '<path d="M40 31 L54 30 M70 30 L84 31" stroke="#E7EDF4" stroke-width="3" stroke-linecap="round" opacity=".8"/>';
+  const mouth = mood === "combo" ? '<path d="M50 78 q12 16 24 0 z" fill="url(#kt-gold)"/>'
+    : '<path d="M50 78 q12 13 24 0" stroke="url(#kt-gold)" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
+  return '<svg viewBox="-8 -4 140 140">' + arms +
+    '<circle cx="62" cy="62" r="47" fill="url(#kt-rim)"/><circle class="kt-body" cx="62" cy="62" r="42.5"/>' +
+    '<circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="url(#kt-silver)" stroke-width="2.6"/>' +
+    '<path d="M28 40 a40 40 0 0 1 26 -20" stroke="rgba(255,255,255,.28)" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="62" cy="63" r="4.2" fill="#0E1014" stroke="url(#kt-silver)" stroke-width="1.2"/>' +
+    eye(47, 44) + eye(77, 44) + (mood === "combo" || mood === "rest" ? "" : brows) + mouth + '</svg>';
+}
+
+// Místa: kde Kotoučík stojí (pos), odkud přijede (out), jak vypadá vykouknutý (inn) a kde je bublina.
+const KT_TOP = "env(safe-area-inset-top, 0px)";
+const MASCOT_SPOTS = {
+  right:  { pos: "right:-22px;bottom:150px", out: "translateX(150px)", inn: "rotate(-14deg)", bubble: "right:96px;bottom:250px" },
+  left:   { pos: "left:-22px;bottom:230px", out: "translateX(-150px) scaleX(-1)", inn: "scaleX(-1) rotate(-14deg)", bubble: "left:96px;bottom:330px" },
+  bottom: { pos: "left:calc(50% - 60px);bottom:-26px", out: "translateY(150px)", inn: "none", bubble: "left:calc(50% - 90px);bottom:110px", mood: "grip" },
+  top:    { pos: "right:8px;top:calc(" + KT_TOP + " - 52px)", out: "translateY(-180px) rotate(180deg)", inn: "rotate(180deg)", bubble: "right:124px;top:calc(" + KT_TOP + " + 16px)", comboOnly: true },
+  card:   { card: true, mood: "grip" },
+  roll:   { pos: "left:-130px;bottom:120px", out: "translateX(0) rotate(0)", inn: "translateX(calc(50vw + 70px)) rotate(720deg)", bubble: "left:calc(50vw - 75px);bottom:250px", cls: "roll", motion: true },
+  corner: { pos: "left:-34px;top:calc(" + KT_TOP + " + 70px)", out: "translate(-150px,-150px) rotate(135deg)", inn: "rotate(135deg)", bubble: "left:92px;top:calc(" + KT_TOP + " + 150px)" },
+  hop:    { pos: "left:22px;bottom:-34px", out: "translateY(150px)", inn: "none", bubble: "left:30px;bottom:110px", cls: "hop", mood: "grip", motion: true }
+};
+
+function mascotAfterAnswer(allCorrect){
+  if(!mascotOn || roundMode === "placement") return;
+  if(mascotRound !== roundQuestions){ mascotRound = roundQuestions; mascotCount = 0; }
+  let n = 0;
+  for(let i = roundResults.length - 1; i >= 0 && roundResults[i].allCorrect; i--) n++;
+  if(allCorrect && (n === 5 || n === 10)){ showMascot("combo", true); return; }
+  if(mascotCount >= 2) return;
+  if(allCorrect ? Math.random() < 0.1 : Math.random() < 1 / 6) showMascot(allCorrect ? "happy" : "cheer");
+}
+
+function showMascot(mood, always){
+  if(!mascotOn || document.querySelector(".kt")) return;
+  if(!always) mascotCount++;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const quizCard = document.getElementById("quiz-card");
+  const cardTop = document.getElementById("view-quiz").classList.contains("active") ? quizCard.getBoundingClientRect().top : -1;
+  const keys = Object.keys(MASCOT_SPOTS).filter(function(k){
+    const sp = MASCOT_SPOTS[k];
+    return k !== mascotLastSpot && !(sp.comboOnly && mood !== "combo") && !(sp.motion && reduced) && !(sp.card && cardTop < 80);
+  });
+  const key = keys[Math.floor(Math.random() * keys.length)];
+  mascotLastSpot = key;
+  let sp = MASCOT_SPOTS[key];
+  if(sp.card){ // zpoza horního okraje karty s otázkou
+    sp = { pos: "right:36px;top:" + (cardTop - 62) + "px", out: "translateY(70px)", inn: "none", bubble: "right:150px;top:" + (cardTop - 54) + "px", cls: "behind", mood: "grip" };
+  }
+  const lines = tx("ktLines")[mood].filter(function(l){ return l !== mascotLastLine; });
+  const line = lines[Math.floor(Math.random() * lines.length)];
+  mascotLastLine = line;
+
+  const el = document.createElement("div");
+  el.className = "kt" + (sp.cls ? " " + sp.cls : "");
+  el.style.cssText = sp.pos + ";transform:" + sp.out;
+  el.innerHTML = kotoucikSVG(sp.mood && mood !== "combo" && mood !== "rest" ? sp.mood : mood);
+  const bubble = document.createElement("div");
+  bubble.className = "kt-bubble";
+  bubble.style.cssText = sp.bubble;
+  bubble.textContent = line;
+  document.body.appendChild(el);
+  document.body.appendChild(bubble);
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    el.style.transform = sp.inn;
+    setTimeout(function(){ bubble.classList.add("in"); }, sp.cls === "roll" || sp.cls === "hop" ? 800 : 350);
+  }); });
+  setTimeout(function(){
+    bubble.classList.remove("in");
+    el.classList.remove("hop");
+    el.style.transform = sp.out;
+    setTimeout(function(){ el.remove(); bubble.remove(); }, 950);
+  }, 3200);
+}
+
 // Combo: aspoň 3 správné odpovědi za sebou v kole (ne v rozřazovacím testu); každá pětka „poskočí“.
 function comboPill(){
   if(roundMode === "placement") return "";
@@ -24001,6 +24162,7 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
   }
   fb += '</div>';
   slot.innerHTML = fb;
+  mascotAfterAnswer(allCorrect);
 
   const dontKnowBtn = document.getElementById("dontknow-btn");
   if(dontKnowBtn) dontKnowBtn.style.display = "none";
@@ -24060,7 +24222,10 @@ function finishRound(){
   const today = dayKey(new Date());
   const goalBefore = state.days[today] || 0;
   state.days[today] = goalBefore + roundResults.length;
-  if(goalBefore < dailyGoal && state.days[today] >= dailyGoal) setTimeout(dropPlates, 400);
+  if(goalBefore < dailyGoal && state.days[today] >= dailyGoal){
+    setTimeout(dropPlates, 400);
+    setTimeout(function(){ showMascot("rest", true); }, 1200);
+  }
   if(roundMode === "placement"){
     state.placement = placementResult();
     selectedDifficulty = state.placement.difficulty;
