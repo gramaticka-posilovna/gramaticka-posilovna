@@ -163,7 +163,6 @@
   .nav-links button:hover:not(.active){
     color: var(--ink);
   }
-  .topbar-right{ display:flex; align-items:center; gap: 8px; }
   .lang-switch button{ padding: 8px 10px; font-size: 12.5px; font-weight: 700; }
   @media (max-width: 480px){
     .topbar{ padding: 14px 16px; }
@@ -458,6 +457,18 @@
   .home-tile small{ display:block; font-weight:500; font-size:12px; color: var(--ink-soft); margin-top:2px; }
   .home-tile:disabled{ opacity:.55; cursor:default; }
   .home-cta small{ display:block; font-weight:500; font-size:12.5px; opacity:.85; margin-top:2px; }
+  .home-test{ width:100%; margin-top:12px; }
+  .wp.free{ display:grid; place-items:center; font-size:18px; color:#fff;
+    background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 70%, #5B7FB3 71%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 5px 10px rgba(63,98,153,0.3); }
+  .week-note{ font-size:12.5px; color:var(--ink-soft); margin:6px 0 0; }
+
+  /* ---------- Nastavení ---------- */
+  .srow{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-weight:600; }
+  .srow:last-child{ border-bottom:none; }
+  .srow-btn{ background:none; border:none; cursor:pointer; font: inherit; font-weight:700; color:var(--primary); padding:4px 0; }
+
+  .report-link{ display:inline-block; margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
 
   /* ---------- Potvrzovací modál (náhrada za nativní confirm()) ---------- */
   .modal-overlay{
@@ -827,12 +838,6 @@
       <div class="brand-mark">G</div>
       <div class="brand-name" data-i18n="brand">Gramatická posilovna</div>
     </div>
-    <div class="topbar-right">
-      <div class="nav-links lang-switch">
-        <button data-lang="cs" class="active">CZ</button>
-        <button data-lang="en">EN</button>
-      </div>
-    </div>
   </div>
 </div>
 <div class="airmail-stripe"></div>
@@ -864,6 +869,7 @@
     <div class="card">
       <p class="card-label" data-i18n="labelWeek">Tento týden</p>
       <div class="week-plates" id="home-week"></div>
+      <p class="week-note" data-i18n="freezeNote"></p>
     </div>
 
     <div class="home-tiles" id="home-tiles">
@@ -872,6 +878,7 @@
     </div>
 
     <button class="btn-primary home-cta" id="home-cta"></button>
+    <button class="btn-secondary home-cta home-test" id="home-test"></button>
   </div>
 
   <!-- ===================== SETUP VIEW ===================== -->
@@ -985,8 +992,34 @@
     <div class="card">
       <p class="card-label" data-i18n="labelHistory">Historie kol</p>
       <div id="history-list"></div>
-      <button class="reset-link" id="reset-progress" data-i18n="resetProgress">Smazat veškerý pokrok</button>
     </div>
+  </div>
+
+  <!-- ===================== SETTINGS VIEW ===================== -->
+  <div class="view" id="view-settings">
+    <div class="intro">
+      <h1 data-i18n="navSettings">Nastavení</h1>
+    </div>
+
+    <div class="card">
+      <div class="srow">
+        <span data-i18n="setLang">Jazyk aplikace</span>
+        <div class="nav-links lang-switch">
+          <button data-lang="cs" class="active">CZ</button>
+          <button data-lang="en">EN</button>
+        </div>
+      </div>
+      <div class="srow">
+        <span data-i18n="setGoal">Denní cíl (odpovědí)</span>
+        <div class="nav-links" id="goal-switch"></div>
+      </div>
+      <div class="srow">
+        <span data-i18n="placementTitle">Rozřazovací test</span>
+        <button class="srow-btn" id="settings-test" data-i18n="setTestBtn">Spustit ›</button>
+      </div>
+    </div>
+
+    <button class="reset-link" id="reset-progress" data-i18n="resetProgress">Smazat veškerý pokrok</button>
   </div>
 
 </div>
@@ -1003,6 +1036,10 @@
   <button class="tab" data-tab="progress">
     <svg viewBox="0 0 24 24" fill="none"><path d="M5 20V13M12 20V6M19 20V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     <span data-i18n="navProgress">Pokrok</span>
+  </button>
+  <button class="tab" data-tab="settings">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/><path d="M12 2.8V5.2M12 18.8V21.2M2.8 12H5.2M18.8 12H21.2M5.5 5.5L7.2 7.2M16.8 16.8L18.5 18.5M5.5 18.5L7.2 16.8M16.8 7.2L18.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="navSettings">Nastavení</span>
   </button>
 </nav>
 
@@ -22132,7 +22169,8 @@ function defaultState(){
     questionStats: {},   // id -> { cooldown, streak, seen, correct }
     tagStats: {},        // tag -> { seen, correct }  (počítáno po jednotlivých blancích)
     rounds: [],          // [{ date, topics, difficulty, totalParts, correctParts, byTag: {tag:{seen,correct}} }]
-    days: {}             // "YYYY-MM-DD" (místní datum) -> počet otázek zodpovězených v dokončených kolech
+    days: {},            // "YYYY-MM-DD" (místní datum) -> počet otázek zodpovězených v dokončených kolech
+    placement: null      // obtížnost doporučená rozřazovacím testem (id z DIFFICULTIES)
   };
 }
 
@@ -22291,7 +22329,8 @@ const views = {
   setup: document.getElementById("view-setup"),
   quiz: document.getElementById("view-quiz"),
   results: document.getElementById("view-results"),
-  progress: document.getElementById("view-progress")
+  progress: document.getElementById("view-progress"),
+  settings: document.getElementById("view-settings")
 };
 const tabButtons = document.querySelectorAll("#tabbar .tab");
 
@@ -22325,7 +22364,13 @@ try{ if(window.localStorage.getItem(LANG_KEY) === "en") lang = "en"; }catch(e){}
 const I18N = {
   cs: {
     brand: "Gramatická posilovna",
-    navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok",
+    navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok", navSettings: "Nastavení",
+    setLang: "Jazyk aplikace", setGoal: "Denní cíl (odpovědí)", setTestBtn: "Spustit ›",
+    freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
+    placementTitle: "Rozřazovací test", placementNote: "12 otázek · doporučí ti obtížnost",
+    placementRec: function(diffHtml){ return "Doporučená obtížnost: " + diffHtml + ". V Tématech ji máš předvybranou."; },
+    reportLink: "Nahlásit chybu v otázce",
+    reportSubject: function(id){ return "Chyba v otázce " + id; },
     helloMorning: "Dobré ráno!", helloDay: "Dobrý den!", helloEvening: "Dobrý večer!",
     streakDays: function(n){ return n === 1 ? "den v řadě" : (n >= 2 && n <= 4 ? "dny v řadě" : "dní v řadě"); },
     labelGoal: "Dnešní cíl", labelWeek: "Tento týden",
@@ -22375,7 +22420,13 @@ const I18N = {
   },
   en: {
     brand: "Grammar Gym",
-    navHome: "Home", navTopics: "Topics", navProgress: "Progress",
+    navHome: "Home", navTopics: "Topics", navProgress: "Progress", navSettings: "Settings",
+    setLang: "App language", setGoal: "Daily goal (answers)", setTestBtn: "Start ›",
+    freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
+    placementTitle: "Placement test", placementNote: "12 questions · suggests your level",
+    placementRec: function(diffHtml){ return "Suggested difficulty: " + diffHtml + ". It's preselected for you in Topics."; },
+    reportLink: "Report a mistake in this question",
+    reportSubject: function(id){ return "Mistake in question " + id; },
     helloMorning: "Good morning!", helloDay: "Good afternoon!", helloEvening: "Good evening!",
     streakDays: function(n){ return n === 1 ? "day in a row" : "days in a row"; },
     labelGoal: "Today's goal", labelWeek: "This week",
@@ -22552,7 +22603,7 @@ document.querySelectorAll(".lang-switch button").forEach(function(btn){
 
 let selectedTags = {};     // { topicId: Set<tag> } — jen podtémata s aspoň jedním zaškrtnutým tagem počítají jako "vybraný topic"
 let expandedTopics = {};   // { topicId: bool } — čistě UI stav accordionu
-let selectedDifficulty = "basic";
+let selectedDifficulty = state.placement || "basic";
 let selectedCount = 10;
 
 const topicGrid = document.getElementById("topic-grid");
@@ -22717,7 +22768,14 @@ renderSmartCard();
    6a. RENDER: DOMŮ (denní cíl, série dní, týden, rychlé volby)
    ============================================================ */
 
-const DAILY_GOAL = 20; // otázek za den; nastavitelné bude v Nastavení
+// Denní cíl (počet odpovědí) se volí v Nastavení; ukládá se zvlášť, smazání pokroku ho nemění.
+const GOAL_KEY = "grammarLabGoalV1";
+const GOAL_OPTIONS = [10, 20, 30, 50];
+let dailyGoal = 20;
+try{
+  const g = parseInt(window.localStorage.getItem(GOAL_KEY), 10);
+  if(GOAL_OPTIONS.indexOf(g) !== -1) dailyGoal = g;
+}catch(e){}
 
 function dayKey(d){
   return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
@@ -22732,13 +22790,35 @@ function activeDays(){
   return set;
 }
 
+// Pondělí týdne, do kterého den patří.
+function weekKey(d){
+  const m = new Date(d);
+  m.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+  return dayKey(m);
+}
+
 // Počet dní v řadě končících dneškem; když dnes ještě nic, počítá se od včerejška.
+// Jeden vynechaný den v každém týdnu (po–ne) sérii nepřeruší – je to „den volna“ ❄,
+// který se do počtu nepřičítá. Vrací { n, frozen: { "YYYY-MM-DD": true } }.
 function currentStreak(active){
   const d = new Date();
   if(!active[dayKey(d)]) d.setDate(d.getDate() - 1);
   let n = 0;
-  while(active[dayKey(d)]){ n += 1; d.setDate(d.getDate() - 1); }
-  return n;
+  const frozen = {};
+  const usedWeeks = {};
+  for(;;){
+    if(!active[dayKey(d)]){
+      const prev = new Date(d);
+      prev.setDate(d.getDate() - 1);
+      if(usedWeeks[weekKey(d)] || !active[dayKey(prev)]) break;
+      usedWeeks[weekKey(d)] = true;
+      frozen[dayKey(d)] = true;
+    } else {
+      n += 1;
+    }
+    d.setDate(d.getDate() - 1);
+  }
+  return { n: n, frozen: frozen };
 }
 
 function renderHome(){
@@ -22749,14 +22829,14 @@ function renderHome(){
 
   const active = activeDays();
   const streak = currentStreak(active);
-  document.getElementById("home-streak").textContent = streak;
-  document.getElementById("home-streak-label").textContent = tx("streakDays", streak);
+  document.getElementById("home-streak").textContent = streak.n;
+  document.getElementById("home-streak-label").textContent = tx("streakDays", streak.n);
 
   const done = (state.days || {})[dayKey(now)] || 0;
-  const left = Math.max(0, DAILY_GOAL - done);
-  document.getElementById("home-goal-num").textContent = tx("goalNum", Math.min(done, DAILY_GOAL), DAILY_GOAL);
+  const left = Math.max(0, dailyGoal - done);
+  document.getElementById("home-goal-num").textContent = tx("goalNum", Math.min(done, dailyGoal), dailyGoal);
   document.getElementById("home-goal-left").textContent = left > 0 ? tx("goalLeft", left) : tx("goalDone");
-  document.getElementById("home-goal-fill").style.width = Math.round(Math.min(1, done / DAILY_GOAL) * 100) + "%";
+  document.getElementById("home-goal-fill").style.width = Math.round(Math.min(1, done / dailyGoal) * 100) + "%";
 
   // Týden od pondělí do neděle; dnešek má kolem kotouče prstenec plnění cíle.
   const monday = new Date(now);
@@ -22768,9 +22848,9 @@ function renderHome(){
     d.setDate(monday.getDate() + i);
     const k = dayKey(d);
     const isToday = k === dayKey(now);
-    const cls = "wp" + (active[k] ? " on" : "") + (isToday ? " today" : "");
-    const style = isToday ? ' style="--p:' + Math.round(Math.min(1, done / DAILY_GOAL) * 100) + '%"' : "";
-    html += '<div class="' + cls + '"' + style + ' data-d="' + (isToday ? tx("today") : labels[i]) + '"></div>';
+    const cls = "wp" + (active[k] ? " on" : "") + (streak.frozen[k] ? " free" : "") + (isToday ? " today" : "");
+    const style = isToday ? ' style="--p:' + Math.round(Math.min(1, done / dailyGoal) * 100) + '%"' : "";
+    html += '<div class="' + cls + '"' + style + ' data-d="' + (isToday ? tx("today") : labels[i]) + '">' + (streak.frozen[k] ? "❄" : "") + '</div>';
   }
   document.getElementById("home-week").innerHTML = html;
 
@@ -22791,10 +22871,35 @@ function renderHome(){
   } else {
     cta.innerHTML = escapeHtml(tx("ctaMore"));
   }
+
+  // Nabídka rozřazovacího testu, dokud ho uživatel neudělá (znovu jde spustit v Nastavení).
+  const test = document.getElementById("home-test");
+  test.style.display = state.placement ? "none" : "";
+  test.innerHTML = escapeHtml(tx("placementTitle")) + "<small>" + escapeHtml(tx("placementNote")) + "</small>";
 }
 document.getElementById("home-review").addEventListener("click", function(){ startSpecialRound("review"); });
 document.getElementById("home-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
 document.getElementById("home-cta").addEventListener("click", function(){ showView("setup"); });
+document.getElementById("home-test").addEventListener("click", function(){ startPlacement(); });
+
+/* ============================================================
+   6c. RENDER: NASTAVENÍ
+   ============================================================ */
+const goalSwitch = document.getElementById("goal-switch");
+function renderGoalSwitch(){
+  goalSwitch.innerHTML = GOAL_OPTIONS.map(function(g){
+    return '<button data-goal="' + g + '"' + (g === dailyGoal ? ' class="active"' : '') + '>' + g + '</button>';
+  }).join("");
+}
+goalSwitch.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  dailyGoal = parseInt(btn.getAttribute("data-goal"), 10);
+  try{ window.localStorage.setItem(GOAL_KEY, String(dailyGoal)); }catch(e){}
+  renderGoalSwitch();
+});
+renderGoalSwitch();
+document.getElementById("settings-test").addEventListener("click", function(){ startPlacement(); });
 
 /* re-render start label when count changes */
 const origRenderCountGrid = renderCountGrid;
@@ -22837,7 +22942,7 @@ let roundIndex = 0;
 let roundTopics = [];
 let roundTags = {};
 let roundDifficulty = "basic";
-let roundMode = "normal"; // "normal" | "review" | "weak"
+let roundMode = "normal"; // "normal" | "review" | "weak" | "placement"
 let roundResults = []; // { question, allCorrect, tagResults:[{tag,correct}] }
 let currentAnswered = false;
 
@@ -22899,9 +23004,46 @@ function startSpecialRound(mode){
   renderQuestion();
 }
 
+// Rozřazovací test: z každé obtížnosti 4 otázky ze 4 různých gramatických témat
+// (bez slovní zásoby), seřazené od nejlehčí.
+const PLACEMENT_PER_LEVEL = 4;
+function startPlacement(){
+  tickCooldowns();
+  const grammarTopics = TOPICS.filter(function(t){ return t.id !== "vocab"; });
+  const questions = [];
+  DIFFICULTIES.forEach(function(d){
+    shuffle(grammarTopics).slice(0, PLACEMENT_PER_LEVEL).forEach(function(t){
+      const pool = QUESTIONS.filter(function(q){ return q.topic === t.id && q.difficulty === d.id; });
+      questions.push(pool[Math.floor(Math.random() * pool.length)]);
+    });
+  });
+  roundMode = "placement";
+  roundTags = {};
+  roundTopics = [];
+  questions.forEach(function(q){ if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic); });
+  roundDifficulty = "mixed";
+  roundQuestions = questions;
+  roundIndex = 0;
+  roundResults = [];
+  showView("quiz");
+  renderQuizTopbar();
+  renderQuestion();
+}
+
+// Doporučená obtížnost = první, kde uživatel nezvládl aspoň 3 ze 4 otázek;
+// když zvládl všechny, pokročilá.
+function placementLevel(){
+  const ok = {};
+  roundResults.forEach(function(r){
+    if(r.allCorrect) ok[r.question.difficulty] = (ok[r.question.difficulty] || 0) + 1;
+  });
+  const weak = DIFFICULTIES.find(function(d){ return (ok[d.id] || 0) < PLACEMENT_PER_LEVEL - 1; });
+  return weak ? weak.id : DIFFICULTIES[DIFFICULTIES.length - 1].id;
+}
+
 function renderQuizTopbar(){
   if(roundMode !== "normal"){
-    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : "weakTitle");
+    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : (roundMode === "weak" ? "weakTitle" : "placementTitle"));
     quizTagDiff.textContent = tx("mixedDiff");
     return;
   }
@@ -23055,6 +23197,9 @@ function handleChoiceClick(selectedIdx){
   finalizeAnswer(q, ok, tagResults, revealLines);
 }
 
+// Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
+const REPORT_EMAIL = "";
+
 function finalizeAnswer(q, allCorrect, tagResults, revealLines){
   registerAnswer(q, allCorrect, tagResults);
   roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults });
@@ -23070,6 +23215,9 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines){
     });
   }
   fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
+  if(REPORT_EMAIL){
+    fb += '<a class="report-link" href="mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(tx("reportSubject", q.id)) + '">' + tx("reportLink") + '</a>';
+  }
   fb += '</div>';
   slot.innerHTML = fb;
 
@@ -23117,10 +23265,16 @@ function finishRound(){
     difficulty: roundDifficulty,
     totalParts: totalParts,
     correctParts: correctParts,
-    byTag: byTag
+    byTag: byTag,
+    mode: roundMode
   });
   const today = dayKey(new Date());
   state.days[today] = (state.days[today] || 0) + roundResults.length;
+  if(roundMode === "placement"){
+    state.placement = placementLevel();
+    selectedDifficulty = state.placement;
+    renderDiffGrid();
+  }
   saveState();
 
   renderResults(pct, correctParts, totalParts, byTag);
@@ -23164,7 +23318,9 @@ function renderResults(pct, correct, total, byTag){
 
   const weakest = tags.length ? tags[0] : null;
   let recText;
-  if(pct === 100){
+  if(roundMode === "placement"){
+    recText = tx("placementRec", "<strong>" + escapeHtml(diffName(state.placement)) + "</strong>");
+  } else if(pct === 100){
     recText = tx("recPerfect");
   } else if(weakest){
     const wPct = Math.round((byTag[weakest].correct/byTag[weakest].seen)*100);
@@ -23176,7 +23332,9 @@ function renderResults(pct, correct, total, byTag){
 }
 
 document.getElementById("btn-retry").addEventListener("click", function(){
-  if(roundMode === "normal") startRound(); else startSpecialRound(roundMode);
+  if(roundMode === "normal") startRound();
+  else if(roundMode === "placement") startPlacement();
+  else startSpecialRound(roundMode);
 });
 document.getElementById("btn-back-setup").addEventListener("click", function(){
   showView("setup");
@@ -23266,7 +23424,7 @@ function renderProgress(){
       const p = r.totalParts === 0 ? 0 : Math.round((r.correctParts/r.totalParts)*100);
       const d = new Date(r.date);
       const dateStr = d.toLocaleDateString(tx("dateLocale"), { day:"numeric", month:"numeric", year:"numeric" });
-      const topicsStr = r.topics.map(topicName).join(", ");
+      const topicsStr = r.mode === "placement" ? tx("placementTitle") : r.topics.map(topicName).join(", ");
       return '<div class="history-row"><span class="history-date">'+dateStr+' · '+escapeHtml(topicsStr)+' · '+diffName(r.difficulty)+'</span>' +
         '<span class="history-score">'+p+'%</span></div>';
     }).join("");
