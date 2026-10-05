@@ -828,6 +828,41 @@
   .stat-box .lbl{ font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
 
   .chart-wrap{ padding-top: 4px; }
+  /* Porovnání v Pokroku (docs/navrhy-vzhledu-16.html): modrá = teď, šedá = předtím */
+  :root{ --cmp-now: #3A6FC0; --cmp-prev: #8592A6; }
+  .cmp-tabs{ display:flex; margin-bottom: 18px; }
+  .cmp-tabs button{ flex:1; padding: 8px 0; font-size: 12px; }
+  .chart-wrap{ position: relative; }
+  .chart-wrap svg{ display:block; width:100%; height:auto; overflow: visible; }
+  .chart-wrap svg text{ fill: var(--ink-soft); font-family: var(--font-body); }
+  .c-grid{ stroke: var(--line); }
+  .c-now{ fill: var(--cmp-now); }
+  .c-prev{ fill: var(--cmp-prev); }
+  .c-line{ stroke: var(--cmp-now); fill: none; stroke-width: 2; }
+  .c-dot{ fill: var(--cmp-now); stroke: var(--surface); stroke-width: 2; }
+  .c-goal{ stroke: var(--accent); stroke-width: 1.5; }
+  .c-cursor{ stroke: var(--ink-soft); stroke-opacity: .4; }
+  .cmp-hero{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom: 4px; }
+  .cmp-hero b{ font-family: var(--font-display); font-size: 40px; line-height: 1; }
+  .cmp-delta{ font-size: 12.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--success-tint); color: var(--success); }
+  .cmp-delta.down{ background: var(--error-tint); color: var(--error); }
+  .cmp-sub{ font-size: 13px; color: var(--ink-soft); margin: 6px 0 10px; line-height: 1.45; }
+  .cmp-periods{ display:flex; gap:6px; margin: 10px 0 12px; flex-wrap: wrap; }
+  .cmp-periods button{ font: inherit; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; border: none; cursor: pointer; background: var(--track); color: var(--ink-soft); }
+  .cmp-periods button.active{ background: var(--primary); color: #fff; }
+  [data-theme="dark"] .cmp-periods button.active{ background: #3F6CA3; }
+  .cmp-legend{ display:flex; gap:14px; font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
+  .cmp-legend i{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .cmp-legend i.dot{ border-radius:50%; }
+  .cmp-row{ display:grid; grid-template-columns: 110px 1fr 44px; align-items:center; gap:10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; font-weight: 600; }
+  .cmp-row:first-of-type{ border-top: none; }
+  .cmp-row small{ display:block; font-weight:500; font-size:11.5px; color: var(--ink-soft); }
+  .cmp-row .v{ text-align:right; font-weight:700; }
+  .cmp-row .v.up{ color: var(--success); }
+  .cmp-row .v.down{ color: var(--error); }
+  .cmp-bar{ height: 8px; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .cmp-bar span{ display:block; height:100%; background: var(--cmp-now); border-radius: 999px; }
+  .cmp-tip{ position:absolute; top:-6px; transform: translateX(-50%); background: var(--ink); color: var(--surface); font-size: 11.5px; font-weight: 600; padding: 5px 8px; border-radius: 8px; white-space: nowrap; pointer-events: none; box-shadow: 0 6px 14px rgba(0,0,0,.2); }
   .chart-empty{ font-size: 13.5px; color: var(--ink-soft); text-align:center; padding: 30px 0; }
 
   .weak-row{
@@ -937,7 +972,7 @@
   [data-theme="dark"] .recommend-box{ color: #A9D8B6; }
   [data-theme="dark"] .recommend-box strong{ color: #CBEBD4; }
   [data-theme="dark"] .score-ring circle:first-child{ stroke: var(--track); }
-  [data-theme="dark"] .chart-wrap line{ stroke: var(--line); }
+  [data-theme="dark"]{ --cmp-now: #5C8FDB; --cmp-prev: #5D6A7E; }
 </style>
 </head>
 <body>
@@ -1102,7 +1137,13 @@
     </div>
 
     <div class="card">
-      <p class="card-label" data-i18n="labelChart">Vývoj úspěšnosti v čase</p>
+      <div class="nav-links cmp-tabs" id="cmp-tabs">
+        <button data-cmp="trend" data-i18n="cmpTrend">Vývoj</button>
+        <button data-cmp="week" data-i18n="cmpWeek">Týden</button>
+        <button data-cmp="topics" data-i18n="cmpTopics">Témata</button>
+        <button data-cmp="diff" data-i18n="cmpDiff">Obtížnost</button>
+        <button data-cmp="mastered" data-i18n="cmpMastered">Zvládnuto</button>
+      </div>
       <div class="chart-wrap" id="chart-wrap"></div>
     </div>
 
@@ -22975,12 +23016,33 @@ const I18N = {
     recKeep: "Pokračuj ve stejném duchu a zkus další kolo.",
     progressTitle: "Tvůj pokrok", progressIntro: "Přehled toho, jak ti to jde napříč všemi koly.",
     statRounds: "odehraných kol", statAccuracy: "celková úspěšnost", statAnswers: "zodpovězených úloh",
-    labelChart: "Vývoj úspěšnosti v čase", labelWeak: "Na co se zaměřit", labelHistory: "Historie kol",
+    labelWeak: "Na co se zaměřit", labelHistory: "Historie kol",
     resetProgress: "Smazat veškerý pokrok",
     chartEmpty: "Zatím nemáš žádná odehraná kola. Zkus si první kolo procvičit!",
     weakEmpty: "Zatím nemáme dost dat — po pár odehraných kolech se tu objeví tvé nejslabší jevy.",
     historyEmpty: "Historie kol se zobrazí, jakmile dohraješ první kolo.",
     resetConfirm: "Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.",
+    cmpTrend: "Vývoj", cmpWeek: "Týden", cmpTopics: "Témata", cmpDiff: "Obtížnost", cmpMastered: "Zvládnuto",
+    periods: { week: "Týden", month: "Měsíc", quarter: "3 měsíce", all: "Vše" },
+    trendLabel: { week: "Úspěšnost · posledních 7 dní", month: "Úspěšnost · posledních 30 dní", quarter: "Úspěšnost · poslední 3 měsíce", all: "Úspěšnost · celkem" },
+    trendDelta: function(d){ return d === 0 ? "stejně jako předchozí období" : (d > 0 ? "▲ " : "▼ ") + Math.abs(d) + " b. oproti předchozímu období"; },
+    trendNote: { day: "Bod = jeden den. Klepni na bod pro přesnou hodnotu.", week: "Bod = jeden týden. Klepni na bod pro přesnou hodnotu.", month: "Bod = jeden měsíc. Klepni na bod pro přesnou hodnotu." },
+    trendEmpty: "V tomhle období zatím nic. Zkus delší období.",
+    answersShort: function(n){ return n + " odp."; },
+    weekLabel: "Tento týden vs minulý",
+    weekDelta: function(p){ return (p >= 0 ? "▲ " : "▼ ") + Math.abs(p) + " % " + (p >= 0 ? "víc" : "míň") + " než minulý týden"; },
+    weekSub: function(prev, met, days){ return "odpovědí (minulý týden za stejné dny " + prev + ") · cíl splněn " + met + " z " + days + (days === 1 ? " dne" : " dní"); },
+    legendThisWeek: "Tento týden", legendLastWeek: "Minulý týden", goalLine: function(g){ return "denní cíl " + g; },
+    topicsLabel: "Témata · zlepšení",
+    topicsNote: "Úspěšnost v prvních 3 kolech tématu (šedá) a v posledních 3 (modrá). Seřazeno od největšího zlepšení.",
+    topicsEmpty: "Témata se tu ukážou, až v nějakém budeš mít aspoň 4 kola.",
+    legendStart: "Na začátku", legendNow: "Teď",
+    topicsBest: function(t, a, b){ return "Největší posun: " + t + " z " + a + " % na " + b + " %."; },
+    topicsWorse: function(t){ return "„" + t + "“ ti teď jde hůř než na začátku – vyplatí se ho zopakovat."; },
+    diffLabel: "Úspěšnost podle obtížnosti", diffEmpty: "Zatím žádná kola s vybranou obtížností.",
+    diffNext: function(a, b){ return "Na „" + a + "“ máš přes 80 %. Zkus „" + b + "“."; },
+    masteredLabel: "Zvládnuté otázky", masteredOf: function(n, p){ return "z " + n.toLocaleString("cs-CZ") + " otázek (" + p + " %)"; },
+    masteredNote: "Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.",
     shareBtn: "Doporuč kamarádovi", shareCopied: "Odkaz zkopírován – pošli ho kamarádovi.",
     shareText: "Zkus Gramatickou posilovnu – procvičování anglické gramatiky od A2 po C1, s opakováním chyb. Otevři odkaz a dej „Přidat na plochu“.",
     setBackup: "Záloha pokroku", backupSave: "Uložit", backupLoad: "Obnovit",
@@ -23048,12 +23110,33 @@ const I18N = {
     recKeep: "Keep it up and try another round.",
     progressTitle: "Your progress", progressIntro: "An overview of how you're doing across all rounds.",
     statRounds: "rounds played", statAccuracy: "overall accuracy", statAnswers: "items answered",
-    labelChart: "Accuracy over time", labelWeak: "What to focus on", labelHistory: "Round history",
+    labelWeak: "What to focus on", labelHistory: "Round history",
     resetProgress: "Delete all progress",
     chartEmpty: "You haven't played any rounds yet. Try your first one!",
     weakEmpty: "Not enough data yet — your weakest areas will appear here after a few rounds.",
     historyEmpty: "Your round history will appear once you finish your first round.",
     resetConfirm: "Do you really want to delete all your saved progress? This cannot be undone.",
+    cmpTrend: "Trend", cmpWeek: "Week", cmpTopics: "Topics", cmpDiff: "Difficulty", cmpMastered: "Mastered",
+    periods: { week: "Week", month: "Month", quarter: "3 months", all: "All" },
+    trendLabel: { week: "Accuracy · last 7 days", month: "Accuracy · last 30 days", quarter: "Accuracy · last 3 months", all: "Accuracy · overall" },
+    trendDelta: function(d){ return d === 0 ? "same as previous period" : (d > 0 ? "▲ " : "▼ ") + Math.abs(d) + " pts vs previous period"; },
+    trendNote: { day: "Each point = one day. Tap a point for the exact value.", week: "Each point = one week. Tap a point for the exact value.", month: "Each point = one month. Tap a point for the exact value." },
+    trendEmpty: "Nothing in this period yet. Try a longer one.",
+    answersShort: function(n){ return n + " ans."; },
+    weekLabel: "This week vs last week",
+    weekDelta: function(p){ return (p >= 0 ? "▲ " : "▼ ") + Math.abs(p) + " % " + (p >= 0 ? "more" : "less") + " than last week"; },
+    weekSub: function(prev, met, days){ return "answers (last week on the same days " + prev + ") · goal met on " + met + " of " + days + (days === 1 ? " day" : " days"); },
+    legendThisWeek: "This week", legendLastWeek: "Last week", goalLine: function(g){ return "daily goal " + g; },
+    topicsLabel: "Topics · improvement",
+    topicsNote: "Accuracy in your first 3 rounds of a topic (grey) and your last 3 (blue). Sorted by biggest improvement.",
+    topicsEmpty: "Topics show up here once you have at least 4 rounds in one.",
+    legendStart: "At the start", legendNow: "Now",
+    topicsBest: function(t, a, b){ return "Biggest gain: " + t + " from " + a + " % to " + b + " %."; },
+    topicsWorse: function(t){ return "“" + t + "” is going worse than at the start – worth reviewing."; },
+    diffLabel: "Accuracy by difficulty", diffEmpty: "No rounds with a chosen difficulty yet.",
+    diffNext: function(a, b){ return "You're above 80 % on “" + a + "”. Try “" + b + "”."; },
+    masteredLabel: "Mastered questions", masteredOf: function(n, p){ return "of " + n.toLocaleString("en-GB") + " questions (" + p + " %)"; },
+    masteredNote: "Mastered = right 3 times in a row, days apart. This number only goes up.",
     shareBtn: "Recommend to a friend", shareCopied: "Link copied – send it to a friend.",
     shareText: "Try Grammar Gym – English grammar practice from A2 to C1 that brings back your mistakes. Open the link and tap “Add to Home Screen”.",
     setBackup: "Progress backup", backupSave: "Save", backupLoad: "Restore",
@@ -24101,25 +24184,7 @@ function renderProgress(){
   statAnswers.textContent = totalParts;
   statAccuracy.textContent = totalParts === 0 ? "0%" : Math.round((correctParts/totalParts)*100) + "%";
 
-  if(rounds.length === 0){
-    chartWrap.innerHTML = '<div class="chart-empty">' + tx("chartEmpty") + '</div>';
-  } else {
-    const recent = rounds.slice(-15);
-    const w = 700, h = 140, barGap = 6;
-    const barW = (w / recent.length) - barGap;
-    let bars = "";
-    recent.forEach(function(r, i){
-      const p = r.totalParts === 0 ? 0 : (r.correctParts/r.totalParts)*100;
-      const barH = Math.max(4, (p/100) * (h-20));
-      const x = i * (barW + barGap);
-      const y = h - barH;
-      const color = p >= 70 ? "#4FA86A" : (p >= 40 ? "#E0A81E" : "#E0735A");
-      bars += '<rect x="'+x+'" y="'+y+'" width="'+barW+'" height="'+barH+'" rx="4" fill="'+color+'"></rect>';
-    });
-    chartWrap.innerHTML = '<svg viewBox="0 0 '+w+' '+(h+10)+'" width="100%" height="150" preserveAspectRatio="none">' +
-      '<line x1="0" y1="'+h+'" x2="'+w+'" y2="'+h+'" stroke="#D9E1EA" stroke-width="1"></line>' +
-      bars + '</svg>';
-  }
+  renderCompare();
 
   const allTags = {};
   rounds.forEach(function(r){
@@ -24157,6 +24222,269 @@ function renderProgress(){
         '<span class="history-score">'+p+'%</span></div>';
     }).join("");
   }
+}
+
+/* Porovnání v Pokroku (docs/navrhy-vzhledu-16.html): Vývoj, Týden, Témata, Obtížnost, Zvládnuto */
+let cmpTab = "trend";
+let cmpPeriod = "month";
+const cmpTabs = document.getElementById("cmp-tabs");
+cmpTabs.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  cmpTab = btn.getAttribute("data-cmp");
+  renderCompare();
+});
+chartWrap.addEventListener("click", function(e){
+  const btn = e.target.closest("[data-period]");
+  if(!btn) return;
+  cmpPeriod = btn.getAttribute("data-period");
+  renderCompare();
+});
+
+function pctOf(correct, seen){ return seen === 0 ? 0 : Math.round(correct / seen * 100); }
+function roundDay(r){ return dayKey(new Date(r.date)); }
+function deltaPill(text, d){ return '<span class="cmp-delta' + (d < 0 ? ' down' : '') + '">' + text + '</span>'; }
+function shortDate(key){ const p = key.split("-"); return (+p[2]) + ". " + (+p[1]) + "."; }
+
+// Ke každému tématu sada jeho podtémat – pro rozdělení výsledků kola s více tématy.
+const TOPIC_TAGS = {};
+QUESTIONS.forEach(function(q){ (TOPIC_TAGS[q.topic] = TOPIC_TAGS[q.topic] || {})[q.tag] = true; });
+
+function renderCompare(){
+  cmpTabs.querySelectorAll("button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-cmp") === cmpTab); });
+  if(state.rounds.length === 0 && cmpTab !== "mastered"){
+    chartWrap.innerHTML = '<div class="chart-empty">' + tx("chartEmpty") + '</div>';
+    return;
+  }
+  ({ trend: renderTrend, week: renderWeekCompare, topics: renderTopicCompare, diff: renderDiffCompare, mastered: renderMastered })[cmpTab]();
+}
+
+// 1 · Vývoj: úspěšnost za období + změna proti předchozímu stejně dlouhému období, čára po dnech/týdnech/měsících.
+function renderTrend(){
+  const today = dayKey(new Date());
+  const days = { week: 7, month: 30, quarter: 91 }[cmpPeriod];
+  const from = days ? addDays(today, -(days - 1)) : "";
+  const sum = function(a, b){
+    let seen = 0, correct = 0;
+    state.rounds.forEach(function(r){ const d = roundDay(r); if(d >= a && d <= b){ seen += r.totalParts; correct += r.correctParts; } });
+    return { seen: seen, correct: correct };
+  };
+  const cur = sum(from, today);
+  let delta = "";
+  if(days){
+    const prev = sum(addDays(from, -days), addDays(from, -1));
+    if(prev.seen > 0 && cur.seen > 0){
+      const d = pctOf(cur.correct, cur.seen) - pctOf(prev.correct, prev.seen);
+      delta = deltaPill(tx("trendDelta", d), d);
+    }
+  }
+
+  // Úseky grafu: dny (týden), týdny (měsíc, 3 měsíce, krátká historie), měsíce (dlouhá historie).
+  let unit = "week", buckets = [];
+  const firstDay = state.rounds.length ? roundDay(state.rounds[0]) : today;
+  if(cmpPeriod === "week"){
+    unit = "day";
+    for(let i = 6; i >= 0; i--){ const d = addDays(today, -i); buckets.push({ from: d, to: d, label: tx("weekDays")[(new Date(d + "T12:00").getDay() + 6) % 7] }); }
+  } else {
+    const start = days ? from : firstDay;
+    let wk = weekKey(new Date(start + "T12:00"));
+    const weeks = [];
+    while(wk <= today){ weeks.push(wk); wk = addDays(wk, 7); }
+    if(weeks.length > 26){
+      unit = "month";
+      let m = start.slice(0, 7);
+      while(m <= today.slice(0, 7)){
+        const p = m.split("-");
+        buckets.push({ from: m + "-01", to: m + "-31", label: (+p[1]) + "/" + p[0].slice(2) });
+        const n = new Date(+p[0], +p[1], 1);
+        m = n.getFullYear() + "-" + String(n.getMonth() + 1).padStart(2, "0");
+      }
+    } else {
+      weeks.forEach(function(w){ buckets.push({ from: w, to: addDays(w, 6), label: shortDate(w) }); });
+    }
+  }
+  buckets.forEach(function(b){ const s = sum(b.from, b.to); b.seen = s.seen; b.pct = pctOf(s.correct, s.seen); });
+
+  const W = 320, H = 160, L = 30, R = 8, T = 10, B = 22;
+  const n = buckets.length;
+  const x = function(i){ return n === 1 ? (L + W - R) / 2 : L + i * (W - L - R) / (n - 1); };
+  const y = function(v){ return T + (100 - v) / 100 * (H - T - B); };
+  let svg = "";
+  [0, 50, 100].forEach(function(v){ svg += '<line class="c-grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="0" y="' + (y(v) + 4) + '" font-size="10">' + v + ' %</text>'; });
+  const step = Math.ceil(n / 7);
+  buckets.forEach(function(b, i){
+    if(i % step === 0 || i === n - 1) svg += '<text x="' + x(i) + '" y="' + (H - 5) + '" font-size="10" text-anchor="middle">' + b.label + '</text>';
+  });
+  const pts = buckets.map(function(b, i){ return b.seen ? [x(i), y(b.pct)] : null; }).filter(Boolean);
+  if(pts.length > 1) svg += '<path class="c-line" d="' + pts.map(function(p, i){ return (i ? "L" : "M") + p[0] + " " + p[1]; }).join(" ") + '"/>';
+  pts.forEach(function(p){ svg += '<circle class="c-dot" cx="' + p[0] + '" cy="' + p[1] + '" r="4"/>'; });
+  svg += '<line class="c-cursor" id="cmp-cursor" x1="0" x2="0" y1="' + T + '" y2="' + (H - B) + '" visibility="hidden"/>';
+
+  chartWrap.innerHTML =
+    '<p class="card-label">' + tx("trendLabel")[cmpPeriod] + '</p>' +
+    '<div class="cmp-hero"><b>' + (cur.seen ? pctOf(cur.correct, cur.seen) + " %" : "–") + '</b>' + delta + '</div>' +
+    '<div class="cmp-periods">' + ["week", "month", "quarter", "all"].map(function(p){
+      return '<button data-period="' + p + '"' + (p === cmpPeriod ? ' class="active"' : '') + '>' + tx("periods")[p] + '</button>';
+    }).join("") + '</div>' +
+    (pts.length ? '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '">' + svg + '</svg><div class="cmp-tip" id="cmp-tip" hidden></div></div>' +
+      '<p class="cmp-sub">' + tx("trendNote")[unit] + '</p>'
+      : '<div class="chart-empty">' + tx("trendEmpty") + '</div>');
+
+  // Bublina: nejbližší bod s daty k místu klepnutí / myši.
+  const svgEl = chartWrap.querySelector("svg");
+  if(!svgEl) return;
+  const tip = document.getElementById("cmp-tip"), cursor = document.getElementById("cmp-cursor");
+  function show(e){
+    const box = svgEl.getBoundingClientRect();
+    const px = (e.clientX - box.left) / box.width * W;
+    let best = -1;
+    buckets.forEach(function(b, i){ if(b.seen && (best < 0 || Math.abs(x(i) - px) < Math.abs(x(best) - px))) best = i; });
+    if(best < 0) return;
+    const b = buckets[best];
+    tip.textContent = (unit === "week" ? shortDate(b.from) + "–" + shortDate(b.to) : b.label) + " · " + b.pct + " % · " + tx("answersShort", b.seen);
+    tip.style.left = Math.min(Math.max(x(best) / W * 100, 22), 78) + "%";
+    tip.hidden = false;
+    cursor.setAttribute("x1", x(best)); cursor.setAttribute("x2", x(best)); cursor.setAttribute("visibility", "visible");
+  }
+  svgEl.addEventListener("pointermove", show);
+  svgEl.addEventListener("pointerdown", show);
+  svgEl.addEventListener("pointerleave", function(){ tip.hidden = true; cursor.setAttribute("visibility", "hidden"); });
+}
+
+// 2 · Tento týden vs minulý: odpovědi po dnech s čarou denního cíle.
+function renderWeekCompare(){
+  const todayKey = dayKey(new Date());
+  const mon = weekKey(new Date());
+  const now = [], prev = [];
+  for(let i = 0; i < 7; i++){
+    const d = addDays(mon, i);
+    now.push(d <= todayKey ? (state.days[d] || 0) : null);
+    prev.push(state.days[addDays(mon, i - 7)] || 0);
+  }
+  const doneDays = now.filter(function(v){ return v !== null; }).length;
+  const nowSum = now.reduce(function(a, v){ return a + (v || 0); }, 0);
+  const prevSame = prev.slice(0, doneDays).reduce(function(a, v){ return a + v; }, 0);
+  const met = now.filter(function(v){ return v !== null && v >= dailyGoal; }).length;
+  const delta = prevSame > 0 ? deltaPill(tx("weekDelta", Math.round((nowSum - prevSame) / prevSame * 100)), nowSum - prevSame) : "";
+
+  const W = 320, H = 170, B = 22, T = 14, bw = 14, gap = 2, slot = W / 7;
+  const max = Math.max(dailyGoal * 1.3, Math.max.apply(null, now.concat(prev).map(function(v){ return v || 0; })));
+  const y = function(v){ return (H - B) - v / max * (H - B - T); };
+  const bar = function(v, x0, cls, title){
+    if(!v) return "";
+    const top = y(v), r = Math.min(4, (H - B - top) / 2);
+    return '<path class="' + cls + '" d="M' + x0 + ' ' + (H - B) + ' V' + (top + r) + ' q0 -' + r + ' ' + r + ' -' + r + ' h' + (bw - 2 * r) + ' q' + r + ' 0 ' + r + ' ' + r + ' V' + (H - B) + ' Z"><title>' + title + '</title></path>';
+  };
+  let svg = '<line class="c-grid" x1="0" x2="' + W + '" y1="' + (H - B) + '" y2="' + (H - B) + '"/>';
+  svg += '<line class="c-goal" x1="0" x2="' + W + '" y1="' + y(dailyGoal) + '" y2="' + y(dailyGoal) + '"/>' +
+         '<text x="' + W + '" y="' + (y(dailyGoal) - 4) + '" font-size="10" text-anchor="end">' + tx("goalLine", dailyGoal) + '</text>';
+  tx("weekDays").forEach(function(d, i){
+    const cx = i * slot + slot / 2;
+    const isToday = addDays(mon, i) === todayKey;
+    svg += bar(prev[i], cx - bw - gap / 2, "c-prev", tx("legendLastWeek") + ": " + prev[i]);
+    svg += bar(now[i], cx + gap / 2, "c-now", tx("legendThisWeek") + ": " + now[i]);
+    svg += '<text x="' + cx + '" y="' + (H - 5) + '" font-size="10" text-anchor="middle"' + (isToday ? ' font-weight="800"' : '') + '>' + (isToday ? tx("today") : d) + '</text>';
+  });
+  chartWrap.innerHTML =
+    '<p class="card-label">' + tx("weekLabel") + '</p>' +
+    '<div class="cmp-hero"><b>' + nowSum + '</b>' + delta + '</div>' +
+    '<p class="cmp-sub">' + tx("weekSub", prevSame, met, doneDays) + '</p>' +
+    '<svg viewBox="0 0 ' + W + ' ' + H + '">' + svg + '</svg>' +
+    '<div class="cmp-legend"><span><i style="background:var(--cmp-now)"></i>' + tx("legendThisWeek") + '</span><span><i style="background:var(--cmp-prev)"></i>' + tx("legendLastWeek") + '</span></div>';
+}
+
+// 3 · Témata: první 3 kola tématu vs poslední 3 (téma potřebuje aspoň 4 kola).
+function renderTopicCompare(){
+  const perTopic = {};
+  state.rounds.forEach(function(r){
+    const acc = {};
+    Object.keys(r.byTag || {}).forEach(function(tag){
+      let topic = r.topics.length === 1 ? r.topics[0] : null;
+      if(!topic){
+        const owners = r.topics.filter(function(t){ return TOPIC_TAGS[t] && TOPIC_TAGS[t][tag]; });
+        if(owners.length !== 1) return; // podtéma (např. Mix) nejde jednoznačně přiřadit
+        topic = owners[0];
+      }
+      acc[topic] = acc[topic] || { seen: 0, correct: 0 };
+      acc[topic].seen += r.byTag[tag].seen;
+      acc[topic].correct += r.byTag[tag].correct;
+    });
+    Object.keys(acc).forEach(function(t){ (perTopic[t] = perTopic[t] || []).push(acc[t]); });
+  });
+  const avg = function(list){
+    let s = 0, c = 0; list.forEach(function(a){ s += a.seen; c += a.correct; });
+    return pctOf(c, s);
+  };
+  const rows = Object.keys(perTopic).filter(function(t){ return perTopic[t].length >= 4 && TOPICS.some(function(x){ return x.id === t; }); })
+    .map(function(t){ const l = perTopic[t]; return { t: t, a: avg(l.slice(0, 3)), b: avg(l.slice(-3)) }; })
+    .sort(function(p, q){ return (q.b - q.a) - (p.b - p.a); });
+  if(rows.length === 0){
+    chartWrap.innerHTML = '<p class="card-label">' + tx("topicsLabel") + '</p><div class="chart-empty">' + tx("topicsEmpty") + '</div>';
+    return;
+  }
+  const x = function(v){ return 6 + v / 100 * 148; };
+  const html = rows.map(function(r){
+    const d = r.b - r.a;
+    return '<div class="cmp-row"><span>' + escapeHtml(topicName(r.t)) + '</span>' +
+      '<svg viewBox="0 0 160 16"><line class="c-grid" x1="6" x2="154" y1="8" y2="8" stroke-width="2"/>' +
+      '<line x1="' + x(r.a) + '" x2="' + x(r.b) + '" y1="8" y2="8" stroke-width="3" style="stroke:var(--' + (d < 0 ? "error" : "cmp-now") + ');stroke-opacity:.45"/>' +
+      '<circle class="c-prev" cx="' + x(r.a) + '" cy="8" r="5" stroke="var(--surface)" stroke-width="2"><title>' + tx("legendStart") + ": " + r.a + ' %</title></circle>' +
+      '<circle class="c-now" cx="' + x(r.b) + '" cy="8" r="5" stroke="var(--surface)" stroke-width="2"><title>' + tx("legendNow") + ": " + r.b + ' %</title></circle></svg>' +
+      '<span class="v ' + (d > 0 ? "up" : d < 0 ? "down" : "") + '">' + (d > 0 ? "+" : "") + d + '</span></div>';
+  }).join("");
+  const best = rows[0], worst = rows[rows.length - 1];
+  let note = best.b > best.a ? tx("topicsBest", topicName(best.t), best.a, best.b) : "";
+  if(worst.b < worst.a) note += " " + tx("topicsWorse", topicName(worst.t));
+  chartWrap.innerHTML = '<p class="card-label">' + tx("topicsLabel") + '</p><p class="cmp-sub">' + tx("topicsNote") + '</p>' + html +
+    '<div class="cmp-legend"><span><i class="dot" style="background:var(--cmp-prev)"></i>' + tx("legendStart") + '</span><span><i class="dot" style="background:var(--cmp-now)"></i>' + tx("legendNow") + '</span></div>' +
+    (note ? '<p class="cmp-sub" style="margin-top:12px">' + escapeHtml(note.trim()) + '</p>' : '');
+}
+
+// 4 · Podle obtížnosti (jen kola s vybranou obtížností, ne opakování a test).
+function renderDiffCompare(){
+  const acc = {};
+  state.rounds.forEach(function(r){
+    if(!DIFFICULTIES.some(function(d){ return d.id === r.difficulty; })) return;
+    acc[r.difficulty] = acc[r.difficulty] || { seen: 0, correct: 0 };
+    acc[r.difficulty].seen += r.totalParts;
+    acc[r.difficulty].correct += r.correctParts;
+  });
+  const list = DIFFICULTIES.filter(function(d){ return acc[d.id]; });
+  if(list.length === 0){
+    chartWrap.innerHTML = '<p class="card-label">' + tx("diffLabel") + '</p><div class="chart-empty">' + tx("diffEmpty") + '</div>';
+    return;
+  }
+  let next = "";
+  DIFFICULTIES.forEach(function(d, i){
+    const a = acc[d.id];
+    if(a && a.seen >= 30 && pctOf(a.correct, a.seen) >= 80 && DIFFICULTIES[i + 1]) next = tx("diffNext", diffName(d.id), diffName(DIFFICULTIES[i + 1].id));
+  });
+  chartWrap.innerHTML = '<p class="card-label">' + tx("diffLabel") + '</p>' + list.map(function(d){
+    const p = pctOf(acc[d.id].correct, acc[d.id].seen);
+    return '<div class="cmp-row" style="grid-template-columns:90px 1fr 44px"><span>' + diffName(d.id) + '<small>' + tx("answersShort", acc[d.id].seen) + '</small></span>' +
+      '<div class="cmp-bar"><span style="width:' + p + '%"></span></div><span class="v">' + p + ' %</span></div>';
+  }).join("") + (next ? '<p class="cmp-sub" style="margin-top:12px">' + escapeHtml(next) + '</p>' : '');
+}
+
+// 5 · Zvládnuto: otázky správně 3× po sobě (podle opakování po dnech).
+function renderMastered(){
+  const total = {}, done = {}, started = {};
+  let all = 0, allDone = 0;
+  QUESTIONS.forEach(function(q){
+    total[q.topic] = (total[q.topic] || 0) + 1; all++;
+    const st = state.questionStats[q.id];
+    if(st && st.seen > 0) started[q.topic] = true;
+    if(st && st.streak >= 3){ done[q.topic] = (done[q.topic] || 0) + 1; allDone++; }
+  });
+  const rows = TOPICS.filter(function(t){ return started[t.id]; })
+    .sort(function(a, b){ return (done[b.id] || 0) - (done[a.id] || 0); });
+  chartWrap.innerHTML = '<p class="card-label">' + tx("masteredLabel") + '</p>' +
+    '<div class="cmp-hero"><b>' + allDone + '</b><span class="cmp-sub" style="margin:0">' + tx("masteredOf", all, pctOf(allDone, all)) + '</span></div>' +
+    '<p class="cmp-sub">' + tx("masteredNote") + '</p>' +
+    rows.map(function(t){
+      const d = done[t.id] || 0;
+      return '<div class="cmp-row"><span>' + escapeHtml(topicName(t.id)) + '</span><div class="cmp-bar"><span style="width:' + (d / total[t.id] * 100) + '%"></span></div><span class="v">' + d + '</span></div>';
+    }).join("");
 }
 
 document.getElementById("reset-progress").addEventListener("click", function(){
