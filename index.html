@@ -1026,15 +1026,6 @@
       <p data-i18n="setupIntro">Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
     </div>
 
-    <div class="card" id="smart-card" style="display:none;">
-      <p class="card-label" data-i18n="labelSmart">Doporučeno pro tebe</p>
-      <div class="btn-row">
-        <button class="btn-secondary" id="btn-review"></button>
-        <button class="btn-secondary" id="btn-weak"></button>
-      </div>
-      <p class="smart-note" data-i18n="smartNote"></p>
-    </div>
-
     <div class="card">
       <p class="card-label" data-i18n="labelTopic">Téma (můžeš vybrat víc)</p>
       <div class="pill-grid" id="topic-grid"></div>
@@ -22926,7 +22917,6 @@ const views = {
 const tabButtons = document.querySelectorAll("#tabbar .tab");
 
 function showView(name){
-  if(name === "setup") renderSmartCard();
   if(name === "home") renderHome();
   if(name === "progress") renderProgress();
   Object.keys(views).forEach(function(k){ views[k].classList.remove("active"); });
@@ -23039,10 +23029,6 @@ const I18N = {
     restoreConfirm: function(d){ const p = d.split("-"); return "Obnovit pokrok ze zálohy z " + (p.length === 3 ? +p[2] + ". " + +p[1] + ". " + p[0] : d) + "? Současný pokrok se nahradí."; },
     modalCancel: "Zpět", modalOk: "Ano, pokračovat",
     olderTopic: "Starší téma", unknownDiff: "Neznámá obtížnost",
-    labelSmart: "Doporučeno pro tebe",
-    btnReview: function(n){ return "Opakování (" + n + ")"; },
-    btnWeak: function(n){ return "Co mi nejde (" + n + ")"; },
-    smartNote: "Otázky napříč tématy a obtížnostmi z toho, co už jsi procvičoval. Délka kola podle Počtu otázek níže.",
     reviewTitle: "Opakování", weakTitle: "Co mi nejde", mixedDiff: "Různé obtížnosti",
     nothingToPractise: "Teď tu není nic k procvičení — zahraj pár běžných kol.",
     dateLocale: "cs-CZ"
@@ -23133,10 +23119,6 @@ const I18N = {
     restoreConfirm: function(d){ return "Restore progress from the backup of " + d + "? Your current progress will be replaced."; },
     modalCancel: "Back", modalOk: "Yes, continue",
     olderTopic: "Older topic", unknownDiff: "Unknown difficulty",
-    labelSmart: "Recommended for you",
-    btnReview: function(n){ return "Review (" + n + ")"; },
-    btnWeak: function(n){ return "My weak spots (" + n + ")"; },
-    smartNote: "Questions across topics and levels from what you've already practised. Round length follows Number of questions below.",
     reviewTitle: "Review", weakTitle: "My weak spots", mixedDiff: "Mixed levels",
     nothingToPractise: "There's nothing to practise here yet — play a few regular rounds first.",
     dateLocale: "en-GB"
@@ -23244,7 +23226,6 @@ function applyLang(){
   renderDiffGrid();
   renderCountGrid();
   updateStartBtn();
-  renderSmartCard();
   renderProgress();
   renderHome();
   if(views.quiz.classList.contains("active")){
@@ -23429,21 +23410,6 @@ renderDiffGrid();
 renderCountGrid();
 updateStartBtn();
 
-function renderSmartCard(){
-  const review = specialPool("review").length;
-  const weak = specialPool("weak").length;
-  const anySeen = Object.keys(state.questionStats).some(function(id){ return state.questionStats[id].seen > 0; });
-  document.getElementById("smart-card").style.display = anySeen ? "" : "none";
-  const br = document.getElementById("btn-review");
-  const bw = document.getElementById("btn-weak");
-  br.textContent = tx("btnReview", review);
-  bw.textContent = tx("btnWeak", weak);
-  br.disabled = review === 0;
-  bw.disabled = weak === 0;
-}
-document.getElementById("btn-review").addEventListener("click", function(){ startSpecialRound("review"); });
-document.getElementById("btn-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
-renderSmartCard();
 
 /* ============================================================
    6a. RENDER: DOMŮ (denní cíl, série dní, týden, rychlé volby)
