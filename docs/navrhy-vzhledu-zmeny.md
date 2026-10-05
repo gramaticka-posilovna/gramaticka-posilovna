@@ -21,6 +21,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 13 | `navrhy-vzhledu-13.html` | v9 v barevných variantách: Šedomodrá + 8 palet (jen barvy) |
 | 14 | `navrhy-vzhledu-14.html` | Horní lišta (dnes · A kotouč + název · B název jako logo · C bez lišty) · tmavý režim (Domů, Otázka, Nastavení) |
 | 15 | `navrhy-vzhledu-15.html` | Písmo nadpisů a vět: Fraunces (dnes) · Newsreader · Literata · Source Serif 4 · Lora |
+| 16 | `navrhy-vzhledu-16.html` | Pokrok: karta Porovnání (Vývoj · Týden · Témata · Obtížnost · Zvládnuto) |
 
 ## Zpětná vazba
 
@@ -147,3 +148,9 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Zadání: písmo se líbí, jen „F“ je zvláštní. Jde o malé f ve Fraunces (úzké, velký háček, slévá se v fi/ff); Fraunces jiné f nemá (WONK, SOFT, ss01–03, salt nic nemění).
 - Kolo 14 výsledek: vybrána lišta **A** (kotouč + název), tmavý režim se líbí → nasazeno do appky.
 - Náhrady: **1 Newsreader** (nejpodobnější, doporučeno) · 2 Literata · 3 Source Serif 4 · 4 Lora. Inter beze změny.
+- **Kolo 15 výsledek:** vybrán **Newsreader** → nasazeno do appky (Fraunces zůstává jen pro staré návrhy a ikonu).
+
+### Pokrok a porovnávání (kolo 16)
+- Zadání: vylepšit graf v Pokroku, různé funkce porovnávání.
+- Karta s přepínačem: **1 Vývoj** (velké číslo + změna proti minulému období, čára po týdnech, období Týden/Měsíc/3 měsíce/Vše, bublina) · **2 Tento vs minulý týden** (odpovědi po dnech, čára denního cíle) · **3 Témata: na začátku vs teď** (činky šedá→modrá, seřazeno podle zlepšení) · 4 Podle obtížnosti · 5 Zvládnuto (3× správně po sobě). Doporučeno 1–3.
+- Barvy: modrá `#3A6FC0` = teď, šedá `#8592A6` = předtím (validátor: CVD ΔE 13,5, normální 15,2), zelená/korálová jen pro zlepšení/zhoršení.

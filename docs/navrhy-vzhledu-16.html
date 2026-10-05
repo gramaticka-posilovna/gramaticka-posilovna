@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 16</title>
+<style>
+  /* Statické návrhy (16. kolo) — NEJSOU součástí appky. Obrazovka Pokrok: porovnání. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:860px; line-height:1.55; }
+  .phones{ display:flex; gap:22px; overflow-x:auto; padding:22px 4px 10px; }
+  .col{ flex:0 0 300px; display:flex; flex-direction:column; }
+  .phone{ width:300px; height:640px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:92px; height:24px; background:#15171B; border-radius:14px; z-index:9; }
+  .cap{ font-size:13px; font-weight:700; text-align:center; margin:10px 0 4px; }
+  .why{ font-size:12px; color:#6A6F78; line-height:1.5; margin:0; padding-left:18px; }
+  .why li{ margin:3px 0; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:1px; }
+
+  /* Obrazovka appky v šířce 350 px, zmenšená do rámu */
+  .app{ position:absolute; inset:0; width:350px; height:775px; transform:scale(.8); transform-origin:0 0; overflow:hidden; padding:52px 16px 0;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .h1{ font-family:Newsreader, serif; font-size:28px; font-weight:700; margin:0 0 12px; }
+  .tabs{ display:flex; gap:3px; background:#D9E1EA; padding:3px; border-radius:999px; margin-bottom:14px; box-shadow:inset 0 1px 2px rgba(60,75,100,.14); }
+  .tabs span{ flex:1; text-align:center; font-size:11.5px; font-weight:700; color:#5C6478; padding:7px 2px; border-radius:999px; }
+  .tabs span.on{ background:#fff; color:#1B2A41; box-shadow:0 3px 8px rgba(60,75,100,.18); }
+  .card{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px 16px; box-shadow:inset 0 1px 0 #fff, 0 10px 22px rgba(60,75,100,.16), 0 2px 4px rgba(60,75,100,.10); margin-bottom:14px; }
+  .label{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 10px; }
+  .hero{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .hero b{ font-family:Newsreader, serif; font-size:40px; line-height:1; }
+  .delta{ font-size:12.5px; font-weight:700; color:#3F7A55; background:#E5F2E8; padding:3px 8px; border-radius:999px; }
+  .delta.down{ color:#B5543B; background:#FBEDE7; }
+  .sub{ font-size:12.5px; color:#5C6478; margin:6px 0 0; line-height:1.45; }
+  .chips{ display:flex; gap:6px; margin:12px 0 4px; }
+  .chips span{ font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:999px; background:#EDF2F6; color:#5C6478; }
+  .chips span.on{ background:#1E3A5F; color:#fff; }
+  .legend{ display:flex; gap:14px; font-size:11.5px; color:#5C6478; margin:8px 0 0; }
+  .legend i{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  svg text{ font-family:Inter, sans-serif; }
+  .row{ display:grid; grid-template-columns:96px 1fr 40px; align-items:center; gap:8px; padding:7px 0; border-top:1px solid #E6ECF2; font-size:12px; font-weight:600; }
+  .row:first-of-type{ border-top:none; }
+  .row .v{ text-align:right; font-weight:700; font-size:12px; }
+  .row .v.up{ color:#3F7A55; }
+  .row .v.dn{ color:#B5543B; }
+  .bar{ height:8px; background:#D9E1EA; border-radius:999px; overflow:hidden; }
+  .bar span{ display:block; height:100%; background:#3A6FC0; border-radius:999px; }
+  .tip{ position:absolute; background:#1B2A41; color:#fff; font-size:11px; font-weight:600; padding:5px 8px; border-radius:8px; white-space:nowrap; box-shadow:0 6px 14px rgba(0,0,0,.2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 16. kolo · Pokrok a porovnávání</h1>
+  <p class="lead">Dnes je v Pokroku jen řada barevných sloupců za posledních 15 kol, bez popisků a bez srovnání. Návrh: místo jednoho grafu karta „Porovnání“ s přepínačem nahoře. Každá záložka odpovídá na jednu otázku, kterou si člověk klade. Všechno se počítá z dat, která appka už ukládá, nic nového se sbírat nemusí.</p>
+  <p class="lead">Barvy: <b style="color:#3A6FC0">modrá = teď</b>, <b style="color:#8592A6">šedá = předtím</b> (ověřeno i pro barvoslepé, šedá má vždy popisek). Zelená a korálová jen pro zlepšení / zhoršení. Po klepnutí na sloupec nebo bod se ukáže přesná hodnota (jako bublina u grafu 1).</p>
+  <div class="phones" id="phones"></div>
+</div>
+<script>
+const BLUE = "#3A6FC0", GRAY = "#8592A6", GRID = "#E3E9F0", INK2 = "#5C6478";
+const TABS = ["Vývoj", "Týden", "Témata", "Obtížnost", "Zvládnuto"];
+const tabs = on => '<div class="tabs">' + TABS.map((t, i) => `<span class="${i === on ? "on" : ""}">${t}</span>`).join("") + '</div>';
+
+// 1 · Vývoj úspěšnosti po týdnech
+function trend(){
+  const pts = [58, 61, 60, 66, 64, 70, 73, 78], W = 300, H = 150, L = 26, B = 22;
+  const x = i => L + i * (W - L - 12) / (pts.length - 1), y = v => 8 + (100 - v) / 60 * (H - B - 8);
+  let g = "";
+  [40, 60, 80, 100].forEach(v => { g += `<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="0" y="${y(v) + 4}" font-size="10" fill="${INK2}">${v}%</text>`; });
+  const path = pts.map((v, i) => (i ? "L" : "M") + x(i) + " " + y(v)).join(" ");
+  const dots = pts.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${BLUE}" stroke="#fff" stroke-width="2"/>`).join("");
+  const wk = ["", "", "", "", "", "", "", ""].map((_, i) => `<text x="${x(i)}" y="${H - 4}" font-size="9.5" fill="${INK2}" text-anchor="middle">${i === 7 ? "teď" : "−" + (7 - i) + " t."}</text>`).join("");
+  return `
+    <div class="card">
+      <p class="label">Úspěšnost · posledních 30 dní</p>
+      <div class="hero"><b>78 %</b><span class="delta">▲ 9 b. oproti předchozím 30 dnům</span></div>
+      <div class="chips"><span>Týden</span><span class="on">Měsíc</span><span>3 měsíce</span><span>Vše</span></div>
+      <div style="position:relative">
+        <svg viewBox="0 0 ${W} ${H}" width="100%">${g}<path d="${path}" fill="none" stroke="${BLUE}" stroke-width="2"/>${dots}${wk}
+          <line x1="${x(5)}" x2="${x(5)}" y1="8" y2="${H - B}" stroke="#AEB9C6"/></svg>
+        <div class="tip" style="left:${x(5) / W * 100 - 30}%;top:-8px">14.–20. 9. · 70 % · 64 odp.</div>
+      </div>
+      <p class="sub">Každý bod = jeden týden. Přepínač nad grafem mění období.</p>
+    </div>`;
+}
+
+// 2 · Tento vs minulý týden (odpovědi po dnech) s denním cílem
+function week(){
+  const now = [22, 18, 26, 20, 10, null, null], prev = [12, 20, 0, 15, 9, 10, 8], days = ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"];
+  const W = 300, H = 160, B = 22, max = 30, bw = 13, gap = 2, slot = (W - 10) / 7;
+  const y = v => (H - B) - v / max * (H - B - 10);
+  let s = `<line x1="0" x2="${W}" y1="${H - B}" y2="${H - B}" stroke="${GRID}"/>`;
+  s += `<line x1="0" x2="${W}" y1="${y(20)}" y2="${y(20)}" stroke="#E0A81E" stroke-width="1.5"/><text x="${W}" y="${y(20) - 4}" font-size="9.5" fill="#8A6A12" text-anchor="end">denní cíl 20</text>`;
+  days.forEach((d, i) => {
+    const cx = 10 + i * slot + slot / 2;
+    const bar = (v, x, c) => v ? `<path d="M${x} ${H - B} V${y(v) + 4} q0 -4 4 -4 h${bw - 8} q4 0 4 4 V${H - B} Z" fill="${c}"/>` : "";
+    s += bar(prev[i], cx - bw - gap / 2, GRAY) + bar(now[i], cx + gap / 2, BLUE);
+    s += `<text x="${cx}" y="${H - 6}" font-size="10" fill="${i === 4 ? "#1B2A41" : INK2}" font-weight="${i === 4 ? 800 : 500}" text-anchor="middle">${i === 4 ? "Dnes" : d}</text>`;
+  });
+  return `
+    <div class="card">
+      <p class="label">Tento týden vs minulý</p>
+      <div class="hero"><b>96</b><span class="delta">▲ 30 % víc než minulý týden</span></div>
+      <p class="sub">odpovědí zatím (minulý týden za stejné dny 56) · cíl splněn 3 z 5 dní</p>
+      <svg viewBox="0 0 ${W} ${H}" width="100%" style="margin-top:8px">${s}</svg>
+      <div class="legend"><span><i style="background:${BLUE}"></i>Tento týden</span><span><i style="background:${GRAY}"></i>Minulý týden</span></div>
+    </div>`;
+}
+
+// 3 · Témata: na začátku vs teď (činka: šedá tečka → modrá tečka)
+function topics(){
+  const rows = [["Členy", 48, 74], ["Předložky", 52, 71], ["Slovesné časy", 60, 77], ["Podmínkové věty", 55, 66], ["Modální slovesa", 63, 70], ["Trpný rod", 71, 68]];
+  const x = v => 4 + (v - 40) / 50 * 152;
+  const body = rows.map(([n, a, b]) => {
+    const d = b - a;
+    return `<div class="row"><span>${n}</span>
+      <svg viewBox="0 0 160 16" width="100%" height="16"><line x1="4" x2="156" y1="8" y2="8" stroke="${GRID}" stroke-width="2"/>
+        <line x1="${x(a)}" x2="${x(b)}" y1="8" y2="8" stroke="${d >= 0 ? "#9DB8DE" : "#F0B3A3"}" stroke-width="3"/>
+        <circle cx="${x(a)}" cy="8" r="5" fill="${GRAY}" stroke="#fff" stroke-width="2"/><circle cx="${x(b)}" cy="8" r="5" fill="${BLUE}" stroke="#fff" stroke-width="2"/></svg>
+      <span class="v ${d >= 0 ? "up" : "dn"}">${d >= 0 ? "+" : ""}${d}</span></div>`;
+  }).join("");
+  return `
+    <div class="card">
+      <p class="label">Témata · zlepšení</p>
+      <p class="sub" style="margin:0 0 8px">Úspěšnost v prvních 3 kolech tématu (šedá) a za posledních 30 dní (modrá). Seřazeno od největšího zlepšení.</p>
+      ${body}
+      <div class="legend"><span><i style="background:${GRAY};border-radius:50%"></i>Na začátku</span><span><i style="background:${BLUE};border-radius:50%"></i>Teď</span></div>
+    </div>
+    <div class="card"><p class="label">Největší posun</p><p class="sub" style="margin:0;color:#1B2A41;font-size:14px"><b>Členy: z 48 % na 74 %.</b> Trpný rod se mírně zhoršil, appka ho teď častěji zařadí do opakování.</p></div>`;
+}
+
+// 4 · Podle obtížnosti
+function difficulty(){
+  const rows = [["Základní", 86, 410], ["Střední", 71, 236], ["Pokročilá", 54, 88]];
+  return `
+    <div class="card">
+      <p class="label">Úspěšnost podle obtížnosti</p>
+      ${rows.map(([n, p, c]) => `<div class="row" style="grid-template-columns:72px 1fr 40px"><span>${n}<br><small style="font-weight:500;color:${INK2}">${c} odp.</small></span><div class="bar"><span style="width:${p}%"></span></div><span class="v">${p} %</span></div>`).join("")}
+      <p class="sub">Na „Základní“ máš přes 85 %. Až to vydrží i na „Střední“, je čas přidat.</p>
+    </div>
+    <div class="card">
+      <p class="label">Ty vs tvůj první týden</p>
+      <div class="hero"><b>71 %</b><span class="delta">▲ 17 b.</span></div>
+      <p class="sub">Střední obtížnost: první týden 54 %, teď 71 %.</p>
+    </div>`;
+}
+
+// 5 · Zvládnuto (otázky správně 3× po sobě)
+function mastered(){
+  const rows = [["Slovesné časy", 126], ["Členy", 98], ["Předložky", 77], ["Modální slovesa", 61], ["Podmínkové věty", 40], ["Trpný rod", 22]];
+  return `
+    <div class="card">
+      <p class="label">Zvládnuté otázky</p>
+      <div class="hero"><b>612</b><span class="sub" style="margin:0">z 6 720 otázek (9 %)</span></div>
+      <p class="sub">Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.</p>
+    </div>
+    <div class="card">
+      <p class="label">Podle témat (z 420)</p>
+      ${rows.map(([n, v]) => `<div class="row"><span>${n}</span><div class="bar"><span style="width:${v / 420 * 100}%"></span></div><span class="v">${v}</span></div>`).join("")}
+    </div>`;
+}
+
+const screens = [
+  [0, trend, "1 · Vývoj v čase", ["Velké číslo + změna oproti minulému období.", "Čára po týdnech místo 15 kol bez popisků; přepínač Týden / Měsíc / 3 měsíce / Vše.", "Bublina s přesnou hodnotou po klepnutí."], true],
+  [1, week, "2 · Tento vs minulý týden", ["Počet odpovědí po dnech: tento týden vedle minulého.", "Žlutá čára = denní cíl z Nastavení.", "Motivuje k pravidelnosti (souvisí se sérií)."], true],
+  [2, topics, "3 · Témata: na začátku vs teď", ["Ke každému tématu, odkud jsi začal a kde jsi teď.", "Nejvíc motivující: ukazuje skutečný posun.", "Zhoršení je vidět taky, s vysvětlením."], true],
+  [3, difficulty, "4 · Podle obtížnosti", ["Úspěšnost na Základní / Střední / Pokročilé.", "Napoví, kdy přejít na těžší úroveň."], false],
+  [4, mastered, "5 · Zvládnuto", ["Kolik otázek už umíš (3× správně po sobě).", "Číslo, které nikdy neklesne. Dobré jako dlouhodobý cíl."], false]
+];
+document.getElementById("phones").innerHTML = screens.map(([on, fn, cap, why, rec]) => `
+  <div class="col">
+    <div class="phone"><div class="notch"></div><div class="app"><div class="h1">Tvůj pokrok</div>${tabs(on)}${fn()}</div></div>
+    <p class="cap">${cap}${rec ? '<span class="rec">DOPORUČUJU</span>' : ""}</p>
+    <ul class="why">${why.map(w => `<li>${w}</li>`).join("")}</ul>
+  </div>`).join("");
+</script>
+</body>
+</html>
