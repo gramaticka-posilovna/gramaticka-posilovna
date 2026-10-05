@@ -893,6 +893,21 @@
     padding: 4px 0; margin-top: 6px;
   }
   .reset-link:hover{ color: var(--error); }
+
+  /* ---------- Drobné radosti: combo, padající kotouče, roztočený kotouč série ---------- */
+  .combo-pill{ margin-left:auto; font-size: 12px; font-weight: 800; padding: 3px 9px; border-radius: 999px; background: var(--accent); color: #1D2026; }
+  .combo-pill.big{ animation: combo-pop .5s ease; }
+  @keyframes combo-pop{ 0%{ transform: scale(.6); } 60%{ transform: scale(1.25); } 100%{ transform: scale(1); } }
+  .plate-rain{ position: fixed; inset: 0; pointer-events: none; z-index: 120; overflow: hidden; }
+  .plate-rain i{ position: absolute; top: -60px; border-radius: 50%;
+    background: radial-gradient(circle, var(--bg) 0 13%, var(--plate) 14% 62%, var(--plate-dark) 63% 70%, var(--plate) 71%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 5px 10px rgba(0,0,0,0.3);
+    animation: plate-fall 1.6s cubic-bezier(.4,0,.8,.6) forwards; }
+  .plate-rain i.gold{ background: radial-gradient(circle, var(--bg) 0 13%, var(--accent) 14% 62%, #C99A12 63% 70%, var(--accent) 71%); }
+  @keyframes plate-fall{ to{ transform: translateY(115vh) rotate(540deg); } }
+  .streak-plate.spin{ animation: plate-spin 1s cubic-bezier(.2,.8,.3,1); }
+  @keyframes plate-spin{ to{ transform: rotate(1080deg); } }
+  .challenge-result{ font-size: 15px; line-height: 1.5; margin: 0 0 14px; }
   .share-link{ display:block; margin:14px auto 0; background:none; border:none; cursor:pointer; font: inherit; font-weight:700; color: var(--primary); padding: 10px; }
 
   /* ---------- Tmavý režim (docs/navrhy-vzhledu-14.html) ----------
@@ -1090,6 +1105,12 @@
       <summary class="card-label" id="mistakes-title"></summary>
       <div id="mistakes-list"></div>
     </details>
+
+    <div class="card" id="challenge-card">
+      <p class="card-label" data-i18n="challengeTitle">Výzva</p>
+      <p class="challenge-result" id="challenge-result"></p>
+      <button class="btn-secondary" id="challenge-btn" data-i18n="challengeBtn">Vyzvi kamaráda</button>
+    </div>
 
     <div class="btn-row">
       <button class="btn-secondary" id="btn-retry" data-i18n="btnRetry">Zkusit znovu</button>
@@ -22982,6 +23003,14 @@ const I18N = {
     noQuestions: "Pro tuto kombinaci tématu a obtížnosti zatím nejsou k dispozici otázky.",
     quizExit: "Ukončit kolo", exitConfirm: "Ukončit kolo bez uložení výsledku?",
     nTopics: function(n){ return n + " témata"; },
+    challengeTitle: "Výzva", challengeBtn: "Vyzvi kamaráda",
+    challengeHint: "Pošli kamarádovi stejné otázky a porovnejte se.",
+    challengeText: function(n, t){ return "Dal jsem " + n + " z " + t + " v Gramatické posilovně. Zvládneš víc?"; },
+    challengeInvite: function(n, t){ return "Kamarád tě vyzval: " + t + (t === 1 ? " otázka" : t < 5 ? " otázky" : " otázek") + ", dal " + n + " správně. Zvládneš víc?"; },
+    challengeWin: function(y, f, t){ return "Ty " + y + " z " + t + ", kamarád " + f + ". <strong>Vyhráváš! 🏆</strong>"; },
+    challengeDraw: function(y, f, t){ return "Ty " + y + " z " + t + ", kamarád taky " + f + ". <strong>Remíza.</strong>"; },
+    challengeLose: function(y, f, t){ return "Ty " + y + " z " + t + ", kamarád " + f + ". <strong>Tentokrát kamarád.</strong> Zkus to znovu."; },
+    combo: function(n){ return "Combo ×" + n; },
     questionOf: function(i, n){ return "Otázka " + i + " / " + n; },
     hint: "nápověda: ", check: "Zkontrolovat",
     correct: "Správně!", wrong: "Ještě to nesedí", correctAnswer: "Správně: ",
@@ -23072,6 +23101,14 @@ const I18N = {
     noQuestions: "There are no questions for this combination of topic and difficulty yet.",
     quizExit: "End round", exitConfirm: "End the round without saving your result?",
     nTopics: function(n){ return n + " topics"; },
+    challengeTitle: "Challenge", challengeBtn: "Challenge a friend",
+    challengeHint: "Send a friend the same questions and compare.",
+    challengeText: function(n, t){ return "I got " + n + " of " + t + " in Grammar Gym. Can you beat it?"; },
+    challengeInvite: function(n, t){ return "A friend challenged you: " + t + " questions, they got " + n + ". Can you beat it?"; },
+    challengeWin: function(y, f, t){ return "You " + y + " of " + t + ", your friend " + f + ". <strong>You win! 🏆</strong>"; },
+    challengeDraw: function(y, f, t){ return "You " + y + " of " + t + ", your friend " + f + " too. <strong>A draw.</strong>"; },
+    challengeLose: function(y, f, t){ return "You " + y + " of " + t + ", your friend " + f + ". <strong>Your friend wins this time.</strong> Try again."; },
+    combo: function(n){ return "Combo ×" + n; },
     questionOf: function(i, n){ return "Question " + i + " / " + n; },
     hint: "hint: ", check: "Check",
     correct: "Correct!", wrong: "Not quite", correctAnswer: "Correct answer: ",
@@ -23758,7 +23795,7 @@ function renderQuizTopbar(){
     return;
   }
   if(roundMode !== "normal"){
-    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : "weakTitle");
+    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : roundMode === "challenge" ? "challengeTitle" : "weakTitle");
     quizTagDiff.textContent = tx("mixedDiff");
     return;
   }
@@ -23933,6 +23970,14 @@ function handleChoiceClick(selectedIdx){
 // Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
 const REPORT_EMAIL = "";
 
+// Combo: aspoň 3 správné odpovědi za sebou v kole (ne v rozřazovacím testu); každá pětka „poskočí“.
+function comboPill(){
+  if(roundMode === "placement") return "";
+  let n = 0;
+  for(let i = roundResults.length - 1; i >= 0 && roundResults[i].allCorrect; i--) n++;
+  return n >= 3 ? '<span class="combo-pill' + (n % 5 === 0 ? ' big' : '') + '">' + tx("combo", n) + '</span>' : "";
+}
+
 function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines){
   registerAnswer(q, allCorrect, tagResults);
   roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults, revealLines: revealLines, given: given });
@@ -23941,7 +23986,7 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
   let fb = '<div class="feedback-panel ' + (allCorrect ? "ok" : "bad") + '">';
   fb += '<div class="feedback-head"><span class="feedback-icon">' +
         (allCorrect ? CHECK_SVG.replace('white','white') : '<svg viewBox="0 0 12 12" fill="none"><path d="M2.5 2.5L9.5 9.5M9.5 2.5L2.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>') +
-        '</span>' + (allCorrect ? tx("correct") : tx("wrong")) + '</div>';
+        '</span>' + (allCorrect ? tx("correct") : tx("wrong")) + comboPill() + '</div>';
   if(!allCorrect){
     revealLines.forEach(function(line){
       fb += '<p class="correction-line">' + tx("correctAnswer") + line + '</p>';
@@ -24013,7 +24058,9 @@ function finishRound(){
     mode: roundMode
   });
   const today = dayKey(new Date());
-  state.days[today] = (state.days[today] || 0) + roundResults.length;
+  const goalBefore = state.days[today] || 0;
+  state.days[today] = goalBefore + roundResults.length;
+  if(goalBefore < dailyGoal && state.days[today] >= dailyGoal) setTimeout(dropPlates, 400);
   if(roundMode === "placement"){
     state.placement = placementResult();
     selectedDifficulty = state.placement.difficulty;
@@ -24023,6 +24070,24 @@ function finishRound(){
 
   renderResults(pct, correctParts, totalParts, byTag);
   showView("results");
+}
+
+// Oslava splněného denního cíle: chvilku padají kotouče (kdo má vypnuté animace, nic nevidí).
+function dropPlates(){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const rain = document.createElement("div");
+  rain.className = "plate-rain";
+  for(let i = 0; i < 16; i++){
+    const p = document.createElement("i");
+    const size = 26 + Math.random() * 30;
+    p.style.width = p.style.height = size + "px";
+    p.style.left = (Math.random() * 100) + "%";
+    p.style.animationDelay = (Math.random() * 0.6) + "s";
+    if(i % 4 === 0) p.className = "gold";
+    rain.appendChild(p);
+  }
+  document.body.appendChild(rain);
+  setTimeout(function(){ rain.remove(); }, 2600);
 }
 
 const scoreRingFg = document.getElementById("score-ring-fg");
@@ -24077,6 +24142,18 @@ function renderResults(pct, correct, total, byTag){
   }
   recommendBox.innerHTML = recText;
 
+  // Výzva: u kola z odkazu porovnání s kamarádem, jinak jen nabídka vyzvat někoho dalšího.
+  const mine = roundResults.filter(function(r){ return r.allCorrect; }).length;
+  const chCard = document.getElementById("challenge-card");
+  chCard.style.display = roundMode === "placement" ? "none" : "";
+  const chResult = document.getElementById("challenge-result");
+  if(roundMode === "challenge" && challenge){
+    const f = challenge.score, t = roundResults.length;
+    chResult.innerHTML = tx(mine > f ? "challengeWin" : mine === f ? "challengeDraw" : "challengeLose", mine, f, t);
+  } else {
+    chResult.textContent = tx("challengeHint");
+  }
+
   // Projít chyby: rozbalovací seznam chybných otázek se správnou odpovědí a vysvětlením.
   const mistakes = roundResults.filter(function(r){ return !r.allCorrect; });
   const mistakesCard = document.getElementById("mistakes-card");
@@ -24097,8 +24174,43 @@ function renderResults(pct, correct, total, byTag){
 document.getElementById("btn-retry").addEventListener("click", function(){
   if(roundMode === "normal") startRound();
   else if(roundMode === "placement") startPlacement();
+  else if(roundMode === "challenge") startChallengeRound(challenge.ids);
   else startSpecialRound(roundMode);
 });
+document.getElementById("challenge-btn").addEventListener("click", function(){
+  const ids = roundQuestions.map(function(q){ return q.id; });
+  const mine = roundResults.filter(function(r){ return r.allCorrect; }).length;
+  const url = new URL("./", location.href);
+  url.searchParams.set("vyzva", ids.join(","));
+  url.searchParams.set("skore", mine);
+  shareLink(this, tx("challengeText", mine, ids.length), url.href, "challengeBtn");
+});
+
+// Výzva od kamaráda: stejné otázky ve stejném pořadí (odkaz ?vyzva=id,id…&skore=n).
+let challenge = null;
+function startChallengeRound(ids){
+  roundMode = "challenge";
+  roundTags = {};
+  roundQuestions = ids.map(function(id){ return QUESTIONS.find(function(q){ return q.id === id; }); });
+  roundTopics = [];
+  roundQuestions.forEach(function(q){ if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic); });
+  roundDifficulty = "mixed";
+  roundIndex = 0;
+  roundResults = [];
+  showView("quiz");
+  renderQuizTopbar();
+  renderQuestion();
+}
+(function(){
+  const params = new URLSearchParams(location.search);
+  if(!params.get("vyzva")) return;
+  const ids = params.get("vyzva").split(",").filter(function(id){ return QUESTIONS.some(function(q){ return q.id === id; }); });
+  history.replaceState(null, "", location.pathname); // po obnovení stránky se výzva znovu nespustí
+  if(ids.length === 0) return;
+  const score = Math.max(0, Math.min(ids.length, parseInt(params.get("skore"), 10) || 0));
+  challenge = { ids: ids, score: score };
+  setTimeout(function(){ showConfirm(tx("challengeInvite", score, ids.length), function(){ startChallengeRound(ids); }); }, 0);
+})();
 document.getElementById("btn-back-setup").addEventListener("click", function(){
   showView("setup");
 });
@@ -24447,21 +24559,41 @@ document.getElementById("reset-progress").addEventListener("click", function(){
   });
 });
 
-/* „Doporuč kamarádovi“ – systémové sdílení, jinak zkopírování odkazu */
+/* Sdílení odkazu – systémové sdílení, jinak zkopírování odkazu */
+function shareLink(btn, text, url, labelKey){
+  if(navigator.share){
+    navigator.share({ text: text, url: url }).catch(function(){});
+    return;
+  }
+  navigator.clipboard.writeText(text + " " + url).then(function(){
+    btn.textContent = tx("shareCopied");
+    setTimeout(function(){ btn.textContent = tx(labelKey); }, 2500);
+  });
+}
+/* „Doporuč kamarádovi“ */
 document.querySelectorAll(".share-btn").forEach(function(btn){
   btn.addEventListener("click", function(){
-    const url = new URL("./?ref=kamarad", location.href).href; // ref = příchod z doporučení
-    const text = tx("shareText");
-    if(navigator.share){
-      navigator.share({ text: text, url: url }).catch(function(){});
-      return;
-    }
-    navigator.clipboard.writeText(text + " " + url).then(function(){
-      btn.textContent = tx("shareCopied");
-      setTimeout(function(){ btn.textContent = tx("shareBtn"); }, 2500);
-    });
+    shareLink(btn, tx("shareText"), new URL("./?ref=kamarad", location.href).href, "shareBtn"); // ref = příchod z doporučení
   });
 });
+
+/* Skrytý vtip: pětkrát rychle klepnout na kotouč série a roztočí se */
+(function(){
+  const plate = document.querySelector(".streak-plate");
+  let taps = 0, timer = null;
+  plate.addEventListener("click", function(){
+    taps++;
+    clearTimeout(timer);
+    timer = setTimeout(function(){ taps = 0; }, 1500);
+    if(taps >= 5){
+      taps = 0;
+      plate.classList.remove("spin");
+      void plate.offsetWidth; // restart animace
+      plate.classList.add("spin");
+    }
+  });
+  plate.addEventListener("animationend", function(){ plate.classList.remove("spin"); });
+})();
 
 /* Záloha pokroku: uložení do souboru a obnovení ze souboru */
 const BACKUP_APP = "gramaticka-posilovna";
