@@ -22283,7 +22283,7 @@ const STORAGE_KEY = "grammarLabStateV1";
 
 function defaultState(){
   return {
-    questionStats: {},   // id -> { cooldown, streak, seen, correct }
+    questionStats: {},   // id -> { due, streak, seen, correct }; due = den "YYYY-MM-DD", kdy je otázka znovu na řadě
     tagStats: {},        // tag -> { seen, correct }  (počítáno po jednotlivých blancích)
     rounds: [],          // [{ date, topics, difficulty, totalParts, correctParts, byTag: {tag:{seen,correct}} }]
     days: {},            // "YYYY-MM-DD" (místní datum) -> počet otázek zodpovězených v dokončených kolech
@@ -22320,7 +22320,7 @@ function migrateState(s){
   });
   s.rounds = keptRounds;
 
-  // Otázky ze zrušených témat mažeme i z cooldown/streak statistik, aby si appka
+  // Otázky ze zrušených témat mažeme i ze statistik opakování, aby si appka
   // nedržela stav k otázkám, které se už v bance nevyskytují.
   const validQuestionIds = {};
   QUESTIONS.forEach(function(q){ validQuestionIds[q.id] = true; });
@@ -22329,6 +22329,16 @@ function migrateState(s){
     if(validQuestionIds[id]) cleanedQuestionStats[id] = s.questionStats[id];
   });
   s.questionStats = cleanedQuestionStats;
+
+  // Opakování se dřív plánovalo na počet odehraných kol (cooldown), teď na dny (due).
+  // Zbývající počet kol převedeme na stejný počet dní.
+  Object.keys(s.questionStats).forEach(function(id){
+    const st = s.questionStats[id];
+    if(st.due === undefined){
+      st.due = st.seen > 0 ? addDays(dayKey(new Date()), Math.max(0, st.cooldown || 0)) : "";
+      delete st.cooldown;
+    }
+  });
 
   // První verze rozřazovacího testu ukládala jen id obtížnosti – takový výsledek zahodíme.
   if(typeof s.placement === "string") s.placement = null;
@@ -22344,7 +22354,7 @@ function saveState(){
 
 function getQStat(id){
   if(!state.questionStats[id]){
-    state.questionStats[id] = { cooldown:0, streak:0, seen:0, correct:0 };
+    state.questionStats[id] = { due:"", streak:0, seen:0, correct:0 };
   }
   return state.questionStats[id];
 }
@@ -22369,28 +22379,20 @@ function shuffle(arr){
   return a;
 }
 
-// Simulace plynutí času: každé nové kolo trochu "probudí" uspané otázky
-function tickCooldowns(){
-  Object.keys(state.questionStats).forEach(function(id){
-    const st = state.questionStats[id];
-    if(st.cooldown > 0) st.cooldown -= 1;
-  });
-}
-
 function pickRoundQuestions(tagsByTopic, difficulty, count){
-  tickCooldowns();
-
+  const today = dayKey(new Date());
   const pool = QUESTIONS.filter(function(q){
     return tagsByTopic[q.topic] && tagsByTopic[q.topic].has(q.tag) && q.difficulty === difficulty;
   });
 
-  const withCooldown = pool.map(function(q){
-    return { q: q, cooldown: getQStat(q.id).cooldown };
+  const withDue = pool.map(function(q){
+    return { q: q, due: getQStat(q.id).due };
   });
 
-  const eligible = shuffle(withCooldown.filter(function(x){ return x.cooldown <= 0; }));
-  const sleeping = withCooldown.filter(function(x){ return x.cooldown > 0; })
-                                .sort(function(a,b){ return a.cooldown - b.cooldown; });
+  // Nejdřív nové a splatné otázky, pak ty, které budou na řadě nejdřív.
+  const eligible = shuffle(withDue.filter(function(x){ return x.due <= today; }));
+  const sleeping = withDue.filter(function(x){ return x.due > today; })
+                          .sort(function(a,b){ return a.due < b.due ? -1 : (a.due > b.due ? 1 : 0); });
 
   let chosen = eligible.slice(0, count).map(function(x){ return x.q; });
   if(chosen.length < count){
@@ -22406,12 +22408,13 @@ function pickRoundQuestions(tagsByTopic, difficulty, count){
 // V anglické verzi se vynechává slovní zásoba (stejně jako ve výběru témat).
 function specialPool(mode){
   const pool = [];
+  const today = dayKey(new Date());
   shuffle(QUESTIONS).forEach(function(q){
     const st = state.questionStats[q.id];
     if(!st || st.seen === 0) return;
     if(lang === "en" && q.topic === "vocab") return;
     const acc = st.correct / st.seen;
-    if(mode === "review" ? st.cooldown <= 0 : (st.streak === 0 || acc < 0.6)){
+    if(mode === "review" ? st.due <= today : (st.streak === 0 || acc < 0.6)){
       pool.push({ q: q, streak: st.streak, acc: acc });
     }
   });
@@ -22427,11 +22430,12 @@ function registerAnswer(question, allPartsCorrect, tagResults){
   if(allPartsCorrect){
     st.correct += 1;
     st.streak += 1;
-    const cooldownTable = [2,3,5,8,11,15];
-    st.cooldown = cooldownTable[Math.min(st.streak-1, cooldownTable.length-1)];
+    // Správně: další opakování za 1, 3, 7, 14, 30, 60 dní podle počtu správných v řadě.
+    const intervalDays = [1,3,7,14,30,60];
+    st.due = addDays(dayKey(new Date()), intervalDays[Math.min(st.streak-1, intervalDays.length-1)]);
   } else {
     st.streak = 0;
-    st.cooldown = 1;
+    st.due = dayKey(new Date()); // chybná otázka je na řadě hned znovu
   }
   tagResults.forEach(function(r){
     const ts = getTagStat(r.tag);
@@ -22913,6 +22917,11 @@ function dayKey(d){
   return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
 }
 
+function addDays(key, n){
+  const p = key.split("-");
+  return dayKey(new Date(+p[0], +p[1] - 1, +p[2] + n));
+}
+
 // Dny, kdy uživatel dokončil aspoň jedno kolo. Kola z doby před sledováním
 // denních počtů (state.days) se berou z historie kol.
 function activeDays(){
@@ -23141,7 +23150,6 @@ function startSpecialRound(mode){
     alert(tx("nothingToPractise"));
     return;
   }
-  tickCooldowns();
   roundMode = mode;
   roundTags = {};
   roundTopics = [];
@@ -23188,7 +23196,6 @@ function placementBlockPassed(){
 }
 
 function startPlacement(){
-  tickCooldowns();
   roundMode = "placement";
   roundTags = {};
   roundTopics = [];
