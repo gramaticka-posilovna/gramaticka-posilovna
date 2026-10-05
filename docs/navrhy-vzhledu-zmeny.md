@@ -160,3 +160,4 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Horní lišta znovu (kolo 17)
 - Zadání: lišta s G a názvem na Domů se teď úplně nelíbí; ukázat před/po a lehkou změnu, nebo vrátit. Zajíždění pod hodiny je jen v testu (klávesnice posune stránku) → v appce pevný pruh pod stavovým řádkem.
 - Varianty: Před (jen kotouč) · Teď (kotouč + název, plná lišta) · **1 Lehčí lišta** (bez pozadí/linky/stínu, menší kotouč 26 px, šedší název 16 px; doporučeno) · 2 Malý název nad pozdravem (bez lišty).
+- **Kolo 17 výsledek:** vybrána **1 Lehčí lišta** → nasazeno do appky.
