@@ -9,8 +9,8 @@ const FILES = [
   "apple-touch-icon.png",
   "icon-192.png",
   "icon-512.png",
-  "fonts/fraunces-latin.woff2",
-  "fonts/fraunces-latin-ext.woff2",
+  "fonts/newsreader-latin.woff2",
+  "fonts/newsreader-latin-ext.woff2",
   "fonts/inter-latin.woff2",
   "fonts/inter-latin-ext.woff2"
 ];
