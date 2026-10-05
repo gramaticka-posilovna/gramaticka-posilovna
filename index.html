@@ -778,6 +778,17 @@
   }
   .recommend-box strong{ color: #22492F; }
 
+  /* Rozbalovací karta (Projít chyby, Tahák) */
+  .fold summary{ cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; margin:0; }
+  .fold summary::-webkit-details-marker{ display:none; }
+  .fold summary::after{ content:"›"; font-size:20px; line-height:1; transform:rotate(90deg); transition:transform .15s ease; }
+  .fold[open] summary::after{ transform:rotate(-90deg); }
+  .fold[open] summary{ margin-bottom:14px; }
+  .mistake{ padding:14px 0; border-top:1px solid var(--line); }
+  .mistake:first-child{ border-top:none; padding-top:0; }
+  .mistake-q{ font-weight:600; margin:0 0 6px; }
+  .mistake-given{ font-size:13.5px; color:var(--error); margin:4px 0 12px; }
+
   /* ---------- Progress dashboard ---------- */
   .stat-grid{
     display:grid;
@@ -969,6 +980,11 @@
       <p class="card-label" data-i18n="labelRecommend">Doporučení</p>
       <div class="recommend-box" id="recommend-box"></div>
     </div>
+
+    <details class="card fold" id="mistakes-card">
+      <summary class="card-label" id="mistakes-title"></summary>
+      <div id="mistakes-list"></div>
+    </details>
 
     <div class="btn-row">
       <button class="btn-secondary" id="btn-retry" data-i18n="btnRetry">Zkusit znovu</button>
@@ -22499,6 +22515,7 @@ const I18N = {
     placementPlan: function(list){ return "Tvůj plán – jevy, které ti v testu nevyšly: " + list + ". Najdeš ho na Domů."; },
     placementNoPlan: "V testu ti všechno vyšlo – vyber si v Tématech, co tě zajímá.",
     labelPlan: "Tvůj plán z testu", planBtn: "Procvičit plán",
+    mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
     helloMorning: "Dobré ráno!", helloDay: "Dobrý den!", helloEvening: "Dobrý večer!",
@@ -22561,6 +22578,7 @@ const I18N = {
     placementPlan: function(list){ return "Your plan – the points you got wrong: " + list + ". You'll find it on Home."; },
     placementNoPlan: "No mistakes in the test – pick whatever interests you in Topics.",
     labelPlan: "Your plan from the test", planBtn: "Practise my plan",
+    mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
     helloMorning: "Good morning!", helloDay: "Good afternoon!", helloEvening: "Good evening!",
@@ -23349,10 +23367,12 @@ function handleCheck(){
   let allCorrect = true;
   const tagResults = [];
   const revealLines = [];
+  const given = []; // co uživatel napsal do chybných mezer (pro „Projít chyby“)
 
   if(q.type === "fill"){
     const input = document.getElementById("blank-0");
     const ok = !dontKnow && checkAnswer(input.value, q.answers);
+    if(!ok) given.push(dontKnow ? "" : input.value);
     input.disabled = true;
     input.classList.add(ok ? "state-correct" : "state-wrong");
     if(!ok) allCorrect = false;
@@ -23364,6 +23384,7 @@ function handleCheck(){
     q.parts.forEach(function(p, i){
       const input = document.getElementById("blank-"+i);
       const ok = !dontKnow && checkAnswer(input.value, p.answers);
+      if(!ok) given.push(dontKnow ? "" : input.value);
       input.disabled = true;
       input.classList.add(ok ? "state-correct" : "state-wrong");
       if(!ok){
@@ -23374,7 +23395,7 @@ function handleCheck(){
     });
   }
 
-  finalizeAnswer(q, allCorrect, tagResults, revealLines);
+  finalizeAnswer(q, allCorrect, tagResults, revealLines, given);
 }
 
 function handleChoiceClick(selectedIdx){
@@ -23393,15 +23414,15 @@ function handleChoiceClick(selectedIdx){
   const tagResults = [{ tag: q.tag, correct: ok }];
   const revealLines = ok ? [] : ["<b>" + escapeHtml(q.options[q.correctIndex]) + "</b>"];
 
-  finalizeAnswer(q, ok, tagResults, revealLines);
+  finalizeAnswer(q, ok, tagResults, revealLines, ok || selectedIdx < 0 ? [""] : [q.options[selectedIdx]]);
 }
 
 // Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
 const REPORT_EMAIL = "";
 
-function finalizeAnswer(q, allCorrect, tagResults, revealLines){
+function finalizeAnswer(q, allCorrect, tagResults, revealLines, given){
   registerAnswer(q, allCorrect, tagResults);
-  roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults });
+  roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults, revealLines: revealLines, given: given });
 
   const slot = document.getElementById("feedback-slot");
   let fb = '<div class="feedback-panel ' + (allCorrect ? "ok" : "bad") + '">';
@@ -23539,6 +23560,22 @@ function renderResults(pct, correct, total, byTag){
     recText = tx("recKeep");
   }
   recommendBox.innerHTML = recText;
+
+  // Projít chyby: rozbalovací seznam chybných otázek se správnou odpovědí a vysvětlením.
+  const mistakes = roundResults.filter(function(r){ return !r.allCorrect; });
+  const mistakesCard = document.getElementById("mistakes-card");
+  mistakesCard.style.display = mistakes.length ? "" : "none";
+  mistakesCard.open = false;
+  document.getElementById("mistakes-title").textContent = tx("mistakesTitle", mistakes.length);
+  document.getElementById("mistakes-list").innerHTML = mistakes.map(function(r){
+    const q = r.question;
+    let h = '<div class="mistake">';
+    if(q.type === "choice") h += '<p class="mistake-q">' + escapeHtml(q.question) + '</p>';
+    r.revealLines.forEach(function(line){ h += '<p class="correction-line">' + tx("correctAnswer") + line + '</p>'; });
+    h += '<p class="mistake-given">' + tx("yourAnswer") + r.given.map(function(g){ return g.trim() ? escapeHtml(g) : tx("noAnswer"); }).join(" · ") + '</p>';
+    h += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
+    return h + '</div>';
+  }).join("");
 }
 
 document.getElementById("btn-retry").addEventListener("click", function(){
