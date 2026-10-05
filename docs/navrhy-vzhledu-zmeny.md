@@ -31,6 +31,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 23 | `navrhy-vzhledu-23.html` | Kotoučík 3D (před/po, tmavý) · 5 míst vykouknutí · pravidla podle toho, co funguje |
 | 24 | `navrhy-vzhledu-24.html` | Kotoučík: přivítání (8 situací) · velké oslavy (zámek, činka, zezlátnutí, medaile) |
 | 25 | `navrhy-vzhledu-25.html` | Velké oslavy dotažené: pódium se světlem a paprsky, 3D zámek/činka/mince/medaile, otřes, konfety, zlatý nápis |
+| 26 | `navrhy-vzhledu-26.html` | Oslavy: činka a medaile s plynulým pohybem po snímcích, žíněnka, vinětace |
 
 ## Zpětná vazba
 
@@ -213,3 +214,9 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Velké oslavy dotažené (kolo 25)
 - Tmavé pódium (radiální světlo), pomalu se otáčející zlaté paprsky, záře za postavou, stín na podlaze, konfety z mini kotoučů a jisker, štítek (ODEMČENO / SÉRIE / MILNÍK / PERFEKTNÍ KOLO) „razítkem“, nadpis zlatým přechodem, podnadpis.
 - Zámek: 3D zlaté tělo s hranou a lesk, chromové okovy, náraz se zábleskem a otřesem obrazovky, prasklina, okovy odletí, půlky odpadnou, střepy. Činka: chromová tyč, kotouče se zlatým lemem, přidřep a výraz, kapka potu, velké číslo. Zezlátnutí: 3× otočení jako mince, zlatá verze s odleskem, kruh a jiskry. Medaile: stuha v barvách appky za Kotoučíkem, disk s věncem a „C1“, zhoupnutí, odlesk.
+- **Kolo 25 výsledek:** lepší, ale dodělat; hlavně pohyb činky a medaile „úplně nesedí“.
+
+### Oslavy, doladěný pohyb (kolo 26)
+- Činka i medaile se počítají po snímcích (JS), synchronně s nápisy. Činka: drží ji u břicha (soustředěné oči), přidřep, výraz nad hlavu s mírným přešvihnutím, ruce jsou vždy napojené na tyč a lokty se narovnávají, tyč se zhoupne a kotouče se pohnou, kapka potu, nahoře hvězdičky v očích; Kotoučík stojí na žíněnce.
+- Medaile: spustí se shora, stuha jako V přes spodek kotouče (pod pusou, konce schované v obrysu), disk visí pod ním a tlumeně dokývá, odlesk; Kotoučík se při dopadu přikrčí a nadme.
+- Jemné doladění: vinětace okrajů pod textem, podlaha se světlem.
