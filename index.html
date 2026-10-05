@@ -866,6 +866,7 @@
     padding: 4px 0; margin-top: 6px;
   }
   .reset-link:hover{ color: var(--error); }
+  .share-link{ display:block; margin:14px auto 0; background:none; border:none; cursor:pointer; font: inherit; font-weight:700; color: var(--primary); padding: 10px; }
 
   /* ---------- Tmavý režim (docs/navrhy-vzhledu-14.html) ----------
      data-theme nastavuje skript v <head> podle Nastavení / systému.
@@ -1083,6 +1084,7 @@
     <div class="btn-row">
       <button class="btn-secondary" id="btn-back-setup" data-i18n="btnBack">Zpět na výběr</button>
     </div>
+    <button class="share-link share-btn" data-i18n="shareBtn">Doporuč kamarádovi</button>
   </div>
 
   <!-- ===================== PROGRESS VIEW ===================== -->
@@ -1155,6 +1157,8 @@
       </div>
       <p class="smart-note" id="backup-note" data-i18n="backupNote"></p>
     </div>
+
+    <button class="btn-secondary share-btn" data-i18n="shareBtn">Doporuč kamarádovi</button>
 
     <button class="reset-link" id="reset-progress" data-i18n="resetProgress">Smazat veškerý pokrok</button>
   </div>
@@ -22976,6 +22980,8 @@ const I18N = {
     weakEmpty: "Zatím nemáme dost dat — po pár odehraných kolech se tu objeví tvé nejslabší jevy.",
     historyEmpty: "Historie kol se zobrazí, jakmile dohraješ první kolo.",
     resetConfirm: "Opravdu chceš smazat veškerý uložený pokrok? Tuto akci nelze vrátit zpět.",
+    shareBtn: "Doporuč kamarádovi", shareCopied: "Odkaz zkopírován – pošli ho kamarádovi.",
+    shareText: "Zkus Gramatickou posilovnu – procvičování anglické gramatiky od A2 po C1, s opakováním chyb. Otevři odkaz a dej „Přidat na plochu“.",
     setBackup: "Záloha pokroku", backupSave: "Uložit", backupLoad: "Obnovit",
     backupNote: "Záloha je soubor s celým pokrokem. Ulož si ho občas (třeba do Souborů nebo iCloudu) a při ztrátě dat ho tu obnovíš.",
     backupBad: "Tenhle soubor není záloha Gramatické posilovny.",
@@ -23047,6 +23053,8 @@ const I18N = {
     weakEmpty: "Not enough data yet — your weakest areas will appear here after a few rounds.",
     historyEmpty: "Your round history will appear once you finish your first round.",
     resetConfirm: "Do you really want to delete all your saved progress? This cannot be undone.",
+    shareBtn: "Recommend to a friend", shareCopied: "Link copied – send it to a friend.",
+    shareText: "Try Grammar Gym – English grammar practice from A2 to C1 that brings back your mistakes. Open the link and tap “Add to Home Screen”.",
     setBackup: "Progress backup", backupSave: "Save", backupLoad: "Restore",
     backupNote: "The backup is a file with all your progress. Save it now and then (e.g. to Files or iCloud) and restore it here if your data is lost.",
     backupBad: "This file is not a Grammar Gym backup.",
@@ -24158,6 +24166,22 @@ document.getElementById("reset-progress").addEventListener("click", function(){
   });
 });
 
+/* „Doporuč kamarádovi“ – systémové sdílení, jinak zkopírování odkazu */
+document.querySelectorAll(".share-btn").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    const url = new URL("./?ref=kamarad", location.href).href; // ref = příchod z doporučení
+    const text = tx("shareText");
+    if(navigator.share){
+      navigator.share({ text: text, url: url }).catch(function(){});
+      return;
+    }
+    navigator.clipboard.writeText(text + " " + url).then(function(){
+      btn.textContent = tx("shareCopied");
+      setTimeout(function(){ btn.textContent = tx("shareBtn"); }, 2500);
+    });
+  });
+});
+
 /* Záloha pokroku: uložení do souboru a obnovení ze souboru */
 const BACKUP_APP = "gramaticka-posilovna";
 const backupNote = document.getElementById("backup-note");
@@ -24204,6 +24228,9 @@ backupFile.addEventListener("change", function(){
 /* Úvodní vykreslení */
 renderProgress();
 applyLang();
+
+// Offline režim (sw.js)
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function(){});
 
 })();
 </script>

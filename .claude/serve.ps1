@@ -11,6 +11,7 @@ while ($listener.IsListening) {
   if (Test-Path $full -PathType Leaf) {
     $bytes = [System.IO.File]::ReadAllBytes($full)
     if ($full -like "*.html") { $ctx.Response.ContentType = "text/html; charset=utf-8" }
+    if ($full -like "*.js") { $ctx.Response.ContentType = "text/javascript; charset=utf-8" }
     $ctx.Response.ContentLength64 = $bytes.Length
     $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
   } else {
