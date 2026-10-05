@@ -30,6 +30,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 22 | `navrhy-vzhledu-22.html` | Kotoučík doladěný: 5 výrazů, velikosti, tmavý režim, živé vykouknutí, hlášky podle situace |
 | 23 | `navrhy-vzhledu-23.html` | Kotoučík 3D (před/po, tmavý) · 5 míst vykouknutí · pravidla podle toho, co funguje |
 | 24 | `navrhy-vzhledu-24.html` | Kotoučík: přivítání (8 situací) · velké oslavy (zámek, činka, zezlátnutí, medaile) |
+| 25 | `navrhy-vzhledu-25.html` | Velké oslavy dotažené: pódium se světlem a paprsky, 3D zámek/činka/mince/medaile, otřes, konfety, zlatý nápis |
 
 ## Zpětná vazba
 
@@ -207,3 +208,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Přivítání a velké oslavy (kolo 24)
 - Přivítání jen 1× denně při prvním otevření; 8 situací (první spuštění, ráno, den, večer, série, po pauze, čeká opakování, dnes splněno), pořadí priorit, bez výčitek.
 - Velké oslavy výjimečně (pravidlo vrchol–konec): série 7/30/100/365 a týden 7/7 → zvedne činku; poprvé 80 % na obtížnosti → **rozbije zámek „Odemčeno: …“** (doporučeno); 100/500/1000 zvládnutých → zezlátne; perfektní kolo na Pokročilé → medaile. Denní cíl zůstává u malé oslavy. Celá obrazovka ztmavne ~3 s, klepnutím zavřít.
+- **Kolo 24 výsledek:** přivítání se líbí, ke každé situaci 2–3 další věty (ke schválení); oslavy se líbí, ale graficky „mnohem lépe“.
+
+### Velké oslavy dotažené (kolo 25)
+- Tmavé pódium (radiální světlo), pomalu se otáčející zlaté paprsky, záře za postavou, stín na podlaze, konfety z mini kotoučů a jisker, štítek (ODEMČENO / SÉRIE / MILNÍK / PERFEKTNÍ KOLO) „razítkem“, nadpis zlatým přechodem, podnadpis.
+- Zámek: 3D zlaté tělo s hranou a lesk, chromové okovy, náraz se zábleskem a otřesem obrazovky, prasklina, okovy odletí, půlky odpadnou, střepy. Činka: chromová tyč, kotouče se zlatým lemem, přidřep a výraz, kapka potu, velké číslo. Zezlátnutí: 3× otočení jako mince, zlatá verze s odleskem, kruh a jiskry. Medaile: stuha v barvách appky za Kotoučíkem, disk s věncem a „C1“, zhoupnutí, odlesk.
