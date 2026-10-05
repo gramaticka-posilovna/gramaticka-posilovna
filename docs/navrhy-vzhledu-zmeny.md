@@ -25,6 +25,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 17 | `navrhy-vzhledu-17.html` | Horní lišta: před · teď · 1 lehčí lišta · 2 malý název nad pozdravem |
 | 18 | `navrhy-vzhledu-18.html` | Horní lišta, 7 přístupů: A bez lišty · B název uprostřed · C název + série · D datum · E dvoubarevný nápis · F tmavý pruh · G kotouč v řádku nad pozdravem |
 | 19 | `navrhy-vzhledu-19.html` | Místo „Dobrý den!“: 1 podle denní doby · 2 stav cíle · 3 co dnes procvičit · 4 datum · 5 anglická věta dne · 6 bez nadpisu |
+| 20 | `navrhy-vzhledu-20.html` | Úderný nadpis Domů: 1 Dnešní trénink · 2 Jdeme na to · 3 velké číslo · 4 minuty do cíle · 5 série · 6 úroveň · 7 Máš 5 minut? |
 
 ## Zpětná vazba
 
@@ -172,3 +173,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Místo „Dobrý den!“ (kolo 19)
 - Zadání: je potřeba „Dobrý den“? Návrhy, čím ho nahradit. Všechny s lištou B, kotouč série zůstává.
 - 1 Pozdrav podle denní doby · **2 Stav dnešního cíle** („Ještě 8 do cíle“, karta cíle jen jako pruh; doporučeno) · 3 Co dnes procvičit (doporučené téma + spuštění) · 4 Datum jako nadpis · 5 Anglická věta dne s překladem · 6 Bez nadpisu.
+- **Kolo 19 výsledek:** líbila se věta dne, ale po rozpracování (typy vět, opakování, roky) uživatel řekl „blbost“; chce 7 dalších návrhů, úderných, výstižných, jednoduchých.
+
+### Úderný nadpis Domů (kolo 20)
+- Inspirace: fitness/výukové appky dávají na Domů stav dne (cíl, série, trénink), ne pozdrav.
+- 1 Dnešní trénink (statický, sedí k posilovně) · 2 Jdeme na to! / Ještě kousek! / Máš splněno · 3 velké číslo „8 odpovědí do cíle“ · **4 „6 minut do cíle“** (odhad ~45 s/odpověď; doporučeno) · 5 „6. den v řadě“ + kroužek dnešního cíle místo kotouče · 6 „Úroveň B1“ · 7 „Máš 5 minut?“.
