@@ -200,3 +200,4 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - 3D: přechody (světlo zleva nahoře), tmavý zkosený okraj, lesklý stříbrný proužek, vypouklé oči s odleskem, ručičky s odleskem, stín pod sebou.
 - Místa: 1 zprava zespodu · 2 zleva (zrcadlově) · 3 zespodu (jen oči a ručičky) · 4 shora vzhůru nohama (šetřit na Combo) · 5 zpoza okraje karty.
 - Pravidla: nepředvídatelně (~1× z 10, nikdy 2× stejné místo), max 2× za kolo, 2–3 s, nikdy přes políčko ani tlačítko, jistě jen u Combo ×5 a splněného cíle, po chybě výjimečně a laskavě, omezené animace = jen bublina, vypínatelný.
+- **Kolo 23 výsledek:** všech 5 míst + 3 nová (přikutálí se, levý horní roh, vyskočí zespodu vlevo); hláška 46 neutrálně „Dnes se makalo. Zítra zas.“ → Kotoučík nasazen do appky (vypínatelný v Nastavení).
