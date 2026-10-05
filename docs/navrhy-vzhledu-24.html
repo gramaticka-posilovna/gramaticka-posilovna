@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 24</title>
+<style>
+  /* Statické návrhy (24. kolo) — NEJSOU součástí appky. Kotoučík: přivítání a velké oslavy. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1300px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  h2{ font-size:21px; margin:46px 0 6px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:900px; line-height:1.55; }
+  table{ border-collapse:collapse; background:#fff; border-radius:14px; overflow:hidden; margin-top:14px; font-size:14px; max-width:960px; width:100%; }
+  th, td{ text-align:left; padding:10px 14px; border-bottom:1px solid #EEE; vertical-align:top; }
+  th{ background:#F6F8FA; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#6A6F78; }
+  td b{ white-space:nowrap; }
+  .rules{ background:#fff; border-radius:14px; padding:12px 20px; max-width:960px; font-size:14px; line-height:1.6; margin-top:14px; }
+  .rules ul{ margin:4px 0 0; padding-left:18px; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:2px; }
+
+  .phones{ display:flex; gap:22px; flex-wrap:wrap; margin-top:16px; }
+  .col{ width:300px; }
+  .phone{ width:300px; height:560px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .app{ position:absolute; inset:0; width:350px; height:700px; transform:scale(.8); transform-origin:0 0; overflow:hidden;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .cap{ font-size:14px; font-weight:800; margin:12px 0 2px; }
+  .why{ font-size:12px; color:#6A6F78; line-height:1.5; margin:4px 0 0; padding-left:18px; }
+  .home{ padding:70px 16px 0; }
+  .brand{ position:absolute; top:22px; left:0; right:0; text-align:center; font:800 11px Inter; letter-spacing:.16em; color:#8A94A6; }
+  .day{ font-size:14px; color:#5C6478; }
+  .hl{ font:700 28px Newsreader, serif; margin:2px 0 16px; }
+  .card{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; box-shadow:0 10px 22px rgba(60,75,100,.16); margin-bottom:14px; height:90px; }
+  .bubble{ position:absolute; background:#1B2A41; color:#fff; font:700 14.5px Inter; padding:10px 14px; border-radius:16px; max-width:230px; box-shadow:0 8px 18px rgba(0,0,0,.2); }
+
+  /* Velká oslava: ztmavení + scéna uprostřed */
+  .stage{ position:absolute; inset:0; background:rgba(15,20,28,.72); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; text-align:center; }
+  .scene{ position:relative; width:240px; height:240px; }
+  .scene svg{ position:absolute; overflow:visible; }
+  .title{ font:700 28px Newsreader, serif; margin-top:6px; opacity:0; animation: fadein 6s infinite; }
+  .sub{ font-size:14px; opacity:.85; margin-top:4px; opacity:0; animation: fadein 6s infinite; }
+  .tap{ position:absolute; bottom:40px; font-size:12px; opacity:.6; }
+  @keyframes fadein{ 0%,45%{ opacity:0; transform:translateY(8px); } 55%,92%{ opacity:1; transform:none; } 100%{ opacity:0; } }
+
+  /* 1 · Rozbitý zámek */
+  .lock-body{ left:70px; top:96px; width:100px; height:90px; animation: lock-shake 6s infinite; }
+  .shackle{ left:84px; top:44px; width:72px; height:70px; animation: shackle 6s infinite; transform-origin:70% 100%; }
+  .kt-hit{ left:-30px; top:120px; width:110px; height:110px; animation: kt-hit 6s infinite; }
+  .shard{ width:18px; height:18px; left:110px; top:130px; animation: shard 6s infinite; opacity:0; }
+  @keyframes kt-hit{ 0%{ transform:translate(-160px,0) rotate(-200deg); } 25%{ transform:translate(30px,0) rotate(0); } 30%{ transform:translate(10px,0) rotate(-10deg); } 45%,90%{ transform:translate(-10px,40px) rotate(-8deg) scale(.9); } 100%{ transform:translate(-160px,40px) rotate(-200deg); } }
+  @keyframes lock-shake{ 0%,24%{ transform:none; } 26%{ transform:translateX(6px) rotate(4deg); } 28%{ transform:translateX(-6px) rotate(-4deg); } 30%{ transform:none; } 34%{ transform:translateY(0); } 50%,90%{ transform:translateY(160px) rotate(25deg); opacity:0; } 100%{ opacity:0; } }
+  @keyframes shackle{ 0%,30%{ transform:none; opacity:1; } 45%{ transform:translate(40px,-90px) rotate(70deg); opacity:1; } 60%,100%{ transform:translate(90px,-60px) rotate(140deg); opacity:0; } }
+  @keyframes shard{ 0%,28%{ opacity:0; transform:none; } 30%{ opacity:1; } 55%{ opacity:0; transform:translate(var(--dx), var(--dy)) rotate(200deg); } 100%{ opacity:0; } }
+
+  /* 2 · Zvednutí činky */
+  .lift{ left:65px; top:70px; width:110px; height:110px; animation: lift-body 6s infinite; }
+  .bar{ left:0; top:96px; width:240px; height:60px; animation: lift-bar 6s infinite; }
+  .flash{ left:20px; top:10px; width:200px; height:200px; opacity:0; animation: flash 6s infinite; }
+  @keyframes lift-body{ 0%,20%{ transform:translateY(10px); } 35%,90%{ transform:translateY(0); } 100%{ transform:translateY(10px); } }
+  @keyframes lift-bar{ 0%,15%{ transform:translateY(50px); } 22%{ transform:translateY(46px); } 35%,88%{ transform:translateY(-70px); } 100%{ transform:translateY(50px); } }
+  @keyframes flash{ 0%,34%{ opacity:0; transform:scale(.6); } 40%{ opacity:1; } 60%,100%{ opacity:0; transform:scale(1.3); } }
+
+  /* 3 · Zezlátnutí */
+  .gold-wrap{ left:55px; top:55px; width:130px; height:130px; animation: coin 6s infinite; }
+  .gold-wrap .g{ opacity:0; animation: gold-in 6s infinite; }
+  .spark{ width:16px; height:16px; opacity:0; animation: spark 6s infinite; }
+  @keyframes coin{ 0%{ transform:rotateY(0); } 40%{ transform:rotateY(1080deg); } 100%{ transform:rotateY(1080deg); } }
+  @keyframes gold-in{ 0%,25%{ opacity:0; } 38%,92%{ opacity:1; } 100%{ opacity:0; } }
+  @keyframes spark{ 0%,38%{ opacity:0; transform:scale(.2); } 45%{ opacity:1; transform:scale(1.2); } 60%,100%{ opacity:0; transform:scale(.4); } }
+
+  /* 4 · Medaile */
+  .medal{ left:80px; top:-120px; width:80px; height:120px; animation: medal 6s infinite; transform-origin:50% 0; }
+  .medal-kt{ left:65px; top:20px; width:110px; height:110px; }
+  @keyframes medal{ 0%,10%{ transform:translateY(-120px); } 35%{ transform:translateY(228px) rotate(0); } 42%{ transform:translateY(218px) rotate(8deg); } 50%{ transform:translateY(222px) rotate(-5deg); } 58%,92%{ transform:translateY(220px) rotate(0); } 100%{ transform:translateY(-120px); } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="g-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <radialGradient id="g-gold-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#FFF1B0"/><stop offset=".45" stop-color="#F2C230"/><stop offset="1" stop-color="#A97E08"/></radialGradient>
+    <linearGradient id="g-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="g-rim-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A6A08"/><stop offset="1" stop-color="#5E4705"/></linearGradient>
+    <linearGradient id="g-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#D6DADF"/></linearGradient>
+    <radialGradient id="g-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="g-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+  </defs>
+</svg>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 24. kolo · Kotoučík: přivítání a velké oslavy</h1>
+
+  <h2>1 · Přivítání při otevření appky</h2>
+  <p class="lead">Kotoučík vykoukne na Domů a pozdraví. <b>Jen jednou denně</b> (při prvním otevření dne) – kdyby zdravil pokaždé, rychle by omrzel. Věta se vybírá podle situace, vždy jen jedna:</p>
+  <table id="welcome"></table>
+  <div class="phones" id="welcome-phones"></div>
+
+  <h2>2 · Velké oslavy (výjimečně)</h2>
+  <p class="lead">Lidé si zážitek pamatují podle vrcholu a konce (pravidlo „vrchol a konec“). Proto <b>velká oslava jen u opravdu velkých chvil</b> – několikrát za měsíc, ne každý den. Denní cíl má už svou malou oslavu (padající kotouče + Kotoučík); kdyby měl velkou animaci každý den, přestala by těšit.</p>
+  <div class="rules"><b>Kdy (návrh)</b>
+    <ul>
+      <li><b>Série 7, 30, 100 a 365 dní</b> → zvedne činku nad hlavu.</li>
+      <li><b>Odemčená obtížnost:</b> poprvé aspoň 80 % na Základní/Střední (z 20+ odpovědí) → rozbije zámek: „Odemčeno: Střední / Pokročilá“.</li>
+      <li><b>Zvládnuto 100, 500, 1000… otázek</b> → zezlátne.</li>
+      <li><b>Perfektní kolo na Pokročilé</b> (vše správně, 10+ otázek) → dostane medaili.</li>
+      <li><b>Celý týden splněný cíl (7/7)</b> → zvedne činku (místo každodenní velké oslavy).</li>
+    </ul>
+    Celá obrazovka ztmavne na ~3 s, klepnutím se hned zavře. Kdo má omezené animace, uvidí jen obrázek a nápis.
+  </div>
+  <div class="phones" id="celebrations"></div>
+
+  <p class="lead" style="margin-top:26px;font-size:12.5px">Zdroje: <a href="https://blog.logrocket.com/ux-design/whats-peak-end-rule/">LogRocket – Peak-end rule</a> · <a href="https://www.thesigma.co/journal/peak-end-rule-ux">Sigma – Peak-end rule in UX</a> · <a href="https://www.appcues.com/blog/variable-rewards">Appcues – Variable rewards</a> · <a href="https://rauno.me/craft/novelty">Rauno – Novelty</a></p>
+</div>
+<script>
+function kt(mood, gold){
+  const body = gold ? "url(#g-gold-body)" : "url(#g-body)", rim = gold ? "url(#g-rim-gold)" : "url(#g-rim)";
+  const eye = (x, y) => mood === "star"
+    ? `<path d="M${x} ${y - 9} l2.6 6 6.4 .6 -4.9 4.2 1.5 6.3 -5.6 -3.4 -5.6 3.4 1.5 -6.3 -4.9 -4.2 6.4 -.6z" fill="${gold ? "#fff" : "url(#g-gold)"}"/>`
+    : `<ellipse cx="${x}" cy="${y + 1.5}" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="${x}" cy="${y}" rx="8.5" ry="9.5" fill="url(#g-eye)"/><circle cx="${x + 1.5}" cy="${y + 1.8}" r="4.6" fill="#1B2A41"/><circle cx="${x + 3.2}" cy="${y - 1.2}" r="1.8" fill="#fff"/>`;
+  const arm = d => `<path d="${d}" stroke="#16191E" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#3A414B" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+  const hand = (x, y) => `<circle cx="${x}" cy="${y}" r="8" fill="url(#g-hand)"/>`;
+  const arms = mood === "up" ? arm("M22 60 q-6 -20 4 -40") + hand(26, 18) + arm("M102 60 q6 -20 -4 -40") + hand(98, 18)
+    : mood === "wave" ? arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93)
+    : arm("M20 70 q-14 -6 -10 -24") + hand(10, 44) + arm("M104 70 q14 -6 10 -24") + hand(114, 44);
+  const mouth = mood === "star" ? `<path d="M50 78 q12 16 24 0 z" fill="url(#g-gold)"/>` : `<path d="M50 78 q12 13 24 0" stroke="url(#g-gold)" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
+  return `<svg viewBox="-8 -4 140 140" width="100%" height="100%" style="position:static">${arms}
+    <circle cx="62" cy="62" r="47" fill="${rim}"/><circle cx="62" cy="62" r="42.5" fill="${body}"/>
+    <circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="${gold ? "#FFF1B0" : "url(#g-silver)"}" stroke-width="2.6"/>
+    <path d="M28 40 a40 40 0 0 1 26 -20" stroke="rgba(255,255,255,.3)" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="63" r="4.2" fill="${gold ? "#7A5C06" : "#0E1014"}"/>${eye(47, 44)}${eye(77, 44)}${mouth}</svg>`;
+}
+
+// Přivítání
+const W = [
+  ["Úplně první spuštění", "Ahoj, já jsem Kotoučík. Budu ti fandit."],
+  ["Ráno (5–10 h)", "Dobré ráno! Rozcvička před snídaní?"],
+  ["Přes den", "Zpátky v posilovně! Jdeme na to."],
+  ["Večer (po 18 h)", "Večerní trénink? Pár otázek a hotovo."],
+  ["Série běží (2+ dny)", "6. den v řadě. Pokračujeme?"],
+  ["Po pauze (2+ dny bez kola)", "Rád tě vidím zpátky. Začneme zlehka?"],
+  ["Čeká opakování (10+)", "Čeká na tebe 14 otázek k opakování."],
+  ["Dnes už splněno", "Dnes máš hotovo. Přidáš něco navíc?"]
+];
+document.getElementById("welcome").innerHTML = "<tr><th>Situace</th><th>Co řekne</th></tr>" + W.map(([w, t]) => `<tr><td><b>${w}</b></td><td>„${t}“</td></tr>`).join("") +
+  `<tr><td colspan="2" style="font-size:12.5px;color:#6A6F78">Pořadí, když platí víc věcí: první spuštění → po pauze → série → opakování → denní doba. Nikdy výčitky (žádné „Kde jsi byl?“).</td></tr>`;
+const homeBits = '<div class="brand">GRAMATICKÁ POSILOVNA</div><div class="home"><div class="day">Pondělí</div><div class="hl">Dnešní trénink</div><div class="card"></div><div class="card"></div><div class="card" style="height:60px;background:linear-gradient(180deg,#33598A,#1E3A5F)"></div></div>';
+document.getElementById("welcome-phones").innerHTML = [
+  ["Ráno, zespodu", `<div style="position:absolute;left:115px;bottom:-8px;width:120px;height:120px">${kt("wave")}</div><div class="bubble" style="left:70px;bottom:126px">Dobré ráno! Rozcvička před snídaní?</div>`],
+  ["Série, zleva", `<div style="position:absolute;left:-26px;bottom:240px;width:120px;height:120px;transform:scaleX(-1) rotate(-14deg)">${kt("wave")}</div><div class="bubble" style="left:96px;bottom:330px">6. den v řadě. Pokračujeme?</div>`],
+  ["Po pauze, zprava", `<div style="position:absolute;right:-26px;bottom:200px;width:120px;height:120px;transform:rotate(-14deg)">${kt("wave")}</div><div class="bubble" style="right:96px;bottom:300px">Rád tě vidím zpátky. Začneme zlehka?</div>`]
+].map(([c, h]) => `<div class="col"><div class="phone"><div class="app">${homeBits}${h}</div></div><p class="cap">${c}</p></div>`).join("");
+
+// Velké oslavy (animace se opakují)
+const lock = `<svg class="shackle" viewBox="0 0 72 70"><path d="M12 70 V34 a24 24 0 0 1 48 0 V70" stroke="#C9CED6" stroke-width="11" fill="none"/></svg>
+  <svg class="lock-body" viewBox="0 0 100 90"><rect x="0" y="0" width="100" height="90" rx="16" fill="url(#g-gold)"/><circle cx="50" cy="40" r="10" fill="#7A5C06"/><rect x="45" y="44" width="10" height="24" rx="4" fill="#7A5C06"/></svg>
+  ${[[-80, -60], [70, -90], [90, 40], [-60, 70], [10, -110]].map(([dx, dy]) => `<svg class="shard" viewBox="0 0 18 18" style="--dx:${dx}px;--dy:${dy}px"><path d="M0 0 L18 6 L6 18 Z" fill="#F2C230"/></svg>`).join("")}
+  <div class="kt-hit" style="position:absolute">${kt("star")}</div>`;
+const lift = `<svg class="flash" viewBox="0 0 200 200">${Array.from({ length: 10 }, (_, i) => `<line x1="100" y1="100" x2="${100 + 95 * Math.cos(i * Math.PI / 5)}" y2="${100 + 95 * Math.sin(i * Math.PI / 5)}" stroke="#F2C230" stroke-width="4" stroke-linecap="round" stroke-dasharray="20 60" stroke-dashoffset="-40"/>`).join("")}</svg>
+  <div class="lift" style="position:absolute">${kt("up")}</div>
+  <svg class="bar" viewBox="0 0 240 60"><rect x="10" y="26" width="220" height="8" rx="4" fill="#C9CED6"/><rect x="14" y="4" width="22" height="52" rx="6" fill="#2F343C"/><rect x="204" y="4" width="22" height="52" rx="6" fill="#2F343C"/><rect x="38" y="12" width="12" height="36" rx="4" fill="#F2C230"/><rect x="190" y="12" width="12" height="36" rx="4" fill="#F2C230"/></svg>`;
+const gold = `<div class="gold-wrap" style="position:absolute"><div style="position:absolute;inset:0">${kt("up")}</div><div class="g" style="position:absolute;inset:0">${kt("star", true)}</div></div>
+  ${[[30, 40], [190, 60], [40, 190], [200, 180], [115, 10]].map(([x, y], i) => `<svg class="spark" viewBox="0 0 16 16" style="left:${x}px;top:${y}px;animation-delay:${i * .08}s"><path d="M8 0 L10 6 L16 8 L10 10 L8 16 L6 10 L0 8 L6 6 Z" fill="#FFE07A"/></svg>`).join("")}`;
+const medal = `<div class="medal-kt" style="position:absolute">${kt("star")}</div>
+  <svg class="medal" viewBox="0 0 100 150"><path d="M30 0 L50 70 L70 0" stroke="#E0735A" stroke-width="12" fill="none"/><circle cx="50" cy="100" r="34" fill="url(#g-gold)" stroke="#C99A12" stroke-width="4"/><text x="50" y="111" text-anchor="middle" font-family="Newsreader, serif" font-weight="700" font-size="30" fill="#7A5C06">C1</text></svg>`;
+const C = [
+  ["Rozbitý zámek", lock, "Odemčeno: Pokročilá", "Na Střední máš přes 80 %.", "Poprvé zvládnutá obtížnost. Nejsilnější „aha“ moment: něco se otevřelo.", true],
+  ["Zvednutí činky", lift, "30 dní v řadě!", "Měsíc tréninku bez vynechání.", "Série 7 / 30 / 100 / 365 dní a celý týden splněného cíle."],
+  ["Zezlátnutí", gold, "500 zvládnutých otázek", "Kotoučík je teď zlatý.", "Velké milníky zvládnutých otázek. Jako bonus by mohl zůstat zlatý celý den."],
+  ["Medaile", medal, "Perfektní kolo!", "Pokročilá · 10 z 10", "Bezchybné kolo na nejtěžší obtížnosti."]
+];
+document.getElementById("celebrations").innerHTML = C.map(([cap, scene, t, s, why, rec]) => `
+  <div class="col"><div class="phone"><div class="app"><div class="stage">
+    <div class="scene">${scene}</div><div class="title">${t}</div><div class="sub">${s}</div><div class="tap">Klepni pro pokračování</div>
+  </div></div></div>
+  <p class="cap">${cap}${rec ? '<span class="rec">DOPORUČUJU</span>' : ""}</p><ul class="why"><li>${why}</li></ul></div>`).join("");
+</script>
+</body>
+</html>

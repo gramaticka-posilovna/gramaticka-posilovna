@@ -29,6 +29,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 21 | `navrhy-vzhledu-21.html` | Maskot: Kotoučík · Činka · Kettlík · Apostrof · Gé · Křeček |
 | 22 | `navrhy-vzhledu-22.html` | Kotoučík doladěný: 5 výrazů, velikosti, tmavý režim, živé vykouknutí, hlášky podle situace |
 | 23 | `navrhy-vzhledu-23.html` | Kotoučík 3D (před/po, tmavý) · 5 míst vykouknutí · pravidla podle toho, co funguje |
+| 24 | `navrhy-vzhledu-24.html` | Kotoučík: přivítání (8 situací) · velké oslavy (zámek, činka, zezlátnutí, medaile) |
 
 ## Zpětná vazba
 
@@ -201,3 +202,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Místa: 1 zprava zespodu · 2 zleva (zrcadlově) · 3 zespodu (jen oči a ručičky) · 4 shora vzhůru nohama (šetřit na Combo) · 5 zpoza okraje karty.
 - Pravidla: nepředvídatelně (~1× z 10, nikdy 2× stejné místo), max 2× za kolo, 2–3 s, nikdy přes políčko ani tlačítko, jistě jen u Combo ×5 a splněného cíle, po chybě výjimečně a laskavě, omezené animace = jen bublina, vypínatelný.
 - **Kolo 23 výsledek:** všech 5 míst + 3 nová (přikutálí se, levý horní roh, vyskočí zespodu vlevo); hláška 46 neutrálně „Dnes se makalo. Zítra zas.“ → Kotoučík nasazen do appky (vypínatelný v Nastavení).
+- V appce opraveno: Kotoučík ani bublina nezakryjí tlačítko (místo se změří předem, jinak jiné místo / neukáže se).
+
+### Přivítání a velké oslavy (kolo 24)
+- Přivítání jen 1× denně při prvním otevření; 8 situací (první spuštění, ráno, den, večer, série, po pauze, čeká opakování, dnes splněno), pořadí priorit, bez výčitek.
+- Velké oslavy výjimečně (pravidlo vrchol–konec): série 7/30/100/365 a týden 7/7 → zvedne činku; poprvé 80 % na obtížnosti → **rozbije zámek „Odemčeno: …“** (doporučeno); 100/500/1000 zvládnutých → zezlátne; perfektní kolo na Pokročilé → medaile. Denní cíl zůstává u malé oslavy. Celá obrazovka ztmavne ~3 s, klepnutím zavřít.
