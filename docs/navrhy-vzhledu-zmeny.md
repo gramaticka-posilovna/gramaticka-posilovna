@@ -27,6 +27,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 19 | `navrhy-vzhledu-19.html` | Místo „Dobrý den!“: 1 podle denní doby · 2 stav cíle · 3 co dnes procvičit · 4 datum · 5 anglická věta dne · 6 bez nadpisu |
 | 20 | `navrhy-vzhledu-20.html` | Úderný nadpis Domů: 1 Dnešní trénink · 2 Jdeme na to · 3 velké číslo · 4 minuty do cíle · 5 série · 6 úroveň · 7 Máš 5 minut? |
 | 21 | `navrhy-vzhledu-21.html` | Maskot: Kotoučík · Činka · Kettlík · Apostrof · Gé · Křeček |
+| 22 | `navrhy-vzhledu-22.html` | Kotoučík doladěný: 5 výrazů, velikosti, tmavý režim, živé vykouknutí, hlášky podle situace |
 
 ## Zpětná vazba
 
@@ -185,3 +186,10 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Zadání: maskot, který občas vyleze z boku nebo se ukáže při správné/špatné odpovědi. Trenérské hlášky zatím odloženy.
 - Pravidla: náhodně asi u každé 8. odpovědi, při combo ×5 a po splnění cíle, 2–3 s; po chybě výjimečně a povzbudivě; nikdy v rozřazovacím testu; vypínatelný v Nastavení.
 - **Kotoučík** (kotouč s očima a ručičkami; doporučeno) · Činka · Kettlík (žlutá čelenka) · Apostrof se svaly · Gé (žluté G se svaly) · Křeček v čelence.
+- **Kolo 21 výsledek:** vybrán **Kotoučík**, zatím neaplikovat; doladit a vymyslet, co říká (začít zlehka).
+
+### Kotoučík doladěný (kolo 22)
+- Kotouč jako v logu (tmavý, stříbrný proužek), středová díra jako nenápadný tmavý nos (světlá působila jako otevřená pusa), oči s odlesky a obočím.
+- Výrazy: Klid · Radost (mává) · Nadšení (hvězdičkové oči, žlutá aura) · Povzbuzení (palec nahoru) · Hotovo (spokojené oči, ruce nahoře). Tmavý režim: světlejší kotouč #4A525F.
+- Vykouknutí zprava zespodu, bublina ~2,5 s, klepnutím zmizí. Kdy: zhruba 1× z 10 správných, Combo ×5/×10, výjimečně po chybě (~1× z 6), po splnění cíle; nikdy v testu; vypínatelný.
+- Hlášky (výběr uživatele): správně 7, 13, 19, 24 · combo 27, 30, 31 · chyba 32, 33, 35, 38, 43 · cíl 45, 46 (návrh neutrálně „Dnes se makalo. Zítra zas.“), 47 → „Hotovo. Zasloužený odpočinek.“

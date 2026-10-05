@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 22</title>
+<style>
+  /* Statické návrhy (22. kolo) — NEJSOU součástí appky. Kotoučík doladěný: výrazy, hlášky, vykouknutí. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1300px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  h2{ font-size:20px; margin:44px 0 6px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:880px; line-height:1.55; }
+  .moods{ display:grid; grid-template-columns:repeat(auto-fill, 200px); gap:18px; margin-top:16px; }
+  .mood{ background:linear-gradient(180deg,#F3F6F9,#DCE4EC); border-radius:22px; padding:16px 10px 12px; text-align:center; }
+  .mood.dark{ background:linear-gradient(180deg,#1D2633,#151C26); color:#E7EDF4; }
+  .mood svg{ width:130px; height:130px; }
+  .mood b{ display:block; font-size:14px; margin-top:6px; }
+  .mood small{ display:block; font-size:12px; color:#6A6F78; margin-top:2px; }
+  .mood.dark small{ color:#9AA6B8; }
+  .sizes{ display:flex; align-items:flex-end; gap:22px; background:#fff; border-radius:22px; padding:18px 22px; margin-top:16px; width:max-content; max-width:100%; }
+  .sizes div{ text-align:center; font-size:12px; color:#6A6F78; }
+  .demo-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:16px; align-items:flex-start; }
+  .phone{ width:300px; height:520px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); flex-shrink:0; }
+  .app{ position:absolute; inset:0; width:350px; height:650px; transform:scale(.8); transform-origin:0 0; overflow:hidden; padding:58px 16px 0;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .card{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; box-shadow:0 10px 22px rgba(60,75,100,.16); }
+  .sent{ font:600 20px/1.6 Newsreader, serif; }
+  .inp{ display:inline-block; min-width:140px; border-radius:10px; box-shadow:inset 0 0 0 2px #4FA86A; background:#E5F2E8; font:600 16px Inter; padding:3px 10px; vertical-align:middle; }
+  .fb{ border-radius:16px; padding:12px 14px; background:linear-gradient(180deg,#F1F8F2,#DFEEE3); margin-top:14px; font-weight:800; color:#3F7A55; }
+  .cta{ text-align:center; color:#fff; border-radius:18px; padding:14px; font-weight:700; margin-top:16px; background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:0 5px 0 #132840; }
+  /* Vykouknutí: vyjede zprava, chvilku zůstane, zajede zpět */
+  .peek{ position:absolute; right:-150px; bottom:120px; width:130px; height:130px; animation: peek 5s ease-in-out infinite; }
+  .peek svg{ width:100%; height:100%; }
+  .bubble{ position:absolute; right:118px; bottom:228px; background:#1B2A41; color:#fff; font:700 14.5px Inter; padding:10px 14px; border-radius:16px 16px 4px 16px; white-space:nowrap; box-shadow:0 8px 18px rgba(0,0,0,.2); opacity:0; animation: bubble 5s ease-in-out infinite; }
+  @keyframes peek{ 0%,8%{ right:-150px; transform:rotate(0); } 20%,70%{ right:-30px; transform:rotate(-12deg); } 75%{ right:-26px; transform:rotate(-6deg); } 88%,100%{ right:-150px; transform:rotate(0); } }
+  @keyframes bubble{ 0%,22%{ opacity:0; transform:translateY(6px); } 28%,68%{ opacity:1; transform:none; } 74%,100%{ opacity:0; } }
+  .steps{ font-size:13.5px; line-height:1.6; max-width:420px; }
+  .steps ol{ padding-left:18px; margin:6px 0 0; }
+  table{ border-collapse:collapse; background:#fff; border-radius:14px; overflow:hidden; margin-top:14px; font-size:14px; max-width:900px; width:100%; }
+  th, td{ text-align:left; padding:10px 14px; border-bottom:1px solid #EEE; vertical-align:top; }
+  th{ background:#F6F8FA; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#6A6F78; }
+  td.face svg{ width:48px; height:48px; }
+  td ul{ margin:0; padding-left:18px; }
+  .note{ font-size:12.5px; color:#8A6A12; background:#FFF5D6; border-radius:10px; padding:8px 12px; margin-top:10px; max-width:900px; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 22. kolo · Kotoučík doladěný</h1>
+  <p class="lead">Vybraný maskot z kola 21, dotažený: stejný kotouč jako v logu a sérii (stříbrný proužek, středová díra jako nos), výraznější oči s obočím a pět výrazů podle situace. Zatím jen náhled, do appky nepřidáno.</p>
+
+  <h2>Výrazy</h2>
+  <div class="moods" id="moods"></div>
+
+  <h2>Velikosti a tmavý režim</h2>
+  <div class="sizes" id="sizes"></div>
+
+  <h2>Jak vykoukne (živá ukázka)</h2>
+  <div class="demo-row">
+    <div class="phone"><div class="app">
+      <div class="card"><div class="sent">I <span class="inp">was reading</span> a book when the phone rang.</div>
+      <div class="fb">✓ Správně!</div><div class="cta">Pokračovat</div></div>
+      <div class="bubble">Formu držíš.</div><div class="peek" id="peek"></div>
+    </div></div>
+    <div class="steps"><b>Pohyb</b>
+      <ol>
+        <li>Vyjede zespodu zprava a nakloní se (0,4 s).</li>
+        <li>Objeví se bublina s hláškou, drží asi 2,5 s.</li>
+        <li>Zajede zpět. Klepnutím na něj zmizí hned.</li>
+      </ol>
+      <p style="margin:12px 0 0"><b>Kdy</b> (začínáme zlehka):</p>
+      <ol>
+        <li>Po správné odpovědi náhodně, zhruba jednou za 10 odpovědí.</li>
+        <li>Při Combo ×5 a ×10.</li>
+        <li>Po chybě výjimečně (asi 1× z 6 chyb), vždy povzbudivě.</li>
+        <li>Po splnění denního cíle (spolu s padajícími kotouči).</li>
+        <li>Nikdy v rozřazovacím testu; v Nastavení půjde vypnout.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2>Co říká</h2>
+  <p class="lead">Jen hlášky, které jsi vybral (č. 7, 13, 19, 24, 27, 30, 31, 32, 33, 35, 38, 43, 45, 46, 47 upravená bez svalů). Další můžeme přidat později.</p>
+  <table id="lines"></table>
+  <p class="note">K č. 46 „Dnes jsi makal.“: je v mužském rodě. Appku budou používat i ženy, proto navrhuju neutrální „Dnes se makalo. Zítra zas.“ – nebo ji vynechat.</p>
+</div>
+<script>
+// Kotoučík: kotouč z loga + obličej; výraz = oči, obočí, pusa, ruce, doplňky
+function kotoucik(mood, dark){
+  const plate = dark ? "#4A525F" : "#2F343C", rim = dark ? "#2E343D" : "#1D2026";
+  const arm = (d) => `<path d="${d}" stroke="${plate}" stroke-width="8" fill="none" stroke-linecap="round"/>`;
+  const hand = (x, y) => `<circle cx="${x}" cy="${y}" r="7" fill="${plate}"/>`;
+  const openEye = (x, y) => `<ellipse cx="${x}" cy="${y}" rx="8" ry="9" fill="#fff"/><circle cx="${x + 1.5}" cy="${y + 1.5}" r="4.4" fill="#1B2A41"/><circle cx="${x + 3}" cy="${y - 1}" r="1.5" fill="#fff"/>`;
+  const happyEye = (x, y) => `<path d="M${x - 7} ${y + 2} q7 -10 14 0" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>`;
+  const starEye = (x, y) => `<path d="M${x} ${y - 9} l2.6 6 6.4 .6 -4.9 4.2 1.5 6.3 -5.6 -3.4 -5.6 3.4 1.5 -6.3 -4.9 -4.2 6.4 -.6z" fill="#F2C230"/>`;
+  const brow = (x, y, tilt) => `<path d="M${x - 7} ${y + tilt} L${x + 7} ${y - tilt}" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".85"/>`;
+  let face = "", arms = "", extra = "";
+  const L = [47, 44], R = [77, 44];
+  if(mood === "neutral"){
+    face = openEye(...L) + openEye(...R) + `<path d="M54 82 q8 6 16 0" stroke="#F2C230" stroke-width="3.5" fill="none" stroke-linecap="round"/>`;
+    arms = arm("M20 74 q-8 8 -4 18") + hand(16, 93) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  }
+  if(mood === "happy"){
+    face = openEye(...L) + openEye(...R) + brow(47, 31, 1) + brow(77, 31, -1) + `<path d="M50 80 q12 12 24 0" stroke="#F2C230" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  }
+  if(mood === "combo"){
+    face = starEye(...L) + starEye(...R) + `<path d="M50 78 q12 16 24 0 z" fill="#F2C230"/>`;
+    arms = arm("M20 66 q-12 -10 -6 -30") + hand(14, 34) + arm("M104 66 q12 -10 6 -30") + hand(110, 34);
+    extra = `<circle cx="62" cy="62" r="56" fill="none" stroke="#F2C230" stroke-width="3" stroke-dasharray="3 9" opacity=".8"/>`;
+  }
+  if(mood === "cheer"){
+    face = openEye(...L) + openEye(...R) + brow(47, 31, -2) + brow(77, 31, 2) + `<path d="M55 82 q7 5 14 0" stroke="#F2C230" stroke-width="3.5" fill="none" stroke-linecap="round"/>`;
+    arms = arm("M20 74 q-8 8 -4 18") + hand(16, 93) +
+      arm("M104 70 q14 0 14 -14") + `<rect x="110" y="34" width="9" height="16" rx="4.5" fill="${plate}"/><circle cx="114.5" cy="52" r="7" fill="${plate}"/>`;
+  }
+  if(mood === "rest"){
+    face = happyEye(...L) + happyEye(...R) + `<path d="M50 80 q12 10 24 0" stroke="#F2C230" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    arms = arm("M20 70 q-14 -6 -10 -24") + hand(10, 44) + arm("M104 70 q14 -6 10 -24") + hand(114, 44);
+    extra = `<text x="104" y="22" font-family="Inter" font-weight="800" font-size="14" fill="#F2C230">✓</text>`;
+  }
+  return `<svg viewBox="-6 0 136 124">${extra}${arms}
+    <circle cx="62" cy="62" r="46" fill="${plate}"/>
+    <circle cx="62" cy="62" r="41" fill="none" stroke="${rim}" stroke-width="5"/>
+    <circle cx="62" cy="62" r="29" fill="none" stroke="#9AA0A7" stroke-width="2.5" opacity=".8"/>
+    <path d="M30 30 a46 46 0 0 1 22 -12" stroke="rgba(255,255,255,.18)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="63" r="4" fill="${rim}" stroke="#9AA0A7" stroke-width="1.2" opacity=".9"/>
+    ${face}</svg>`;
+}
+const MOODS = [["neutral", "Klid", "výchozí, když se jen ukáže"], ["happy", "Radost", "po správné odpovědi"], ["combo", "Nadšení", "při Combo ×5, ×10"], ["cheer", "Povzbuzení", "po chybě (palec nahoru)"], ["rest", "Hotovo", "po splnění denního cíle"]];
+document.getElementById("moods").innerHTML = MOODS.map(([k, n, w]) => `<div class="mood">${kotoucik(k)}<b>${n}</b><small>${w}</small></div>`).join("") +
+  `<div class="mood dark">${kotoucik("happy", true)}<b>Tmavý režim</b><small>světlejší kotouč, ať nesplyne</small></div>`;
+document.getElementById("sizes").innerHTML = [[120, "v náhledu"], [72, "vykouknutí na telefonu"], [40, "prázdné obrazovky"], [24, "malá ikonka"]].map(([s, t]) =>
+  `<div><div style="width:${s}px;height:${s}px;margin:0 auto 6px">${kotoucik("happy").replace("<svg", '<svg width="100%" height="100%"')}</div>${s} px · ${t}</div>`).join("");
+document.getElementById("peek").innerHTML = kotoucik("happy");
+const LINES = [
+  ["happy", "Po správné odpovědi", ["Lehce a s přehledem. (7)", "Formu držíš. (13)", "Hezky, jedeme dál. (19)", "Tak se to dělá. (24)"]],
+  ["combo", "Combo ×5, ×10", ["Jsi v ráži! (27)", "Kdo tě zastaví? (30)", "Posilovna hlásí rekord. (31)"]],
+  ["cheer", "Po chybě", ["I mistři začínali s lehčí váhou. (32)", "Chyba je taky opakování. (33)", "Tohle si ještě dáme. (35)", "Teď víš, kde přidat. (38)", "Tohle zařadíme do opakování. (43)"]],
+  ["rest", "Denní cíl splněn", ["Na dnešek máš odcvičeno. (45)", "Dnes jsi makal. Zítra zas. (46) → návrh: Dnes se makalo. Zítra zas.", "Hotovo. Zasloužený odpočinek. (47, bez svalů)"]]
+];
+document.getElementById("lines").innerHTML = '<tr><th></th><th>Kdy</th><th>Hlášky (střídají se náhodně)</th></tr>' +
+  LINES.map(([m, when, l]) => `<tr><td class="face">${kotoucik(m)}</td><td><b>${when}</b></td><td><ul>${l.map(x => `<li>${x}</li>`).join("")}</ul></td></tr>`).join("");
+</script>
+</body>
+</html>
