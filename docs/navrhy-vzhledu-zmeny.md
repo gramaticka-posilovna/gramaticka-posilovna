@@ -20,6 +20,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 12 | `navrhy-vzhledu-12.html` | **Posilovna v9 · Šedomodrá — všech 14 obrazovek appky** |
 | 13 | `navrhy-vzhledu-13.html` | v9 v barevných variantách: Šedomodrá + 8 palet (jen barvy) |
 | 14 | `navrhy-vzhledu-14.html` | Horní lišta (dnes · A kotouč + název · B název jako logo · C bez lišty) · tmavý režim (Domů, Otázka, Nastavení) |
+| 15 | `navrhy-vzhledu-15.html` | Písmo nadpisů a vět: Fraunces (dnes) · Newsreader · Literata · Source Serif 4 · Lora |
 
 ## Zpětná vazba
 
@@ -141,3 +142,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### v1 (kolo 4)
 - Inspirace Bauhaus/Albers (červená, modrá, žlutá, černá; čtverce, kruhy, čtvrtkruhy) + Zeigarnikův efekt.
 - Každá buňka (20 otázek) = obraz z 20 dílků; dílek přibude, až když otázku opravdu umíš (2× správně). Hotové obrazy v galerii, lze nastavit jako tapetu nebo sdílet. Písmo Space Grotesk.
+
+### Písmo nadpisů a vět (kolo 15)
+- Zadání: písmo se líbí, jen „F“ je zvláštní. Jde o malé f ve Fraunces (úzké, velký háček, slévá se v fi/ff); Fraunces jiné f nemá (WONK, SOFT, ss01–03, salt nic nemění).
+- Kolo 14 výsledek: vybrána lišta **A** (kotouč + název), tmavý režim se líbí → nasazeno do appky.
+- Náhrady: **1 Newsreader** (nejpodobnější, doporučeno) · 2 Literata · 3 Source Serif 4 · 4 Lora. Inter beze změny.
