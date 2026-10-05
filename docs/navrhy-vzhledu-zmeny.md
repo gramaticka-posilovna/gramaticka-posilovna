@@ -23,6 +23,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 15 | `navrhy-vzhledu-15.html` | Písmo nadpisů a vět: Fraunces (dnes) · Newsreader · Literata · Source Serif 4 · Lora |
 | 16 | `navrhy-vzhledu-16.html` | Pokrok: karta Porovnání (Vývoj · Týden · Témata · Obtížnost · Zvládnuto) |
 | 17 | `navrhy-vzhledu-17.html` | Horní lišta: před · teď · 1 lehčí lišta · 2 malý název nad pozdravem |
+| 18 | `navrhy-vzhledu-18.html` | Horní lišta, 7 přístupů: A bez lišty · B název uprostřed · C název + série · D datum · E dvoubarevný nápis · F tmavý pruh · G kotouč v řádku nad pozdravem |
 
 ## Zpětná vazba
 
@@ -161,3 +162,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Zadání: lišta s G a názvem na Domů se teď úplně nelíbí; ukázat před/po a lehkou změnu, nebo vrátit. Zajíždění pod hodiny je jen v testu (klávesnice posune stránku) → v appce pevný pruh pod stavovým řádkem.
 - Varianty: Před (jen kotouč) · Teď (kotouč + název, plná lišta) · **1 Lehčí lišta** (bez pozadí/linky/stínu, menší kotouč 26 px, šedší název 16 px; doporučeno) · 2 Malý název nad pozdravem (bez lišty).
 - **Kolo 17 výsledek:** vybrána **1 Lehčí lišta** → nasazeno do appky.
+
+### Horní lišta, víc možností (kolo 18)
+- Zadání: lehká lišta se pořád moc nelíbí, víc návrhů.
+- Dnes (lehká lišta) pro srovnání · **A Bez lišty** (doporučeno) · B drobný název uprostřed velkými písmeny · C název vlevo + kotouček série vpravo (velký kotouč u pozdravu odpadne) · D datum vlevo, kotouč vpravo · E „Gramatická“ + zelená „posilovna“ bez kotouče · F tmavý pruh s bílo-žlutým názvem · G kotouč a název v řádku nad pozdravem místo „Pondělí“.
