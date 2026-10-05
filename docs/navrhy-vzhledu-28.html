@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 28</title>
+<style>
+  /* Statické návrhy (28. kolo) — NEJSOU součástí appky. Medaile znovu nasazená, činka pro novou úroveň, zvuky bez tlačítka. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:900px; line-height:1.55; }
+  .phones{ display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; }
+  .col{ width:320px; }
+  .phone{ width:320px; height:640px; border-radius:46px; border:11px solid #15171B; overflow:hidden; position:relative; box-shadow:0 22px 50px rgba(0,0,0,.25); }
+  .cap{ font-size:15px; font-weight:800; margin:14px 0 2px; }
+  .why{ font-size:12.5px; color:#6A6F78; line-height:1.5; margin:4px 0 0; padding-left:18px; }
+  .phone.on{ box-shadow:0 0 0 4px #F2C230, 0 22px 50px rgba(0,0,0,.25); cursor:pointer; } .phone{ cursor:pointer; }
+  h2.sec{ font-family:Newsreader, serif; font-size:24px; margin:44px 0 6px; }
+  .sbtns{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 4px; }
+  .sbtns button{ font:700 13.5px Inter; padding:10px 16px; border-radius:14px; border:none; cursor:pointer; background:#fff; color:#1B2A41; box-shadow:0 4px 12px rgba(60,75,100,.15); }
+  .sbtns button small{ display:block; font-weight:500; font-size:11.5px; color:#6A6F78; margin-top:2px; }
+  /* ===== Úroveň (náhled v barvách appky) ===== */
+  .app{ position:absolute; inset:0; background:linear-gradient(180deg,#F3F6F9,#CDD7E2); color:#1B2A41; padding:26px 16px; overflow:hidden; }
+  .app .brand{ text-align:center; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#5C6478; opacity:.8; margin-bottom:14px; }
+  .app h3{ font:700 26px Newsreader, serif; margin:0 0 14px; }
+  .acard{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; margin-bottom:14px; box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16),0 2px 4px rgba(60,75,100,.1); }
+  .albl{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#5C6478; margin:0 0 10px; }
+  .lvl{ display:flex; align-items:baseline; gap:10px; }
+  .lvl b{ font:700 44px/1 Newsreader, serif; }
+  .lvl span{ font-size:13px; color:#5C6478; }
+  .ladder{ display:flex; gap:6px; margin:14px 0 12px; }
+  .ladder i{ flex:1; font-style:normal; text-align:center; font-size:12px; font-weight:800; padding:6px 0; border-radius:999px; background:#D9E1EA; color:#5C6478; }
+  .ladder i.done{ background:#E5F2E8; color:#3F7A55; } .ladder i.now{ background:#1E3A5F; color:#fff; }
+  .bar{ height:8px; background:#D9E1EA; border-radius:999px; overflow:hidden; } .bar span{ display:block; height:100%; background:#3A6FC0; border-radius:999px; }
+  .note{ font-size:12.5px; color:#5C6478; line-height:1.45; margin:8px 0 0; }
+  .note b{ color:#1B2A41; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:2px; }
+
+  /* ===== Scéna oslavy ===== */
+  .stage{ position:absolute; inset:0; overflow:hidden; color:#fff; text-align:center;
+    background: radial-gradient(70% 45% at 50% 40%, #2C3D57 0%, #172233 55%, #0B1018 100%); }
+  .rays{ position:absolute; left:50%; top:38%; width:760px; height:760px; margin:-380px 0 0 -380px; border-radius:50%;
+    background: repeating-conic-gradient(rgba(242,194,48,.16) 0 7deg, rgba(242,194,48,0) 7deg 22deg);
+    -webkit-mask: radial-gradient(circle, #000 0 18%, transparent 62%); mask: radial-gradient(circle, #000 0 18%, transparent 62%);
+    opacity:0; animation: rays-in 7s infinite, spin 24s linear infinite; }
+  @keyframes rays-in{ 0%,40%{ opacity:0; } 50%,90%{ opacity:1; } 100%{ opacity:0; } }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .glow{ position:absolute; left:50%; top:38%; width:300px; height:300px; margin:-150px 0 0 -150px; border-radius:50%;
+    background: radial-gradient(circle, rgba(255,224,122,.55), rgba(255,224,122,0) 65%); opacity:0; animation: glow 7s infinite; }
+  @keyframes glow{ 0%,38%{ opacity:0; transform:scale(.6); } 46%{ opacity:1; transform:scale(1.15); } 60%,90%{ opacity:.55; transform:scale(1); } 100%{ opacity:0; } }
+  .floor{ position:absolute; left:50%; top:58.5%; width:240px; height:34px; margin-left:-120px; border-radius:50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.6), rgba(0,0,0,0)), radial-gradient(closest-side, rgba(80,110,150,.18), rgba(0,0,0,0)); }
+  .stage::before{ content:""; position:absolute; inset:0; pointer-events:none; background: radial-gradient(120% 90% at 50% 40%, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%); }
+  .scene{ position:absolute; left:50%; top:38%; width:300px; height:300px; margin:-150px 0 0 -150px; }
+  .scene > *{ position:absolute; }
+  .scene svg{ overflow:visible; }
+  .text{ position:absolute; left:0; right:0; top:64%; padding:0 26px; }
+  .badge{ display:inline-block; font:800 13px Inter; letter-spacing:.22em; color:#1B2A41; padding:7px 14px 6px; border-radius:999px;
+    background: linear-gradient(180deg,#FFE9A3,#F2C230 55%,#D9A514); box-shadow: 0 6px 16px rgba(242,194,48,.35), inset 0 1px 0 rgba(255,255,255,.7);
+    opacity:0; animation: stamp 7s infinite; }
+  @keyframes stamp{ 0%,44%{ opacity:0; transform:scale(1.8) rotate(-10deg); } 50%{ opacity:1; transform:scale(.92) rotate(-4deg); } 54%,90%{ opacity:1; transform:scale(1) rotate(-4deg); } 100%{ opacity:0; } }
+  .title{ font:700 34px/1.1 Newsreader, serif; margin-top:14px; letter-spacing:-.01em;
+    background: linear-gradient(180deg,#FFF6D6,#F2C230 70%,#C99A12); -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,.45)); opacity:0; animation: rise 7s infinite; }
+  .sub{ font-size:15px; color:#C9D3E0; margin-top:8px; opacity:0; animation: rise2 7s infinite; }
+  @keyframes rise{ 0%,48%{ opacity:0; transform:translateY(14px); } 56%,90%{ opacity:1; transform:none; } 100%{ opacity:0; } }
+  @keyframes rise2{ 0%,52%{ opacity:0; transform:translateY(10px); } 60%,90%{ opacity:1; transform:none; } 100%{ opacity:0; } }
+  .tap{ position:absolute; left:0; right:0; bottom:34px; font-size:12.5px; color:rgba(255,255,255,.55); }
+  /* konfety: mini kotouče a jiskry */
+  .confetti i{ position:absolute; top:-20px; border-radius:50%; opacity:0; animation: fall 7s infinite; }
+  .confetti i.p{ background: radial-gradient(circle, #172233 0 18%, #3A414B 19% 60%, #1D2026 61% 70%, #3A414B 71%); }
+  .confetti i.g{ background: radial-gradient(circle, #172233 0 18%, #F2C230 19% 60%, #C99A12 61% 70%, #F2C230 71%); }
+  .confetti i.s{ border-radius:2px; background:#FFE07A; }
+  @keyframes fall{ 0%,46%{ opacity:0; transform:translateY(0) rotate(0); } 50%{ opacity:1; } 92%{ opacity:1; } 100%{ opacity:0; transform:translateY(700px) rotate(540deg); } }
+  .shake{ animation: shake 7s infinite; }
+
+  /* ===== 1 · Zámek ===== */
+  .lk-roll{ left:100px; top:118px; width:110px; height:110px; animation: lk-roll 7s infinite; }
+  @keyframes lk-roll{ 0%{ transform:translateX(-260px) rotate(-360deg); opacity:1; } 18%{ transform:translateX(-62px) rotate(0); } 21%{ transform:translateX(-80px) rotate(-12deg); } 34%{ transform:translateX(-90px) rotate(-6deg); }
+    44%,90%{ transform:translate(0,-6px) rotate(0) scale(1.05); opacity:1; } 100%{ transform:translate(0,-6px) scale(1.05); opacity:0; } }
+  .lk-face-a{ animation: show-a 7s infinite; } .lk-face-b{ animation: show-b 7s infinite; }
+  @keyframes show-a{ 0%,40%{ opacity:1; } 44%,100%{ opacity:0; } }
+  @keyframes show-b{ 0%,40%{ opacity:0; } 44%,92%{ opacity:1; } 100%{ opacity:0; } }
+  .lk{ left:100px; top:80px; width:120px; height:150px; }
+  .lk-shackle{ animation: lk-shackle 7s infinite; transform-origin:70px 60px; }
+  .lk-left{ animation: lk-left 7s infinite; transform-origin:30px 140px; }
+  .lk-right{ animation: lk-right 7s infinite; transform-origin:90px 140px; }
+  .lk-crack{ stroke-dasharray:120; stroke-dashoffset:120; animation: lk-crack 7s infinite; }
+  @keyframes lk-shackle{ 0%,31%{ transform:none; opacity:1; } 38%{ transform:translate(30px,-90px) rotate(60deg); opacity:1; } 48%,100%{ transform:translate(90px,-60px) rotate(160deg); opacity:0; } }
+  @keyframes lk-left{ 0%,32%{ transform:none; opacity:1; } 44%{ transform:translate(-40px,60px) rotate(-35deg); opacity:.9; } 52%,100%{ transform:translate(-70px,180px) rotate(-60deg); opacity:0; } }
+  @keyframes lk-right{ 0%,32%{ transform:none; opacity:1; } 44%{ transform:translate(40px,60px) rotate(35deg); opacity:.9; } 52%,100%{ transform:translate(70px,180px) rotate(60deg); opacity:0; } }
+  @keyframes lk-crack{ 0%,21%{ stroke-dashoffset:120; opacity:1; } 30%{ stroke-dashoffset:0; opacity:1; } 33%,100%{ stroke-dashoffset:0; opacity:0; } }
+  .impact{ left:92px; top:120px; width:90px; height:90px; opacity:0; animation: impact 7s infinite; }
+  @keyframes impact{ 0%,17%{ opacity:0; transform:scale(.2); } 19%{ opacity:1; transform:scale(1.1); } 26%,100%{ opacity:0; transform:scale(1.5); } }
+  .shard{ left:150px; top:160px; width:16px; height:16px; opacity:0; animation: shard 7s infinite; }
+  @keyframes shard{ 0%,32%{ opacity:0; transform:none; } 34%{ opacity:1; } 52%,100%{ opacity:0; transform:translate(var(--dx),var(--dy)) rotate(var(--r)); } }
+  #s-lock .scene{ animation: shake 7s infinite; }
+  @keyframes shake{ 0%,18%{ transform:none; } 19%{ transform:translate(-6px,3px); } 20%{ transform:translate(6px,-3px); } 21%{ transform:translate(-4px,2px); } 22%,100%{ transform:none; } }
+
+  /* ===== 2 · Činka ===== */
+  .lift-svg, .medal-svg{ left:0; top:0; width:300px; height:300px; }
+  .num{ left:0; right:0; top:-14px; font:700 64px/1 Newsreader, serif; color:#FFE07A; text-shadow:0 4px 18px rgba(242,194,48,.5); opacity:0; animation: numpop 7s infinite; }
+  @keyframes numpop{ 0%,22%{ opacity:0; transform:scale(.4); } 27%{ opacity:1; transform:scale(1.2); } 32%,90%{ opacity:1; transform:scale(1); } 100%{ opacity:0; } }
+
+  /* ===== 3 · Zezlátnutí ===== */
+  .tw{ width:22px; height:22px; opacity:0; animation: tw 7s infinite; }
+  @keyframes tw{ 0%,36%{ opacity:0; transform:scale(.2) rotate(0); } 44%{ opacity:1; transform:scale(1.2) rotate(45deg); } 52%{ opacity:.2; transform:scale(.6) rotate(90deg); } 60%{ opacity:1; transform:scale(1) rotate(135deg); } 90%{ opacity:.8; } 100%{ opacity:0; } }
+
+  /* ===== 4 · Medaile ===== */
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="k-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <radialGradient id="k-gold" cx="36%" cy="30%" r="78%"><stop offset="0" stop-color="#FFF7CC"/><stop offset=".35" stop-color="#FFD54A"/><stop offset=".75" stop-color="#D9A514"/><stop offset="1" stop-color="#8A6608"/></radialGradient>
+    <linearGradient id="k-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="k-rim-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8890A"/><stop offset="1" stop-color="#5E4705"/></linearGradient>
+    <linearGradient id="k-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F9FB"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#DDE1E6"/></linearGradient>
+    <radialGradient id="k-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="k-yellow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="k-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+    <!-- zámek -->
+    <linearGradient id="l-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE48A"/><stop offset=".25" stop-color="#F6C93A"/><stop offset=".7" stop-color="#D49E12"/><stop offset="1" stop-color="#9C7406"/></linearGradient>
+    <linearGradient id="l-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,.35)"/><stop offset=".2" stop-color="rgba(255,255,255,0)"/><stop offset=".8" stop-color="rgba(0,0,0,0)"/><stop offset="1" stop-color="rgba(0,0,0,.25)"/></linearGradient>
+    <linearGradient id="l-chrome" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E959E"/><stop offset=".3" stop-color="#F4F6F8"/><stop offset=".55" stop-color="#B7BDC5"/><stop offset="1" stop-color="#6E757E"/></linearGradient>
+    <clipPath id="c-left"><polygon points="0,0 62,0 56,58 66,74 56,92 63,140 0,140"/></clipPath>
+    <clipPath id="c-right"><polygon points="62,0 140,0 140,140 63,140 56,92 66,74 56,58"/></clipPath>
+    <!-- činka -->
+    <linearGradient id="b-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6F8"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#5E656E"/></linearGradient>
+    <linearGradient id="b-plate" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1A1D22"/><stop offset=".35" stop-color="#4A515C"/><stop offset=".6" stop-color="#2F343C"/><stop offset="1" stop-color="#111317"/></linearGradient>
+    <linearGradient id="b-gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9C7406"/><stop offset=".4" stop-color="#FFE07A"/><stop offset=".7" stop-color="#F2C230"/><stop offset="1" stop-color="#8A6608"/></linearGradient>
+    <!-- medaile -->
+    <linearGradient id="m-ribbon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2F5E99"/><stop offset=".33" stop-color="#2F5E99"/><stop offset=".33" stop-color="#F3F6F9"/><stop offset=".66" stop-color="#F3F6F9"/><stop offset=".66" stop-color="#E0735A"/><stop offset="1" stop-color="#E0735A"/></linearGradient>
+    <radialGradient id="m-disc" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".4" stop-color="#F6C93A"/><stop offset="1" stop-color="#9C7406"/></radialGradient>
+    <linearGradient id="sheen-g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,0)"/><stop offset=".5" stop-color="rgba(255,255,255,.75)"/><stop offset="1" stop-color="rgba(255,255,255,0)"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 28. kolo · medaile, nová úroveň</h1>
+  <p class="lead">Medaile je nasazená znovu: větší Kotoučík, stuha vede zezadu přes horní okraj kotouče, kolem obličeje dolů a medaile visí pod ním. Nová úroveň má činku (místo zámku). Zvuky už bez tlačítka – v aplikaci zazní samy s oslavou; tady stačí <b>klepnout na telefon</b> (prohlížeč pustí zvuk až po prvním klepnutí).</p>
+  <div class="phones" id="phones"></div>
+
+  <h2 class="sec">Zvuky v aplikaci</h2>
+  <p class="lead">Krátké a tiché, nic nevyčítavého. Na iPhonu je ztlumí přepínač ticha, v Nastavení by byl řádek <b>Zvuky: Zapnuto / Vypnuto</b>.</p>
+  <div class="sbtns">
+    <button data-p="ding">Správná odpověď<small>dvojtón nahoru</small></button>
+    <button data-p="soft">Chybná odpověď<small>tlumený tón, žádný „bzučák“</small></button>
+    <button data-p="combo">Kombo 5 / 10<small>rychlá stupnice</small></button>
+    <button data-p="pop">Kotoučík vykoukne<small>„plop“</small></button>
+    <button data-p="goal">Denní cíl splněn<small>fanfára + třpyt (padající kotouče)</small></button>
+  </div>
+
+  <h2 class="sec">Úroveň: kde ji uvidíš</h2>
+  <p class="lead">Dnes se úroveň (A2–C1) ukáže jen jednou po rozřazovacím testu a pak zmizí. Návrh: karta v Pokroku, která se průběžně počítá z běžného procvičování a nikdy neklesá.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Pokrok</h3>
+      <div class="acard">
+        <p class="albl">Tvoje úroveň</p>
+        <div class="lvl"><b>B1</b><span>zvládáš gramatiku úrovně B1</span></div>
+        <div class="ladder"><i class="done">A2</i><i class="now">B1</i><i>B2</i><i>C1</i></div>
+        <div class="bar"><span style="width:72%"></span></div>
+        <p class="note">Na <b>B2</b>: 18 z 25 otázek úrovně B2, správně <b>76 %</b> (potřeba 80 %).</p>
+      </div>
+      <div class="acard">
+        <p class="albl">Obtížnost</p>
+        <div class="lvl"><b style="font-size:30px">Střední</b><span>doporučená</span></div>
+        <div class="bar" style="margin-top:12px"><span style="width:73%"></span></div>
+        <p class="note">Na <b>Pokročilou</b>: z posledních 30 odpovědí na Střední máš 22 správně (potřeba 24).</p>
+      </div>
+    </div></div>
+    <p class="cap">Karta úrovně v Pokroku</p><ul class="why"><li>Obě čísla ukazují, kolik zbývá do dalšího rozbitého zámku.</li></ul></div>
+  </div>
+</div>
+
+<script>
+// Kotoučík (3D) – pózy: wave, up (ruce nahoře), star (nadšení), proud (hrdý), gold
+function kt(pose, gold){
+  const body = gold ? "url(#k-gold)" : "url(#k-body)", rim = gold ? "url(#k-rim-gold)" : "url(#k-rim)";
+  const star = pose === "star" || pose === "lift" || gold; // lift = bez rukou (ruce drží činku zvlášť)
+  const eye = (x, y) => star
+    ? `<path d="M${x} ${y - 10} l3 6.6 7.2 .7 -5.5 4.7 1.7 7 -6.4 -3.8 -6.4 3.8 1.7 -7 -5.5 -4.7 7.2 -.7z" fill="${gold ? "#fff" : "url(#k-yellow)"}" stroke="${gold ? "#B8890A" : "none"}" stroke-width="1"/>`
+    : pose === "proud" ? `<path d="M${x - 7} ${y + 2} q7 -10 14 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`
+    : `<ellipse cx="${x}" cy="${y + 1.5}" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="${x}" cy="${y}" rx="8.5" ry="9.5" fill="url(#k-eye)"/><circle cx="${x + 1.5}" cy="${y + 1.8}" r="4.6" fill="#1B2A41"/><circle cx="${x + 3.2}" cy="${y - 1.2}" r="1.8" fill="#fff"/>`;
+  const armC = gold ? ["#7A5C06", "#C99A12"] : ["#16191E", "#3A414B"];
+  const arm = d => `<path d="${d}" stroke="${armC[0]}" stroke-width="10" fill="none" stroke-linecap="round"/><path d="${d}" stroke="${armC[1]}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+  const hand = (x, y) => `<circle cx="${x}" cy="${y}" r="8.5" fill="${gold ? "url(#k-gold)" : "url(#k-hand)"}"/><circle cx="${x - 2.6}" cy="${y - 2.6}" r="2.3" fill="rgba(255,255,255,.4)"/>`;
+  let arms = "";
+  if(pose === "wave") arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  if(pose === "up" || pose === "star" || (gold && pose !== "coin")) arms = arm("M20 64 q-14 -12 -8 -34") + hand(12, 28) + arm("M104 64 q14 -12 8 -34") + hand(112, 28);
+  if(pose === "proud") arms = arm("M22 76 q-12 4 -10 16") + hand(12, 94) + arm("M102 76 q12 4 10 16") + hand(112, 94);
+  const mouth = star ? `<path d="M49 77 q13 18 26 0 z" fill="${gold ? "#7A5C06" : "url(#k-yellow)"}"/>` : `<path d="M50 78 q12 13 24 0" stroke="url(#k-yellow)" stroke-width="4.6" fill="none" stroke-linecap="round"/>`;
+  return `<svg viewBox="-8 -4 140 140" width="100%" height="100%">${arms}
+    <circle cx="62" cy="62" r="47" fill="${rim}"/><circle cx="62" cy="62" r="42.5" fill="${body}"/>
+    <circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="${gold ? "#FFF4C2" : "url(#k-silver)"}" stroke-width="2.6"/>
+    <path d="M27 40 a40 40 0 0 1 27 -21" stroke="rgba(255,255,255,${gold ? .55 : .3})" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="63" r="4.2" fill="${gold ? "#8A6608" : "#0E1014"}" stroke="${gold ? "#FFF4C2" : "url(#k-silver)"}" stroke-width="1.2"/>
+    ${eye(47, 44)}${eye(77, 44)}${mouth}</svg>`;
+}
+const confetti = (n = 26) => '<div class="confetti">' + Array.from({ length: n }, (_, i) => {
+  const t = ["p", "g", "s", "g", "p"][i % 5], sz = t === "s" ? 8 : 12 + (i * 7) % 14;
+  return `<i class="${t}" style="left:${(i * 37) % 100}%;width:${sz}px;height:${sz}px;animation-delay:${(i % 7) * 0.09}s"></i>`;
+}).join("") + '</div>';
+const sparkle = (x, y, d, s = 22) => `<svg class="tw" viewBox="0 0 22 22" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px;animation-delay:${d}s"><path d="M11 0 L13.4 8.6 L22 11 L13.4 13.4 L11 22 L8.6 13.4 L0 11 L8.6 8.6 Z" fill="#FFE07A"/></svg>`;
+
+// --- 1 · Zámek ---
+const lockBody = (clip) => `<g clip-path="url(#${clip})">
+  <rect x="10" y="62" width="100" height="78" rx="18" fill="url(#l-body)"/>
+  <rect x="10" y="62" width="100" height="78" rx="18" fill="url(#l-side)"/>
+  <rect x="16" y="67" width="88" height="68" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2"/>
+  <rect x="10" y="62" width="100" height="78" rx="18" fill="none" stroke="#8A6608" stroke-width="2"/>
+  <path d="M22 72 h40" stroke="rgba(255,255,255,.7)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="60" cy="96" r="11" fill="#5E4705"/><path d="M55 100 h10 l3 20 h-16 z" fill="#5E4705"/><circle cx="58" cy="94" r="3" fill="rgba(255,255,255,.25)"/></g>`;
+const lockScene = `
+  <div class="glow"></div>
+  <svg class="impact" viewBox="0 0 90 90"><path d="M45 0 L53 30 L84 22 L60 45 L84 68 L53 60 L45 90 L37 60 L6 68 L30 45 L6 22 L37 30 Z" fill="#FFF4C2" stroke="#F2C230" stroke-width="2"/></svg>
+  <svg class="lk" viewBox="0 0 120 150">
+    <g class="lk-shackle"><path d="M30 66 V44 a30 30 0 0 1 60 0 V66" stroke="#3E444C" stroke-width="15" fill="none"/><path d="M30 66 V44 a30 30 0 0 1 60 0 V66" stroke="url(#l-chrome)" stroke-width="12" fill="none"/><path d="M36 48 a24 24 0 0 1 20 -22" stroke="rgba(255,255,255,.8)" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+    <g class="lk-left">${lockBody("c-left")}</g>
+    <g class="lk-right">${lockBody("c-right")}</g>
+    <path class="lk-crack" d="M62 62 L56 92 L66 108 L56 122 L63 140" stroke="#3E2F05" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  </svg>
+  ${[[-110, -70, 200], [90, -110, -160], [120, 30, 120], [-90, 60, -220], [10, -140, 260], [-40, 100, 90], [60, 90, -120]].map(([dx, dy, r]) =>
+    `<svg class="shard" viewBox="0 0 16 16" style="--dx:${dx}px;--dy:${dy}px;--r:${r}deg"><path d="M0 2 L16 0 L9 16 Z" fill="url(#l-body)" stroke="#8A6608" stroke-width="1"/></svg>`).join("")}
+  <div class="lk-roll"><div class="lk-face-a" style="position:absolute;inset:0">${kt("wave")}</div><div class="lk-face-b" style="position:absolute;inset:0">${kt("star")}</div></div>`;
+
+// --- 2 · Činka ---
+const plate = (x, big) => {
+  const h = big ? 78 : 58, w = big ? 18 : 13, y = 45 - h / 2;
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="url(#b-plate)"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="none" stroke="${big ? "url(#b-gold)" : "#9AA0A7"}" stroke-width="2"/>`;
+};
+const liftScene = `
+  <div class="glow"></div>
+  <div class="num">B2</div>
+  <svg class="lift-svg" id="lift-svg" viewBox="0 0 300 300"></svg>
+  ${sparkle(30, 40, .1)}${sparkle(250, 70, .3)}${sparkle(60, 230, .5, 16)}${sparkle(230, 220, .2, 18)}`;
+
+const goldScene = `
+  <div class="glow"></div>
+  <svg class="medal-svg" id="gold-svg" viewBox="0 0 300 300"></svg>
+  ${sparkle(40, 50, .1)}${sparkle(238, 70, .3)}${sparkle(62, 222, .5, 16)}${sparkle(226, 214, .2, 20)}`;
+
+// --- 4 · Medaile ---
+const medalScene = `
+  <div class="glow"></div>
+  <svg class="medal-svg" id="medal-svg" viewBox="0 0 300 300"></svg>
+  ${sparkle(40, 70, .2)}${sparkle(240, 90, .4)}${sparkle(230, 230, .1, 18)}`;
+
+const S = [
+  ["s-lock", "Rozbitý zámek", lockScene, "ODEMČENO", "Pokročilá", "Na Střední máš přes 80 %. Je čas přidat.", "Kotoučík se rozjede, narazí (otřes obrazovky, záblesk), zámek praskne, okovy odletí, půlky odpadnou, střepy se rozprsknou.", true],
+  ["s-lift", "Zvednutí činky · nová úroveň", liftScene, "NOVÁ ÚROVEŇ", "B2", "Zvládáš gramatiku úrovně B2.", "Při každé změně úrovně (z procvičování i z testu) a u výročí série (číslo = počet dní). Drží činku na hrudi, přidřepne, vyrazí ji nad hlavu – ruce ji drží po celou dobu, lokty se narovnají, činka se pod váhou zhoupne a pohne kotouči; kapka potu, velké číslo."],
+  ["s-gold", "Zezlátnutí", goldScene, "MILNÍK", "500 otázek", "zvládnutých. Kotoučík je dnes zlatý.", "Přikrčí se, vyskočí a roztočí se jako mince: nejdřív pomalu, pak rychle a zase pomalu. Je vidět hrana i zadní strana kotouče („20 KG“), odlesk běží po povrchu podle natočení. Cestou postupně zlátne, dopadne (přikrčení), rozprsknou se jiskry a světelný kruh, pak se vznáší a občas se zaleskne."],
+  ["s-medal", "Medaile", medalScene, "PERFEKTNÍ KOLO", "10 z 10", "Pokročilá, bez jediné chyby.", "Medaile se spustí shora, stuha si sedne přes hrudník (pod pusou), disk se zhoupne kolem stuhy a pomalu dokývá; Kotoučík se nadme pýchou."]
+];
+document.getElementById("phones").innerHTML = S.map(([id, cap, scene, badge, title, sub, why, rec]) => `
+  <div class="col"><div class="phone"><div class="stage" id="${id}">
+    <div class="rays"></div><div class="floor"></div>${confetti()}
+    <div class="scene">${scene}</div>
+    <div class="text"><span class="badge">${badge}</span><div class="title">${title}</div><div class="sub">${sub}</div></div>
+    <div class="tap">Klepni pro pokračování</div>
+  </div></div>
+  <p class="cap">${cap}${rec ? '<span class="rec">DOPORUČUJU</span>' : ""}</p><ul class="why"><li>${why}</li></ul></div>`).join("");
+</script>
+
+<script>
+// ===== Pohyb činky a medaile počítaný po snímcích (7s smyčka, stejná jako ostatní animace) =====
+const LOOP = 7000;
+const clock = () => { const a = document.querySelector(".title").getAnimations()[0]; return a ? a.currentTime : performance.now(); };
+const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+const easeOutBack = t => { const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const NS = "http://www.w3.org/2000/svg";
+
+// --- Činka ---
+(function(){
+  const svg = document.getElementById("lift-svg");
+  const cx = 150, base = 196; // střed Kotoučíka v klidu
+  svg.innerHTML = `
+    <ellipse cx="150" cy="258" rx="118" ry="16" fill="#0E141D" opacity=".7"/>
+    <rect x="44" y="246" width="212" height="18" rx="9" fill="#1F2B3B"/><rect x="44" y="246" width="212" height="6" rx="3" fill="#2C3D57"/>
+    <g id="lf-arm-back"></g>
+    <g id="lf-body"><svg id="lf-plain" x="-60" y="-60" width="120" height="120">${kt("plain")}</svg><svg id="lf-star" x="-60" y="-60" width="120" height="120" opacity="0">${kt("lift")}</svg></g>
+    <g id="lf-arms"></g>
+    <g id="lf-bar">
+      <rect x="-150" y="-5" width="300" height="10" rx="5" fill="url(#b-bar)"/>
+      <path d="M-60 -3 h120" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round"/>
+      ${[[-138, 40, 1], [-118, 40, 1], [-100, 30, 0], [120, 40, 1], [100, 40, 1], [86, 30, 0]].map(([x, h, big]) =>
+        `<g class="pl" data-x="${x}"><rect x="${x}" y="${-h}" width="${big ? 18 : 13}" height="${2*h}" rx="5" fill="url(#b-plate)"/><rect x="${x}" y="${-h}" width="${big ? 18 : 13}" height="${2*h}" rx="5" fill="none" stroke="${big ? "url(#b-gold)" : "#9AA0A7"}" stroke-width="2"/><rect x="${x + 3}" y="${-h + 6}" width="3" height="${2*h - 12}" rx="1.5" fill="rgba(255,255,255,.18)"/></g>`).join("")}
+      <rect x="-84" y="-11" width="7" height="22" rx="2" fill="#C9CED6"/><rect x="77" y="-11" width="7" height="22" rx="2" fill="#C9CED6"/>
+    </g>
+    <path id="lf-sweat" d="M0 0 C4 8 8 12 8 16 a8 8 0 0 1 -16 0 C-8 12 -4 8 0 0 z" fill="#8DC6F2" opacity="0"/>`;
+  const plainF = svg.querySelector("#lf-plain"), starF = svg.querySelector("#lf-star");
+  const body = svg.querySelector("#lf-body"), bar = svg.querySelector("#lf-bar"), arms = svg.querySelector("#lf-arms"), sweat = svg.querySelector("#lf-sweat");
+  const arm = (sx, sy, hx, hy, out) => {
+    // rameno -> loket (vybočený do strany podle toho, jak blízko je činka) -> ruka
+    const mx = (sx + hx) / 2 + out, my = (sy + hy) / 2 + 6;
+    const d = `M${sx} ${sy} Q${mx} ${my} ${hx} ${hy}`;
+    return `<path d="${d}" stroke="#16191E" stroke-width="11" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#3A414B" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <circle cx="${hx}" cy="${hy}" r="9" fill="url(#k-hand)"/><circle cx="${hx - 2.6}" cy="${hy - 2.6}" r="2.4" fill="rgba(255,255,255,.4)"/>`;
+  };
+  function frame(now){
+    const t = (clock() % LOOP) / LOOP * 7; // sekundy
+    // fáze: 0–0,7 drží na hrudi, 0,7–1,1 přidřep, 1,1–1,6 výraz nahoru, 1,6–2,6 dokývání, 2,6–6,1 drží, 6,1–6,8 dolů
+    const chest = base + 30, top = base - 92; // činka u břicha (pod pusou) → nad hlavou
+    let barY, squat = 0;
+    if(t < 0.7) barY = chest;
+    else if(t < 1.1){ squat = ease(seg(t, .7, 1.1)); barY = chest + 14 * squat; }
+    else if(t < 1.6){ const k = easeOutBack(seg(t, 1.1, 1.6)); squat = 1 - seg(t, 1.1, 1.35); barY = lerp(chest + 14, top, k); }
+    else if(t < 6.1) barY = top + Math.sin((t - 1.6) * 9) * 4 * Math.exp(-(t - 1.6) * 2.2);
+    else { const k = ease(seg(t, 6.1, 6.8)); barY = lerp(top, chest, k); }
+    const tilt = t > 1.5 && t < 4 ? Math.sin((t - 1.5) * 7) * 3 * Math.exp(-(t - 1.5) * 1.6) : 0;
+    const bodyY = base + squat * 10;
+    body.setAttribute("transform", `translate(${cx} ${bodyY}) scale(${1 + squat * .04} ${1 - squat * .07})`);
+    bar.setAttribute("transform", `translate(${cx} ${barY}) rotate(${tilt})`);
+    // kotouče na koncích se při zhoupnutí trochu pohnou (setrvačnost)
+    bar.querySelectorAll(".pl").forEach(p => p.setAttribute("transform", `translate(0 ${tilt * (+p.dataset.x > 0 ? -0.6 : 0.6)})`));
+    // ruce: ramena u boků kotouče, ruce na tyči
+    const shY = bodyY - 2, reach = clamp((bodyY + 30 - barY) / 122); // 0 = činka na hrudi, 1 = nahoře
+    const out = lerp(26, 4, reach);
+    const hy = barY + Math.sin(tilt * Math.PI / 180) * 0;
+    arms.innerHTML = arm(cx - 40, shY, cx - 52, hy - Math.sin(tilt * Math.PI / 180) * 52, -out) + arm(cx + 40, shY, cx + 52, hy + Math.sin(tilt * Math.PI / 180) * 52, out);
+    // před zvednutím soustředěný, nahoře hvězdičky v očích
+    const happy = t > 1.45 && t < 6.4;
+    starF.setAttribute("opacity", happy ? 1 : 0); plainF.setAttribute("opacity", happy ? 0 : 1);
+    // kapka potu při výrazu
+    const sw = seg(t, 1.2, 1.9);
+    sweat.setAttribute("opacity", t > 1.2 && t < 1.9 ? String(1 - sw) : "0");
+    sweat.setAttribute("transform", `translate(${cx + 44 + sw * 14} ${bodyY - 52 + sw * 30})`);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// --- Medaile ---
+// Souřadnice v jednotkách Kotoučíka: střed kotouče (0,-3.4), poloměr 40.3; celek zvětšený 1.2×.
+(function(){
+  const svg = document.getElementById("medal-svg");
+  const cx = 150, cy = 158, K = 1.2;
+  const L = 31, Ly = -29.3;            // místa, kde stuha přechází přes horní okraj (±50°)
+  const AP = 34;                        // špička stuhy pod pusou, u spodního okraje
+  const strand = d => `<path d="${d}" stroke="#24497A" stroke-width="11" fill="none"/><path d="${d}" stroke="#2F5E99" stroke-width="9.6" fill="none"/>
+    <path d="${d}" stroke="#F3F6F9" stroke-width="6" fill="none"/><path d="${d}" stroke="#E0735A" stroke-width="2.6" fill="none"/>`;
+  svg.innerHTML = `
+    <ellipse cx="150" cy="252" rx="104" ry="14" fill="#0E141D" opacity=".7"/>
+    <g id="md-all" transform="translate(${cx} ${cy}) scale(${K})">
+      <g id="md-back"></g>
+      <g id="md-body"><svg x="-60" y="-60" width="120" height="120">${kt("proud")}</svg></g>
+      <g id="md-front"></g>
+      <g id="md-disc">
+        <rect x="-6" y="-3" width="12" height="8" rx="2" fill="#B8890A"/><rect x="-6" y="-3" width="12" height="3" rx="1.5" fill="#FFE07A"/>
+        <circle cx="0" cy="20" r="17" fill="#8A6608"/><circle cx="0" cy="18.8" r="16.2" fill="url(#m-disc)"/>
+        <circle cx="0" cy="18.8" r="12" fill="none" stroke="#B8890A" stroke-width="1.3"/>
+        <path d="M-9 20 q2.5 8 8 10.5 M9 20 q-2.5 8 -8 10.5" stroke="#B8890A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <text x="0" y="23.4" text-anchor="middle" font-family="Newsreader, serif" font-weight="700" font-size="12.5" fill="#6E5205">C1</text>
+        <clipPath id="md-clip2"><circle cx="0" cy="18.8" r="16.2"/></clipPath>
+        <g clip-path="url(#md-clip2)"><rect id="md-sheen" x="-40" y="0" width="11" height="40" fill="url(#sheen-g)" transform="skewX(-20)"/></g>
+      </g>
+    </g>`;
+  const $ = id => svg.querySelector("#" + id);
+  const all = $("md-all"), back = $("md-back"), body = $("md-body"), front = $("md-front"), disc = $("md-disc"), sheen = $("md-sheen");
+  function frame(){
+    const t = (clock() % LOOP) / LOOP * 7;
+    // 0,6–1,3 spouští se shora, 1,3–4 kývání, 4–6,3 visí, 6,3–7 zmizí
+    let dy, swing = 0, op = 1;
+    if(t < .6) dy = -230;
+    else if(t < 1.3) dy = lerp(-230, 0, easeOutBack(seg(t, .6, 1.3)));
+    else { dy = 0; const k = t - 1.3; swing = 14 * Math.sin(k * 5.2) * Math.exp(-k * 1.1); }
+    if(t > 6.3) op = 1 - seg(t, 6.3, 6.9);
+    const land = t > 1.25 && t < 1.7 ? Math.sin(seg(t, 1.25, 1.7) * Math.PI) : 0;
+    const proud = clamp((t - 1.7) / .5) * (t < 6.3 ? 1 : 1 - seg(t, 6.3, 6.9));
+    const sy = 1 - land * .06 + proud * .03, sx = 1 + proud * .04;
+    body.setAttribute("transform", `translate(0 ${land * 4}) scale(${sx} ${sy})`);
+    // stuha: zadní oblouk za hlavou (vykoukne kousek nad okrajem), přední pruhy podél okraje k špičce
+    const ax = Math.sin(swing * Math.PI / 180) * 3, ay = AP + dy + land * 3;
+    const ly = Ly + dy + land * 3;
+    back.innerHTML = `<path d="M${-L} ${ly} Q0 ${ly - 26} ${L} ${ly}" stroke="#1B365C" stroke-width="10" fill="none" opacity="${op}"/>`;
+    front.innerHTML = `<g opacity="${op}">
+      ${strand(`M${-L - 1} ${ly - 3} Q${-37 * sx} ${10 + dy} ${ax - 3} ${ay}`)}${strand(`M${L + 1} ${ly - 3} Q${37 * sx} ${10 + dy} ${ax + 3} ${ay}`)}
+      <path d="M${-L - 6} ${ly - 5} l10 -2 l1 5 l-10 2 z M${L + 6} ${ly - 5} l-10 -2 l-1 5 l10 2 z" fill="rgba(0,0,0,.35)"/></g>`;
+    disc.setAttribute("opacity", op);
+    disc.setAttribute("transform", `translate(${ax} ${ay}) rotate(${swing})`);
+    sheen.setAttribute("x", String(-34 + seg(t, 2, 2.8) * 70));
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// --- Zezlátnutí: roztočená mince ---
+const easeIO3 = p => p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
+const easeOut3 = p => 1 - Math.pow(1 - p, 3);
+const GOLD_T = { crouch: .5, jump: .75, land: 2.55, settle: 2.95, turns: 4 };
+(function(){
+  const svg = document.getElementById("gold-svg");
+  const cx = 150, cy = 146, R = 43.6;
+  const wrap = inner => `<svg x="-65" y="-61.3" width="130" height="130">${inner}</svg>`;
+  const back = gold => wrap(`<svg viewBox="-8 -4 140 140" width="100%" height="100%">
+    <circle cx="62" cy="62" r="47" fill="url(#${gold ? "k-rim-gold" : "k-rim"})"/><circle cx="62" cy="62" r="42.5" fill="url(#${gold ? "k-gold" : "k-body"})"/>
+    <circle cx="62" cy="62" r="33" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="3"/><circle cx="62" cy="61" r="33" fill="none" stroke="${gold ? "#FFF4C2" : "url(#k-silver)"}" stroke-width="2"/>
+    <circle cx="62" cy="62" r="17" fill="none" stroke="rgba(0,0,0,.3)" stroke-width="2"/>
+    <circle cx="62" cy="62" r="7" fill="${gold ? "#8A6608" : "#0E1014"}" stroke="${gold ? "#FFF4C2" : "url(#k-silver)"}" stroke-width="1.4"/>
+    <text x="62" y="91" text-anchor="middle" font-family="Inter" font-weight="800" font-size="8.5" letter-spacing="1.5" fill="${gold ? "#7A5C06" : "#9AA0A7"}">20 KG</text></svg>`);
+  const N = 16;
+  svg.innerHTML = `
+    <ellipse id="gd-shadow" cx="${cx}" cy="${cy + 66}" rx="52" ry="9" fill="#05080D" opacity=".6"/>
+    <circle id="gd-flash" cx="${cx}" cy="${cy}" r="46" fill="none" stroke="#FFE07A" stroke-width="4" opacity="0"/>
+    <g id="gd-parts">${Array.from({ length: N }, (_, i) => i % 2
+      ? `<circle r="${2.5 + i % 3}" fill="#FFE07A"/>`
+      : `<path d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z" fill="#FFF4C2"/>`).join("")}</g>
+    <g id="gd-coin">
+      <g id="gd-edge"></g>
+      <g id="gd-face">
+        <g id="gd-front"><g id="gd-fd">${wrap(kt("coin"))}</g><g id="gd-fg">${wrap(kt("coin", true))}</g></g>
+        <g id="gd-back"><g id="gd-bd">${back(false)}</g><g id="gd-bg">${back(true)}</g></g>
+        <clipPath id="gd-clip"><circle r="${R}"/></clipPath>
+        <g clip-path="url(#gd-clip)"><rect id="gd-spec" x="-12" y="-60" width="24" height="120" fill="url(#sheen-g)"/><circle id="gd-shade" r="${R}" fill="#000" opacity="0"/></g>
+      </g>
+      <g id="gd-hero" opacity="0">${wrap(kt("star", true))}
+        <g clip-path="url(#gd-clip)"><rect id="gd-hsheen" x="-80" y="-60" width="26" height="120" fill="url(#sheen-g)" transform="skewX(-20)"/></g></g>
+    </g>`;
+  const $ = id => svg.querySelector("#" + id);
+  const coin = $("gd-coin"), edge = $("gd-edge"), face = $("gd-face"), front = $("gd-front"), backG = $("gd-back");
+  const fg = $("gd-fg"), bg = $("gd-bg"), spec = $("gd-spec"), shade = $("gd-shade"), hero = $("gd-hero"), hsheen = $("gd-hsheen");
+  const shadow = $("gd-shadow"), flash = $("gd-flash"), parts = [...$("gd-parts").children];
+  const mix = (a, b, k) => "rgb(" + a.map((v, i) => Math.round(lerp(v, b[i], k))).join(",") + ")";
+  const angs = parts.map((_, i) => i / N * Math.PI * 2 + (i % 3) * .12), dists = parts.map((_, i) => 80 + (i * 29) % 50);
+  function frame(){
+    const t = (clock() % LOOP) / LOOP * 7, T = GOLD_T;
+    let y = 0, sx = 1, sy = 1, th = 0, g = 0, isHero = false;
+    if(t < T.crouch) y = 0;
+    else if(t < T.jump){ const k = Math.sin(seg(t, T.crouch, T.jump) * Math.PI / 2); sy = 1 - .13 * k; sx = 1 + .08 * k; y = 6 * k; }
+    else if(t < T.land){
+      const p = seg(t, T.jump, T.land);
+      y = -125 * Math.sin(Math.PI * p);
+      th = T.turns * 2 * Math.PI * easeIO3(p);
+      g = ease(seg(p, .3, .85));
+      sy = 1 + .07 * Math.max(0, 1 - p * 4); sx = 1 / sy; // natažení při odrazu
+    }
+    else { g = 1; isHero = true;
+      if(t < T.settle){ const k = Math.sin(seg(t, T.land, T.settle) * Math.PI); sy = 1 - .15 * k; sx = 1 + .1 * k; y = 7 * k; }
+      else y = -5 * Math.sin((t - T.settle) * 2.2);
+    }
+    const c = Math.cos(th), sn = Math.sin(th), ac = Math.max(.03, Math.abs(c));
+    coin.setAttribute("transform", `translate(${cx} ${cy + y})`);
+    coin.setAttribute("opacity", t < .3 ? seg(t, 0, .3) : (t > 6.3 ? 1 - seg(t, 6.3, 6.9) : 1));
+    face.setAttribute("display", isHero ? "none" : ""); edge.setAttribute("display", isHero ? "none" : "");
+    hero.setAttribute("opacity", isHero ? 1 : 0);
+    hero.setAttribute("transform", `scale(${sx} ${sy}) translate(0 ${(1 - sy) * 40})`);
+    if(!isHero){
+      face.setAttribute("transform", `scale(${ac * sx} ${sy})`);
+      front.setAttribute("display", c >= 0 ? "" : "none"); backG.setAttribute("display", c >= 0 ? "none" : "");
+      fg.setAttribute("opacity", g); bg.setAttribute("opacity", g);
+      // hrana mince: pruh vedle líce, tím širší, čím víc je natočená
+      const off = 8 * sn, col = mix([24, 27, 32], [150, 110, 8], g), col2 = mix([58, 65, 75], [242, 194, 48], g);
+      let e = "";
+      for(let i = 6; i >= 1; i--) e += `<ellipse cx="${off * i / 6}" cy="0" rx="${R * ac * sx}" ry="${R * sy}" fill="${i % 2 ? col : col2}"/>`;
+      edge.innerHTML = e;
+      spec.setAttribute("x", String(-12 - 46 * sn)); spec.setAttribute("opacity", String(.25 + .6 * Math.abs(sn)));
+      shade.setAttribute("opacity", String((1 - Math.abs(c)) * .4));
+    }
+    // odlesk po dopadu a znovu později
+    const sw = t > 3 && t < 3.7 ? seg(t, 3, 3.7) : (t > 5 && t < 5.6 ? seg(t, 5, 5.6) : -1);
+    hsheen.setAttribute("x", sw < 0 ? "-200" : String(-60 + sw * 150));
+    // stín se při výskoku zmenší
+    const h = clamp(-y / 125);
+    shadow.setAttribute("rx", String(52 * (1 - .45 * h) * (isHero ? 1 : Math.max(.4, ac)) * sx));
+    shadow.setAttribute("opacity", String(.6 * (1 - .6 * h)));
+    // dopad: světelný kruh a jiskry
+    const f = t > T.land && t < T.land + .7 ? seg(t, T.land, T.land + .7) : -1;
+    flash.setAttribute("opacity", f < 0 ? "0" : String(1 - f));
+    flash.setAttribute("r", String(46 + 100 * easeOut3(Math.max(0, f))));
+    flash.setAttribute("stroke-width", String(1 + 5 * (1 - Math.max(0, f))));
+    const pk = t > T.land && t < T.land + 1 ? seg(t, T.land, T.land + 1) : -1;
+    parts.forEach((p, i) => {
+      if(pk < 0){ p.setAttribute("opacity", "0"); return; }
+      const d = 40 + dists[i] * easeOut3(pk);
+      p.setAttribute("opacity", String(1 - seg(pk, .5, 1)));
+      p.setAttribute("transform", `translate(${cx + Math.cos(angs[i]) * d} ${cy + Math.sin(angs[i]) * d + 30 * pk * pk}) rotate(${pk * 180})`);
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ===== Zvuky: skládané ve Web Audio, bez souborů =====
+let AC = null, master = null, NB = null;
+function ac(){
+  if(!AC){ AC = new (window.AudioContext || window.webkitAudioContext)(); master = AC.createGain(); master.gain.value = .7; master.connect(AC.destination); }
+  if(AC.state === "suspended") AC.resume();
+  return AC;
+}
+function tone(f, dt, dur, o = {}){
+  const c = ac(), t0 = c.currentTime + dt, osc = c.createOscillator(), g = c.createGain();
+  osc.type = o.type || "sine"; osc.frequency.setValueAtTime(f, t0);
+  if(o.f2) osc.frequency.exponentialRampToValueAtTime(o.f2, t0 + dur);
+  g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(o.vol || .2, t0 + (o.a || .006)); g.gain.exponentialRampToValueAtTime(.0001, t0 + dur);
+  osc.connect(g); g.connect(master); osc.start(t0); osc.stop(t0 + dur + .05);
+}
+function noise(dt, dur, o = {}){
+  const c = ac(), t0 = c.currentTime + dt;
+  if(!NB){ NB = c.createBuffer(1, c.sampleRate * 2, c.sampleRate); const d = NB.getChannelData(0); for(let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+  const src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+  src.buffer = NB; f.type = o.type || "bandpass"; f.frequency.setValueAtTime(o.f || 1000, t0);
+  if(o.f2) f.frequency.exponentialRampToValueAtTime(o.f2, t0 + dur);
+  f.Q.value = o.q || 1;
+  g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(o.vol || .2, t0 + (o.a || .01)); g.gain.exponentialRampToValueAtTime(.0001, t0 + dur);
+  src.connect(f); f.connect(g); g.connect(master); src.start(t0); src.stop(t0 + dur + .05);
+}
+const SND = {
+  ding(){ tone(880, 0, .18, { vol: .16 }); tone(1318.5, .09, .35, { vol: .16 }); },
+  soft(){ tone(330, 0, .25, { type: "triangle", vol: .12, f2: 262 }); },
+  combo(){ [659.3, 784, 987.8, 1318.5].forEach((f, i) => tone(f, i * .07, .24, { type: "triangle", vol: .13 })); },
+  pop(){ tone(420, 0, .13, { f2: 900, vol: .16 }); },
+  fanfare(){ [523.25, 659.25, 783.99].forEach((f, i) => tone(f, i * .11, .35, { type: "triangle", vol: .15 }));
+    [1046.5, 1318.5, 1568].forEach(f => tone(f, .36, 1.2, { type: "triangle", vol: .08 })); tone(261.6, .36, 1.2, { vol: .14 }); },
+  shimmer(){ for(let i = 0; i < 12; i++) tone(1568 * Math.pow(2, i / 8), i * .035, .35, { vol: .045 }); },
+  goal(){ SND.fanfare(); setTimeout(SND.shimmer, 380); },
+  roll(){ noise(0, 1.25, { type: "lowpass", f: 220, f2: 520, vol: .22, a: .35 }); },
+  thud(){ tone(150, 0, .4, { f2: 42, vol: .55 }); noise(0, .16, { type: "lowpass", f: 700, vol: .3 }); },
+  crack(){ [0, .08, .17, .3].forEach((d, i) => noise(d, .045, { type: "highpass", f: 2200 + i * 400, vol: .22 })); },
+  shatter(){ noise(0, .45, { type: "highpass", f: 3500, vol: .16 }); [2637, 3520, 4186, 3136, 2349, 2794].forEach((f, i) => tone(f, i * .045, .28, { vol: .05 })); },
+  whooshUp(){ noise(0, .45, { f: 300, f2: 2200, q: 2, vol: .22, a: .25 }); },
+  whooshDown(){ noise(0, .65, { f: 2400, f2: 300, q: 2, vol: .16, a: .2 }); },
+  clank(){ [220, 331, 497, 742].forEach(f => tone(f, 0, .7, { type: "triangle", vol: .07 })); noise(0, .08, { f: 1800, vol: .22 }); },
+  ting(k){ tone(1760 + k * 700, 0, .1, { vol: .05 }); },
+  cling(){ [1568, 2349, 3136].forEach((f, i) => tone(f, i * .02, 1, { vol: .08 })); },
+  clink(){ tone(1760, 0, .35, { vol: .09 }); tone(2637, .07, .45, { vol: .07 }); },
+  stamp(){ tone(110, 0, .2, { f2: 60, vol: .35 }); noise(0, .06, { type: "lowpass", f: 900, vol: .2 }); }
+};
+// časy zvuků (s) v 7s smyčce; cinknutí mince vždy, když je otočená hranou
+const coinTings = (() => {
+  const T = GOLD_T, out = []; let last = 0;
+  for(let t = T.jump; t < T.land; t += .002){
+    const n = Math.floor((T.turns * 2 * easeIO3(seg(t, T.jump, T.land)) + .5));
+    if(n > last){ last = n; out.push([t, () => SND.ting(seg(t, T.jump, T.land))]); }
+  }
+  return out;
+})();
+const lockCues = [[0, SND.roll], [1.33, SND.thud], [1.5, SND.crack], [2.3, SND.shatter], [3.5, SND.stamp], [3.55, SND.fanfare]];
+const CUES = {
+  "s-lock": lockCues,
+  "s-lift": [[1.1, SND.whooshUp], [1.6, SND.clank], [1.88, SND.pop], [3.5, SND.stamp], [3.55, SND.fanfare]],
+  "s-gold": [[.75, SND.whooshUp], ...coinTings, [2.55, SND.cling], [2.6, SND.shimmer], [3.5, SND.stamp], [3.55, SND.fanfare]],
+  "s-medal": [[.6, SND.whooshDown], [1.3, SND.clink], [3.5, SND.stamp], [3.55, SND.fanfare]]
+};
+let soundScene = null, prevT = 0;
+document.querySelectorAll(".phone").forEach(p => p.addEventListener("click", () => {
+  const st = p.querySelector(".stage"); if(!st) return;
+  ac();
+  soundScene = soundScene === st.id ? null : st.id;
+  prevT = (clock() % LOOP) / 1000;
+  document.querySelectorAll(".phone").forEach(x => x.classList.toggle("on", !!soundScene && x.querySelector(".stage")?.id === soundScene));
+}));
+document.querySelectorAll(".sbtns button").forEach(b => b.addEventListener("click", () => { ac(); SND[b.dataset.p](); }));
+(function tick(){
+  const t = (clock() % LOOP) / 1000;
+  if(soundScene){
+    CUES[soundScene].forEach(([at, fn]) => { if(t < prevT ? (at >= prevT || at < t) : (at >= prevT && at < t)) fn(); });
+  }
+  prevT = t;
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

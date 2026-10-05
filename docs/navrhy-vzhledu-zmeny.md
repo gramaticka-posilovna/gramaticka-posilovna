@@ -33,6 +33,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 25 | `navrhy-vzhledu-25.html` | Velké oslavy dotažené: pódium se světlem a paprsky, 3D zámek/činka/mince/medaile, otřes, konfety, zlatý nápis |
 | 26 | `navrhy-vzhledu-26.html` | Oslavy: činka a medaile s plynulým pohybem po snímcích, žíněnka, vinětace |
 | 27 | `navrhy-vzhledu-27.html` | Zezlátnutí jako roztočená mince, zvuky (Web Audio), zámek pro novou úroveň, karta úrovně v Pokroku |
+| 28 | `navrhy-vzhledu-28.html` | Medaile znovu nasazená (stuha přes okraj kolem obličeje), nová úroveň = činka, zvuk klepnutím na telefon |
 
 ## Zpětná vazba
 
@@ -228,3 +229,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Zámek i pro novou úroveň („NOVÁ ÚROVEŇ · B2“).
 - Zvuky skládané ve Web Audio (bez souborů): ke každé oslavě vlastní (kutálení/náraz/praskání/střepy, švih/cinknutí činky, cinkání mince/třpyt, spuštění/cinknutí medaile) + fanfára; v appce správně, chyba (tlumeně), kombo, Kotoučík, denní cíl.
 - Karta „Tvoje úroveň“ v Pokroku (žebříček A2–C1, postup na další úroveň) a „Obtížnost“ (posledních 30 odpovědí, 80 %).
+- **Kolo 27 výsledek:** úroveň podle návrhu (25 otázek, 80 %, nikdy neklesne, doplňkové otázky v testu, karta v Pokroku), zvuky zapnuté a automaticky bez tlačítka, výročí série ano, 4. věta přes den „Ahoj! Pár minut na formu?“, test opakovatelný a pokaždé jiný, **činka při každé změně úrovně**; medaile pořád divná.
+
+### Medaile, nová úroveň (kolo 28)
+- Medaile: Kotoučík větší, stuha (pruhy modrá–bílá–korálová) vede zezadu za hlavou, přes horní okraj kotouče se záhybem, podél okraje kolem obličeje k špičce u spodního okraje; disk visí pod ním a kývá se, stuha se hýbe s ním.
+- Nová úroveň (z procvičování i z testu) = zvednutí činky; zámek zůstává jen pro obtížnost.
