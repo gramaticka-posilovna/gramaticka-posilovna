@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 19</title>
+<style>
+  /* Statické návrhy (19. kolo) — NEJSOU součástí appky. Čím nahradit „Dobrý den!“ (lišta B z kola 18). Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:860px; line-height:1.55; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, 300px); gap:28px 22px; padding:22px 4px 10px; }
+  .col{ display:flex; flex-direction:column; }
+  .phone{ width:300px; height:500px; border-radius:42px; border:10px solid #15171B; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.18); }
+  .cap{ font-size:13px; font-weight:700; text-align:center; margin:10px 0 4px; }
+  .why{ font-size:12px; color:#6A6F78; line-height:1.5; margin:0; padding-left:18px; }
+  .why li{ margin:3px 0; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:1px; }
+
+  .app{ position:absolute; inset:0; width:350px; height:610px; transform:scale(.8); transform-origin:0 0; overflow:hidden;
+    color:#1B2A41; background:radial-gradient(120% 60% at 50% 0%, #F3F6F9 0%, #E1E8EF 60%, #CDD7E2 100%); }
+  .sb{ height:54px; display:flex; align-items:center; justify-content:space-between; padding:0 30px 0 36px; font:600 16px Inter; position:relative; }
+  .sb::before{ content:""; position:absolute; left:50%; top:12px; transform:translateX(-50%); width:118px; height:34px; border-radius:20px; background:#000; }
+  .sb .bat{ display:inline-block; width:24px; height:12px; border:1.5px solid currentColor; border-radius:4px; padding:1px; vertical-align:-1px; }
+  .sb .bat i{ display:block; width:60%; height:100%; background:currentColor; border-radius:2px; }
+  .brand{ text-align:center; font:800 11px Inter; letter-spacing:.16em; color:#8A94A6; margin:2px 0 14px; }
+  .body{ padding:0 16px; }
+  .home-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:16px; min-height:78px; }
+  .eyebrow{ font-size:13px; color:#5C6478; }
+  .hl{ font:700 28px/1.1 Newsreader, serif; margin:3px 0 0; }
+  .hl.md{ font-size:24px; }
+  .hl em{ font-style:normal; color:#6E8F5C; }
+  .small{ font-size:13px; color:#5C6478; margin:5px 0 0; line-height:1.4; }
+  .splate{ width:58px; height:58px; border-radius:50%; display:grid; place-items:center; margin:0 auto 4px;
+    background:radial-gradient(circle, #2F343C 0 49%, #9AA0A7 50% 52%, #2F343C 53% 61%, #1D2026 62% 66%, #2F343C 67%); box-shadow:inset 0 2px 0 rgba(255,255,255,.15), 0 8px 14px rgba(0,0,0,.3); }
+  .splate b{ font:700 22px Newsreader, serif; color:#F2C230; }
+  .streak{ flex-shrink:0; }
+  .streak small{ display:block; text-align:center; font-size:10px; font-weight:800; text-transform:uppercase; color:#5C6478; }
+  .card{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:18px; box-shadow:inset 0 1px 0 #fff, 0 10px 22px rgba(60,75,100,.16); margin-bottom:14px; }
+  .label{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 10px; }
+  .goal{ display:flex; justify-content:space-between; align-items:baseline; }
+  .goal b{ font:700 22px Newsreader, serif; }
+  .goal span{ font-size:14px; color:#5C6478; }
+  .gbar{ height:12px; margin-top:10px; background:#D9E1EA; border-radius:8px; overflow:hidden; }
+  .gbar span{ display:block; width:60%; height:100%; background:linear-gradient(180deg,#9CC487,#567F45); }
+  .tiles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+  .tile{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:20px; padding:12px 14px; box-shadow:0 10px 22px rgba(60,75,100,.16); font-size:14px; font-weight:700; }
+  .tile em{ display:block; font:700 24px Newsreader, serif; font-style:normal; color:#1E3A5F; }
+  .cta{ text-align:center; color:#fff; border-radius:18px; padding:14px; font-weight:700; font-size:16px; background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:0 5px 0 #132840; }
+  .cta small{ display:block; font-weight:500; font-size:12.5px; opacity:.85; margin-top:2px; }
+  .quote{ background:#EDF2F6; border-radius:16px; padding:12px 14px; margin-top:6px; }
+  .quote b{ display:block; font:700 18px Newsreader, serif; }
+  .quote span{ font-size:12.5px; color:#5C6478; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 19. kolo · místo „Dobrý den!“</h1>
+  <p class="lead">Nahoře je už vybraná lišta <b>B</b> (drobný název uprostřed). Pozdrav „Dobrý den!“ je velký, ale nic neříká. Tady je šest návrhů, co by mohlo být na jeho místě. Kotouč série vpravo zůstává všude.</p>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const sb = `<div class="sb"><span>14:16</span><span>▂▄▆ <span class="bat"><i></i></span></span></div><div class="brand">GRAMATICKÁ POSILOVNA</div>`;
+const streak = '<div class="streak"><div class="splate"><b>6</b></div><small>dní v řadě</small></div>';
+const goalCard = '<div class="card"><p class="label">Dnešní cíl</p><div class="goal"><b>12 / 20 odpovědí</b><span>už jen 8</span></div><div class="gbar"><span></span></div></div>';
+const goalBarOnly = '<div class="card" style="padding:14px 18px"><div class="gbar" style="margin:0"><span></span></div></div>';
+const tiles = '<div class="tiles"><div class="tile"><em>14</em>Opakování</div><div class="tile"><em>3</em>Co mi nejde</div></div>';
+const cta = (sub) => `<div class="cta">Pokračovat v tréninku<small>${sub}</small></div>`;
+const head = (left) => `<div class="home-head"><div>${left}</div>${streak}</div>`;
+const V = [
+  ["Dnes · Dobrý den!",
+    head('<div class="eyebrow">Pondělí</div><div class="hl">Dobrý den!</div>') + goalCard + tiles + cta("Modální slovesa · Základní"),
+    ["Pro srovnání."]],
+  ["1 · Podle denní doby",
+    head('<div class="eyebrow">Pondělí večer</div><div class="hl">Dobrý večer!</div>') + goalCard + tiles + cta("Modální slovesa · Základní"),
+    ["Nejmenší změna: ráno „Dobré ráno“, přes den „Dobrý den“, večer „Dobrý večer“.", "Pořád ale jen pozdrav, nic neříká."]],
+  ["2 · Stav dnešního cíle",
+    head('<div class="eyebrow">Pondělí · dnešní cíl</div><div class="hl">Ještě <em>8</em> do cíle</div>') + goalBarOnly + tiles + cta("Modální slovesa · Základní"),
+    ["Nadpis se mění během dne: ráno „Dnes 20 odpovědí“, pak „Ještě 8 do cíle“, nakonec „Cíl splněn ✓“.", "Karta s cílem se zmenší jen na pruh – na obrazovce zbude víc místa.", "Okamžitě říká, co dnes zbývá udělat."], true],
+  ["3 · Co dnes procvičit",
+    head('<div class="eyebrow">Pondělí · doporučení</div><div class="hl md">Dnes: modální slovesa</div><p class="small">Tady máš nejvíc chyb (58 %).</p>') + goalCard + cta("Začít · 10 otázek"),
+    ["Nadpis rovnou doporučí téma podle slabých míst nebo plánu z testu.", "Tlačítko pod tím ho spustí jedním klepnutím.", "Dlaždice Opakování / Co mi nejde by se sloučily do doporučení."]],
+  ["4 · Datum jako nadpis",
+    head('<div class="eyebrow">Dnes</div><div class="hl">Pondělí 5. října</div>') + goalCard + tiles + cta("Modální slovesa · Základní"),
+    ["Klidné a věcné, jako kalendář nebo Zdraví v iPhonu.", "Neříká nic nového, ale nepůsobí prázdně jako pozdrav."]],
+  ["5 · Anglická věta dne",
+    head('<div class="eyebrow">Pondělí · věta dne</div><div class="quote"><b>Practice makes perfect.</b><span>Cvičení dělá mistra.</span></div>') + goalCard + cta("Modální slovesa · Základní"),
+    ["Každý den jiné anglické přísloví nebo obrat s překladem.", "Hodí se k appce na angličtinu a je to drobná radost navíc.", "Potřebuje seznam vět (např. 60–100), ten bych připravil."]],
+  ["6 · Bez nadpisu",
+    `<div class="home-head" style="min-height:0;align-items:center"><div class="eyebrow">Pondělí 5. října</div>${streak}</div>` + goalCard + tiles + cta("Modální slovesa · Základní"),
+    ["Nadpis pryč, jen drobné datum vedle kotouče série.", "Hlavní je hned karta s cílem – nejčistší, ale bez „tváře“."]]
+];
+document.getElementById("grid").innerHTML = V.map(([cap, html, why, rec]) => `
+  <div class="col">
+    <div class="phone"><div class="app">${sb}<div class="body">${html}</div></div></div>
+    <p class="cap">${cap}${rec ? '<span class="rec">DOPORUČUJU</span>' : ""}</p>
+    <ul class="why">${why.map(w => `<li>${w}</li>`).join("")}</ul>
+  </div>`).join("");
+</script>
+</body>
+</html>

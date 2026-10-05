@@ -24,6 +24,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 16 | `navrhy-vzhledu-16.html` | Pokrok: karta Porovnání (Vývoj · Týden · Témata · Obtížnost · Zvládnuto) |
 | 17 | `navrhy-vzhledu-17.html` | Horní lišta: před · teď · 1 lehčí lišta · 2 malý název nad pozdravem |
 | 18 | `navrhy-vzhledu-18.html` | Horní lišta, 7 přístupů: A bez lišty · B název uprostřed · C název + série · D datum · E dvoubarevný nápis · F tmavý pruh · G kotouč v řádku nad pozdravem |
+| 19 | `navrhy-vzhledu-19.html` | Místo „Dobrý den!“: 1 podle denní doby · 2 stav cíle · 3 co dnes procvičit · 4 datum · 5 anglická věta dne · 6 bez nadpisu |
 
 ## Zpětná vazba
 
@@ -166,3 +167,8 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Horní lišta, víc možností (kolo 18)
 - Zadání: lehká lišta se pořád moc nelíbí, víc návrhů.
 - Dnes (lehká lišta) pro srovnání · **A Bez lišty** (doporučeno) · B drobný název uprostřed velkými písmeny · C název vlevo + kotouček série vpravo (velký kotouč u pozdravu odpadne) · D datum vlevo, kotouč vpravo · E „Gramatická“ + zelená „posilovna“ bez kotouče · F tmavý pruh s bílo-žlutým názvem · G kotouč a název v řádku nad pozdravem místo „Pondělí“.
+- **Kolo 18 výsledek:** nejvíc se líbí **B** (drobný název uprostřed) – nasadit spolu s volbou z kola 19.
+
+### Místo „Dobrý den!“ (kolo 19)
+- Zadání: je potřeba „Dobrý den“? Návrhy, čím ho nahradit. Všechny s lištou B, kotouč série zůstává.
+- 1 Pozdrav podle denní doby · **2 Stav dnešního cíle** („Ještě 8 do cíle“, karta cíle jen jako pruh; doporučeno) · 3 Co dnes procvičit (doporučené téma + spuštění) · 4 Datum jako nadpis · 5 Anglická věta dne s překladem · 6 Bez nadpisu.
