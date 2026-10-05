@@ -19,6 +19,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 11 | `navrhy-vzhledu-11.html` | Vybraná Šedomodrá + 6 návrhů úprav (grafitové / žluté tlačítko, Oswald, tmavá hlavička, kotouče v pozadí, ostřejší karty) |
 | 12 | `navrhy-vzhledu-12.html` | **Posilovna v9 · Šedomodrá — všech 14 obrazovek appky** |
 | 13 | `navrhy-vzhledu-13.html` | v9 v barevných variantách: Šedomodrá + 8 palet (jen barvy) |
+| 14 | `navrhy-vzhledu-14.html` | Horní lišta (dnes · A kotouč + název · B název jako logo · C bez lišty) · tmavý režim (Domů, Otázka, Nastavení) |
 
 ## Zpětná vazba
 
@@ -115,6 +116,11 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - **6 Teal a písek:** teal `#0F6B63`, akcent `#F2A93B`, pískové pozadí `#F1EBE1`.
 - **7 Noční oceán (tmavá):** pozadí `#132132`, tyrkys `#5ED3C6`, zlatá `#FFD166`.
 - **8 Grafit a žlutá (tmavá):** pozadí `#1D2025`, žlutá `#F2C230` (tlačítka, kotouče).
+
+### Horní lišta a tmavý režim (kolo 14) — nad hotovou appkou
+- Zadání: na telefonu je v horní liště jen kotouč „G“, nelíbí se. Plus náhled denního/nočního režimu.
+- Lišta: **A** kotouč + „Gramatická posilovna“ v jednom řádku · **B** „Gramatická“ + prostrkaná zelená „POSILOVNA“ pod tím · **C** bez lišty, malý název nad pozdravem jen na Domů (doporučeno).
+- Tmavý režim: stejná šedomodrá rodina ztlumená (pozadí `#151C26`, karty `#212B39`, text `#E7EDF4`), žádná čistá černá; kotouče světlejší `#4A525F` se žlutou; zesvětlená zelená `#7CCB94` a korálová `#F29A84`; tlačítko `#4675AE`. V Nastavení nová karta Vzhled: Automaticky / Světlý / Tmavý.
 
 ## Činka — historie verzí
 
