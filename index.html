@@ -24089,36 +24089,56 @@ function mascotAfterAnswer(allCorrect){
   if(allCorrect ? Math.random() < 0.1 : Math.random() < 1 / 6) showMascot(allCorrect ? "happy" : "cheer");
 }
 
+// Překrývá se obdélník s některým tlačítkem (s rezervou)?
+function hitsButton(r, buttons){
+  return buttons.some(function(b){ return r.left < b.right + 8 && r.right > b.left - 8 && r.top < b.bottom + 8 && r.bottom > b.top - 8; });
+}
+
 function showMascot(mood, always){
   if(!mascotOn || document.querySelector(".kt")) return;
-  if(!always) mascotCount++;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const quizCard = document.getElementById("quiz-card");
   const cardTop = document.getElementById("view-quiz").classList.contains("active") ? quizCard.getBoundingClientRect().top : -1;
-  const keys = Object.keys(MASCOT_SPOTS).filter(function(k){
+  // Tlačítka na aktuální obrazovce, která Kotoučík ani bublina nesmí zakrýt (hlavně „Pokračovat“).
+  const buttons = Array.prototype.map.call(document.querySelectorAll(".view.active .btn-primary, .view.active .btn-secondary, .view.active .share-link"), function(b){ return b.getBoundingClientRect(); })
+    .filter(function(r){ return r.width > 0; });
+  const keys = shuffle(Object.keys(MASCOT_SPOTS).filter(function(k){
     const sp = MASCOT_SPOTS[k];
     return k !== mascotLastSpot && !(sp.comboOnly && mood !== "combo") && !(sp.motion && reduced) && !(sp.card && cardTop < 80);
-  });
-  const key = keys[Math.floor(Math.random() * keys.length)];
-  mascotLastSpot = key;
-  let sp = MASCOT_SPOTS[key];
-  if(sp.card){ // zpoza horního okraje karty s otázkou
-    sp = { pos: "right:36px;top:" + (cardTop - 62) + "px", out: "translateY(70px)", inn: "none", bubble: "right:150px;top:" + (cardTop - 54) + "px", cls: "behind", mood: "grip" };
-  }
+  }));
   const lines = tx("ktLines")[mood].filter(function(l){ return l !== mascotLastLine; });
   const line = lines[Math.floor(Math.random() * lines.length)];
-  mascotLastLine = line;
 
-  const el = document.createElement("div");
-  el.className = "kt" + (sp.cls ? " " + sp.cls : "");
-  el.style.cssText = sp.pos + ";transform:" + sp.out;
-  el.innerHTML = kotoucikSVG(sp.mood && mood !== "combo" && mood !== "rest" ? sp.mood : mood);
-  const bubble = document.createElement("div");
-  bubble.className = "kt-bubble";
-  bubble.style.cssText = sp.bubble;
-  bubble.textContent = line;
-  document.body.appendChild(el);
-  document.body.appendChild(bubble);
+  // Zkoušet místa, dokud se nenajde takové, kde nic nezakryje; jinak se tentokrát neukáže.
+  let sp, el, bubble;
+  for(let i = 0; i < keys.length; i++){
+    sp = MASCOT_SPOTS[keys[i]];
+    if(sp.card){ // zpoza horního okraje karty s otázkou
+      sp = { pos: "right:36px;top:" + (cardTop - 62) + "px", out: "translateY(70px)", inn: "none", bubble: "right:150px;top:" + (cardTop - 54) + "px", cls: "behind", mood: "grip" };
+    }
+    el = document.createElement("div");
+    el.className = "kt";
+    el.style.cssText = sp.pos + ";transition:none;transform:" + sp.inn; // nejdřív změřit konečnou polohu
+    el.innerHTML = kotoucikSVG(sp.mood && mood !== "combo" && mood !== "rest" ? sp.mood : mood);
+    bubble = document.createElement("div");
+    bubble.className = "kt-bubble";
+    bubble.style.cssText = sp.bubble;
+    bubble.textContent = line;
+    document.body.appendChild(el);
+    document.body.appendChild(bubble);
+    if(!hitsButton(el.getBoundingClientRect(), buttons) && !hitsButton(bubble.getBoundingClientRect(), buttons)){
+      mascotLastSpot = keys[i];
+      break;
+    }
+    el.remove(); bubble.remove(); el = null;
+  }
+  if(!el) return;
+  if(!always) mascotCount++;
+  mascotLastLine = line;
+  if(sp.cls) el.classList.add(sp.cls);
+  el.style.transform = sp.out;
+  void el.offsetWidth; // přijmout výchozí polohu bez animace
+  el.style.transition = "";
   requestAnimationFrame(function(){ requestAnimationFrame(function(){
     el.style.transform = sp.inn;
     setTimeout(function(){ bubble.classList.add("in"); }, sp.cls === "roll" || sp.cls === "hop" ? 800 : 350);
