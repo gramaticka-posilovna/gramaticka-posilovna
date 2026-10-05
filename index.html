@@ -796,6 +796,8 @@
   .cheat summary + .cheat-item{ border-top:none; }
   .cheat-item p{ margin:3px 0 0; }
   .cheat-ex{ font-style:italic; color:var(--ink-soft); }
+  .fb-cheat{ margin:12px 0 0; }
+  .tts-btn{ display:inline-block; margin-top:10px; }
   .mistake{ padding:14px 0; border-top:1px solid var(--line); }
   .mistake:first-child{ border-top:none; padding-top:0; }
   .mistake-q{ font-weight:600; margin:0 0 6px; }
@@ -1136,6 +1138,7 @@
     </div>
 
     <button class="btn-primary home-cta" id="home-cta"></button>
+    <button class="btn-secondary home-cta home-test" id="home-topics" data-i18n="ctaTopics">Vybrat si téma</button>
     <button class="btn-secondary home-cta home-test" id="home-test"></button>
   </div>
 
@@ -23143,7 +23146,9 @@ const I18N = {
     placementPlan: function(list){ return "Tvůj plán – jevy, které ti v testu nevyšly: " + list + ". Najdeš ho na Domů."; },
     placementNoPlan: "V testu ti všechno vyšlo – vyber si v Tématech, co tě zajímá.",
     labelPlan: "Tvůj plán z testu", planBtn: "Procvičit plán",
-    cheatTitle: "Tahák k tématu",
+    cheatTitle: "Tahák k tématu", cheatAgain: "Zopakuj si pravidlo", ttsBtn: "🔊 Přehrát větu",
+    weekAcc: function(now, prev){ return "Úspěšnost tento týden: <b>" + now + " %</b>" + (prev === null ? "" : " (minulý týden " + prev + " %)") + "."; },
+    weekBest: function(t, p){ return " Nejlíp ti jde: <b>" + t + "</b> (" + p + " %)."; },
     typoNote: "Uznáno, jen pozor na překlep: ",
     mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
@@ -23156,10 +23161,10 @@ const I18N = {
     goalDone: "splněno!",
     weekDays: ["PO", "ÚT", "ST", "ČT", "PÁ", "SO", "NE"], today: "DNES",
     tileReviewNote: "otázky na řadě", tileWeakNote: "slabá místa",
-    ctaFirst: "Začít první kolo", ctaFirstNote: "Vyber si téma a obtížnost",
+    ctaFirst: "Začít trénink", ctaFirstNote: "Mix otázek na míru, jedním klepnutím",
     ctaGoal: "Dokončit dnešní cíl",
-    ctaGoalNote: function(n){ return "Vyber si téma · zbývá " + n + (n === 1 ? " odpověď" : (n >= 2 && n <= 4 ? " odpovědi" : " odpovědí")); },
-    ctaMore: "Procvičovat dál",
+    ctaGoalNote: function(n){ return "Mix na míru · zbývá " + n + (n === 1 ? " odpověď" : (n >= 2 && n <= 4 ? " odpovědi" : " odpovědí")); },
+    ctaMore: "Trénovat dál", ctaMoreNote: "Mix na míru", ctaTopics: "Vybrat si téma",
     setupTitle: "Co dnes procvičíme?",
     setupIntro: "Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.",
     labelTopic: "Téma (můžeš vybrat víc)", labelDifficulty: "Obtížnost", labelCount: "Počet otázek",
@@ -23273,7 +23278,9 @@ const I18N = {
     placementPlan: function(list){ return "Your plan – the points you got wrong: " + list + ". You'll find it on Home."; },
     placementNoPlan: "No mistakes in the test – pick whatever interests you in Topics.",
     labelPlan: "Your plan from the test", planBtn: "Practise my plan",
-    cheatTitle: "Cheat sheet (in Czech)",
+    cheatTitle: "Cheat sheet (in Czech)", cheatAgain: "Review the rule (in Czech)", ttsBtn: "🔊 Play sentence",
+    weekAcc: function(now, prev){ return "Accuracy this week: <b>" + now + "%</b>" + (prev === null ? "" : " (last week " + prev + "%)") + "."; },
+    weekBest: function(t, p){ return " Your best topic: <b>" + t + "</b> (" + p + "%)."; },
     typoNote: "Accepted – just watch the spelling: ",
     mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
@@ -23286,10 +23293,10 @@ const I18N = {
     goalDone: "done!",
     weekDays: ["MO", "TU", "WE", "TH", "FR", "SA", "SU"], today: "TODAY",
     tileReviewNote: "questions due", tileWeakNote: "to work on",
-    ctaFirst: "Start your first round", ctaFirstNote: "Choose a topic and difficulty",
+    ctaFirst: "Start training", ctaFirstNote: "A mix made for you, in one tap",
     ctaGoal: "Finish today's goal",
-    ctaGoalNote: function(n){ return "Choose a topic · " + n + (n === 1 ? " answer" : " answers") + " to go"; },
-    ctaMore: "Keep practising",
+    ctaGoalNote: function(n){ return "A mix made for you · " + n + (n === 1 ? " answer" : " answers") + " to go"; },
+    ctaMore: "Keep training", ctaMoreNote: "A mix made for you", ctaTopics: "Choose a topic",
     setupTitle: "What shall we practise today?",
     setupIntro: "Choose a topic, difficulty and number of questions. The app remembers what you're good at and what you find hard, and adapts the questions to you.",
     labelTopic: "Topic (you can choose more than one)", labelDifficulty: "Difficulty", labelCount: "Number of questions",
@@ -23754,7 +23761,7 @@ function renderHome(){
   } else if(left > 0){
     cta.innerHTML = escapeHtml(tx("ctaGoal")) + "<small>" + escapeHtml(tx("ctaGoalNote", left)) + "</small>";
   } else {
-    cta.innerHTML = escapeHtml(tx("ctaMore"));
+    cta.innerHTML = escapeHtml(tx("ctaMore")) + "<small>" + escapeHtml(tx("ctaMoreNote")) + "</small>";
   }
 
   // Plán z rozřazovacího testu zůstává, dokud uživatel test neudělá znovu.
@@ -23771,7 +23778,8 @@ function renderHome(){
 }
 document.getElementById("home-review").addEventListener("click", function(){ startSpecialRound("review"); });
 document.getElementById("home-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
-document.getElementById("home-cta").addEventListener("click", function(){ showView("setup"); });
+document.getElementById("home-cta").addEventListener("click", function(){ startSpecialRound("daily"); });
+document.getElementById("home-topics").addEventListener("click", function(){ showView("setup"); });
 document.getElementById("home-test").addEventListener("click", function(){ startPlacement(); });
 document.getElementById("home-plan-btn").addEventListener("click", function(){
   selectedTags = {};
@@ -23899,7 +23907,7 @@ let roundIndex = 0;
 let roundTopics = [];
 let roundTags = {};
 let roundDifficulty = "basic";
-let roundMode = "normal"; // "normal" | "review" | "weak" | "placement"
+let roundMode = "normal"; // "normal" | "daily" | "review" | "weak" | "challenge" | "placement"
 let roundResults = []; // { question, allCorrect, tagResults:[{tag,correct}] }
 let currentAnswered = false;
 
@@ -23941,8 +23949,27 @@ function startRound(){
 }
 
 // Kolo napříč tématy a obtížnostmi z otázek, které už má uživatel ve statistikách.
+// Dnešní trénink jedním klepnutím: asi 40 % opakování, 20 % slabých míst a zbytek nové otázky
+// v doporučené obtížnosti z jevů do o jednu úroveň výš, než má uživatel.
+function dailyPool(){
+  const n = selectedCount, chosen = [], used = {};
+  function take(list, k){
+    list.forEach(function(q){ if(k > 0 && !used[q.id]){ used[q.id] = true; chosen.push(q); k--; } });
+  }
+  take(specialPool("review"), Math.round(n * 0.4));
+  take(specialPool("weak"), Math.round(n * 0.2));
+  const diff = recommendedDifficulty(), top = PLACEMENT_LEVELS.indexOf(state.level) + 1;
+  const ok = function(q){ return q.difficulty === diff && !(lang === "en" && q.topic === "vocab"); };
+  take(shuffle(QUESTIONS.filter(function(q){
+    const st = state.questionStats[q.id], l = questionLevel(q);
+    return ok(q) && !(st && st.seen) && (!l || PLACEMENT_LEVELS.indexOf(l) <= top);
+  })), n - chosen.length);
+  take(shuffle(QUESTIONS.filter(ok)), n - chosen.length);
+  return chosen;
+}
+
 function startSpecialRound(mode){
-  const questions = specialPool(mode).slice(0, selectedCount);
+  const questions = mode === "daily" ? dailyPool() : specialPool(mode).slice(0, selectedCount);
   if(questions.length === 0){
     alert(tx("nothingToPractise"));
     return;
@@ -24052,7 +24079,7 @@ function renderQuizTopbar(){
     return;
   }
   if(roundMode !== "normal"){
-    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : roundMode === "challenge" ? "challengeTitle" : "weakTitle");
+    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : roundMode === "challenge" ? "challengeTitle" : roundMode === "daily" ? "homeTitle" : "weakTitle");
     quizTagDiff.textContent = tx("mixedDiff");
     return;
   }
@@ -24344,6 +24371,25 @@ function showMascot(mood, always, fixedLine){
   }, 3200);
 }
 
+// Předčítání správné věty po odpovědi hlasem zabudovaným v zařízení (když chybí, tlačítko se neukáže).
+const canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+function spokenSentence(q){
+  let t = "";
+  if(q.type === "fill") t = q.before + q.answers[0] + q.after;
+  else if(q.type === "multi") t = q.parts.map(function(p){ return p.before + p.answers[0] + p.after; }).join(" ");
+  else if(q.options[q.correctIndex].split(" ").length >= 4) t = q.options[q.correctIndex]; // jen celé věty
+  return t.replace(/\s+/g, " ").trim();
+}
+function speak(text){
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  u.voice = voices.filter(function(v){ return /^en[-_]GB/i.test(v.lang); })[0] || voices.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  u.lang = "en-GB";
+  u.rate = 0.95;
+  window.speechSynthesis.speak(u);
+}
+
 // Combo: aspoň 3 správné odpovědi za sebou v kole (ne v rozřazovacím testu); každá pětka „poskočí“.
 function comboPill(){
   if(roundMode === "placement") return "";
@@ -24370,11 +24416,25 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
     fb += '<p class="correction-line">' + tx("typoNote") + line + '</p>';
   });
   fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
+  // Po chybě tahák k jevům, které nevyšly (u Mixu podle jednotlivých mezer).
+  if(!allCorrect && CHEATSHEET[q.topic]){
+    const cheatTags = [];
+    tagResults.forEach(function(r){ if(!r.correct && cheatTags.indexOf(r.tag) === -1 && CHEATSHEET[q.topic][r.tag]) cheatTags.push(r.tag); });
+    if(cheatTags.length){
+      fb += '<details class="fold cheat fb-cheat"><summary>' + escapeHtml(tx("cheatAgain")) + '</summary>' + cheatTags.map(function(tag){
+        const c = CHEATSHEET[q.topic][tag];
+        return '<div class="cheat-item"><b>' + escapeHtml(tagLabel(tag)) + '</b><p>' + escapeHtml(c[0]) + '</p><p class="cheat-ex">' + escapeHtml(c[1]) + '</p></div>';
+      }).join("") + '</details>';
+    }
+  }
+  const sentence = canSpeak ? spokenSentence(q) : "";
+  if(sentence) fb += '<button type="button" class="srow-btn tts-btn" id="tts-btn">' + escapeHtml(tx("ttsBtn")) + '</button>';
   if(REPORT_EMAIL){
     fb += '<a class="report-link" href="mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(tx("reportSubject", q.id)) + '">' + tx("reportLink") + '</a>';
   }
   fb += '</div>';
   slot.innerHTML = fb;
+  if(sentence) document.getElementById("tts-btn").addEventListener("click", function(){ speak(sentence); });
   let inRow = 0;
   for(let i = roundResults.length - 1; i >= 0 && roundResults[i].allCorrect; i--) inRow++;
   playSound(!allCorrect ? "soft" : (roundMode !== "placement" && (inRow === 5 || inRow === 10) ? "combo" : "ding"));
@@ -24875,7 +24935,29 @@ function renderWeekCompare(){
     '<div class="cmp-hero"><b>' + nowSum + '</b>' + delta + '</div>' +
     '<p class="cmp-sub">' + tx("weekSub", prevSame, met, doneDays) + '</p>' +
     '<svg viewBox="0 0 ' + W + ' ' + H + '">' + svg + '</svg>' +
-    '<div class="cmp-legend"><span><i style="background:var(--cmp-now)"></i>' + tx("legendThisWeek") + '</span><span><i style="background:var(--cmp-prev)"></i>' + tx("legendLastWeek") + '</span></div>';
+    '<div class="cmp-legend"><span><i style="background:var(--cmp-now)"></i>' + tx("legendThisWeek") + '</span><span><i style="background:var(--cmp-prev)"></i>' + tx("legendLastWeek") + '</span></div>' +
+    weekSummary(mon);
+}
+
+// Souhrn týdne: úspěšnost tento a minulý týden a nejlepší téma (z kol s jedním tématem, aspoň 10 odpovědí).
+function weekSummary(mon){
+  const prevMon = addDays(mon, -7), sum = { now: [0, 0], prev: [0, 0] }, topics = {};
+  state.rounds.forEach(function(r){
+    const d = dayKey(new Date(r.date)), k = d >= mon ? "now" : (d >= prevMon ? "prev" : null);
+    if(!k) return;
+    sum[k][0] += r.correctParts; sum[k][1] += r.totalParts;
+    if(k === "now" && r.topics.length === 1){
+      const t = topics[r.topics[0]] = topics[r.topics[0]] || [0, 0];
+      t[0] += r.correctParts; t[1] += r.totalParts;
+    }
+  });
+  if(!sum.now[1]) return "";
+  let best = null;
+  Object.keys(topics).forEach(function(id){
+    if(topics[id][1] >= 10 && (!best || topics[id][0] / topics[id][1] > topics[best][0] / topics[best][1])) best = id;
+  });
+  return '<p class="cmp-sub">' + tx("weekAcc", pctOf(sum.now[0], sum.now[1]), sum.prev[1] ? pctOf(sum.prev[0], sum.prev[1]) : null) +
+    (best ? tx("weekBest", escapeHtml(topicName(best)), pctOf(topics[best][0], topics[best][1])) : "") + '</p>';
 }
 
 // 3 · Témata: první 3 kola tématu vs poslední 3 (téma potřebuje aspoň 4 kola).
@@ -25066,7 +25148,7 @@ backupFile.addEventListener("change", function(){
 
 // --- Zvuky: skládané ve Web Audio, žádné soubory. Prohlížeč je pustí až po prvním
 // klepnutí; na iPhonu je ztlumí přepínač ticha (audioSession "ambient").
-let audioCtx = null, audioMaster = null, noiseBuf = null;
+let audioCtx = null, audioMaster = null, audioRev = null, noiseBuf = null;
 function audioUnlock(){
   if(audioCtx){ if(audioCtx.state === "suspended") audioCtx.resume(); return; }
   if(!soundOn) return;
@@ -25074,9 +25156,25 @@ function audioUnlock(){
   if(!AC) return;
   try{ if(navigator.audioSession) navigator.audioSession.type = "ambient"; }catch(e){}
   audioCtx = new AC();
+  // kompresor hlídá, aby nic nebylo moc nahlas; dozvuk (krátká umělá „místnost“) zjemňuje tóny
+  const comp = audioCtx.createDynamicsCompressor();
+  comp.threshold.value = -18;
+  comp.ratio.value = 4;
+  comp.connect(audioCtx.destination);
   audioMaster = audioCtx.createGain();
-  audioMaster.gain.value = 0.7;
-  audioMaster.connect(audioCtx.destination);
+  audioMaster.gain.value = 0.8;
+  audioMaster.connect(comp);
+  audioRev = audioCtx.createConvolver();
+  const len = Math.floor(audioCtx.sampleRate * 1.4), ir = audioCtx.createBuffer(2, len, audioCtx.sampleRate);
+  for(let ch = 0; ch < 2; ch++){
+    const d = ir.getChannelData(ch);
+    for(let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+  }
+  audioRev.buffer = ir;
+  const revGain = audioCtx.createGain();
+  revGain.gain.value = 0.22;
+  audioRev.connect(revGain);
+  revGain.connect(comp);
 }
 document.addEventListener("pointerdown", audioUnlock);
 document.addEventListener("keydown", audioUnlock);
@@ -25113,18 +25211,39 @@ function noise(dt, dur, o){
   src.connect(f); f.connect(g); g.connect(audioMaster);
   src.start(t0); src.stop(t0 + dur + 0.05);
 }
+// Sada „Jemné“ (docs/navrhy-vzhledu-29.html): krátké tiché ťuknutí, oslavy jako měkký akord s dozvukem.
+// Tón složený z částečných tónů [poměr, hlasitost, délka] s obálkou (náběh, výdrž, doznění).
+function softNote(f, dt, o){
+  const t0 = audioCtx.currentTime + dt, out = audioCtx.createGain();
+  out.gain.value = o.vol;
+  out.connect(audioMaster);
+  out.connect(audioRev);
+  (o.p || [[1, 1, 1]]).forEach(function(pt){
+    const osc = audioCtx.createOscillator(), e = audioCtx.createGain(), dec = o.dec * pt[2], hold = o.hold || 0;
+    osc.frequency.setValueAtTime(f * pt[0], t0);
+    if(o.bend) osc.frequency.exponentialRampToValueAtTime(f * pt[0] * o.bend, t0 + Math.min(dec, 0.2));
+    e.gain.setValueAtTime(0.0001, t0);
+    e.gain.exponentialRampToValueAtTime(pt[1], t0 + (o.att || 0.003));
+    if(hold) e.gain.setValueAtTime(pt[1], t0 + hold);
+    e.gain.exponentialRampToValueAtTime(0.0001, t0 + hold + dec);
+    osc.connect(e); e.connect(out);
+    osc.start(t0); osc.stop(t0 + hold + dec + 0.05);
+  });
+}
+function midiHz(n){ return 440 * Math.pow(2, (n - 69) / 12); }
+function softTick(n, dt, v){ softNote(midiHz(n), dt, { dec: 0.14, vol: v || 0.14 }); }
+function softPad(n, dt, v){ softNote(midiHz(n), dt, { p: [[1, 1, 1], [2, 0.3, 1]], att: 0.15, hold: 0.4, dec: 1.4, vol: v || 0.07 }); }
 const SOUNDS = {
-  ding: function(){ tone(880, 0, 0.18, { vol: 0.16 }); tone(1318.5, 0.09, 0.35, { vol: 0.16 }); },
-  soft: function(){ tone(330, 0, 0.25, { type: "triangle", vol: 0.12, f2: 262 }); },
-  combo: function(){ [659.3, 784, 987.8, 1318.5].forEach(function(f, i){ tone(f, i * 0.07, 0.24, { type: "triangle", vol: 0.13 }); }); },
-  pop: function(){ tone(420, 0, 0.13, { f2: 900, vol: 0.16 }); },
+  ding: function(){ softTick(88, 0); softTick(93, 0.05, 0.1); },
+  soft: function(){ softTick(57, 0, 0.1); },
+  combo: function(){ [88, 91, 95].forEach(function(n, i){ softTick(n, i * 0.05, 0.1); }); },
+  pop: function(){ softNote(midiHz(84), 0, { dec: 0.1, vol: 0.12, bend: 1.4 }); },
   fanfare: function(){
-    [523.25, 659.25, 783.99].forEach(function(f, i){ tone(f, i * 0.11, 0.35, { type: "triangle", vol: 0.15 }); });
-    [1046.5, 1318.5, 1568].forEach(function(f){ tone(f, 0.36, 1.2, { type: "triangle", vol: 0.08 }); });
-    tone(261.6, 0.36, 1.2, { vol: 0.14 });
+    [60, 67, 72, 76, 79].forEach(function(n){ softPad(n, 0, 0.06); });
+    [84, 88, 91].forEach(function(n, i){ softTick(n, 0.3 + i * 0.1, 0.08); });
   },
   shimmer: function(){ for(let i = 0; i < 12; i++) tone(1568 * Math.pow(2, i / 8), i * 0.035, 0.35, { vol: 0.045 }); },
-  goal: function(){ SOUNDS.fanfare(); for(let i = 0; i < 12; i++) tone(1568 * Math.pow(2, i / 8), 0.38 + i * 0.035, 0.35, { vol: 0.045 }); },
+  goal: function(){ [72, 76, 79, 84].forEach(function(n, i){ softPad(n, i * 0.05); }); },
   roll: function(){ noise(0, 1.25, { type: "lowpass", f: 220, f2: 520, vol: 0.22, a: 0.35 }); },
   thud: function(){ tone(150, 0, 0.4, { f2: 42, vol: 0.55 }); noise(0, 0.16, { type: "lowpass", f: 700, vol: 0.3 }); },
   crack: function(){ [0, 0.08, 0.17, 0.3].forEach(function(d, i){ noise(d, 0.045, { type: "highpass", f: 2200 + i * 400, vol: 0.22 }); }); },
