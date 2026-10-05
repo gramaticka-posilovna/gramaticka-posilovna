@@ -34,6 +34,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 | 26 | `navrhy-vzhledu-26.html` | Oslavy: činka a medaile s plynulým pohybem po snímcích, žíněnka, vinětace |
 | 27 | `navrhy-vzhledu-27.html` | Zezlátnutí jako roztočená mince, zvuky (Web Audio), zámek pro novou úroveň, karta úrovně v Pokroku |
 | 28 | `navrhy-vzhledu-28.html` | Medaile znovu nasazená (stuha přes okraj kolem obličeje), nová úroveň = činka, zvuk klepnutím na telefon |
+| 29 | `navrhy-vzhledu-29.html` | Zvuky: 5 sad k poslechu (současné, marimba, zvonky, posilovna, jemné) + stoupající tón při sérii |
 
 ## Zpětná vazba
 
@@ -235,3 +236,7 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - Medaile: Kotoučík větší, stuha (pruhy modrá–bílá–korálová) vede zezadu za hlavou, přes horní okraj kotouče se záhybem, podél okraje kolem obličeje k špičce u spodního okraje; disk visí pod ním a kývá se, stuha se hýbe s ním.
 - Nová úroveň (z procvičování i z testu) = zvednutí činky; zámek zůstává jen pro obtížnost.
 - **Kolo 28 → nasazeno do appky:** přivítání (všechny schválené věty + výročí série), velké oslavy (zámek = odemčená obtížnost, činka = nová úroveň a série 7/30/100/365, zezlátnutí = 100/500/1000 zvládnutých, medaile = perfektní kolo 10+ na Pokročilé), zvuky (Web Audio, v Nastavení „Zvuky“, výchozí zapnuto), úroveň počítaná z procvičování (25 otázek, 80 %, nikdy neklesne), karty Úroveň a Obtížnost v Pokroku, rozřazovací test s doplňkovými otázkami při 3 z 5 a pokaždé jinými otázkami.
+
+### Zvuky (kolo 29)
+- Uživatel chce zvuky vylepšit. 5 sad se stejnými situacemi (správně, chyba, kombo, Kotoučík, denní cíl, fanfára oslavy): 1 současné (pro srovnání), **2 Marimba (doporučeno)** – dřevěné teplé údery, 3 Zvonky, 4 Posilovna – kovové cinknutí kotoučů, žuchnutí, žesťová fanfára, 5 Jemné – tiché ťuknutí a měkký akord. Nově dozvuk (konvoluce) a kompresor proti přebuzení.
+- Navíc: stoupající tón u každé další správné odpovědi v řadě.
