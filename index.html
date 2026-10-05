@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gramatická posilovna</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -394,6 +394,71 @@
   .btn-row{ display:flex; gap: 10px; margin-top: 6px; }
   .btn-row > *{ flex: 1; }
 
+  /* ---------- Spodní lišta (docs/navrhy-vzhledu-12.html) ---------- */
+  .app-shell{ padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+  .tabbar{
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    display: flex; justify-content: center; gap: 4px;
+    padding: 6px 8px calc(8px + env(safe-area-inset-bottom));
+    background: rgba(246,248,250,0.94);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .tabbar .tab{
+    flex: 0 1 120px;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: none; border: none; cursor: pointer;
+    padding: 6px 4px; border-radius: var(--radius-sm);
+    font-size: 11px; font-weight: 700; color: #8A94A6;
+  }
+  .tabbar .tab svg{ width: 22px; height: 22px; }
+  .tabbar .tab.active{ color: var(--primary); }
+  .tabbar .tab:hover:not(.active){ color: var(--ink-soft); }
+  body.in-round .tabbar{ display: none; }
+
+  /* ---------- Domů ---------- */
+  .home-head{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:22px; }
+  .home-day{ font-size:14px; color:var(--ink-soft); }
+  .home-day::first-letter{ text-transform: uppercase; }
+  .home-hello{ font-size:28px; font-weight:700; margin:2px 0 0; }
+  .streak-badge{ display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; }
+  .streak-plate{
+    width:58px; height:58px; border-radius:50%;
+    display:grid; place-items:center;
+    background: radial-gradient(circle, var(--plate) 0 49%, #9AA0A7 50% 52%, var(--plate) 53% 61%, var(--plate-dark) 62% 66%, var(--plate) 67%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 8px 14px rgba(0,0,0,0.3);
+  }
+  .streak-plate b{ font-family: var(--font-display); font-size:22px; font-weight:700; color: var(--accent); line-height:1; }
+  .streak-badge small{ font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); }
+  .goal-row{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .goal-num{ font-family: var(--font-display); font-size:22px; }
+  .goal-left{ font-size:14px; color:var(--ink-soft); }
+  .goal-bar{ height:12px; margin-top:10px; background:var(--track); border-radius:8px; overflow:hidden; box-shadow: inset 0 2px 3px rgba(0,0,0,0.13); }
+  .goal-bar span{ display:block; height:100%; width:0; border-radius:8px; background: linear-gradient(180deg,#9CC487 0%,#6E9A58 55%,#567F45 100%); box-shadow: inset 0 2px 0 rgba(255,255,255,0.5); transition: width .4s ease; }
+  .week-plates{ display:flex; gap:8px; padding-bottom:18px; }
+  .wp{ flex:1; max-width:52px; aspect-ratio:1; border-radius:50%; position:relative;
+    background: radial-gradient(circle, var(--bg) 0 13%, #DCE3EB 14% 62%, #C8D2DD 63% 70%, #DCE3EB 71%);
+    box-shadow: 0 4px 8px rgba(60,75,100,0.16); }
+  .wp.on{ background: radial-gradient(circle, var(--bg) 0 13%, var(--plate) 14% 62%, var(--plate-dark) 63% 70%, var(--plate) 71%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 5px 10px rgba(0,0,0,0.3); }
+  .wp::after{ content: attr(data-d); position:absolute; left:-6px; right:-6px; bottom:-18px; text-align:center; font-size:10px; font-weight:800; color:#8A94A6; }
+  .wp.today::before{ content:""; position:absolute; inset:-5px; border-radius:50%;
+    background: conic-gradient(var(--accent) 0 var(--p, 0%), var(--track) var(--p, 0%) 100%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); }
+  .wp.today::after{ color:#B8901A; }
+  .home-tiles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px; }
+  .home-tile{
+    text-align:left; border:none; cursor:pointer; font: inherit;
+    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    border-radius: var(--radius-lg); padding: 14px 16px; box-shadow: var(--shadow-card);
+    font-size:14px; font-weight:700; color: var(--ink);
+  }
+  .home-tile em{ display:block; font-style:normal; font-family: var(--font-display); font-size:26px; color: var(--primary); }
+  .home-tile small{ display:block; font-weight:500; font-size:12px; color: var(--ink-soft); margin-top:2px; }
+  .home-tile:disabled{ opacity:.55; cursor:default; }
+  .home-cta small{ display:block; font-weight:500; font-size:12.5px; opacity:.85; margin-top:2px; }
+
   /* ---------- Potvrzovací modál (náhrada za nativní confirm()) ---------- */
   .modal-overlay{
     position: fixed; inset: 0;
@@ -763,10 +828,6 @@
       <div class="brand-name" data-i18n="brand">Gramatická posilovna</div>
     </div>
     <div class="topbar-right">
-      <div class="nav-links">
-        <button id="nav-setup" class="active" data-i18n="navPractice">Procvičit</button>
-        <button id="nav-progress" data-i18n="navProgress">Pokrok</button>
-      </div>
       <div class="nav-links lang-switch">
         <button data-lang="cs" class="active">CZ</button>
         <button data-lang="en">EN</button>
@@ -778,8 +839,43 @@
 
 <div class="app-shell">
 
+  <!-- ===================== HOME VIEW ===================== -->
+  <div class="view active" id="view-home">
+    <div class="home-head">
+      <div>
+        <div class="home-day" id="home-day"></div>
+        <h1 class="home-hello" id="home-hello"></h1>
+      </div>
+      <div class="streak-badge">
+        <div class="streak-plate"><b id="home-streak">0</b></div>
+        <small id="home-streak-label"></small>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-label" data-i18n="labelGoal">Dnešní cíl</p>
+      <div class="goal-row">
+        <b class="goal-num" id="home-goal-num"></b>
+        <span class="goal-left" id="home-goal-left"></span>
+      </div>
+      <div class="goal-bar"><span id="home-goal-fill"></span></div>
+    </div>
+
+    <div class="card">
+      <p class="card-label" data-i18n="labelWeek">Tento týden</p>
+      <div class="week-plates" id="home-week"></div>
+    </div>
+
+    <div class="home-tiles" id="home-tiles">
+      <button class="home-tile" id="home-review"><em id="home-review-n">0</em><span data-i18n="reviewTitle">Opakování</span><small data-i18n="tileReviewNote">otázky na řadě</small></button>
+      <button class="home-tile" id="home-weak"><em id="home-weak-n">0</em><span data-i18n="weakTitle">Co mi nejde</span><small data-i18n="tileWeakNote">slabá místa</small></button>
+    </div>
+
+    <button class="btn-primary home-cta" id="home-cta"></button>
+  </div>
+
   <!-- ===================== SETUP VIEW ===================== -->
-  <div class="view active" id="view-setup">
+  <div class="view" id="view-setup">
     <div class="intro">
       <h1 data-i18n="setupTitle">Co dnes procvičíme?</h1>
       <p data-i18n="setupIntro">Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
@@ -894,6 +990,21 @@
   </div>
 
 </div>
+
+<nav class="tabbar" id="tabbar">
+  <button class="tab active" data-tab="home">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M4 11L12 4L20 11V20H14.5V14.5H9.5V20H4V11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span data-i18n="navHome">Domů</span>
+  </button>
+  <button class="tab" data-tab="setup">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M9 6H20M9 12H20M9 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.5" fill="currentColor"/><circle cx="4.5" cy="12" r="1.5" fill="currentColor"/><circle cx="4.5" cy="18" r="1.5" fill="currentColor"/></svg>
+    <span data-i18n="navTopics">Témata</span>
+  </button>
+  <button class="tab" data-tab="progress">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 20V13M12 20V6M19 20V10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span data-i18n="navProgress">Pokrok</span>
+  </button>
+</nav>
 
 <div class="modal-overlay" id="confirm-modal" style="display:none;">
   <div class="modal-card">
@@ -22020,7 +22131,8 @@ function defaultState(){
   return {
     questionStats: {},   // id -> { cooldown, streak, seen, correct }
     tagStats: {},        // tag -> { seen, correct }  (počítáno po jednotlivých blancích)
-    rounds: []           // [{ date, topics, difficulty, totalParts, correctParts, byTag: {tag:{seen,correct}} }]
+    rounds: [],          // [{ date, topics, difficulty, totalParts, correctParts, byTag: {tag:{seen,correct}} }]
+    days: {}             // "YYYY-MM-DD" (místní datum) -> počet otázek zodpovězených v dokončených kolech
   };
 }
 
@@ -22175,25 +22287,29 @@ function registerAnswer(question, allPartsCorrect, tagResults){
    ============================================================ */
 
 const views = {
+  home: document.getElementById("view-home"),
   setup: document.getElementById("view-setup"),
   quiz: document.getElementById("view-quiz"),
   results: document.getElementById("view-results"),
   progress: document.getElementById("view-progress")
 };
-const navSetup = document.getElementById("nav-setup");
-const navProgress = document.getElementById("nav-progress");
+const tabButtons = document.querySelectorAll("#tabbar .tab");
 
 function showView(name){
   if(name === "setup") renderSmartCard();
+  if(name === "home") renderHome();
+  if(name === "progress") renderProgress();
   Object.keys(views).forEach(function(k){ views[k].classList.remove("active"); });
   views[name].classList.add("active");
-  navSetup.classList.toggle("active", name==="setup" || name==="quiz" || name==="results");
-  navProgress.classList.toggle("active", name==="progress");
+  // Během kola a na výsledku je spodní lišta skrytá, aby nerušila.
+  document.body.classList.toggle("in-round", name === "quiz" || name === "results");
+  tabButtons.forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-tab") === name); });
   window.scrollTo({ top:0, behavior: "instant" in window ? "instant" : "auto" });
 }
 
-navSetup.addEventListener("click", function(){ showView("setup"); });
-navProgress.addEventListener("click", function(){ renderProgress(); showView("progress"); });
+tabButtons.forEach(function(b){
+  b.addEventListener("click", function(){ showView(b.getAttribute("data-tab")); });
+});
 
 /* ============================================================
    5b. JAZYK ROZHRANÍ (CZ / EN)
@@ -22209,7 +22325,19 @@ try{ if(window.localStorage.getItem(LANG_KEY) === "en") lang = "en"; }catch(e){}
 const I18N = {
   cs: {
     brand: "Gramatická posilovna",
-    navPractice: "Procvičit", navProgress: "Pokrok",
+    navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok",
+    helloMorning: "Dobré ráno!", helloDay: "Dobrý den!", helloEvening: "Dobrý večer!",
+    streakDays: function(n){ return n === 1 ? "den v řadě" : (n >= 2 && n <= 4 ? "dny v řadě" : "dní v řadě"); },
+    labelGoal: "Dnešní cíl", labelWeek: "Tento týden",
+    goalNum: function(d, g){ return d + " / " + g + " odpovědí"; },
+    goalLeft: function(n){ return "už jen " + n; },
+    goalDone: "splněno!",
+    weekDays: ["PO", "ÚT", "ST", "ČT", "PÁ", "SO", "NE"], today: "DNES",
+    tileReviewNote: "otázky na řadě", tileWeakNote: "slabá místa",
+    ctaFirst: "Začít první kolo", ctaFirstNote: "Vyber si téma a obtížnost",
+    ctaGoal: "Dokončit dnešní cíl",
+    ctaGoalNote: function(n){ return "Vyber si téma · zbývá " + n + (n === 1 ? " odpověď" : (n >= 2 && n <= 4 ? " odpovědi" : " odpovědí")); },
+    ctaMore: "Procvičovat dál",
     setupTitle: "Co dnes procvičíme?",
     setupIntro: "Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.",
     labelTopic: "Téma (můžeš vybrat víc)", labelDifficulty: "Obtížnost", labelCount: "Počet otázek",
@@ -22247,7 +22375,19 @@ const I18N = {
   },
   en: {
     brand: "Grammar Gym",
-    navPractice: "Practice", navProgress: "Progress",
+    navHome: "Home", navTopics: "Topics", navProgress: "Progress",
+    helloMorning: "Good morning!", helloDay: "Good afternoon!", helloEvening: "Good evening!",
+    streakDays: function(n){ return n === 1 ? "day in a row" : "days in a row"; },
+    labelGoal: "Today's goal", labelWeek: "This week",
+    goalNum: function(d, g){ return d + " / " + g + " answers"; },
+    goalLeft: function(n){ return "only " + n + " to go"; },
+    goalDone: "done!",
+    weekDays: ["MO", "TU", "WE", "TH", "FR", "SA", "SU"], today: "TODAY",
+    tileReviewNote: "questions due", tileWeakNote: "to work on",
+    ctaFirst: "Start your first round", ctaFirstNote: "Choose a topic and difficulty",
+    ctaGoal: "Finish today's goal",
+    ctaGoalNote: function(n){ return "Choose a topic · " + n + (n === 1 ? " answer" : " answers") + " to go"; },
+    ctaMore: "Keep practising",
     setupTitle: "What shall we practise today?",
     setupIntro: "Choose a topic, difficulty and number of questions. The app remembers what you're good at and what you find hard, and adapts the questions to you.",
     labelTopic: "Topic (you can choose more than one)", labelDifficulty: "Difficulty", labelCount: "Number of questions",
@@ -22388,6 +22528,7 @@ function applyLang(){
   updateStartBtn();
   renderSmartCard();
   renderProgress();
+  renderHome();
   if(views.quiz.classList.contains("active")){
     renderQuizTopbar();
     if(!currentAnswered) renderQuestion();
@@ -22571,6 +22712,89 @@ function renderSmartCard(){
 document.getElementById("btn-review").addEventListener("click", function(){ startSpecialRound("review"); });
 document.getElementById("btn-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
 renderSmartCard();
+
+/* ============================================================
+   6a. RENDER: DOMŮ (denní cíl, série dní, týden, rychlé volby)
+   ============================================================ */
+
+const DAILY_GOAL = 20; // otázek za den; nastavitelné bude v Nastavení
+
+function dayKey(d){
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+
+// Dny, kdy uživatel dokončil aspoň jedno kolo. Kola z doby před sledováním
+// denních počtů (state.days) se berou z historie kol.
+function activeDays(){
+  const set = {};
+  Object.keys(state.days || {}).forEach(function(k){ if(state.days[k] > 0) set[k] = true; });
+  state.rounds.forEach(function(r){ set[dayKey(new Date(r.date))] = true; });
+  return set;
+}
+
+// Počet dní v řadě končících dneškem; když dnes ještě nic, počítá se od včerejška.
+function currentStreak(active){
+  const d = new Date();
+  if(!active[dayKey(d)]) d.setDate(d.getDate() - 1);
+  let n = 0;
+  while(active[dayKey(d)]){ n += 1; d.setDate(d.getDate() - 1); }
+  return n;
+}
+
+function renderHome(){
+  const now = new Date();
+  const h = now.getHours();
+  document.getElementById("home-day").textContent = now.toLocaleDateString(tx("dateLocale"), { weekday: "long" });
+  document.getElementById("home-hello").textContent = tx(h >= 5 && h < 10 ? "helloMorning" : (h >= 10 && h < 18 ? "helloDay" : "helloEvening"));
+
+  const active = activeDays();
+  const streak = currentStreak(active);
+  document.getElementById("home-streak").textContent = streak;
+  document.getElementById("home-streak-label").textContent = tx("streakDays", streak);
+
+  const done = (state.days || {})[dayKey(now)] || 0;
+  const left = Math.max(0, DAILY_GOAL - done);
+  document.getElementById("home-goal-num").textContent = tx("goalNum", Math.min(done, DAILY_GOAL), DAILY_GOAL);
+  document.getElementById("home-goal-left").textContent = left > 0 ? tx("goalLeft", left) : tx("goalDone");
+  document.getElementById("home-goal-fill").style.width = Math.round(Math.min(1, done / DAILY_GOAL) * 100) + "%";
+
+  // Týden od pondělí do neděle; dnešek má kolem kotouče prstenec plnění cíle.
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  const labels = tx("weekDays");
+  let html = "";
+  for(let i = 0; i < 7; i++){
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const k = dayKey(d);
+    const isToday = k === dayKey(now);
+    const cls = "wp" + (active[k] ? " on" : "") + (isToday ? " today" : "");
+    const style = isToday ? ' style="--p:' + Math.round(Math.min(1, done / DAILY_GOAL) * 100) + '%"' : "";
+    html += '<div class="' + cls + '"' + style + ' data-d="' + (isToday ? tx("today") : labels[i]) + '"></div>';
+  }
+  document.getElementById("home-week").innerHTML = html;
+
+  const anySeen = Object.keys(state.questionStats).some(function(id){ return state.questionStats[id].seen > 0; });
+  document.getElementById("home-tiles").style.display = anySeen ? "" : "none";
+  const review = specialPool("review").length;
+  const weak = specialPool("weak").length;
+  document.getElementById("home-review-n").textContent = review;
+  document.getElementById("home-weak-n").textContent = weak;
+  document.getElementById("home-review").disabled = review === 0;
+  document.getElementById("home-weak").disabled = weak === 0;
+
+  const cta = document.getElementById("home-cta");
+  if(state.rounds.length === 0){
+    cta.innerHTML = escapeHtml(tx("ctaFirst")) + "<small>" + escapeHtml(tx("ctaFirstNote")) + "</small>";
+  } else if(left > 0){
+    cta.innerHTML = escapeHtml(tx("ctaGoal")) + "<small>" + escapeHtml(tx("ctaGoalNote", left)) + "</small>";
+  } else {
+    cta.innerHTML = escapeHtml(tx("ctaMore"));
+  }
+}
+document.getElementById("home-review").addEventListener("click", function(){ startSpecialRound("review"); });
+document.getElementById("home-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
+document.getElementById("home-cta").addEventListener("click", function(){ showView("setup"); });
 
 /* re-render start label when count changes */
 const origRenderCountGrid = renderCountGrid;
@@ -22895,6 +23119,8 @@ function finishRound(){
     correctParts: correctParts,
     byTag: byTag
   });
+  const today = dayKey(new Date());
+  state.days[today] = (state.days[today] || 0) + roundResults.length;
   saveState();
 
   renderResults(pct, correctParts, totalParts, byTag);
