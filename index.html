@@ -458,6 +458,10 @@
   .home-tile:disabled{ opacity:.55; cursor:default; }
   .home-cta small{ display:block; font-weight:500; font-size:12.5px; opacity:.85; margin-top:2px; }
   .home-test{ width:100%; margin-top:12px; }
+  .plan-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .plan-tag{ font-size:12.5px; font-weight:700; padding:5px 10px; border-radius:999px; background:var(--track); color:var(--ink); }
+  #home-plan .btn-secondary{ width:100%; }
+  .dontknow-btn{ width:100%; margin-top:10px; }
   .wp.free{ display:grid; place-items:center; font-size:18px; color:#fff;
     background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 70%, #5B7FB3 71%);
     box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 5px 10px rgba(63,98,153,0.3); }
@@ -877,6 +881,12 @@
       <button class="home-tile" id="home-weak"><em id="home-weak-n">0</em><span data-i18n="weakTitle">Co mi nejde</span><small data-i18n="tileWeakNote">slabá místa</small></button>
     </div>
 
+    <div class="card" id="home-plan">
+      <p class="card-label" data-i18n="labelPlan">Tvůj plán z testu</p>
+      <div class="plan-tags" id="home-plan-tags"></div>
+      <button class="btn-secondary" id="home-plan-btn" data-i18n="planBtn">Procvičit plán</button>
+    </div>
+
     <button class="btn-primary home-cta" id="home-cta"></button>
     <button class="btn-secondary home-cta home-test" id="home-test"></button>
   </div>
@@ -1104,6 +1114,110 @@ const DIFFICULTIES = [
   { id:"advanced",     name:"Pokročilá",  desc:"Kombinace více jevů, formální vazby, přesnější a abstraktnější slovní zásoba.",
     nameEn:"Advanced", descEn:"Combinations of several structures, formal patterns, more precise and abstract vocabulary." }
 ];
+
+// Orientační úroveň CEFR, na které gramatický jev začíná (spodní hranice z obsahové mapy
+// v docs/pravidla.md, sekce 4). Klíč "téma|podtéma". Používá rozřazovací test.
+const TAG_CEFR = {
+  // A1
+  "tenses|Present simple": "A1",
+  "tenses|Present continuous": "A1",
+  "articles|A/an vs. the": "A1",
+  "nouns|Počitatelnost (vč. hromadných podstatných jmen: the police, the team)": "A1",
+  "nouns|Množné číslo, nepravidelné tvary": "A1",
+  "nouns|Some/any/no": "A1",
+  "nouns|Much/many/a lot of": "A1",
+  "pronouns|Osobní a přivlastňovací": "A1",
+  "pronouns|Zvratná a vzájemná zájmena (myself.../each other, one another)": "A1",
+  "pronouns|Ukazovací (this/that/these/those)": "A1",
+  "pronouns|There is vs. it is": "A1",
+  "adjectives-adverbs|Stupňování (vč. stupňovatelných vs. absolutních přídavných jmen: very tired / absolutely exhausted)": "A1",
+  "prepositions|Místa a času": "A1",
+  // A2
+  "tenses|Past simple": "A2",
+  "tenses|Past continuous": "A2",
+  "tenses|Present perfect": "A2",
+  "tenses|Going to": "A2",
+  "tenses|Will": "A2",
+  "conditionals|0. kondicionál": "A2",
+  "conditionals|1. kondicionál": "A2",
+  "conditionals|2. kondicionál": "A2",
+  "word-order|Nepřímé otázky": "A2",
+  "word-order|Záporné otázky": "A2",
+  "modals|Schopnost (can/could/be able to)": "A2",
+  "modals|Dovolení (can/may/could)": "A2",
+  "modals|Povinnost a nutnost (must/have to/need to)": "A2",
+  "passive|Přítomný a minulý čas prostý": "A2",
+  "nouns|(A) few / (a) little": "A2",
+  "nouns|All/both/each/every/either/neither/none": "A2",
+  "nouns|Přivlastňovací 's vs. of": "A2",
+  "pronouns|Neurčitá (someone, anything...)": "A2",
+  "pronouns|One/ones": "A2",
+  "infinitive-gerund|Sloveso + to infinitiv": "A2",
+  "infinitive-gerund|Sloveso + -ing": "A2",
+  "adjectives-adverbs|Tvorba a pozice příslovcí": "A2",
+  "adjectives-adverbs|Too/enough": "A2",
+  "adjectives-adverbs|Přídavná jména na -ed/-ing (bored/boring)": "A2",
+  "phrasal-verbs|Základní sada": "A2",
+  "conjunctions|Both...and / either...or / neither...nor": "A2",
+  // B1
+  "tenses|Past perfect": "B1",
+  "tenses|Present perfect continuous": "B1",
+  "tenses|Past perfect continuous": "B1",
+  "tenses|Used to / would": "B1",
+  "tenses|Future continuous": "B1",
+  "tenses|Časová věta (present simple)": "B1",
+  "word-order|Tag questions": "B1",
+  "modals|Zákaz vs. absence nutnosti (mustn't vs. don't have to)": "B1",
+  "modals|Rada (should/ought to/had better)": "B1",
+  "modals|Pravděpodobnost a dedukce v přítomnosti (must/might/can't be)": "B1",
+  "passive|Present perfect, budoucí časy": "B1",
+  "reported-speech|Oznamovací věty": "B1",
+  "reported-speech|Otázky v nepřímé řeči": "B1",
+  "reported-speech|Rozkazy a žádosti": "B1",
+  "reported-speech|Posun časů (backshift)": "B1",
+  "articles|Nulový člen (vč. institucí: go to school/bed/work/prison)": "B1",
+  "articles|Obecná tvrzení (generalizace pomocí členů)": "B1",
+  "clauses|Určující vztažné věty (defining relative clauses)": "B1",
+  "clauses|Neurčující vztažné věty (non-defining relative clauses)": "B1",
+  "infinitive-gerund|Sloveso + předmět + infinitiv, vč. holého infinitivu (want/tell/ask him to go vs. make/let him go)": "B1",
+  "infinitive-gerund|Předložka + -ing": "B1",
+  "adjectives-adverbs|Pořadí přídavných jmen": "B1",
+  "adjectives-adverbs|So/such": "B1",
+  "adjectives-adverbs|As...as / the more..., the more...": "B1",
+  "prepositions|Vazby se slovesy": "B1",
+  "prepositions|Vazby s přídavnými jmény": "B1",
+  "prepositions|Vazby s podstatnými jmény (reason for, increase in)": "B1",
+  "phrasal-verbs|Dělitelná vs. nedělitelná frázová slovesa (turn it off / look after it)": "B1",
+  "conjunctions|Although, despite, in spite of": "B1",
+  "conjunctions|Because, since, as (důvod)": "B1",
+  "conjunctions|So that, in order to (účel)": "B1",
+  "conjunctions|Whereas/while": "B1",
+  "conjunctions|However vs. although": "B1",
+  // B2
+  "conditionals|Wish + minulost": "B2",
+  "conditionals|As if + minulost": "B2",
+  "conditionals|3. kondicionál": "B2",
+  "conditionals|Smíšený kondicionál": "B2",
+  "conditionals|Unless": "B2",
+  "modals|Modály v minulosti (must have/might have/should have/needn't have)": "B2",
+  "passive|S modálními slovesy": "B2",
+  "passive|Have/get something done": "B2",
+  "reported-speech|Uvozovací slovesa a jejich vazby (suggest, advise, deny, apologise...)": "B2",
+  "articles|Členy se zeměpisnými názvy": "B2",
+  "clauses|Podmětné, předmětné věty": "B2",
+  "infinitive-gerund|Rozdíly ve významu (remember, stop, try...)": "B2",
+  "prepositions|Předložka na konci věty": "B2",
+  "phrasal-verbs|Rozšířená sada": "B2",
+  "conjunctions|Diskurzní markery (however, moreover...)": "B2",
+  "conjunctions|Even though vs. even if": "B2",
+  // C1
+  "conditionals|Inverze v podmínce": "C1",
+  "tenses|Be about to": "C1",
+  "word-order|Inverze po záporných příslovcích": "C1",
+  "clauses|Zkrácené vztažné věty (redukce vztažné věty pomocí příčestí/infinitivu)": "C1",
+  "clauses|Participle clauses": "C1",
+  "infinitive-gerund|Perfektní infinitiv (seem to have done)": "C1"
+};
 
 // Pomocná zkratka pro čitelnější zápis položek
 function F(id, topic, difficulty, tag, before, hint, after, answers, rule){
@@ -22170,7 +22284,7 @@ function defaultState(){
     tagStats: {},        // tag -> { seen, correct }  (počítáno po jednotlivých blancích)
     rounds: [],          // [{ date, topics, difficulty, totalParts, correctParts, byTag: {tag:{seen,correct}} }]
     days: {},            // "YYYY-MM-DD" (místní datum) -> počet otázek zodpovězených v dokončených kolech
-    placement: null      // obtížnost doporučená rozřazovacím testem (id z DIFFICULTIES)
+    placement: null      // výsledek rozřazovacího testu: { level, difficulty, plan:[{topic, tag}] }
   };
 }
 
@@ -22212,6 +22326,9 @@ function migrateState(s){
     if(validQuestionIds[id]) cleanedQuestionStats[id] = s.questionStats[id];
   });
   s.questionStats = cleanedQuestionStats;
+
+  // První verze rozřazovacího testu ukládala jen id obtížnosti – takový výsledek zahodíme.
+  if(typeof s.placement === "string") s.placement = null;
 
   return s;
 }
@@ -22367,8 +22484,14 @@ const I18N = {
     navHome: "Domů", navTopics: "Témata", navProgress: "Pokrok", navSettings: "Nastavení",
     setLang: "Jazyk aplikace", setGoal: "Denní cíl (odpovědí)", setTestBtn: "Spustit ›",
     freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
-    placementTitle: "Rozřazovací test", placementNote: "12 otázek · doporučí ti obtížnost",
-    placementRec: function(diffHtml){ return "Doporučená obtížnost: " + diffHtml + ". V Tématech ji máš předvybranou."; },
+    placementTitle: "Rozřazovací test", placementNote: "5–20 otázek · zjistí, kde začít",
+    levelTag: function(l){ return "Úroveň " + l; }, dontKnow: "Nevím",
+    placementLevel: function(l){ return "Zvládáš gramatiku úrovně <strong>" + l + "</strong>. Je to orientační odhad podle toho, na které úrovni CEFR se jednotlivé jevy učí – hodnotí jen gramatiku, ne celou angličtinu."; },
+    placementBelow: "Gramatiku úrovně A2 zatím nemáš jistou. Začni základy – na nich stojí všechno ostatní.",
+    placementDiff: function(dHtml){ return "Výchozí obtížnost: " + dHtml + " (v Tématech ji máš předvybranou)."; },
+    placementPlan: function(list){ return "Tvůj plán – jevy, které ti v testu nevyšly: " + list + ". Najdeš ho na Domů."; },
+    placementNoPlan: "V testu ti všechno vyšlo – vyber si v Tématech, co tě zajímá.",
+    labelPlan: "Tvůj plán z testu", planBtn: "Procvičit plán",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
     helloMorning: "Dobré ráno!", helloDay: "Dobrý den!", helloEvening: "Dobrý večer!",
@@ -22423,8 +22546,14 @@ const I18N = {
     navHome: "Home", navTopics: "Topics", navProgress: "Progress", navSettings: "Settings",
     setLang: "App language", setGoal: "Daily goal (answers)", setTestBtn: "Start ›",
     freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
-    placementTitle: "Placement test", placementNote: "12 questions · suggests your level",
-    placementRec: function(diffHtml){ return "Suggested difficulty: " + diffHtml + ". It's preselected for you in Topics."; },
+    placementTitle: "Placement test", placementNote: "5–20 questions · finds where to start",
+    levelTag: function(l){ return "Level " + l; }, dontKnow: "I don't know",
+    placementLevel: function(l){ return "You can handle <strong>" + l + "</strong> grammar. This is a rough estimate based on the CEFR level at which each grammar point is usually taught – it covers grammar only, not your English as a whole."; },
+    placementBelow: "You're not yet confident with A2 grammar. Start with the basics – everything else builds on them.",
+    placementDiff: function(dHtml){ return "Starting difficulty: " + dHtml + " (preselected for you in Topics)."; },
+    placementPlan: function(list){ return "Your plan – the points you got wrong: " + list + ". You'll find it on Home."; },
+    placementNoPlan: "No mistakes in the test – pick whatever interests you in Topics.",
+    labelPlan: "Your plan from the test", planBtn: "Practise my plan",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
     helloMorning: "Good morning!", helloDay: "Good afternoon!", helloEvening: "Good evening!",
@@ -22603,7 +22732,7 @@ document.querySelectorAll(".lang-switch button").forEach(function(btn){
 
 let selectedTags = {};     // { topicId: Set<tag> } — jen podtémata s aspoň jedním zaškrtnutým tagem počítají jako "vybraný topic"
 let expandedTopics = {};   // { topicId: bool } — čistě UI stav accordionu
-let selectedDifficulty = state.placement || "basic";
+let selectedDifficulty = state.placement ? state.placement.difficulty : "basic";
 let selectedCount = 10;
 
 const topicGrid = document.getElementById("topic-grid");
@@ -22872,6 +23001,13 @@ function renderHome(){
     cta.innerHTML = escapeHtml(tx("ctaMore"));
   }
 
+  // Plán z rozřazovacího testu zůstává, dokud uživatel test neudělá znovu.
+  const plan = state.placement ? state.placement.plan : [];
+  document.getElementById("home-plan").style.display = plan.length ? "" : "none";
+  document.getElementById("home-plan-tags").innerHTML = plan.map(function(p){
+    return '<span class="plan-tag">' + escapeHtml(tagLabel(p.tag)) + '</span>';
+  }).join("");
+
   // Nabídka rozřazovacího testu, dokud ho uživatel neudělá (znovu jde spustit v Nastavení).
   const test = document.getElementById("home-test");
   test.style.display = state.placement ? "none" : "";
@@ -22881,6 +23017,18 @@ document.getElementById("home-review").addEventListener("click", function(){ sta
 document.getElementById("home-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
 document.getElementById("home-cta").addEventListener("click", function(){ showView("setup"); });
 document.getElementById("home-test").addEventListener("click", function(){ startPlacement(); });
+document.getElementById("home-plan-btn").addEventListener("click", function(){
+  selectedTags = {};
+  state.placement.plan.forEach(function(p){
+    if(!selectedTags[p.topic]) selectedTags[p.topic] = new Set();
+    selectedTags[p.topic].add(p.tag);
+  });
+  selectedDifficulty = state.placement.difficulty;
+  renderTopicGrid();
+  renderDiffGrid();
+  updateStartBtn();
+  startRound();
+});
 
 /* ============================================================
    6c. RENDER: NASTAVENÍ
@@ -23004,46 +23152,77 @@ function startSpecialRound(mode){
   renderQuestion();
 }
 
-// Rozřazovací test: z každé obtížnosti 4 otázky ze 4 různých gramatických témat
-// (bez slovní zásoby), seřazené od nejlehčí.
-const PLACEMENT_PER_LEVEL = 4;
+// Rozřazovací test podle úrovní CEFR: bloky A2 → B1 → B2 → C1. Každý blok má 5 otázek
+// z 5 různých témat, vybraných z podtémat, která na dané úrovni začínají (TAG_CEFR; jevy A1
+// patří do bloku A2). Všechny otázky mají střední obtížnost, aby se úrovně měřily stejně,
+// a jsou krátké (výběr z možností nebo jedna mezera); slovní zásoba a Mix se vynechávají.
+// Do dalšího bloku se postupuje při aspoň 4 z 5 správně, jinak test končí. Čistým
+// tipováním se 4 z 5 trefí asi v 5 % případů; tlačítko „Nevím“ tipování dál omezuje.
+const PLACEMENT_LEVELS = ["A2", "B1", "B2", "C1"];
+const PLACEMENT_BLOCK = 5;
+const PLACEMENT_PASS = 4;
+let placementBlock = 0;
+let dontKnow = false; // odpověď „Nevím“ se vyhodnotí jako chybná
+
+function addPlacementBlock(){
+  const level = PLACEMENT_LEVELS[placementBlock];
+  const byTopic = {};
+  QUESTIONS.forEach(function(q){
+    if(q.difficulty !== "intermediate" || q.type === "multi") return;
+    const l = TAG_CEFR[q.topic + "|" + q.tag];
+    if((l === "A1" ? "A2" : l) !== level) return;
+    (byTopic[q.topic] = byTopic[q.topic] || []).push(q);
+  });
+  shuffle(Object.keys(byTopic)).slice(0, PLACEMENT_BLOCK).forEach(function(t){
+    const pool = byTopic[t];
+    roundQuestions.push(pool[Math.floor(Math.random() * pool.length)]);
+    if(roundTopics.indexOf(t) === -1) roundTopics.push(t);
+  });
+}
+
+function placementBlockPassed(){
+  return roundResults.slice(placementBlock * PLACEMENT_BLOCK).filter(function(r){ return r.allCorrect; }).length >= PLACEMENT_PASS;
+}
+
 function startPlacement(){
   tickCooldowns();
-  const grammarTopics = TOPICS.filter(function(t){ return t.id !== "vocab"; });
-  const questions = [];
-  DIFFICULTIES.forEach(function(d){
-    shuffle(grammarTopics).slice(0, PLACEMENT_PER_LEVEL).forEach(function(t){
-      const pool = QUESTIONS.filter(function(q){ return q.topic === t.id && q.difficulty === d.id; });
-      questions.push(pool[Math.floor(Math.random() * pool.length)]);
-    });
-  });
   roundMode = "placement";
   roundTags = {};
   roundTopics = [];
-  questions.forEach(function(q){ if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic); });
   roundDifficulty = "mixed";
-  roundQuestions = questions;
+  roundQuestions = [];
   roundIndex = 0;
   roundResults = [];
+  placementBlock = 0;
+  addPlacementBlock();
   showView("quiz");
   renderQuizTopbar();
   renderQuestion();
 }
 
-// Doporučená obtížnost = první, kde uživatel nezvládl aspoň 3 ze 4 otázek;
-// když zvládl všechny, pokročilá.
-function placementLevel(){
-  const ok = {};
+// Výsledek: nejvyšší zvládnutá úroveň (null = ani A2), z ní výchozí obtížnost
+// a plán = podtémata, ve kterých uživatel v testu chyboval.
+function placementResult(){
+  const passedAll = placementBlockPassed();
+  const level = passedAll ? PLACEMENT_LEVELS[placementBlock] : (placementBlock > 0 ? PLACEMENT_LEVELS[placementBlock - 1] : null);
+  const difficulty = (!level || level === "A2") ? "basic" : (level === "C1" ? "advanced" : "intermediate");
+  const plan = [];
   roundResults.forEach(function(r){
-    if(r.allCorrect) ok[r.question.difficulty] = (ok[r.question.difficulty] || 0) + 1;
+    if(r.allCorrect) return;
+    const q = r.question;
+    if(!plan.some(function(p){ return p.topic === q.topic && p.tag === q.tag; })) plan.push({ topic: q.topic, tag: q.tag });
   });
-  const weak = DIFFICULTIES.find(function(d){ return (ok[d.id] || 0) < PLACEMENT_PER_LEVEL - 1; });
-  return weak ? weak.id : DIFFICULTIES[DIFFICULTIES.length - 1].id;
+  return { level: level, difficulty: difficulty, plan: plan };
 }
 
 function renderQuizTopbar(){
+  if(roundMode === "placement"){
+    quizTagTopic.textContent = tx("placementTitle");
+    quizTagDiff.textContent = tx("levelTag", PLACEMENT_LEVELS[placementBlock]);
+    return;
+  }
   if(roundMode !== "normal"){
-    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : (roundMode === "weak" ? "weakTitle" : "placementTitle"));
+    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : "weakTitle");
     quizTagDiff.textContent = tx("mixedDiff");
     return;
   }
@@ -23064,9 +23243,11 @@ quizExit.addEventListener("click", function(){
 function renderQuestion(){
   currentAnswered = false;
   const q = roundQuestions[roundIndex];
-  const pct = Math.round((roundIndex / roundQuestions.length) * 100);
+  // V rozřazovacím testu se počítá v rámci aktuálního bloku (další blok se přidá až po něm).
+  const from = roundMode === "placement" ? placementBlock * PLACEMENT_BLOCK : 0;
+  const pct = Math.round(((roundIndex - from) / (roundQuestions.length - from)) * 100);
   quizProgressFill.style.width = pct + "%";
-  quizCounter.textContent = tx("questionOf", roundIndex+1, roundQuestions.length);
+  quizCounter.textContent = tx("questionOf", roundIndex - from + 1, roundQuestions.length - from);
 
   let html = "";
   if(q.type === "fill"){
@@ -23106,7 +23287,9 @@ function renderQuestion(){
   }
   html += '<div id="feedback-slot"></div>';
   html += '<div style="margin-top:20px;"><button class="btn-primary" id="check-btn"' +
-          (q.type === "choice" ? ' style="display:none;"' : '') + '>' + tx("check") + '</button></div>';
+          (q.type === "choice" ? ' style="display:none;"' : '') + '>' + tx("check") + '</button>' +
+          (roundMode === "placement" ? '<button class="btn-secondary dontknow-btn" id="dontknow-btn">' + tx("dontKnow") + '</button>' : '') +
+          '</div>';
 
   quizCard.innerHTML = html;
 
@@ -23129,6 +23312,12 @@ function renderQuestion(){
   });
 
   document.getElementById("check-btn").addEventListener("click", handleCheck);
+  const dontKnowBtn = document.getElementById("dontknow-btn");
+  if(dontKnowBtn) dontKnowBtn.addEventListener("click", function(){
+    dontKnow = true;
+    if(q.type === "choice") handleChoiceClick(-1); else handleCheck();
+    dontKnow = false;
+  });
 }
 
 function renderHintLabel(h){ return h ? h : null; }
@@ -23153,7 +23342,7 @@ function handleCheck(){
 
   if(q.type === "fill"){
     const input = document.getElementById("blank-0");
-    const ok = checkAnswer(input.value, q.answers);
+    const ok = !dontKnow && checkAnswer(input.value, q.answers);
     input.disabled = true;
     input.classList.add(ok ? "state-correct" : "state-wrong");
     if(!ok) allCorrect = false;
@@ -23164,7 +23353,7 @@ function handleCheck(){
   } else {
     q.parts.forEach(function(p, i){
       const input = document.getElementById("blank-"+i);
-      const ok = checkAnswer(input.value, p.answers);
+      const ok = !dontKnow && checkAnswer(input.value, p.answers);
       input.disabled = true;
       input.classList.add(ok ? "state-correct" : "state-wrong");
       if(!ok){
@@ -23221,8 +23410,10 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines){
   fb += '</div>';
   slot.innerHTML = fb;
 
+  const dontKnowBtn = document.getElementById("dontknow-btn");
+  if(dontKnowBtn) dontKnowBtn.style.display = "none";
   const checkBtn = document.getElementById("check-btn");
-  checkBtn.textContent = (roundIndex === roundQuestions.length - 1) ? tx("showResult") : tx("next");
+  checkBtn.textContent = (roundIndex === roundQuestions.length - 1 && roundMode !== "placement") ? tx("showResult") : tx("next");
   checkBtn.style.display = "";
   // Vstupní pole/tlačítka se po vyhodnocení deaktivují a přestanou zachytávat Enter,
   // proto přesuneme fokus na tlačítko — Enter pak spustí "Pokračovat"/"Zobrazit výsledek".
@@ -23231,6 +23422,12 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines){
 
 function advanceQuestion(){
   roundIndex += 1;
+  if(roundIndex >= roundQuestions.length && roundMode === "placement" &&
+     placementBlockPassed() && placementBlock < PLACEMENT_LEVELS.length - 1){
+    placementBlock += 1;
+    addPlacementBlock();
+    renderQuizTopbar();
+  }
   if(roundIndex >= roundQuestions.length){
     finishRound();
   } else {
@@ -23271,8 +23468,8 @@ function finishRound(){
   const today = dayKey(new Date());
   state.days[today] = (state.days[today] || 0) + roundResults.length;
   if(roundMode === "placement"){
-    state.placement = placementLevel();
-    selectedDifficulty = state.placement;
+    state.placement = placementResult();
+    selectedDifficulty = state.placement.difficulty;
     renderDiffGrid();
   }
   saveState();
@@ -23319,7 +23516,10 @@ function renderResults(pct, correct, total, byTag){
   const weakest = tags.length ? tags[0] : null;
   let recText;
   if(roundMode === "placement"){
-    recText = tx("placementRec", "<strong>" + escapeHtml(diffName(state.placement)) + "</strong>");
+    const pl = state.placement;
+    recText = (pl.level ? tx("placementLevel", pl.level) : tx("placementBelow")) + "<br><br>" +
+      tx("placementDiff", "<strong>" + escapeHtml(diffName(pl.difficulty)) + "</strong>") + " " +
+      (pl.plan.length ? tx("placementPlan", pl.plan.map(function(p){ return "<strong>" + escapeHtml(tagLabel(p.tag)) + "</strong>"; }).join(", ")) : tx("placementNoPlan"));
   } else if(pct === 100){
     recText = tx("recPerfect");
   } else if(weakest){
