@@ -234,3 +234,4 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Medaile, nová úroveň (kolo 28)
 - Medaile: Kotoučík větší, stuha (pruhy modrá–bílá–korálová) vede zezadu za hlavou, přes horní okraj kotouče se záhybem, podél okraje kolem obličeje k špičce u spodního okraje; disk visí pod ním a kývá se, stuha se hýbe s ním.
 - Nová úroveň (z procvičování i z testu) = zvednutí činky; zámek zůstává jen pro obtížnost.
+- **Kolo 28 → nasazeno do appky:** přivítání (všechny schválené věty + výročí série), velké oslavy (zámek = odemčená obtížnost, činka = nová úroveň a série 7/30/100/365, zezlátnutí = 100/500/1000 zvládnutých, medaile = perfektní kolo 10+ na Pokročilé), zvuky (Web Audio, v Nastavení „Zvuky“, výchozí zapnuto), úroveň počítaná z procvičování (25 otázek, 80 %, nikdy neklesne), karty Úroveň a Obtížnost v Pokroku, rozřazovací test s doplňkovými otázkami při 3 z 5 a pokaždé jinými otázkami.

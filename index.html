@@ -907,6 +907,85 @@
   @keyframes plate-fall{ to{ transform: translateY(115vh) rotate(540deg); } }
   .streak-plate.spin{ animation: plate-spin 1s cubic-bezier(.2,.8,.3,1); }
   @keyframes plate-spin{ to{ transform: rotate(1080deg); } }
+  /* ---------- Velké oslavy (docs/navrhy-vzhledu-25..28.html): celá obrazovka, klepnutím zavřít ---------- */
+  .cel{ position: fixed; inset: 0; z-index: 200; overflow: hidden; color: #fff; text-align: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    background: radial-gradient(70% 45% at 50% 40%, #2C3D57 0%, #172233 55%, #0B1018 100%); animation: cel-in .35s ease both; }
+  .cel.out{ opacity: 0; transition: opacity .3s ease; }
+  @keyframes cel-in{ from{ opacity: 0; } }
+  .cel::before{ content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%); }
+  .cel-rays{ position: absolute; left: 50%; top: 38%; width: 760px; height: 760px; margin: -380px 0 0 -380px; border-radius: 50%;
+    background: repeating-conic-gradient(rgba(242,194,48,.16) 0 7deg, rgba(242,194,48,0) 7deg 22deg);
+    -webkit-mask: radial-gradient(circle, #000 0 18%, transparent 62%); mask: radial-gradient(circle, #000 0 18%, transparent 62%);
+    animation: cel-rays 7s both, cel-spin 24s linear infinite; }
+  @keyframes cel-rays{ 0%,40%{ opacity: 0; } 50%,100%{ opacity: 1; } }
+  @keyframes cel-spin{ to{ transform: rotate(360deg); } }
+  .cel-floor{ position: absolute; left: 50%; top: 58.5%; width: 240px; height: 34px; margin-left: -120px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.6), rgba(0,0,0,0)), radial-gradient(closest-side, rgba(80,110,150,.18), rgba(0,0,0,0)); }
+  .cel-scene{ position: absolute; left: 50%; top: 38%; width: 300px; height: 300px; margin: -150px 0 0 -150px; }
+  .cel-scene > *{ position: absolute; }
+  .cel-scene svg{ overflow: visible; }
+  .cel-glow{ left: 0; top: -36px; width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,224,122,.55), rgba(255,224,122,0) 65%); animation: cel-glow 7s both; }
+  @keyframes cel-glow{ 0%,38%{ opacity: 0; transform: scale(.6); } 46%{ opacity: 1; transform: scale(1.15); } 60%,100%{ opacity: .55; transform: scale(1); } }
+  .cel-svg{ left: 0; top: 0; width: 300px; height: 300px; }
+  .cel-text{ position: absolute; left: 0; right: 0; top: 64%; padding: 0 26px; }
+  .cel-badge{ display: inline-block; font-weight: 800; font-size: 13px; letter-spacing: .22em; color: #1B2A41; padding: 7px 14px 6px; border-radius: 999px;
+    background: linear-gradient(180deg, #FFE9A3, #F2C230 55%, #D9A514); box-shadow: 0 6px 16px rgba(242,194,48,.35), inset 0 1px 0 rgba(255,255,255,.7);
+    animation: cel-stamp 7s both; }
+  @keyframes cel-stamp{ 0%,44%{ opacity: 0; transform: scale(1.8) rotate(-10deg); } 50%{ opacity: 1; transform: scale(.92) rotate(-4deg); } 54%,100%{ opacity: 1; transform: scale(1) rotate(-4deg); } }
+  .cel-title{ font: 700 34px/1.1 var(--font-display); margin-top: 14px; letter-spacing: -.01em;
+    background: linear-gradient(180deg, #FFF6D6, #F2C230 70%, #C99A12); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,.45)); animation: cel-rise 7s both; }
+  .cel-sub{ font-size: 15px; color: #C9D3E0; margin-top: 8px; animation: cel-rise2 7s both; }
+  @keyframes cel-rise{ 0%,48%{ opacity: 0; transform: translateY(14px); } 56%,100%{ opacity: 1; transform: none; } }
+  @keyframes cel-rise2{ 0%,52%{ opacity: 0; transform: translateY(10px); } 60%,100%{ opacity: 1; transform: none; } }
+  .cel-tap{ position: absolute; left: 0; right: 0; bottom: calc(34px + env(safe-area-inset-bottom)); font-size: 12.5px; color: rgba(255,255,255,.55); }
+  .cel-confetti i{ position: absolute; top: -20px; border-radius: 50%; opacity: 0; animation: cel-fall 7s both; }
+  .cel-confetti i.p{ background: radial-gradient(circle, #172233 0 18%, #3A414B 19% 60%, #1D2026 61% 70%, #3A414B 71%); }
+  .cel-confetti i.g{ background: radial-gradient(circle, #172233 0 18%, #F2C230 19% 60%, #C99A12 61% 70%, #F2C230 71%); }
+  .cel-confetti i.s{ border-radius: 2px; background: #FFE07A; }
+  @keyframes cel-fall{ 0%,46%{ opacity: 0; transform: translateY(0) rotate(0); } 50%{ opacity: 1; } 92%{ opacity: 1; } 100%{ opacity: 0; transform: translateY(110vh) rotate(540deg); } }
+  .cel-tw{ width: 22px; height: 22px; animation: cel-tw 7s both; }
+  @keyframes cel-tw{ 0%,36%{ opacity: 0; transform: scale(.2) rotate(0); } 44%{ opacity: 1; transform: scale(1.2) rotate(45deg); } 52%{ opacity: .2; transform: scale(.6) rotate(90deg); } 60%,100%{ opacity: 1; transform: scale(1) rotate(135deg); } }
+  .cel-num{ left: 0; right: 0; top: -14px; font: 700 64px/1 var(--font-display); color: #FFE07A; text-shadow: 0 4px 18px rgba(242,194,48,.5); animation: cel-numpop 7s both; }
+  @keyframes cel-numpop{ 0%,22%{ opacity: 0; transform: scale(.4); } 27%{ opacity: 1; transform: scale(1.2); } 32%,100%{ opacity: 1; transform: scale(1); } }
+  /* zámek */
+  .cel-lock .cel-scene{ animation: cel-shake 7s both; }
+  @keyframes cel-shake{ 0%,18%{ transform: none; } 19%{ transform: translate(-6px,3px); } 20%{ transform: translate(6px,-3px); } 21%{ transform: translate(-4px,2px); } 22%,100%{ transform: none; } }
+  .cel-lk-roll{ left: 100px; top: 118px; width: 110px; height: 110px; animation: cel-lk-roll 7s both; }
+  @keyframes cel-lk-roll{ 0%{ transform: translateX(-260px) rotate(-360deg); } 18%{ transform: translateX(-62px) rotate(0); } 21%{ transform: translateX(-80px) rotate(-12deg); } 34%{ transform: translateX(-90px) rotate(-6deg); } 44%,100%{ transform: translate(0,-6px) rotate(0) scale(1.05); } }
+  .cel-face-a{ position: absolute; inset: 0; animation: cel-show-a 7s both; } .cel-face-b{ position: absolute; inset: 0; animation: cel-show-b 7s both; }
+  @keyframes cel-show-a{ 0%,40%{ opacity: 1; } 44%,100%{ opacity: 0; } }
+  @keyframes cel-show-b{ 0%,40%{ opacity: 0; } 44%,100%{ opacity: 1; } }
+  .cel-lk{ left: 100px; top: 80px; width: 120px; height: 150px; }
+  .cel-lk-shackle{ animation: cel-lk-shackle 7s both; transform-origin: 70px 60px; }
+  .cel-lk-left{ animation: cel-lk-left 7s both; transform-origin: 30px 140px; }
+  .cel-lk-right{ animation: cel-lk-right 7s both; transform-origin: 90px 140px; }
+  .cel-lk-crack{ stroke-dasharray: 120; stroke-dashoffset: 120; animation: cel-lk-crack 7s both; }
+  @keyframes cel-lk-shackle{ 0%,31%{ transform: none; opacity: 1; } 38%{ transform: translate(30px,-90px) rotate(60deg); opacity: 1; } 48%,100%{ transform: translate(90px,-60px) rotate(160deg); opacity: 0; } }
+  @keyframes cel-lk-left{ 0%,32%{ transform: none; opacity: 1; } 44%{ transform: translate(-40px,60px) rotate(-35deg); opacity: .9; } 52%,100%{ transform: translate(-70px,180px) rotate(-60deg); opacity: 0; } }
+  @keyframes cel-lk-right{ 0%,32%{ transform: none; opacity: 1; } 44%{ transform: translate(40px,60px) rotate(35deg); opacity: .9; } 52%,100%{ transform: translate(70px,180px) rotate(60deg); opacity: 0; } }
+  @keyframes cel-lk-crack{ 0%,21%{ stroke-dashoffset: 120; opacity: 1; } 30%{ stroke-dashoffset: 0; opacity: 1; } 33%,100%{ stroke-dashoffset: 0; opacity: 0; } }
+  .cel-impact{ left: 92px; top: 120px; width: 90px; height: 90px; animation: cel-impact 7s both; }
+  @keyframes cel-impact{ 0%,17%{ opacity: 0; transform: scale(.2); } 19%{ opacity: 1; transform: scale(1.1); } 26%,100%{ opacity: 0; transform: scale(1.5); } }
+  .cel-shard{ left: 150px; top: 160px; width: 16px; height: 16px; animation: cel-shard 7s both; }
+  @keyframes cel-shard{ 0%,32%{ opacity: 0; transform: none; } 34%{ opacity: 1; } 52%,100%{ opacity: 0; transform: translate(var(--dx),var(--dy)) rotate(var(--r)); } }
+  @media (prefers-reduced-motion: reduce){
+    .cel-rays{ animation: none !important; }
+  }
+  /* ---------- Karty úrovně a obtížnosti v Pokroku (docs/navrhy-vzhledu-27.html) ---------- */
+  .lvl-head{ display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .lvl-head b{ font-family: var(--font-display); font-size: 44px; line-height: 1; }
+  .lvl-head b.small{ font-size: 30px; }
+  .lvl-head span{ font-size: 13px; color: var(--ink-soft); }
+  .lvl-ladder{ display: flex; gap: 6px; margin: 14px 0 12px; }
+  .lvl-ladder i{ flex: 1; font-style: normal; text-align: center; font-size: 12px; font-weight: 800; padding: 6px 0; border-radius: 999px; background: var(--track); color: var(--ink-soft); }
+  .lvl-ladder i.done{ background: var(--success-tint); color: var(--success); }
+  .lvl-ladder i.now{ background: var(--primary); color: #fff; }
+  [data-theme="dark"] .lvl-ladder i.now{ background: #3F6CA3; }
+  .lvl-bar{ margin-top: 12px; }
+  .lvl-note{ font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; margin: 8px 0 0; }
+  .lvl-note b{ color: var(--ink); }
   /* ---------- Kotoučík (docs/navrhy-vzhledu-23.html): občas vykoukne z jiného místa ---------- */
   .kt{ position: fixed; width: 120px; height: 120px; z-index: 110; pointer-events: none;
     transition: transform .45s cubic-bezier(.2,.9,.3,1.15); }
@@ -1155,6 +1234,16 @@
       <p data-i18n="progressIntro">Přehled toho, jak ti to jde napříč všemi koly.</p>
     </div>
 
+    <div class="card">
+      <p class="card-label" data-i18n="labelLevel">Tvoje úroveň</p>
+      <div id="level-body"></div>
+    </div>
+
+    <div class="card">
+      <p class="card-label" data-i18n="labelDiffCard">Obtížnost</p>
+      <div id="diff-body"></div>
+    </div>
+
     <div class="stat-grid">
       <div class="stat-box"><div class="num" id="stat-rounds">0</div><div class="lbl" data-i18n="statRounds">odehraných kol</div></div>
       <div class="stat-box"><div class="num" id="stat-accuracy">0%</div><div class="lbl" data-i18n="statAccuracy">celková úspěšnost</div></div>
@@ -1202,6 +1291,13 @@
         <div class="nav-links" id="mascot-switch">
           <button data-mascot="on" data-i18n="mascotOn">Zapnutý</button>
           <button data-mascot="off" data-i18n="mascotOff">Vypnutý</button>
+        </div>
+      </div>
+      <div class="srow">
+        <span data-i18n="setSound">Zvuky</span>
+        <div class="nav-links" id="sound-switch">
+          <button data-sound="on" data-i18n="soundOn">Zapnuté</button>
+          <button data-sound="off" data-i18n="soundOff">Vypnuté</button>
         </div>
       </div>
       <div class="srow">
@@ -22954,6 +23050,10 @@ function registerAnswer(question, allPartsCorrect, tagResults){
     ts.seen += 1;
     if(r.correct) ts.correct += 1;
   });
+  // Posledních 30 odpovědí na každé obtížnosti (odemčení další obtížnosti); test se nepočítá.
+  if(roundMode !== "placement" && state.recent){
+    state.recent[question.difficulty] = (state.recent[question.difficulty] || []).concat(allPartsCorrect ? 1 : 0).slice(-RECENT_N);
+  }
 }
 
 /* ============================================================
@@ -23003,6 +23103,31 @@ const I18N = {
     setLang: "Jazyk aplikace", setGoal: "Denní cíl (odpovědí)", setTestBtn: "Spustit ›",
     setTheme: "Vzhled", themeAuto: "Auto", themeLight: "Světlý", themeDark: "Tmavý",
     setMascot: "Kotoučík", mascotOn: "Zapnutý", mascotOff: "Vypnutý",
+    setSound: "Zvuky", soundOn: "Zapnuté", soundOff: "Vypnuté",
+    celTap: "Klepni pro pokračování",
+    celUnlockBadge: "ODEMČENO", celUnlockSub: function(d){ return "Na " + d + " máš přes 80 %. Je čas přidat."; },
+    celLevelBadge: "NOVÁ ÚROVEŇ", celLevelTitle: function(l){ return "Úroveň " + l; }, celLevelSub: function(l){ return "Zvládáš gramatiku úrovně " + l + "."; },
+    celStreakBadge: "SÉRIE", celStreakTitle: function(n){ return n + " dní v řadě"; },
+    celStreakSub: function(n){ return n === 7 ? "Celý týden bez vynechání." : n === 30 ? "Měsíc tréninku bez vynechání." : n === 100 ? "Sto dní. Jsi legenda posilovny." : "Rok tréninku v kuse. Všechno nejlepší!"; },
+    celGoldBadge: "MILNÍK", celGoldTitle: function(n){ return n + " otázek"; }, celGoldSub: "zvládnutých. Kotoučík je dnes zlatý.",
+    celMedalBadge: "PERFEKTNÍ KOLO", celMedalTitle: function(n){ return n + " z " + n; }, celMedalSub: "Pokročilá, bez jediné chyby.",
+    welcome: {
+      first: ["Ahoj, já jsem Kotoučík. Budu ti fandit.", "Vítej v posilovně! Já jsem Kotoučík.", "Vítej! Gramatika se tu posiluje jako svaly."],
+      morning: ["Dobré ráno! Rozcvička před snídaní?", "Ranní trénink je nejlepší trénink.", "Dobré ráno! Pár otázek na probuzení?", "Ráno moudřejší večera. Jdeme na to?"],
+      day: ["Zpátky v posilovně! Jdeme na to.", "Pauza na gramatiku? Výborně.", "Ahoj! Dáme pár opakování?", "Ahoj! Pár minut na formu?"],
+      evening: ["Večerní trénink? Pár otázek a hotovo.", "Dobrý večer! Krátká série před spaním?", "Večer je čas na klidný trénink.", "Ještě pár otázek a můžeš odpočívat."],
+      pause: ["Rád tě vidím zpátky. Začneme zlehka?", "Vítej zpátky! Rozcvička na rozjezd?", "Pauza byla. Teď zase kousek dál."],
+      done: ["Dnes máš hotovo. Přidáš něco navíc?", "Cíl splněn! Teď už jen bonus.", "Dnes máš odcvičeno. Ještě kolečko navíc?", "Hotovo na dnes. Klidně si odpočiň."]
+    },
+    welcomeStreak: function(n, d){ const dny = n < 5 ? " dny" : " dní"; return [d + ". den v řadě. Pokračujeme?", "Už " + n + dny + " v kuse. To je forma!", "Den číslo " + d + ". Nepřerušíme to?", n + dny + " v řadě. Jen tak dál."]; },
+    welcomeReview: function(n){ return ["Čeká na tebe " + n + " otázek k opakování.", n + " otázek si říká o zopakování.", "Opakování: " + n + " otázek. Dáme je?", "Pár starých známých čeká: " + n + " otázek."]; },
+    welcomeMilestone: function(n){ return ({ 7: "Celý týden v kuse! To je začátek formy.", 14: "Dva týdny bez vynechání. Klobouk dolů.", 30: "Měsíc v řadě! Tohle už je zvyk.", 50: "Padesátka! Půl stovky dní tréninku.", 100: "Sto dní v řadě. Jsi legenda posilovny.", 200: "Dvě stě dní. Kotoučík smeká." })[n] || (n > 0 && n % 365 === 0 ? "Rok v řadě! Všechno nejlepší k výročí." : null); },
+    labelLevel: "Tvoje úroveň", levelHave: function(l){ return "zvládáš gramatiku úrovně " + l; }, levelNone: "zatím bez úrovně",
+    levelNext: function(l, seen, pct){ return "Na <b>" + l + "</b>: " + (seen < 25 ? seen + " z 25 otázek úrovně " + l : seen + " otázek úrovně " + l) + (seen ? ", správně <b>" + pct + " %</b>" : "") + " (potřeba 80 %)."; },
+    levelTop: "Nejvyšší úroveň v aplikaci. Klobouk dolů.",
+    labelDiffCard: "Obtížnost", diffRecommended: "doporučená",
+    diffUnlockNext: function(next, cur, k, c){ return k < 30 ? "Na <b>" + next + "</b>: zatím " + k + " z 30 odpovědí na " + cur + ", z toho " + c + " správně (potřeba 24 z posledních 30)." : "Na <b>" + next + "</b>: z posledních 30 odpovědí na " + cur + " máš " + c + " správně (potřeba 24)."; },
+    diffTop: "Nejvyšší obtížnost. Teď už jen držet formu.",
     ktLines: {
       happy: ["Lehce a s přehledem.", "Formu držíš.", "Hezky, jedeme dál.", "Tak se to dělá."],
       combo: ["Jsi v ráži!", "Kdo tě zastaví?", "Posilovna hlásí rekord."],
@@ -23010,7 +23135,7 @@ const I18N = {
       rest: ["Na dnešek máš odcvičeno.", "Dnes se makalo. Zítra zas.", "Hotovo. Zasloužený odpočinek."]
     },
     freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
-    placementTitle: "Rozřazovací test", placementNote: "5–20 otázek · zjistí, kde začít",
+    placementTitle: "Rozřazovací test", placementNote: "5–30 otázek · zjistí, kde začít",
     levelTag: function(l){ return "Úroveň " + l; }, dontKnow: "Nevím",
     placementLevel: function(l){ return "Zvládáš gramatiku úrovně <strong>" + l + "</strong>. Je to orientační odhad podle toho, na které úrovni CEFR se jednotlivé jevy učí – hodnotí jen gramatiku, ne celou angličtinu."; },
     placementBelow: "Gramatiku úrovně A2 zatím nemáš jistou. Začni základy – na nich stojí všechno ostatní.",
@@ -23108,6 +23233,31 @@ const I18N = {
     setLang: "App language", setGoal: "Daily goal (answers)", setTestBtn: "Start ›",
     setTheme: "Appearance", themeAuto: "Auto", themeLight: "Light", themeDark: "Dark",
     setMascot: "Plate buddy", mascotOn: "On", mascotOff: "Off",
+    setSound: "Sounds", soundOn: "On", soundOff: "Off",
+    celTap: "Tap to continue",
+    celUnlockBadge: "UNLOCKED", celUnlockSub: function(d){ return "Over 80% on " + d + ". Time to step up."; },
+    celLevelBadge: "NEW LEVEL", celLevelTitle: function(l){ return "Level " + l; }, celLevelSub: function(l){ return "You can handle " + l + " grammar."; },
+    celStreakBadge: "STREAK", celStreakTitle: function(n){ return n + " days in a row"; },
+    celStreakSub: function(n){ return n === 7 ? "A whole week without a break." : n === 30 ? "A month of training without a break." : n === 100 ? "A hundred days. You're a gym legend." : "A year in a row. Happy anniversary!"; },
+    celGoldBadge: "MILESTONE", celGoldTitle: function(n){ return n + " questions"; }, celGoldSub: "mastered. Your plate buddy is golden today.",
+    celMedalBadge: "PERFECT ROUND", celMedalTitle: function(n){ return n + " of " + n; }, celMedalSub: "Advanced, not a single mistake.",
+    welcome: {
+      first: ["Hi, I'm your plate buddy. I'll cheer you on.", "Welcome to the gym! I'm your plate buddy.", "Welcome! Here grammar gets trained like muscles."],
+      morning: ["Good morning! Warm-up before breakfast?", "Morning workouts are the best workouts.", "Good morning! A few questions to wake up?", "Fresh morning, fresh mind. Shall we?"],
+      day: ["Back in the gym! Let's go.", "A grammar break? Excellent.", "Hi! Fancy a few reps?", "Hi! A few minutes to stay in shape?"],
+      evening: ["Evening workout? A few questions and done.", "Good evening! A short set before bed?", "Evenings are for a calm workout.", "A few more questions and you can rest."],
+      pause: ["Great to see you back. Start easy?", "Welcome back! A warm-up to get going?", "That was a break. Now a bit further again."],
+      done: ["You're done for today. Something extra?", "Goal reached! Everything else is a bonus.", "Today's workout is done. One more round?", "All done for today. Feel free to rest."]
+    },
+    welcomeStreak: function(n, d){ return ["Day " + d + " in a row. Keep going?", n + " days straight. You're in shape!", "Day number " + d + ". Let's not break it.", n + " days in a row. Keep it up."]; },
+    welcomeReview: function(n){ return [n + " questions are waiting for review.", n + " questions want another go.", "Review: " + n + " questions. Shall we?", "A few old friends are waiting: " + n + " questions."]; },
+    welcomeMilestone: function(n){ return ({ 7: "A whole week straight! That's the start of good shape.", 14: "Two weeks without a break. Hats off.", 30: "A month in a row! This is a habit now.", 50: "Fifty! Half a hundred days of training.", 100: "A hundred days in a row. You're a gym legend.", 200: "Two hundred days. Hats off from your plate buddy." })[n] || (n > 0 && n % 365 === 0 ? "A year in a row! Happy anniversary." : null); },
+    labelLevel: "Your level", levelHave: function(l){ return "you can handle " + l + " grammar"; }, levelNone: "no level yet",
+    levelNext: function(l, seen, pct){ return "To <b>" + l + "</b>: " + (seen < 25 ? seen + " of 25 " + l + " questions" : seen + " " + l + " questions") + (seen ? ", <b>" + pct + "%</b> correct" : "") + " (need 80%)."; },
+    levelTop: "The highest level in the app. Hats off.",
+    labelDiffCard: "Difficulty", diffRecommended: "recommended",
+    diffUnlockNext: function(next, cur, k, c){ return k < 30 ? "To <b>" + next + "</b>: " + k + " of 30 answers on " + cur + " so far, " + c + " correct (need 24 of the last 30)." : "To <b>" + next + "</b>: " + c + " of your last 30 answers on " + cur + " were correct (need 24)."; },
+    diffTop: "Top difficulty. Now just stay in shape.",
     ktLines: {
       happy: ["Smooth and steady.", "You're in shape.", "Nice, keep going.", "That's how it's done."],
       combo: ["You're on fire!", "Who can stop you?", "New gym record!"],
@@ -23115,7 +23265,7 @@ const I18N = {
       rest: ["Today's workout is done.", "Good work today. Same again tomorrow.", "Done. Well-earned rest."]
     },
     freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
-    placementTitle: "Placement test", placementNote: "5–20 questions · finds where to start",
+    placementTitle: "Placement test", placementNote: "5–30 questions · finds where to start",
     levelTag: function(l){ return "Level " + l; }, dontKnow: "I don't know",
     placementLevel: function(l){ return "You can handle <strong>" + l + "</strong> grammar. This is a rough estimate based on the CEFR level at which each grammar point is usually taught – it covers grammar only, not your English as a whole."; },
     placementBelow: "You're not yet confident with A2 grammar. Start with the basics – everything else builds on them.",
@@ -23336,7 +23486,7 @@ document.querySelectorAll(".lang-switch button").forEach(function(btn){
 let selectedTags = {};     // { topicId: Set<tag> } — jen podtémata s aspoň jedním zaškrtnutým tagem počítají jako "vybraný topic"
 let expandedTopics = {};   // { topicId: bool } — čistě UI stav accordionu
 let openCheats = {};       // { topicId: bool } — rozbalený tahák v accordionu
-let selectedDifficulty = state.placement ? state.placement.difficulty : "basic";
+let selectedDifficulty = state.unlocked && state.unlocked.advanced ? "advanced" : (state.unlocked && state.unlocked.intermediate ? "intermediate" : (state.placement ? state.placement.difficulty : "basic"));
 let selectedCount = 10;
 
 const topicGrid = document.getElementById("topic-grid");
@@ -23687,6 +23837,25 @@ mascotSwitch.addEventListener("click", function(e){
   renderMascotSwitch();
 });
 renderMascotSwitch();
+// Zvuky zapnuté / vypnuté (samotné zvuky jsou v části 8c)
+const SOUND_KEY = "grammarLabSoundV1";
+let soundOn = true;
+try{ soundOn = window.localStorage.getItem(SOUND_KEY) !== "off"; }catch(e){}
+const soundSwitch = document.getElementById("sound-switch");
+function renderSoundSwitch(){
+  soundSwitch.querySelectorAll("button").forEach(function(btn){
+    btn.classList.toggle("active", (btn.getAttribute("data-sound") === "on") === soundOn);
+  });
+}
+soundSwitch.addEventListener("click", function(e){
+  const btn = e.target.closest("button");
+  if(!btn) return;
+  soundOn = btn.getAttribute("data-sound") === "on";
+  try{ window.localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off"); }catch(e){}
+  renderSoundSwitch();
+  if(soundOn){ audioUnlock(); playSound("ding"); }
+});
+renderSoundSwitch();
 document.getElementById("settings-test").addEventListener("click", function(){ startPlacement(); });
 
 /* re-render start label when count changes */
@@ -23797,30 +23966,53 @@ function startSpecialRound(mode){
 // a jsou krátké (výběr z možností nebo jedna mezera); slovní zásoba a Mix se vynechávají.
 // Do dalšího bloku se postupuje při aspoň 4 z 5 správně, jinak test končí. Čistým
 // tipováním se 4 z 5 trefí asi v 5 % případů; tlačítko „Nevím“ tipování dál omezuje.
+// Hraniční výsledek 3 z 5 rozhodnou 3 otázky navíc (stačí 2 správně). Otázky z dřívějších
+// testů (state.placementSeen) přijdou na řadu až nakonec, takže je test pokaždé jiný.
 const PLACEMENT_LEVELS = ["A2", "B1", "B2", "C1"];
 const PLACEMENT_BLOCK = 5;
 const PLACEMENT_PASS = 4;
+const PLACEMENT_EXTRA = 3, PLACEMENT_EXTRA_PASS = 2;
 let placementBlock = 0;
+let placementBlockStart = 0; // index první otázky aktuálního bloku
+let placementExtra = false;  // přidány doplňkové otázky v tomto bloku?
 let dontKnow = false; // odpověď „Nevím“ se vyhodnotí jako chybná
 
 function addPlacementBlock(){
+  placementBlockStart = roundQuestions.length;
+  placementExtra = false;
+  addPlacementQuestions(PLACEMENT_BLOCK);
+}
+
+// n otázek aktuální úrovně, každá z jiného tématu (nejdřív témata, která v bloku ještě nebyla).
+function addPlacementQuestions(n){
   const level = PLACEMENT_LEVELS[placementBlock];
+  const seenBefore = {}, inTest = {}, inBlock = {};
+  (state.placementSeen || []).forEach(function(id){ seenBefore[id] = true; });
+  roundQuestions.forEach(function(q, i){ inTest[q.id] = true; if(i >= placementBlockStart) inBlock[q.topic] = true; });
   const byTopic = {};
   QUESTIONS.forEach(function(q){
-    if(q.difficulty !== "intermediate" || q.type === "multi") return;
+    if(q.difficulty !== "intermediate" || q.type === "multi" || inTest[q.id]) return;
     const l = TAG_CEFR[q.topic + "|" + q.tag];
     if((l === "A1" ? "A2" : l) !== level) return;
     (byTopic[q.topic] = byTopic[q.topic] || []).push(q);
   });
-  shuffle(Object.keys(byTopic)).slice(0, PLACEMENT_BLOCK).forEach(function(t){
-    const pool = byTopic[t];
+  shuffle(Object.keys(byTopic)).sort(function(a, b){ return (inBlock[a] ? 1 : 0) - (inBlock[b] ? 1 : 0); }).slice(0, n).forEach(function(t){
+    const fresh = byTopic[t].filter(function(q){ return !seenBefore[q.id]; });
+    const pool = fresh.length ? fresh : byTopic[t];
     roundQuestions.push(pool[Math.floor(Math.random() * pool.length)]);
     if(roundTopics.indexOf(t) === -1) roundTopics.push(t);
   });
 }
 
+function placementFirstCorrect(){
+  return roundResults.slice(placementBlockStart, placementBlockStart + PLACEMENT_BLOCK).filter(function(r){ return r.allCorrect; }).length;
+}
+
 function placementBlockPassed(){
-  return roundResults.slice(placementBlock * PLACEMENT_BLOCK).filter(function(r){ return r.allCorrect; }).length >= PLACEMENT_PASS;
+  const first = placementFirstCorrect();
+  if(first >= PLACEMENT_PASS) return true;
+  return placementExtra && first === PLACEMENT_PASS - 1 &&
+    roundResults.slice(placementBlockStart + PLACEMENT_BLOCK).filter(function(r){ return r.allCorrect; }).length >= PLACEMENT_EXTRA_PASS;
 }
 
 function startPlacement(){
@@ -23882,7 +24074,7 @@ function renderQuestion(){
   currentAnswered = false;
   const q = roundQuestions[roundIndex];
   // V rozřazovacím testu se počítá v rámci aktuálního bloku (další blok se přidá až po něm).
-  const from = roundMode === "placement" ? placementBlock * PLACEMENT_BLOCK : 0;
+  const from = roundMode === "placement" ? placementBlockStart : 0;
   const pct = Math.round(((roundIndex - from) / (roundQuestions.length - from)) * 100);
   quizProgressFill.style.width = pct + "%";
   quizCounter.textContent = tx("questionOf", roundIndex - from + 1, roundQuestions.length - from);
@@ -24094,7 +24286,7 @@ function hitsButton(r, buttons){
   return buttons.some(function(b){ return r.left < b.right + 8 && r.right > b.left - 8 && r.top < b.bottom + 8 && r.bottom > b.top - 8; });
 }
 
-function showMascot(mood, always){
+function showMascot(mood, always, fixedLine){
   if(!mascotOn || document.querySelector(".kt")) return;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const quizCard = document.getElementById("quiz-card");
@@ -24106,7 +24298,7 @@ function showMascot(mood, always){
     const sp = MASCOT_SPOTS[k];
     return k !== mascotLastSpot && !(sp.comboOnly && mood !== "combo") && !(sp.motion && reduced) && !(sp.card && cardTop < 80);
   }));
-  const lines = tx("ktLines")[mood].filter(function(l){ return l !== mascotLastLine; });
+  const lines = fixedLine ? [fixedLine] : tx("ktLines")[mood].filter(function(l){ return l !== mascotLastLine; });
   const line = lines[Math.floor(Math.random() * lines.length)];
 
   // Zkoušet místa, dokud se nenajde takové, kde nic nezakryje; jinak se tentokrát neukáže.
@@ -24134,6 +24326,7 @@ function showMascot(mood, always){
   }
   if(!el) return;
   if(!always) mascotCount++;
+  playSound("pop");
   mascotLastLine = line;
   if(sp.cls) el.classList.add(sp.cls);
   el.style.transform = sp.out;
@@ -24182,6 +24375,9 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
   }
   fb += '</div>';
   slot.innerHTML = fb;
+  let inRow = 0;
+  for(let i = roundResults.length - 1; i >= 0 && roundResults[i].allCorrect; i--) inRow++;
+  playSound(!allCorrect ? "soft" : (roundMode !== "placement" && (inRow === 5 || inRow === 10) ? "combo" : "ding"));
   mascotAfterAnswer(allCorrect);
 
   const dontKnowBtn = document.getElementById("dontknow-btn");
@@ -24196,11 +24392,15 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
 
 function advanceQuestion(){
   roundIndex += 1;
-  if(roundIndex >= roundQuestions.length && roundMode === "placement" &&
-     placementBlockPassed() && placementBlock < PLACEMENT_LEVELS.length - 1){
-    placementBlock += 1;
-    addPlacementBlock();
-    renderQuizTopbar();
+  if(roundIndex >= roundQuestions.length && roundMode === "placement"){
+    if(!placementExtra && placementFirstCorrect() === PLACEMENT_PASS - 1){
+      placementExtra = true;
+      addPlacementQuestions(PLACEMENT_EXTRA);
+    } else if(placementBlockPassed() && placementBlock < PLACEMENT_LEVELS.length - 1){
+      placementBlock += 1;
+      addPlacementBlock();
+      renderQuizTopbar();
+    }
   }
   if(roundIndex >= roundQuestions.length){
     finishRound();
@@ -24242,19 +24442,27 @@ function finishRound(){
   const today = dayKey(new Date());
   const goalBefore = state.days[today] || 0;
   state.days[today] = goalBefore + roundResults.length;
-  if(goalBefore < dailyGoal && state.days[today] >= dailyGoal){
+  const goalReached = goalBefore < dailyGoal && state.days[today] >= dailyGoal;
+  if(goalReached){
     setTimeout(dropPlates, 400);
+    setTimeout(function(){ playSound("goal"); }, 400);
     setTimeout(function(){ showMascot("rest", true); }, 1200);
   }
   if(roundMode === "placement"){
     state.placement = placementResult();
     selectedDifficulty = state.placement.difficulty;
     renderDiffGrid();
+    const ids = state.placementSeen || [];
+    roundQuestions.forEach(function(q){ if(ids.indexOf(q.id) === -1) ids.push(q.id); });
+    state.placementSeen = ids;
+    unlockFromPlacement();
   }
+  const cels = collectCelebrations(goalBefore === 0);
   saveState();
 
   renderResults(pct, correctParts, totalParts, byTag);
   showView("results");
+  if(cels.length) setTimeout(function(){ celebrate(cels); }, goalReached ? 2600 : 600);
 }
 
 // Oslava splněného denního cíle: chvilku padají kotouče (kdo má vypnuté animace, nic nevidí).
@@ -24424,7 +24632,35 @@ const chartWrap = document.getElementById("chart-wrap");
 const weakList = document.getElementById("weak-list");
 const historyList = document.getElementById("history-list");
 
+function renderLevelCards(){
+  const ls = levelStats(), lv = state.level, i = PLACEMENT_LEVELS.indexOf(lv), next = PLACEMENT_LEVELS[i + 1];
+  let h = '<div class="lvl-head"><b>' + (lv || "–") + '</b><span>' + (lv ? tx("levelHave", lv) : tx("levelNone")) + '</span></div>' +
+    '<div class="lvl-ladder">' + PLACEMENT_LEVELS.map(function(l, j){ return '<i class="' + (j < i ? "done" : (j === i ? "now" : "")) + '">' + l + '</i>'; }).join("") + '</div>';
+  if(next){
+    const seen = ls.seen[next] || 0, ok = ls.ok[next] || 0, pct = seen ? Math.round(ok / seen * 100) : 0;
+    const p = Math.min(seen / LEVEL_NEED, 1) * Math.min(seen ? ok / seen / LEVEL_PCT : 0, 1);
+    h += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' + tx("levelNext", next, seen, pct) + '</p>';
+  } else {
+    h += '<p class="lvl-note">' + tx("levelTop") + '</p>';
+  }
+  document.getElementById("level-body").innerHTML = h;
+
+  const rec = recommendedDifficulty(), nextD = rec === "basic" ? "intermediate" : (rec === "intermediate" ? "advanced" : null);
+  let d = '<div class="lvl-head"><b class="small">' + escapeHtml(diffName(rec)) + '</b><span>' + tx("diffRecommended") + '</span></div>';
+  if(nextD){
+    const r = state.recent[rec] || [], c = r.filter(Boolean).length;
+    const p = r.length < RECENT_N ? r.length / RECENT_N : Math.min(1, c / UNLOCK_NEED);
+    d += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' +
+      tx("diffUnlockNext", escapeHtml(diffName(nextD)), escapeHtml(diffName(rec)), r.length, c) + '</p>';
+  } else {
+    d += '<p class="lvl-note">' + tx("diffTop") + '</p>';
+  }
+  document.getElementById("diff-body").innerHTML = d;
+}
+
 function renderProgress(){
+  initCelebrationState();
+  renderLevelCards();
   const rounds = state.rounds;
   statRounds.textContent = rounds.length;
 
@@ -24823,9 +25059,596 @@ backupFile.addEventListener("change", function(){
   });
 });
 
+/* ============================================================
+   8c. ZVUKY, ÚROVEŇ, VELKÉ OSLAVY A PŘIVÍTÁNÍ
+   (docs/navrhy-vzhledu-24..28.html)
+   ============================================================ */
+
+// --- Zvuky: skládané ve Web Audio, žádné soubory. Prohlížeč je pustí až po prvním
+// klepnutí; na iPhonu je ztlumí přepínač ticha (audioSession "ambient").
+let audioCtx = null, audioMaster = null, noiseBuf = null;
+function audioUnlock(){
+  if(audioCtx){ if(audioCtx.state === "suspended") audioCtx.resume(); return; }
+  if(!soundOn) return;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if(!AC) return;
+  try{ if(navigator.audioSession) navigator.audioSession.type = "ambient"; }catch(e){}
+  audioCtx = new AC();
+  audioMaster = audioCtx.createGain();
+  audioMaster.gain.value = 0.7;
+  audioMaster.connect(audioCtx.destination);
+}
+document.addEventListener("pointerdown", audioUnlock);
+document.addEventListener("keydown", audioUnlock);
+
+function tone(f, dt, dur, o){
+  o = o || {};
+  const t0 = audioCtx.currentTime + dt, osc = audioCtx.createOscillator(), g = audioCtx.createGain();
+  osc.type = o.type || "sine";
+  osc.frequency.setValueAtTime(f, t0);
+  if(o.f2) osc.frequency.exponentialRampToValueAtTime(o.f2, t0 + dur);
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.exponentialRampToValueAtTime(o.vol || 0.2, t0 + (o.a || 0.006));
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  osc.connect(g); g.connect(audioMaster);
+  osc.start(t0); osc.stop(t0 + dur + 0.05);
+}
+function noise(dt, dur, o){
+  o = o || {};
+  const t0 = audioCtx.currentTime + dt;
+  if(!noiseBuf){
+    noiseBuf = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
+    const d = noiseBuf.getChannelData(0);
+    for(let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  }
+  const src = audioCtx.createBufferSource(), f = audioCtx.createBiquadFilter(), g = audioCtx.createGain();
+  src.buffer = noiseBuf;
+  f.type = o.type || "bandpass";
+  f.frequency.setValueAtTime(o.f || 1000, t0);
+  if(o.f2) f.frequency.exponentialRampToValueAtTime(o.f2, t0 + dur);
+  f.Q.value = o.q || 1;
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.exponentialRampToValueAtTime(o.vol || 0.2, t0 + (o.a || 0.01));
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  src.connect(f); f.connect(g); g.connect(audioMaster);
+  src.start(t0); src.stop(t0 + dur + 0.05);
+}
+const SOUNDS = {
+  ding: function(){ tone(880, 0, 0.18, { vol: 0.16 }); tone(1318.5, 0.09, 0.35, { vol: 0.16 }); },
+  soft: function(){ tone(330, 0, 0.25, { type: "triangle", vol: 0.12, f2: 262 }); },
+  combo: function(){ [659.3, 784, 987.8, 1318.5].forEach(function(f, i){ tone(f, i * 0.07, 0.24, { type: "triangle", vol: 0.13 }); }); },
+  pop: function(){ tone(420, 0, 0.13, { f2: 900, vol: 0.16 }); },
+  fanfare: function(){
+    [523.25, 659.25, 783.99].forEach(function(f, i){ tone(f, i * 0.11, 0.35, { type: "triangle", vol: 0.15 }); });
+    [1046.5, 1318.5, 1568].forEach(function(f){ tone(f, 0.36, 1.2, { type: "triangle", vol: 0.08 }); });
+    tone(261.6, 0.36, 1.2, { vol: 0.14 });
+  },
+  shimmer: function(){ for(let i = 0; i < 12; i++) tone(1568 * Math.pow(2, i / 8), i * 0.035, 0.35, { vol: 0.045 }); },
+  goal: function(){ SOUNDS.fanfare(); for(let i = 0; i < 12; i++) tone(1568 * Math.pow(2, i / 8), 0.38 + i * 0.035, 0.35, { vol: 0.045 }); },
+  roll: function(){ noise(0, 1.25, { type: "lowpass", f: 220, f2: 520, vol: 0.22, a: 0.35 }); },
+  thud: function(){ tone(150, 0, 0.4, { f2: 42, vol: 0.55 }); noise(0, 0.16, { type: "lowpass", f: 700, vol: 0.3 }); },
+  crack: function(){ [0, 0.08, 0.17, 0.3].forEach(function(d, i){ noise(d, 0.045, { type: "highpass", f: 2200 + i * 400, vol: 0.22 }); }); },
+  shatter: function(){ noise(0, 0.45, { type: "highpass", f: 3500, vol: 0.16 }); [2637, 3520, 4186, 3136, 2349, 2794].forEach(function(f, i){ tone(f, i * 0.045, 0.28, { vol: 0.05 }); }); },
+  whooshUp: function(){ noise(0, 0.45, { f: 300, f2: 2200, q: 2, vol: 0.22, a: 0.25 }); },
+  whooshDown: function(){ noise(0, 0.65, { f: 2400, f2: 300, q: 2, vol: 0.16, a: 0.2 }); },
+  clank: function(){ [220, 331, 497, 742].forEach(function(f){ tone(f, 0, 0.7, { type: "triangle", vol: 0.07 }); }); noise(0, 0.08, { f: 1800, vol: 0.22 }); },
+  ting: function(k){ tone(1760 + k * 700, 0, 0.1, { vol: 0.05 }); },
+  cling: function(){ [1568, 2349, 3136].forEach(function(f, i){ tone(f, i * 0.02, 1, { vol: 0.08 }); }); },
+  clink: function(){ tone(1760, 0, 0.35, { vol: 0.09 }); tone(2637, 0.07, 0.45, { vol: 0.07 }); },
+  stamp: function(){ tone(110, 0, 0.2, { f2: 60, vol: 0.35 }); noise(0, 0.06, { type: "lowpass", f: 900, vol: 0.2 }); }
+};
+function playSound(name, arg){
+  if(!soundOn || !audioCtx) return;
+  try{ SOUNDS[name](arg); }catch(e){}
+}
+
+// --- Úroveň (A2–C1): z běžného procvičování i z rozřazovacího testu, nikdy neklesne.
+// Úroveň máš, když z otázek té úrovně (podle TAG_CEFR jevu) máš zodpovězeno aspoň 25 různých
+// a u 80 % z nich byla poslední odpověď správná – a totéž platí pro všechny nižší úrovně
+// (úrovně do té už dosažené, např. z testu, se berou jako splněné).
+const LEVEL_NEED = 25, LEVEL_PCT = 0.8;
+// Obtížnost: z posledních 30 odpovědí na ní aspoň 24 správně → odemkne se další (oslava zámkem).
+const RECENT_N = 30, UNLOCK_NEED = 24;
+
+function questionLevel(q){
+  const l = TAG_CEFR[q.topic + "|" + q.tag];
+  return l === "A1" ? "A2" : (l || null);
+}
+function levelStats(){
+  const seen = {}, ok = {};
+  QUESTIONS.forEach(function(q){
+    const l = questionLevel(q), st = state.questionStats[q.id];
+    if(!l || !st || !st.seen) return;
+    seen[l] = (seen[l] || 0) + 1;
+    if(st.streak > 0) ok[l] = (ok[l] || 0) + 1;
+  });
+  let reached = null;
+  for(let i = 0; i < PLACEMENT_LEVELS.length; i++){
+    const l = PLACEMENT_LEVELS[i];
+    if(i <= PLACEMENT_LEVELS.indexOf(state.level) || ((seen[l] || 0) >= LEVEL_NEED && (ok[l] || 0) >= LEVEL_PCT * seen[l])) reached = l; else break;
+  }
+  return { reached: reached, seen: seen, ok: ok };
+}
+// Zvýší uloženou úroveň podle procvičování a testu; vrátí novou úroveň, nebo null.
+function updateLevel(){
+  let best = state.level;
+  [levelStats().reached, state.placement && state.placement.level].forEach(function(l){
+    if(l && PLACEMENT_LEVELS.indexOf(l) > PLACEMENT_LEVELS.indexOf(best)) best = l;
+  });
+  if(best === state.level) return null;
+  state.level = best;
+  return best;
+}
+function masteredCount(){
+  return Object.keys(state.questionStats).filter(function(id){ return state.questionStats[id].streak >= 3; }).length;
+}
+// Milníky zvládnutých otázek: 100, 500, 1000 a pak každá další tisícovka.
+function goldMilestone(n){
+  return n >= 1000 ? Math.floor(n / 1000) * 1000 : (n >= 500 ? 500 : (n >= 100 ? 100 : 0));
+}
+function recommendedDifficulty(){
+  return state.unlocked.advanced ? "advanced" : (state.unlocked.intermediate ? "intermediate" : "basic");
+}
+function unlockFromPlacement(){
+  const d = state.placement ? state.placement.difficulty : "basic";
+  if(d !== "basic") state.unlocked.intermediate = true;
+  if(d === "advanced") state.unlocked.advanced = true;
+}
+// Pokrok z doby před oslavami se jen potichu zapíše, aby se staré úspěchy neslavily znovu.
+function initCelebrationState(){
+  if(!state.recent) state.recent = {};
+  if(!state.unlocked){ state.unlocked = {}; unlockFromPlacement(); }
+  if(state.level === undefined){ state.level = null; updateLevel(); }
+  if(state.goldMilestone === undefined) state.goldMilestone = goldMilestone(masteredCount());
+}
+function checkUnlock(){
+  let res = null;
+  [["basic", "intermediate"], ["intermediate", "advanced"]].forEach(function(p){
+    const r = state.recent[p[0]] || [];
+    const ok = r.filter(function(x){ return x; }).length;
+    if(!state.unlocked[p[1]] && r.length >= RECENT_N && ok >= UNLOCK_NEED){
+      state.unlocked[p[1]] = true;
+      if(p[1] === "advanced") state.unlocked.intermediate = true;
+      res = { from: p[0], next: p[1] };
+    }
+  });
+  if(res){
+    selectedDifficulty = res.next;
+    renderDiffGrid();
+  }
+  return res;
+}
+
+// Co se po kole slaví velkou oslavou (může jich být víc – ukážou se po sobě).
+function collectCelebrations(firstRoundToday){
+  const out = [];
+  const lv = updateLevel();
+  if(lv) out.push({ kind: "lift", num: lv, badge: tx("celLevelBadge"), title: tx("celLevelTitle", lv), sub: tx("celLevelSub", lv) });
+  if(roundMode !== "placement"){
+    const u = checkUnlock();
+    if(u) out.push({ kind: "lock", badge: tx("celUnlockBadge"), title: diffName(u.next), sub: tx("celUnlockSub", diffName(u.from)) });
+  }
+  if(firstRoundToday){
+    const n = currentStreak(activeDays()).n;
+    if(n === 7 || n === 30 || n === 100 || (n > 0 && n % 365 === 0)){
+      out.push({ kind: "lift", num: String(n), badge: tx("celStreakBadge"), title: tx("celStreakTitle", n), sub: tx("celStreakSub", n) });
+    }
+  }
+  const m = goldMilestone(masteredCount());
+  if(m > state.goldMilestone){
+    state.goldMilestone = m;
+    out.push({ kind: "gold", badge: tx("celGoldBadge"), title: tx("celGoldTitle", m), sub: tx("celGoldSub") });
+  }
+  if(roundMode === "normal" && roundDifficulty === "advanced" && roundResults.length >= 10 &&
+     roundResults.every(function(r){ return r.allCorrect; })){
+    out.push({ kind: "medal", badge: tx("celMedalBadge"), title: tx("celMedalTitle", roundResults.length), sub: tx("celMedalSub") });
+  }
+  return out;
+}
+
+// --- Kreslení oslav ---
+const CEL_DEFS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' +
+  '<radialGradient id="c-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>' +
+  '<radialGradient id="c-gold" cx="36%" cy="30%" r="78%"><stop offset="0" stop-color="#FFF7CC"/><stop offset=".35" stop-color="#FFD54A"/><stop offset=".75" stop-color="#D9A514"/><stop offset="1" stop-color="#8A6608"/></radialGradient>' +
+  '<linearGradient id="c-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>' +
+  '<linearGradient id="c-rim-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8890A"/><stop offset="1" stop-color="#5E4705"/></linearGradient>' +
+  '<linearGradient id="c-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F9FB"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#DDE1E6"/></linearGradient>' +
+  '<radialGradient id="c-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>' +
+  '<linearGradient id="c-yellow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>' +
+  '<radialGradient id="c-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>' +
+  '<linearGradient id="c-lbody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE48A"/><stop offset=".25" stop-color="#F6C93A"/><stop offset=".7" stop-color="#D49E12"/><stop offset="1" stop-color="#9C7406"/></linearGradient>' +
+  '<linearGradient id="c-lside" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,.35)"/><stop offset=".2" stop-color="rgba(255,255,255,0)"/><stop offset=".8" stop-color="rgba(0,0,0,0)"/><stop offset="1" stop-color="rgba(0,0,0,.25)"/></linearGradient>' +
+  '<linearGradient id="c-chrome" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E959E"/><stop offset=".3" stop-color="#F4F6F8"/><stop offset=".55" stop-color="#B7BDC5"/><stop offset="1" stop-color="#6E757E"/></linearGradient>' +
+  '<clipPath id="c-left"><polygon points="0,0 62,0 56,58 66,74 56,92 63,140 0,140"/></clipPath>' +
+  '<clipPath id="c-right"><polygon points="62,0 140,0 140,140 63,140 56,92 66,74 56,58"/></clipPath>' +
+  '<linearGradient id="c-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6F8"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#5E656E"/></linearGradient>' +
+  '<linearGradient id="c-plate" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1A1D22"/><stop offset=".35" stop-color="#4A515C"/><stop offset=".6" stop-color="#2F343C"/><stop offset="1" stop-color="#111317"/></linearGradient>' +
+  '<linearGradient id="c-bgold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9C7406"/><stop offset=".4" stop-color="#FFE07A"/><stop offset=".7" stop-color="#F2C230"/><stop offset="1" stop-color="#8A6608"/></linearGradient>' +
+  '<radialGradient id="c-disc" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".4" stop-color="#F6C93A"/><stop offset="1" stop-color="#9C7406"/></radialGradient>' +
+  '<linearGradient id="c-sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,0)"/><stop offset=".5" stop-color="rgba(255,255,255,.75)"/><stop offset="1" stop-color="rgba(255,255,255,0)"/></linearGradient>' +
+  '</defs></svg>';
+
+// Velký 3D Kotoučík pro oslavy. Pózy: wave, up, star, proud, plain, lift (bez rukou), coin (bez rukou, i zlatý).
+function celKt(pose, gold){
+  const body = gold ? "url(#c-gold)" : "url(#c-body)", rim = gold ? "url(#c-rim-gold)" : "url(#c-rim)";
+  const star = pose === "star" || pose === "lift" || gold;
+  function eye(x, y){
+    if(star) return '<path d="M' + x + ' ' + (y - 10) + ' l3 6.6 7.2 .7 -5.5 4.7 1.7 7 -6.4 -3.8 -6.4 3.8 1.7 -7 -5.5 -4.7 7.2 -.7z" fill="' + (gold ? "#fff" : "url(#c-yellow)") + '" stroke="' + (gold ? "#B8890A" : "none") + '" stroke-width="1"/>';
+    if(pose === "proud") return '<path d="M' + (x - 7) + ' ' + (y + 2) + ' q7 -10 14 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+    return '<ellipse cx="' + x + '" cy="' + (y + 1.5) + '" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="' + x + '" cy="' + y + '" rx="8.5" ry="9.5" fill="url(#c-eye)"/>' +
+      '<circle cx="' + (x + 1.5) + '" cy="' + (y + 1.8) + '" r="4.6" fill="#1B2A41"/><circle cx="' + (x + 3.2) + '" cy="' + (y - 1.2) + '" r="1.8" fill="#fff"/>';
+  }
+  const armC = gold ? ["#7A5C06", "#C99A12"] : ["#16191E", "#3A414B"];
+  function arm(d){ return '<path d="' + d + '" stroke="' + armC[0] + '" stroke-width="10" fill="none" stroke-linecap="round"/><path d="' + d + '" stroke="' + armC[1] + '" stroke-width="7" fill="none" stroke-linecap="round"/>'; }
+  function hand(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="8.5" fill="' + (gold ? "url(#c-gold)" : "url(#c-hand)") + '"/><circle cx="' + (x - 2.6) + '" cy="' + (y - 2.6) + '" r="2.3" fill="rgba(255,255,255,.4)"/>'; }
+  let arms = "";
+  if(pose === "wave") arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  if(pose === "up" || pose === "star" || (gold && pose !== "coin")) arms = arm("M20 64 q-14 -12 -8 -34") + hand(12, 28) + arm("M104 64 q14 -12 8 -34") + hand(112, 28);
+  if(pose === "proud") arms = arm("M22 76 q-12 4 -10 16") + hand(12, 94) + arm("M102 76 q12 4 10 16") + hand(112, 94);
+  const mouth = star ? '<path d="M49 77 q13 18 26 0 z" fill="' + (gold ? "#7A5C06" : "url(#c-yellow)") + '"/>'
+    : '<path d="M50 78 q12 13 24 0" stroke="url(#c-yellow)" stroke-width="4.6" fill="none" stroke-linecap="round"/>';
+  return '<svg viewBox="-8 -4 140 140" width="100%" height="100%">' + arms +
+    '<circle cx="62" cy="62" r="47" fill="' + rim + '"/><circle cx="62" cy="62" r="42.5" fill="' + body + '"/>' +
+    '<circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="' + (gold ? "#FFF4C2" : "url(#c-silver)") + '" stroke-width="2.6"/>' +
+    '<path d="M27 40 a40 40 0 0 1 27 -21" stroke="rgba(255,255,255,' + (gold ? 0.55 : 0.3) + ')" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="62" cy="63" r="4.2" fill="' + (gold ? "#8A6608" : "#0E1014") + '" stroke="' + (gold ? "#FFF4C2" : "url(#c-silver)") + '" stroke-width="1.2"/>' +
+    eye(47, 44) + eye(77, 44) + mouth + '</svg>';
+}
+function celSparkle(x, y, d, s){
+  s = s || 22;
+  return '<svg class="cel-tw" viewBox="0 0 22 22" style="left:' + x + 'px;top:' + y + 'px;width:' + s + 'px;height:' + s + 'px;animation-delay:' + d + 's"><path d="M11 0 L13.4 8.6 L22 11 L13.4 13.4 L11 22 L8.6 13.4 L0 11 L8.6 8.6 Z" fill="#FFE07A"/></svg>';
+}
+function celConfetti(){
+  let h = '<div class="cel-confetti">';
+  for(let i = 0; i < 26; i++){
+    const t = ["p", "g", "s", "g", "p"][i % 5], sz = t === "s" ? 8 : 12 + (i * 7) % 14;
+    h += '<i class="' + t + '" style="left:' + ((i * 37) % 100) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-delay:' + ((i % 7) * 0.09) + 's"></i>';
+  }
+  return h + '</div>';
+}
+const celEase = function(t){ return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+const celEase3 = function(p){ return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const celEaseOut3 = function(p){ return 1 - Math.pow(1 - p, 3); };
+const celBack = function(t){ const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const celLerp = function(a, b, t){ return a + (b - a) * t; };
+const celClamp = function(x){ return Math.max(0, Math.min(1, x)); };
+const celSeg = function(t, a, b){ return celClamp((t - a) / (b - a)); };
+const CEL_STAMP = [[3.5, "stamp"], [3.55, "fanfare"]];
+
+// Každá scéna: html, volitelně start(kořen) → funkce snímku f(t v sekundách), a zvuky [čas, název, parametr].
+const CEL_SCENES = {
+  // Rozbije zámek: rozjede se, narazí, zámek praskne, půlky odpadnou, střepy.
+  lock: function(){
+    function lockBody(clip){
+      return '<g clip-path="url(#' + clip + ')"><rect x="10" y="62" width="100" height="78" rx="18" fill="url(#c-lbody)"/><rect x="10" y="62" width="100" height="78" rx="18" fill="url(#c-lside)"/>' +
+        '<rect x="16" y="67" width="88" height="68" rx="14" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2"/><rect x="10" y="62" width="100" height="78" rx="18" fill="none" stroke="#8A6608" stroke-width="2"/>' +
+        '<path d="M22 72 h40" stroke="rgba(255,255,255,.7)" stroke-width="4" stroke-linecap="round"/>' +
+        '<circle cx="60" cy="96" r="11" fill="#5E4705"/><path d="M55 100 h10 l3 20 h-16 z" fill="#5E4705"/><circle cx="58" cy="94" r="3" fill="rgba(255,255,255,.25)"/></g>';
+    }
+    const shards = [[-110, -70, 200], [90, -110, -160], [120, 30, 120], [-90, 60, -220], [10, -140, 260], [-40, 100, 90], [60, 90, -120]].map(function(s){
+      return '<svg class="cel-shard" viewBox="0 0 16 16" style="--dx:' + s[0] + 'px;--dy:' + s[1] + 'px;--r:' + s[2] + 'deg"><path d="M0 2 L16 0 L9 16 Z" fill="url(#c-lbody)" stroke="#8A6608" stroke-width="1"/></svg>';
+    }).join("");
+    return {
+      html: '<div class="cel-glow"></div>' +
+        '<svg class="cel-impact" viewBox="0 0 90 90"><path d="M45 0 L53 30 L84 22 L60 45 L84 68 L53 60 L45 90 L37 60 L6 68 L30 45 L6 22 L37 30 Z" fill="#FFF4C2" stroke="#F2C230" stroke-width="2"/></svg>' +
+        '<svg class="cel-lk" viewBox="0 0 120 150">' +
+          '<g class="cel-lk-shackle"><path d="M30 66 V44 a30 30 0 0 1 60 0 V66" stroke="#3E444C" stroke-width="15" fill="none"/><path d="M30 66 V44 a30 30 0 0 1 60 0 V66" stroke="url(#c-chrome)" stroke-width="12" fill="none"/><path d="M36 48 a24 24 0 0 1 20 -22" stroke="rgba(255,255,255,.8)" stroke-width="3" fill="none" stroke-linecap="round"/></g>' +
+          '<g class="cel-lk-left">' + lockBody("c-left") + '</g><g class="cel-lk-right">' + lockBody("c-right") + '</g>' +
+          '<path class="cel-lk-crack" d="M62 62 L56 92 L66 108 L56 122 L63 140" stroke="#3E2F05" stroke-width="3" fill="none" stroke-linejoin="round"/></svg>' +
+        shards +
+        '<div class="cel-lk-roll"><div class="cel-face-a">' + celKt("wave") + '</div><div class="cel-face-b">' + celKt("star") + '</div></div>',
+      cues: [[0, "roll"], [1.33, "thud"], [1.5, "crack"], [2.3, "shatter"]].concat(CEL_STAMP)
+    };
+  },
+
+  // Zvedne činku: drží ji u břicha, přidřepne, vyrazí nad hlavu, činka se zhoupne.
+  lift: function(c){
+    const plates = [[-138, 40, 1], [-118, 40, 1], [-100, 30, 0], [120, 40, 1], [100, 40, 1], [86, 30, 0]].map(function(p){
+      const x = p[0], h = p[1], w = p[2] ? 18 : 13;
+      return '<g class="pl" data-x="' + x + '"><rect x="' + x + '" y="' + (-h) + '" width="' + w + '" height="' + (2 * h) + '" rx="5" fill="url(#c-plate)"/>' +
+        '<rect x="' + x + '" y="' + (-h) + '" width="' + w + '" height="' + (2 * h) + '" rx="5" fill="none" stroke="' + (p[2] ? "url(#c-bgold)" : "#9AA0A7") + '" stroke-width="2"/>' +
+        '<rect x="' + (x + 3) + '" y="' + (-h + 6) + '" width="3" height="' + (2 * h - 12) + '" rx="1.5" fill="rgba(255,255,255,.18)"/></g>';
+    }).join("");
+    return {
+      html: '<div class="cel-glow"></div><div class="cel-num">' + escapeHtml(c.num) + '</div>' +
+        '<svg class="cel-svg" viewBox="0 0 300 300">' +
+          '<ellipse cx="150" cy="258" rx="118" ry="16" fill="#0E141D" opacity=".7"/>' +
+          '<rect x="44" y="246" width="212" height="18" rx="9" fill="#1F2B3B"/><rect x="44" y="246" width="212" height="6" rx="3" fill="#2C3D57"/>' +
+          '<g class="lf-body"><svg class="lf-plain" x="-60" y="-60" width="120" height="120">' + celKt("plain") + '</svg><svg class="lf-star" x="-60" y="-60" width="120" height="120" opacity="0">' + celKt("lift") + '</svg></g>' +
+          '<g class="lf-arms"></g>' +
+          '<g class="lf-bar"><rect x="-150" y="-5" width="300" height="10" rx="5" fill="url(#c-bar)"/><path d="M-60 -3 h120" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round"/>' + plates +
+            '<rect x="-84" y="-11" width="7" height="22" rx="2" fill="#C9CED6"/><rect x="77" y="-11" width="7" height="22" rx="2" fill="#C9CED6"/></g>' +
+          '<path class="lf-sweat" d="M0 0 C4 8 8 12 8 16 a8 8 0 0 1 -16 0 C-8 12 -4 8 0 0 z" fill="#8DC6F2" opacity="0"/>' +
+        '</svg>' + celSparkle(30, 40, 0.1) + celSparkle(250, 70, 0.3) + celSparkle(60, 230, 0.5, 16) + celSparkle(230, 220, 0.2, 18),
+      cues: [[1.1, "whooshUp"], [1.6, "clank"], [1.88, "pop"]].concat(CEL_STAMP),
+      start: function(root){
+        const q = function(s){ return root.querySelector(s); };
+        const body = q(".lf-body"), bar = q(".lf-bar"), arms = q(".lf-arms"), sweat = q(".lf-sweat"), plainF = q(".lf-plain"), starF = q(".lf-star");
+        const platesEl = root.querySelectorAll(".lf-bar .pl");
+        const cx = 150, base = 196, chest = base + 30, top = base - 92;
+        function arm(sx, sy, hx, hy, out){
+          const d = "M" + sx + " " + sy + " Q" + ((sx + hx) / 2 + out) + " " + ((sy + hy) / 2 + 6) + " " + hx + " " + hy;
+          return '<path d="' + d + '" stroke="#16191E" stroke-width="11" fill="none" stroke-linecap="round"/><path d="' + d + '" stroke="#3A414B" stroke-width="8" fill="none" stroke-linecap="round"/>' +
+            '<circle cx="' + hx + '" cy="' + hy + '" r="9" fill="url(#c-hand)"/><circle cx="' + (hx - 2.6) + '" cy="' + (hy - 2.6) + '" r="2.4" fill="rgba(255,255,255,.4)"/>';
+        }
+        return function(t){
+          let barY, squat = 0;
+          if(t < 0.7) barY = chest;
+          else if(t < 1.1){ squat = celEase(celSeg(t, 0.7, 1.1)); barY = chest + 14 * squat; }
+          else if(t < 1.6){ squat = 1 - celSeg(t, 1.1, 1.35); barY = celLerp(chest + 14, top, celBack(celSeg(t, 1.1, 1.6))); }
+          else barY = top + Math.sin((t - 1.6) * 9) * 4 * Math.exp(-(t - 1.6) * 2.2);
+          const tilt = t > 1.5 && t < 4 ? Math.sin((t - 1.5) * 7) * 3 * Math.exp(-(t - 1.5) * 1.6) : 0;
+          const bodyY = base + squat * 10;
+          body.setAttribute("transform", "translate(" + cx + " " + bodyY + ") scale(" + (1 + squat * 0.04) + " " + (1 - squat * 0.07) + ")");
+          bar.setAttribute("transform", "translate(" + cx + " " + barY + ") rotate(" + tilt + ")");
+          platesEl.forEach(function(p){ p.setAttribute("transform", "translate(0 " + (tilt * (+p.getAttribute("data-x") > 0 ? -0.6 : 0.6)) + ")"); });
+          const reach = celClamp((bodyY + 30 - barY) / 122), out = celLerp(26, 4, reach), s = Math.sin(tilt * Math.PI / 180) * 52;
+          arms.innerHTML = arm(cx - 40, bodyY - 2, cx - 52, barY - s, -out) + arm(cx + 40, bodyY - 2, cx + 52, barY + s, out);
+          const happy = t > 1.45;
+          starF.setAttribute("opacity", happy ? 1 : 0);
+          plainF.setAttribute("opacity", happy ? 0 : 1);
+          const sw = celSeg(t, 1.2, 1.9);
+          sweat.setAttribute("opacity", t > 1.2 && t < 1.9 ? String(1 - sw) : "0");
+          sweat.setAttribute("transform", "translate(" + (cx + 44 + sw * 14) + " " + (bodyY - 52 + sw * 30) + ")");
+        };
+      }
+    };
+  },
+
+  // Zezlátne: vyskočí, roztočí se jako mince (hrana, zadní strana „20 KG“), cestou zlátne, dopadne s jiskrami.
+  gold: function(){
+    const T = { crouch: 0.5, jump: 0.75, land: 2.55, settle: 2.95, turns: 4 };
+    const R = 43.6, N = 16;
+    function wrap(inner){ return '<svg x="-65" y="-61.3" width="130" height="130">' + inner + '</svg>'; }
+    function back(gold){
+      return wrap('<svg viewBox="-8 -4 140 140" width="100%" height="100%">' +
+        '<circle cx="62" cy="62" r="47" fill="url(#' + (gold ? "c-rim-gold" : "c-rim") + ')"/><circle cx="62" cy="62" r="42.5" fill="url(#' + (gold ? "c-gold" : "c-body") + ')"/>' +
+        '<circle cx="62" cy="62" r="33" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="3"/><circle cx="62" cy="61" r="33" fill="none" stroke="' + (gold ? "#FFF4C2" : "url(#c-silver)") + '" stroke-width="2"/>' +
+        '<circle cx="62" cy="62" r="17" fill="none" stroke="rgba(0,0,0,.3)" stroke-width="2"/>' +
+        '<circle cx="62" cy="62" r="7" fill="' + (gold ? "#8A6608" : "#0E1014") + '" stroke="' + (gold ? "#FFF4C2" : "url(#c-silver)") + '" stroke-width="1.4"/>' +
+        '<text x="62" y="91" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="8.5" letter-spacing="1.5" fill="' + (gold ? "#7A5C06" : "#9AA0A7") + '">20 KG</text></svg>');
+    }
+    let parts = "";
+    for(let i = 0; i < N; i++){
+      parts += i % 2 ? '<circle r="' + (2.5 + i % 3) + '" fill="#FFE07A"/>' : '<path d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z" fill="#FFF4C2"/>';
+    }
+    // cinknutí mince pokaždé, když je otočená hranou
+    const tings = [];
+    let last = 0;
+    for(let t = T.jump; t < T.land; t += 0.002){
+      const n = Math.floor(T.turns * 2 * celEase3(celSeg(t, T.jump, T.land)) + 0.5);
+      if(n > last){ last = n; tings.push([t, "ting", celSeg(t, T.jump, T.land)]); }
+    }
+    return {
+      html: '<div class="cel-glow"></div><svg class="cel-svg" viewBox="0 0 300 300"><clipPath id="gd-clip"><circle r="' + R + '"/></clipPath>' +
+          '<ellipse class="gd-shadow" cx="150" cy="212" rx="52" ry="9" fill="#05080D" opacity=".6"/>' +
+          '<circle class="gd-flash" cx="150" cy="146" r="46" fill="none" stroke="#FFE07A" stroke-width="4" opacity="0"/>' +
+          '<g class="gd-parts">' + parts + '</g>' +
+          '<g class="gd-coin"><g class="gd-edge"></g>' +
+            '<g class="gd-face"><g class="gd-front"><g>' + wrap(celKt("coin")) + '</g><g class="gd-fg">' + wrap(celKt("coin", true)) + '</g></g>' +
+              '<g class="gd-back"><g>' + back(false) + '</g><g class="gd-bg">' + back(true) + '</g></g>' +
+              '<g clip-path="url(#gd-clip)"><rect class="gd-spec" x="-12" y="-60" width="24" height="120" fill="url(#c-sheen)"/><circle class="gd-shade" r="' + R + '" fill="#000" opacity="0"/></g></g>' +
+            '<g class="gd-hero" opacity="0">' + wrap(celKt("star", true)) +
+              '<g clip-path="url(#gd-clip)"><rect class="gd-hsheen" x="-200" y="-60" width="26" height="120" fill="url(#c-sheen)" transform="skewX(-20)"/></g></g>' +
+          '</g></svg>' +
+        celSparkle(40, 50, 0.1) + celSparkle(238, 70, 0.3) + celSparkle(62, 222, 0.5, 16) + celSparkle(226, 214, 0.2, 20),
+      cues: [[0.75, "whooshUp"]].concat(tings, [[2.55, "cling"], [2.6, "shimmer"]], CEL_STAMP),
+      start: function(root){
+        const q = function(s){ return root.querySelector(s); };
+        const coin = q(".gd-coin"), edge = q(".gd-edge"), face = q(".gd-face"), front = q(".gd-front"), backG = q(".gd-back");
+        const fg = q(".gd-fg"), bg = q(".gd-bg"), spec = q(".gd-spec"), shade = q(".gd-shade"), hero = q(".gd-hero"), hsheen = q(".gd-hsheen");
+        const shadow = q(".gd-shadow"), flash = q(".gd-flash"), pts = Array.prototype.slice.call(q(".gd-parts").children);
+        const cx = 150, cy = 146;
+        function mix(a, b, k){ return "rgb(" + a.map(function(v, i){ return Math.round(celLerp(v, b[i], k)); }).join(",") + ")"; }
+        return function(t){
+          let y = 0, sx = 1, sy = 1, th = 0, g = 0, isHero = false;
+          if(t >= T.crouch && t < T.jump){ const k = Math.sin(celSeg(t, T.crouch, T.jump) * Math.PI / 2); sy = 1 - 0.13 * k; sx = 1 + 0.08 * k; y = 6 * k; }
+          else if(t >= T.jump && t < T.land){
+            const p = celSeg(t, T.jump, T.land);
+            y = -125 * Math.sin(Math.PI * p);
+            th = T.turns * 2 * Math.PI * celEase3(p);
+            g = celEase(celSeg(p, 0.3, 0.85));
+            sy = 1 + 0.07 * Math.max(0, 1 - p * 4); sx = 1 / sy;
+          } else if(t >= T.land){
+            g = 1; isHero = true;
+            if(t < T.settle){ const k = Math.sin(celSeg(t, T.land, T.settle) * Math.PI); sy = 1 - 0.15 * k; sx = 1 + 0.1 * k; y = 7 * k; }
+            else y = -5 * Math.sin((t - T.settle) * 2.2);
+          }
+          const c = Math.cos(th), sn = Math.sin(th), ac = Math.max(0.03, Math.abs(c));
+          coin.setAttribute("transform", "translate(" + cx + " " + (cy + y) + ")");
+          face.setAttribute("display", isHero ? "none" : "");
+          edge.setAttribute("display", isHero ? "none" : "");
+          hero.setAttribute("opacity", isHero ? 1 : 0);
+          hero.setAttribute("transform", "scale(" + sx + " " + sy + ") translate(0 " + ((1 - sy) * 40) + ")");
+          if(!isHero){
+            face.setAttribute("transform", "scale(" + (ac * sx) + " " + sy + ")");
+            front.setAttribute("display", c >= 0 ? "" : "none");
+            backG.setAttribute("display", c >= 0 ? "none" : "");
+            fg.setAttribute("opacity", g);
+            bg.setAttribute("opacity", g);
+            // hrana mince: pruh vedle líce, tím širší, čím víc je natočená
+            const off = 8 * sn, col = mix([24, 27, 32], [150, 110, 8], g), col2 = mix([58, 65, 75], [242, 194, 48], g);
+            let e = "";
+            for(let i = 6; i >= 1; i--) e += '<ellipse cx="' + (off * i / 6) + '" cy="0" rx="' + (R * ac * sx) + '" ry="' + (R * sy) + '" fill="' + (i % 2 ? col : col2) + '"/>';
+            edge.innerHTML = e;
+            spec.setAttribute("x", String(-12 - 46 * sn));
+            spec.setAttribute("opacity", String(0.25 + 0.6 * Math.abs(sn)));
+            shade.setAttribute("opacity", String((1 - Math.abs(c)) * 0.4));
+          }
+          const sw = t > 3 && t < 3.7 ? celSeg(t, 3, 3.7) : (t > 5 && t < 5.6 ? celSeg(t, 5, 5.6) : -1);
+          hsheen.setAttribute("x", sw < 0 ? "-200" : String(-60 + sw * 150));
+          const h = celClamp(-y / 125);
+          shadow.setAttribute("rx", String(52 * (1 - 0.45 * h) * (isHero ? 1 : Math.max(0.4, ac)) * sx));
+          shadow.setAttribute("opacity", String(0.6 * (1 - 0.6 * h)));
+          const f = t > T.land && t < T.land + 0.7 ? celSeg(t, T.land, T.land + 0.7) : -1;
+          flash.setAttribute("opacity", f < 0 ? "0" : String(1 - f));
+          flash.setAttribute("r", String(46 + 100 * celEaseOut3(Math.max(0, f))));
+          flash.setAttribute("stroke-width", String(1 + 5 * (1 - Math.max(0, f))));
+          const pk = t > T.land && t < T.land + 1 ? celSeg(t, T.land, T.land + 1) : -1;
+          pts.forEach(function(p, i){
+            if(pk < 0){ p.setAttribute("opacity", "0"); return; }
+            const a = i / N * Math.PI * 2 + (i % 3) * 0.12, d = 40 + (80 + (i * 29) % 50) * celEaseOut3(pk);
+            p.setAttribute("opacity", String(1 - celSeg(pk, 0.5, 1)));
+            p.setAttribute("transform", "translate(" + (cx + Math.cos(a) * d) + " " + (cy + Math.sin(a) * d + 30 * pk * pk) + ") rotate(" + (pk * 180) + ")");
+          });
+        };
+      }
+    };
+  },
+
+  // Medaile: spustí se shora, stuha vede za hlavou přes horní okraj a kolem obličeje, disk pod ním dokývá.
+  medal: function(){
+    const L = 31, LY = -29.3, AP = 34, K = 1.2;
+    function strand(d){
+      return '<path d="' + d + '" stroke="#24497A" stroke-width="11" fill="none"/><path d="' + d + '" stroke="#2F5E99" stroke-width="9.6" fill="none"/>' +
+        '<path d="' + d + '" stroke="#F3F6F9" stroke-width="6" fill="none"/><path d="' + d + '" stroke="#E0735A" stroke-width="2.6" fill="none"/>';
+    }
+    return {
+      html: '<div class="cel-glow"></div><svg class="cel-svg" viewBox="0 0 300 300">' +
+          '<ellipse cx="150" cy="252" rx="104" ry="14" fill="#0E141D" opacity=".7"/>' +
+          '<g transform="translate(150 158) scale(' + K + ')">' +
+            '<g class="md-back"></g>' +
+            '<g class="md-body"><svg x="-60" y="-60" width="120" height="120">' + celKt("proud") + '</svg></g>' +
+            '<g class="md-front"></g>' +
+            '<g class="md-disc">' +
+              '<rect x="-6" y="-3" width="12" height="8" rx="2" fill="#B8890A"/><rect x="-6" y="-3" width="12" height="3" rx="1.5" fill="#FFE07A"/>' +
+              '<circle cx="0" cy="20" r="17" fill="#8A6608"/><circle cx="0" cy="18.8" r="16.2" fill="url(#c-disc)"/>' +
+              '<circle cx="0" cy="18.8" r="12" fill="none" stroke="#B8890A" stroke-width="1.3"/>' +
+              '<path d="M0 11.5 L2.2 16.3 L7.4 16.8 L3.5 20.3 L4.6 25.4 L0 22.8 L-4.6 25.4 L-3.5 20.3 L-7.4 16.8 L-2.2 16.3 Z" fill="#B8890A"/>' +
+              '<clipPath id="md-clip"><circle cx="0" cy="18.8" r="16.2"/></clipPath>' +
+              '<g clip-path="url(#md-clip)"><rect class="md-sheen" x="-40" y="0" width="11" height="40" fill="url(#c-sheen)" transform="skewX(-20)"/></g>' +
+            '</g></g></svg>' +
+        celSparkle(40, 70, 0.2) + celSparkle(240, 90, 0.4) + celSparkle(230, 230, 0.1, 18),
+      cues: [[0.6, "whooshDown"], [1.3, "clink"]].concat(CEL_STAMP),
+      start: function(root){
+        const q = function(s){ return root.querySelector(s); };
+        const back = q(".md-back"), body = q(".md-body"), front = q(".md-front"), disc = q(".md-disc"), sheen = q(".md-sheen");
+        return function(t){
+          let dy, swing = 0;
+          if(t < 0.6) dy = -230;
+          else if(t < 1.3) dy = celLerp(-230, 0, celBack(celSeg(t, 0.6, 1.3)));
+          else { dy = 0; const k = t - 1.3; swing = 14 * Math.sin(k * 5.2) * Math.exp(-k * 1.1); }
+          const land = t > 1.25 && t < 1.7 ? Math.sin(celSeg(t, 1.25, 1.7) * Math.PI) : 0;
+          const proud = celClamp((t - 1.7) / 0.5);
+          const sy = 1 - land * 0.06 + proud * 0.03, sx = 1 + proud * 0.04;
+          body.setAttribute("transform", "translate(0 " + (land * 4) + ") scale(" + sx + " " + sy + ")");
+          const ax = Math.sin(swing * Math.PI / 180) * 3, ay = AP + dy + land * 3, ly = LY + dy + land * 3;
+          back.innerHTML = '<path d="M' + (-L) + ' ' + ly + ' Q0 ' + (ly - 26) + ' ' + L + ' ' + ly + '" stroke="#1B365C" stroke-width="10" fill="none"/>';
+          front.innerHTML = strand("M" + (-L - 1) + " " + (ly - 3) + " Q" + (-37 * sx) + " " + (10 + dy) + " " + (ax - 3) + " " + ay) +
+            strand("M" + (L + 1) + " " + (ly - 3) + " Q" + (37 * sx) + " " + (10 + dy) + " " + (ax + 3) + " " + ay) +
+            '<path d="M' + (-L - 6) + ' ' + (ly - 5) + ' l10 -2 l1 5 l-10 2 z M' + (L + 6) + ' ' + (ly - 5) + ' l-10 -2 l-1 5 l10 2 z" fill="rgba(0,0,0,.35)"/>';
+          disc.setAttribute("transform", "translate(" + ax + " " + ay + ") rotate(" + swing + ")");
+          sheen.setAttribute("x", String(-34 + celSeg(t, 2, 2.8) * 70));
+        };
+      }
+    };
+  }
+};
+
+// Fronta oslav: každá na celou obrazovku, klepnutím (nebo Enter/Esc) se zavře a přijde další.
+const CEL_HOLD = 6; // s – pak scéna zůstane stát (nápisy zůstávají)
+let celQueue = [];
+function celebrate(list){
+  celQueue = celQueue.concat(list);
+  if(!document.querySelector(".cel")) showNextCelebration();
+}
+function showNextCelebration(){
+  const c = celQueue.shift();
+  if(!c) return;
+  if(!document.getElementById("cel-defs")){
+    const d = document.createElement("div");
+    d.id = "cel-defs";
+    d.innerHTML = CEL_DEFS;
+    document.body.appendChild(d);
+  }
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scene = CEL_SCENES[c.kind](c);
+  const el = document.createElement("div");
+  el.className = "cel" + (c.kind === "lock" ? " cel-lock" : "");
+  el.setAttribute("role", "dialog");
+  el.setAttribute("aria-label", c.badge + ": " + c.title);
+  el.innerHTML = '<div class="cel-rays"></div><div class="cel-floor"></div>' + (reduced ? "" : celConfetti()) +
+    '<div class="cel-scene">' + scene.html + '</div>' +
+    '<div class="cel-text"><span class="cel-badge">' + escapeHtml(c.badge) + '</span><div class="cel-title">' + escapeHtml(c.title) + '</div><div class="cel-sub">' + escapeHtml(c.sub) + '</div></div>' +
+    '<div class="cel-tap">' + escapeHtml(tx("celTap")) + '</div>';
+  document.body.appendChild(el);
+  const frame = scene.start ? scene.start(el) : null;
+  const t0 = performance.now();
+  let raf = 0;
+  function loop(now){
+    const t = reduced ? CEL_HOLD : Math.min(CEL_HOLD, (now - t0) / 1000);
+    if(frame) frame(t);
+    if(t < CEL_HOLD) raf = requestAnimationFrame(loop);
+  }
+  raf = requestAnimationFrame(loop);
+  const timers = (reduced ? [[0, "fanfare"]] : scene.cues).map(function(cue){
+    return setTimeout(function(){ playSound(cue[1], cue[2]); }, cue[0] * 1000);
+  });
+  let closed = false;
+  function close(){
+    if(closed) return;
+    closed = true;
+    cancelAnimationFrame(raf);
+    timers.forEach(clearTimeout);
+    document.removeEventListener("keydown", onKey);
+    el.classList.add("out");
+    setTimeout(function(){ el.remove(); showNextCelebration(); }, 300);
+  }
+  function onKey(e){
+    if(e.key === "Enter" || e.key === "Escape" || e.key === " "){ e.preventDefault(); close(); }
+  }
+  // Krátká pauza, aby oslavu nezavřelo klepnutí, které ji spustilo.
+  setTimeout(function(){
+    el.addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
+  }, 700);
+}
+
+// --- Přivítání: Kotoučík pozdraví při otevření aplikace, nejvýš jednou denně
+// (podruhé jen když je mezitím splněný denní cíl). Pořadí: první spuštění → splněno →
+// výročí série → po pauze → série (jen občas) → opakování → denní doba.
+const WELCOME_KEY = "grammarLabWelcomeV1";
+function welcomeLine(){
+  const now = new Date(), today = dayKey(now);
+  let last = {};
+  try{ last = JSON.parse(window.localStorage.getItem(WELCOME_KEY)) || {}; }catch(e){}
+  const done = (state.days[today] || 0) >= dailyGoal;
+  if(last.day === today && !(done && last.kind !== "done")) return null;
+  const W = tx("welcome");
+  const active = activeDays();
+  const hasHistory = Object.keys(active).length > 0;
+  const n = currentStreak(active).n;
+  let kind, lines;
+  if(!hasHistory && !last.day){ kind = "first"; lines = W.first; }
+  else if(done){ kind = "done"; lines = W.done; }
+  else if(!active[today] && tx("welcomeMilestone", n)){ kind = "milestone"; lines = [tx("welcomeMilestone", n)]; }
+  else if(hasHistory && !active[today] && !active[addDays(today, -1)] && !active[addDays(today, -2)]){ kind = "pause"; lines = W.pause; }
+  else if(n >= 3 && Math.random() < 1 / 3){ kind = "streak"; lines = tx("welcomeStreak", n, active[today] ? n : n + 1); }
+  else {
+    const r = specialPool("review").length;
+    if(r >= 10){ kind = "review"; lines = tx("welcomeReview", r); }
+    else {
+      const h = now.getHours();
+      kind = h >= 5 && h < 10 ? "morning" : (h >= 10 && h < 18 ? "day" : "evening");
+      lines = W[kind];
+    }
+  }
+  try{ window.localStorage.setItem(WELCOME_KEY, JSON.stringify({ day: today, kind: kind })); }catch(e){}
+  return lines[Math.floor(Math.random() * lines.length)];
+}
+function tryWelcome(){
+  if(!mascotOn || !views.home.classList.contains("active") || document.querySelector(".kt, .cel")) return;
+  const line = welcomeLine();
+  if(line) setTimeout(function(){ showMascot("happy", true, line); }, 700);
+}
+document.addEventListener("visibilitychange", function(){
+  if(document.visibilityState === "visible") tryWelcome();
+});
+
 /* Úvodní vykreslení */
 renderProgress();
 applyLang();
+tryWelcome();
 
 // Offline režim (sw.js)
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function(){});
