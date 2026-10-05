@@ -119,7 +119,7 @@
   }
 
   /* ---------- Header ---------- */
-  /* Lehká lišta (docs/navrhy-vzhledu-17.html, varianta 1): bez pozadí, linky a stínu */
+  /* Lišta B (docs/navrhy-vzhledu-18.html): jen drobný název uprostřed, bez pozadí a kotouče */
   .topbar{
     color: var(--ink);
     padding: 12px 20px 0;
@@ -135,33 +135,16 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 16px;
   }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap: 8px;
-  }
-  /* Logo jako kotouč na činku */
-  .brand-mark{
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--plate) 0 49%, #9AA0A7 50% 53%, var(--plate) 54% 62%, var(--plate-dark) 63% 67%, var(--plate) 68%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 3px 6px rgba(0,0,0,0.2);
-    color: var(--accent);
-    display:flex; align-items:center; justify-content:center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 12px;
-    flex-shrink: 0;
-  }
   .brand-name{
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 16px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--ink-soft);
-    letter-spacing: -0.01em;
+    opacity: 0.8;
   }
   .nav-links{
     display:flex;
@@ -986,10 +969,7 @@
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
-      <div class="brand-mark">G</div>
-      <div class="brand-name" data-i18n="brand">Gramatická posilovna</div>
-    </div>
+    <div class="brand-name" data-i18n="brand">Gramatická posilovna</div>
   </div>
 </div>
 <div class="airmail-stripe"></div>
@@ -22992,7 +22972,7 @@ const I18N = {
     mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
-    helloMorning: "Dobré ráno!", helloDay: "Dobrý den!", helloEvening: "Dobrý večer!",
+    homeTitle: "Dnešní trénink",
     streakDays: function(n){ return n === 1 ? "den v řadě" : (n >= 2 && n <= 4 ? "dny v řadě" : "dní v řadě"); },
     labelGoal: "Dnešní cíl", labelWeek: "Tento týden",
     goalNum: function(d, g){ return d + " / " + g + " odpovědí"; },
@@ -23086,7 +23066,7 @@ const I18N = {
     mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
-    helloMorning: "Good morning!", helloDay: "Good afternoon!", helloEvening: "Good evening!",
+    homeTitle: "Today’s workout",
     streakDays: function(n){ return n === 1 ? "day in a row" : "days in a row"; },
     labelGoal: "Today's goal", labelWeek: "This week",
     goalNum: function(d, g){ return d + " / " + g + " answers"; },
@@ -23529,9 +23509,8 @@ function currentStreak(active){
 
 function renderHome(){
   const now = new Date();
-  const h = now.getHours();
   document.getElementById("home-day").textContent = now.toLocaleDateString(tx("dateLocale"), { weekday: "long" });
-  document.getElementById("home-hello").textContent = tx(h >= 5 && h < 10 ? "helloMorning" : (h >= 10 && h < 18 ? "helloDay" : "helloEvening"));
+  document.getElementById("home-hello").textContent = tx("homeTitle");
 
   const active = activeDays();
   const streak = currentStreak(active);
