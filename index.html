@@ -119,18 +119,16 @@
   }
 
   /* ---------- Header ---------- */
+  /* Lehká lišta (docs/navrhy-vzhledu-17.html, varianta 1): bez pozadí, linky a stínu */
   .topbar{
-    background: rgba(246,248,250,0.85);
     color: var(--ink);
-    padding: 18px 20px;
-    padding-top: calc(18px + env(safe-area-inset-top)); /* iPhone: pod stavovým řádkem (čas, baterie) */
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 6px 18px rgba(60,75,100,0.08);
+    padding: 12px 20px 0;
+    padding-top: calc(12px + env(safe-area-inset-top)); /* iPhone: pod stavovým řádkem (čas, baterie) */
   }
   /* Původně pruh letecké pošty; teď jen odstup pod hlavičkou. */
   .airmail-stripe{
     height: 0;
-    margin-bottom: 26px;
+    margin-bottom: 18px;
   }
   .topbar-inner{
     max-width: 760px;
@@ -143,25 +141,26 @@
   .brand{
     display:flex;
     align-items:center;
-    gap: 10px;
+    gap: 8px;
   }
   /* Logo jako kotouč na činku */
   .brand-mark{
-    width: 36px; height: 36px;
+    width: 26px; height: 26px;
     border-radius: 50%;
     background: radial-gradient(circle, var(--plate) 0 49%, #9AA0A7 50% 53%, var(--plate) 54% 62%, var(--plate-dark) 63% 67%, var(--plate) 68%);
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 5px 10px rgba(0,0,0,0.25);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 3px 6px rgba(0,0,0,0.2);
     color: var(--accent);
     display:flex; align-items:center; justify-content:center;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 15px;
+    font-size: 12px;
     flex-shrink: 0;
   }
   .brand-name{
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
+    color: var(--ink-soft);
     letter-spacing: -0.01em;
   }
   .nav-links{
@@ -193,8 +192,7 @@
   }
   .lang-switch button{ padding: 8px 10px; font-size: 12.5px; font-weight: 700; }
   @media (max-width: 480px){
-    .topbar{ padding: 14px 16px; padding-top: calc(14px + env(safe-area-inset-top)); }
-    .brand-name{ font-size: 19px; }
+    .topbar{ padding: 10px 16px 0; padding-top: calc(10px + env(safe-area-inset-top)); }
     .nav-links button{ padding: 7px 11px; font-size: 13px; }
     .lang-switch button{ padding: 7px 8px; }
   }
@@ -945,7 +943,6 @@
     --shadow-card: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 22px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.25);
     --shadow-md: 0 20px 40px rgba(0,0,0,0.5);
   }
-  [data-theme="dark"] .topbar{ background: rgba(24,31,42,0.92); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
   [data-theme="dark"] .tabbar{ background: rgba(24,31,42,0.94); }
   [data-theme="dark"] .nav-links button.active{ background: #34404F; box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
   [data-theme="dark"] .btn-primary,
