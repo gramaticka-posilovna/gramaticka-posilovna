@@ -178,3 +178,4 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Úderný nadpis Domů (kolo 20)
 - Inspirace: fitness/výukové appky dávají na Domů stav dne (cíl, série, trénink), ne pozdrav.
 - 1 Dnešní trénink (statický, sedí k posilovně) · 2 Jdeme na to! / Ještě kousek! / Máš splněno · 3 velké číslo „8 odpovědí do cíle“ · **4 „6 minut do cíle“** (odhad ~45 s/odpověď; doporučeno) · 5 „6. den v řadě“ + kroužek dnešního cíle místo kotouče · 6 „Úroveň B1“ · 7 „Máš 5 minut?“.
+- **Kolo 20 výsledek:** vybrán **1 Dnešní trénink** → nasazeno spolu s lištou **B** z kola 18.
