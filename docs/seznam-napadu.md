@@ -6,6 +6,13 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 
 - **Kód výzvy.** Na iPhonu se odkaz výzvy vždy otevře v Safari, ne v aplikaci na ploše (omezení iOS). Návrh: krátký kód (např. `K7P2Q`), který kamarád opíše v aplikaci („Mám kód výzvy“). Kód je krátký jen pro výzvu z jednoho tématu a obtížnosti. Posílání přímo v aplikaci bez WhatsAppu vyžaduje server a účty – patří do pozdější fáze.
 
+## Zapsané nápady (zatím se nedělají)
+
+- **Druhá kontrola otázek očima studenta.** Projít všechny otázky podle `docs/kontrola-otazek.md`, hlavně dvojznačnosti (víc správných odpovědí) a nápovědy, které prozrazují řešení. Nejdůležitější před spuštěním pro lidi.
+- **Diktát.** Nový typ cvičení: aplikace přečte větu, student ji napíše. Na iPhonu zatím jen základním hlasem.
+- **Zásady ochrany soukromí a úvodní stránka.** Zásady vyžaduje App Store; úvodní stránka jde posílat lidem místo samotné aplikace.
+- **Anonymní statistika chyb.** Aplikace by bez jmen posílala, kde lidé nejčastěji chybují; odhalí špatně položené otázky. Potřebuje malý server, spíš po spuštění.
+
 ## Pozdější fáze (iOS a dál)
 
 - Zabalení pro iOS, připomínky, placená verze, posílání výzev přímo v aplikaci (účty, přátelé).
