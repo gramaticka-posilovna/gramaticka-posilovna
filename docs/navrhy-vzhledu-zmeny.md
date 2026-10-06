@@ -240,3 +240,12 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 ### Zvuky (kolo 29)
 - Uživatel chce zvuky vylepšit. 5 sad se stejnými situacemi (správně, chyba, kombo, Kotoučík, denní cíl, fanfára oslavy): 1 současné (pro srovnání), **2 Marimba (doporučeno)** – dřevěné teplé údery, 3 Zvonky, 4 Posilovna – kovové cinknutí kotoučů, žuchnutí, žesťová fanfára, 5 Jemné – tiché ťuknutí a měkký akord. Nově dozvuk (konvoluce) a kompresor proti přebuzení.
 - Navíc: stoupající tón u každé další správné odpovědi v řadě.
+
+### Aby se lidi rádi vraceli (kolo 30)
+- Podle výzkumů (blízký cíl táhne víc, mírná série drží lidi déle než přísná, vina a úzkost lidi odhánějí, náskok pomáhá dotáhnout cíl, rozdělané věci táhnou zpátky). Bez žebříčků, srdíček, smutného Kotoučíka, falešné naléhavosti a nekonečného hraní.
+- 1 Kousek k cíli: karta úrovně „Na B2 už jen 3 správné“ s 10 dílky; u témat kroužek se zvládnutím a nejbližší krok („Ještě 2 a kotouč je ocelový“, do 3 zeleně).
+- 2 Kalendář tréninků v Pokroku: 8 týdnů × Po–Ne, intenzita podle odpovědí, zlatý rámeček = splněný cíl, ❄ = den volna; série + „tréninkových dní celkem“ (nikdy neklesne) + nejdelší série. Po přerušení série na Domů „Vítej zpátky!“ s celkem dní, bez výčitek.
+- 3 Jasný konec dne: po splnění denního cíle odpočívající Kotoučík, „Na dnešek hotovo 💪“, souhrn, „Zítra tě čeká 6 otázek k opakování“; hlavní tlačítko Hotovo, „Ještě jedno kolo“ jen jako odkaz.
+- 4 Posilovna, která roste: stojan se 16 kotouči (téma = kotouč), materiál podle podílu zvládnutých otázek: obrys / plast (do 49 %) / ocel (50–89 %) / zlato (od 90 %), větší s pokrokem; klepnutí ukáže, co chybí.
+- 5 Náskok po rozřazovacím testu: témata prokázaná v testu začínají pruhovaným dílem „z testu“, natrénované přibývá plnou barvou.
+- 6 Rozdělané kolo počká: karta nahoře na Domů (téma, obtížnost, 4 z 10, tečky správně/chyba), Pokračovat a malé Zahodit; platí jen ten den.

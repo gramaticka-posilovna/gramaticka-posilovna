@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 30</title>
+<style>
+  /* Statické návrhy (30. kolo) — NEJSOU součástí appky. Návrat do appky bez výčitek: kousek k cíli, kalendář, konec dne, rostoucí posilovna, náskok po testu, rozdělané kolo. Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:900px; line-height:1.55; }
+  h2.sec{ font-family:Newsreader, serif; font-size:24px; margin:44px 0 4px; }
+  h2.sec .n{ display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50%; background:#1E3A5F; color:#fff; font:800 15px Inter; margin-right:8px; vertical-align:3px; }
+  .research{ font-size:13.5px; color:#6A6F78; max-width:900px; line-height:1.55; margin:0; }
+  .research b{ color:#22252B; }
+  .phones{ display:flex; gap:24px; flex-wrap:wrap; margin-top:18px; }
+  .col{ width:320px; max-width:100%; }
+  .phone{ width:320px; max-width:100%; height:640px; border-radius:46px; border:11px solid #15171B; overflow:hidden; position:relative; box-shadow:0 22px 50px rgba(0,0,0,.25); }
+  .cap{ font-size:15px; font-weight:800; margin:14px 0 2px; }
+  .why{ font-size:12.5px; color:#6A6F78; line-height:1.5; margin:4px 0 0; }
+  .avoid{ background:#fff; border-radius:18px; padding:16px 20px; max-width:900px; margin-top:14px; font-size:13.5px; line-height:1.6; box-shadow:0 6px 16px rgba(0,0,0,.08); }
+  .avoid ul{ margin:6px 0 0; padding-left:20px; }
+
+  /* ===== Náhled v barvách appky ===== */
+  .app{ position:absolute; inset:0; background:linear-gradient(180deg,#F3F6F9,#CDD7E2); color:#1B2A41; padding:22px 14px 0; overflow:hidden; font-size:13px; }
+  .app .brand{ text-align:center; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#5C6478; opacity:.8; margin-bottom:12px; }
+  .app h3{ font:700 24px/1.1 Newsreader, serif; margin:0 0 12px; }
+  .app .day{ font-size:12px; color:#5C6478; margin:0; }
+  .acard{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:18px; padding:14px; margin-bottom:12px; box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16),0 2px 4px rgba(60,75,100,.1); }
+  .albl{ font-size:10px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 8px; }
+  .bar{ height:7px; background:#D9E1EA; border-radius:999px; overflow:hidden; } .bar span{ display:block; height:100%; background:#3A6FC0; border-radius:999px; }
+  .note{ font-size:12px; color:#5C6478; line-height:1.45; margin:7px 0 0; }
+  .note b{ color:#1B2A41; }
+  .btnp{ display:block; width:100%; border:none; border-radius:16px; padding:13px; margin-bottom:8px; font:800 14px Inter; color:#fff; text-align:center;
+    background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 0 #132840,0 10px 18px rgba(20,40,64,.3); }
+  .btnp small{ display:block; font-weight:600; font-size:11px; opacity:.85; margin-top:2px; }
+  .btns{ display:block; width:100%; border:none; border-radius:16px; padding:12px; margin-bottom:8px; font:800 13.5px Inter; color:#1B2A41; text-align:center; background:#fff; box-shadow:inset 0 1px 0 #fff,0 3px 0 #C9D3DE,0 8px 14px rgba(60,75,100,.12); }
+  .btnl{ display:block; text-align:center; font-size:12px; font-weight:700; color:#5C6478; margin-top:4px; }
+  .tabbar{ position:absolute; left:0; right:0; bottom:0; height:56px; background:#F7F9FB; border-top:1px solid #DCE3EB; display:flex; }
+  .tabbar i{ flex:1; font-style:normal; display:grid; place-items:center; font-size:10px; font-weight:700; color:#8A93A3; padding-top:22px; position:relative; }
+  .tabbar i::before{ content:""; position:absolute; top:11px; width:16px; height:14px; border-radius:4px; border:2px solid currentColor; }
+  .tabbar i.on{ color:#1B2A41; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:2px; }
+  .plate{ width:50px; height:50px; border-radius:50%; display:grid; place-items:center; flex-shrink:0;
+    background:radial-gradient(circle,#2F343C 0 49%,#9AA0A7 50% 52%,#2F343C 53% 61%,#1D2026 62% 66%,#2F343C 67%); box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 6px 12px rgba(0,0,0,.3); }
+  .plate b{ font:700 19px/1 Newsreader, serif; color:#F2C230; }
+  .head{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .head .sb{ display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .head .sb small{ font-size:8.5px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#5C6478; }
+
+  /* 1 · kousek k cíli */
+  .trow{ display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:9px 11px; margin-bottom:7px; box-shadow:0 3px 8px rgba(60,75,100,.1); }
+  .trow .t{ flex:1; min-width:0; }
+  .trow .t b{ display:block; font-size:12.5px; }
+  .trow .t small{ display:block; font-size:11px; color:#5C6478; margin-top:3px; }
+  .trow .t small.near{ color:#2F7A4A; font-weight:700; }
+  .ring{ width:34px; height:34px; flex-shrink:0; }
+  .ring circle{ fill:none; stroke-width:4; }
+  .ring .bg{ stroke:#D9E1EA; } .ring .fg{ stroke:#3A6FC0; stroke-linecap:round; transform:rotate(-90deg); transform-origin:50% 50%; }
+  .ring text{ font:800 9px Inter; fill:#1B2A41; text-anchor:middle; }
+  .chk{ width:18px; height:18px; border-radius:6px; border:2px solid #C6D0DC; flex-shrink:0; }
+  .near-card{ display:flex; gap:10px; align-items:center; }
+  .near-card .big{ font:700 30px/1 Newsreader, serif; }
+  .steps{ display:flex; gap:4px; margin-top:8px; }
+  .steps i{ flex:1; height:9px; border-radius:3px; background:#D9E1EA; }
+  .steps i.f{ background:#3A6FC0; }
+  .steps i.last{ background:repeating-linear-gradient(45deg,#D9E1EA 0 3px,#EAF0F6 3px 6px); outline:2px solid #F2C230; outline-offset:-2px; }
+
+  /* 2 · kalendář */
+  .cal{ display:grid; grid-template-columns:22px repeat(8,1fr); gap:4px; margin-top:4px; }
+  .cal .d{ font-size:8.5px; font-weight:800; color:#8A93A3; display:grid; place-items:center; }
+  .cal .c{ aspect-ratio:1; border-radius:6px; background:#E3E9F0; display:grid; place-items:center; font-size:10px; }
+  .cal .c.l1{ background:#BCD0EB; } .cal .c.l2{ background:#7FA5DA; } .cal .c.l3{ background:#3A6FC0; }
+  .cal .c.goal{ box-shadow:inset 0 0 0 2px #F2C230; }
+  .cal .c.rest{ background:#EAF2FB; color:#5B8FD0; }
+  .cal .c.today{ outline:2px solid #1B2A41; outline-offset:1px; }
+  .cal .c.fut{ background:transparent; border:1.5px dashed #D3DBE5; }
+  .cal-legend{ display:flex; gap:10px; flex-wrap:wrap; font-size:10px; color:#5C6478; margin-top:8px; align-items:center; }
+  .cal-legend span{ display:inline-flex; align-items:center; gap:4px; }
+  .cal-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .stats3{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:4px; }
+  .stats3 div{ background:#F1F5F9; border-radius:12px; padding:8px 6px; text-align:center; }
+  .stats3 b{ display:block; font:700 22px/1 Newsreader, serif; }
+  .stats3 small{ display:block; font-size:9.5px; font-weight:700; color:#5C6478; margin-top:4px; line-height:1.25; }
+  .stats3 div.main{ background:#1E3A5F; color:#fff; } .stats3 div.main small{ color:#C9D6E8; } .stats3 div.main b{ color:#F2C230; }
+
+  /* 3 · konec dne */
+  .done{ position:absolute; inset:0; background:radial-gradient(90% 55% at 50% 30%,#FFFFFF 0%,#EAF0F6 55%,#D3DDE8 100%); color:#1B2A41; text-align:center; padding:40px 18px 0; }
+  .done .kt{ width:120px; height:120px; margin:0 auto; animation: breathe 4s ease-in-out infinite; }
+  .done .zz{ position:absolute; left:58%; top:48px; font:800 16px Inter; color:#8AA3C2; animation: zz 3s ease-in-out infinite; }
+  .done .zz:nth-child(2){ left:63%; top:30px; font-size:12px; animation-delay:1.2s; }
+  @keyframes breathe{ 50%{ transform:translateY(-3px) scale(1.02); } }
+  @keyframes zz{ 0%{ opacity:0; transform:translate(0,6px); } 30%,70%{ opacity:1; } 100%{ opacity:0; transform:translate(8px,-10px); } }
+  .done h4{ font:700 26px/1.15 Newsreader, serif; margin:10px 0 4px; }
+  .done p.sub{ font-size:13px; color:#5C6478; margin:0 0 16px; line-height:1.45; }
+  .done .row{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .done .row div{ background:#fff; border-radius:14px; padding:10px 6px; box-shadow:0 3px 8px rgba(60,75,100,.1); }
+  .done .row b{ display:block; font:700 22px/1 Newsreader, serif; }
+  .done .row small{ font-size:10.5px; color:#5C6478; font-weight:700; }
+  .tmrw{ display:flex; gap:10px; align-items:center; text-align:left; background:#fff; border-radius:14px; padding:10px 12px; margin-bottom:16px; box-shadow:0 3px 8px rgba(60,75,100,.1); font-size:12px; line-height:1.4; }
+  .tmrw .ic{ width:32px; height:32px; border-radius:10px; background:#E6EDF5; display:grid; place-items:center; font-size:16px; flex-shrink:0; }
+
+  /* 4 · posilovna roste */
+  .rack{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px 4px; }
+  .eq{ text-align:center; }
+  .eq svg{ width:56px; height:56px; display:block; margin:0 auto; overflow:visible; }
+  .eq small{ display:block; font-size:8.5px; font-weight:700; line-height:1.2; color:#3B4558; margin-top:2px; min-height:20px; }
+  .eq.new svg{ opacity:.55; }
+  .eq.sel svg{ filter:drop-shadow(0 0 6px rgba(242,194,48,.8)); }
+  .tiers{ display:flex; justify-content:space-between; gap:4px; margin-top:10px; font-size:9.5px; color:#5C6478; font-weight:700; }
+  .tiers span{ display:flex; align-items:center; gap:3px; }
+  .tiers svg{ width:16px; height:16px; }
+  .detail{ display:flex; gap:10px; align-items:center; background:#fff; border-radius:14px; padding:10px 12px; margin-top:10px; box-shadow:0 3px 8px rgba(60,75,100,.12); }
+  .detail svg{ width:44px; height:44px; flex-shrink:0; }
+  .detail b{ font-size:12.5px; display:block; }
+  .detail small{ display:block; font-size:11px; color:#5C6478; margin-top:2px; line-height:1.35; }
+
+  /* 5 · náskok po testu */
+  .res-top{ text-align:center; margin-bottom:10px; }
+  .res-top .lv{ display:inline-grid; place-items:center; width:74px; height:74px; border-radius:50%; font:700 28px Newsreader, serif; color:#F2C230;
+    background:radial-gradient(circle,#2F343C 0 49%,#9AA0A7 50% 52%,#2F343C 53% 61%,#1D2026 62% 66%,#2F343C 67%); box-shadow:0 8px 16px rgba(0,0,0,.3); }
+  .res-top h4{ font:700 21px/1.2 Newsreader, serif; margin:8px 0 2px; }
+  .res-top p{ font-size:12px; color:#5C6478; margin:0; }
+  .hs{ margin-bottom:9px; }
+  .hs .l{ display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px; }
+  .hs .l span{ color:#5C6478; font-weight:600; }
+  .hbar{ height:9px; background:#D9E1EA; border-radius:999px; overflow:hidden; display:flex; }
+  .hbar .gift{ background:repeating-linear-gradient(135deg,#7FA5DA 0 4px,#9DBBE3 4px 8px); }
+  .hbar .won{ background:#3A6FC0; }
+  .gift-key{ display:flex; gap:12px; font-size:10px; color:#5C6478; margin:2px 0 8px; }
+  .gift-key i{ display:inline-block; width:14px; height:8px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+
+  /* 6 · rozdělané kolo */
+  .resume{ position:relative; background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:18px; padding:14px; margin-bottom:12px; box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16); border:2px solid #3A6FC0; }
+  .resume .top{ display:flex; justify-content:space-between; align-items:center; }
+  .resume .top b{ font-size:14px; }
+  .resume .x{ font-size:11px; color:#8A93A3; font-weight:700; }
+  .dots{ display:flex; gap:4px; margin:10px 0 10px; }
+  .dots i{ flex:1; height:8px; border-radius:3px; background:#D9E1EA; }
+  .dots i.ok{ background:#3F7A55; } .dots i.bad{ background:#D88C76; } .dots i.next{ background:#D9E1EA; outline:2px solid #3A6FC0; outline-offset:-2px; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse{ 50%{ outline-color:rgba(58,111,192,.25); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+</style>
+</head>
+<body>
+<!-- Přechody pro 3D Kotoučíka (stejné jako v appce) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="kt-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <linearGradient id="kt-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="kt-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#D6DADF"/></linearGradient>
+    <radialGradient id="kt-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="kt-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="kt-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+    <!-- materiály kotoučů v posilovně (návrh 4) -->
+    <radialGradient id="m-plast" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#DCE8F7"/><stop offset="1" stop-color="#9DB6D6"/></radialGradient>
+    <linearGradient id="m-steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F6F8"/><stop offset=".35" stop-color="#8E959D"/><stop offset=".55" stop-color="#E1E4E8"/><stop offset="1" stop-color="#5E656D"/></linearGradient>
+    <linearGradient id="m-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0B0"/><stop offset=".35" stop-color="#E2AE1F"/><stop offset=".55" stop-color="#FFE07A"/><stop offset="1" stop-color="#A9800C"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 30. kolo · aby se lidi rádi vraceli</h1>
+  <p class="lead">Šest návrhů podle výzkumů o tom, co lidi v aplikacích na učení drží. Návrhy nic nevyčítají, nestraší ztrátou a netlačí do dalšího hraní. Čísla v ukázkách jsou jen pro představu. Do appky se zatím nic nedává.</p>
+
+  <!-- 1 -->
+  <h2 class="sec" id="n1"><span class="n">1</span>Kousek k cíli</h2>
+  <p class="research"><b>Proč:</b> čím blíž je člověk cíli, tím víc se snaží. „Ještě 3 správné“ táhne víc než „máš 85 %“. Cíl musí být blízko a vidět. Proto ukazujeme jen nejbližší krok, ne celou cestu.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Co dnes procvičíme?</h3>
+      <div class="acard" style="padding:12px 14px">
+        <div class="albl">Tvoje úroveň</div>
+        <div class="near-card"><span class="big">B1</span><div style="flex:1"><div style="font-size:12px;font-weight:800">Na B2 už jen <span style="color:#2F7A4A">3 správné</span></div>
+          <div class="steps"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i class="last"></i></div></div></div>
+      </div>
+      <div class="trow"><span class="chk"></span><div class="t"><b>Slovesné časy</b><small class="near">Ještě 2 a kotouč je ocelový</small></div>
+        <svg class="ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/><circle class="fg" cx="17" cy="17" r="14" stroke-dasharray="88" stroke-dashoffset="46"/><text x="17" y="20">48%</text></svg></div>
+      <div class="trow"><span class="chk"></span><div class="t"><b>Podmínkové věty</b><small>Ještě 9 do ocelového</small></div>
+        <svg class="ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/><circle class="fg" cx="17" cy="17" r="14" stroke-dasharray="88" stroke-dashoffset="62"/><text x="17" y="20">30%</text></svg></div>
+      <div class="trow"><span class="chk"></span><div class="t"><b>Slovosled a otázky</b><small class="near">Ještě 1 a je zlatý ✨</small></div>
+        <svg class="ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/><circle class="fg" cx="17" cy="17" r="14" stroke-dasharray="88" stroke-dashoffset="11"/><text x="17" y="20">88%</text></svg></div>
+      <div class="trow"><span class="chk"></span><div class="t"><b>Modální slovesa</b><small>Zatím netrénováno</small></div>
+        <svg class="ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/><text x="17" y="20">–</text></svg></div>
+      <div class="trow"><span class="chk"></span><div class="t"><b>Trpný rod</b><small>Ještě 6 do ocelového</small></div>
+        <svg class="ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/><circle class="fg" cx="17" cy="17" r="14" stroke-dasharray="88" stroke-dashoffset="70"/><text x="17" y="20">20%</text></svg></div>
+      <div class="tabbar"><i>Domů</i><i class="on">Témata</i><i>Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Úroveň a témata ukazují nejbližší krok</p>
+    <p class="why">Nahoře jen „na B2 už jen 3 správné“ a 10 dílků, poslední je ve zlatém rámečku. U témat se kroužkem ukáže, kolik je zvládnuto. Když je cíl blízko (do 3), text zezelená. Témata, kde ještě nic není, nic nevyčítají („Zatím netrénováno“).</p></div>
+  </div>
+
+  <!-- 2 -->
+  <h2 class="sec" id="n2"><span class="n">2</span>Kalendář tréninků</h2>
+  <p class="research"><b>Proč:</b> přísná série lidi spíš odradí. Po ztrátě dlouhé série mnoho lidí přestane úplně. Mírnější pravidla (den volna) podle dat Duolinga drží lidi déle. Kalendář ukazuje, co člověk <i>udělal</i>, ne co ztratil. Číslo „celkem dní“ nikdy neklesne.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Tvůj pokrok</h3>
+      <div class="acard">
+        <div class="albl">Tréninky · posledních 8 týdnů</div>
+        <div class="stats3" style="margin-bottom:10px">
+          <div class="main"><b>16</b><small>dní v řadě</small></div>
+          <div><b>30</b><small>tréninkových dní celkem</small></div>
+          <div><b>21</b><small>nejdelší série</small></div>
+        </div>
+        <div class="cal" id="cal"></div>
+        <div class="cal-legend">
+          <span><i style="background:#E3E9F0"></i>bez tréninku</span>
+          <span><i style="background:#7FA5DA"></i>trénink</span>
+          <span><i style="background:#3A6FC0;box-shadow:inset 0 0 0 2px #F2C230"></i>splněný cíl</span>
+          <span>❄ den volna</span>
+        </div>
+      </div>
+      <div class="acard" style="padding:12px 14px">
+        <p class="note" style="margin:0">💪 <b>Tenhle měsíc 14 tréninků.</b> Minulý měsíc 9.</p>
+      </div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Karta v Pokroku</p>
+    <p class="why">8 týdnů po sloupcích, shora Po–Ne. Čím tmavší, tím víc odpovědí. Zlatý rámeček = splněný denní cíl. Den volna má ❄, takže „díra“ nevypadá jako selhání. Vedle série je i „celkem dní“, které nikdy neklesne. Prázdné dny jsou jen světle šedé, nic červeného.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <div class="head"><div><p class="day">Čtvrtek</p><h3>Vítej zpátky!</h3></div>
+        <div class="sb"><div class="plate"><b>1</b></div><small>Dní v řadě</small></div></div>
+      <div class="acard">
+        <div class="albl">Tvoje posilovna</div>
+        <div style="display:flex;gap:10px;align-items:baseline"><b style="font:700 34px/1 Newsreader,serif">35</b><span style="font-size:12.5px;color:#5C6478">tréninkových dní celkem</span></div>
+        <p class="note">Nejdelší série: <b>21 dní</b>. Dnes začíná nová, klidně si ji zase rozjeď.</p>
+      </div>
+      <div class="acard"><div class="albl">Dnešní cíl</div><div style="font:700 19px Newsreader,serif">3 / 20 odpovědí</div><div class="bar" style="margin-top:8px"><span style="width:15%"></span></div></div>
+      <div class="btnp">Začít trénink<small>Mix otázek na míru, jedním klepnutím</small></div>
+      <div class="tabbar"><i class="on">Domů</i><i>Témata</i><i>Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Po pauze: co zůstalo, ne co se ztratilo</p>
+    <p class="why">Když se série přeruší, na Domů se místo „0“ a smutku ukáže celkový počet dní a nejdelší série jako úspěch. Žádné „ztratil(a) jsi sérii“.</p></div>
+  </div>
+
+  <!-- 3 -->
+  <h2 class="sec" id="n3"><span class="n">3</span>Jasný konec dne</h2>
+  <p class="research"><b>Proč:</b> aplikace, které neustále lákají „ještě jedno“, lidi časem vyčerpají a ti pak odejdou úplně. Hezky uzavřený den a pozvánka na zítřek pomáhají, aby se z toho stal zvyk. Ještě lepší je, když zítřek dává smysl, třeba „zítra tu bude 6 otázek k opakování“.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="done">
+      <span class="zz">z</span><span class="zz">z</span>
+      <div class="kt" id="kt-rest"></div>
+      <h4>Na dnešek hotovo 💪</h4>
+      <p class="sub">Denní cíl splněný. Teď si dej pauzu,<br>mozek si to přes noc uloží.</p>
+      <div class="row"><div><b>22</b><small>odpovědí dnes</small></div><div><b>86 %</b><small>správně</small></div></div>
+      <div class="tmrw"><span class="ic">📅</span><div><b>Zítra tě čeká 6 otázek k opakování</b><br><span style="color:#5C6478">Ty, které ti dnes nešly, se vrátí v pravou chvíli.</span></div></div>
+      <div class="btnp">Hotovo</div>
+      <span class="btnl">Ještě jedno kolo</span>
+    </div></div>
+    <p class="cap">Obrazovka po splnění denního cíle</p>
+    <p class="why">Kotoučík odpočívá (zavřené oči, jemně dýchá). Hlavní tlačítko je „Hotovo“. „Ještě jedno kolo“ je jen nenápadný odkaz, takže kdo chce, může pokračovat, ale nic ho netlačí. Ukáže se jen jednou denně.</p></div>
+  </div>
+
+  <!-- 4 -->
+  <h2 class="sec" id="n4"><span class="n">4</span>Posilovna, která roste</h2>
+  <p class="research"><b>Proč:</b> lidi drží pocit, že jsou čím dál lepší, a když to vidí na vlastní oči. Sbírka, která roste, dělá z učení „moji posilovnu“. Funguje to bez soutěžení s ostatními, každý roste jen sám se sebou.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Tvoje posilovna</h3>
+      <div class="acard" style="padding:12px 8px">
+        <div class="rack" id="rack"></div>
+        <div class="tiers">
+          <span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#B9C2CD" stroke-width="1.6" stroke-dasharray="3 2"/></svg>prázdné</span>
+          <span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="url(#m-plast)"/></svg>plast</span>
+          <span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="url(#m-steel)"/></svg>ocel</span>
+          <span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="url(#m-gold)"/></svg>zlato</span>
+        </div>
+      </div>
+      <div class="detail" id="detail"></div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Stojan s 16 kotouči, jeden za každé téma</p>
+    <p class="why">Kotouč se mění podle podílu zvládnutých otázek v tématu: obrys (nezačaté), plast (do 49 %), ocel (50–89 %), zlato (od 90 %). Čím víc zvládnutých, tím je kotouč větší a těžší. Klepnutím na kotouč se ukáže, co mu chybí k dalšímu kroku (navazuje na návrh 1). Až kotouč zezlátne, spustí se už hotová oslava zezlátnutí.</p></div>
+  </div>
+
+  <!-- 5 -->
+  <h2 class="sec" id="n5"><span class="n">5</span>Náskok po rozřazovacím testu</h2>
+  <p class="research"><b>Proč:</b> kdo nezačíná od nuly, dotáhne cíl častěji (známý pokus s věrnostními kartičkami, kde dvě razítka byla „zdarma“). Tady je náskok poctivý, protože ho člověk v testu opravdu prokázal. Ty části jsou jen jinak vybarvené.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <div class="res-top"><span class="lv">B1</span><h4>Začínáš na úrovni B1</h4><p>Co už umíš, máš rovnou započítané.</p></div>
+      <div class="acard" style="padding:12px 14px">
+        <div class="albl">Náskok z testu</div>
+        <div class="gift-key"><span><i style="background:repeating-linear-gradient(135deg,#7FA5DA 0 4px,#9DBBE3 4px 8px)"></i>z testu</span><span><i style="background:#3A6FC0"></i>natrénováno</span></div>
+        <div class="hs"><div class="l">Slovesné časy <span>40 %</span></div><div class="hbar"><span class="gift" style="width:40%"></span></div></div>
+        <div class="hs"><div class="l">Slovosled a otázky <span>60 %</span></div><div class="hbar"><span class="gift" style="width:60%"></span></div></div>
+        <div class="hs"><div class="l">Členy <span>25 %</span></div><div class="hbar"><span class="gift" style="width:25%"></span></div></div>
+        <div class="hs"><div class="l">Podmínkové věty <span>10 %</span></div><div class="hbar"><span class="gift" style="width:10%"></span></div></div>
+        <div class="hs" style="margin:0"><div class="l">Trpný rod <span>0 %</span></div><div class="hbar"></div></div>
+      </div>
+      <div class="btnp">Začít trénink na B1</div>
+    </div></div>
+    <p class="cap">Výsledek testu</p>
+    <p class="why">Témata, ve kterých test ukázal znalost, začínají s pruhovaným dílem „z testu“. Co člověk natrénuje, přibývá plnou barvou. Kde test nic neukázal, začíná se od nuly, nic se nevymýšlí.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Tvůj pokrok</h3>
+      <div class="acard" style="padding:12px 14px">
+        <div class="albl">Témata · o týden později</div>
+        <div class="gift-key"><span><i style="background:repeating-linear-gradient(135deg,#7FA5DA 0 4px,#9DBBE3 4px 8px)"></i>z testu</span><span><i style="background:#3A6FC0"></i>natrénováno</span></div>
+        <div class="hs"><div class="l">Slovesné časy <span>48 %</span></div><div class="hbar"><span class="gift" style="width:40%"></span><span class="won" style="width:8%"></span></div></div>
+        <div class="hs"><div class="l">Slovosled a otázky <span>88 %</span></div><div class="hbar"><span class="gift" style="width:60%"></span><span class="won" style="width:28%"></span></div></div>
+        <div class="hs"><div class="l">Členy <span>48 %</span></div><div class="hbar"><span class="gift" style="width:25%"></span><span class="won" style="width:23%"></span></div></div>
+        <div class="hs"><div class="l">Podmínkové věty <span>30 %</span></div><div class="hbar"><span class="gift" style="width:10%"></span><span class="won" style="width:20%"></span></div></div>
+        <div class="hs" style="margin:0"><div class="l">Trpný rod <span>20 %</span></div><div class="hbar"><span class="won" style="width:20%"></span></div></div>
+      </div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Jak náskok vypadá později</p>
+    <p class="why">Pruhovaná část zůstává vidět, takže je jasné, kolik přibylo vlastním tréninkem. Je to vlastně taky „kousek k cíli“ z návrhu 1.</p></div>
+  </div>
+
+  <!-- 6 -->
+  <h2 class="sec" id="n6"><span class="n">6</span>Rozdělané kolo počká</h2>
+  <p class="research"><b>Proč:</b> rozdělané věci si pamatujeme líp než hotové a chceme je dokončit. Hlavně ale nikdo nepřijde o odpovědi, které už dal, když ho třeba vyruší telefon. Znovu začít je pak snadné.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <div class="head"><div><p class="day">Úterý</p><h3>Dnešní trénink</h3></div>
+        <div class="sb"><div class="plate"><b>12</b></div><small>Dní v řadě</small></div></div>
+      <div class="resume">
+        <div class="top"><b>Rozdělané kolo</b><span class="x">Zahodit</span></div>
+        <p class="note" style="margin:3px 0 0">Slovesné časy · Střední · <b>4 z 10</b></p>
+        <div class="dots"><i class="ok"></i><i class="ok"></i><i class="bad"></i><i class="ok"></i><i class="next"></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="btnp" style="margin:0">Pokračovat</div>
+      </div>
+      <div class="acard"><div class="albl">Dnešní cíl</div><div style="font:700 19px Newsreader,serif">4 / 20 odpovědí</div><div class="bar" style="margin-top:8px"><span style="width:20%"></span></div></div>
+      <div class="btns">Nový trénink</div>
+      <div class="btns">Vybrat si téma</div>
+      <div class="tabbar"><i class="on">Domů</i><i>Témata</i><i>Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Na Domů nahoře, dokud kolo neskončí</p>
+    <p class="why">Ukazuje téma, obtížnost a kde se skončilo (zelená = správně, oranžová = chyba). „Zahodit“ je malé, ale vždy po ruce. Platí jeden den, druhý den karta zmizí, aby nevisela jako nesplněný úkol.</p></div>
+  </div>
+
+  <h2 class="sec">Čemu se ve všech návrzích vyhýbáme</h2>
+  <div class="avoid">
+    Podle výzkumů se lidi cítí provinile nebo úzkostně hlavně kvůli těmto věcem, a pak odcházejí. Proto v návrzích nejsou:
+    <ul>
+      <li>žebříčky a soutěžení s cizími lidmi,</li>
+      <li>srdíčka nebo energie, které omezují, kolik se dá cvičit,</li>
+      <li>smutný Kotoučík, „ztratíš sérii!“ a červené prázdné dny,</li>
+      <li>falešné odpočty a naléhavost,</li>
+      <li>nekonečné hraní bez jasného konce.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Kotoučík: kopie kotoucikSVG z appky (zde jen nálada rest).
+function kotoucikSVG(mood){
+  const eye = function(x, y){
+    if(mood === "rest") return '<path d="M' + (x - 7) + ' ' + (y + 2) + ' q7 -10 14 0" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>';
+    return '<ellipse cx="' + x + '" cy="' + (y + 1.5) + '" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="' + x + '" cy="' + y + '" rx="8.5" ry="9.5" fill="url(#kt-eye)"/>' +
+      '<circle cx="' + (x + 1.5) + '" cy="' + (y + 1.8) + '" r="4.6" fill="#1B2A41"/><circle cx="' + (x + 3.2) + '" cy="' + (y - 1.2) + '" r="1.8" fill="#fff"/>';
+  };
+  const arm = function(d){ return '<path d="' + d + '" stroke="#16191E" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="' + d + '" stroke="#3A414B" stroke-width="7" fill="none" stroke-linecap="round"/>'; };
+  const hand = function(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="8" fill="url(#kt-hand)"/><circle cx="' + (x - 2.5) + '" cy="' + (y - 2.5) + '" r="2.2" fill="rgba(255,255,255,.35)"/>'; };
+  let arms;
+  if(mood === "grip") arms = arm("M24 84 q-6 10 -2 18") + hand(22, 104) + arm("M100 84 q6 10 2 18") + hand(102, 104);
+  else if(mood === "rest") arms = arm("M20 66 q-12 -10 -6 -30") + hand(14, 34) + arm("M104 66 q12 -10 6 -30") + hand(110, 34);
+  else arms = arm("M20 70 q-14 -4 -12 -22") + hand(8, 46) + arm("M104 74 q8 8 4 18") + hand(108, 93);
+  const brows = '<path d="M40 31 L54 30 M70 30 L84 31" stroke="#E7EDF4" stroke-width="3" stroke-linecap="round" opacity=".8"/>';
+  const mouth = '<path d="M50 78 q12 13 24 0" stroke="url(#kt-gold)" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
+  return '<svg viewBox="-8 -4 140 140">' + arms +
+    '<circle cx="62" cy="62" r="47" fill="url(#kt-rim)"/><circle cx="62" cy="62" r="42.5" fill="url(#kt-body)"/>' +
+    '<circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="url(#kt-silver)" stroke-width="2.6"/>' +
+    '<path d="M28 40 a40 40 0 0 1 26 -20" stroke="rgba(255,255,255,.28)" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="62" cy="63" r="4.2" fill="#0E1014" stroke="url(#kt-silver)" stroke-width="1.2"/>' +
+    eye(47, 44) + eye(77, 44) + (mood === "rest" ? "" : brows) + mouth + '</svg>';
+}
+document.getElementById("kt-rest").innerHTML = kotoucikSVG("rest");
+
+// 2 · kalendář: 8 týdnů (sloupce), Po–Ne (řádky). 0 nic, 1–3 intenzita, g = splněný cíl, r = den volna, t = dnes, f = budoucnost.
+const weeks = [
+  "0 1 0 2 0 0 0", "1 2 0 r 1 0 0", "0 0 0 0 0 0 0", "2 1 g 2 0 r 1",
+  "g 2 g 1 g r 2", "g g 2 g g r g", "g 2 g g r g g", "g t f f f f f"
+];
+const days = ["Po","Út","St","Čt","Pá","So","Ne"];
+let cal = "";
+for(let d = 0; d < 7; d++){
+  cal += '<span class="d">' + days[d] + '</span>';
+  for(let w = 0; w < 8; w++){
+    const v = weeks[w].split(" ")[d];
+    const cls = v === "g" ? "l3 goal" : v === "r" ? "rest" : v === "t" ? "l2 today" : v === "f" ? "fut" : v === "0" ? "" : "l" + v;
+    cal += '<span class="c ' + cls + '">' + (v === "r" ? "❄" : "") + '</span>';
+  }
+}
+document.getElementById("cal").innerHTML = cal;
+
+// 4 · stojan s kotouči: [téma, materiál, % zvládnuto, co chybí]
+const T = [
+  ["Slovesné časy","plast",48,"Ještě 2 zvládnuté a bude těžší ocelový kotouč."],
+  ["Podmínkové věty","plast",30,"Ještě 9 zvládnutých a bude ocelový."],
+  ["Slovosled a otázky","steel",88,"Ještě 1 zvládnutá a zezlátne ✨"],
+  ["Modální slovesa","empty",0,"Zatím netrénováno."],
+  ["Trpný rod","plast",20,"Ještě 6 zvládnutých a bude ocelový."],
+  ["Nepřímá řeč","empty",0,"Zatím netrénováno."],
+  ["Členy","plast",45,"Ještě 4 zvládnuté a bude ocelový."],
+  ["Podstatná jména","gold",100,"Zlatý kotouč. Paráda!"],
+  ["Zájmena","gold",100,"Zlatý kotouč. Paráda!"],
+  ["Vedlejší věty","plast",12,"Ještě 11 zvládnutých a bude ocelový."],
+  ["Infinitiv a gerundium","empty",0,"Zatím netrénováno."],
+  ["Přídavná jm. a příslovce","plast",25,"Ještě 7 zvládnutých a bude ocelový."],
+  ["Předložky","steel",55,"Ještě 12 zvládnutých a bude zlatý."],
+  ["Frázová slovesa","empty",0,"Zatím netrénováno."],
+  ["Spojky","plast",8,"Ještě 13 zvládnutých a bude ocelový."],
+  ["Slovní zásoba","steel",62,"Ještě 19 zvládnutých a bude zlatý."]
+];
+function plateSVG(mat, pct){
+  // větší zvládnutí = větší kotouč (poloměr 15–24)
+  const r = mat === "empty" ? 17 : 15 + Math.round(pct / 100 * 9);
+  if(mat === "empty") return '<svg viewBox="0 0 56 56"><rect x="4" y="26" width="48" height="4" rx="2" fill="#C6CED8"/><circle cx="28" cy="28" r="' + r + '" fill="none" stroke="#B9C2CD" stroke-width="2" stroke-dasharray="4 3"/></svg>';
+  const fill = "url(#m-" + mat + ")";
+  const rim = mat === "gold" ? "#8A6A0A" : mat === "steel" ? "#4A5058" : "#7F9BC0";
+  const shine = mat === "plast" ? "" : '<path d="M' + (28 - r * .7) + ' ' + (28 - r * .3) + ' a' + r * .8 + ' ' + r * .8 + ' 0 0 1 ' + r * .55 + ' -' + r * .5 + '" stroke="rgba(255,255,255,.7)" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+  return '<svg viewBox="0 0 56 56"><rect x="2" y="26" width="52" height="4" rx="2" fill="#8E959D"/>' +
+    '<ellipse cx="28" cy="' + (30 + r * .15) + '" rx="' + r + '" ry="' + r * .95 + '" fill="rgba(20,30,45,.25)"/>' +
+    '<circle cx="28" cy="28" r="' + r + '" fill="' + fill + '" stroke="' + rim + '" stroke-width="1.4"/>' +
+    '<circle cx="28" cy="28" r="' + (r * .55) + '" fill="none" stroke="' + rim + '" stroke-opacity=".5" stroke-width="1.2"/>' +
+    '<circle cx="28" cy="28" r="3.5" fill="#2A2F36"/>' + shine + '</svg>';
+}
+let sel = 2;
+function renderRack(){
+  document.getElementById("rack").innerHTML = T.map(function(t, i){
+    return '<div class="eq' + (t[1] === "empty" ? " new" : "") + (i === sel ? " sel" : "") + '" data-i="' + i + '">' + plateSVG(t[1], t[2]) + '<small>' + t[0] + '</small></div>';
+  }).join("");
+  const t = T[sel];
+  document.getElementById("detail").innerHTML = plateSVG(t[1], t[2]) + '<div><b>' + t[0] + (t[2] ? " · " + t[2] + " %" : "") + '</b><small>' + t[3] + '</small></div>';
+}
+document.getElementById("rack").addEventListener("click", function(e){
+  const el = e.target.closest(".eq"); if(!el) return;
+  sel = +el.dataset.i; renderRack();
+});
+renderRack();
+</script>
+</body>
+</html>
