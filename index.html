@@ -480,6 +480,9 @@
   .srow{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-weight:600; }
   .srow:last-child{ border-bottom:none; }
   .srow-btn{ background:none; border:none; cursor:pointer; font: inherit; font-weight:700; color:var(--primary); padding:4px 0; }
+  .voice-pick{ display:flex; align-items:center; gap:10px; min-width:0; flex:0 1 auto; }
+  .voice-pick .srow-btn{ white-space:nowrap; }
+  #voice-select{ font: inherit; font-size:14px; font-weight:600; width:100%; max-width:150px; min-width:0; padding:6px 8px; border-radius:10px; border:none; background:var(--track); color:var(--ink); }
 
   .report-link{ display:inline-block; margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
 
@@ -1324,6 +1327,10 @@
           <button data-sound="on" data-i18n="soundOn">Zapnuté</button>
           <button data-sound="off" data-i18n="soundOff">Vypnuté</button>
         </div>
+      </div>
+      <div class="srow" id="voice-row">
+        <span data-i18n="setVoice">Hlas předčítání</span>
+        <span class="voice-pick"><select id="voice-select"></select><button class="srow-btn" id="voice-test" data-i18n="voiceTest">▶ Zkusit</button></span>
       </div>
       <div class="srow">
         <span data-i18n="setTheme">Vzhled</span>
@@ -23098,6 +23105,7 @@ const tabButtons = document.querySelectorAll("#tabbar .tab");
 function showView(name){
   if(name === "home") renderHome();
   if(name === "progress") renderProgress();
+  if(name === "settings") renderVoiceSelect();
   Object.keys(views).forEach(function(k){ views[k].classList.remove("active"); });
   views[name].classList.add("active");
   // Během kola a na výsledku je spodní lišta skrytá, aby nerušila.
@@ -23129,6 +23137,8 @@ const I18N = {
     setTheme: "Vzhled", themeAuto: "Auto", themeLight: "Světlý", themeDark: "Tmavý",
     setMascot: "Kotoučík", mascotOn: "Zapnutý", mascotOff: "Vypnutý",
     setSound: "Zvuky", soundOn: "Zapnuté", soundOff: "Vypnuté",
+    setVoice: "Hlas předčítání", voiceTest: "▶ Zkusit", voiceAuto: "Automaticky",
+    voiceRegions: { GB: "britská", US: "americká", AU: "australská", IE: "irská", IN: "indická", ZA: "jihoafrická", NZ: "novozélandská", CA: "kanadská" },
     celTap: "Klepni pro pokračování",
     celUnlockBadge: "ODEMČENO", celUnlockSub: function(d){ return "Na " + d + " máš přes 80 %. Je čas přidat."; },
     celLevelBadge: "NOVÁ ÚROVEŇ", celLevelTitle: function(l){ return "Úroveň " + l; }, celLevelSub: function(l){ return "Zvládáš gramatiku úrovně " + l + "."; },
@@ -23264,6 +23274,8 @@ const I18N = {
     setTheme: "Appearance", themeAuto: "Auto", themeLight: "Light", themeDark: "Dark",
     setMascot: "Plate buddy", mascotOn: "On", mascotOff: "Off",
     setSound: "Sounds", soundOn: "On", soundOff: "Off",
+    setVoice: "Reading voice", voiceTest: "▶ Try", voiceAuto: "Automatic",
+    voiceRegions: { GB: "British", US: "American", AU: "Australian", IE: "Irish", IN: "Indian", ZA: "South African", NZ: "New Zealand", CA: "Canadian" },
     celTap: "Tap to continue",
     celUnlockBadge: "UNLOCKED", celUnlockSub: function(d){ return "Over 80% on " + d + ". Time to step up."; },
     celLevelBadge: "NEW LEVEL", celLevelTitle: function(l){ return "Level " + l; }, celLevelSub: function(l){ return "You can handle " + l + " grammar."; },
@@ -24529,12 +24541,46 @@ function spokenSentence(q){
 function speak(text){
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis.getVoices();
-  u.voice = voices.filter(function(v){ return /^en[-_]GB/i.test(v.lang); })[0] || voices.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
-  u.lang = "en-GB";
+  u.voice = chosenVoice();
+  u.lang = u.voice ? u.voice.lang : "en-GB";
   u.rate = 0.95;
   window.speechSynthesis.speak(u);
 }
+
+// Hlas předčítání: výběr z anglických hlasů zařízení v Nastavení (bez „efektových“ hlasů z iOS/macOS).
+const VOICE_KEY = "grammarLabVoiceV1";
+const NOVELTY_VOICES = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Deranged|Hysterical)\b/i;
+function englishVoices(){
+  if(!canSpeak) return [];
+  return window.speechSynthesis.getVoices().filter(function(v){ return /^en[-_]/i.test(v.lang) && !NOVELTY_VOICES.test(v.name); })
+    .sort(function(a, b){ return a.lang.localeCompare(b.lang) || a.name.localeCompare(b.name); });
+}
+function chosenVoice(){
+  let uri = "";
+  try{ uri = window.localStorage.getItem(VOICE_KEY) || ""; }catch(e){}
+  const vs = englishVoices();
+  return vs.filter(function(v){ return v.voiceURI === uri; })[0] || vs.filter(function(v){ return /^en[-_]GB/i.test(v.lang); })[0] || vs[0] || null;
+}
+const voiceSelect = document.getElementById("voice-select");
+function renderVoiceSelect(){
+  const vs = englishVoices();
+  document.getElementById("voice-row").style.display = vs.length ? "" : "none";
+  let uri = "";
+  try{ uri = window.localStorage.getItem(VOICE_KEY) || ""; }catch(e){}
+  const regions = tx("voiceRegions");
+  voiceSelect.innerHTML = '<option value="">' + escapeHtml(tx("voiceAuto")) + '</option>' + vs.map(function(v){
+    const region = regions[v.lang.slice(3, 5).toUpperCase()];
+    return '<option value="' + escapeHtml(v.voiceURI) + '"' + (v.voiceURI === uri ? " selected" : "") + '>' +
+      escapeHtml(v.name.replace(/\s*\(.*\)\s*$/, "") + (region ? " · " + region : "")) + '</option>';
+  }).join("");
+}
+voiceSelect.addEventListener("change", function(){
+  try{ window.localStorage.setItem(VOICE_KEY, voiceSelect.value); }catch(e){}
+  speak("Hello! This is how I'll read the sentences to you.");
+});
+document.getElementById("voice-test").addEventListener("click", function(){ speak("Hello! This is how I'll read the sentences to you."); });
+if(canSpeak) window.speechSynthesis.onvoiceschanged = renderVoiceSelect;
+renderVoiceSelect();
 
 // Combo: aspoň 3 správné odpovědi za sebou v kole (ne v rozřazovacím testu); každá pětka „poskočí“.
 function comboPill(){
