@@ -8,7 +8,6 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 
 ## Zapsané nápady (zatím se nedělají)
 
-- **Druhá kontrola otázek očima studenta.** Projít všechny otázky podle `docs/kontrola-otazek.md`, hlavně dvojznačnosti (víc správných odpovědí) a nápovědy, které prozrazují řešení. Nejdůležitější před spuštěním pro lidi.
 - **Diktát.** Nový typ cvičení: aplikace přečte větu, student ji napíše. Na iPhonu zatím jen základním hlasem.
 - **Zásady ochrany soukromí a úvodní stránka.** Zásady vyžaduje App Store; úvodní stránka jde posílat lidem místo samotné aplikace.
 - **Posilovna, která roste.** Sbírka za témata (kolo 31: B1 nástěnka medailí, B2 Kotoučíkova činka, B3 barevné kotouče; stupně bronz/stříbro/zlato podle síly jevů). Odloženo.
