@@ -23576,7 +23576,7 @@ const I18N = {
     setTheme: "Vzhled", themeAuto: "Auto", themeLight: "Světlý", themeDark: "Tmavý",
     setMascot: "Kotoučík", mascotOn: "Zapnutý", mascotOff: "Vypnutý",
     setSound: "Zvuky", soundOn: "Zapnuté", soundOff: "Vypnuté",
-    setVoice: "Hlas předčítání", voiceTest: "▶ Zkusit", voiceAuto: "Automaticky",
+    setVoice: "Hlas předčítání", voiceTest: "▶ Zkusit", voiceAuto: "Automaticky", voiceQuality: ["", "vylepšený ★", "prémiový ★★"],
     voiceRegions: { GB: "britská", US: "americká", AU: "australská", IE: "irská", IN: "indická", ZA: "jihoafrická", NZ: "novozélandská", CA: "kanadská" },
     celTap: "Klepni pro pokračování",
     celUnlockBadge: "ODEMČENO", celUnlockSub: function(d){ return "Na " + d + " máš přes 80 %. Je čas přidat."; },
@@ -23713,7 +23713,7 @@ const I18N = {
     setTheme: "Appearance", themeAuto: "Auto", themeLight: "Light", themeDark: "Dark",
     setMascot: "Plate buddy", mascotOn: "On", mascotOff: "Off",
     setSound: "Sounds", soundOn: "On", soundOff: "Off",
-    setVoice: "Reading voice", voiceTest: "▶ Try", voiceAuto: "Automatic",
+    setVoice: "Reading voice", voiceTest: "▶ Try", voiceAuto: "Automatic", voiceQuality: ["", "enhanced ★", "premium ★★"],
     voiceRegions: { GB: "British", US: "American", AU: "Australian", IE: "Irish", IN: "Indian", ZA: "South African", NZ: "New Zealand", CA: "Canadian" },
     celTap: "Tap to continue",
     celUnlockBadge: "UNLOCKED", celUnlockSub: function(d){ return "Over 80% on " + d + ". Time to step up."; },
@@ -24992,13 +24992,20 @@ const NOVELTY_VOICES = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good N
 function englishVoices(){
   if(!canSpeak) return [];
   return window.speechSynthesis.getVoices().filter(function(v){ return /^en[-_]/i.test(v.lang) && !NOVELTY_VOICES.test(v.name); })
-    .sort(function(a, b){ return a.lang.localeCompare(b.lang) || a.name.localeCompare(b.name); });
+    .sort(function(a, b){ return voiceQuality(b) - voiceQuality(a) || a.lang.localeCompare(b.lang) || a.name.localeCompare(b.name); });
+}
+// Kvalita hlasu podle názvu: 2 = prémiový (iOS/macOS), 1 = vylepšený nebo „přirozený“ (Edge), 0 = základní.
+function voiceQuality(v){
+  const id = v.name + " " + v.voiceURI;
+  return /premium/i.test(id) ? 2 : /enhanced|natural|neural/i.test(id) ? 1 : 0;
 }
 function chosenVoice(){
   let uri = "";
   try{ uri = window.localStorage.getItem(VOICE_KEY) || ""; }catch(e){}
   const vs = englishVoices();
-  return vs.filter(function(v){ return v.voiceURI === uri; })[0] || vs.filter(function(v){ return /^en[-_]GB/i.test(v.lang); })[0] || vs[0] || null;
+  // Automaticky: nejkvalitnější hlas, při shodě britský.
+  const best = vs.length ? voiceQuality(vs[0]) : 0;
+  return vs.filter(function(v){ return v.voiceURI === uri; })[0] || vs.filter(function(v){ return voiceQuality(v) === best && /^en[-_]GB/i.test(v.lang); })[0] || vs[0] || null;
 }
 const voiceSelect = document.getElementById("voice-select");
 function renderVoiceSelect(){
@@ -25010,7 +25017,7 @@ function renderVoiceSelect(){
   voiceSelect.innerHTML = '<option value="">' + escapeHtml(tx("voiceAuto")) + '</option>' + vs.map(function(v){
     const region = regions[v.lang.slice(3, 5).toUpperCase()];
     return '<option value="' + escapeHtml(v.voiceURI) + '"' + (v.voiceURI === uri ? " selected" : "") + '>' +
-      escapeHtml(v.name.replace(/\s*\(.*\)\s*$/, "") + (region ? " · " + region : "")) + '</option>';
+      escapeHtml(v.name.replace(/\s*\(.*\)\s*$/, "") + (region ? " · " + region : "") + (voiceQuality(v) ? " · " + tx("voiceQuality")[voiceQuality(v)] : "")) + '</option>';
   }).join("");
 }
 voiceSelect.addEventListener("change", function(){
