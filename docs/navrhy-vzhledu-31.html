@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návrhy vzhledu 31</title>
+<style>
+  /* Statické návrhy (31. kolo) — NEJSOU součástí appky. Dny tréninku na Domů → kalendář, hezčí posilovna (medaile / činka / barevné kotouče). Historie: navrhy-vzhledu-zmeny.md */
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Newsreader'; font-weight:500 700; src:url(../fonts/newsreader-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin.woff2) format('woff2'); }
+  @font-face{ font-family:'Inter'; font-weight:400 800; src:url(../fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02AF, U+1E00-1EFF; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEAE4; color:#22252B; font-family:Inter, system-ui, sans-serif; }
+  .wrap{ max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1.page{ font-family:Newsreader, serif; font-size:32px; margin:0 0 8px; }
+  .lead{ color:#6A6F78; margin:0 0 6px; max-width:900px; line-height:1.55; }
+  h2.sec{ font-family:Newsreader, serif; font-size:24px; margin:44px 0 4px; }
+  h2.sec .n{ display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50%; background:#1E3A5F; color:#fff; font:800 15px Inter; margin-right:8px; vertical-align:3px; }
+  .research{ font-size:13.5px; color:#6A6F78; max-width:900px; line-height:1.55; margin:0; }
+  .research b{ color:#22252B; }
+  .phones{ display:flex; gap:24px; flex-wrap:wrap; margin-top:18px; }
+  .col{ width:320px; max-width:100%; }
+  .phone{ width:320px; max-width:100%; height:640px; border-radius:46px; border:11px solid #15171B; overflow:hidden; position:relative; box-shadow:0 22px 50px rgba(0,0,0,.25); }
+  .cap{ font-size:15px; font-weight:800; margin:14px 0 2px; }
+  .why{ font-size:12.5px; color:#6A6F78; line-height:1.5; margin:4px 0 0; }
+  .avoid{ background:#fff; border-radius:18px; padding:16px 20px; max-width:900px; margin-top:14px; font-size:13.5px; line-height:1.6; box-shadow:0 6px 16px rgba(0,0,0,.08); }
+  .avoid ul{ margin:6px 0 0; padding-left:20px; }
+
+  /* ===== Náhled v barvách appky ===== */
+  .app{ position:absolute; inset:0; background:linear-gradient(180deg,#F3F6F9,#CDD7E2); color:#1B2A41; padding:22px 14px 0; overflow:hidden; font-size:13px; }
+  .app .brand{ text-align:center; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#5C6478; opacity:.8; margin-bottom:12px; }
+  .app h3{ font:700 24px/1.1 Newsreader, serif; margin:0 0 12px; }
+  .app .day{ font-size:12px; color:#5C6478; margin:0; }
+  .acard{ background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:18px; padding:14px; margin-bottom:12px; box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16),0 2px 4px rgba(60,75,100,.1); }
+  .albl{ font-size:10px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#6E8F5C; margin:0 0 8px; }
+  .bar{ height:7px; background:#D9E1EA; border-radius:999px; overflow:hidden; } .bar span{ display:block; height:100%; background:#3A6FC0; border-radius:999px; }
+  .note{ font-size:12px; color:#5C6478; line-height:1.45; margin:7px 0 0; }
+  .note b{ color:#1B2A41; }
+  .btnp{ display:block; width:100%; border:none; border-radius:16px; padding:13px; margin-bottom:8px; font:800 14px Inter; color:#fff; text-align:center;
+    background:linear-gradient(180deg,#33598A,#1E3A5F); box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 0 #132840,0 10px 18px rgba(20,40,64,.3); }
+  .btnp small{ display:block; font-weight:600; font-size:11px; opacity:.85; margin-top:2px; }
+  .btns{ display:block; width:100%; border:none; border-radius:16px; padding:12px; margin-bottom:8px; font:800 13.5px Inter; color:#1B2A41; text-align:center; background:#fff; box-shadow:inset 0 1px 0 #fff,0 3px 0 #C9D3DE,0 8px 14px rgba(60,75,100,.12); }
+  .btnl{ display:block; text-align:center; font-size:12px; font-weight:700; color:#5C6478; margin-top:4px; }
+  .tabbar{ position:absolute; left:0; right:0; bottom:0; height:56px; background:#F7F9FB; border-top:1px solid #DCE3EB; display:flex; }
+  .tabbar i{ flex:1; font-style:normal; display:grid; place-items:center; font-size:10px; font-weight:700; color:#8A93A3; padding-top:22px; position:relative; }
+  .tabbar i::before{ content:""; position:absolute; top:11px; width:16px; height:14px; border-radius:4px; border:2px solid currentColor; }
+  .tabbar i.on{ color:#1B2A41; }
+  .rec{ display:inline-block; background:#2F7A4A; color:#fff; font-size:10px; font-weight:800; letter-spacing:.06em; padding:2px 7px; border-radius:999px; margin-left:4px; vertical-align:2px; }
+  .plate{ width:50px; height:50px; border-radius:50%; display:grid; place-items:center; flex-shrink:0;
+    background:radial-gradient(circle,#2F343C 0 49%,#9AA0A7 50% 52%,#2F343C 53% 61%,#1D2026 62% 66%,#2F343C 67%); box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 6px 12px rgba(0,0,0,.3); }
+  .plate b{ font:700 19px/1 Newsreader, serif; color:#F2C230; }
+  .head{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .head .sb{ display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .head .sb small{ font-size:8.5px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:#5C6478; }
+
+  /* 1 · kousek k cíli */
+  .trow{ display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:9px 11px; margin-bottom:7px; box-shadow:0 3px 8px rgba(60,75,100,.1); }
+  .trow .t{ flex:1; min-width:0; }
+  .trow .t b{ display:block; font-size:12.5px; }
+  .trow .t small{ display:block; font-size:11px; color:#5C6478; margin-top:3px; }
+  .trow .t small.near{ color:#2F7A4A; font-weight:700; }
+  .ring{ width:34px; height:34px; flex-shrink:0; }
+  .ring circle{ fill:none; stroke-width:4; }
+  .ring .bg{ stroke:#D9E1EA; } .ring .fg{ stroke:#3A6FC0; stroke-linecap:round; transform:rotate(-90deg); transform-origin:50% 50%; }
+  .ring text{ font:800 9px Inter; fill:#1B2A41; text-anchor:middle; }
+  .chk{ width:18px; height:18px; border-radius:6px; border:2px solid #C6D0DC; flex-shrink:0; }
+  .near-card{ display:flex; gap:10px; align-items:center; }
+  .near-card .big{ font:700 30px/1 Newsreader, serif; }
+  .steps{ display:flex; gap:4px; margin-top:8px; }
+  .steps i{ flex:1; height:9px; border-radius:3px; background:#D9E1EA; }
+  .steps i.f{ background:#3A6FC0; }
+  .steps i.last{ background:repeating-linear-gradient(45deg,#D9E1EA 0 3px,#EAF0F6 3px 6px); outline:2px solid #F2C230; outline-offset:-2px; }
+
+  /* 2 · kalendář */
+  .cal{ display:grid; grid-template-columns:22px repeat(8,1fr); gap:4px; margin-top:4px; }
+  .cal .d{ font-size:8.5px; font-weight:800; color:#8A93A3; display:grid; place-items:center; }
+  .cal .c{ aspect-ratio:1; border-radius:6px; background:#E3E9F0; display:grid; place-items:center; font-size:10px; }
+  .cal .c.l1{ background:#BCD0EB; } .cal .c.l2{ background:#7FA5DA; } .cal .c.l3{ background:#3A6FC0; }
+  .cal .c.goal{ box-shadow:inset 0 0 0 2px #F2C230; }
+  .cal .c.rest{ background:#EAF2FB; color:#5B8FD0; }
+  .cal .c.today{ outline:2px solid #1B2A41; outline-offset:1px; }
+  .cal .c.fut{ background:transparent; border:1.5px dashed #D3DBE5; }
+  .cal-legend{ display:flex; gap:10px; flex-wrap:wrap; font-size:10px; color:#5C6478; margin-top:8px; align-items:center; }
+  .cal-legend span{ display:inline-flex; align-items:center; gap:4px; }
+  .cal-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .stats3{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:4px; }
+  .stats3 div{ background:#F1F5F9; border-radius:12px; padding:8px 6px; text-align:center; }
+  .stats3 b{ display:block; font:700 22px/1 Newsreader, serif; }
+  .stats3 small{ display:block; font-size:9.5px; font-weight:700; color:#5C6478; margin-top:4px; line-height:1.25; }
+  .stats3 div.main{ background:#1E3A5F; color:#fff; } .stats3 div.main small{ color:#C9D6E8; } .stats3 div.main b{ color:#F2C230; }
+
+  /* 3 · konec dne */
+  .done{ position:absolute; inset:0; background:radial-gradient(90% 55% at 50% 30%,#FFFFFF 0%,#EAF0F6 55%,#D3DDE8 100%); color:#1B2A41; text-align:center; padding:40px 18px 0; }
+  .done .kt{ width:120px; height:120px; margin:0 auto; animation: breathe 4s ease-in-out infinite; }
+  .done .zz{ position:absolute; left:58%; top:48px; font:800 16px Inter; color:#8AA3C2; animation: zz 3s ease-in-out infinite; }
+  .done .zz:nth-child(2){ left:63%; top:30px; font-size:12px; animation-delay:1.2s; }
+  @keyframes breathe{ 50%{ transform:translateY(-3px) scale(1.02); } }
+  @keyframes zz{ 0%{ opacity:0; transform:translate(0,6px); } 30%,70%{ opacity:1; } 100%{ opacity:0; transform:translate(8px,-10px); } }
+  .done h4{ font:700 26px/1.15 Newsreader, serif; margin:10px 0 4px; }
+  .done p.sub{ font-size:13px; color:#5C6478; margin:0 0 16px; line-height:1.45; }
+  .done .row{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .done .row div{ background:#fff; border-radius:14px; padding:10px 6px; box-shadow:0 3px 8px rgba(60,75,100,.1); }
+  .done .row b{ display:block; font:700 22px/1 Newsreader, serif; }
+  .done .row small{ font-size:10.5px; color:#5C6478; font-weight:700; }
+  .tmrw{ display:flex; gap:10px; align-items:center; text-align:left; background:#fff; border-radius:14px; padding:10px 12px; margin-bottom:16px; box-shadow:0 3px 8px rgba(60,75,100,.1); font-size:12px; line-height:1.4; }
+  .tmrw .ic{ width:32px; height:32px; border-radius:10px; background:#E6EDF5; display:grid; place-items:center; font-size:16px; flex-shrink:0; }
+
+  /* 4 · posilovna roste */
+  .rack{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px 4px; }
+  .eq{ text-align:center; }
+  .eq svg{ width:56px; height:56px; display:block; margin:0 auto; overflow:visible; }
+  .eq small{ display:block; font-size:8.5px; font-weight:700; line-height:1.2; color:#3B4558; margin-top:2px; min-height:20px; }
+  .eq.new svg{ opacity:.55; }
+  .eq.sel svg{ filter:drop-shadow(0 0 6px rgba(242,194,48,.8)); }
+  .tiers{ display:flex; justify-content:space-between; gap:4px; margin-top:10px; font-size:9.5px; color:#5C6478; font-weight:700; }
+  .tiers span{ display:flex; align-items:center; gap:3px; }
+  .tiers svg{ width:16px; height:16px; }
+  .detail{ display:flex; gap:10px; align-items:center; background:#fff; border-radius:14px; padding:10px 12px; margin-top:10px; box-shadow:0 3px 8px rgba(60,75,100,.12); }
+  .detail svg{ width:44px; height:44px; flex-shrink:0; }
+  .detail b{ font-size:12.5px; display:block; }
+  .detail small{ display:block; font-size:11px; color:#5C6478; margin-top:2px; line-height:1.35; }
+
+  /* 5 · náskok po testu */
+  .res-top{ text-align:center; margin-bottom:10px; }
+  .res-top .lv{ display:inline-grid; place-items:center; width:74px; height:74px; border-radius:50%; font:700 28px Newsreader, serif; color:#F2C230;
+    background:radial-gradient(circle,#2F343C 0 49%,#9AA0A7 50% 52%,#2F343C 53% 61%,#1D2026 62% 66%,#2F343C 67%); box-shadow:0 8px 16px rgba(0,0,0,.3); }
+  .res-top h4{ font:700 21px/1.2 Newsreader, serif; margin:8px 0 2px; }
+  .res-top p{ font-size:12px; color:#5C6478; margin:0; }
+  .hs{ margin-bottom:9px; }
+  .hs .l{ display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px; }
+  .hs .l span{ color:#5C6478; font-weight:600; }
+  .hbar{ height:9px; background:#D9E1EA; border-radius:999px; overflow:hidden; display:flex; }
+  .hbar .gift{ background:repeating-linear-gradient(135deg,#7FA5DA 0 4px,#9DBBE3 4px 8px); }
+  .hbar .won{ background:#3A6FC0; }
+  .gift-key{ display:flex; gap:12px; font-size:10px; color:#5C6478; margin:2px 0 8px; }
+  .gift-key i{ display:inline-block; width:14px; height:8px; border-radius:3px; vertical-align:-1px; margin-right:4px; }
+
+  /* 6 · rozdělané kolo */
+  .resume{ position:relative; background:linear-gradient(180deg,#fff,#F6F8FA); border-radius:18px; padding:14px; margin-bottom:12px; box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16); border:2px solid #3A6FC0; }
+  .resume .top{ display:flex; justify-content:space-between; align-items:center; }
+  .resume .top b{ font-size:14px; }
+  .resume .x{ font-size:11px; color:#8A93A3; font-weight:700; }
+  .dots{ display:flex; gap:4px; margin:10px 0 10px; }
+  .dots i{ flex:1; height:8px; border-radius:3px; background:#D9E1EA; }
+  .dots i.ok{ background:#3F7A55; } .dots i.bad{ background:#D88C76; } .dots i.next{ background:#D9E1EA; outline:2px solid #3A6FC0; outline-offset:-2px; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse{ 50%{ outline-color:rgba(58,111,192,.25); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+
+  /* ===== kolo 31 ===== */
+  .tapcard{ position:relative; cursor:pointer; }
+  .wk-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .total{ font-size:11.5px; font-weight:800; color:#1E3A5F; background:#E6EDF5; padding:4px 9px; border-radius:999px; }
+  .total i{ font-style:normal; margin-left:2px; }
+  .tap{ position:absolute; right:30px; top:28px; width:26px; height:26px; border-radius:50%; background:rgba(58,111,192,.25); animation: tap 2.2s ease-out infinite; pointer-events:none; }
+  @keyframes tap{ 0%{ transform:scale(.4); opacity:0; } 20%{ opacity:1; } 60%,100%{ transform:scale(1.6); opacity:0; } }
+  .week-plates{ display:flex; gap:6px; padding-bottom:18px; margin-bottom:4px; }
+  .wp{ flex:1; aspect-ratio:1; border-radius:50%; position:relative;
+    background: radial-gradient(circle, #E1E8EF 0 13%, #DCE3EB 14% 62%, #C8D2DD 63% 70%, #DCE3EB 71%); box-shadow: 0 4px 8px rgba(60,75,100,.16); }
+  .wp.on{ background: radial-gradient(circle, #E1E8EF 0 13%, #2F343C 14% 62%, #1D2026 63% 70%, #2F343C 71%); box-shadow: inset 0 2px 0 rgba(255,255,255,.15), 0 5px 10px rgba(0,0,0,.3); }
+  .wp.free{ display:grid; place-items:center; font-size:15px; color:#fff; background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 70%, #5B7FB3 71%); }
+  .wp::after{ content: attr(data-d); position:absolute; left:-6px; right:-6px; bottom:-16px; text-align:center; font-size:9px; font-weight:800; color:#8A94A6; }
+  .wp.today::before{ content:""; position:absolute; inset:-4px; border-radius:50%; background: conic-gradient(#F2C230 0 40%, #D9E1EA 40% 100%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); }
+  .wp.today::after{ color:#B8901A; }
+  /* malé kotouče: mini kalendář (A2) i kalendář v Pokroku */
+  .mini, .pcal{ display:grid; gap:4px; }
+  .mini{ grid-template-columns:repeat(7,1fr); gap:5px 7px; }
+  .pcal{ grid-template-columns:20px repeat(8,1fr); }
+  .pcal .d, .mini .d{ font-size:8.5px; font-weight:800; color:#8A93A3; display:grid; place-items:center; }
+  .mp{ aspect-ratio:1; border-radius:50%; position:relative; display:grid; place-items:center; font-size:9px; color:#fff;
+    background: radial-gradient(circle, #F3F6F9 0 14%, #DCE3EB 15% 62%, #C8D2DD 63% 72%, #DCE3EB 73%); }
+  .mp.on{ background: radial-gradient(circle, #F3F6F9 0 14%, #2F343C 15% 62%, #1D2026 63% 72%, #2F343C 73%); }
+  .mp.goal{ box-shadow: 0 0 0 2px #F2C230; }
+  .mp.rest{ background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 72%, #5B7FB3 73%); }
+  .mp.today{ box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1B2A41; }
+  .mp.fut{ background:none; border:1.5px dashed #D3DBE5; }
+  .lg{ width:11px; height:11px; border-radius:50%; display:inline-block; background:#DCE3EB; }
+  .lg.on{ background:#2F343C; } .lg.goal{ box-shadow:0 0 0 2px #F2C230; }
+  .hl{ animation: hl 3s ease-in-out infinite; }
+  @keyframes hl{ 0%,100%{ box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16); } 20%{ box-shadow:inset 0 1px 0 #fff,0 0 0 3px rgba(242,194,48,.8),0 10px 22px rgba(60,75,100,.16); } 45%{ box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(60,75,100,.16); } }
+
+  /* B1 · medaile */
+  .wall{ background:linear-gradient(180deg,#fff,#F3F6F9); }
+  .medals{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px 2px; }
+  .md{ text-align:center; cursor:pointer; }
+  .md svg{ width:52px; height:59px; display:block; margin:0 auto; overflow:visible; }
+  .md small{ display:block; font-size:8.5px; font-weight:700; line-height:1.2; color:#3B4558; min-height:20px; }
+  .md.sel svg{ filter:drop-shadow(0 0 6px rgba(242,194,48,.9)); }
+  .detail{ display:flex; gap:10px; align-items:center; background:#fff; border-radius:14px; padding:10px 12px; margin-top:10px; box-shadow:0 3px 8px rgba(60,75,100,.12); }
+  .detail svg{ width:46px; height:52px; flex-shrink:0; overflow:visible; }
+  .detail b{ font-size:12.5px; display:block; }
+  .detail small{ display:block; font-size:11px; color:#5C6478; margin-top:2px; line-height:1.35; }
+  .shine{ animation: shine 3.5s ease-in-out infinite; }
+  @keyframes shine{ 0%,70%{ transform:translateX(-30px); opacity:0; } 80%{ opacity:.9; } 100%{ transform:translateX(30px); opacity:0; } }
+
+  /* B2 · činka */
+  .lift{ background:radial-gradient(80% 70% at 50% 45%,#FFFFFF,#E9EEF4); padding:8px 6px 12px; text-align:center; }
+  #lift svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .lift-num{ font-size:12.5px; color:#5C6478; } .lift-num b{ font:700 22px Newsreader,serif; color:#1B2A41; } .lift-num span{ color:#B8901A; font-weight:700; }
+  .bob{ animation: bob 2.4s ease-in-out infinite; transform-origin:50% 60%; }
+  @keyframes bob{ 50%{ transform:translateY(3px); } }
+  .chips{ display:flex; flex-wrap:wrap; gap:5px; }
+  .chip{ display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; background:#fff; border-radius:999px; padding:3px 8px 3px 3px; box-shadow:0 2px 5px rgba(60,75,100,.12); }
+  .chip i{ width:14px; height:14px; border-radius:50%; display:inline-block; }
+
+  /* B3 · barevné kotouče */
+  .bumper{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px 2px; }
+  .bp{ text-align:center; cursor:pointer; }
+  .bp svg{ width:64px; height:64px; display:block; margin:0 auto; overflow:visible; }
+  .bp small{ display:block; font-size:8.5px; font-weight:700; line-height:1.2; color:#3B4558; min-height:20px; }
+  .bp.sel svg{ filter:drop-shadow(0 0 6px rgba(242,194,48,.9)); }
+</style>
+</head>
+<body>
+<!-- Přechody pro 3D Kotoučíka (stejné jako v appce) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="kt-body" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#5A626E"/><stop offset=".45" stop-color="#343A43"/><stop offset="1" stop-color="#16191E"/></radialGradient>
+    <linearGradient id="kt-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151820"/><stop offset=".5" stop-color="#262B33"/><stop offset="1" stop-color="#0E1014"/></linearGradient>
+    <linearGradient id="kt-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA0A7"/><stop offset="1" stop-color="#D6DADF"/></linearGradient>
+    <radialGradient id="kt-eye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5DCE4"/></radialGradient>
+    <linearGradient id="kt-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE07A"/><stop offset=".6" stop-color="#F2C230"/><stop offset="1" stop-color="#C99A12"/></linearGradient>
+    <radialGradient id="kt-hand" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#6A727E"/><stop offset="1" stop-color="#22262D"/></radialGradient>
+    <!-- kovy medailí a kotoučů -->
+    <linearGradient id="m-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0B0"/><stop offset=".35" stop-color="#E2AE1F"/><stop offset=".55" stop-color="#FFE07A"/><stop offset="1" stop-color="#A9800C"/></linearGradient>
+    <linearGradient id="t-bronze" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6D2B0"/><stop offset=".4" stop-color="#C98A5A"/><stop offset=".6" stop-color="#E7B08A"/><stop offset="1" stop-color="#8A5530"/></linearGradient>
+    <linearGradient id="t-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#B9BFC6"/><stop offset=".6" stop-color="#E8EBEE"/><stop offset="1" stop-color="#7D848C"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <h1 class="page">Návrhy vzhledu · 31. kolo · dny tréninku a hezčí posilovna</h1>
+  <p class="lead">Kolo 30 se líbí celé. Tady dotahujeme dvě věci: <b>políčko s počtem dní na Domů</b> (klepnutím do kalendáře, případně s malým kalendářem) a <b>hezčí „posilovnu, která roste“</b> ve třech variantách. Do appky se zatím nic nedává.</p>
+
+  <!-- A · políčko na Domů -->
+  <h2 class="sec" id="n1"><span class="n">A</span>Dny tréninku na Domů → kalendář</h2>
+  <p class="research">Na Domů už je karta „Tento týden“ se 7 kotouči. Celkový počet dní a odkaz do kalendáře dávám přímo do ní. Další karta navíc by Domů zbytečně prodloužila. Jsou dvě možnosti, jak kartu udělat: <b>A1</b> nechá velké kotouče týdne a přidá „34 dní celkem ›“, <b>A2</b> místo nich ukáže malý kalendář posledních 4 týdnů. Klepnutí kamkoli na kartu přepne do Pokroku rovnou na kalendář (třetí telefon).</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <div class="head"><div><p class="day">Úterý</p><h3>Dnešní trénink</h3></div>
+        <div class="sb"><div class="plate"><b>16</b></div><small>Dní v řadě</small></div></div>
+      <div class="acard"><div class="albl">Dnešní cíl</div><div style="font:700 19px Newsreader,serif">8 / 20 odpovědí</div><div class="bar" style="margin-top:8px"><span style="width:40%"></span></div></div>
+      <div class="acard tapcard">
+        <div class="wk-head"><span class="albl" style="margin:0">Tento týden</span><span class="total">34 dní celkem <i>›</i></span></div>
+        <div class="week-plates" id="wk-a1"></div>
+        <p class="note" style="margin:0">❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.</p>
+        <span class="tap" aria-hidden="true"></span>
+      </div>
+      <div class="btnp">Začít trénink<small>Mix otázek na míru, jedním klepnutím</small></div>
+      <div class="tabbar"><i class="on">Domů</i><i>Témata</i><i>Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">A1 · Týden + „34 dní celkem ›“ <span class="rec">DOPORUČUJI</span></p>
+    <p class="why">Kotouče týdne zůstanou velké a dnešní ukazuje kroužkem, kolik chybí do denního cíle. Vpravo nahoře přibude „34 dní celkem ›“ a šipka napoví, že se dá klepnout. Kalendář je o klepnutí dál.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <div class="head"><div><p class="day">Úterý</p><h3>Dnešní trénink</h3></div>
+        <div class="sb"><div class="plate"><b>16</b></div><small>Dní v řadě</small></div></div>
+      <div class="acard"><div class="albl">Dnešní cíl</div><div style="font:700 19px Newsreader,serif">8 / 20 odpovědí</div><div class="bar" style="margin-top:8px"><span style="width:40%"></span></div></div>
+      <div class="acard tapcard">
+        <div class="wk-head"><span class="albl" style="margin:0">Posledních 4 týdny</span><span class="total">34 dní celkem <i>›</i></span></div>
+        <div class="mini" id="mini"></div>
+        <p class="note" style="margin:6px 0 0">❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.</p>
+      </div>
+      <div class="btnp">Začít trénink<small>Mix otázek na míru, jedním klepnutím</small></div>
+      <div class="tabbar"><i class="on">Domů</i><i>Témata</i><i>Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">A2 · Malý kalendář na Domů</p>
+    <p class="why">Místo 7 velkých kotoučů je 4 × 7 malých, takže je vidět víc historie. Kotoučky jsou ale malé, na prst a na čtení horší, a dnešní den je méně vidět. Kalendář je navíc dvakrát, na Domů i v Pokroku.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Tvůj pokrok</h3>
+      <div class="acard hl">
+        <div class="albl">Tréninky · posledních 8 týdnů</div>
+        <div class="stats3" style="margin-bottom:10px">
+          <div class="main"><b>16</b><small>dní v řadě</small></div>
+          <div><b>34</b><small>tréninkových dní celkem</small></div>
+          <div><b>21</b><small>nejdelší série</small></div>
+        </div>
+        <div class="pcal" id="pcal"></div>
+        <div class="cal-legend">
+          <span><i class="lg"></i>bez tréninku</span>
+          <span><i class="lg on"></i>trénink</span>
+          <span><i class="lg on goal"></i>splněný cíl</span>
+          <span>❄ den volna</span>
+        </div>
+      </div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">Po klepnutí: Pokrok, rovnou na kalendáři</p>
+    <p class="why">Stránka sjede ke kalendáři a karta se na chvíli jemně rozzáří, aby bylo jasné, kam se klepnutí dostalo. Navíc tu má kalendář místo čtverečků <b>malé kotouče</b> jako týden na Domů, aby obě místa vypadala stejně. Zlatý kroužek = splněný cíl.</p></div>
+  </div>
+
+  <!-- B · posilovna -->
+  <h2 class="sec" id="n2"><span class="n">B</span>Posilovna, která roste: tři líbivější varianty</h2>
+  <p class="research">Plast a ocel nejsou moc hezké a nejsou na první pohled jasné. Nově má každé téma vlastní <b>znak</b>, typické anglické slovíčko: časy „-ed“, podmínky „if“, členy „the“, frázová slovesa „up“… Stupně jsou všem známé <b>bronz → stříbro → zlato</b> (od 1 %, 50 %, 90 % zvládnutých otázek). Tenký oblouk kolem ukazuje, kolik zbývá do dalšího stupně (návrh 1 „kousek k cíli“). V náhledech jde klepnout na téma.</p>
+  <div class="phones">
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Moje medaile</h3>
+      <div class="acard wall" style="padding:14px 8px 10px">
+        <div class="medals" id="medals"></div>
+      </div>
+      <div class="detail" id="det1"></div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">B1 · Nástěnka medailí <span class="rec">DOPORUČUJI</span></p>
+    <p class="why">16 medailí na stužkách v barvách appky. Nezačaté téma je jen obrys se znakem, pak bronz, stříbro a zlato s odleskem. Je na první pohled jasné, je to hezká sbírka a hodí se k oslavě zezlátnutí, která už v appce je.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Kotoučíkova činka</h3>
+      <div class="acard lift">
+        <div id="lift"></div>
+        <div class="lift-num" id="lift-num"></div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">B2 · Kotoučík zvedá tvoji činku</p>
+    <p class="why">Každé rozjeté téma přidá na činku kotouč v barvě stupně, zlatá témata zlatý. Čím víc toho umíš, tím je činka těžší a Kotoučík víc funí. Je to vtipné a osobní, ale u jednotlivých témat je méně vidět, jak na tom jsou, proto jsou pod činkou ještě štítky.</p></div>
+
+    <div class="col"><div class="phone"><div class="app">
+      <div class="brand">Gramatická posilovna</div>
+      <h3>Tvoje posilovna</h3>
+      <div class="acard" style="padding:12px 10px 6px">
+        <div class="bumper" id="bumper"></div>
+      </div>
+      <div class="detail" id="det3"></div>
+      <div class="tabbar"><i>Domů</i><i>Témata</i><i class="on">Pokrok</i><i>Nastavení</i></div>
+    </div></div>
+    <p class="cap">B3 · Barevné kotouče ve stojanu</p>
+    <p class="why">Jako barevné gumové kotouče v posilovně: každé téma má svou barvu a kotouč roste s pokrokem, zlatý okraj = zvládnuto. Je to nejbarevnější varianta, ale 16 barev je hodně a stupeň (bronz/stříbro/zlato) z ní není tak jasně vidět.</p></div>
+  </div>
+</div>
+
+<script>
+// Kotoučík: kopie částí kotoucikSVG z appky; navíc póza „lift“ (ruce nad hlavou s činkou) jen pro tento návrh.
+function ktParts(){
+  const eye = function(x, y){
+    return '<ellipse cx="' + x + '" cy="' + (y + 1.5) + '" rx="9" ry="10" fill="rgba(0,0,0,.35)"/><ellipse cx="' + x + '" cy="' + y + '" rx="8.5" ry="9.5" fill="url(#kt-eye)"/>' +
+      '<circle cx="' + (x + 1.5) + '" cy="' + (y - 1) + '" r="4.6" fill="#1B2A41"/><circle cx="' + (x + 3.2) + '" cy="' + (y - 3.6) + '" r="1.8" fill="#fff"/>';
+  };
+  const arm = function(d){ return '<path d="' + d + '" stroke="#16191E" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="' + d + '" stroke="#3A414B" stroke-width="7" fill="none" stroke-linecap="round"/>'; };
+  const hand = function(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="8" fill="url(#kt-hand)"/><circle cx="' + (x - 2.5) + '" cy="' + (y - 2.5) + '" r="2.2" fill="rgba(255,255,255,.35)"/>'; };
+  return { eye: eye, arm: arm, hand: hand };
+}
+function ktBody(){
+  return '<circle cx="62" cy="62" r="47" fill="url(#kt-rim)"/><circle cx="62" cy="62" r="42.5" fill="url(#kt-body)"/>' +
+    '<circle cx="62" cy="62" r="30" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="4"/><circle cx="62" cy="61" r="30" fill="none" stroke="url(#kt-silver)" stroke-width="2.6"/>' +
+    '<path d="M28 40 a40 40 0 0 1 26 -20" stroke="rgba(255,255,255,.28)" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="62" cy="63" r="4.2" fill="#0E1014" stroke="url(#kt-silver)" stroke-width="1.2"/>';
+}
+
+// ===== A · týden, mini kalendář, kalendář v Pokroku =====
+const weeks = [
+  "0 1 0 2 0 0 0", "1 2 0 r 1 0 0", "0 0 0 0 0 0 0", "2 1 g 2 0 r 1",
+  "g 2 g 1 g r 2", "g g 2 g g r g", "g 2 g g r g g", "g t f f f f f"
+];
+const days = ["Po","Út","St","Čt","Pá","So","Ne"];
+function mp(v){
+  const cls = v === "g" ? "on goal" : v === "r" ? "rest" : v === "t" ? "on today" : v === "f" ? "fut" : v === "0" ? "" : "on";
+  return '<span class="mp ' + cls + '">' + (v === "r" ? "❄" : "") + '</span>';
+}
+// A1: tento týden (Po splněno, dnes rozjeto na 40 %)
+document.getElementById("wk-a1").innerHTML = ["PO","DNES","ST","ČT","PÁ","SO","NE"].map(function(d, i){
+  return '<span class="wp' + (i === 0 ? " on" : i === 1 ? " today" : "") + '" data-d="' + d + '"></span>';
+}).join("");
+// A2: poslední 4 týdny, řádky = týdny
+let mini = days.map(function(d){ return '<span class="d">' + d + '</span>'; }).join("");
+for(let w = 4; w < 8; w++) mini += weeks[w].split(" ").map(mp).join("");
+document.getElementById("mini").innerHTML = mini;
+// Pokrok: 8 týdnů ve sloupcích
+let pcal = "";
+for(let d = 0; d < 7; d++){
+  pcal += '<span class="d">' + days[d] + '</span>';
+  for(let w = 0; w < 8; w++) pcal += mp(weeks[w].split(" ")[d]);
+}
+document.getElementById("pcal").innerHTML = pcal;
+
+// ===== B · témata: [název, znak, % zvládnuto] =====
+const T = [
+  ["Slovesné časy","-ed",48], ["Podmínkové věty","if",30], ["Slovosled a otázky","?",88], ["Modální slovesa","can",0],
+  ["Trpný rod","by",20], ["Nepřímá řeč","said",0], ["Členy","the",45], ["Podstatná jména","much",100],
+  ["Zájmena","she",100], ["Vedlejší věty","who",12], ["Infinitiv a gerundium","-ing",0], ["Přídavná jm. a příslovce","-ly",25],
+  ["Předložky","on",55], ["Frázová slovesa","up",0], ["Spojky","but",8], ["Slovní zásoba","abc",62]
+];
+// pro 100% témata bereme 95/100 jako zlato; stupně: 0 nic, 1–49 bronz, 50–89 stříbro, 90+ zlato
+function tier(p){ return p === 0 ? 0 : p < 50 ? 1 : p < 90 ? 2 : 3; }
+const TIER_NAME = ["", "bronz", "stříbro", "zlato"];
+const TIER_GRAD = ["", "url(#t-bronze)", "url(#t-silver)", "url(#m-gold)"];
+const TIER_RIM = ["#B9C2CD", "#8A5530", "#6B727A", "#8A6A0A"];
+function nextText(t){
+  const p = t[2], tr = tier(p);
+  if(tr === 0) return "Zatím netrénováno. První správná odpověď = bronz.";
+  if(tr === 3) return "Zlatá medaile. Paráda!";
+  const goal = tr === 1 ? 50 : 90, left = Math.max(1, Math.round((goal - p) / 100 * 40));
+  return "Ještě " + left + (left === 1 ? " zvládnutá" : left < 5 ? " zvládnuté" : " zvládnutých") + " a bude " + (tr === 1 ? "stříbrná" : "zlatá") + (tr === 2 ? " ✨" : "") + ".";
+}
+function medalSVG(t, big){
+  const p = t[2], tr = tier(p);
+  const cx = 31, cy = 45, r = 18;
+  let s = '<svg viewBox="0 0 62 70">';
+  // stužka
+  s += '<path d="M17 0 h10 l9 26 h-10z" fill="' + (tr ? "#3A6FC0" : "#D3DBE5") + '"/><path d="M45 0 h-10 l-9 26 h10z" fill="' + (tr ? "#E07A5F" : "#C6CED8") + '"/>';
+  if(tr) s += '<path d="M21 0 h2 l9 26 h-2z" fill="rgba(255,255,255,.6)"/>';
+  // oblouk do dalšího stupně
+  if(tr === 1 || tr === 2){
+    const from = tr === 1 ? 0 : 50, to = tr === 1 ? 50 : 90, f = (p - from) / (to - from), R = r + 4.5, C = 2 * Math.PI * R;
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="none" stroke="#E3E9F0" stroke-width="2.6"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="none" stroke="' + (tr === 1 ? "#A9AFB6" : "#E2AE1F") + '" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="' + (C * f).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 ' + cx + ' ' + cy + ')"/>';
+  }
+  if(tr === 0){
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="#F3F6F9" stroke="#B9C2CD" stroke-width="1.6" stroke-dasharray="4 3"/>' +
+      '<text x="' + cx + '" y="' + (cy + 4.5) + '" text-anchor="middle" font-family="Newsreader,serif" font-weight="700" font-size="' + (t[1].length > 3 ? 10.5 : 13) + '" fill="#A3ADB9">' + t[1] + '</text>';
+  } else {
+    s += '<circle cx="' + cx + '" cy="' + (cy + 1.5) + '" r="' + r + '" fill="rgba(20,30,45,.25)"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + TIER_GRAD[tr] + '" stroke="' + TIER_RIM[tr] + '" stroke-width="1.2"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r - 4) + '" fill="none" stroke="' + TIER_RIM[tr] + '" stroke-opacity=".45" stroke-width="1"/>' +
+      '<text x="' + cx + '" y="' + (cy + 4.5) + '" text-anchor="middle" font-family="Newsreader,serif" font-weight="700" font-size="' + (t[1].length > 3 ? 10.5 : 13) + '" fill="' + TIER_RIM[tr] + '">' + t[1] + '</text>' +
+      '<path d="M' + (cx - 12) + ' ' + (cy - 6) + ' a14 14 0 0 1 9 -9" stroke="rgba(255,255,255,.75)" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+    if(tr === 3) s += '<clipPath id="mc' + (big ? "b" : "") + t[1].replace(/\W/g, "") + '"><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '"/></clipPath>' +
+      '<g clip-path="url(#mc' + (big ? "b" : "") + t[1].replace(/\W/g, "") + ')"><rect class="shine" x="' + (cx - 4) + '" y="' + (cy - r) + '" width="6" height="' + 2 * r + '" fill="rgba(255,255,255,.8)" transform="skewX(-20)"/></g>';
+  }
+  return s + '</svg>';
+}
+let sel1 = 2;
+function renderMedals(){
+  document.getElementById("medals").innerHTML = T.map(function(t, i){
+    return '<div class="md' + (i === sel1 ? " sel" : "") + '" data-i="' + i + '">' + medalSVG(t) + '<small>' + t[0] + '</small></div>';
+  }).join("");
+  const t = T[sel1];
+  document.getElementById("det1").innerHTML = medalSVG(t, true) + '<div><b>' + t[0] + (t[2] ? " · " + TIER_NAME[tier(t[2])] + " · " + t[2] + " %" : "") + '</b><small>' + nextText(t) + '</small></div>';
+}
+document.getElementById("medals").addEventListener("click", function(e){ const el = e.target.closest(".md"); if(el){ sel1 = +el.dataset.i; renderMedals(); } });
+renderMedals();
+
+// ===== B2 · Kotoučíkova činka =====
+(function(){
+  const k = ktParts();
+  const done = T.filter(function(t){ return t[2] > 0; }).sort(function(a, b){ return b[2] - a[2]; });
+  const H = [0, 46, 56, 66];
+  let plates = "";
+  // kotouče od středu ven, na obou stranách stejně
+  done.forEach(function(t, i){
+    // témata se střídají vlevo a vpravo, nejtěžší u středu
+    const tr = tier(t[2]), h = H[tr], w = 10, j = Math.floor(i / 2);
+    [i % 2 ? 210 + j * (w + 1) : 90 - (j + 1) * (w + 1)].forEach(function(x){
+      plates += '<rect x="' + x + '" y="' + (70 - h / 2) + '" width="' + w + '" height="' + h + '" rx="2" fill="' + TIER_GRAD[tr] + '" stroke="' + TIER_RIM[tr] + '" stroke-width=".8"/>';
+    });
+  });
+  const kt = '<g transform="translate(96,70) scale(.85)">' +
+    k.arm("M22 64 q-20 -30 -12 -64") + k.arm("M102 64 q20 -30 12 -64") + ktBody() + k.eye(47, 46) + k.eye(77, 46) +
+    '<path d="M40 34 L54 30 M70 30 L84 34" stroke="#E7EDF4" stroke-width="3" stroke-linecap="round" opacity=".8"/>' +
+    '<path d="M52 80 q10 8 20 0" stroke="url(#kt-gold)" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
+    '<path d="M104 28 q5 8 0 12 q-5 -4 0 -12z" fill="#9CC3F0"/>' +
+    k.hand(10, 0) + k.hand(114, 0) + '</g>';
+  document.getElementById("lift").innerHTML = '<svg viewBox="0 0 300 175">' +
+    '<ellipse cx="150" cy="166" rx="70" ry="7" fill="rgba(20,30,45,.18)"/>' +
+    '<g class="bob">' + '<rect x="4" y="67" width="292" height="6" rx="3" fill="url(#kt-silver)" stroke="#6B727A" stroke-width=".6"/>' +
+    '<rect x="90" y="62" width="6" height="16" rx="2" fill="#6B727A"/><rect x="204" y="62" width="6" height="16" rx="2" fill="#6B727A"/>' + plates + kt + '</g></svg>';
+  const gold = done.filter(function(t){ return tier(t[2]) === 3; }).length;
+  document.getElementById("lift-num").innerHTML = "<b>" + done.length + "</b> kotoučů na čince <span>· " + gold + " zlaté</span>";
+  document.getElementById("chips").innerHTML = T.map(function(t){
+    const tr = tier(t[2]);
+    return '<span class="chip"><i style="background:' + (tr ? ["", "#C98A5A", "#B9BFC6", "#F2C230"][tr] : "#E3E9F0") + '"></i>' + t[0] + '</span>';
+  }).join("");
+})();
+
+// ===== B3 · barevné kotouče =====
+const HUES = ["#E5484D","#F76B15","#FFB224","#46A758","#12A594","#0090FF","#3E63DD","#8E4EC6","#D6409F","#E54666","#978365","#30A46C","#0588F0","#6E56CF","#AB4ABA","#00A2C7"];
+let sel3 = 2;
+function bumperSVG(t, i){
+  const p = t[2], r = p ? 16 + Math.round(p / 100 * 12) : 18, c = HUES[i];
+  if(!p) return '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="' + r + '" fill="none" stroke="#B9C2CD" stroke-width="1.6" stroke-dasharray="4 3"/><text x="32" y="36" text-anchor="middle" font-family="Newsreader,serif" font-weight="700" font-size="12" fill="#A3ADB9">' + t[1] + '</text></svg>';
+  return '<svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="' + r + '" fill="rgba(20,30,45,.25)"/>' +
+    '<circle cx="32" cy="32" r="' + r + '" fill="' + c + '"' + (p >= 90 ? ' stroke="url(#m-gold)" stroke-width="4"' : '') + '/>' +
+    '<circle cx="32" cy="32" r="' + (r * .55) + '" fill="rgba(0,0,0,.12)"/><circle cx="32" cy="32" r="5" fill="url(#kt-silver)" stroke="#555" stroke-width=".6"/>' +
+    '<path d="M' + (32 - r * .7) + ' ' + (32 - r * .35) + ' a' + r * .8 + ' ' + r * .8 + ' 0 0 1 ' + r * .5 + ' -' + r * .45 + '" stroke="rgba(255,255,255,.45)" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+    '<text x="32" y="' + (32 + r * .78) + '" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="7.5" fill="#fff">' + t[1] + '</text></svg>';
+}
+function renderBumper(){
+  document.getElementById("bumper").innerHTML = T.map(function(t, i){
+    return '<div class="bp' + (i === sel3 ? " sel" : "") + '" data-i="' + i + '">' + bumperSVG(t, i) + '<small>' + t[0] + '</small></div>';
+  }).join("");
+  const t = T[sel3];
+  document.getElementById("det3").innerHTML = bumperSVG(t, sel3).replace('<svg', '<svg style="width:46px;height:46px"') + '<div><b>' + t[0] + (t[2] ? " · " + t[2] + " %" : "") + '</b><small>' + nextText(t).replace("bude stříbrná", "kotouč vyroste").replace("bude zlatá ✨", "dostane zlatý okraj ✨").replace("Zlatá medaile", "Zlatý okraj").replace("= bronz", "= první kotouč") + '</small></div>';
+}
+document.getElementById("bumper").addEventListener("click", function(e){ const el = e.target.closest(".bp"); if(el){ sel3 = +el.dataset.i; renderBumper(); } });
+renderBumper();
+</script>
+</body>
+</html>

@@ -249,3 +249,9 @@ Statické návrhy obrazovek (appka se jimi nemění). Každé kolo je samostatn�
 - 4 Posilovna, která roste: stojan se 16 kotouči (téma = kotouč), materiál podle podílu zvládnutých otázek: obrys / plast (do 49 %) / ocel (50–89 %) / zlato (od 90 %), větší s pokrokem; klepnutí ukáže, co chybí.
 - 5 Náskok po rozřazovacím testu: témata prokázaná v testu začínají pruhovaným dílem „z testu“, natrénované přibývá plnou barvou.
 - 6 Rozdělané kolo počká: karta nahoře na Domů (téma, obtížnost, 4 z 10, tečky správně/chyba), Pokračovat a malé Zahodit; platí jen ten den.
+- **Kolo 30 výsledek:** líbí se vše. Dotáhnout: klepnutí na počet dní na Domů → Pokrok s kalendářem, zvážit malý kalendář na Domů, posilovna, která roste, vizuálně nelíbí → zkusit líbivější. Pak vše nasadit.
+
+### Dny tréninku a hezčí posilovna (kolo 31)
+- A Karta „Tento týden“ na Domů dostane „34 dní celkem ›“ a celá je klepací → Pokrok sjede ke kalendáři a karta se krátce rozzáří. **A1 (doporučeno):** velké kotouče týdne zůstanou; A2: místo nich malý kalendář 4 × 7 (víc historie, ale drobné a kalendář dvakrát).
+- Kalendář v Pokroku má místo čtverečků malé kotouče jako týden na Domů (tmavý = trénink, zlatý kroužek = splněný cíl, modrý s ❄ = den volna).
+- B Posilovna, která roste, místo plastu a oceli: každé téma má znak (typické slovíčko: -ed, if, ?, can, by, said, the, much, she, who, -ing, -ly, on, up, but, abc) a stupně bronz (od 1 %) → stříbro (50 %) → zlato (90 %), tenký oblouk ukazuje kus do dalšího stupně. **B1 Nástěnka medailí (doporučeno)** na stužkách v barvách appky, zlato s odleskem; B2 Kotoučík zvedá činku, každé rozjeté téma = kotouč v barvě stupně, pod tím štítky; B3 barevné gumové kotouče, každé téma vlastní barva, zlatý okraj = zvládnuto.
