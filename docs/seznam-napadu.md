@@ -14,5 +14,7 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 
 - Zabalení pro iOS, připomínky, placená verze, posílání výzev přímo v aplikaci (účty, přátelé).
 - Anglická verze: vysvětlení u otázek a pokyny jsou zatím česky.
-- Nahrané předčítání: věty předem namluvit kvalitním počítačovým hlasem, aby zněly stejně dobře na každém zařízení. Přes 6 700 otázek = desítky MB a menší poplatek za namluvení.
+- **Kvalitní hlas předčítání (řešit při balení pro iOS).** iPhone webovým aplikacím nedá stažené prémiové hlasy, čte se jen základním „robotickým“ hlasem. Varianty:
+  - Zabalená aplikace použije prémiové hlasy iPhonu přímo.
+  - Věty se předem namluví kvalitním hlasem (např. Google Cloud, nejspíš v rámci bezplatného limitu) a aplikace si stáhne jen tu, kterou si pustíš. Všechny nahrávky dohromady odhadem 50–60 MB.
 - Velikost aplikace (jeden soubor 2,8 MB): případně rozdělit data otázek.
