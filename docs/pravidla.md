@@ -52,12 +52,12 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Future continuous — B1–C1
    * Be about to — C1
    * Časová věta (when/after/before + present simple) — B1
-   * Future perfect — B2 (zatím bez otázek)
-   * Future perfect continuous — C1 (zatím bez otázek)
-   * Stavová slovesa (state verbs: love, know, believe...) — A2–B1 (zatím bez otázek)
-   * Přítomné časy pro budoucnost (jízdní řády, rozvrhy, naplánované děje) — B1 (zatím bez otázek)
-   * Budoucnost v minulosti (was going to / would) — B2 (zatím bez otázek)
-   * Be used to / get used to — B1–B2 (zatím bez otázek)
+   * Future perfect — B2
+   * Future perfect continuous — C1
+   * Stavová slovesa (state verbs: love, know, believe...) — A2–B1
+   * Přítomné časy pro budoucnost (jízdní řády, rozvrhy, naplánované děje) — B1
+   * Budoucnost v minulosti (was going to / would) — B2
+   * Be used to / get used to — B1–B2
 
    *(Pozn.: „Inverze v minulosti (Had I known...)" byla odsud odebrána — patří koncepčně do `[conditionals]` → „Inverze v podmínce". Obsahový přesun proběhl: 60 duplicitních otázek (stejný jev jako „Had I..." varianta pod „Inverze v podmínce") bylo smazáno, stejně jako 8 Mix otázek, které tento tag kombinovaly s jinými tenses jevy. Tenses/Mix má proto teď dočasně méně než 20 otázek na obtížnost (19/18/15) — čeká na doplnění.)*
 2. Podmínky a přání `[conditionals]`
@@ -70,9 +70,9 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Inverze v podmínce (Were I.../Had I.../Should you...) — C1
    * Wish + minulost (včetně If only — emocionálně silnější varianta stejného jevu) — B2–C1
    * As if / as though + minulost — B2–C1
-   * Wish + would (stěžování na cizí opakované/rušivé chování) — B2 (zatím bez otázek)
-   * Would rather / It's time + minulý čas (přání/nutnost týkající se chování druhé osoby) — B2–C1 (zatím bez otázek)
-   * Provided / as long as / in case — B2 (zatím bez otázek)
+   * Wish + would (stěžování na cizí opakované/rušivé chování) — B2
+   * Would rather / It's time + minulý čas (přání/nutnost týkající se chování druhé osoby) — B2–C1
+   * Provided / as long as / in case — B2
 
    *(Pozn.: „It's time + minulý čas" sloučeno s „Would rather + minulý čas" — oba vyjadřují nepřímý nátlak/přání ohledně chování druhé osoby přes minulý čas s přítomným/budoucím významem.)*
 3. Trpný rod `[passive]`
@@ -80,10 +80,10 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Present perfect, budoucí časy — B1
    * S modálními slovesy — B2
    * Have/get something done — B2
-   * Průběhové časy v trpném rodě (is being done / was being done) — B2 (zatím bez otázek)
-   * Věty se dvěma předměty (I was given a book.) — B2 (zatím bez otázek)
-   * Trpný infinitiv a gerundium (to be done / being done) — C1 (zatím bez otázek)
-   * Vazby It is said that.../He is said to... — C1 (zatím bez otázek)
+   * Průběhové časy v trpném rodě (is being done / was being done) — B2
+   * Věty se dvěma předměty (I was given a book.) — B2
+   * Trpný infinitiv a gerundium (to be done / being done) — C1
+   * Vazby It is said that.../He is said to... — C1
 4. Nepřímá řeč `[reported-speech]`
    * Oznamovací věty — B1
    * Otázky v nepřímé řeči — B1
@@ -98,9 +98,9 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
    * Rada (should/ought to/had better) — B1
    * Pravděpodobnost a dedukce v přítomnosti (must/might/can't be) — B1–B2
    * Modály v minulosti (must have/might have/should have/needn't have) — B2
-   * Needn't have vs. didn't need to — C1 (zatím bez otázek)
-   * Be supposed to — B1–B2 (zatím bez otázek)
-   * Náhradní tvary (be able to, be allowed to, have to v jiných časech) — B1–B2 (zatím bez otázek)
+   * Needn't have vs. didn't need to — C1
+   * Be supposed to — B1–B2
+   * Náhradní tvary (be able to, be allowed to, have to v jiných časech) — B1–B2
 
    *(Pozn.: „Had better" se nakonec nepřidává jako samostatné podtéma — zůstává jen jako jedna z forem pod „Rada (should/ought to/had better)", protože jde sloučit a samostatně by mělo malou variabilitu.)*
 6. Členy `[articles]`
@@ -167,10 +167,10 @@ Každé hlavní téma navíc dostává přesně jedno doplňkové podtéma `Mix`
     * Záporné otázky — A2–C1
     * Tag questions — B1–B2
     * Inverze po záporných příslovcích (Never had I...) — C1
-    * Otázky na podmět a předmět (Who called you? / Who did you call?) — A2–B1 (zatím bez otázek)
-    * Vytýkací věty (It was John who... / What I need is...) — B2–C1 (zatím bez otázek)
-    * Pozice příslovcí frekvence — A2–B1 (zatím bez otázek)
-    * Krátké odpovědi, elipsa a důrazové do/did (So do I / Neither do I, I think so / I hope not, emphatic do) — B1–B2 (zatím bez otázek)
+    * Otázky na podmět a předmět (Who called you? / Who did you call?) — A2–B1
+    * Vytýkací věty (It was John who... / What I need is...) — B2–C1
+    * Pozice příslovcí frekvence — A2–B1
+    * Krátké odpovědi, elipsa a důrazové do/did (So do I / Neither do I, I think so / I hope not, emphatic do) — B1–B2
 
     *(Pozn.: „So do I / Neither do I", „Důrazové do/did" a „Elipsa a substituce" sloučeny do jednoho podtématu — všechny řeší, jak se vyhnout opakování celé věty pomocí pomocného slovesa.)*
 14. Frázová slovesa `[phrasal-verbs]`

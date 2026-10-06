@@ -1528,16 +1528,16 @@
    ============================================================ */
 
 const TOPICS = [
-  { id:"tenses",      name:"Slovesné časy",            desc:"Past simple, continuous, perfect, present perfect, will, going to, future continuous",
-    nameEn:"Verb tenses", descEn:"Past simple, continuous, perfect, present perfect, will, going to, future continuous" },
+  { id:"tenses",      name:"Slovesné časy",            desc:"Past simple, continuous, perfect, present perfect, will, going to, future continuous, future perfect, stavová slovesa, be used to",
+    nameEn:"Verb tenses", descEn:"Past simple, continuous, perfect, present perfect, will, going to, future continuous, future perfect, state verbs, be used to" },
   { id:"conditionals", name:"Podmínkové věty",         desc:"0., 1., 2., 3. kondicionál",
     nameEn:"Conditionals", descEn:"Zero, first, second and third conditional" },
-  { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze",
-    nameEn:"Word order and questions", descEn:"Indirect questions, negative questions, tag questions, inversion" },
-  { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost",
-    nameEn:"Modal verbs", descEn:"Ability, permission, obligation, prohibition, advice, probability" },
-  { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done",
-    nameEn:"Passive voice", descEn:"Present and past simple, present perfect, modal verbs, have/get something done" },
+  { id:"word-order", name:"Slovosled a otázky", desc:"Nepřímé otázky, záporné otázky, tag questions, inverze, otázky na podmět, vytýkací věty, pozice příslovcí, krátké odpovědi",
+    nameEn:"Word order and questions", descEn:"Indirect questions, negative questions, tag questions, inversion, subject questions, cleft sentences, adverb position, short answers" },
+  { id:"modals", name:"Modální slovesa", desc:"Schopnost, dovolení, povinnost, zákaz, rada, pravděpodobnost, be supposed to, náhradní tvary",
+    nameEn:"Modal verbs", descEn:"Ability, permission, obligation, prohibition, advice, probability, be supposed to, substitute forms" },
+  { id:"passive", name:"Trpný rod", desc:"Přítomný a minulý čas prostý, present perfect, modální slovesa, have/get something done, průběhové časy, dva předměty, trpný infinitiv, It is said",
+    nameEn:"Passive voice", descEn:"Present and past simple, present perfect, modal verbs, have/get something done, continuous forms, two objects, passive infinitive, It is said" },
   { id:"reported-speech", name:"Nepřímá řeč", desc:"Oznamovací věty, otázky, rozkazy a žádosti, posun časů, uvozovací slovesa",
     nameEn:"Reported speech", descEn:"Statements, questions, commands and requests, backshift, reporting verbs" },
   { id:"articles", name:"Členy", desc:"A/an vs. the, nulový člen, zeměpisné názvy, obecná tvrzení",
@@ -31521,7 +31521,7 @@ function orderVariant(q){
   if(q.type !== "fill" || q.topic !== "word-order") return null;
   const full = function(a){ return (q.before + a + q.after).replace(/\s+/g, " ").trim(); };
   const words = full(q.answers[0]).split(" ");
-  if(words.length < 4 || words.length > 10 || /["„“()]/.test(words.join(" "))) return null;
+  if(words.length < 4 || words.length > 10 || /["„“()–]/.test(words.join(" "))) return null;
   const cz = /[áčďéěíňóřšťúůýž]/i.test(q.hint) && q.hint.split(" ").length > 2 ? q.hint : "";
   return { kind: "order", words: words, accepted: q.answers.map(full), cz: cz, picked: [] };
 }
