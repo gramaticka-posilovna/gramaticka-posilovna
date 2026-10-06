@@ -484,7 +484,7 @@
   .voice-pick .srow-btn{ white-space:nowrap; }
   #voice-select{ font: inherit; font-size:14px; font-weight:600; width:100%; max-width:150px; min-width:0; padding:6px 8px; border-radius:10px; border:none; background:var(--track); color:var(--ink); }
 
-  .report-link{ display:inline-block; margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
+  .report-link{ display:block; width:fit-content; margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
 
   /* ---------- Potvrzovací modál (náhrada za nativní confirm()) ---------- */
   .modal-overlay{
@@ -23627,6 +23627,7 @@ const I18N = {
     mistakesTitle: function(n){ return "Projít chyby (" + n + ")"; }, yourAnswer: "Tvoje odpověď: ", noAnswer: "bez odpovědi",
     reportLink: "Nahlásit chybu v otázce",
     reportSubject: function(id){ return "Chyba v otázce " + id; },
+    reportBody: function(id, sentence, given){ return "Otázka: " + id + "\n" + (sentence ? "Správná věta: " + sentence + "\n" : "") + (given ? "Moje odpověď: " + given + "\n" : "") + "\nCo je podle mě špatně:\n"; },
     homeTitle: "Dnešní trénink",
     streakDays: function(n){ return n === 1 ? "den v řadě" : (n >= 2 && n <= 4 ? "dny v řadě" : "dní v řadě"); },
     labelGoal: "Dnešní cíl", labelWeek: "Tento týden",
@@ -23764,6 +23765,7 @@ const I18N = {
     mistakesTitle: function(n){ return "Review mistakes (" + n + ")"; }, yourAnswer: "Your answer: ", noAnswer: "no answer",
     reportLink: "Report a mistake in this question",
     reportSubject: function(id){ return "Mistake in question " + id; },
+    reportBody: function(id, sentence, given){ return "Question: " + id + "\n" + (sentence ? "Correct sentence: " + sentence + "\n" : "") + (given ? "My answer: " + given + "\n" : "") + "\nWhat I think is wrong:\n"; },
     homeTitle: "Today’s workout",
     streakDays: function(n){ return n === 1 ? "day in a row" : "days in a row"; },
     labelGoal: "Today's goal", labelWeek: "This week",
@@ -24849,7 +24851,7 @@ function handleChoiceClick(selectedIdx){
 }
 
 // Adresa pro „Nahlásit chybu v otázce“; dokud je prázdná, odkaz se nezobrazuje.
-const REPORT_EMAIL = "";
+const REPORT_EMAIL = "gramaticka.posilovna@gmail.com";
 
 /* Kotoučík: maskot, který občas vykoukne pokaždé odjinud (docs/navrhy-vzhledu-23.html).
    Nepředvídatelně (asi 1× z 10 správných, výjimečně po chybě), jistě při Combo ×5/×10
@@ -25076,7 +25078,9 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
   const sentence = canSpeak ? spokenSentence(q) : "";
   if(sentence) fb += '<button type="button" class="srow-btn tts-btn" id="tts-btn">' + escapeHtml(tx("ttsBtn")) + '</button>';
   if(REPORT_EMAIL){
-    fb += '<a class="report-link" href="mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(tx("reportSubject", q.id)) + '">' + tx("reportLink") + '</a>';
+    // Do e-mailu se předvyplní otázka, správná věta a odpověď, ať je jasné, o co jde.
+    const body = tx("reportBody", q.id, sentence, (given || []).filter(Boolean).join(" / "));
+    fb += '<a class="report-link" href="mailto:' + REPORT_EMAIL + '?subject=' + encodeURIComponent(tx("reportSubject", q.id)) + '&body=' + encodeURIComponent(body) + '">' + tx("reportLink") + '</a>';
   }
   fb += '</div>';
   slot.innerHTML = fb;
