@@ -475,6 +475,101 @@
     background: radial-gradient(circle, #5B7FB3 0 62%, #3F6299 63% 70%, #5B7FB3 71%);
     box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 5px 10px rgba(63,98,153,0.3); }
   .week-note{ font-size:12.5px; color:var(--ink-soft); margin:6px 0 0; }
+  /* Série a týden na Domů vedou do kalendáře v Pokroku */
+  button.streak-badge{ border:none; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  button.streak-badge:active .streak-plate{ transform:scale(.94); }
+  .tapcard{ cursor:pointer; transition: transform .12s; -webkit-tap-highlight-color:transparent; }
+  .tapcard:active{ transform:scale(.98); }
+  /* Vítej zpátky (po přerušené sérii) */
+  .back-row{ display:flex; gap:10px; align-items:baseline; }
+  .back-row b{ font-family:var(--font-display); font-size:36px; line-height:1; }
+  .back-row span{ font-size:13px; color:var(--ink-soft); }
+  .back-test{ width:100%; margin-top:12px; }
+  /* Rozdělané kolo */
+  .resume-card{ box-shadow: inset 0 0 0 2px #3A6FC0, var(--shadow-card); }
+  .resume-top{ display:flex; justify-content:space-between; align-items:center; }
+  .resume-top b{ font-size:15px; }
+  .resume-drop{ border:none; background:none; font:700 12.5px var(--font-body); color:var(--ink-soft); cursor:pointer; padding:4px; }
+  .resume-dots{ display:flex; gap:4px; margin:10px 0 12px; }
+  .resume-dots i{ flex:1; height:8px; border-radius:3px; background:var(--track); }
+  .resume-dots i.ok{ background:var(--success); }
+  .resume-dots i.bad{ background:#D88C76; }
+  .resume-dots i.next{ outline:2px solid #3A6FC0; outline-offset:-2px; }
+  .resume-card .btn-primary{ margin-bottom:0; }
+  /* Síla jevů na obrazovce Témata (docs/sila-jevu.md) */
+  .topic-pill .txt{ min-width:0; }
+  .topic-pill .txt small.jev-line{ display:block; font-size:12px; font-weight:600; color:var(--ink-soft); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .topic-pill .txt small.jev-line.near{ color:var(--success); font-weight:700; }
+  .jev-ring{ width:36px; height:36px; flex-shrink:0; }
+  .jev-ring circle{ fill:none; stroke-width:4; }
+  .jev-ring .bg{ stroke:var(--track); }
+  .jev-ring .fg{ stroke:#3A6FC0; stroke-linecap:round; }
+  .jev-ring .gift{ stroke:#9DBBE3; stroke-linecap:round; }
+  .jev-ring text{ font:800 9px var(--font-body); fill:var(--ink); text-anchor:middle; }
+  .jev-pips{ display:inline-flex; gap:3px; margin-left:auto; padding-left:8px; flex-shrink:0; }
+  .jev-pips i{ width:6px; height:6px; border-radius:50%; background:var(--track); }
+  .jev-pips i.on{ background:#3A6FC0; }
+  .near-card{ display:flex; gap:14px; align-items:center; }
+  .near-big{ font-family:var(--font-display); font-size:38px; line-height:1; }
+  .near-body{ flex:1; min-width:0; font-size:14px; }
+  .near-steps{ display:flex; gap:4px; margin:8px 0 6px; }
+  .near-steps i{ flex:1; height:9px; border-radius:3px; background:var(--track); }
+  .near-steps i.f{ background:#3A6FC0; }
+  .near-steps i.last{ outline:2px solid var(--accent); outline-offset:-2px; }
+  .near-body .lvl-note{ margin:0; }
+  /* Kalendář tréninků v Pokroku (docs/navrhy-vzhledu-30.html, návrh 2) */
+  .cal-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+  .cal-stats div{ background:var(--surface-2); border-radius:12px; padding:10px 6px; text-align:center; box-shadow: inset 0 0 0 1px var(--line); }
+  .cal-stats b{ display:block; font-family:var(--font-display); font-size:24px; line-height:1; }
+  .cal-stats small{ display:block; font-size:10.5px; font-weight:700; color:var(--ink-soft); margin-top:4px; line-height:1.25; }
+  .cal-stats div.main{ background:var(--primary); box-shadow:none; }
+  .cal-stats div.main b{ color:var(--accent); }
+  .cal-stats div.main small{ color:rgba(255,255,255,.75); }
+  .cal-grid{ display:grid; grid-template-columns:24px repeat(8,1fr); gap:4px; max-width:360px; margin:0 auto; }
+  .cal-d{ font-size:9px; font-weight:800; color:var(--ink-soft); display:grid; place-items:center; }
+  .cal-c{ aspect-ratio:1; border-radius:6px; background:var(--track); display:grid; place-items:center; font-size:11px; }
+  .cal-c.l1{ background:#BCD0EB; }
+  .cal-c.l2{ background:#7FA5DA; }
+  .cal-c.l3{ background:#3A6FC0; }
+  .cal-c.goal{ box-shadow: inset 0 0 0 2px var(--accent); }
+  .cal-c.rest{ background:#EAF2FB; color:#5B8FD0; }
+  .cal-c.today{ outline:2px solid var(--ink); outline-offset:1px; }
+  .cal-c.fut{ background:transparent; border:1.5px dashed var(--line); }
+  .cal-legend{ display:flex; gap:12px; flex-wrap:wrap; font-size:11px; color:var(--ink-soft); margin-top:10px; }
+  .cal-legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .cal-legend i{ width:12px; height:12px; border-radius:3px; display:inline-block; font-style:normal; font-size:8px; text-align:center; line-height:12px; }
+  #cal-card.hl{ animation: cal-hl 1.6s ease-out; }
+  @keyframes cal-hl{ 0%{ box-shadow: 0 0 0 0 rgba(242,194,48,0); } 25%{ box-shadow: 0 0 0 4px rgba(242,194,48,.8); } 100%{ box-shadow: 0 0 0 0 rgba(242,194,48,0); } }
+  /* Náskok z rozřazovacího testu */
+  .gift-list{ margin-top:14px; }
+  .gift-list p{ margin:0 0 10px; font-size:13px; line-height:1.45; }
+  .gift-row{ margin-bottom:8px; }
+  .gift-row .l{ display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; margin-bottom:4px; }
+  .gift-row .l span{ color:var(--ink-soft); font-weight:600; }
+  .gift-bar{ height:8px; background:var(--track); border-radius:999px; overflow:hidden; }
+  .gift-bar span{ display:block; height:100%; background:repeating-linear-gradient(135deg,#7FA5DA 0 4px,#9DBBE3 4px 8px); }
+  /* Konec dne (po splnění denního cíle) */
+  .done-screen{ position:fixed; inset:0; z-index:60; display:grid; place-items:center; padding:24px 16px; overflow:auto;
+    background: radial-gradient(90% 55% at 50% 30%, var(--surface) 0%, var(--bg-top) 55%, var(--bg-bottom) 100%); animation: done-in .35s ease both; }
+  @keyframes done-in{ from{ opacity:0; } }
+  .done-in{ width:100%; max-width:380px; text-align:center; }
+  .done-kt{ position:relative; width:130px; height:130px; margin:0 auto; animation: done-breathe 4s ease-in-out infinite; }
+  .done-kt svg{ width:100%; height:100%; overflow:visible; }
+  .done-kt .zz{ position:absolute; left:78%; top:4px; font:800 18px var(--font-body); color:#8AA3C2; animation: done-zz 3s ease-in-out infinite; }
+  .done-kt .zz.z2{ left:88%; top:-14px; font-size:13px; animation-delay:1.2s; }
+  @keyframes done-breathe{ 50%{ transform: translateY(-3px) scale(1.02); } }
+  @keyframes done-zz{ 0%{ opacity:0; transform:translate(0,6px); } 30%,70%{ opacity:1; } 100%{ opacity:0; transform:translate(8px,-10px); } }
+  .done-emoji{ font-size:64px; }
+  .done-in h2{ font-family:var(--font-display); font-size:30px; margin:12px 0 6px; }
+  .done-sub{ color:var(--ink-soft); font-size:14px; line-height:1.45; margin:0 0 18px; }
+  .done-stats{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+  .done-stats div, .done-tmrw{ background:var(--surface); border-radius:16px; padding:12px; box-shadow:var(--shadow-sm); }
+  .done-stats b{ display:block; font-family:var(--font-display); font-size:26px; line-height:1.1; }
+  .done-stats small{ font-size:11.5px; font-weight:700; color:var(--ink-soft); }
+  .done-tmrw{ display:flex; gap:12px; align-items:center; text-align:left; font-size:13px; line-height:1.45; margin-bottom:18px; }
+  .done-tmrw > span{ font-size:22px; }
+  .done-more{ display:block; margin:6px auto 0; border:none; background:none; font:700 13.5px var(--font-body); color:var(--ink-soft); cursor:pointer; padding:10px; }
+  @media (prefers-reduced-motion: reduce){ .done-kt, .done-kt .zz, .done-screen, #cal-card.hl{ animation:none; } }
 
   /* ---------- Nastavení ---------- */
   .srow{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-weight:600; }
@@ -1014,6 +1109,11 @@
   .lvl-ladder i.done{ background: var(--success-tint); color: var(--success); }
   .lvl-ladder i.now{ background: var(--primary); color: #fff; }
   [data-theme="dark"] .lvl-ladder i.now{ background: #3F6CA3; }
+  [data-theme="dark"] .cal-c.l1{ background:#3A5A88; }
+  [data-theme="dark"] .cal-c.l2{ background:#5279B5; }
+  [data-theme="dark"] .cal-c.l3{ background:#7FA5DA; }
+  [data-theme="dark"] .cal-c.rest{ background:#22324A; color:#9DBBE3; }
+  [data-theme="dark"] .cal-stats div.main{ background:#3F6CA3; }
   .lvl-bar{ margin-top: 12px; }
   .lvl-note{ font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; margin: 8px 0 0; }
   .lvl-note b{ color: var(--ink); }
@@ -1134,11 +1234,14 @@
         <div class="home-day" id="home-day"></div>
         <h1 class="home-hello" id="home-hello"></h1>
       </div>
-      <div class="streak-badge">
+      <button class="streak-badge" id="home-streak-btn" type="button">
         <div class="streak-plate"><b id="home-streak">0</b></div>
         <small id="home-streak-label"></small>
-      </div>
+      </button>
     </div>
+
+    <div class="card resume-card" id="home-resume" style="display:none"></div>
+    <div class="card" id="home-back" style="display:none"></div>
 
     <div class="card">
       <p class="card-label" data-i18n="labelGoal">Dnešní cíl</p>
@@ -1149,7 +1252,7 @@
       <div class="goal-bar"><span id="home-goal-fill"></span></div>
     </div>
 
-    <div class="card">
+    <div class="card tapcard" id="home-week-card">
       <p class="card-label" data-i18n="labelWeek">Tento týden</p>
       <div class="week-plates" id="home-week"></div>
       <p class="week-note" data-i18n="freezeNote"></p>
@@ -1176,6 +1279,11 @@
     <div class="intro">
       <h1 data-i18n="setupTitle">Co dnes procvičíme?</h1>
       <p data-i18n="setupIntro">Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.</p>
+    </div>
+
+    <div class="card" id="setup-level">
+      <p class="card-label" data-i18n="labelLevel">Tvoje úroveň</p>
+      <div id="setup-level-body"></div>
     </div>
 
     <div class="card">
@@ -1264,6 +1372,11 @@
     <div class="intro">
       <h1 data-i18n="progressTitle">Tvůj pokrok</h1>
       <p data-i18n="progressIntro">Přehled toho, jak ti to jde napříč všemi koly.</p>
+    </div>
+
+    <div class="card" id="cal-card">
+      <p class="card-label" data-i18n="calTitle">Tréninky · posledních 8 týdnů</p>
+      <div id="cal-body"></div>
     </div>
 
     <div class="card">
@@ -23427,6 +23540,131 @@ function getTagStat(tag){
   return state.tagStats[tag];
 }
 
+/* Síla jevů (docs/sila-jevu.md): každý jev (téma|tag, bez „Mix“) má stupeň 0–6. Na další stupeň
+   se jde jen úspěšnou kontrolou s odstupem dní (2 ze 2 nebo 2 ze 3 různých otázek), za den se jev
+   vyhodnotí nejvýš jednou a neúspěch sníží o 1 stupeň. % tématu = součet stupňů ÷ (6 × počet jevů).
+   Uložené pole: s = stupeň, due = den další kontroly, g = náskok z testu, d/q/ok/bad/x = dnešní pokus. */
+const JEV_NEXT = [0, 1, 3, 7, 14, 30, 60]; // za kolik dní je další kontrola po dosažení stupně
+const JEV_MAX = 6;
+function jevTags(topicId){
+  return subtopicsFor(topicId).filter(function(tag){ return tag !== "Mix"; });
+}
+function jevy(){
+  if(!state.jevy){
+    // Přechod ze starší verze: stupeň podle dosavadních výsledků u otázek (nejvýš 3),
+    // kontroly rozložené do dalších dnů, aby nepřišly všechny najednou.
+    const agg = {}, today = dayKey(new Date());
+    QUESTIONS.forEach(function(q){
+      const st = state.questionStats[q.id];
+      if(!st || !st.seen) return;
+      (q.type === "multi" ? q.parts.map(function(p){ return p.tag || q.tag; }) : [q.tag]).forEach(function(tag){
+        if(tag === "Mix") return;
+        const a = agg[q.topic + "|" + tag] = agg[q.topic + "|" + tag] || { one: 0, two: 0 };
+        if(st.streak >= 1) a.one += 1;
+        if(st.streak >= 2) a.two += 1;
+      });
+    });
+    state.jevy = {};
+    Object.keys(agg).forEach(function(k, i){
+      const a = agg[k], lv = a.two >= 3 ? 3 : (a.two >= 1 ? 2 : (a.one >= 1 ? 1 : 0));
+      if(lv) state.jevy[k] = { s: lv, due: addDays(today, 1 + i % JEV_NEXT[lv]), g: 0 };
+    });
+  }
+  return state.jevy;
+}
+function getJev(topic, tag){
+  const J = jevy(), k = topic + "|" + tag;
+  return J[k] || (J[k] = { s: 0, due: "", g: 0 });
+}
+// Odpověď posune nebo sníží jevy, kterých se týkala (rozřazovací test se počítá zvlášť, viz giftFromPlacement).
+function updateJevy(q, tagResults){
+  const today = dayKey(new Date()), res = {};
+  tagResults.forEach(function(r){
+    if(r.tag !== "Mix") res[r.tag] = res[r.tag] === undefined ? r.correct : (res[r.tag] && r.correct);
+  });
+  Object.keys(res).forEach(function(tag){
+    const j = getJev(q.topic, tag), ok = res[tag];
+    if(j.d !== today){ j.d = today; j.q = []; j.ok = 0; j.bad = 0; j.x = false; }
+    if(j.q.indexOf(q.id) !== -1) return; // stejná otázka se ten den počítá jen jednou
+    j.q.push(q.id);
+    if(ok) j.ok += 1; else j.bad += 1;
+    if(j.x) return;
+    if(roundMode === "return" && j.s > 0){
+      // Návratový test: správně = jev potvrzený, chybně = o stupeň níž.
+      if(ok) j.due = addDays(today, JEV_NEXT[j.s]);
+      else { j.s = Math.max(1, j.s - 1); j.due = addDays(today, 1); }
+      j.x = true;
+    } else if(j.s === 0){
+      if(j.ok >= 2){ j.s = 1; j.due = addDays(today, JEV_NEXT[1]); j.x = true; }
+    } else if(j.due <= today){
+      if(j.ok >= 2 && j.bad <= 1){ j.s = Math.min(JEV_MAX, j.s + 1); j.due = addDays(today, JEV_NEXT[j.s]); j.x = true; }
+      else if(j.bad >= 2){ j.s = Math.max(1, j.s - 1); j.due = addDays(today, 1); j.x = true; }
+    } else if(j.s >= 5 && j.bad >= 3 && j.bad > j.ok){
+      // Pojistka: zvládnutý jev, který dnes většinou nevychází, klesne o stupeň i bez kontroly.
+      j.s -= 1; j.due = addDays(today, 1); j.x = true;
+    }
+  });
+}
+// Náskok z rozřazovacího testu: jev správně v testu → stupeň 1, dvakrát → 2 (jen u jevů, které ještě nezačaly).
+function giftFromPlacement(){
+  const today = dayKey(new Date()), c = {};
+  roundResults.forEach(function(r){
+    r.tagResults.forEach(function(tr){
+      if(tr.tag === "Mix" || !tr.correct) return;
+      const k = r.question.topic + "|" + tr.tag;
+      c[k] = (c[k] || 0) + 1;
+    });
+  });
+  Object.keys(c).forEach(function(k){
+    const p = k.indexOf("|"), j = getJev(k.slice(0, p), k.slice(p + 1));
+    if(j.s > 0) return;
+    j.s = j.g = Math.min(2, c[k]);
+    j.due = addDays(today, JEV_NEXT[j.s]);
+  });
+}
+function shortTag(tag){ return tagLabel(tag).replace(/\s*\(.*\)\s*$/, ""); }
+// Stav tématu pro obrazovku Témata: procenta, náskok z testu a nejbližší krok.
+function topicJevStatus(topicId){
+  const J = jevy(), today = dayKey(new Date()), tomorrow = addDays(today, 1), tags = jevTags(topicId);
+  let sum = 0, gift = 0, trained = false, mid = null, now = null, tom = null, fresh = null, next = "";
+  const cefr = function(tag){ const i = ["A1", "A2", "B1", "B2", "C1", "C2"].indexOf(TAG_CEFR[topicId + "|" + tag]); return i < 0 ? 9 : i; };
+  tags.forEach(function(tag){
+    const j = J[topicId + "|" + tag] || { s: 0, due: "", g: 0 };
+    const tried = j.d === today, doneToday = tried && j.x;
+    sum += j.s;
+    gift += Math.min(j.g || 0, j.s);
+    if(j.s > 0 || (tried && j.q.length)) trained = true;
+    if(!mid && tried && !doneToday && j.ok === 1 && (j.s === 0 || (j.due <= today && j.bad <= 1))) mid = tag;
+    if(!now && j.s > 0 && j.due <= today && !doneToday) now = tag;
+    if(!tom && j.s > 0 && j.due === tomorrow) tom = tag;
+    if(j.s === 0 && (!fresh || cefr(tag) < cefr(fresh))) fresh = tag; // nový jev: nejdřív ten nejlehčí
+    if(j.s > 0 && j.due > today && (!next || j.due < next)) next = j.due;
+  });
+  const max = JEV_MAX * tags.length;
+  let line, near = false;
+  if(!trained) line = tx("jevNone");
+  else if(mid){ line = tx("jevMid", shortTag(mid)); near = true; }
+  else if(now){ line = tx("jevToday", shortTag(now)); near = true; }
+  else if(tom) line = tx("jevTomorrow", shortTag(tom));
+  else if(fresh) line = tx("jevNew", shortTag(fresh));
+  else if(sum === max) line = tx("jevAll");
+  else line = tx("jevLater", Math.round((Date.parse(next) - Date.parse(today)) / 864e5));
+  return { pct: trained ? Math.round(sum / max * 100) : null, gift: Math.round(gift / max * 100), line: line, near: near };
+}
+function jevRing(st){
+  const C = 2 * Math.PI * 14;
+  const arc = function(p, cls){ return '<circle class="' + cls + '" cx="17" cy="17" r="14" transform="rotate(-90 17 17)" stroke-dasharray="' + (C * p / 100).toFixed(1) + ' ' + C.toFixed(1) + '"/>'; };
+  return '<svg class="jev-ring" viewBox="0 0 34 34"><circle class="bg" cx="17" cy="17" r="14"/>' +
+    (st.pct ? arc(st.pct, "fg") + (st.gift ? arc(st.gift, "gift") : "") : "") +
+    '<text x="17" y="20.5">' + (st.pct === null ? "–" : st.pct + "%") + '</text></svg>';
+}
+function jevPips(topicId, tag){
+  const j = jevy()[topicId + "|" + tag], lv = j ? j.s : 0;
+  let h = '<span class="jev-pips" title="' + escapeHtml(tx("jevStage", lv)) + '">';
+  for(let i = 1; i <= JEV_MAX; i++) h += '<i' + (i <= lv ? ' class="on"' : '') + '></i>';
+  return h + '</span>';
+}
+
 /* ============================================================
    4. VÝBĚR OTÁZEK PRO KOLO (systém opakování)
    ============================================================ */
@@ -23503,6 +23741,7 @@ function registerAnswer(question, allPartsCorrect, tagResults){
     ts.seen += 1;
     if(r.correct) ts.correct += 1;
   });
+  if(roundMode !== "placement") updateJevy(question, tagResults);
   // Posledních 30 odpovědí na každé obtížnosti (odemčení další obtížnosti); test se nepočítá.
   if(roundMode !== "placement" && state.recent){
     state.recent[question.difficulty] = (state.recent[question.difficulty] || []).concat(allPartsCorrect ? 1 : 0).slice(-RECENT_N);
@@ -23526,6 +23765,7 @@ const tabButtons = document.querySelectorAll("#tabbar .tab");
 function showView(name){
   if(name === "home") renderHome();
   if(name === "progress") renderProgress();
+  if(name === "setup"){ renderSetupLevel(); renderTopicGrid(); }
   if(name === "settings") renderVoiceSelect();
   // Zavřít klávesnici dřív, než se obrazovka vymění (jinak na iPhonu může „viset“ posunutý výřez).
   if(name !== "quiz" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
@@ -23629,6 +23869,32 @@ const I18N = {
     reportSubject: function(id){ return "Chyba v otázce " + id; },
     reportBody: function(id, sentence, given){ return "Otázka: " + id + "\n" + (sentence ? "Správná věta: " + sentence + "\n" : "") + (given ? "Moje odpověď: " + given + "\n" : "") + "\nCo je podle mě špatně:\n"; },
     homeTitle: "Dnešní trénink",
+    jevNone: "Zatím netrénováno",
+    jevMid: function(t){ return "Ještě 1 správná a " + t + " postoupí"; },
+    jevToday: function(t){ return "Dnes kontrola: " + t; },
+    jevTomorrow: function(t){ return "Zítra kontrola: " + t; },
+    jevNew: function(t){ return "Nový jev: " + t; },
+    jevLater: function(n){ return "Další kontrola za " + n + (n >= 2 && n <= 4 ? " dny" : " dní"); },
+    jevAll: "Vše upevněno 💪",
+    jevStage: function(s){ return s === 6 ? "Upevněno" : (s === 5 ? "Zvládnuto" : "Stupeň " + s + " z 6"); },
+    levelGoal: function(l, k){ return "Na " + l + (k <= 5 ? " už jen " : " ještě ") + "<b>" + k + (k === 1 ? " správná odpověď" : (k <= 4 ? " správné odpovědi" : " správných odpovědí")) + "</b>"; },
+    levelGoalNote: function(l){ return "na otázky úrovně " + l + " (potřeba 80 %)"; },
+    levelTopShort: function(l){ return "Máš nejvyšší úroveň " + l + " 💪"; },
+    calTitle: "Tréninky · posledních 8 týdnů",
+    calTotal: function(n){ return n === 1 ? "tréninkový den celkem" : (n >= 2 && n <= 4 ? "tréninkové dny celkem" : "tréninkových dní celkem"); },
+    calBest: "nejdelší série",
+    calLegend: ["bez tréninku", "trénink", "splněný cíl", "den volna"],
+    calMonth: function(a, b){ const w = function(n){ return n + (n === 1 ? " trénink" : (n >= 2 && n <= 4 ? " tréninky" : " tréninků")); }; return "💪 Tenhle měsíc <b>" + w(a) + "</b>. Minulý měsíc " + w(b) + "."; },
+    backTitle: "Vítej zpátky!", backLabel: "Tvoje tréninky",
+    backNote: function(n){ return "Nejdelší série: <b>" + n + (n === 1 ? " den" : (n >= 2 && n <= 4 ? " dny" : " dní")) + "</b>. Dnes začíná nová, klidně si ji zase rozjeď."; },
+    backTest: "Návratový test", backTestNote: "10 otázek z toho, co už jsi uměl(a)", returnTitle: "Návratový test",
+    doneTitle: "Na dnešek hotovo 💪", doneSub: "Denní cíl splněný. Teď si dej pauzu, mozek si to přes noc uloží.",
+    doneAnswers: "odpovědí dnes", doneAcc: "správně",
+    doneTomorrow: function(n){ return "Zítra tě " + (n === 1 ? "čeká 1 otázka" : (n >= 2 && n <= 4 ? "čekají " + n + " otázky" : "čeká " + n + " otázek")) + " k opakování"; },
+    doneTomorrowNote: "Ty, které ti dnes nešly, se vrátí v pravou chvíli.", doneTomorrowNone: "Zítra můžeš začít novými otázkami.",
+    doneBtn: "Hotovo", doneMore: "Ještě jedno kolo",
+    giftNote: "<b>Náskok z testu:</b> co už umíš, máš rovnou započítané. U témat je to světlejší část kroužku.",
+    resumeTitle: "Rozdělané kolo", resumeDrop: "Zahodit", resumeBtn: "Pokračovat", resumeOf: function(a, b){ return a + " z " + b; },
     streakDays: function(n){ return n === 1 ? "den v řadě" : (n >= 2 && n <= 4 ? "dny v řadě" : "dní v řadě"); },
     labelGoal: "Dnešní cíl", labelWeek: "Tento týden",
     goalNum: function(d, g){ return d + " / " + g + " odpovědí"; },
@@ -23767,6 +24033,32 @@ const I18N = {
     reportSubject: function(id){ return "Mistake in question " + id; },
     reportBody: function(id, sentence, given){ return "Question: " + id + "\n" + (sentence ? "Correct sentence: " + sentence + "\n" : "") + (given ? "My answer: " + given + "\n" : "") + "\nWhat I think is wrong:\n"; },
     homeTitle: "Today’s workout",
+    jevNone: "Not practised yet",
+    jevMid: function(t){ return "1 more right and " + t + " moves up"; },
+    jevToday: function(t){ return "Check today: " + t; },
+    jevTomorrow: function(t){ return "Check tomorrow: " + t; },
+    jevNew: function(t){ return "New: " + t; },
+    jevLater: function(n){ return "Next check in " + n + " days"; },
+    jevAll: "All solid 💪",
+    jevStage: function(s){ return s === 6 ? "Solid" : (s === 5 ? "Mastered" : "Stage " + s + " of 6"); },
+    levelGoal: function(l, k){ return "To " + l + ": <b>" + k + " more right answer" + (k === 1 ? "" : "s") + "</b>"; },
+    levelGoalNote: function(l){ return "on " + l + " questions (80% needed)"; },
+    levelTopShort: function(l){ return "You're at the top level, " + l + " 💪"; },
+    calTitle: "Training · last 8 weeks",
+    calTotal: function(n){ return n === 1 ? "training day in total" : "training days in total"; },
+    calBest: "longest streak",
+    calLegend: ["no training", "training", "goal reached", "rest day"],
+    calMonth: function(a, b){ return "💪 This month <b>" + a + " training day" + (a === 1 ? "" : "s") + "</b>. Last month " + b + "."; },
+    backTitle: "Welcome back!", backLabel: "Your training",
+    backNote: function(n){ return "Longest streak: <b>" + n + " day" + (n === 1 ? "" : "s") + "</b>. A new one starts today – go for it."; },
+    backTest: "Comeback test", backTestNote: "10 questions on what you already knew", returnTitle: "Comeback test",
+    doneTitle: "Done for today 💪", doneSub: "Daily goal reached. Take a break – your brain will store it overnight.",
+    doneAnswers: "answers today", doneAcc: "correct",
+    doneTomorrow: function(n){ return n + " question" + (n === 1 ? "" : "s") + " to review tomorrow"; },
+    doneTomorrowNote: "The ones you missed today will come back at the right time.", doneTomorrowNone: "Tomorrow you can start with new questions.",
+    doneBtn: "Done", doneMore: "One more round",
+    giftNote: "<b>Head start from the test:</b> what you already know counts right away. It's the lighter part of the topic rings.",
+    resumeTitle: "Unfinished round", resumeDrop: "Discard", resumeBtn: "Continue", resumeOf: function(a, b){ return a + " of " + b; },
     streakDays: function(n){ return n === 1 ? "day in a row" : "days in a row"; },
     labelGoal: "Today's goal", labelWeek: "This week",
     goalNum: function(d, g){ return d + " / " + g + " answers"; },
@@ -24014,6 +24306,7 @@ function renderTopicGrid(){
     const selCount = sel ? tags.filter(function(tag){ return sel.has(tag); }).length : 0;
     const state = selCount === 0 ? "none" : (selCount === tags.length ? "full" : "partial");
     const expanded = !!expandedTopics[t.id];
+    const js = topicJevStatus(t.id);
 
     const card = document.createElement("div");
     card.className = "topic-pill" +
@@ -24025,7 +24318,8 @@ function renderTopicGrid(){
     row.className = "topic-pill-row";
     row.innerHTML =
       '<span class="box">'+(state === "partial" ? DASH_SVG : CHECK_SVG)+'</span>' +
-      '<span class="txt"><strong>'+localized(t, "name")+'</strong></span>' +
+      '<span class="txt"><strong>'+localized(t, "name")+'</strong><small class="jev-line' + (js.near ? ' near' : '') + '">' + escapeHtml(js.line) + '</small></span>' +
+      jevRing(js) +
       '<span class="chevron">'+CHEVRON_SVG+'</span>';
     row.querySelector(".box").addEventListener("click", function(e){
       e.stopPropagation();
@@ -24050,7 +24344,7 @@ function renderTopicGrid(){
       const isSel = !!(sel && sel.has(tag));
       const sr = document.createElement("div");
       sr.className = "subtopic-row" + (isSel ? " selected" : "");
-      sr.innerHTML = '<span class="box">'+CHECK_SVG+'</span><span>'+tagLabel(tag)+'</span>';
+      sr.innerHTML = '<span class="box">'+CHECK_SVG+'</span><span>'+tagLabel(tag)+'</span>' + (tag === "Mix" ? "" : jevPips(t.id, tag));
       sr.addEventListener("click", function(e){
         e.stopPropagation();
         if(!selectedTags[t.id]) selectedTags[t.id] = new Set();
@@ -24078,6 +24372,25 @@ function renderTopicGrid(){
     card.appendChild(body);
     topicGrid.appendChild(card);
   });
+}
+
+// Úroveň na obrazovce Témata: jen nejbližší krok („Na B2 už jen 3 správné odpovědi“) a 10 dílků.
+function renderSetupLevel(){
+  const ls = levelStats(), lv = state.level, next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(lv) + 1];
+  let h = '<div class="near-card"><b class="near-big">' + (lv || "–") + '</b><div class="near-body">';
+  if(next){
+    const seen = ls.seen[next] || 0, ok = ls.ok[next] || 0;
+    // Nejmenší počet dalších správných odpovědí, aby bylo aspoň 25 otázek a 80 % správně: ok + k ≥ 0,8 · (seen + k) ⇔ k ≥ 4·seen − 5·ok.
+    const k = Math.max(LEVEL_NEED - seen, 4 * seen - 5 * ok, 1);
+    const p = Math.min(seen / LEVEL_NEED, 1) * Math.min(seen ? ok / seen / LEVEL_PCT : 0, 1);
+    const f = Math.min(9, Math.floor(p * 10));
+    let steps = "";
+    for(let i = 0; i < 10; i++) steps += '<i class="' + (i < f ? "f" : "") + (i === 9 ? " last" : "") + '"></i>';
+    h += tx("levelGoal", next, k) + '<div class="near-steps">' + steps + '</div><p class="lvl-note">' + tx("levelGoalNote", next) + '</p>';
+  } else {
+    h += tx("levelTopShort", lv);
+  }
+  document.getElementById("setup-level-body").innerHTML = h + '</div></div>';
 }
 
 function renderDiffGrid(){
@@ -24198,12 +24511,42 @@ function currentStreak(active){
 function renderHome(){
   const now = new Date();
   document.getElementById("home-day").textContent = now.toLocaleDateString(tx("dateLocale"), { weekday: "long" });
-  document.getElementById("home-hello").textContent = tx("homeTitle");
-
   const active = activeDays();
   const streak = currentStreak(active);
   document.getElementById("home-streak").textContent = streak.n;
-  document.getElementById("home-streak-label").textContent = tx("streakDays", streak.n);
+  document.getElementById("home-streak-label").textContent = tx("streakDays", streak.n) + " ›";
+
+  // Po přerušené sérii: místo nuly „Vítej zpátky!“ s tím, co zůstalo (celý den návratu).
+  const today = dayKey(now), before = {};
+  Object.keys(active).forEach(function(k){ if(k !== today) before[k] = true; });
+  const broken = Object.keys(before).length > 0 && currentStreak(before).n === 0;
+  document.getElementById("home-hello").textContent = broken ? tx("backTitle") : tx("homeTitle");
+  const back = document.getElementById("home-back");
+  back.style.display = broken ? "" : "none";
+  if(broken){
+    const hist = trainingHistory(), last = Object.keys(before).sort().pop();
+    const away = Math.round((Date.parse(today) - Date.parse(last)) / 864e5);
+    const J = jevy(), canTest = away >= 30 && Object.keys(J).some(function(k){ return J[k].s >= 2; });
+    back.innerHTML = '<p class="card-label">' + escapeHtml(tx("backLabel")) + '</p><div class="back-row"><b>' + hist.total + '</b><span>' + escapeHtml(tx("calTotal", hist.total)) + '</span></div>' +
+      '<p class="lvl-note">' + tx("backNote", hist.best) + '</p>' +
+      (canTest ? '<button class="btn-secondary home-cta back-test" id="home-back-test">' + escapeHtml(tx("backTest")) + '<small>' + escapeHtml(tx("backTestNote")) + '</small></button>' : "");
+    if(canTest) document.getElementById("home-back-test").addEventListener("click", function(){ startSpecialRound("return"); });
+  }
+
+  // Rozdělané kolo z dneška: nahoře, dokud se nedohraje nebo nezahodí.
+  const sr = savedRound(), rc = document.getElementById("home-resume");
+  rc.style.display = sr ? "" : "none";
+  if(sr){
+    const name = sr.mode === "normal" ? (sr.topics.length === 1 ? topicName(sr.topics[0]) : tx("nTopics", sr.topics.length)) + " · " + diffName(sr.diff) : modeTitle(sr.mode);
+    rc.innerHTML = '<div class="resume-top"><b>' + escapeHtml(tx("resumeTitle")) + '</b><button type="button" class="resume-drop" id="home-resume-drop">' + escapeHtml(tx("resumeDrop")) + '</button></div>' +
+      '<p class="lvl-note">' + escapeHtml(name) + ' · <b>' + tx("resumeOf", sr.index, sr.ids.length) + '</b></p>' +
+      '<div class="resume-dots">' + sr.ids.map(function(id, i){
+        return '<i class="' + (i < sr.res.length ? (sr.res[i].ok ? "ok" : "bad") : (i === sr.index ? "next" : "")) + '"></i>';
+      }).join("") + '</div>' +
+      '<button class="btn-primary" id="home-resume-btn">' + escapeHtml(tx("resumeBtn")) + '</button>';
+    document.getElementById("home-resume-btn").addEventListener("click", function(){ resumeRound(sr); });
+    document.getElementById("home-resume-drop").addEventListener("click", function(){ clearSavedRound(); renderHome(); });
+  }
 
   const done = (state.days || {})[dayKey(now)] || 0;
   const left = Math.max(0, dailyGoal - done);
@@ -24262,6 +24605,47 @@ document.getElementById("home-weak").addEventListener("click", function(){ start
 document.getElementById("home-cta").addEventListener("click", function(){ startSpecialRound("daily"); });
 document.getElementById("home-topics").addEventListener("click", function(){ showView("setup"); });
 document.getElementById("home-test").addEventListener("click", function(){ startPlacement(); });
+document.getElementById("home-streak-btn").addEventListener("click", openCalendar);
+document.getElementById("home-week-card").addEventListener("click", openCalendar);
+
+// Rozdělané kolo: po každé odpovědi se uloží, aby šlo ten den pokračovat (ne test, výzva a návratový test).
+const ROUND_KEY = "grammarLabRoundV1";
+function saveRound(){
+  if(roundMode === "placement" || roundMode === "challenge" || roundMode === "return") return;
+  const tags = {};
+  Object.keys(roundTags).forEach(function(t){ tags[t] = Array.from(roundTags[t]); });
+  try{
+    window.localStorage.setItem(ROUND_KEY, JSON.stringify({ day: dayKey(new Date()), mode: roundMode, topics: roundTopics, tags: tags, diff: roundDifficulty,
+      ids: roundQuestions.map(function(q){ return q.id; }), index: roundIndex + 1,
+      res: roundResults.map(function(r){ return { ok: r.allCorrect, tr: r.tagResults, rl: r.revealLines, g: r.given }; }) }));
+  }catch(e){}
+}
+function clearSavedRound(){
+  try{ window.localStorage.removeItem(ROUND_KEY); }catch(e){}
+}
+function savedRound(){
+  let r = null;
+  try{ r = JSON.parse(window.localStorage.getItem(ROUND_KEY)); }catch(e){}
+  if(!r || r.day !== dayKey(new Date())) return null;
+  const byId = {};
+  QUESTIONS.forEach(function(q){ byId[q.id] = q; });
+  if(!r.ids.every(function(id){ return byId[id]; })) return null;
+  r.questions = r.ids.map(function(id){ return byId[id]; });
+  return r;
+}
+function resumeRound(r){
+  roundMode = r.mode;
+  roundTopics = r.topics;
+  roundDifficulty = r.diff;
+  roundTags = {};
+  Object.keys(r.tags).forEach(function(t){ roundTags[t] = new Set(r.tags[t]); });
+  roundQuestions = r.questions;
+  roundIndex = r.index;
+  roundResults = r.res.map(function(x, i){ return { question: r.questions[i], allCorrect: x.ok, tagResults: x.tr, revealLines: x.rl, given: x.g }; });
+  showView("quiz");
+  renderQuizTopbar();
+  if(roundIndex >= roundQuestions.length) finishRound(); else renderQuestion();
+}
 document.getElementById("home-plan-btn").addEventListener("click", function(){
   selectedTags = {};
   state.placement.plan.forEach(function(p){
@@ -24420,6 +24804,7 @@ function startRound(){
   roundQuestions = pickRoundQuestions(roundTags, roundDifficulty, selectedCount);
   roundIndex = 0;
   roundResults = [];
+  clearSavedRound();
   if(roundQuestions.length === 0){
     alert(tx("noQuestions"));
     return;
@@ -24437,6 +24822,17 @@ function dailyPool(){
   function take(list, k){
     list.forEach(function(q){ if(k > 0 && !used[q.id]){ used[q.id] = true; chosen.push(q); k--; } });
   }
+  // Nejdřív kontroly jevů, které jsou dnes na řadě: 2 různé otázky na jev, nejvýš polovina kola.
+  const J = jevy(), today = dayKey(new Date()), diffR = recommendedDifficulty();
+  shuffle(Object.keys(J).filter(function(k){ const j = J[k]; return j.s > 0 && j.due <= today && !(j.d === today && j.x); })).forEach(function(k){
+    if(chosen.length + 2 > Math.floor(n / 2)) return;
+    const p = k.indexOf("|"), topic = k.slice(0, p), tag = k.slice(p + 1), j = J[k];
+    const doneIds = j.d === today ? j.q : [];
+    const qs = shuffle(QUESTIONS.filter(function(q){
+      return q.topic === topic && q.tag === tag && !used[q.id] && doneIds.indexOf(q.id) === -1 && !(lang === "en" && q.topic === "vocab");
+    }));
+    take(qs.filter(function(q){ return q.difficulty === diffR; }).concat(qs), 2);
+  });
   take(specialPool("review"), Math.round(n * 0.4));
   take(specialPool("weak"), Math.round(n * 0.2));
   const diff = recommendedDifficulty(), top = PLACEMENT_LEVELS.indexOf(state.level) + 1;
@@ -24447,6 +24843,19 @@ function dailyPool(){
   })), n - chosen.length);
   take(shuffle(QUESTIONS.filter(ok)), n - chosen.length);
   return chosen;
+}
+
+// Návratový test: po jedné otázce z jevů na stupni 2 a výš (nejvýš 10), v doporučené obtížnosti, když to jde.
+function returnPool(){
+  const J = jevy(), diff = recommendedDifficulty(), out = [];
+  shuffle(Object.keys(J).filter(function(k){ return J[k].s >= 2; })).slice(0, 10).forEach(function(k){
+    const p = k.indexOf("|"), topic = k.slice(0, p), tag = k.slice(p + 1);
+    const qs = QUESTIONS.filter(function(q){ return q.topic === topic && q.tag === tag && !(lang === "en" && q.topic === "vocab"); });
+    const pick = qs.filter(function(q){ return q.difficulty === diff; });
+    const list = pick.length ? pick : qs;
+    if(list.length) out.push(list[Math.floor(Math.random() * list.length)]);
+  });
+  return out;
 }
 
 // Sešit chyb: posledních 50 chybných otázek (bez rozřazovacího testu), nejnovější první.
@@ -24460,7 +24869,7 @@ function notebookPool(){
 }
 
 function startSpecialRound(mode){
-  const questions = mode === "daily" ? dailyPool() : (mode === "notebook" ? notebookPool() : specialPool(mode)).slice(0, selectedCount);
+  const questions = mode === "daily" ? dailyPool() : mode === "return" ? returnPool() : (mode === "notebook" ? notebookPool() : specialPool(mode)).slice(0, selectedCount);
   if(questions.length === 0){
     alert(tx("nothingToPractise"));
     return;
@@ -24473,6 +24882,7 @@ function startSpecialRound(mode){
   roundQuestions = shuffle(questions);
   roundIndex = 0;
   roundResults = [];
+  clearSavedRound();
   showView("quiz");
   renderQuizTopbar();
   renderQuestion();
@@ -24541,6 +24951,7 @@ function startPlacement(){
   roundQuestions = [];
   roundIndex = 0;
   roundResults = [];
+  clearSavedRound();
   placementBlock = 0;
   addPlacementBlock();
   showView("quiz");
@@ -24563,6 +24974,9 @@ function placementResult(){
   return { level: level, difficulty: difficulty, plan: plan };
 }
 
+function modeTitle(mode){
+  return tx(mode === "review" ? "reviewTitle" : mode === "challenge" ? "challengeTitle" : mode === "daily" ? "homeTitle" : mode === "notebook" ? "notebookRound" : mode === "return" ? "returnTitle" : "weakTitle");
+}
 function renderQuizTopbar(){
   if(roundMode === "placement"){
     quizTagTopic.textContent = tx("placementTitle");
@@ -24570,7 +24984,7 @@ function renderQuizTopbar(){
     return;
   }
   if(roundMode !== "normal"){
-    quizTagTopic.textContent = tx(roundMode === "review" ? "reviewTitle" : roundMode === "challenge" ? "challengeTitle" : roundMode === "daily" ? "homeTitle" : roundMode === "notebook" ? "notebookRound" : "weakTitle");
+    quizTagTopic.textContent = modeTitle(roundMode);
     quizTagDiff.textContent = tx("mixedDiff");
     return;
   }
@@ -24584,6 +24998,7 @@ function renderQuizTopbar(){
 
 quizExit.addEventListener("click", function(){
   showConfirm(tx("exitConfirm"), function(){
+    clearSavedRound();
     showView("setup");
   });
 });
@@ -25044,6 +25459,7 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
     state.mistakes = [{ id: q.id, given: given, d: dayKey(new Date()) }].concat((state.mistakes || []).filter(function(m){ return m.id !== q.id; })).slice(0, 50);
   }
   roundResults.push({ question: q, allCorrect: allCorrect, tagResults: tagResults, revealLines: revealLines, given: given });
+  saveRound();
 
   const slot = document.getElementById("feedback-slot");
   let fb = '<div class="feedback-panel ' + (allCorrect ? "ok" : "bad") + '">';
@@ -25125,6 +25541,7 @@ function advanceQuestion(){
 
 function finishRound(){
   quizProgressFill.style.width = "100%";
+  clearSavedRound();
 
   let totalParts = 0, correctParts = 0;
   const byTag = {};
@@ -25156,7 +25573,6 @@ function finishRound(){
   if(goalReached){
     setTimeout(dropPlates, 400);
     setTimeout(function(){ playSound("goal"); }, 400);
-    setTimeout(function(){ showMascot("rest", true); }, 1200);
   }
   if(roundMode === "placement"){
     state.placement = placementResult();
@@ -25166,13 +25582,45 @@ function finishRound(){
     roundQuestions.forEach(function(q){ if(ids.indexOf(q.id) === -1) ids.push(q.id); });
     state.placementSeen = ids;
     unlockFromPlacement();
+    giftFromPlacement();
   }
+  const doneNow = goalReached && state.doneDay !== today;
+  if(doneNow) state.doneDay = today;
   const cels = collectCelebrations(goalBefore === 0);
   saveState();
 
   renderResults(pct, correctParts, totalParts, byTag);
   showView("results");
-  if(cels.length) setTimeout(function(){ celebrate(cels); }, goalReached ? 2600 : 600);
+  if(doneNow) setTimeout(function(){ showDone(cels); }, 1800);
+  else if(cels.length) setTimeout(function(){ celebrate(cels); }, goalReached ? 2600 : 600);
+}
+
+// Konec dne (docs/navrhy-vzhledu-30.html, návrh 3): po splnění denního cíle klidná obrazovka, nejvýš jednou denně.
+// Hlavní tlačítko je „Hotovo“, další kolo jen nenápadně. Případné velké oslavy přijdou po zavření.
+function showDone(cels){
+  const today = dayKey(new Date()), tomorrow = addDays(today, 1);
+  let parts = 0, ok = 0;
+  state.rounds.forEach(function(r){ if(roundDay(r) === today){ parts += r.totalParts; ok += r.correctParts; } });
+  const due = Object.keys(state.questionStats).filter(function(id){ const st = state.questionStats[id]; return st.seen > 0 && st.due && st.due <= tomorrow; }).length;
+  const el = document.createElement("div");
+  el.className = "done-screen";
+  el.innerHTML = '<div class="done-in">' +
+    (mascotOn ? '<div class="done-kt">' + kotoucikSVG("rest") + '<span class="zz">z</span><span class="zz z2">z</span></div>' : '<div class="done-emoji">💪</div>') +
+    '<h2>' + escapeHtml(tx("doneTitle")) + '</h2><p class="done-sub">' + escapeHtml(tx("doneSub")) + '</p>' +
+    '<div class="done-stats"><div><b>' + (state.days[today] || 0) + '</b><small>' + escapeHtml(tx("doneAnswers")) + '</small></div>' +
+    '<div><b>' + pctOf(ok, parts) + '%</b><small>' + escapeHtml(tx("doneAcc")) + '</small></div></div>' +
+    '<div class="done-tmrw"><span>📅</span><div><b>' + escapeHtml(due ? tx("doneTomorrow", due) : tx("doneTomorrowNone")) + '</b>' +
+    (due ? '<br>' + escapeHtml(tx("doneTomorrowNote")) : "") + '</div></div>' +
+    '<button class="btn-primary" id="done-ok">' + escapeHtml(tx("doneBtn")) + '</button>' +
+    '<button class="done-more" id="done-more">' + escapeHtml(tx("doneMore")) + '</button></div>';
+  document.body.appendChild(el);
+  function close(then){
+    el.remove();
+    then();
+    if(cels.length) setTimeout(function(){ celebrate(cels); }, 400);
+  }
+  document.getElementById("done-ok").addEventListener("click", function(){ close(function(){ showView("home"); }); });
+  document.getElementById("done-more").addEventListener("click", function(){ close(function(){ startSpecialRound("daily"); }); });
 }
 
 // Oslava splněného denního cíle: chvilku padají kotouče (kdo má vypnuté animace, nic nevidí).
@@ -25235,6 +25683,10 @@ function renderResults(pct, correct, total, byTag){
     recText = (pl.level ? tx("placementLevel", pl.level) : tx("placementBelow")) + "<br><br>" +
       tx("placementDiff", "<strong>" + escapeHtml(diffName(pl.difficulty)) + "</strong>") + " " +
       (pl.plan.length ? tx("placementPlan", pl.plan.map(function(p){ return "<strong>" + escapeHtml(tagLabel(p.tag)) + "</strong>"; }).join(", ")) : tx("placementNoPlan"));
+    const gifts = TOPICS.map(function(t){ return { t: t, st: topicJevStatus(t.id) }; }).filter(function(x){ return x.st.gift > 0; });
+    if(gifts.length) recText += '<div class="gift-list"><p>' + tx("giftNote") + '</p>' + gifts.map(function(x){
+      return '<div class="gift-row"><div class="l">' + escapeHtml(localized(x.t, "name")) + '<span>' + x.st.gift + '%</span></div><div class="gift-bar"><span style="width:' + x.st.gift + '%"></span></div></div>';
+    }).join("") + '</div>';
   } else if(pct === 100){
     recText = tx("recPerfect");
   } else if(weakest){
@@ -25300,6 +25752,7 @@ function startChallengeRound(ids){
   roundDifficulty = "mixed";
   roundIndex = 0;
   roundResults = [];
+  clearSavedRound();
   showView("quiz");
   renderQuizTopbar();
   renderQuestion();
@@ -25368,6 +25821,74 @@ function renderLevelCards(){
   document.getElementById("diff-body").innerHTML = d;
 }
 
+function keyDate(k){
+  const p = k.split("-");
+  return new Date(+p[0], +p[1] - 1, +p[2]);
+}
+// Historie tréninků: dny volna (stejné pravidlo jako u série: jeden vynechaný den v týdnu mezi dvěma
+// tréninky), nejdelší série a počet tréninkových dní celkem.
+function trainingHistory(){
+  const active = activeDays(), keys = Object.keys(active).sort(), today = dayKey(new Date());
+  const rest = {}, used = {};
+  let run = 0, best = 0;
+  if(keys.length){
+    for(let k = keys[0]; k < today; k = addDays(k, 1)){
+      if(active[k]){ run += 1; best = Math.max(best, run); continue; }
+      const nx = addDays(k, 1), wk = weekKey(keyDate(k));
+      if(active[addDays(k, -1)] && !used[wk] && (active[nx] || nx === today)){ used[wk] = true; rest[k] = true; }
+      else run = 0;
+    }
+  }
+  const cur = currentStreak(active);
+  Object.keys(cur.frozen).forEach(function(k){ rest[k] = true; });
+  return { active: active, rest: rest, streak: cur.n, best: Math.max(best, cur.n), total: keys.length };
+}
+// Kalendář v Pokroku (docs/navrhy-vzhledu-30.html, návrh 2): 8 týdnů po sloupcích, čím tmavší, tím víc odpovědí.
+function renderCalendar(){
+  const h = trainingHistory(), today = dayKey(new Date()), D = state.days || {};
+  const start = addDays(weekKey(new Date()), -49), labels = tx("weekDays");
+  let g = "";
+  for(let d = 0; d < 7; d++){
+    g += '<span class="cal-d">' + labels[d] + '</span>';
+    for(let w = 0; w < 8; w++){
+      const k = addDays(start, w * 7 + d);
+      let cls = "cal-c";
+      if(k > today) cls += " fut";
+      else if(h.rest[k]) cls += " rest";
+      else if(h.active[k]){
+        const n = D[k] || 1;
+        cls += n >= dailyGoal ? " l3 goal" : (n >= dailyGoal / 2 ? " l2" : " l1");
+      }
+      if(k === today) cls += " today";
+      g += '<span class="' + cls + '">' + (h.rest[k] && k <= today ? "❄" : "") + '</span>';
+    }
+  }
+  const pd = new Date();
+  pd.setDate(1);
+  pd.setMonth(pd.getMonth() - 1);
+  const ym = today.slice(0, 7), pm = dayKey(pd).slice(0, 7);
+  let a = 0, b = 0;
+  Object.keys(h.active).forEach(function(k){ if(k.slice(0, 7) === ym) a++; else if(k.slice(0, 7) === pm) b++; });
+  const L = tx("calLegend");
+  document.getElementById("cal-body").innerHTML =
+    '<div class="cal-stats"><div class="main"><b>' + h.streak + '</b><small>' + escapeHtml(tx("streakDays", h.streak)) + '</small></div>' +
+    '<div><b>' + h.total + '</b><small>' + escapeHtml(tx("calTotal", h.total)) + '</small></div>' +
+    '<div><b>' + h.best + '</b><small>' + escapeHtml(tx("calBest")) + '</small></div></div>' +
+    '<div class="cal-grid">' + g + '</div>' +
+    '<div class="cal-legend"><span><i class="cal-c"></i>' + L[0] + '</span><span><i class="cal-c l2"></i>' + L[1] + '</span>' +
+    '<span><i class="cal-c l3 goal"></i>' + L[2] + '</span><span><i class="cal-c rest">❄</i>' + L[3] + '</span></div>' +
+    (a || b ? '<p class="lvl-note">' + tx("calMonth", a, b) + '</p>' : "");
+}
+// Klepnutí na sérii nebo týden na Domů: Pokrok, rovnou na kalendáři, který se krátce rozzáří.
+function openCalendar(){
+  showView("progress");
+  const c = document.getElementById("cal-card");
+  window.scrollTo(0, Math.max(0, c.getBoundingClientRect().top + window.scrollY - 16));
+  c.classList.remove("hl");
+  void c.offsetWidth;
+  c.classList.add("hl");
+}
+
 function renderNotebook(){
   const byId = {};
   QUESTIONS.forEach(function(q){ byId[q.id] = q; });
@@ -25390,6 +25911,7 @@ document.getElementById("notebook-btn").addEventListener("click", function(){ st
 
 function renderProgress(){
   initCelebrationState();
+  renderCalendar();
   renderLevelCards();
   renderNotebook();
   const rounds = state.rounds;
