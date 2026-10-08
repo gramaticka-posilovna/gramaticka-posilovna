@@ -30164,9 +30164,11 @@ function pickRoundQuestions(tagsByTopic, difficulty, count){
   });
 
   // Nejdřív nové a splatné otázky, pak ty, které budou na řadě nejdřív.
-  const eligible = shuffle(withDue.filter(function(x){ return x.due <= today; }));
+  // Nedávno spletené otázky jdou až na konec – jejich jev procvičí jiné věty z výběru.
+  const eligible = shuffle(withDue.filter(function(x){ return x.due <= today && !recentMiss(state.questionStats[x.q.id], today); }));
   const sleeping = withDue.filter(function(x){ return x.due > today; })
-                          .sort(function(a,b){ return a.due < b.due ? -1 : (a.due > b.due ? 1 : 0); });
+                          .sort(function(a,b){ return a.due < b.due ? -1 : (a.due > b.due ? 1 : 0); })
+                          .concat(withDue.filter(function(x){ return x.due <= today && recentMiss(state.questionStats[x.q.id], today); }));
 
   let chosen = eligible.slice(0, count).map(function(x){ return x.q; });
   if(chosen.length < count){
@@ -30194,7 +30196,34 @@ function specialPool(mode){
   });
   // Nejdřív to, co nejvíc pokulhává; pořadí v rámci shody zůstává náhodné.
   pool.sort(function(a,b){ return (a.streak - b.streak) || (a.acc - b.acc); });
-  return pool.map(function(x){ return x.q; });
+  // Nedávnou chybu zastoupí jiná věta ze stejného jevu (pravidlo, ne zapamatovaná odpověď).
+  const used = {};
+  return pool.map(function(x){
+    let q = x.q;
+    if(recentMiss(state.questionStats[q.id], today)) q = siblingFor(q, used) || q;
+    if(used[q.id]) return null;
+    used[q.id] = true;
+    return q;
+  }).filter(Boolean);
+}
+
+// Spletená v posledních 2 dnech (dnes, včera, předevčírem ne) a od té doby nezodpovězená správně.
+function recentMiss(st, today){
+  return !!(st && st.streak === 0 && st.wrong && st.wrong > addDays(today, -2));
+}
+
+// Jiná otázka ze stejného jevu a obtížnosti: nejdřív nikdy neviděné, pak ty, které nejsou na řadě,
+// pak ostatní; nedávno spletené ne. Mezi stejně dobrými náhodně.
+function siblingFor(q, used){
+  const today = dayKey(new Date()), ranks = [[], [], []];
+  QUESTIONS.forEach(function(s){
+    if(s.id === q.id || s.topic !== q.topic || s.tag !== q.tag || s.difficulty !== q.difficulty || used[s.id]) return;
+    const st = state.questionStats[s.id];
+    if(recentMiss(st, today)) return;
+    ranks[!st || !st.seen ? 0 : (st.due > today ? 1 : 2)].push(s);
+  });
+  const best = ranks[0].length ? ranks[0] : (ranks[1].length ? ranks[1] : ranks[2]);
+  return best.length ? best[Math.floor(Math.random() * best.length)] : null;
 }
 
 function registerAnswer(question, allPartsCorrect, tagResults){
@@ -30210,6 +30239,7 @@ function registerAnswer(question, allPartsCorrect, tagResults){
   } else {
     st.streak = 0;
     st.due = dayKey(new Date()); // chybná otázka je na řadě hned znovu
+    st.wrong = st.due;           // den chyby: další 2 dny ji zastoupí jiná věta ze stejného jevu
   }
   tagResults.forEach(function(r){
     const ts = getTagStat(r.tag);
