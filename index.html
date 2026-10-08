@@ -30366,7 +30366,8 @@ const I18N = {
     doneTitle: "Na dnešek hotovo 💪", doneSub: "Denní cíl splněný. Teď si dej pauzu, mozek si to přes noc uloží.",
     doneAnswers: "odpovědí dnes", doneAcc: "správně",
     doneTomorrow: function(n){ return "Zítra tě " + (n === 1 ? "čeká 1 otázka" : (n >= 2 && n <= 4 ? "čekají " + n + " otázky" : "čeká " + n + " otázek")) + " k opakování"; },
-    doneTomorrowNote: "Ty, které ti dnes nešly, se vrátí v pravou chvíli.", doneTomorrowNone: "Zítra můžeš začít novými otázkami.",
+    doneTomorrowNote: "Ty, které ti dnes nešly, se vrátí v pravou chvíli.",
+    doneTomorrowToday: function(n){ return "Z toho " + n + " " + (n === 1 ? "je" : (n >= 2 && n <= 4 ? "jsou" : "je")) + " na řadě už dnes – najdeš je na Domů v Opakování."; }, doneTomorrowNone: "Zítra můžeš začít novými otázkami.",
     doneBtn: "Hotovo", doneMore: "Ještě jedno kolo",
     giftNote: "<b>Náskok z testu:</b> co už umíš, máš rovnou započítané. U témat je to světlejší část kroužku.",
     resumeTitle: "Rozdělané kolo", resumeDrop: "Zahodit", resumeBtn: "Pokračovat", resumeOf: function(a, b){ return a + " z " + b; },
@@ -30379,7 +30380,7 @@ const I18N = {
     tileReviewNote: "otázky na řadě", tileWeakNote: "slabá místa",
     ctaFirst: "Začít trénink", ctaFirstNote: "Mix otázek na míru, jedním klepnutím",
     ctaGoal: "Dokončit dnešní cíl",
-    ctaGoalNote: function(n){ return "Mix na míru · zbývá " + n + (n === 1 ? " odpověď" : (n >= 2 && n <= 4 ? " odpovědi" : " odpovědí")); },
+    ctaGoalNote: function(n){ return n > DAILY_MAX ? "Mix na míru · " + DAILY_MAX + " otázek, do cíle zbývá " + n : "Mix na míru · zbývá " + n + (n === 1 ? " odpověď" : (n >= 2 && n <= 4 ? " odpovědi" : " odpovědí")); },
     ctaMore: "Trénovat dál", ctaMoreNote: "Mix na míru", ctaTopics: "Vybrat si téma",
     setupTitle: "Co dnes procvičíme?",
     setupIntro: "Vyber si téma, obtížnost a počet otázek. Aplikace si pamatuje, co ti jde a co ne, a podle toho ti otázky přizpůsobuje.",
@@ -30530,7 +30531,8 @@ const I18N = {
     doneTitle: "Done for today 💪", doneSub: "Daily goal reached. Take a break – your brain will store it overnight.",
     doneAnswers: "answers today", doneAcc: "correct",
     doneTomorrow: function(n){ return n + " question" + (n === 1 ? "" : "s") + " to review tomorrow"; },
-    doneTomorrowNote: "The ones you missed today will come back at the right time.", doneTomorrowNone: "Tomorrow you can start with new questions.",
+    doneTomorrowNote: "The ones you missed today will come back at the right time.",
+    doneTomorrowToday: function(n){ return n + " of them " + (n === 1 ? "is" : "are") + " already due today – find them under Review on Home."; }, doneTomorrowNone: "Tomorrow you can start with new questions.",
     doneBtn: "Done", doneMore: "One more round",
     giftNote: "<b>Head start from the test:</b> what you already know counts right away. It's the lighter part of the topic rings.",
     resumeTitle: "Unfinished round", resumeDrop: "Discard", resumeBtn: "Continue", resumeOf: function(a, b){ return a + " of " + b; },
@@ -30543,7 +30545,7 @@ const I18N = {
     tileReviewNote: "questions due", tileWeakNote: "to work on",
     ctaFirst: "Start training", ctaFirstNote: "A mix made for you, in one tap",
     ctaGoal: "Finish today's goal",
-    ctaGoalNote: function(n){ return "A mix made for you · " + n + (n === 1 ? " answer" : " answers") + " to go"; },
+    ctaGoalNote: function(n){ return n > DAILY_MAX ? "A mix made for you · " + DAILY_MAX + " questions, " + n + " to go" : "A mix made for you · " + n + (n === 1 ? " answer" : " answers") + " to go"; },
     ctaMore: "Keep training", ctaMoreNote: "A mix made for you", ctaTopics: "Choose a topic",
     setupTitle: "What shall we practise today?",
     setupIntro: "Choose a topic, difficulty and number of questions. The app remembers what you're good at and what you find hard, and adapts the questions to you.",
@@ -30949,6 +30951,7 @@ updateStartBtn();
 const GOAL_KEY = "grammarLabGoalV1";
 const GOAL_OPTIONS = [10, 20, 30, 50];
 let dailyGoal = 20;
+const DAILY_MAX = 20; // nejdelší kolo „Dnešní trénink“
 try{
   const g = parseInt(window.localStorage.getItem(GOAL_KEY), 10);
   if(GOAL_OPTIONS.indexOf(g) !== -1) dailyGoal = g;
@@ -31313,7 +31316,9 @@ function startRound(){
 // Dnešní trénink jedním klepnutím: asi 40 % opakování, 20 % slabých míst a zbytek nové otázky
 // v doporučené obtížnosti z jevů do o jednu úroveň výš, než má uživatel.
 function dailyPool(){
-  const n = selectedCount, chosen = [], used = {};
+  // Do splnění cíle má kolo tolik otázek, kolik zbývá (nejvýš DAILY_MAX), pak běžnou délku.
+  const left = dailyGoal - ((state.days || {})[dayKey(new Date())] || 0);
+  const n = left > 0 ? Math.min(left, DAILY_MAX) : selectedCount, chosen = [], used = {};
   function take(list, k){
     list.forEach(function(q){ if(k > 0 && !used[q.id]){ used[q.id] = true; chosen.push(q); k--; } });
   }
@@ -32096,7 +32101,14 @@ function showDone(cels){
   const today = dayKey(new Date()), tomorrow = addDays(today, 1);
   let parts = 0, ok = 0;
   state.rounds.forEach(function(r){ if(roundDay(r) === today){ parts += r.totalParts; ok += r.correctParts; } });
-  const due = Object.keys(state.questionStats).filter(function(id){ const st = state.questionStats[id]; return st.seen > 0 && st.due && st.due <= tomorrow; }).length;
+  // Stejný výběr jako dlaždice Opakování na Domů (jen existující otázky, v angličtině bez slovíček).
+  let due = 0, dueToday = 0;
+  QUESTIONS.forEach(function(q){
+    const st = state.questionStats[q.id];
+    if(!st || !st.seen || !st.due || st.due > tomorrow || (lang === "en" && q.topic === "vocab")) return;
+    due++;
+    if(st.due <= today) dueToday++;
+  });
   const el = document.createElement("div");
   el.className = "done-screen";
   el.innerHTML = '<div class="done-in">' +
@@ -32105,7 +32117,7 @@ function showDone(cels){
     '<div class="done-stats"><div><b>' + (state.days[today] || 0) + '</b><small>' + escapeHtml(tx("doneAnswers")) + '</small></div>' +
     '<div><b>' + pctOf(ok, parts) + '%</b><small>' + escapeHtml(tx("doneAcc")) + '</small></div></div>' +
     '<div class="done-tmrw"><span>📅</span><div><b>' + escapeHtml(due ? tx("doneTomorrow", due) : tx("doneTomorrowNone")) + '</b>' +
-    (due ? '<br>' + escapeHtml(tx("doneTomorrowNote")) : "") + '</div></div>' +
+    (due ? '<br>' + escapeHtml(dueToday ? tx("doneTomorrowToday", dueToday) : tx("doneTomorrowNote")) : "") + '</div></div>' +
     '<button class="btn-primary" id="done-ok">' + escapeHtml(tx("doneBtn")) + '</button>' +
     '<button class="done-more" id="done-more">' + escapeHtml(tx("doneMore")) + '</button></div>';
   document.body.appendChild(el);
