@@ -519,13 +519,38 @@
   .near-body .lvl-note{ margin:0; }
   .near-btn{ margin-top:10px; padding:8px 14px; font-size:13.5px; }
   .near-pnote{ margin-top:6px !important; }
-  .lvl-pick{ margin-top:12px; border-top:1px solid var(--line); padding-top:10px; }
-  .lvl-pick summary{ cursor:pointer; font-weight:700; font-size:13.5px; color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
-  .lv-head{ font-weight:800; font-size:12.5px; margin:12px 0 2px; }
-  .lv-row{ display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
-  .lv-row span{ flex:1; min-width:0; }
-  .lv-row small{ display:block; font-size:11.5px; color:var(--ink-soft); }
-  .lv-row em{ font-style:normal; font-size:12px; color:var(--ink-soft); white-space:nowrap; }
+  /* Rozklikávací seznam jevů úrovně (Témata i Pokrok) */
+  .lvl-pick{ margin-top:14px; }
+  .lvl-pick summary{ cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:14px;
+    background:var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); font-weight:700; font-size:13.5px; }
+  .lvl-pick summary::-webkit-details-marker{ display:none; }
+  .lvl-pick summary span{ flex:1; }
+  .lvl-pick summary::after{ content:"›"; font-size:20px; line-height:1; color:var(--ink-soft); transform:rotate(90deg); transition:transform .15s ease; }
+  .lvl-pick[open] summary::after{ transform:rotate(-90deg); }
+  .lv-head{ display:flex; align-items:center; gap:8px; font-weight:800; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin:16px 2px 8px; }
+  .lv-head::before{ content:""; width:8px; height:8px; border-radius:50%; background:#3A6FC0; }
+  .lv-head.ok::before{ background:#4FA86A; }
+  .lv-list{ display:grid; gap:6px; margin-top:10px; }
+  .lv-head + .lv-list{ margin-top:0; }
+  .lv-row{ display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:12px; background:var(--surface-2);
+    box-shadow: inset 0 0 0 1px var(--line); font-size:13.5px; font-weight:700; line-height:1.3; }
+  .lv-row.pick{ cursor:pointer; }
+  .lv-row.pick:has(input:checked){ box-shadow: inset 0 0 0 2px #3A6FC0; }
+  .lv-row input{ appearance:none; -webkit-appearance:none; flex-shrink:0; width:22px; height:22px; margin:0; border-radius:50%;
+    border:2px solid var(--ink-soft); display:grid; place-items:center; cursor:pointer; }
+  .lv-row input:checked{ background:#3A6FC0; border-color:#3A6FC0; }
+  .lv-row input:checked::after{ content:"✓"; color:#fff; font-size:13px; font-weight:800; }
+  .lv-row > span{ flex:1; min-width:0; }
+  .lv-row small{ display:block; font-size:11.5px; font-weight:600; color:var(--ink-soft); margin-top:2px; }
+  .lv-st{ flex-shrink:0; display:flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .lv-st i{ width:7px; height:7px; border-radius:50%; background:var(--track); }
+  .lv-st i.on{ background:#3A6FC0; }
+  .lv-st i:last-of-type{ margin-right:3px; }
+  .lv-badge{ padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:800; white-space:nowrap; flex-shrink:0; }
+  .lv-badge.ok{ background:rgba(79,168,106,.16); color:#4FA86A; }
+  .lv-badge.none{ background:var(--track); color:var(--ink-soft); }
+  .lv-badge.low{ background:rgba(224,168,30,.18); color:#C28B0E; }
+  .lvl-pick .near-btn{ width:100%; margin-top:12px; }
   /* Kalendář tréninků v Pokroku (docs/navrhy-vzhledu-30.html, návrh 2) */
   .cal-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
   .cal-stats div{ background:var(--surface-2); border-radius:12px; padding:10px 6px; text-align:center; box-shadow: inset 0 0 0 1px var(--line); }
@@ -30552,7 +30577,7 @@ const I18N = {
     levelPick: function(l){ return "Vybrat jevy sám/sama (chybějící jevy " + l + ")"; }, levelPickGo: "Procvičit vybrané",
     levelJevy: function(l, d, m){ return "Jevy úrovně " + l + ": " + d + " zvládnuto, " + m + " chybí"; },
     levelMissing: function(n){ return "Chybí (" + n + ")"; }, levelMastered: function(n){ return "Zvládnuté (" + n + ")"; },
-    lvJevNone: "zatím nezkoušeno", lvJevSeen: function(n, ok){ return ok + " z " + n + " správně"; },
+    lvJevNone: "nezkoušeno", lvJevOk: "zvládnuto", lvJevSeen: function(n, ok){ return ok + " z " + n + " správně"; },
     diffExplain: "Obtížnost říká, jak náročné věty dostáváš u každého jevu: základní, střední, nebo pokročilá. S úrovní A2–C1 nesouvisí – ta říká, které jevy umíš. Doporučenou obtížnost používá Dnešní trénink a další se odemkne, když z posledních 30 odpovědí máš aspoň 24 správně.",
     levelTopShort: function(l){ return "Máš nejvyšší úroveň " + l + " 💪"; },
     calTitle: "Tréninky · posledních 8 týdnů",
@@ -30727,7 +30752,7 @@ const I18N = {
     levelPick: function(l){ return "Choose points yourself (missing " + l + " points)"; }, levelPickGo: "Practise selected",
     levelJevy: function(l, d, m){ return l + " grammar points: " + d + " mastered, " + m + " missing"; },
     levelMissing: function(n){ return "Missing (" + n + ")"; }, levelMastered: function(n){ return "Mastered (" + n + ")"; },
-    lvJevNone: "not tried yet", lvJevSeen: function(n, ok){ return ok + " of " + n + " right"; },
+    lvJevNone: "not tried", lvJevOk: "mastered", lvJevSeen: function(n, ok){ return ok + " of " + n + " right"; },
     diffExplain: "Difficulty is how demanding the sentences are within each grammar point: basic, intermediate or advanced. It isn't the A2–C1 level – that says which points you know. Today's training uses the recommended difficulty, and the next one unlocks when you get at least 24 of your last 30 answers right.",
     levelTopShort: function(l){ return "You're at the top level, " + l + " 💪"; },
     calTitle: "Training · last 8 weeks",
@@ -31082,10 +31107,19 @@ function renderTopicGrid(){
 }
 
 // Řádek jevu v seznamech úrovně: název, téma a kolik už je zodpovězeno.
+// Stav: zvládnuto / tečky ke 3 otázkám / úspěšnost pod 80 % / zatím nezkoušeno.
 function levelJevRow(m, check){
-  return '<label class="lv-row">' + (check ? '<input type="checkbox" data-k="' + escapeHtml(m.topic + "|" + m.tag) + '">' : '') +
-    '<span>' + escapeHtml(tagLabel(m.tag)) + '<small>' + escapeHtml(topicName(m.topic)) + '</small></span>' +
-    '<em>' + (m.seen >= LEVEL_TAG_NEED && m.ok >= LEVEL_PCT * m.seen ? "✓" : (m.seen ? tx("lvJevSeen", m.seen, m.ok) : tx("lvJevNone"))) + '</em></label>';
+  let st;
+  if(m.seen >= LEVEL_TAG_NEED && m.ok >= LEVEL_PCT * m.seen) st = '<b class="lv-badge ok">✓ ' + escapeHtml(tx("lvJevOk")) + '</b>';
+  else if(!m.seen) st = '<b class="lv-badge none">' + escapeHtml(tx("lvJevNone")) + '</b>';
+  else if(m.seen >= LEVEL_TAG_NEED) st = '<b class="lv-badge low">' + escapeHtml(tx("lvJevSeen", m.seen, m.ok)) + '</b>';
+  else {
+    st = '<span class="lv-st">';
+    for(let i = 0; i < LEVEL_TAG_NEED; i++) st += '<i class="' + (i < m.ok ? "on" : "") + '"></i>';
+    st += escapeHtml(tx("lvJevSeen", m.seen, m.ok)) + '</span>';
+  }
+  return '<label class="lv-row' + (check ? ' pick' : '') + '">' + (check ? '<input type="checkbox" data-k="' + escapeHtml(m.topic + "|" + m.tag) + '">' : '') +
+    '<span>' + escapeHtml(tagLabel(m.tag)) + '<small>' + escapeHtml(topicName(m.topic)) + '</small></span>' + st + '</label>';
 }
 function sortMissing(list){
   return list.slice().sort(function(a, b){ return b.seen - a.seen || (tagLabel(a.tag) < tagLabel(b.tag) ? -1 : 1); });
@@ -31119,8 +31153,8 @@ function renderSetupLevel(){
     h += tx("levelTopShort", lv);
   }
   h += '</div></div>';
-  if(next) h += '<details class="lvl-pick"><summary>' + escapeHtml(tx("levelPick", next)) + '</summary>' +
-    sortMissing(ls.missing[next]).map(function(m){ return levelJevRow(m, true); }).join("") +
+  if(next) h += '<details class="lvl-pick"><summary><span>' + escapeHtml(tx("levelPick", next)) + '</span></summary><div class="lv-list">' +
+    sortMissing(ls.missing[next]).map(function(m){ return levelJevRow(m, true); }).join("") + '</div>' +
     '<button class="btn-secondary near-btn" id="level-pick-go" disabled>' + escapeHtml(tx("levelPickGo")) + '</button></details>';
   const body = document.getElementById("setup-level-body");
   body.innerHTML = h;
@@ -31131,7 +31165,11 @@ function renderSetupLevel(){
   const go = document.getElementById("level-pick-go");
   const picked = function(){ return Array.prototype.map.call(body.querySelectorAll(".lvl-pick input:checked"), function(c){
     const k = c.getAttribute("data-k"), i = k.indexOf("|"); return { topic: k.slice(0, i), tag: k.slice(i + 1) }; }); };
-  body.querySelector(".lvl-pick").addEventListener("change", function(){ go.disabled = picked().length === 0; });
+  body.querySelector(".lvl-pick").addEventListener("change", function(){
+    const n = picked().length;
+    go.disabled = n === 0;
+    go.textContent = tx("levelPickGo") + (n ? " (" + n + ")" : "");
+  });
   go.addEventListener("click", function(){ practiseJevy(picked()); });
 }
 
@@ -32611,9 +32649,9 @@ function renderLevelCards(){
     h += '<p class="lvl-note">' + tx("levelTop") + '</p>';
   }
   const tl = next || lv;
-  if(tl) h += '<details class="lvl-pick"><summary>' + escapeHtml(tx("levelJevy", tl, ls.mastered[tl].length, ls.missing[tl].length)) + '</summary>' +
-    '<p class="lv-head">' + escapeHtml(tx("levelMissing", ls.missing[tl].length)) + '</p>' + sortMissing(ls.missing[tl]).map(function(m){ return levelJevRow(m); }).join("") +
-    '<p class="lv-head">' + escapeHtml(tx("levelMastered", ls.mastered[tl].length)) + '</p>' + ls.mastered[tl].map(function(m){ return levelJevRow(m); }).join("") + '</details>';
+  if(tl) h += '<details class="lvl-pick"><summary><span>' + escapeHtml(tx("levelJevy", tl, ls.mastered[tl].length, ls.missing[tl].length)) + '</span></summary>' +
+    (ls.missing[tl].length ? '<p class="lv-head">' + escapeHtml(tx("levelMissing", ls.missing[tl].length)) + '</p><div class="lv-list">' + sortMissing(ls.missing[tl]).map(function(m){ return levelJevRow(m); }).join("") + '</div>' : '') +
+    (ls.mastered[tl].length ? '<p class="lv-head ok">' + escapeHtml(tx("levelMastered", ls.mastered[tl].length)) + '</p><div class="lv-list">' + ls.mastered[tl].map(function(m){ return levelJevRow(m); }).join("") + '</div>' : '') + '</details>';
   document.getElementById("level-body").innerHTML = h;
 
   const rec = recommendedDifficulty(), nextD = rec === "basic" ? "intermediate" : (rec === "intermediate" ? "advanced" : null);
