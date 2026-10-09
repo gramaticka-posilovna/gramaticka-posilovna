@@ -30135,6 +30135,12 @@ function migrateState(s){
     }
   });
 
+  // Chyby z doby, kdy se den chyby neukládal, se berou jako dnešní (v opakování je zastoupí jiné věty).
+  Object.keys(s.questionStats).forEach(function(id){
+    const st = s.questionStats[id];
+    if(st.seen > 0 && st.streak === 0 && !st.wrong) st.wrong = dayKey(new Date());
+  });
+
   // První verze rozřazovacího testu ukládala jen id obtížnosti – takový výsledek zahodíme.
   if(typeof s.placement === "string") s.placement = null;
 
@@ -30353,9 +30359,9 @@ function specialPool(mode){
   }).filter(Boolean);
 }
 
-// Spletená v posledních 2 dnech (dnes, včera, předevčírem ne) a od té doby nezodpovězená správně.
+// Spletená v posledních 7 dnech a od té doby nezodpovězená správně – v opakování ji zastoupí jiná věta.
 function recentMiss(st, today){
-  return !!(st && st.streak === 0 && st.wrong && st.wrong > addDays(today, -2));
+  return !!(st && st.streak === 0 && st.wrong && st.wrong > addDays(today, -7));
 }
 
 // Jiná otázka ze stejného jevu a obtížnosti: nejdřív nikdy neviděné, pak ty, které nejsou na řadě,
@@ -30385,7 +30391,7 @@ function registerAnswer(question, allPartsCorrect, tagResults){
   } else {
     st.streak = 0;
     st.due = dayKey(new Date()); // chybná otázka je na řadě hned znovu
-    st.wrong = st.due;           // den chyby: další 2 dny ji zastoupí jiná věta ze stejného jevu
+    st.wrong = st.due;           // den chyby: týden ji v opakování zastoupí jiná věta ze stejného jevu
   }
   tagResults.forEach(function(r){
     const ts = getTagStat(r.tag);
@@ -31523,7 +31529,8 @@ function dailyPool(){
     const p = k.indexOf("|"), topic = k.slice(0, p), tag = k.slice(p + 1), j = J[k];
     const doneIds = j.d === today ? j.q : [];
     const qs = shuffle(QUESTIONS.filter(function(q){
-      return q.topic === topic && q.tag === tag && !used[q.id] && doneIds.indexOf(q.id) === -1 && !(lang === "en" && q.topic === "vocab");
+      return q.topic === topic && q.tag === tag && !used[q.id] && doneIds.indexOf(q.id) === -1 && !(lang === "en" && q.topic === "vocab") &&
+        !recentMiss(state.questionStats[q.id], today);
     }));
     take(qs.filter(function(q){ return q.difficulty === diffR; }).concat(qs), 2);
   });
@@ -32333,7 +32340,9 @@ function finishRound(){
   const cels = collectCelebrations(goalBefore === 0);
   saveState();
 
-  renderResults(pct, correctParts, totalParts, byTag);
+  // Skóre se ukazuje po otázkách (otázka s víc mezerami se počítá jednou), aby sedělo s délkou kola.
+  const okQ = roundResults.filter(function(r){ return r.allCorrect; }).length;
+  renderResults(roundResults.length ? Math.round(okQ / roundResults.length * 100) : 0, okQ, roundResults.length, byTag);
   showView("results");
   if(doneNow) setTimeout(function(){ showDone(cels); }, 1800);
   else if(cels.length) setTimeout(function(){ celebrate(cels); }, goalReached ? 2600 : 600);
