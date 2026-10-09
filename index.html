@@ -498,7 +498,7 @@
   .resume-card .btn-primary{ margin-bottom:0; }
   /* Síla jevů na obrazovce Témata (docs/sila-jevu.md) */
   .topic-pill .txt{ min-width:0; }
-  .topic-pill .txt small.jev-line{ display:block; font-size:12px; font-weight:600; color:var(--ink-soft); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .topic-pill .txt small.jev-line{ display:block; font-size:12px; font-weight:600; color:var(--ink-soft); margin-top:3px; }
   .topic-pill .txt small.jev-line.near{ color:var(--success); font-weight:700; }
   .jev-ring{ width:36px; height:36px; flex-shrink:0; }
   .jev-ring circle{ fill:none; stroke-width:4; }
@@ -518,6 +518,14 @@
   .near-steps i.last{ outline:2px solid var(--accent); outline-offset:-2px; }
   .near-body .lvl-note{ margin:0; }
   .near-btn{ margin-top:10px; padding:8px 14px; font-size:13.5px; }
+  .near-pnote{ margin-top:6px !important; }
+  .lvl-pick{ margin-top:12px; border-top:1px solid var(--line); padding-top:10px; }
+  .lvl-pick summary{ cursor:pointer; font-weight:700; font-size:13.5px; color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+  .lv-head{ font-weight:800; font-size:12.5px; margin:12px 0 2px; }
+  .lv-row{ display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
+  .lv-row span{ flex:1; min-width:0; }
+  .lv-row small{ display:block; font-size:11.5px; color:var(--ink-soft); }
+  .lv-row em{ font-style:normal; font-size:12px; color:var(--ink-soft); white-space:nowrap; }
   /* Kalendář tréninků v Pokroku (docs/navrhy-vzhledu-30.html, návrh 2) */
   .cal-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
   .cal-stats div{ background:var(--surface-2); border-radius:12px; padding:10px 6px; text-align:center; box-shadow: inset 0 0 0 1px var(--line); }
@@ -1421,10 +1429,10 @@
       <button class="btn-secondary" id="notebook-btn" data-i18n="notebookBtn">Procvičit chyby</button>
     </details>
 
-    <div class="card">
-      <p class="card-label" data-i18n="labelHistory">Historie kol</p>
+    <details class="card fold">
+      <summary class="card-label" data-i18n="labelHistory">Historie kol</summary>
       <div id="history-list"></div>
-    </div>
+    </details>
   </div>
 
   <!-- ===================== SETTINGS VIEW ===================== -->
@@ -30530,7 +30538,7 @@ const I18N = {
     reportBody: function(id, sentence, given){ return "Otázka: " + id + "\n" + (sentence ? "Správná věta: " + sentence + "\n" : "") + (given ? "Moje odpověď: " + given + "\n" : "") + "\nCo je podle mě špatně:\n"; },
     homeTitle: "Dnešní trénink",
     jevNone: "Zatím netrénováno",
-    jevMid: function(t){ return "Ještě 1 správná a " + t + " postoupí"; },
+    jevMid: function(t){ return "Ještě 1 správná odpověď a jev " + t + " postoupí o stupeň"; },
     jevToday: function(t){ return "Dnes kontrola: " + t; },
     jevTomorrow: function(t){ return "Zítra kontrola: " + t; },
     jevNew: function(t){ return "Nový jev: " + t; },
@@ -30540,6 +30548,12 @@ const I18N = {
     levelGoal: function(l, k){ return "Na " + l + (k <= 3 ? " už jen " : " ještě ") + "<b>" + k + (k === 1 ? " jev" : (k <= 4 ? " jevy" : " jevů")) + "</b>"; },
     levelGoalNote: function(d, n){ return "zvládnuto " + d + " z " + n + " · jev = aspoň 3 otázky, 80 % správně"; },
     levelPractice: "Procvičit chybějící jevy",
+    levelPracticeNote: "Vybere 3 jevy, kterým do zvládnutí chybí nejméně (při shodě náhodně).",
+    levelPick: function(l){ return "Vybrat jevy sám/sama (chybějící jevy " + l + ")"; }, levelPickGo: "Procvičit vybrané",
+    levelJevy: function(l, d, m){ return "Jevy úrovně " + l + ": " + d + " zvládnuto, " + m + " chybí"; },
+    levelMissing: function(n){ return "Chybí (" + n + ")"; }, levelMastered: function(n){ return "Zvládnuté (" + n + ")"; },
+    lvJevNone: "zatím nezkoušeno", lvJevSeen: function(n, ok){ return ok + " z " + n + " správně"; },
+    diffExplain: "Obtížnost říká, jak náročné věty dostáváš u každého jevu: základní, střední, nebo pokročilá. S úrovní A2–C1 nesouvisí – ta říká, které jevy umíš. Doporučenou obtížnost používá Dnešní trénink a další se odemkne, když z posledních 30 odpovědí máš aspoň 24 správně.",
     levelTopShort: function(l){ return "Máš nejvyšší úroveň " + l + " 💪"; },
     calTitle: "Tréninky · posledních 8 týdnů",
     calTotal: function(n){ return n === 1 ? "tréninkový den celkem" : (n >= 2 && n <= 4 ? "tréninkové dny celkem" : "tréninkových dní celkem"); },
@@ -30699,7 +30713,7 @@ const I18N = {
     reportBody: function(id, sentence, given){ return "Question: " + id + "\n" + (sentence ? "Correct sentence: " + sentence + "\n" : "") + (given ? "My answer: " + given + "\n" : "") + "\nWhat I think is wrong:\n"; },
     homeTitle: "Today’s workout",
     jevNone: "Not practised yet",
-    jevMid: function(t){ return "1 more right and " + t + " moves up"; },
+    jevMid: function(t){ return "1 more right answer and " + t + " moves up a stage"; },
     jevToday: function(t){ return "Check today: " + t; },
     jevTomorrow: function(t){ return "Check tomorrow: " + t; },
     jevNew: function(t){ return "New: " + t; },
@@ -30709,6 +30723,12 @@ const I18N = {
     levelGoal: function(l, k){ return "To " + l + ": <b>" + k + " more grammar point" + (k === 1 ? "" : "s") + "</b>"; },
     levelGoalNote: function(d, n){ return d + " of " + n + " mastered · a point = at least 3 questions, 80% correct"; },
     levelPractice: "Practise missing points",
+    levelPracticeNote: "Picks the 3 points closest to being mastered (random on ties).",
+    levelPick: function(l){ return "Choose points yourself (missing " + l + " points)"; }, levelPickGo: "Practise selected",
+    levelJevy: function(l, d, m){ return l + " grammar points: " + d + " mastered, " + m + " missing"; },
+    levelMissing: function(n){ return "Missing (" + n + ")"; }, levelMastered: function(n){ return "Mastered (" + n + ")"; },
+    lvJevNone: "not tried yet", lvJevSeen: function(n, ok){ return ok + " of " + n + " right"; },
+    diffExplain: "Difficulty is how demanding the sentences are within each grammar point: basic, intermediate or advanced. It isn't the A2–C1 level – that says which points you know. Today's training uses the recommended difficulty, and the next one unlocks when you get at least 24 of your last 30 answers right.",
     levelTopShort: function(l){ return "You're at the top level, " + l + " 💪"; },
     calTitle: "Training · last 8 weeks",
     calTotal: function(n){ return n === 1 ? "training day in total" : "training days in total"; },
@@ -31061,8 +31081,29 @@ function renderTopicGrid(){
   });
 }
 
-// Úroveň na obrazovce Témata: jen nejbližší krok („Na B2 ještě 4 jevy“), 10 dílků
-// a tlačítko, které spustí kolo ze 3 nezvládnutých jevů nejblíž ke zvládnutí.
+// Řádek jevu v seznamech úrovně: název, téma a kolik už je zodpovězeno.
+function levelJevRow(m, check){
+  return '<label class="lv-row">' + (check ? '<input type="checkbox" data-k="' + escapeHtml(m.topic + "|" + m.tag) + '">' : '') +
+    '<span>' + escapeHtml(tagLabel(m.tag)) + '<small>' + escapeHtml(topicName(m.topic)) + '</small></span>' +
+    '<em>' + (m.seen >= LEVEL_TAG_NEED && m.ok >= LEVEL_PCT * m.seen ? "✓" : (m.seen ? tx("lvJevSeen", m.seen, m.ok) : tx("lvJevNone"))) + '</em></label>';
+}
+function sortMissing(list){
+  return list.slice().sort(function(a, b){ return b.seen - a.seen || (tagLabel(a.tag) < tagLabel(b.tag) ? -1 : 1); });
+}
+// Kolo z vybraných jevů [{topic, tag}] v nastavené obtížnosti.
+function practiseJevy(list){
+  selectedTags = {};
+  list.forEach(function(m){
+    if(!selectedTags[m.topic]) selectedTags[m.topic] = new Set();
+    selectedTags[m.topic].add(m.tag);
+  });
+  renderTopicGrid();
+  updateStartBtn();
+  startRound();
+}
+
+// Úroveň na obrazovce Témata: jen nejbližší krok („Na B2 ještě 4 jevy“), 10 dílků,
+// tlačítko, které spustí kolo ze 3 nezvládnutých jevů nejblíž ke zvládnutí, a vlastní výběr jevů.
 function renderSetupLevel(){
   const ls = levelStats(), lv = state.level, next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(lv) + 1];
   let h = '<div class="near-card"><b class="near-big">' + (lv || "–") + '</b><div class="near-body">';
@@ -31072,22 +31113,26 @@ function renderSetupLevel(){
     let steps = "";
     for(let i = 0; i < 10; i++) steps += '<i class="' + (i < f ? "f" : "") + (i === 9 ? " last" : "") + '"></i>';
     h += tx("levelGoal", next, k) + '<div class="near-steps">' + steps + '</div><p class="lvl-note">' + tx("levelGoalNote", ls.done[next], ls.need[next]) + '</p>' +
-      '<button class="btn-secondary near-btn" id="level-practice">' + escapeHtml(tx("levelPractice")) + '</button>';
+      '<button class="btn-secondary near-btn" id="level-practice">' + escapeHtml(tx("levelPractice")) + '</button>' +
+      '<p class="lvl-note near-pnote">' + escapeHtml(tx("levelPracticeNote")) + '</p>';
   } else {
     h += tx("levelTopShort", lv);
   }
-  document.getElementById("setup-level-body").innerHTML = h + '</div></div>';
-  if(next) document.getElementById("level-practice").addEventListener("click", function(){
-    const miss = shuffle(ls.missing[next].slice()).sort(function(a, b){ return b.seen - a.seen; }).slice(0, 3);
-    selectedTags = {};
-    miss.forEach(function(m){
-      if(!selectedTags[m.topic]) selectedTags[m.topic] = new Set();
-      selectedTags[m.topic].add(m.tag);
-    });
-    renderTopicGrid();
-    updateStartBtn();
-    startRound();
+  h += '</div></div>';
+  if(next) h += '<details class="lvl-pick"><summary>' + escapeHtml(tx("levelPick", next)) + '</summary>' +
+    sortMissing(ls.missing[next]).map(function(m){ return levelJevRow(m, true); }).join("") +
+    '<button class="btn-secondary near-btn" id="level-pick-go" disabled>' + escapeHtml(tx("levelPickGo")) + '</button></details>';
+  const body = document.getElementById("setup-level-body");
+  body.innerHTML = h;
+  if(!next) return;
+  document.getElementById("level-practice").addEventListener("click", function(){
+    practiseJevy(shuffle(ls.missing[next].slice()).sort(function(a, b){ return b.seen - a.seen; }).slice(0, 3));
   });
+  const go = document.getElementById("level-pick-go");
+  const picked = function(){ return Array.prototype.map.call(body.querySelectorAll(".lvl-pick input:checked"), function(c){
+    const k = c.getAttribute("data-k"), i = k.indexOf("|"); return { topic: k.slice(0, i), tag: k.slice(i + 1) }; }); };
+  body.querySelector(".lvl-pick").addEventListener("change", function(){ go.disabled = picked().length === 0; });
+  go.addEventListener("click", function(){ practiseJevy(picked()); });
 }
 
 function renderDiffGrid(){
@@ -32565,6 +32610,10 @@ function renderLevelCards(){
   } else {
     h += '<p class="lvl-note">' + tx("levelTop") + '</p>';
   }
+  const tl = next || lv;
+  if(tl) h += '<details class="lvl-pick"><summary>' + escapeHtml(tx("levelJevy", tl, ls.mastered[tl].length, ls.missing[tl].length)) + '</summary>' +
+    '<p class="lv-head">' + escapeHtml(tx("levelMissing", ls.missing[tl].length)) + '</p>' + sortMissing(ls.missing[tl]).map(function(m){ return levelJevRow(m); }).join("") +
+    '<p class="lv-head">' + escapeHtml(tx("levelMastered", ls.mastered[tl].length)) + '</p>' + ls.mastered[tl].map(function(m){ return levelJevRow(m); }).join("") + '</details>';
   document.getElementById("level-body").innerHTML = h;
 
   const rec = recommendedDifficulty(), nextD = rec === "basic" ? "intermediate" : (rec === "intermediate" ? "advanced" : null);
@@ -32577,6 +32626,7 @@ function renderLevelCards(){
   } else {
     d += '<p class="lvl-note">' + tx("diffTop") + '</p>';
   }
+  d += '<p class="lvl-note">' + tx("diffExplain") + '</p>';
   document.getElementById("diff-body").innerHTML = d;
 }
 
@@ -33227,7 +33277,7 @@ function questionLevel(q){
   return l === "A1" ? "A2" : (l || null);
 }
 // Pro každou úroveň: need = kolik jevů je potřeba zvládnout, done = kolik jich je zvládnutých,
-// missing = nezvládnuté jevy [{topic, tag, seen}].
+// mastered / missing = zvládnuté / nezvládnuté jevy [{topic, tag, seen, ok}].
 function levelStats(){
   const tags = {};
   QUESTIONS.forEach(function(q){
@@ -33240,13 +33290,14 @@ function levelStats(){
     t.seen += 1;
     if(st.streak > 0) t.ok += 1;
   });
-  const need = {}, done = {}, missing = {};
-  PLACEMENT_LEVELS.forEach(function(l){ need[l] = 0; done[l] = 0; missing[l] = []; });
+  const need = {}, done = {}, mastered = {}, missing = {};
+  PLACEMENT_LEVELS.forEach(function(l){ need[l] = 0; done[l] = 0; mastered[l] = []; missing[l] = []; });
   Object.keys(tags).forEach(function(key){
     const t = tags[key];
     need[t.level] += 1;
-    if(t.seen >= LEVEL_TAG_NEED && t.ok >= LEVEL_PCT * t.seen) done[t.level] += 1;
-    else missing[t.level].push({ topic: t.topic, tag: t.tag, seen: t.seen });
+    const item = { topic: t.topic, tag: t.tag, seen: t.seen, ok: t.ok };
+    if(t.seen >= LEVEL_TAG_NEED && t.ok >= LEVEL_PCT * t.seen){ done[t.level] += 1; mastered[t.level].push(item); }
+    else missing[t.level].push(item);
   });
   PLACEMENT_LEVELS.forEach(function(l){ need[l] = Math.ceil(LEVEL_COVER * need[l]); });
   let reached = null;
@@ -33254,7 +33305,7 @@ function levelStats(){
     const l = PLACEMENT_LEVELS[i];
     if(i <= PLACEMENT_LEVELS.indexOf(state.level) || done[l] >= need[l]) reached = l; else break;
   }
-  return { reached: reached, need: need, done: done, missing: missing };
+  return { reached: reached, need: need, done: done, mastered: mastered, missing: missing };
 }
 // Zvýší uloženou úroveň podle procvičování a testu; vrátí novou úroveň, nebo null.
 function updateLevel(){
