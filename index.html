@@ -517,6 +517,7 @@
   .near-steps i.f{ background:#3A6FC0; }
   .near-steps i.last{ outline:2px solid var(--accent); outline-offset:-2px; }
   .near-body .lvl-note{ margin:0; }
+  .near-btn{ margin-top:10px; padding:8px 14px; font-size:13.5px; }
   /* Kalendář tréninků v Pokroku (docs/navrhy-vzhledu-30.html, návrh 2) */
   .cal-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
   .cal-stats div{ background:var(--surface-2); border-radius:12px; padding:10px 6px; text-align:center; box-shadow: inset 0 0 0 1px var(--line); }
@@ -560,6 +561,9 @@
   @keyframes done-breathe{ 50%{ transform: translateY(-3px) scale(1.02); } }
   @keyframes done-zz{ 0%{ opacity:0; transform:translate(0,6px); } 30%,70%{ opacity:1; } 100%{ opacity:0; transform:translate(8px,-10px); } }
   .done-emoji{ font-size:64px; }
+  .intro-line{ font-family:var(--font-display); font-size:18px; line-height:1.35; margin:0 0 10px; }
+  .intro-q{ font-weight:800; margin:0 0 10px; }
+  .intro-start{ display:block; width:100%; margin-bottom:8px; }
   .done-in h2{ font-family:var(--font-display); font-size:30px; margin:12px 0 6px; }
   .done-sub{ color:var(--ink-soft); font-size:14px; line-height:1.45; margin:0 0 18px; }
   .done-stats{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
@@ -30484,7 +30488,7 @@ const I18N = {
     welcomeReview: function(n){ return ["Čeká na tebe " + n + " otázek k opakování.", n + " otázek si říká o zopakování.", "Opakování: " + n + " otázek. Dáme je?", "Pár starých známých čeká: " + n + " otázek."]; },
     welcomeMilestone: function(n){ return ({ 7: "Celý týden v kuse! To je začátek formy.", 14: "Dva týdny bez vynechání. Klobouk dolů.", 30: "Měsíc v řadě! Tohle už je zvyk.", 50: "Padesátka! Půl stovky dní tréninku.", 100: "Sto dní v řadě. Jsi legenda posilovny.", 200: "Dvě stě dní. Kotoučík smeká." })[n] || (n > 0 && n % 365 === 0 ? "Rok v řadě! Všechno nejlepší k výročí." : null); },
     labelLevel: "Tvoje úroveň", levelHave: function(l){ return "zvládáš gramatiku úrovně " + l; }, levelNone: "zatím bez úrovně",
-    levelNext: function(l, seen, pct){ return "Na <b>" + l + "</b>: " + (seen < 25 ? seen + " z 25 otázek úrovně " + l : seen + " otázek úrovně " + l) + (seen ? ", správně <b>" + pct + " %</b>" : "") + " (potřeba 80 %)."; },
+    levelNext: function(l, d, n){ return "Na <b>" + l + "</b>: zvládnuto <b>" + d + " z " + n + "</b> jevů úrovně " + l + " (jev = aspoň 3 otázky, 80 % správně)."; },
     levelTop: "Nejvyšší úroveň v aplikaci. Klobouk dolů.",
     labelDiffCard: "Obtížnost", diffRecommended: "doporučená",
     diffUnlockNext: function(next, cur, k, c){ return k < 30 ? "Na <b>" + next + "</b>: zatím " + k + " z 30 odpovědí na " + cur + ", z toho " + c + " správně (potřeba 24 z posledních 30)." : "Na <b>" + next + "</b>: z posledních 30 odpovědí na " + cur + " máš " + c + " správně (potřeba 24)."; },
@@ -30496,7 +30500,10 @@ const I18N = {
       rest: ["Na dnešek máš odcvičeno.", "Dnes se makalo. Zítra zas.", "Hotovo. Zasloužený odpočinek."]
     },
     freezeNote: "❄ Den volna: jeden vynechaný den v týdnu sérii nepřeruší.",
-    placementTitle: "Rozřazovací test", placementNote: "5–30 otázek · zjistí, kde začít",
+    placementTitle: "Rozřazovací test", placementNote: "asi 15 minut · zjistí, kde začít",
+    placementIntro: ["Bude to trochu delší, ale vyplatí se vědět, co už umíš.", "Čtvrthodinka teď ti ušetří hodiny opakování toho, co už znáš.", "Žádný stres, nejde o známku. Jen zjistíme, jakou váhu zvedneš.", "Pořádný trénink začíná změřením síly. Jdeme na to!"],
+    placementIntroSub: "Asi 15 minut, 10 otázek na každou úroveň. Test se přizpůsobí tomu, jak ti jde. Když něco nevíš, klepni na „Nevím“ – tipování by výsledek zkreslilo.",
+    placementStartQ: "Kde začneme?", placementStarts: ["Od základů (A2)", "Něco umím (B1)", "Jsem pokročilý/á (B2)"], placementLater: "Teď ne",
     levelTag: function(l){ return "Úroveň " + l; }, dontKnow: "Nevím",
     placementLevel: function(l){ return "Zvládáš gramatiku úrovně <strong>" + l + "</strong>. Je to orientační odhad podle toho, na které úrovni CEFR se jednotlivé jevy učí – hodnotí jen gramatiku, ne celou angličtinu."; },
     placementBelow: "Gramatiku úrovně A2 zatím nemáš jistou. Začni základy – na nich stojí všechno ostatní.",
@@ -30524,8 +30531,9 @@ const I18N = {
     jevLater: function(n){ return "Další kontrola za " + n + (n >= 2 && n <= 4 ? " dny" : " dní"); },
     jevAll: "Vše upevněno 💪",
     jevStage: function(s){ return s === 6 ? "Upevněno" : (s === 5 ? "Zvládnuto" : "Stupeň " + s + " z 6"); },
-    levelGoal: function(l, k){ return "Na " + l + (k <= 5 ? " už jen " : " ještě ") + "<b>" + k + (k === 1 ? " správná odpověď" : (k <= 4 ? " správné odpovědi" : " správných odpovědí")) + "</b>"; },
-    levelGoalNote: function(l){ return "na otázky úrovně " + l + " (potřeba 80 %)"; },
+    levelGoal: function(l, k){ return "Na " + l + (k <= 3 ? " už jen " : " ještě ") + "<b>" + k + (k === 1 ? " jev" : (k <= 4 ? " jevy" : " jevů")) + "</b>"; },
+    levelGoalNote: function(d, n){ return "zvládnuto " + d + " z " + n + " · jev = aspoň 3 otázky, 80 % správně"; },
+    levelPractice: "Procvičit chybějící jevy",
     levelTopShort: function(l){ return "Máš nejvyšší úroveň " + l + " 💪"; },
     calTitle: "Tréninky · posledních 8 týdnů",
     calTotal: function(n){ return n === 1 ? "tréninkový den celkem" : (n >= 2 && n <= 4 ? "tréninkové dny celkem" : "tréninkových dní celkem"); },
@@ -30649,7 +30657,7 @@ const I18N = {
     welcomeReview: function(n){ return [n + " questions are waiting for review.", n + " questions want another go.", "Review: " + n + " questions. Shall we?", "A few old friends are waiting: " + n + " questions."]; },
     welcomeMilestone: function(n){ return ({ 7: "A whole week straight! That's the start of good shape.", 14: "Two weeks without a break. Hats off.", 30: "A month in a row! This is a habit now.", 50: "Fifty! Half a hundred days of training.", 100: "A hundred days in a row. You're a gym legend.", 200: "Two hundred days. Hats off from your plate buddy." })[n] || (n > 0 && n % 365 === 0 ? "A year in a row! Happy anniversary." : null); },
     labelLevel: "Your level", levelHave: function(l){ return "you can handle " + l + " grammar"; }, levelNone: "no level yet",
-    levelNext: function(l, seen, pct){ return "To <b>" + l + "</b>: " + (seen < 25 ? seen + " of 25 " + l + " questions" : seen + " " + l + " questions") + (seen ? ", <b>" + pct + "%</b> correct" : "") + " (need 80%)."; },
+    levelNext: function(l, d, n){ return "To <b>" + l + "</b>: <b>" + d + " of " + n + "</b> " + l + " grammar points mastered (a point = at least 3 questions, 80% correct)."; },
     levelTop: "The highest level in the app. Hats off.",
     labelDiffCard: "Difficulty", diffRecommended: "recommended",
     diffUnlockNext: function(next, cur, k, c){ return k < 30 ? "To <b>" + next + "</b>: " + k + " of 30 answers on " + cur + " so far, " + c + " correct (need 24 of the last 30)." : "To <b>" + next + "</b>: " + c + " of your last 30 answers on " + cur + " were correct (need 24)."; },
@@ -30661,7 +30669,10 @@ const I18N = {
       rest: ["Today's workout is done.", "Good work today. Same again tomorrow.", "Done. Well-earned rest."]
     },
     freezeNote: "❄ Rest day: missing one day a week won't break your streak.",
-    placementTitle: "Placement test", placementNote: "5–30 questions · finds where to start",
+    placementTitle: "Placement test", placementNote: "about 15 minutes · finds where to start",
+    placementIntro: ["It's a bit longer, but it's worth knowing what you already know.", "A quarter of an hour now saves you hours of practising what you already know.", "No stress, it's not a grade. We'll just find out how much weight you can lift.", "Proper training starts with measuring your strength. Let's go!"],
+    placementIntroSub: "About 15 minutes, 10 questions per level. The test adapts to how you're doing. If you don't know, tap “I don't know” – guessing would skew the result.",
+    placementStartQ: "Where shall we start?", placementStarts: ["From the basics (A2)", "I know some (B1)", "I'm advanced (B2)"], placementLater: "Not now",
     levelTag: function(l){ return "Level " + l; }, dontKnow: "I don't know",
     placementLevel: function(l){ return "You can handle <strong>" + l + "</strong> grammar. This is a rough estimate based on the CEFR level at which each grammar point is usually taught – it covers grammar only, not your English as a whole."; },
     placementBelow: "You're not yet confident with A2 grammar. Start with the basics – everything else builds on them.",
@@ -30689,8 +30700,9 @@ const I18N = {
     jevLater: function(n){ return "Next check in " + n + " days"; },
     jevAll: "All solid 💪",
     jevStage: function(s){ return s === 6 ? "Solid" : (s === 5 ? "Mastered" : "Stage " + s + " of 6"); },
-    levelGoal: function(l, k){ return "To " + l + ": <b>" + k + " more right answer" + (k === 1 ? "" : "s") + "</b>"; },
-    levelGoalNote: function(l){ return "on " + l + " questions (80% needed)"; },
+    levelGoal: function(l, k){ return "To " + l + ": <b>" + k + " more grammar point" + (k === 1 ? "" : "s") + "</b>"; },
+    levelGoalNote: function(d, n){ return d + " of " + n + " mastered · a point = at least 3 questions, 80% correct"; },
+    levelPractice: "Practise missing points",
     levelTopShort: function(l){ return "You're at the top level, " + l + " 💪"; },
     calTitle: "Training · last 8 weeks",
     calTotal: function(n){ return n === 1 ? "training day in total" : "training days in total"; },
@@ -31043,23 +31055,33 @@ function renderTopicGrid(){
   });
 }
 
-// Úroveň na obrazovce Témata: jen nejbližší krok („Na B2 už jen 3 správné odpovědi“) a 10 dílků.
+// Úroveň na obrazovce Témata: jen nejbližší krok („Na B2 ještě 4 jevy“), 10 dílků
+// a tlačítko, které spustí kolo ze 3 nezvládnutých jevů nejblíž ke zvládnutí.
 function renderSetupLevel(){
   const ls = levelStats(), lv = state.level, next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(lv) + 1];
   let h = '<div class="near-card"><b class="near-big">' + (lv || "–") + '</b><div class="near-body">';
   if(next){
-    const seen = ls.seen[next] || 0, ok = ls.ok[next] || 0;
-    // Nejmenší počet dalších správných odpovědí, aby bylo aspoň 25 otázek a 80 % správně: ok + k ≥ 0,8 · (seen + k) ⇔ k ≥ 4·seen − 5·ok.
-    const k = Math.max(LEVEL_NEED - seen, 4 * seen - 5 * ok, 1);
-    const p = Math.min(seen / LEVEL_NEED, 1) * Math.min(seen ? ok / seen / LEVEL_PCT : 0, 1);
-    const f = Math.min(9, Math.floor(p * 10));
+    const k = Math.max(ls.need[next] - ls.done[next], 1);
+    const f = Math.min(9, Math.floor(ls.done[next] / ls.need[next] * 10));
     let steps = "";
     for(let i = 0; i < 10; i++) steps += '<i class="' + (i < f ? "f" : "") + (i === 9 ? " last" : "") + '"></i>';
-    h += tx("levelGoal", next, k) + '<div class="near-steps">' + steps + '</div><p class="lvl-note">' + tx("levelGoalNote", next) + '</p>';
+    h += tx("levelGoal", next, k) + '<div class="near-steps">' + steps + '</div><p class="lvl-note">' + tx("levelGoalNote", ls.done[next], ls.need[next]) + '</p>' +
+      '<button class="btn-secondary near-btn" id="level-practice">' + escapeHtml(tx("levelPractice")) + '</button>';
   } else {
     h += tx("levelTopShort", lv);
   }
   document.getElementById("setup-level-body").innerHTML = h + '</div></div>';
+  if(next) document.getElementById("level-practice").addEventListener("click", function(){
+    const miss = shuffle(ls.missing[next].slice()).sort(function(a, b){ return b.seen - a.seen; }).slice(0, 3);
+    selectedTags = {};
+    miss.forEach(function(m){
+      if(!selectedTags[m.topic]) selectedTags[m.topic] = new Set();
+      selectedTags[m.topic].add(m.tag);
+    });
+    renderTopicGrid();
+    updateStartBtn();
+    startRound();
+  });
 }
 
 function renderDiffGrid(){
@@ -31274,7 +31296,7 @@ document.getElementById("home-review").addEventListener("click", function(){ sta
 document.getElementById("home-weak").addEventListener("click", function(){ startSpecialRound("weak"); });
 document.getElementById("home-cta").addEventListener("click", function(){ startSpecialRound("daily"); });
 document.getElementById("home-topics").addEventListener("click", function(){ showView("setup"); });
-document.getElementById("home-test").addEventListener("click", function(){ startPlacement(); });
+document.getElementById("home-test").addEventListener("click", openPlacementIntro);
 document.getElementById("home-streak-btn").addEventListener("click", openCalendar);
 document.getElementById("home-week-card").addEventListener("click", openCalendar);
 
@@ -31399,7 +31421,7 @@ soundSwitch.addEventListener("click", function(e){
   if(soundOn){ audioUnlock(); playSound("ding"); }
 });
 renderSoundSwitch();
-document.getElementById("settings-test").addEventListener("click", function(){ startPlacement(); });
+document.getElementById("settings-test").addEventListener("click", openPlacementIntro);
 
 /* re-render start label when count changes */
 const origRenderCountGrid = renderCountGrid;
@@ -31560,21 +31582,25 @@ function startSpecialRound(mode){
   renderQuestion();
 }
 
-// Rozřazovací test podle úrovní CEFR: bloky A2 → B1 → B2 → C1. Každý blok má 5 otázek
-// z 5 různých témat, vybraných z podtémat, která na dané úrovni začínají (TAG_CEFR; jevy A1
-// patří do bloku A2). Všechny otázky mají střední obtížnost, aby se úrovně měřily stejně,
-// a jsou krátké (výběr z možností nebo jedna mezera); slovní zásoba a Mix se vynechávají.
-// Do dalšího bloku se postupuje při aspoň 4 z 5 správně, jinak test končí. Čistým
-// tipováním se 4 z 5 trefí asi v 5 % případů; tlačítko „Nevím“ tipování dál omezuje.
-// Hraniční výsledek 3 z 5 rozhodnou 3 otázky navíc (stačí 2 správně). Otázky z dřívějších
-// testů (state.placementSeen) přijdou na řadu až nakonec, takže je test pokaždé jiný.
+// Rozřazovací test podle úrovní CEFR (vícestupňový adaptivní test jako EF SET / Cambridge):
+// bloky A2 → B1 → B2 → C1, začíná se na úrovni podle sebehodnocení (úvodní obrazovka).
+// Každý blok má 10 otázek z 10 různých jevů, které na dané úrovni začínají (TAG_CEFR; jevy A1
+// patří do bloku A2), co nejvíc z různých témat; většina je doplňovacích (tipovat nejde),
+// výběr z možností se přidá jen u jevů, které ho mají.
+// Všechny otázky mají střední obtížnost, aby se úrovně měřily stejně; slovní zásoba a Mix se vynechávají.
+// Blok je splněný při aspoň 7 z 10 správně (čistým tipováním asi 1 %); hraniční výsledek 6 z 10
+// rozhodnou 4 otázky navíc (stačí 3 správně). Po splnění se jde o úroveň výš; když nevyjde hned
+// první blok, test sestoupí o úroveň níž (až po A2), jinak končí. Otázky z dřívějších testů
+// (state.placementSeen) přijdou na řadu až nakonec, takže je test pokaždé jiný.
 const PLACEMENT_LEVELS = ["A2", "B1", "B2", "C1"];
-const PLACEMENT_BLOCK = 5;
-const PLACEMENT_PASS = 4;
-const PLACEMENT_EXTRA = 3, PLACEMENT_EXTRA_PASS = 2;
+const PLACEMENT_BLOCK = 10;
+const PLACEMENT_PASS = 7;
+const PLACEMENT_EXTRA = 4, PLACEMENT_EXTRA_PASS = 3;
 let placementBlock = 0;
 let placementBlockStart = 0; // index první otázky aktuálního bloku
 let placementExtra = false;  // přidány doplňkové otázky v tomto bloku?
+let placementBest = -1;      // nejvyšší splněný blok (-1 = zatím žádný)
+let placementDown = false;   // test sestupuje od úrovně, kterou si uživatel vybral
 let dontKnow = false; // odpověď „Nevím“ se vyhodnotí jako chybná
 
 function addPlacementBlock(){
@@ -31583,25 +31609,39 @@ function addPlacementBlock(){
   addPlacementQuestions(PLACEMENT_BLOCK);
 }
 
-// n otázek aktuální úrovně, každá z jiného tématu (nejdřív témata, která v bloku ještě nebyla).
+// n otázek aktuální úrovně, každá z jiného jevu (nejdřív jevy a témata, která v bloku ještě nebyla),
+// u každé druhé výběr z možností, pokud ho jev má.
 function addPlacementQuestions(n){
   const level = PLACEMENT_LEVELS[placementBlock];
-  const seenBefore = {}, inTest = {}, inBlock = {};
+  const seenBefore = {}, inTest = {}, tagInBlock = {}, topicInBlock = {};
   (state.placementSeen || []).forEach(function(id){ seenBefore[id] = true; });
-  roundQuestions.forEach(function(q, i){ inTest[q.id] = true; if(i >= placementBlockStart) inBlock[q.topic] = true; });
-  const byTopic = {};
+  roundQuestions.forEach(function(q, i){
+    inTest[q.id] = true;
+    if(i >= placementBlockStart){ tagInBlock[q.topic + "|" + q.tag] = true; topicInBlock[q.topic] = (topicInBlock[q.topic] || 0) + 1; }
+  });
+  const byTag = {};
   QUESTIONS.forEach(function(q){
     if(q.difficulty !== "intermediate" || q.type === "multi" || inTest[q.id]) return;
     const l = TAG_CEFR[q.topic + "|" + q.tag];
     if((l === "A1" ? "A2" : l) !== level) return;
-    (byTopic[q.topic] = byTopic[q.topic] || []).push(q);
+    (byTag[q.topic + "|" + q.tag] = byTag[q.topic + "|" + q.tag] || []).push(q);
   });
-  shuffle(Object.keys(byTopic)).sort(function(a, b){ return (inBlock[a] ? 1 : 0) - (inBlock[b] ? 1 : 0); }).slice(0, n).forEach(function(t){
-    const fresh = byTopic[t].filter(function(q){ return !seenBefore[q.id]; });
-    const pool = fresh.length ? fresh : byTopic[t];
-    roundQuestions.push(pool[Math.floor(Math.random() * pool.length)]);
-    if(roundTopics.indexOf(t) === -1) roundTopics.push(t);
-  });
+  const keys = shuffle(Object.keys(byTag));
+  for(let k = 0; k < n && keys.length; k++){
+    keys.sort(function(a, b){
+      return ((tagInBlock[a] ? 100 : 0) + (topicInBlock[byTag[a][0].topic] || 0)) - ((tagInBlock[b] ? 100 : 0) + (topicInBlock[byTag[b][0].topic] || 0));
+    });
+    const key = keys.shift(), all = byTag[key];
+    const fresh = all.filter(function(q){ return !seenBefore[q.id]; });
+    let pool = fresh.length ? fresh : all;
+    const want = (roundQuestions.length - placementBlockStart) % 2 ? "choice" : "fill";
+    if(pool.some(function(q){ return q.type === want; })) pool = pool.filter(function(q){ return q.type === want; });
+    const q = pool[Math.floor(Math.random() * pool.length)];
+    roundQuestions.push(q);
+    tagInBlock[key] = true;
+    topicInBlock[q.topic] = (topicInBlock[q.topic] || 0) + 1;
+    if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic);
+  }
 }
 
 function placementFirstCorrect(){
@@ -31615,7 +31655,40 @@ function placementBlockPassed(){
     roundResults.slice(placementBlockStart + PLACEMENT_BLOCK).filter(function(r){ return r.allCorrect; }).length >= PLACEMENT_EXTRA_PASS;
 }
 
-function startPlacement(){
+// Po dokončení bloku: další blok (výš, nebo níž, když nevyšel hned první), nebo konec testu.
+function nextPlacementBlock(){
+  const passed = placementBlockPassed();
+  if(passed) placementBest = Math.max(placementBest, placementBlock);
+  let next = -1;
+  if(passed && !placementDown && placementBlock < PLACEMENT_LEVELS.length - 1) next = placementBlock + 1;
+  else if(!passed && placementBest < 0 && placementBlock > 0){ placementDown = true; next = placementBlock - 1; }
+  if(next < 0) return;
+  placementBlock = next;
+  addPlacementBlock();
+  renderQuizTopbar();
+}
+
+// Úvodní obrazovka testu: povzbuzení od Kotoučíka a volba, na které úrovni začít.
+function openPlacementIntro(){
+  const lines = tx("placementIntro"), starts = tx("placementStarts");
+  const el = document.createElement("div");
+  el.className = "done-screen";
+  el.innerHTML = '<div class="done-in">' +
+    (mascotOn ? '<div class="done-kt">' + kotoucikSVG("grip") + '</div>' : '<div class="done-emoji">💪</div>') +
+    '<h2>' + escapeHtml(tx("placementTitle")) + '</h2>' +
+    '<p class="intro-line">„' + escapeHtml(lines[Math.floor(Math.random() * lines.length)]) + '“</p>' +
+    '<p class="done-sub">' + escapeHtml(tx("placementIntroSub")) + '</p>' +
+    '<p class="intro-q">' + escapeHtml(tx("placementStartQ")) + '</p>' +
+    starts.map(function(s, i){ return '<button class="' + (i ? "btn-secondary" : "btn-primary") + ' intro-start" data-start="' + i + '">' + escapeHtml(s) + '</button>'; }).join("") +
+    '<button class="done-more" id="intro-later">' + escapeHtml(tx("placementLater")) + '</button></div>';
+  document.body.appendChild(el);
+  el.querySelectorAll(".intro-start").forEach(function(b){
+    b.addEventListener("click", function(){ el.remove(); startPlacement(+b.getAttribute("data-start")); });
+  });
+  document.getElementById("intro-later").addEventListener("click", function(){ el.remove(); });
+}
+
+function startPlacement(start){
   roundMode = "placement";
   roundTags = {};
   roundTopics = [];
@@ -31624,7 +31697,9 @@ function startPlacement(){
   roundIndex = 0;
   roundResults = [];
   clearSavedRound();
-  placementBlock = 0;
+  placementBlock = start || 0;
+  placementBest = -1;
+  placementDown = false;
   addPlacementBlock();
   showView("quiz");
   renderQuizTopbar();
@@ -31634,8 +31709,7 @@ function startPlacement(){
 // Výsledek: nejvyšší zvládnutá úroveň (null = ani A2), z ní výchozí obtížnost
 // a plán = podtémata, ve kterých uživatel v testu chyboval.
 function placementResult(){
-  const passedAll = placementBlockPassed();
-  const level = passedAll ? PLACEMENT_LEVELS[placementBlock] : (placementBlock > 0 ? PLACEMENT_LEVELS[placementBlock - 1] : null);
+  const level = placementBest >= 0 ? PLACEMENT_LEVELS[placementBest] : null;
   const difficulty = (!level || level === "A2") ? "basic" : (level === "C1" ? "advanced" : "intermediate");
   const plan = [];
   roundResults.forEach(function(r){
@@ -32194,10 +32268,8 @@ function advanceQuestion(){
     if(!placementExtra && placementFirstCorrect() === PLACEMENT_PASS - 1){
       placementExtra = true;
       addPlacementQuestions(PLACEMENT_EXTRA);
-    } else if(placementBlockPassed() && placementBlock < PLACEMENT_LEVELS.length - 1){
-      placementBlock += 1;
-      addPlacementBlock();
-      renderQuizTopbar();
+    } else {
+      nextPlacementBlock();
     }
   }
   if(roundIndex >= roundQuestions.length){
@@ -32407,7 +32479,7 @@ function renderResults(pct, correct, total, byTag){
 
 document.getElementById("btn-retry").addEventListener("click", function(){
   if(roundMode === "normal") startRound();
-  else if(roundMode === "placement") startPlacement();
+  else if(roundMode === "placement") openPlacementIntro();
   else if(roundMode === "challenge") startChallengeRound(challenge.ids);
   else startSpecialRound(roundMode);
 });
@@ -32479,9 +32551,8 @@ function renderLevelCards(){
   let h = '<div class="lvl-head"><b>' + (lv || "–") + '</b><span>' + (lv ? tx("levelHave", lv) : tx("levelNone")) + '</span></div>' +
     '<div class="lvl-ladder">' + PLACEMENT_LEVELS.map(function(l, j){ return '<i class="' + (j < i ? "done" : (j === i ? "now" : "")) + '">' + l + '</i>'; }).join("") + '</div>';
   if(next){
-    const seen = ls.seen[next] || 0, ok = ls.ok[next] || 0, pct = seen ? Math.round(ok / seen * 100) : 0;
-    const p = Math.min(seen / LEVEL_NEED, 1) * Math.min(seen ? ok / seen / LEVEL_PCT : 0, 1);
-    h += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' + tx("levelNext", next, seen, pct) + '</p>';
+    const p = Math.min(ls.done[next] / ls.need[next], 1);
+    h += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' + tx("levelNext", next, ls.done[next], ls.need[next]) + '</p>';
   } else {
     h += '<p class="lvl-note">' + tx("levelTop") + '</p>';
   }
@@ -33134,10 +33205,11 @@ function playSound(name, arg){
 }
 
 // --- Úroveň (A2–C1): z běžného procvičování i z rozřazovacího testu, nikdy neklesne.
-// Úroveň máš, když z otázek té úrovně (podle TAG_CEFR jevu) máš zodpovězeno aspoň 25 různých
-// a u 80 % z nich byla poslední odpověď správná – a totéž platí pro všechny nižší úrovně
-// (úrovně do té už dosažené, např. z testu, se berou jako splněné).
-const LEVEL_NEED = 25, LEVEL_PCT = 0.8;
+// Úrovně se liší tím, které jevy člověk ovládá (English Grammar Profile), proto se počítá z jevů:
+// jev je zvládnutý, když v něm máš zodpovězeno aspoň 3 různé otázky a u 80 % z nich byla poslední
+// odpověď správná. Úroveň máš, když máš zvládnuté 3/4 jevů té úrovně (podle TAG_CEFR) – a totéž
+// platí pro všechny nižší úrovně (úrovně do té už dosažené, např. z testu, se berou jako splněné).
+const LEVEL_TAG_NEED = 3, LEVEL_PCT = 0.8, LEVEL_COVER = 0.75;
 // Obtížnost: z posledních 30 odpovědí na ní aspoň 24 správně → odemkne se další (oslava zámkem).
 const RECENT_N = 30, UNLOCK_NEED = 24;
 
@@ -33145,20 +33217,35 @@ function questionLevel(q){
   const l = TAG_CEFR[q.topic + "|" + q.tag];
   return l === "A1" ? "A2" : (l || null);
 }
+// Pro každou úroveň: need = kolik jevů je potřeba zvládnout, done = kolik jich je zvládnutých,
+// missing = nezvládnuté jevy [{topic, tag, seen}].
 function levelStats(){
-  const seen = {}, ok = {};
+  const tags = {};
   QUESTIONS.forEach(function(q){
-    const l = questionLevel(q), st = state.questionStats[q.id];
-    if(!l || !st || !st.seen) return;
-    seen[l] = (seen[l] || 0) + 1;
-    if(st.streak > 0) ok[l] = (ok[l] || 0) + 1;
+    const l = questionLevel(q);
+    if(!l) return;
+    const key = q.topic + "|" + q.tag;
+    const t = tags[key] = tags[key] || { level: l, topic: q.topic, tag: q.tag, seen: 0, ok: 0 };
+    const st = state.questionStats[q.id];
+    if(!st || !st.seen) return;
+    t.seen += 1;
+    if(st.streak > 0) t.ok += 1;
   });
+  const need = {}, done = {}, missing = {};
+  PLACEMENT_LEVELS.forEach(function(l){ need[l] = 0; done[l] = 0; missing[l] = []; });
+  Object.keys(tags).forEach(function(key){
+    const t = tags[key];
+    need[t.level] += 1;
+    if(t.seen >= LEVEL_TAG_NEED && t.ok >= LEVEL_PCT * t.seen) done[t.level] += 1;
+    else missing[t.level].push({ topic: t.topic, tag: t.tag, seen: t.seen });
+  });
+  PLACEMENT_LEVELS.forEach(function(l){ need[l] = Math.ceil(LEVEL_COVER * need[l]); });
   let reached = null;
   for(let i = 0; i < PLACEMENT_LEVELS.length; i++){
     const l = PLACEMENT_LEVELS[i];
-    if(i <= PLACEMENT_LEVELS.indexOf(state.level) || ((seen[l] || 0) >= LEVEL_NEED && (ok[l] || 0) >= LEVEL_PCT * seen[l])) reached = l; else break;
+    if(i <= PLACEMENT_LEVELS.indexOf(state.level) || done[l] >= need[l]) reached = l; else break;
   }
-  return { reached: reached, seen: seen, ok: ok };
+  return { reached: reached, need: need, done: done, missing: missing };
 }
 // Zvýší uloženou úroveň podle procvičování a testu; vrátí novou úroveň, nebo null.
 function updateLevel(){
