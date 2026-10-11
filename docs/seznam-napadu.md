@@ -26,7 +26,7 @@ Ozkoušené jinde:
 Originální:
 
 5. **„Chyby, které dělají Češi“:** sekce a značka u otázek na typické české pasti (I am here since…, členy, I am agree, depend of). Dá se z toho postavit příběh značky.
-6. **Sázka na jistotu:** před odpovědí „vím / tipuju“. Sebejisté chyby se vracejí častěji (výzkum: opravu sebejisté chyby si člověk zapamatuje nejlépe). Ukáže, kde si člověk myslí, že něco umí, a neumí.
+6. ~~**Sázka na jistotu:**~~ (zamítnuto 11. 10. 2026 – působí otravně) před odpovědí „vím / tipuju“. Sebejisté chyby se vracejí častěji (výzkum: opravu sebejisté chyby si člověk zapamatuje nejlépe). Ukáže, kde si člověk myslí, že něco umí, a neumí.
 7. **Předpověď cíle:** „Při tomhle tempu budeš mít B2 kolem 20. listopadu.“ S 5 otázkami denně navíc o 2 týdny dřív.
 8. **Osobní tahák k vytištění:** jednostránkové PDF z pravidel, ve kterých člověk chybuje. Nese název aplikace.
 9. **Překlad z češtiny:** česká věta, student ji napíše anglicky. Nejúčinnější procvičování, ale potřebuje nový obsah.
