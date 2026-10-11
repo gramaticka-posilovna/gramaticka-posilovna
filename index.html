@@ -509,6 +509,42 @@
   .jev-pips{ display:inline-flex; gap:3px; margin-left:auto; padding-left:8px; flex-shrink:0; }
   .jev-pips i{ width:6px; height:6px; border-radius:50%; background:var(--track); }
   .jev-pips i.on{ background:#3A6FC0; }
+  /* Měsíční souhrn (docs/navrhy-vzhledu-32.html, bod 3) */
+  .recap-card{ display:flex; width:100%; gap:12px; align-items:center; text-align:left; border:none; cursor:pointer; font:inherit; color:#fff;
+    background:linear-gradient(160deg,#1E3A5F,#3A6FC0) !important; }
+  .recap-card b{ display:block; font-family:var(--font-display); font-size:19px; }
+  .recap-card small{ display:block; font-size:12.5px; opacity:.85; margin-top:2px; }
+  .recap-card .go{ margin-left:auto; font-size:22px; opacity:.8; }
+  .recap-card .ic{ font-size:26px; }
+  .recap-btns{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .recap-btns button{ flex:1; padding:9px 12px; font-size:13px; }
+  .recap{ position:fixed; inset:0; z-index:70; color:#fff; text-align:center; padding:calc(18px + env(safe-area-inset-top)) 22px 24px; overflow-y:auto; overflow-x:hidden; animation: done-in .3s ease both; }
+  .recap.s1{ background:linear-gradient(160deg,#1E3A5F,#3A6FC0); }
+  .recap.s2{ background:linear-gradient(160deg,#2F7A4A,#4FA86A); }
+  .recap.s3{ background:linear-gradient(160deg,#5B3F8C,#8A6BC4); }
+  .recap.s4{ background:linear-gradient(160deg,#1B2A41,#2F343C); }
+  .recap-in{ max-width:400px; margin:0 auto; }
+  .recap-dots{ display:flex; gap:4px; margin-bottom:10px; }
+  .recap-dots i{ flex:1; height:3px; border-radius:2px; background:rgba(255,255,255,.3); }
+  .recap-dots i.on{ background:#fff; }
+  .recap-x{ display:block; margin-left:auto; border:none; background:none; color:#fff; font-size:26px; line-height:1; cursor:pointer; padding:4px 2px; opacity:.85; }
+  .recap .k{ font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; opacity:.75; margin-top:6px; }
+  .recap .huge{ font-family:var(--font-display); font-size:84px; font-weight:700; line-height:1; margin:28px 0 6px; }
+  .recap h2{ font-family:var(--font-display); font-size:28px; line-height:1.15; margin:10px 0 8px; }
+  .recap p{ font-size:14.5px; line-height:1.5; opacity:.92; margin:0 0 10px; }
+  .recap .badge{ display:inline-grid; place-items:center; width:112px; height:112px; border-radius:50%; margin:30px 0 8px; font-family:var(--font-display); font-weight:700; font-size:24px; color:#F2C230;
+    background:radial-gradient(circle,#2F343C 0 49%,#9AA0A7 50% 52%,#2F343C 53% 61%,#1D2026 62% 66%,#2F343C 67%); box-shadow:0 8px 16px rgba(0,0,0,.3); }
+  .recap .chip{ display:inline-block; background:rgba(255,255,255,.15); border-radius:999px; padding:7px 13px; font-size:13px; font-weight:700; margin:3px; }
+  .recap-cal{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin:20px auto 14px; max-width:250px; }
+  .recap-cal i{ aspect-ratio:1; border-radius:6px; background:rgba(255,255,255,.12); }
+  .recap-cal i.x{ background:none; }
+  .recap-cal i.t{ background:#7FA5DA; } .recap-cal i.g{ background:#F2C230; }
+  .recap-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:16px 0; text-align:left; }
+  .recap-grid div{ background:rgba(255,255,255,.08); border-radius:14px; padding:11px 13px; }
+  .recap-grid b{ display:block; font-family:var(--font-display); font-size:26px; line-height:1; color:#F2C230; }
+  .recap-grid small{ display:block; font-size:11.5px; font-weight:700; opacity:.8; margin-top:5px; line-height:1.3; }
+  .recap-hint{ font-size:12px !important; opacity:.6 !important; margin-top:22px !important; }
+  .recap .btn-primary{ width:100%; margin-top:10px; }
   .near-card{ display:flex; gap:14px; align-items:center; }
   .near-big{ font-family:var(--font-display); font-size:38px; line-height:1; }
   .near-body{ flex:1; min-width:0; font-size:14px; }
@@ -1280,6 +1316,7 @@
 
     <div class="card resume-card" id="home-resume" style="display:none"></div>
     <div class="card" id="home-back" style="display:none"></div>
+    <button class="card recap-card" id="home-recap" type="button" style="display:none"></button>
 
     <div class="card">
       <p class="card-label" data-i18n="labelGoal">Dnešní cíl</p>
@@ -30669,6 +30706,20 @@ const I18N = {
     diffNext: function(a, b){ return "Na „" + a + "“ máš přes 80 %. Zkus „" + b + "“."; },
     masteredLabel: "Zvládnuté otázky", masteredOf: function(n, p){ return "z " + n.toLocaleString("cs-CZ") + " otázek (" + p + " %)"; },
     masteredNote: "Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.",
+    recapHome: function(m){ return m + " v posilovně"; }, recapHomeSub: "Tvůj měsíční souhrn je připravený.",
+    recapPrev: function(m){ return "Souhrn: " + m.toLowerCase(); }, recapNow: function(m){ return m + " zatím"; },
+    recapK1: function(m){ return m + " v číslech"; }, recapAnswers: "odpovědí za měsíc",
+    recapPace: function(n, wd){ return "Průměrně " + n + " za tréninkový den. Nejvíc jsi trénoval/a " + wd + "."; },
+    recapWeekday: ["v pondělí", "v úterý", "ve středu", "ve čtvrtek", "v pátek", "v sobotu", "v neděli"],
+    recapDays: function(d, b){ return d + (d === 1 ? " den" : (d <= 4 ? " dny" : " dní")) + " tréninku · nejdelší série " + b + (b === 1 ? " den" : (b <= 4 ? " dny" : " dní")); },
+    recapUpK: "Největší pokrok", recapUp: function(a, b){ return "V první půlce měsíce " + a + " %, ve druhé " + b + " %."; },
+    recapRounds: function(n){ return n + (n === 1 ? " kolo" : (n <= 4 ? " kola" : " kol")); },
+    recapPerfect: function(n){ return n + (n === 1 ? " bezchybné kolo" : (n <= 4 ? " bezchybná kola" : " bezchybných kol")); },
+    recapTopK: "Nejlépe ti jde", recapTop: function(n){ return "Úspěšnost z " + n + " odpovědí."; },
+    recapK4: function(m){ return m + " v posilovně"; }, recapAnswersS: "odpovědí", recapDaysS: "dní tréninku", recapToLevel: function(l){ return "cesty na " + l; },
+    recapNext: function(list){ return "Na příští měsíc: " + list + "."; }, recapAnd: "a",
+    recapShare: "📤 Sdílet souhrn", recapTap: "Klepni pro další", close: "Zavřít",
+    recapShareText: function(m, n){ return m + " v Gramatické posilovně: " + n + " odpovědí 💪"; },
     levelShareBtn: "📤 Sdílet výsledek", levelShareNote: "Obrázek s úrovní a odkaz na test pro kamarády.", levelShareDone: "Obrázek stažen, odkaz zkopírován",
     levelShareText: function(l){ return "Moje anglická gramatika je na úrovni " + l + " 💪 Dáš víc? Zjisti svou úroveň:"; },
     levelShareBrand: "GRAMATICKÁ POSILOVNA", levelShareTitle1: "Moje anglická", levelShareTitle2: function(l){ return "gramatika: " + l + " 💪"; },
@@ -30850,6 +30901,20 @@ const I18N = {
     diffNext: function(a, b){ return "You're above 80 % on “" + a + "”. Try “" + b + "”."; },
     masteredLabel: "Mastered questions", masteredOf: function(n, p){ return "of " + n.toLocaleString("en-GB") + " questions (" + p + " %)"; },
     masteredNote: "Mastered = right 3 times in a row, days apart. This number only goes up.",
+    recapHome: function(m){ return m + " at the gym"; }, recapHomeSub: "Your monthly recap is ready.",
+    recapPrev: function(m){ return "Recap: " + m; }, recapNow: function(m){ return m + " so far"; },
+    recapK1: function(m){ return m + " in numbers"; }, recapAnswers: "answers this month",
+    recapPace: function(n, wd){ return "On average " + n + " per training day. Your busiest day: " + wd + "."; },
+    recapWeekday: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    recapDays: function(d, b){ return d + " training day" + (d === 1 ? "" : "s") + " · longest streak " + b + " day" + (b === 1 ? "" : "s"); },
+    recapUpK: "Biggest progress", recapUp: function(a, b){ return "First half of the month " + a + "%, second half " + b + "%."; },
+    recapRounds: function(n){ return n + " round" + (n === 1 ? "" : "s"); },
+    recapPerfect: function(n){ return n + " perfect round" + (n === 1 ? "" : "s"); },
+    recapTopK: "Your strongest point", recapTop: function(n){ return "Accuracy from " + n + " answers."; },
+    recapK4: function(m){ return m + " at the gym"; }, recapAnswersS: "answers", recapDaysS: "training days", recapToLevel: function(l){ return "of the way to " + l; },
+    recapNext: function(list){ return "Next month: " + list + "."; }, recapAnd: "and",
+    recapShare: "📤 Share recap", recapTap: "Tap for more", close: "Close",
+    recapShareText: function(m, n){ return m + " at Grammar Gym: " + n + " answers 💪"; },
     levelShareBtn: "📤 Share my result", levelShareNote: "An image with your level and a link to the test for friends.", levelShareDone: "Image saved, link copied",
     levelShareText: function(l){ return "My English grammar is at " + l + " 💪 Can you beat it? Find your level:"; },
     levelShareBrand: "GRAMMAR GYM", levelShareTitle1: "My English", levelShareTitle2: function(l){ return "grammar: " + l + " 💪"; },
@@ -31312,6 +31377,12 @@ function renderHome(){
   const streak = currentStreak(active);
   document.getElementById("home-streak").textContent = streak.n;
   document.getElementById("home-streak-label").textContent = tx("streakDays", streak.n) + " ›";
+
+  // Měsíční souhrn za minulý měsíc: prvních 7 dní nového měsíce, dokud ho uživatel neotevře.
+  const pm = prevMonth(), recapCard = document.getElementById("home-recap");
+  const showRc = now.getDate() <= 7 && state.recapSeen !== pm && monthHasData(pm);
+  recapCard.style.display = showRc ? "" : "none";
+  if(showRc) recapCard.innerHTML = '<span class="ic">📊</span><span><b>' + escapeHtml(tx("recapHome", recapMonthName(pm))) + '</b><small>' + escapeHtml(tx("recapHomeSub")) + '</small></span><span class="go">›</span>';
 
   // Po přerušené sérii: místo nuly „Vítej zpátky!“ s tím, co zůstalo (celý den návratu).
   const today = dayKey(now), before = {};
@@ -32749,7 +32820,10 @@ function renderCalendar(){
     '<div class="cal-grid">' + g + '</div>' +
     '<div class="cal-legend"><span><i class="cal-c"></i>' + L[0] + '</span><span><i class="cal-c l2"></i>' + L[1] + '</span>' +
     '<span><i class="cal-c l3 goal"></i>' + L[2] + '</span><span><i class="cal-c rest">❄</i>' + L[3] + '</span></div>' +
-    (a || b ? '<p class="lvl-note">' + tx("calMonth", a, b) + '</p>' : "");
+    (a || b ? '<p class="lvl-note">' + tx("calMonth", a, b) + '</p>' : "") +
+    '<div class="recap-btns">' + [pm, ym].filter(monthHasData).map(function(m){
+      return '<button class="btn-secondary" data-recap="' + m + '">📊 ' + escapeHtml(tx(m === ym ? "recapNow" : "recapPrev", recapMonthName(m))) + '</button>'; }).join("") + '</div>';
+  document.querySelectorAll("#cal-body [data-recap]").forEach(function(b){ b.addEventListener("click", function(){ openRecap(b.getAttribute("data-recap")); }); });
 }
 // Klepnutí na sérii nebo týden na Domů: Pokrok, rovnou na kalendáři, který se krátce rozzáří.
 function openCalendar(){
@@ -33200,6 +33274,155 @@ document.getElementById("level-share-btn").addEventListener("click", function(){
       const done = function(){ btn.textContent = tx("levelShareDone"); setTimeout(function(){ btn.textContent = tx("levelShareBtn"); }, 3000); };
       if(navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
     });
+});
+
+/* Měsíční souhrn (docs/navrhy-vzhledu-32.html, bod 3): 3–4 obrazovky jako příběh, poslední jde sdílet.
+   Na Domů prvních 7 dní měsíce karta za minulý měsíc (dokud ji uživatel neotevře), v Pokroku tlačítka
+   pro minulý (když má data) a tento měsíc. Vše jen z dat v telefonu. */
+function recapMonthName(ym){
+  const n = new Date(ym + "-15T12:00:00").toLocaleDateString(tx("dateLocale"), { month: "long" });
+  return n.charAt(0).toUpperCase() + n.slice(1);
+}
+function recapData(ym){
+  const D = state.days || {}, keys = Object.keys(D).filter(function(k){ return k.slice(0, 7) === ym && D[k] > 0; }).sort();
+  let answers = 0, goalDays = 0, best = 0, run = 0, prev = null;
+  const wd = [0, 0, 0, 0, 0, 0, 0];
+  keys.forEach(function(k){
+    answers += D[k];
+    if(D[k] >= dailyGoal) goalDays++;
+    run = prev && addDays(prev, 1) === k ? run + 1 : 1;
+    best = Math.max(best, run);
+    prev = k;
+    wd[(new Date(k + "T12:00:00").getDay() + 6) % 7] += D[k];
+  });
+  const all = {}, h1 = {}, h2 = {};
+  let rounds = 0, perfect = 0;
+  const add = function(o, t, x){ o[t] = o[t] || { seen: 0, correct: 0 }; o[t].seen += x.seen; o[t].correct += x.correct; };
+  state.rounds.forEach(function(r){
+    const day = dayKey(new Date(r.date));
+    if(day.slice(0, 7) !== ym) return;
+    rounds++;
+    if(r.totalParts >= 5 && r.correctParts === r.totalParts) perfect++;
+    Object.keys(r.byTag || {}).forEach(function(t){
+      if(t === "Mix") return;
+      add(all, t, r.byTag[t]);
+      add(day.slice(8) <= "15" ? h1 : h2, t, r.byTag[t]);
+    });
+  });
+  const acc = function(x){ return x.correct / x.seen; };
+  let up = null;
+  Object.keys(h1).forEach(function(t){
+    if(!h2[t] || h1[t].seen < 6 || h2[t].seen < 6) return;
+    const d = acc(h2[t]) - acc(h1[t]);
+    if(d >= 0.1 && (!up || d > up.d)) up = { tag: t, d: d, a: Math.round(acc(h1[t]) * 100), b: Math.round(acc(h2[t]) * 100) };
+  });
+  const tags = Object.keys(all).filter(function(t){ return all[t].seen >= 8 && acc(all[t]) >= 0.8 && !(up && up.tag === t); });
+  const top = tags.slice().sort(function(a, b){ return acc(all[b]) - acc(all[a]) || all[b].seen - all[a].seen; })[0];
+  const late = function(t){ return h2[t] && h2[t].seen >= 5 ? h2[t] : all[t]; };
+  const weak = Object.keys(all).filter(function(t){ return late(t).seen >= 5 && acc(late(t)) < 0.8; })
+    .sort(function(a, b){ return acc(late(a)) - acc(late(b)); }).slice(0, 2);
+  return { ym: ym, answers: answers, days: keys.length, goalDays: goalDays, best: best, wd: wd.indexOf(Math.max.apply(null, wd)), rounds: rounds, perfect: perfect,
+    up: up, top: top ? { tag: top, pct: Math.round(acc(all[top]) * 100), seen: all[top].seen } : null, weak: weak };
+}
+function recapSlides(d){
+  const out = [], name = recapMonthName(d.ym), y = +d.ym.slice(0, 4), m = +d.ym.slice(5, 7);
+  let cal = "";
+  const first = (new Date(y, m - 1, 1).getDay() + 6) % 7, len = new Date(y, m, 0).getDate();
+  for(let i = 0; i < first; i++) cal += '<i class="x"></i>';
+  for(let i = 1; i <= len; i++){
+    const n = (state.days || {})[d.ym + "-" + (i < 10 ? "0" : "") + i] || 0;
+    cal += '<i class="' + (n >= dailyGoal ? "g" : (n > 0 ? "t" : "")) + '"></i>';
+  }
+  out.push({ cls: "s1", html: '<div class="k">' + escapeHtml(tx("recapK1", name)) + '</div><div class="huge">' + d.answers.toLocaleString(tx("dateLocale")) + '</div>' +
+    '<h2>' + escapeHtml(tx("recapAnswers")) + '</h2><p>' + tx("recapPace", Math.round(d.answers / Math.max(d.days, 1)), tx("recapWeekday")[d.wd]) + '</p>' +
+    '<div class="recap-cal">' + cal + '</div><p style="font-size:13px;opacity:.75">' + escapeHtml(tx("recapDays", d.days, d.best)) + '</p>' });
+  if(d.up) out.push({ cls: "s2", html: '<div class="k">' + escapeHtml(tx("recapUpK")) + '</div><div class="badge">+' + Math.round(d.up.d * 100) + ' %</div>' +
+    '<h2>' + escapeHtml(shortTag(d.up.tag)) + '</h2><p>' + escapeHtml(tx("recapUp", d.up.a, d.up.b)) + '</p>' +
+    '<div><span class="chip">' + escapeHtml(tx("recapRounds", d.rounds)) + '</span>' + (d.perfect ? '<span class="chip">✓ ' + escapeHtml(tx("recapPerfect", d.perfect)) + '</span>' : "") + '</div>' });
+  if(d.top) out.push({ cls: "s3", html: '<div class="k">' + escapeHtml(tx("recapTopK")) + '</div><div class="badge">' + d.top.pct + ' %</div>' +
+    '<h2>' + escapeHtml(shortTag(d.top.tag)) + '</h2><p>' + escapeHtml(tx("recapTop", d.top.seen)) + '</p>' +
+    (d.up ? "" : '<div><span class="chip">' + escapeHtml(tx("recapRounds", d.rounds)) + '</span>' + (d.perfect ? '<span class="chip">✓ ' + escapeHtml(tx("recapPerfect", d.perfect)) + '</span>' : "") + '</div>') });
+  const ls = levelStats(), next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(state.level) + 1];
+  const lvBox = next ? '<div><b>' + Math.round(ls.done[next] / ls.need[next] * 100) + ' %</b><small>' + escapeHtml(tx("recapToLevel", next)) + '</small></div>'
+    : '<div><b>' + (state.level || "–") + '</b><small>' + escapeHtml(tx("labelLevel")) + '</small></div>';
+  out.push({ cls: "s4", last: true, html: '<div class="k">' + escapeHtml(tx("recapK4", name)) + '</div>' +
+    (state.level ? '<div class="badge" style="margin-top:20px">' + state.level + '</div>' : "") +
+    '<div class="recap-grid"><div><b>' + d.answers.toLocaleString(tx("dateLocale")) + '</b><small>' + escapeHtml(tx("recapAnswersS")) + '</small></div>' +
+    '<div><b>' + d.days + '</b><small>' + escapeHtml(tx("recapDaysS")) + '</small></div>' +
+    '<div><b>' + d.best + '</b><small>' + escapeHtml(tx("calBest")) + '</small></div>' + lvBox + '</div>' +
+    (d.weak.length ? '<p>' + tx("recapNext", d.weak.map(function(t){ return "<b>" + escapeHtml(shortTag(t)) + "</b>"; }).join(" " + tx("recapAnd") + " ")) + '</p>' : "") +
+    '<button class="btn-primary" id="recap-share">' + escapeHtml(tx("recapShare")) + '</button>' });
+  return out;
+}
+function openRecap(ym){
+  const d = recapData(ym), slides = recapSlides(d);
+  let i = 0;
+  const el = document.createElement("div");
+  function draw(){
+    el.className = "recap " + slides[i].cls;
+    el.innerHTML = '<div class="recap-in"><div class="recap-dots">' + slides.map(function(x, j){ return '<i class="' + (j <= i ? "on" : "") + '"></i>'; }).join("") + '</div>' +
+      '<button class="recap-x" id="recap-x" aria-label="' + escapeHtml(tx("close")) + '">✕</button>' + slides[i].html +
+      (slides[i].last ? "" : '<p class="recap-hint">' + escapeHtml(tx("recapTap")) + '</p>') + '</div>';
+    document.getElementById("recap-x").addEventListener("click", function(e){ e.stopPropagation(); el.remove(); });
+    const sh = document.getElementById("recap-share");
+    if(sh) sh.addEventListener("click", function(e){ e.stopPropagation(); shareRecap(d, sh); });
+  }
+  el.addEventListener("click", function(e){
+    if(e.clientX < window.innerWidth * 0.3){ if(i > 0){ i--; draw(); } }
+    else if(i < slides.length - 1){ i++; draw(); }
+  });
+  document.body.appendChild(el);
+  draw();
+}
+function shareRecap(d, btn){
+  const W = 1080, H = 1920, c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const g = c.getContext("2d"), serif = "Newsreader, Georgia, serif", sans = "Inter, system-ui, sans-serif";
+  const bg = g.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, "#1B2A41"); bg.addColorStop(1, "#2F343C");
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  g.textAlign = "center";
+  g.fillStyle = "#9FB6D6"; g.font = "800 34px " + sans; g.fillText(tx("levelShareBrand"), W / 2, 200);
+  g.fillStyle = "#fff"; g.font = "700 96px " + serif; g.fillText(tx("recapK4", recapMonthName(d.ym)), W / 2, 380, W - 140);
+  const ls = levelStats(), next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(state.level) + 1];
+  const boxes = [[d.answers.toLocaleString(tx("dateLocale")), tx("recapAnswersS")], [String(d.days), tx("recapDaysS")], [String(d.best), tx("calBest")],
+    next ? [Math.round(ls.done[next] / ls.need[next] * 100) + " %", tx("recapToLevel", next)] : [state.level || "–", tx("labelLevel")]];
+  boxes.forEach(function(b, i){
+    const x = 110 + (i % 2) * 440, y = 520 + Math.floor(i / 2) * 330;
+    g.fillStyle = "rgba(255,255,255,.08)"; g.beginPath(); g.roundRect(x, y, 420, 290, 40); g.fill();
+    g.textAlign = "left"; g.fillStyle = "#F2C230"; g.font = "700 110px " + serif; g.fillText(b[0], x + 44, y + 150);
+    g.fillStyle = "#C9D6E8"; g.font = "700 36px " + sans; g.fillText(b[1], x + 44, y + 225); g.textAlign = "center";
+  });
+  if(d.up){
+    g.fillStyle = "#9FB6D6"; g.font = "800 34px " + sans; g.fillText(tx("recapUpK").toUpperCase(), W / 2, 1270);
+    g.fillStyle = "#fff"; g.font = "700 60px " + serif; g.fillText(shortTag(d.up.tag) + " +" + Math.round(d.up.d * 100) + " %", W / 2, 1350, W - 160);
+  }
+  g.fillStyle = "#C9D6E8"; g.font = "500 38px " + sans; g.fillText(tx("levelShareChal2"), W / 2, 1560);
+  g.fillStyle = "#9FB6D6"; g.font = "600 32px " + sans; g.fillText(location.host || "gramaticka-posilovna.github.io", W / 2, 1820);
+  const url = new URL("./uroven.html", location.href).href, text = tx("recapShareText", recapMonthName(d.ym), d.answers) + " " + url;
+  c.toBlob(function(blob){
+    const file = new File([blob], "posilovna-" + d.ym + ".png", { type: "image/png" });
+    if(navigator.canShare && navigator.canShare({ files: [file] })){ navigator.share({ files: [file], text: text }).catch(function(){}); return; }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file); a.download = file.name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    const done = function(){ btn.textContent = tx("levelShareDone"); setTimeout(function(){ btn.textContent = tx("recapShare"); }, 3000); };
+    if(navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
+  }, "image/png");
+}
+function prevMonth(){
+  const d = new Date();
+  d.setDate(1); d.setMonth(d.getMonth() - 1);
+  return dayKey(d).slice(0, 7);
+}
+function monthHasData(ym){ return Object.keys(state.days || {}).some(function(k){ return k.slice(0, 7) === ym && state.days[k] > 0; }); }
+document.getElementById("home-recap").addEventListener("click", function(){
+  const pm = prevMonth();
+  state.recapSeen = pm;
+  saveState();
+  this.style.display = "none";
+  openRecap(pm);
 });
 
 /* „Doporuč kamarádovi“ */
