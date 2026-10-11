@@ -32732,7 +32732,7 @@ function finishRound(){
   }
   const doneNow = goalReached && state.doneDay !== today;
   if(doneNow) state.doneDay = today;
-  const cels = collectCelebrations(goalBefore === 0);
+  const cels = collectCelebrations(goalReached);
   logLevelProgress();
   saveState();
 
@@ -34014,6 +34014,7 @@ function initCelebrationState(){
   if(!state.unlocked){ state.unlocked = {}; unlockFromPlacement(); }
   if(state.level === undefined){ state.level = null; updateLevel(); }
   if(state.goldMilestone === undefined) state.goldMilestone = goldMilestone(masteredCount());
+  if(state.streakCel === undefined) state.streakCel = { m: streakMilestone(currentStreak(activeDays()).n), day: dayKey(new Date()) };
 }
 function checkUnlock(){
   let res = null;
@@ -34034,7 +34035,12 @@ function checkUnlock(){
 }
 
 // Co se po kole slaví velkou oslavou (může jich být víc – ukážou se po sobě).
-function collectCelebrations(firstRoundToday){
+// Milník série (7, 30, 100, každých 365 dní), kterého série dosáhla; 0 = zatím žádný.
+function streakMilestone(n){ return n >= 365 ? Math.floor(n / 365) * 365 : (n >= 100 ? 100 : (n >= 30 ? 30 : (n >= 7 ? 7 : 0))); }
+// Série se počítá z každého tréninkového dne, ale oslava milníku přijde až s prvním splněným denním cílem
+// od jeho dosažení. state.streakCel = { m: oslavený milník, day: kdy } – po přerušení série se zapomene.
+function collectCelebrations(goalReachedNow){
+  initCelebrationState(); // u stávajících uživatelů zapíše už dosažené milníky, aby se neslavily znovu
   const out = [];
   const lv = updateLevel();
   if(lv) out.push({ kind: "lift", num: lv, badge: tx("celLevelBadge"), title: tx("celLevelTitle", lv), sub: tx("celLevelSub", lv) });
@@ -34042,10 +34048,13 @@ function collectCelebrations(firstRoundToday){
     const u = checkUnlock();
     if(u) out.push({ kind: "lock", badge: tx("celUnlockBadge"), title: diffName(u.next), sub: tx("celUnlockSub", diffName(u.from)) });
   }
-  if(firstRoundToday){
-    const n = currentStreak(activeDays()).n;
-    if(n === 7 || n === 30 || n === 100 || (n > 0 && n % 365 === 0)){
-      out.push({ kind: "lift", num: String(n), badge: tx("celStreakBadge"), title: tx("celStreakTitle", n), sub: tx("celStreakSub", n) });
+  if(goalReachedNow){
+    const st = currentStreak(activeDays()), today = dayKey(new Date()), m = streakMilestone(st.n);
+    let c = state.streakCel;
+    if(c && c.day < addDays(today, -(st.n + Object.keys(st.frozen).length))) c = null; // série se mezitím přerušila
+    if(m && (!c || m > c.m)){
+      state.streakCel = { m: m, day: today };
+      out.push({ kind: "lift", num: String(m), badge: tx("celStreakBadge"), title: tx("celStreakTitle", m), sub: tx("celStreakSub", m) });
     }
   }
   const m = goldMilestone(masteredCount());
