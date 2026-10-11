@@ -13,30 +13,14 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 - **Posilovna, která roste.** Sbírka za témata (kolo 31: B1 nástěnka medailí, B2 Kotoučíkova činka, B3 barevné kotouče; stupně bronz/stříbro/zlato podle síly jevů). Odloženo.
 - **Anonymní statistika chyb.** Aplikace by bez jmen posílala, kde lidé nejčastěji chybují; odhalí špatně položené otázky. Potřebuje malý server, spíš po spuštění.
 
-## K promyšlení (návrhy z 9. 10. 2026, zatím neschválené)
+## Na později (návrhy z 9. 10. 2026)
 
-Nápady, jak aplikaci odlišit, přivést uživatele a dát jim cíl. Nic z toho se nedělá, nejdřív je potřeba to promyslet. Doporučené pořadí: 1 → 5 → 7 a 6 → 2.
+Hotové a nasazené 11. 10. 2026: sdílení výsledku testu + úvodní stránka (uroven.html), měsíční souhrn, České pasti, postup na úroveň v % s předpovědí. Zamítnuto: sázka na jistotu (působí otravně).
 
-**Rozhodnuto 11. 10. 2026 (náhledy v navrhy-vzhledu-32.html), zatím se nedělá:**
-- **1:** celý postup – tlačítko „Sdílet výsledek“ (nabídka sdílení telefonu, na počítači stažení obrázku + kopie odkazu) → obrázek → úvodní stránka pro příchozí.
-- **3:** všechny 4 obrazovky souhrnu.
-- **5:** značka „Česká past“ u otázek jevu + „Proč to Češi pletou“ + dlaždice „České pasti“ na Domů. Asi 30–40 pastí, 3–5 otázek na každou, hlavně ze stávajících otázek, chybějící dopsat. U pastí s více správnými tvary uvést všechny (např. have lived / have been living).
-- **7:** varianta b (procenta + „B2 kolem 20. listopadu“) a navíc z varianty c tip „s 5 otázkami denně navíc o týden dřív“.
-- **6** zamítnuto. **2, 4, 8, 9** zůstávají na později.
-
-Ozkoušené jinde:
-1. **Sdílitelný obrázek s výsledkem testu** (+ úvodní stránka): „Moje gramatika: B1 💪 – zjisti svou úroveň“ s odkazem. Test zdarma přivádí lidi (jako EF SET), výsledek se sdílí sám.
-2. **Maturita a Cambridge zkoušky** (B2 First, C1 Advanced): režim s jevy pro danou zkoušku a cvičný test na čas. Lidé hledají „maturitu“, ne „gramatiku“.
-3. **Měsíční souhrn** ve stylu Spotify Wrapped: kolik odpovědí, co šlo nejlíp, největší pokrok. Sdílí se a lidi se kvůli němu vracejí.
-4. **Třídy pro učitele:** učitel pošle kód sady jevů a vidí výsledky studentů. Cesta k licencím pro školy. Potřebuje server; lehká verze je odkaz a kód s výsledkem.
-
-Originální:
-
-5. **„Chyby, které dělají Češi“:** sekce a značka u otázek na typické české pasti (I am here since…, členy, I am agree, depend of). Dá se z toho postavit příběh značky.
-6. ~~**Sázka na jistotu:**~~ (zamítnuto 11. 10. 2026 – působí otravně) před odpovědí „vím / tipuju“. Sebejisté chyby se vracejí častěji (výzkum: opravu sebejisté chyby si člověk zapamatuje nejlépe). Ukáže, kde si člověk myslí, že něco umí, a neumí.
-7. **Předpověď cíle:** „Při tomhle tempu budeš mít B2 kolem 20. listopadu.“ S 5 otázkami denně navíc o 2 týdny dřív.
-8. **Osobní tahák k vytištění:** jednostránkové PDF z pravidel, ve kterých člověk chybuje. Nese název aplikace.
-9. **Překlad z češtiny:** česká věta, student ji napíše anglicky. Nejúčinnější procvičování, ale potřebuje nový obsah.
+- **Maturita a Cambridge zkoušky** (B2 First, C1 Advanced): trénink jevů podle oficiálních požadavků (CERMAT, příručky Cambridge), vlastní úlohy ve stejném formátu, název „trénink k maturitě“ (ne simulace ani předpověď známky), před spuštěním kontrola učitelem/kou. Cambridge Use of English potřebuje nové typy úloh (doplň slovo, tvoření slov, přepis věty).
+- **Třídy pro učitele:** učitel/ka založí třídu s kódem, vybere jevy a termín, vidí výsledky studentů. Potřebuje server, účty a ochranu údajů (nezletilí) – až po iOS. Lehká verze: odkaz s vybranými jevy a kód s výsledkem zpět.
+- **Osobní tahák k vytištění:** v Pokroku „Můj tahák“ – stránka A4 s 6–8 jevy, ve kterých poslední dobou chybuješ (pravidlo, správný příklad, vlastní chyba ✗ → ✓), uložení přes tisk do PDF.
+- **Překlad z češtiny do angličtiny:** kvalitně jen s kontrolou umělou inteligencí (server, náklady) – spíš placená verze. Mezikrok: přeložit jen gramatickou část věty.
 
 ## Pozdější fáze (iOS a dál)
 

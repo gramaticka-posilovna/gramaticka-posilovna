@@ -203,6 +203,10 @@ Zavedené kategorie (rozšiřovat průběžně, nikdy nepřejmenovávat už pou�
 
 Aktuální obsah (2026) je 5 slovíček na kategorii a úroveň (tj. 20 cvičení na buňku, stejně jako u gramatiky). Doplňování dalších slovíček do stávajících kategorií je vždy bezpečné (nová `id`, stejný `tag`). Nová kategorie se přidává stejně jako nová gramatická kategorie — navrhne se název a slug, než se použije.
 
+## 4b. České pasti `CZ_TRAPS` — značka nad stávajícími otázkami
+
+Seznam typických chyb Čechů (v index.html hned za otázkami). Každá past má chybnou větu, správný tvar, vysvětlení „Proč to Češi pletou“ a 3–4 id otázek, které ji testují. Otázky zůstávají ve svých jevech (žádné samostatné téma); past je jen značka navíc. Nová past = nová položka se id stávajících otázek; když vhodné otázky chybí, dopíší se do jevu, kam patří (prefix id `cztrap-`). Otázka do pasti patří, jen když mezera nebo správná možnost míří přesně na tu chybu. Smazaná nebo přejmenovaná id je potřeba v seznamu opravit.
+
 ## 5. Co se smí měnit kdykoliv, bez rizika
 
 Vzhled appky, CSS, navigace mezi tématy (harmonika kategorií), texty tlačítek, počet otázek v kole, animace. Tohle je nezávislé na obsahové vrstvě výše a nemá vliv na uložený progress uživatelů.

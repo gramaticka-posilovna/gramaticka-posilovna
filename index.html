@@ -509,6 +509,25 @@
   .jev-pips{ display:inline-flex; gap:3px; margin-left:auto; padding-left:8px; flex-shrink:0; }
   .jev-pips i{ width:6px; height:6px; border-radius:50%; background:var(--track); }
   .jev-pips i.on{ background:#3A6FC0; }
+  /* České pasti (docs/navrhy-vzhledu-32.html, bod 5) */
+  .cz-flag{ display:inline-block; width:16px; height:16px; border-radius:50%; flex-shrink:0; position:relative; overflow:hidden; vertical-align:-3px;
+    background:linear-gradient(180deg,#fff 0 50%,#D7141A 50%); box-shadow:inset 0 0 0 1px rgba(0,0,0,.12); }
+  .cz-flag::after{ content:""; position:absolute; left:0; top:0; border-style:solid; border-width:8px 0 8px 8px; border-color:transparent transparent transparent #11457E; }
+  .cz-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:800; padding:3px 10px 3px 4px; border-radius:999px; background:#FBE7E3; color:#B3412B; margin-bottom:10px; }
+  .cz-why{ margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:13.5px; line-height:1.5; }
+  .traps-card{ display:flex; width:100%; gap:12px; align-items:center; text-align:left; border:none; cursor:pointer; font:inherit; color:var(--ink); margin-top:18px; }
+  .traps-card .ic{ width:46px; height:46px; border-radius:14px; background:#FBE7E3; display:grid; place-items:center; flex-shrink:0; }
+  .traps-card .ic .cz-flag{ width:24px; height:24px; }
+  .traps-card .ic .cz-flag::after{ border-width:12px 0 12px 12px; }
+  .traps-card .t{ flex:1; min-width:0; }
+  .traps-card b{ display:block; font-size:15px; }
+  .traps-card small{ display:block; font-size:12.5px; color:var(--ink-soft); margin-top:2px; line-height:1.35; }
+  .traps-card .cmp-bar{ margin-top:8px; height:7px; }
+  .trap-row{ cursor:pointer; text-align:left; width:100%; font:inherit; color:inherit; border:none; }
+  .trap-row s{ color:#B3412B; font-weight:700; }
+  .trap-row ins{ color:var(--success, #2F7A4A); text-decoration:none; font-weight:700; }
+  [data-theme="dark"] .cz-badge, [data-theme="dark"] .traps-card .ic{ background:#3A2721; color:#F0A08C; }
+  [data-theme="dark"] .trap-row s{ color:#F0A08C; }
   /* Měsíční souhrn (docs/navrhy-vzhledu-32.html, bod 3) */
   .recap-card{ display:flex; width:100%; gap:12px; align-items:center; text-align:left; border:none; cursor:pointer; font:inherit; color:#fff;
     background:linear-gradient(160deg,#1E3A5F,#3A6FC0) !important; }
@@ -1347,6 +1366,8 @@
     <button class="btn-primary home-cta" id="home-cta"></button>
     <button class="btn-secondary home-cta home-test" id="home-topics" data-i18n="ctaTopics">Vybrat si téma</button>
     <button class="btn-secondary home-cta home-test" id="home-test"></button>
+
+    <button class="card traps-card" id="home-traps" type="button" style="display:none"></button>
   </div>
 
   <!-- ===================== SETUP VIEW ===================== -->
@@ -1360,6 +1381,13 @@
       <p class="card-label" data-i18n="labelLevel">Tvoje úroveň</p>
       <div id="setup-level-body"></div>
     </div>
+
+    <details class="card fold" id="traps-fold" style="display:none">
+      <summary class="card-label" id="traps-title"></summary>
+      <p class="lvl-note" id="traps-note"></p>
+      <div class="lv-list" id="traps-list"></div>
+      <button class="btn-secondary near-btn" id="traps-go"></button>
+    </details>
 
     <div class="card">
       <p class="card-label" data-i18n="labelTopic">Téma (můžeš vybrat víc)</p>
@@ -30025,6 +30053,111 @@ C("wo-shortans-advanced-20","word-order","advanced","Krátké odpovědi, elipsa 
   1, "Obávám se, že ano = I'm afraid so.")
 );
 
+/* ---------------- České pasti – doplněné otázky (k CZ_TRAPS) ---------------- */
+
+QUESTIONS.push(
+C("cztrap-since-for-1", "prepositions", "basic", "Místa a času", "„Bydlím tady už dva roky.“ Which sentence says this?", ["I live here since two years.", "I've lived here for two years.", "I've lived here since two years.", "I'm living here for two years."], 1, "Dva roky jsou délka trvání, proto for (since jen s počátkem: since 2023). Děj trvá dodnes, proto present perfect – „I live here“ nestačí. Správně je i I've been living here for two years."),
+C("cztrap-since-for-2", "prepositions", "intermediate", "Místa a času", "„Čekám na tebe už od rána.“ Which sentence says this?", ["I've been waiting for you since this morning.", "I've been waiting for you for this morning.", "I'm waiting for you since this morning.", "I wait for you from this morning."], 0, "Ráno je okamžik, kdy čekání začalo, proto since. Čekání trvá dodnes, proto present perfect continuous – česky stačí přítomný čas („čekám“), anglicky ne."),
+C("cztrap-agree-1", "tenses", "basic", "Stavová slovesa (state verbs: love, know, believe...)", "„Souhlasím s tebou.“ Which sentence says this?", ["I am agree with you.", "I agree with you.", "I agree you.", "I am agreeing you."], 1, "Agree je sloveso (souhlasit), ne přídavné jméno, takže bez am: I agree. S osobou se pojí s with: agree with you."),
+C("cztrap-agree-2", "tenses", "intermediate", "Stavová slovesa (state verbs: love, know, believe...)", "„Nesouhlasím s tím plánem.“ Which sentence says this?", ["I am not agree with the plan.", "I don't agree with the plan.", "I not agree with the plan.", "I don't agreeing with the plan."], 1, "Agree je plnovýznamové sloveso, zápor se proto tvoří s don't: I don't agree with… Tvar „I am not agree“ je typická chyba."),
+C("cztrap-depend-1", "prepositions", "intermediate", "Vazby se slovesy", "„Záleží na počasí.“ Which sentence says this?", ["It depends of the weather.", "It depends on the weather.", "It depends from the weather.", "It's depending of the weather."], 1, "Depend se vždy pojí s on: it depends on… Česky „záleží na“ svádí k of nebo from."),
+F("cztrap-explain-1", "prepositions", "basic", "Vazby se slovesy", "Could you ", "explain / me", " how this machine works?", ["explain to me"], "Explain se s osobou pojí přes to: explain (something) to somebody. Česky „vysvětli mi“ svádí k „explain me“, to je ale chyba."),
+F("cztrap-explain-2", "prepositions", "intermediate", "Vazby se slovesy", "The teacher ", "explain / the rule / us", " again yesterday.", ["explained the rule to us"], "Explain something to somebody: explained the rule to us. Tvar „explained us the rule“ je chyba – na rozdíl od give nebo show se explain se dvěma předměty bez to nepojí."),
+C("cztrap-discuss-1", "prepositions", "basic", "Vazby se slovesy", "Which sentence is correct?", ["We discussed about the problem.", "We discussed the problem.", "We discussed over the problem.", "We discussed on the problem."], 1, "Discuss se pojí přímo s předmětem, bez předložky: discuss the problem. Česky „diskutovat o“ svádí k „discuss about“. Předložku about má jen podstatné jméno: a discussion about…"),
+C("cztrap-discuss-2", "prepositions", "intermediate", "Vazby se slovesy", "„Musíme probrat tvůj návrh.“ Which sentence says this?", ["We need to discuss about your proposal.", "We need to discuss your proposal.", "We need to discuss over your proposal.", "We need discuss your proposal."], 1, "Discuss nemá předložku: discuss your proposal. Need se pojí s to + infinitiv (need to discuss)."),
+C("cztrap-discuss-3", "prepositions", "advanced", "Vazby se slovesy", "Which sentence is correct?", ["The issue was discussed about at length.", "The issue was discussed at length.", "The issue was discussed on at length.", "It was discussed about the issue at length."], 1, "Discuss nemá předložku ani v trpném rodě: the issue was discussed. Česká vazba „diskutovalo se o“ se do angličtiny nepřenáší."),
+F("cztrap-listen-1", "prepositions", "intermediate", "Vazby se slovesy", "He never ", "listen / me", " when I give him advice.", ["listens to me"], "Listen se s tím, co nebo koho posloucháme, pojí s to: listen to somebody. Česky „neposlouchá mě“ je bez předložky, anglicky „listens me“ je chyba."),
+F("cztrap-married-1", "prepositions", "intermediate", "Vazby s přídavnými jmény", "She has been ", "married / a doctor", " for ten years.", ["married to a doctor"], "Být ženatý / vdaná za někoho = be married to somebody. Česky „s“ nebo „za“ svádí k „married with“, to je chyba."),
+C("cztrap-married-2", "prepositions", "basic", "Vazby s přídavnými jmény", "„Je ženatý s Češkou.“ Which sentence says this?", ["He is married with a Czech woman.", "He is married to a Czech woman.", "He is married a Czech woman.", "He married with a Czech woman."], 1, "Be married to somebody: He is married to a Czech woman. Předložka with tu nepatří."),
+C("cztrap-forward-1", "infinitive-gerund", "intermediate", "Předložka + -ing", "„Těším se, až tě uvidím.“ Which sentence says this?", ["I'm looking forward to see you.", "I'm looking forward to seeing you.", "I'm looking forward seeing you.", "I look forward see you."], 1, "V look forward to je to předložka, ne částice infinitivu – po ní následuje -ing: look forward to seeing you."),
+C("cztrap-told-1", "reported-speech", "basic", "Oznamovací věty", "„Řekl mi, že je unavený.“ Which sentence says this?", ["He said me that he was tired.", "He told me that he was tired.", "He told that he was tired.", "He said me he was tired."], 1, "Tell se pojí přímo s osobou (told me), say ne: buď He said (that)…, nebo He said to me… Česky „řekl mi“ svádí k „said me“."),
+F("cztrap-told-2", "reported-speech", "basic", "Oznamovací věty", "She ", "say / tell + us", " that the shop was closed.", ["told us", "said to us"], "Řekla nám = told us (tell + osoba bez předložky), nebo said to us. „Said us“ je chyba."),
+C("cztrap-told-3", "reported-speech", "intermediate", "Oznamovací věty", "Which sentence is correct?", ["The manager said us to wait outside.", "The manager told us to wait outside.", "The manager said to wait us outside.", "The manager told to us to wait outside."], 1, "Pokyn v nepřímé řeči: tell somebody to do something – told us to wait. Say se s osobou a infinitivem takto nepojí."),
+C("cztrap-modal-1", "modals", "basic", "Povinnost a nutnost (must/have to/need to)", "„Musíš jít domů.“ Which sentence says this?", ["You must to go home.", "You must go home.", "You must going home.", "You must goes home."], 1, "Po modálních slovesech (must, can, should, might…) následuje holý infinitiv bez to: must go. To mají jen have to a ought to."),
+C("cztrap-well-1", "adjectives-adverbs", "basic", "Tvorba a pozice příslovcí", "„Hraje dobře na kytaru.“ Which sentence says this?", ["He plays the guitar good.", "He plays the guitar well.", "He plays good the guitar.", "He well plays the guitar."], 1, "Jak hraje? – příslovce well. Good je přídavné jméno (a good guitarist). Příslovce způsobu stojí za předmětem."),
+C("cztrap-most-1", "nouns", "basic", "All/both/each/every/either/neither/none", "„Většina lidí má ráda léto.“ Which sentence says this?", ["The most people like summer.", "Most people like summer.", "The most of people like summer.", "Most of people like summer."], 1, "Většina = most, bez the: most people. Of se přidá jen před členem nebo zájmenem: most of the people, most of my friends."),
+F("cztrap-most-2", "nouns", "intermediate", "All/both/each/every/either/neither/none", "", "většina / my friends", " live in Prague.", ["Most of my friends"], "Před přivlastňovacím zájmenem (my, our…) nebo členem se říká most of: most of my friends. Bez nich jen most: most people."),
+C("cztrap-most-3", "nouns", "intermediate", "All/both/each/every/either/neither/none", "Which sentence is correct?", ["Most of the students passed the exam.", "The most of the students passed the exam.", "Most of students passed the exam.", "The most students passed the exam."], 0, "Most of + člen: most of the students. Bez členu by bylo most students; „the most of“ ani „most of students“ nejde."),
+F("cztrap-born-1", "passive", "basic", "Přítomný a minulý čas prostý", "I ", "be / born", " in Brno in 2005.", ["was born"], "Narodit se = be born, a protože jde o minulost, was born. „I am born“ je chyba podle českého „jsem se narodil/a“."),
+F("cztrap-born-2", "passive", "basic", "Přítomný a minulý čas prostý", "Where ", "you / be / born", "?", ["were you born"], "Otázka na minulost: Where were you born? Be born je trpný tvar, proto were, ne did."),
+C("cztrap-born-3", "passive", "intermediate", "Přítomný a minulý čas prostý", "„Narodila se v roce 1990.“ Which sentence says this?", ["She is born in 1990.", "She was born in 1990.", "She born in 1990.", "She has born in 1990."], 1, "Narodit se = be born; o minulosti was born."),
+C("cztrap-arrive-1", "prepositions", "intermediate", "Vazby se slovesy", "„Do Londýna jsme dorazili v noci.“ Which sentence says this?", ["We arrived to London at night.", "We arrived in London at night.", "We arrived on London at night.", "We arrived London at night."], 1, "Arrive se nepojí s to. Do města nebo země: arrive in (arrived in London); na místo nebo do budovy: arrive at (at the airport).")
+);
+
+/* ---------------- České pasti (docs/navrhy-vzhledu-32.html, bod 5) ----------------
+   Typické chyby, které dělají Češi kvůli češtině. Past = chybná věta (w), správně (r), proč to Češi pletou (why)
+   a otázky stávajících jevů, které ji testují (q). Otázky zůstávají ve svých jevech, past je jen značka navíc. */
+const CZ_TRAPS = [
+  { id: "pp-duration", w: "I live here for two years.", r: "I have lived / have been living here for two years.", why: "Česky řekneš „bydlím tu dva roky“ v přítomném čase. Když děj trvá od minulosti dodnes, angličtina potřebuje present perfect (prostý nebo průběhový).",
+    q: ["p-b-4", "tenses-present-perfect-continuous-wait-basic-01", "tenses-present-perfect-continuous-since-basic-03", "p-i-3"] },
+  { id: "since-for", w: "since two years", r: "for two years", why: "Česky „od“ i „už“ svádí k since. Since ale patří jen k počátku (since 2020, since Monday), délka trvání je vždy for.",
+    q: ["cztrap-since-for-1", "cztrap-since-for-2", "prep-placetime-intermediate-14", "prep-placetime-intermediate-15"] },
+  { id: "when-will", w: "When I will come…", r: "When I come…", why: "Česky „až přijdu“ je budoucí čas. V anglických časových větách (when, as soon as, until, before, after) se o budoucnosti mluví přítomným časem.",
+    q: ["tenses-timeclause-callhome-basic-01", "f-i-7", "tenses-timeclause-until-basic-03", "tenses-timeclause-whenfinish-basic-07"] },
+  { id: "if-will", w: "If it will rain…", r: "If it rains…", why: "Česky „jestli bude pršet“ je budoucí čas. V anglické podmínce s if je přítomný čas, will patří jen do druhé části věty.",
+    q: ["c-b-2", "gap20-cond-first-basic-09", "cond-first-question-basic-03", "gap20-cond-first-basic-08"] },
+  { id: "uncount", w: "informations, advices", r: "information, advice", why: "Česky „informace“ i „rady“ mají množné číslo. Anglicky jsou information, advice, news nebo furniture nepočitatelná – bez -s a se slovesem v jednotném čísle.",
+    q: ["nouns-countability-basic-02", "nouns-countability-basic-03", "nouns-countability-basic-06", "nouns-countability-advanced-09"] },
+  { id: "article-job", w: "She is teacher.", r: "She is a teacher.", why: "Čeština členy nemá. Angličtina u povolání v jednotném čísle člen a/an potřebuje.",
+    q: ["articles-aanthe-basic-15", "articles-aanthe-basic-16", "articles-aanthe-intermediate-11", "articles-aanthe-intermediate-19"] },
+  { id: "article-general", w: "The life is hard.", r: "Life is hard.", why: "Když mluvíme obecně o pojmech nebo látkách (life, money, water), angličtina člen the nedává. Češi ho sem často přidávají „pro jistotu“.",
+    q: ["articles-generalizations-basic-03", "articles-generalizations-basic-04", "articles-generalizations-basic-10", "articles-generalizations-basic-12"] },
+  { id: "double-neg", w: "I don't know nothing.", r: "I don't know anything.", why: "Čeština má dvojí zápor („nikdo nic neví“). Angličtina jen jeden: po not / n't přichází any-, ne no- ani nothing.",
+    q: ["pronouns-indefinite-basic-03", "pronouns-indefinite-basic-14", "nouns-someanyno-intermediate-04", "nouns-someanyno-intermediate-06"] },
+  { id: "agree", w: "I am agree.", r: "I agree.", why: "„Souhlasím“ svádí k „jsem souhlasný“, ale agree je sloveso – bez am. Zápor: I don't agree.",
+    q: ["cztrap-agree-1", "cztrap-agree-2", "tenses-stateverbs-intermediate-17"] },
+  { id: "depend-on", w: "It depends of…", r: "It depends on…", why: "Česky „záleží na“ nebo „závisí na“. Depend se ale vždy pojí s on, ne s of ani from.",
+    q: ["prep-verbs-basic-01", "prep-verbs-advanced-13", "cztrap-depend-1"] },
+  { id: "explain-to", w: "Explain me…", r: "Explain it to me…", why: "Česky „vysvětli mi“ bez předložky. Anglicky explain potřebuje to před osobou.",
+    q: ["cztrap-explain-1", "cztrap-explain-2", "passive-twoobjects-advanced-20"] },
+  { id: "discuss", w: "We discussed about it.", r: "We discussed it.", why: "Česky „diskutovat o něčem“. Anglické sloveso discuss ale předložku nemá – about má jen podstatné jméno (a discussion about).",
+    q: ["cztrap-discuss-1", "cztrap-discuss-2", "cztrap-discuss-3"] },
+  { id: "listen-to", w: "I listen music.", r: "I listen to music.", why: "Česky „poslouchám hudbu“ bez předložky. Anglicky listen vždy potřebuje to.",
+    q: ["prep-verbs-basic-04", "cztrap-listen-1", "passive-continuous-advanced-15"] },
+  { id: "married-to", w: "married with", r: "married to", why: "Česky „ženatý s“ nebo „vdaná za“. Anglicky je to vždy married to somebody.",
+    q: ["prep-adjectives-basic-04", "cztrap-married-1", "cztrap-married-2"] },
+  { id: "look-forward", w: "look forward to see", r: "look forward to seeing", why: "To v look forward to je předložka, ne částice infinitivu – po ní je -ing. Česky „těším se, až uvidím“ svádí k infinitivu.",
+    q: ["infgerund-prepositioning-basic-08", "prep-stranding-intermediate-19", "cztrap-forward-1"] },
+  { id: "q-aux", w: "Where you live?", r: "Where do you live?", why: "Česká otázka se tvoří tázacím slovem nebo intonací. Anglická potřebuje pomocné sloveso (do / does / did) před podmětem.",
+    q: ["gap20-tenses-presentsimple-basic-10", "gap20-tenses-presentsimple-intermediate-04", "gap20-tenses-pastsimple-basic-03", "gap20-tenses-presentsimple-intermediate-11"] },
+  { id: "indirect-q", w: "Do you know where is the station?", r: "Do you know where the station is?", why: "V nepřímé otázce zůstává slovosled oznamovací věty – podmět stojí před slovesem. Češi přenášejí slovosled přímé otázky.",
+    q: ["in-b-1", "in-b-7", "in-i-1", "in-i-2"] },
+  { id: "said-told", w: "He said me…", r: "He told me… / He said to me…", why: "Česky „řekl mi“. Anglicky se s osobou pojí tell (told me); say potřebuje to (said to me), nebo se osoba vynechá.",
+    q: ["cztrap-told-1", "cztrap-told-2", "cztrap-told-3"] },
+  { id: "state-verbs", w: "I'm not understanding.", r: "I don't understand.", why: "Čeština průběhový čas nemá, a tak ho Češi někdy dávají všude. Stavová slovesa (know, understand, want, believe…) v něm ale obvykle nebývají.",
+    q: ["tenses-stateverbs-basic-01", "tenses-stateverbs-basic-06", "tenses-stateverbs-basic-04", "tenses-stateverbs-basic-03"] },
+  { id: "modal-to", w: "You must to go.", r: "You must go.", why: "Česky „musíš jít“ s infinitivem jako po jiných slovesech. Po must, can, should nebo might ale anglicky to nebývá.",
+    q: ["modals-substitutes-basic-17", "modals-substitutes-intermediate-18", "cztrap-modal-1"] },
+  { id: "mustnt", w: "You mustn't come. (= nemusíš)", r: "You don't have to come.", why: "„Nemusíš“ a „nesmíš“ se česky liší jen písmenem, ale mustn't znamená nesmíš. Nemusíš = don't have to nebo needn't.",
+    q: ["modals-prohibition-wire-basic-01", "modals-prohibition-comeornot-basic-02", "modals-prohibition-finishtoday-basic-04", "modals-prohibition-playroad-basic-07"] },
+  { id: "ing-verbs", w: "I enjoy to swim.", r: "I enjoy swimming.", why: "Česky „baví mě plavat“ s infinitivem. Po enjoy, avoid, finish, mind nebo suggest ale anglicky následuje -ing.",
+    q: ["infgerund-ing-basic-01", "infgerund-ing-basic-02", "infgerund-ing-basic-04", "infgerund-ing-basic-05"] },
+  { id: "used-to-ing", w: "I'm used to get up early.", r: "I'm used to getting up early.", why: "V be used to (být zvyklý) je to předložka, proto -ing. Snadno se splete s used to + infinitiv (dřív jsem…).",
+    q: ["tenses-beusedto-basic-02", "tenses-beusedto-basic-04", "tenses-beusedto-basic-16", "tenses-beusedto-basic-17"] },
+  { id: "much-many", w: "much people", r: "many people", why: "Česky „hodně“ nebo „mnoho“ pro všechno. Anglicky many u počitatelných (people, books), much u nepočitatelných.",
+    q: ["nouns-muchmany-basic-07", "nouns-muchmany-basic-04", "nouns-muchmany-basic-12", "nouns-muchmany-basic-02"] },
+  { id: "neither", w: "I don't eat meat. – So don't I.", r: "Neither do I.", why: "Česky „já taky ne“. Anglicky se souhlas se záporem vyjadřuje neither (nor) + pomocné sloveso, ne so ani too.",
+    q: ["wo-shortans-basic-18", "wo-shortans-basic-09", "wo-shortans-intermediate-20", "wo-shortans-intermediate-10"] },
+  { id: "good-well", w: "He speaks English good.", r: "He speaks English well.", why: "Česky „dobrý“ a „dobře“ znějí podobně. Anglicky je good přídavné jméno, příslovce (jak?) je well.",
+    q: ["adjadv-adverbs-basic-05", "adjadv-adverbs-intermediate-09", "cztrap-well-1"] },
+  { id: "most", w: "The most people…", r: "Most people…", why: "Česky „většina lidí“. Anglicky most bez the; most of jen před členem nebo zájmenem (most of my friends).",
+    q: ["cztrap-most-1", "cztrap-most-2", "cztrap-most-3"] },
+  { id: "pres-cont", w: "I read a book now.", r: "I'm reading a book now.", why: "Čeština nerozlišuje „čtu (právě teď)“ a „čtu (obvykle)“. Angličtina pro děj probíhající právě teď používá průběhový čas.",
+    q: ["tenses-present-continuous-now-basic-02", "tenses-present-continuous-now-basic-04", "gap20-tenses-presentcontinuous-basic-01", "gap20-tenses-presentcontinuous-basic-06"] },
+  { id: "ever-never", w: "I was never in Japan.", r: "I have never been to Japan.", why: "Česky „nikdy jsem nebyl/a“ v minulém čase. Zkušenost bez určeného času (ever, never) je anglicky present perfect.",
+    q: ["p-b-7", "p-b-21", "p-i-23", "tenses-present-perfect-superlative-advanced-02"] },
+  { id: "there-is", w: "Is a cat on the roof.", r: "There is a cat on the roof.", why: "Česky „na střeše je kočka“. Anglická věta potřebuje podmět – když něco někde je, začíná there is / there are.",
+    q: ["pronouns-thereis-basic-01", "pronouns-thereis-basic-06", "pronouns-thereis-basic-10", "pronouns-thereis-basic-14"] },
+  { id: "reflexive", w: "I feel myself good.", r: "I feel good.", why: "Česky „cítím se, soustředím se, myju se“. Anglicky většina těchto sloves zvratné zájmeno nemá: feel, relax, concentrate, wash.",
+    q: ["pronouns-reflexive-basic-12", "pronouns-reflexive-basic-08", "pronouns-reflexive-basic-09", "pronouns-reflexive-basic-05"] },
+  { id: "born", w: "I am born in 2005.", r: "I was born in 2005.", why: "Česky „narodil/a jsem se“. Anglicky je to trpný tvar be born, o minulosti tedy was / were born.",
+    q: ["cztrap-born-1", "cztrap-born-2", "cztrap-born-3"] },
+  { id: "arrive", w: "arrive to London", r: "arrive in London / at the airport", why: "Česky „dorazit do“. Arrive se ale s to nepojí: in u měst a zemí, at u budov a míst.",
+    q: ["prep-verbs-basic-17", "prep-verbs-advanced-17", "cztrap-arrive-1"] },
+  { id: "interested-in", w: "interested about, good in", r: "interested in, good at", why: "Česky „zajímat se o“, „být dobrý v“. Anglické vazby jsou interested in, good at, bad at – doslova se přeložit nedají.",
+    q: ["prep-adjectives-basic-01", "prep-adjectives-basic-03", "prep-adjectives-basic-19"] }
+];
+
 /* ============================================================
    2. NORMALIZACE A KONTROLA ODPOVĚDÍ
    ============================================================ */
@@ -30498,7 +30631,7 @@ const tabButtons = document.querySelectorAll("#tabbar .tab");
 function showView(name){
   if(name === "home") renderHome();
   if(name === "progress") renderProgress();
-  if(name === "setup"){ renderSetupLevel(); renderTopicGrid(); }
+  if(name === "setup"){ renderSetupLevel(); renderTraps(); renderTopicGrid(); }
   if(name === "settings") renderVoiceSelect();
   // Zavřít klávesnici dřív, než se obrazovka vymění (jinak na iPhonu může „viset“ posunutý výřez).
   if(name !== "quiz" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
@@ -30706,6 +30839,10 @@ const I18N = {
     diffNext: function(a, b){ return "Na „" + a + "“ máš přes 80 %. Zkus „" + b + "“."; },
     masteredLabel: "Zvládnuté otázky", masteredOf: function(n, p){ return "z " + n.toLocaleString("cs-CZ") + " otázek (" + p + " %)"; },
     masteredNote: "Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.",
+    trapsTitle: "České pasti", trapBadge: "Česká past", trapWhy: "Proč to Češi pletou:",
+    trapsNote: function(n, d){ return n + " chyb, které dělá skoro každý Čech. Zvládnuto " + d + " z " + n + "."; },
+    trapsListNote: "Klepni na past a procvičíš jen ji. Past je zvládnutá, když aspoň 2 její otázky vyjdou a žádná naposledy nevyšla.",
+    trapsGo: "Procvičit pasti",
     recapHome: function(m){ return m + " v posilovně"; }, recapHomeSub: "Tvůj měsíční souhrn je připravený.",
     recapPrev: function(m){ return "Souhrn: " + m.toLowerCase(); }, recapNow: function(m){ return m + " zatím"; },
     recapK1: function(m){ return m + " v číslech"; }, recapAnswers: "odpovědí za měsíc",
@@ -30901,6 +31038,9 @@ const I18N = {
     diffNext: function(a, b){ return "You're above 80 % on “" + a + "”. Try “" + b + "”."; },
     masteredLabel: "Mastered questions", masteredOf: function(n, p){ return "of " + n.toLocaleString("en-GB") + " questions (" + p + " %)"; },
     masteredNote: "Mastered = right 3 times in a row, days apart. This number only goes up.",
+    trapsTitle: "Czech traps", trapBadge: "Czech trap", trapWhy: "Why Czechs get this wrong:",
+    trapsNote: function(n, d){ return n + " mistakes almost every Czech makes. Mastered " + d + " of " + n + "."; },
+    trapsListNote: "Tap a trap to practise just that one.", trapsGo: "Practise traps",
     recapHome: function(m){ return m + " at the gym"; }, recapHomeSub: "Your monthly recap is ready.",
     recapPrev: function(m){ return "Recap: " + m; }, recapNow: function(m){ return m + " so far"; },
     recapK1: function(m){ return m + " in numbers"; }, recapAnswers: "answers this month",
@@ -31372,6 +31512,7 @@ function currentStreak(active){
 
 function renderHome(){
   const now = new Date();
+  renderTraps();
   document.getElementById("home-day").textContent = now.toLocaleDateString(tx("dateLocale"), { weekday: "long" });
   const active = activeDays();
   const streak = currentStreak(active);
@@ -31898,7 +32039,7 @@ function placementResult(){
 }
 
 function modeTitle(mode){
-  return tx(mode === "review" ? "reviewTitle" : mode === "challenge" ? "challengeTitle" : mode === "daily" ? "homeTitle" : mode === "notebook" ? "notebookRound" : mode === "return" ? "returnTitle" : "weakTitle");
+  return tx(mode === "traps" ? "trapsTitle" : mode === "review" ? "reviewTitle" : mode === "challenge" ? "challengeTitle" : mode === "daily" ? "homeTitle" : mode === "notebook" ? "notebookRound" : mode === "return" ? "returnTitle" : "weakTitle");
 }
 function renderQuizTopbar(){
   if(roundMode === "placement"){
@@ -32040,6 +32181,7 @@ function renderQuestion(){
   quizCounter.textContent = tx("questionOf", roundIndex - from + 1, roundQuestions.length - from);
 
   let html = "";
+  if(lang === "cs" && TRAP_OF[q.id]) html += '<span class="cz-badge"><i class="cz-flag"></i>' + escapeHtml(tx("trapBadge")) + '</span>';
   if(v){
     html += variantHtml(v);
   } else if(q.type === "fill"){
@@ -32397,7 +32539,8 @@ function finalizeAnswer(q, allCorrect, tagResults, revealLines, given, typoLines
   (typoLines || []).forEach(function(line){
     fb += '<p class="correction-line">' + tx("typoNote") + line + '</p>';
   });
-  fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) + '</div>';
+  fb += '<div class="rule-box"><span class="rule-tag">' + escapeHtml(tagLabel(q.tag)) + '</span><br>' + escapeHtml(q.rule) +
+    (lang === "cs" && TRAP_OF[q.id] ? '<div class="cz-why"><b><i class="cz-flag"></i> ' + escapeHtml(tx("trapWhy")) + '</b> ' + escapeHtml(TRAP_OF[q.id].why) + '</div>' : '') + '</div>';
   // Po chybě tahák k jevům, které nevyšly (u Mixu podle jednotlivých mezer).
   if(!allCorrect && CHEATSHEET[q.topic]){
     const cheatTags = [];
@@ -33274,6 +33417,80 @@ document.getElementById("level-share-btn").addEventListener("click", function(){
       const done = function(){ btn.textContent = tx("levelShareDone"); setTimeout(function(){ btn.textContent = tx("levelShareBtn"); }, 3000); };
       if(navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
     });
+});
+
+/* České pasti: značka u otázky, „Proč to Češi pletou“ ve vyhodnocení, dlaždice na Domů a přehled v Tématech.
+   Jen v české verzi (anglická verze je pro lidi, kteří česky nemluví). Past je zvládnutá, když aspoň 2 její otázky
+   mají poslední odpověď správně a žádná z vyzkoušených naposledy nevyšla. */
+const TRAP_OF = {};
+CZ_TRAPS.forEach(function(t){ t.q.forEach(function(id){ TRAP_OF[id] = t; }); });
+function trapState(t){
+  let ok = 0, bad = 0, seen = 0;
+  t.q.forEach(function(id){
+    const st = state.questionStats[id];
+    if(!st || !st.seen) return;
+    seen++;
+    if(st.streak > 0) ok++; else bad++;
+  });
+  return { done: ok >= 2 && bad === 0, seen: seen, ok: ok, bad: bad };
+}
+// Kolo z pastí: po jedné otázce z nezvládnutých pastí (nejdřív ty se špatnou odpovědí), pak ze zvládnutých.
+function trapsPool(only){
+  const byId = {};
+  QUESTIONS.forEach(function(q){ byId[q.id] = q; });
+  const today = dayKey(new Date());
+  const list = only ? [only] : shuffle(CZ_TRAPS.slice()).sort(function(a, b){
+    const x = trapState(a), y = trapState(b);
+    return (x.done - y.done) || (y.bad - x.bad);
+  });
+  const out = [];
+  list.forEach(function(t){
+    const qs = shuffle(t.q.map(function(id){ return byId[id]; }).filter(Boolean)).sort(function(a, b){
+      const sa = state.questionStats[a.id], sb = state.questionStats[b.id];
+      const r = function(st){ return !st || !st.seen ? 1 : (recentMiss(st, today) ? 3 : (st.streak > 0 ? 2 : 0)); };
+      return r(sa) - r(sb);
+    });
+    (only ? qs : qs.slice(0, 1)).forEach(function(q){ out.push(q); });
+  });
+  return out.slice(0, only ? out.length : selectedCount);
+}
+function startTrapsRound(only){
+  const questions = trapsPool(only);
+  roundMode = "traps";
+  roundTags = {};
+  roundTopics = [];
+  questions.forEach(function(q){ if(roundTopics.indexOf(q.topic) === -1) roundTopics.push(q.topic); });
+  roundDifficulty = "mixed";
+  roundQuestions = shuffle(questions);
+  roundIndex = 0;
+  roundResults = [];
+  clearSavedRound();
+  showView("quiz");
+  renderQuizTopbar();
+  renderQuestion();
+}
+function renderTraps(){
+  const on = lang === "cs", done = CZ_TRAPS.filter(function(t){ return trapState(t).done; }).length, n = CZ_TRAPS.length;
+  const card = document.getElementById("home-traps"), fold = document.getElementById("traps-fold");
+  card.style.display = on ? "" : "none";
+  fold.style.display = on ? "" : "none";
+  if(!on) return;
+  card.innerHTML = '<span class="ic"><i class="cz-flag"></i></span><span class="t"><b>' + escapeHtml(tx("trapsTitle")) + '</b><small>' + escapeHtml(tx("trapsNote", n, done)) + '</small>' +
+    '<span class="cmp-bar" style="display:block"><span style="width:' + Math.round(done / n * 100) + '%"></span></span></span>';
+  document.getElementById("traps-title").textContent = tx("trapsTitle") + " (" + done + " / " + n + ")";
+  document.getElementById("traps-note").textContent = tx("trapsListNote");
+  document.getElementById("traps-go").textContent = tx("trapsGo");
+  document.getElementById("traps-list").innerHTML = CZ_TRAPS.map(function(t){
+    const st = trapState(t), q0 = QUESTIONS.filter(function(q){ return q.id === t.q[0]; })[0];
+    const badge = st.done ? '<b class="lv-badge ok">✓ ' + escapeHtml(tx("lvJevOk")) + '</b>' : (st.seen ? '<b class="lv-badge' + (st.bad ? ' low' : ' none') + '">' + escapeHtml(tx("lvJevSeen", st.seen, st.ok)) + '</b>' : '<b class="lv-badge none">' + escapeHtml(tx("lvJevNone")) + '</b>');
+    return '<button class="lv-row trap-row" data-trap="' + t.id + '"><span><s>' + escapeHtml(t.w) + '</s> → <ins>' + escapeHtml(t.r) + '</ins><small>' + escapeHtml(q0 ? topicName(q0.topic) : "") + '</small></span>' + badge + '</button>';
+  }).join("");
+}
+document.getElementById("home-traps").addEventListener("click", function(){ startTrapsRound(); });
+document.getElementById("traps-go").addEventListener("click", function(){ startTrapsRound(); });
+document.getElementById("traps-list").addEventListener("click", function(e){
+  const b = e.target.closest("[data-trap]");
+  if(b) startTrapsRound(CZ_TRAPS.filter(function(t){ return t.id === b.getAttribute("data-trap"); })[0]);
 });
 
 /* Měsíční souhrn (docs/navrhy-vzhledu-32.html, bod 3): 3–4 obrazovky jako příběh, poslední jde sdílet.
