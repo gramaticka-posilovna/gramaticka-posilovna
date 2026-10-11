@@ -30084,6 +30084,18 @@ C("cztrap-born-3", "passive", "intermediate", "Přítomný a minulý čas prost�
 C("cztrap-arrive-1", "prepositions", "intermediate", "Vazby se slovesy", "„Do Londýna jsme dorazili v noci.“ Which sentence says this?", ["We arrived to London at night.", "We arrived in London at night.", "We arrived on London at night.", "We arrived London at night."], 1, "Arrive se nepojí s to. Do města nebo země: arrive in (arrived in London); na místo nebo do budovy: arrive at (at the airport).")
 );
 
+/* ---------------- České pasti – doplněné otázky po druhé kontrole ---------------- */
+
+QUESTIONS.push(
+F("cztrap-since-for-3", "prepositions", "basic", "Místa a času", "We have been friends ", "for / since", " ten years.", ["for"], "Deset let je délka trvání, proto for. Since by šlo jen s počátkem (since 2015, since school). Česky „už deset let“ svádí k since."),
+F("cztrap-since-for-4", "prepositions", "intermediate", "Místa a času", "She has worked at the hospital ", "for / since", " last spring.", ["since"], "Loňské jaro je okamžik, kdy práce začala, proto since. Délka trvání by byla s for (for a year)."),
+F("cztrap-listen-2", "prepositions", "basic", "Vazby se slovesy", "We always ", "listen / the radio", " in the car.", ["listen to the radio"], "Listen se pojí s to: listen to the radio. Česky „posloucháme rádio“ je bez předložky, anglicky „listen the radio“ je chyba."),
+F("cztrap-forward-2", "infinitive-gerund", "basic", "Předložka + -ing", "The children are looking forward to ", "go", " on holiday.", ["going"], "Look forward to + -ing: looking forward to going. To je tu předložka, ne částice infinitivu, proto ne „to go“."),
+C("cztrap-modal-2", "modals", "basic", "Rada (should/ought to/had better)", "„Měl/a bys víc spát.“ Which sentence says this?", ["You should to sleep more.", "You should sleep more.", "You should sleeping more.", "You should sleeps more."], 1, "Po should následuje holý infinitiv bez to: should sleep. Česky „měl/a bys spát“ svádí k „should to sleep“. (To má jen ought to: You ought to sleep more.)"),
+C("cztrap-modal-3", "modals", "basic", "Schopnost (can/could/be able to)", "„Bohužel nemůžu přijít.“ Which sentence says this?", ["I'm afraid I can't to come.", "I'm afraid I can't come.", "I'm afraid I don't can come.", "I'm afraid I can't coming."], 1, "Po can / can't následuje holý infinitiv: can't come. Zápor se tvoří přímo can't, bez don't."),
+F("cztrap-well-2", "adjectives-adverbs", "intermediate", "Tvorba a pozice příslovcí", "The team played really ", "good", " in the second half.", ["well"], "Jak hráli? – příslovce well. Good je přídavné jméno (a good game); „played good“ je chyba, i když se v hovorové americké angličtině občas slyší.")
+);
+
 /* ---------------- České pasti (docs/navrhy-vzhledu-32.html, bod 5) ----------------
    Typické chyby, které dělají Češi kvůli češtině. Past = chybná věta (w), správně (r), proč to Češi pletou (why)
    a otázky stávajících jevů, které ji testují (q). Otázky zůstávají ve svých jevech, past je jen značka navíc. */
@@ -30091,7 +30103,7 @@ const CZ_TRAPS = [
   { id: "pp-duration", w: "I live here for two years.", r: "I have lived / have been living here for two years.", why: "Česky řekneš „bydlím tu dva roky“ v přítomném čase. Když děj trvá od minulosti dodnes, angličtina potřebuje present perfect (prostý nebo průběhový).",
     q: ["p-b-4", "tenses-present-perfect-continuous-wait-basic-01", "tenses-present-perfect-continuous-since-basic-03", "p-i-3"] },
   { id: "since-for", w: "since two years", r: "for two years", why: "Česky „od“ i „už“ svádí k since. Since ale patří jen k počátku (since 2020, since Monday), délka trvání je vždy for.",
-    q: ["cztrap-since-for-1", "cztrap-since-for-2", "prep-placetime-intermediate-14", "prep-placetime-intermediate-15"] },
+    q: ["cztrap-since-for-1", "cztrap-since-for-2", "cztrap-since-for-3", "cztrap-since-for-4"] },
   { id: "when-will", w: "When I will come…", r: "When I come…", why: "Česky „až přijdu“ je budoucí čas. V anglických časových větách (when, as soon as, until, before, after) se o budoucnosti mluví přítomným časem.",
     q: ["tenses-timeclause-callhome-basic-01", "f-i-7", "tenses-timeclause-until-basic-03", "tenses-timeclause-whenfinish-basic-07"] },
   { id: "if-will", w: "If it will rain…", r: "If it rains…", why: "Česky „jestli bude pršet“ je budoucí čas. V anglické podmínce s if je přítomný čas, will patří jen do druhé části věty.",
@@ -30103,7 +30115,7 @@ const CZ_TRAPS = [
   { id: "article-general", w: "The life is hard.", r: "Life is hard.", why: "Když mluvíme obecně o pojmech nebo látkách (life, money, water), angličtina člen the nedává. Češi ho sem často přidávají „pro jistotu“.",
     q: ["articles-generalizations-basic-03", "articles-generalizations-basic-04", "articles-generalizations-basic-10", "articles-generalizations-basic-12"] },
   { id: "double-neg", w: "I don't know nothing.", r: "I don't know anything.", why: "Čeština má dvojí zápor („nikdo nic neví“). Angličtina jen jeden: po not / n't přichází any-, ne no- ani nothing.",
-    q: ["pronouns-indefinite-basic-03", "pronouns-indefinite-basic-14", "nouns-someanyno-intermediate-04", "nouns-someanyno-intermediate-06"] },
+    q: ["nouns-someanyno-basic-02", "nouns-someanyno-intermediate-04", "nouns-someanyno-intermediate-06", "nouns-someanyno-intermediate-10"] },
   { id: "agree", w: "I am agree.", r: "I agree.", why: "„Souhlasím“ svádí k „jsem souhlasný“, ale agree je sloveso – bez am. Zápor: I don't agree.",
     q: ["cztrap-agree-1", "cztrap-agree-2", "tenses-stateverbs-intermediate-17"] },
   { id: "depend-on", w: "It depends of…", r: "It depends on…", why: "Česky „záleží na“ nebo „závisí na“. Depend se ale vždy pojí s on, ne s of ani from.",
@@ -30113,21 +30125,21 @@ const CZ_TRAPS = [
   { id: "discuss", w: "We discussed about it.", r: "We discussed it.", why: "Česky „diskutovat o něčem“. Anglické sloveso discuss ale předložku nemá – about má jen podstatné jméno (a discussion about).",
     q: ["cztrap-discuss-1", "cztrap-discuss-2", "cztrap-discuss-3"] },
   { id: "listen-to", w: "I listen music.", r: "I listen to music.", why: "Česky „poslouchám hudbu“ bez předložky. Anglicky listen vždy potřebuje to.",
-    q: ["prep-verbs-basic-04", "cztrap-listen-1", "passive-continuous-advanced-15"] },
+    q: ["prep-verbs-basic-04", "cztrap-listen-1", "cztrap-listen-2"] },
   { id: "married-to", w: "married with", r: "married to", why: "Česky „ženatý s“ nebo „vdaná za“. Anglicky je to vždy married to somebody.",
     q: ["prep-adjectives-basic-04", "cztrap-married-1", "cztrap-married-2"] },
   { id: "look-forward", w: "look forward to see", r: "look forward to seeing", why: "To v look forward to je předložka, ne částice infinitivu – po ní je -ing. Česky „těším se, až uvidím“ svádí k infinitivu.",
-    q: ["infgerund-prepositioning-basic-08", "prep-stranding-intermediate-19", "cztrap-forward-1"] },
+    q: ["infgerund-prepositioning-basic-08", "cztrap-forward-1", "cztrap-forward-2"] },
   { id: "q-aux", w: "Where you live?", r: "Where do you live?", why: "Česká otázka se tvoří tázacím slovem nebo intonací. Anglická potřebuje pomocné sloveso (do / does / did) před podmětem.",
     q: ["gap20-tenses-presentsimple-basic-10", "gap20-tenses-presentsimple-intermediate-04", "gap20-tenses-pastsimple-basic-03", "gap20-tenses-presentsimple-intermediate-11"] },
   { id: "indirect-q", w: "Do you know where is the station?", r: "Do you know where the station is?", why: "V nepřímé otázce zůstává slovosled oznamovací věty – podmět stojí před slovesem. Češi přenášejí slovosled přímé otázky.",
-    q: ["in-b-1", "in-b-7", "in-i-1", "in-i-2"] },
+    q: ["reported-questions-basic-15", "reported-questions-basic-04", "reported-questions-basic-12", "reported-questions-basic-08"] },
   { id: "said-told", w: "He said me…", r: "He told me… / He said to me…", why: "Česky „řekl mi“. Anglicky se s osobou pojí tell (told me); say potřebuje to (said to me), nebo se osoba vynechá.",
     q: ["cztrap-told-1", "cztrap-told-2", "cztrap-told-3"] },
-  { id: "state-verbs", w: "I'm not understanding.", r: "I don't understand.", why: "Čeština průběhový čas nemá, a tak ho Češi někdy dávají všude. Stavová slovesa (know, understand, want, believe…) v něm ale obvykle nebývají.",
+  { id: "state-verbs", w: "I'm not understanding.", r: "I don't understand.", why: "Čeština průběhový čas nemá. Kdo se naučí, že „právě teď“ = -ing, dává ho pak i ke slovesům jako know, understand, want, believe – ta ale vyjadřují stav a v průběhovém čase obvykle nebývají.",
     q: ["tenses-stateverbs-basic-01", "tenses-stateverbs-basic-06", "tenses-stateverbs-basic-04", "tenses-stateverbs-basic-03"] },
   { id: "modal-to", w: "You must to go.", r: "You must go.", why: "Česky „musíš jít“ s infinitivem jako po jiných slovesech. Po must, can, should nebo might ale anglicky to nebývá.",
-    q: ["modals-substitutes-basic-17", "modals-substitutes-intermediate-18", "cztrap-modal-1"] },
+    q: ["cztrap-modal-1", "cztrap-modal-2", "cztrap-modal-3", "modals-substitutes-basic-17"] },
   { id: "mustnt", w: "You mustn't come. (= nemusíš)", r: "You don't have to come.", why: "„Nemusíš“ a „nesmíš“ se česky liší jen písmenem, ale mustn't znamená nesmíš. Nemusíš = don't have to nebo needn't.",
     q: ["modals-prohibition-wire-basic-01", "modals-prohibition-comeornot-basic-02", "modals-prohibition-finishtoday-basic-04", "modals-prohibition-playroad-basic-07"] },
   { id: "ing-verbs", w: "I enjoy to swim.", r: "I enjoy swimming.", why: "Česky „baví mě plavat“ s infinitivem. Po enjoy, avoid, finish, mind nebo suggest ale anglicky následuje -ing.",
@@ -30139,7 +30151,7 @@ const CZ_TRAPS = [
   { id: "neither", w: "I don't eat meat. – So don't I.", r: "Neither do I.", why: "Česky „já taky ne“. Anglicky se souhlas se záporem vyjadřuje neither (nor) + pomocné sloveso, ne so ani too.",
     q: ["wo-shortans-basic-18", "wo-shortans-basic-09", "wo-shortans-intermediate-20", "wo-shortans-intermediate-10"] },
   { id: "good-well", w: "He speaks English good.", r: "He speaks English well.", why: "Česky „dobrý“ a „dobře“ znějí podobně. Anglicky je good přídavné jméno, příslovce (jak?) je well.",
-    q: ["adjadv-adverbs-basic-05", "adjadv-adverbs-intermediate-09", "cztrap-well-1"] },
+    q: ["adjadv-adverbs-basic-05", "cztrap-well-1", "cztrap-well-2"] },
   { id: "most", w: "The most people…", r: "Most people…", why: "Česky „většina lidí“. Anglicky most bez the; most of jen před členem nebo zájmenem (most of my friends).",
     q: ["cztrap-most-1", "cztrap-most-2", "cztrap-most-3"] },
   { id: "pres-cont", w: "I read a book now.", r: "I'm reading a book now.", why: "Čeština nerozlišuje „čtu (právě teď)“ a „čtu (obvykle)“. Angličtina pro děj probíhající právě teď používá průběhový čas.",
