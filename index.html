@@ -1374,6 +1374,11 @@
       </div>
     </div>
 
+    <div class="card" id="level-share-card" style="display:none">
+      <button class="btn-primary" id="level-share-btn"></button>
+      <p class="lvl-note" id="level-share-note" data-i18n="levelShareNote">Obrázek s úrovní a odkaz na test pro kamarády.</p>
+    </div>
+
     <div class="card">
       <p class="card-label" data-i18n="labelBreakdown">Rozpad podle gramatických jevů</p>
       <div id="breakdown-list"></div>
@@ -30664,6 +30669,10 @@ const I18N = {
     diffNext: function(a, b){ return "Na „" + a + "“ máš přes 80 %. Zkus „" + b + "“."; },
     masteredLabel: "Zvládnuté otázky", masteredOf: function(n, p){ return "z " + n.toLocaleString("cs-CZ") + " otázek (" + p + " %)"; },
     masteredNote: "Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.",
+    levelShareBtn: "📤 Sdílet výsledek", levelShareNote: "Obrázek s úrovní a odkaz na test pro kamarády.", levelShareDone: "Obrázek stažen, odkaz zkopírován",
+    levelShareText: function(l){ return "Moje anglická gramatika je na úrovni " + l + " 💪 Dáš víc? Zjisti svou úroveň:"; },
+    levelShareBrand: "GRAMATICKÁ POSILOVNA", levelShareTitle1: "Moje anglická", levelShareTitle2: function(l){ return "gramatika: " + l + " 💪"; },
+    levelShareSub: "Rozřazovací test · 15 minut · zdarma", levelShareChal1: "Dáš víc?", levelShareChal2: "Zjisti svou úroveň gramatiky – bez registrace.",
     shareBtn: "Doporuč kamarádovi", shareCopied: "Odkaz zkopírován – pošli ho kamarádovi.",
     shareText: "Zkus Gramatickou posilovnu – procvičování anglické gramatiky od A2 po C1, s opakováním chyb. Otevři odkaz a dej „Přidat na plochu“.",
     setBackup: "Záloha pokroku", backupSave: "Uložit", backupLoad: "Obnovit",
@@ -30841,6 +30850,10 @@ const I18N = {
     diffNext: function(a, b){ return "You're above 80 % on “" + a + "”. Try “" + b + "”."; },
     masteredLabel: "Mastered questions", masteredOf: function(n, p){ return "of " + n.toLocaleString("en-GB") + " questions (" + p + " %)"; },
     masteredNote: "Mastered = right 3 times in a row, days apart. This number only goes up.",
+    levelShareBtn: "📤 Share my result", levelShareNote: "An image with your level and a link to the test for friends.", levelShareDone: "Image saved, link copied",
+    levelShareText: function(l){ return "My English grammar is at " + l + " 💪 Can you beat it? Find your level:"; },
+    levelShareBrand: "GRAMMAR GYM", levelShareTitle1: "My English", levelShareTitle2: function(l){ return "grammar: " + l + " 💪"; },
+    levelShareSub: "Placement test · 15 minutes · free", levelShareChal1: "Can you beat it?", levelShareChal2: "Find your grammar level – no sign-up.",
     shareBtn: "Recommend to a friend", shareCopied: "Link copied – send it to a friend.",
     shareText: "Try Grammar Gym – English grammar practice from A2 to C1 that brings back your mistakes. Open the link and tap “Add to Home Screen”.",
     setBackup: "Progress backup", backupSave: "Save", backupLoad: "Restore",
@@ -32497,6 +32510,9 @@ const recommendBox = document.getElementById("recommend-box");
 function renderResults(pct, correct, total, byTag){
   // "Těžší úroveň" dává smysl jen u běžného kola s jednou obtížností.
   document.getElementById("btn-harder").style.display = roundMode === "normal" ? "" : "none";
+  const shareLv = roundMode === "placement" && state.placement && state.placement.level;
+  document.getElementById("level-share-card").style.display = shareLv ? "" : "none";
+  document.getElementById("level-share-btn").textContent = tx("levelShareBtn");
   lastResults = [pct, correct, total, byTag];
   const circumference = 2 * Math.PI * 52;
   const offset = circumference * (1 - pct/100);
@@ -32604,6 +32620,11 @@ function startChallengeRound(ids){
   renderQuizTopbar();
   renderQuestion();
 }
+(function(){
+  if(new URLSearchParams(location.search).get("test") !== "1") return;
+  history.replaceState(null, "", location.pathname);
+  setTimeout(openPlacementIntro, 0);
+})();
 (function(){
   const params = new URLSearchParams(location.search);
   if(!params.get("vyzva")) return;
@@ -33117,6 +33138,70 @@ function shareLink(btn, text, url, labelKey){
     setTimeout(function(){ btn.textContent = tx(labelKey); }, 2500);
   });
 }
+/* Sdílení výsledku testu (docs/navrhy-vzhledu-32.html, bod 1): obrázek na výšku s úrovní + odkaz na úvodní
+   stránku testu (uroven.html?b=B1). Na telefonu systémová nabídka sdílení, jinde stažení obrázku a zkopírování odkazu.
+   Sdílí se jen úroveň – žádné jméno ani jiná data. */
+function levelShareImage(level){
+  const W = 1080, H = 1920, c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const g = c.getContext("2d"), serif = "Newsreader, Georgia, serif", sans = "Inter, system-ui, sans-serif";
+  const bg = g.createRadialGradient(W / 2, H * 0.25, 0, W / 2, H * 0.25, H * 0.85);
+  bg.addColorStop(0, "#2A4A75"); bg.addColorStop(0.45, "#1E3A5F"); bg.addColorStop(1, "#0F1E33");
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  g.textAlign = "center"; g.textBaseline = "alphabetic";
+  g.fillStyle = "#9FB6D6"; g.font = "800 34px " + sans;
+  g.fillText(tx("levelShareBrand").split("").join(String.fromCharCode(8202)), W / 2, 190);
+  // kotouč s úrovní
+  const cx = W / 2, cy = 560, r = 250;
+  g.save(); g.shadowColor = "rgba(0,0,0,.45)"; g.shadowBlur = 60; g.shadowOffsetY = 24;
+  g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fillStyle = "#2F343C"; g.fill(); g.restore();
+  g.lineWidth = r * 0.03; g.strokeStyle = "#9AA0A7"; g.beginPath(); g.arc(cx, cy, r * 0.51, 0, Math.PI * 2); g.stroke();
+  g.lineWidth = r * 0.05; g.strokeStyle = "#1D2026"; g.beginPath(); g.arc(cx, cy, r * 0.64, 0, Math.PI * 2); g.stroke();
+  g.fillStyle = "#F2C230"; g.font = "700 140px " + serif; g.textBaseline = "middle"; g.fillText(level, cx, cy + 8); g.textBaseline = "alphabetic";
+  // nadpis a podtitulek
+  g.fillStyle = "#fff"; g.font = "700 88px " + serif;
+  g.fillText(tx("levelShareTitle1"), W / 2, 1000);
+  g.fillText(tx("levelShareTitle2", level), W / 2, 1105);
+  g.fillStyle = "#C9D6E8"; g.font = "500 40px " + sans; g.fillText(tx("levelShareSub"), W / 2, 1190);
+  // žebříček A2–C1
+  const i0 = PLACEMENT_LEVELS.indexOf(level), pw = 150, gap = 22, x0 = W / 2 - (PLACEMENT_LEVELS.length * pw + (PLACEMENT_LEVELS.length - 1) * gap) / 2;
+  PLACEMENT_LEVELS.forEach(function(l, i){
+    const x = x0 + i * (pw + gap), y = 1260;
+    g.fillStyle = i === i0 ? "#F2C230" : (i < i0 ? "rgba(242,194,48,.25)" : "rgba(255,255,255,.1)");
+    g.beginPath(); g.roundRect(x, y, pw, 76, 38); g.fill();
+    g.fillStyle = i === i0 ? "#1B2A41" : (i < i0 ? "#F2C230" : "#9FB6D6"); g.font = "800 36px " + sans; g.textBaseline = "middle";
+    g.fillText(l, x + pw / 2, y + 40); g.textBaseline = "alphabetic";
+  });
+  // výzva
+  g.fillStyle = "rgba(255,255,255,.08)"; g.strokeStyle = "rgba(255,255,255,.18)"; g.lineWidth = 3;
+  g.beginPath(); g.roundRect(120, 1420, W - 240, 220, 40); g.fill(); g.stroke();
+  g.fillStyle = "#fff"; g.font = "800 50px " + sans; g.fillText(tx("levelShareChal1"), W / 2, 1510);
+  g.fillStyle = "#C9D6E8"; g.font = "500 34px " + sans; g.fillText(tx("levelShareChal2"), W / 2, 1580);
+  g.fillStyle = "#9FB6D6"; g.font = "600 32px " + sans; g.fillText(location.host || "gramaticka-posilovna.github.io", W / 2, 1820);
+  return new Promise(function(res){ c.toBlob(res, "image/png"); });
+}
+document.getElementById("level-share-btn").addEventListener("click", function(){
+  const btn = this, level = state.placement && state.placement.level;
+  if(!level) return;
+  const url = new URL("./uroven.html?b=" + level, location.href).href, text = tx("levelShareText", level) + " " + url;
+  Promise.all([document.fonts.load("700 80px Newsreader"), document.fonts.load("800 40px Inter"), document.fonts.load("500 40px Inter")]).catch(function(){})
+    .then(function(){ return levelShareImage(level); })
+    .then(function(blob){
+      const file = new File([blob], "moje-gramatika-" + level + ".png", { type: "image/png" });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        navigator.share({ files: [file], text: text }).catch(function(){});
+        return;
+      }
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(file);
+      a.download = file.name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+      const done = function(){ btn.textContent = tx("levelShareDone"); setTimeout(function(){ btn.textContent = tx("levelShareBtn"); }, 3000); };
+      if(navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
+    });
+});
+
 /* „Doporuč kamarádovi“ */
 document.querySelectorAll(".share-btn").forEach(function(btn){
   btn.addEventListener("click", function(){
