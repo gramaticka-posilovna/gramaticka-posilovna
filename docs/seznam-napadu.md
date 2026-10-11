@@ -17,6 +17,13 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 
 Nápady, jak aplikaci odlišit, přivést uživatele a dát jim cíl. Nic z toho se nedělá, nejdřív je potřeba to promyslet. Doporučené pořadí: 1 → 5 → 7 a 6 → 2.
 
+**Rozhodnuto 11. 10. 2026 (náhledy v navrhy-vzhledu-32.html), zatím se nedělá:**
+- **1:** celý postup – tlačítko „Sdílet výsledek“ (nabídka sdílení telefonu, na počítači stažení obrázku + kopie odkazu) → obrázek → úvodní stránka pro příchozí.
+- **3:** všechny 4 obrazovky souhrnu.
+- **5:** značka „Česká past“ u otázek jevu + „Proč to Češi pletou“ + dlaždice „České pasti“ na Domů. Asi 30–40 pastí, 3–5 otázek na každou, hlavně ze stávajících otázek, chybějící dopsat. U pastí s více správnými tvary uvést všechny (např. have lived / have been living).
+- **7:** varianta b (procenta + „B2 kolem 20. listopadu“) a navíc z varianty c tip „s 5 otázkami denně navíc o týden dřív“.
+- **6** zamítnuto. **2, 4, 8, 9** zůstávají na později.
+
 Ozkoušené jinde:
 1. **Sdílitelný obrázek s výsledkem testu** (+ úvodní stránka): „Moje gramatika: B1 💪 – zjisti svou úroveň“ s odkazem. Test zdarma přivádí lidi (jako EF SET), výsledek se sdílí sám.
 2. **Maturita a Cambridge zkoušky** (B2 First, C1 Advanced): režim s jevy pro danou zkoušku a cvičný test na čas. Lidé hledají „maturitu“, ne „gramatiku“.
