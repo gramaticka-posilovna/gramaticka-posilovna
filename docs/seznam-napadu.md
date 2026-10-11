@@ -15,7 +15,7 @@ Co je schválené nebo navržené, ale zatím se nedělá. Hotové věci se odsu
 
 ## Na později (návrhy z 9. 10. 2026)
 
-Hotové a nasazené 11. 10. 2026: sdílení výsledku testu + úvodní stránka (uroven.html), měsíční souhrn, České pasti, postup na úroveň v % s předpovědí. Zamítnuto: sázka na jistotu (působí otravně).
+Hotové a nasazené 11. 10. 2026: sdílení výsledku testu + úvodní stránka (uroven.html), měsíční souhrn, České pasti (49 pastí, karta v Tématech), postup na úroveň v % s předpovědí. Zamítnuto: sázka na jistotu (působí otravně).
 
 - **Maturita a Cambridge zkoušky** (B2 First, C1 Advanced): trénink jevů podle oficiálních požadavků (CERMAT, příručky Cambridge), vlastní úlohy ve stejném formátu, název „trénink k maturitě“ (ne simulace ani předpověď známky), před spuštěním kontrola učitelem/kou. Cambridge Use of English potřebuje nové typy úloh (doplň slovo, tvoření slov, přepis věty).
 - **Třídy pro učitele:** učitel/ka založí třídu s kódem, vybere jevy a termín, vidí výsledky studentů. Potřebuje server, účty a ochranu údajů (nezletilí) – až po iOS. Lehká verze: odkaz s vybranými jevy a kód s výsledkem zpět.

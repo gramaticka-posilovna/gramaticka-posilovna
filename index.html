@@ -515,18 +515,18 @@
   .cz-flag::after{ content:""; position:absolute; left:0; top:0; border-style:solid; border-width:8px 0 8px 8px; border-color:transparent transparent transparent #11457E; }
   .cz-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:800; padding:3px 10px 3px 4px; border-radius:999px; background:#FBE7E3; color:#B3412B; margin-bottom:10px; }
   .cz-why{ margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:13.5px; line-height:1.5; }
-  .traps-card{ display:flex; width:100%; gap:12px; align-items:center; text-align:left; border:none; cursor:pointer; font:inherit; color:var(--ink); margin-top:18px; }
-  .traps-card .ic{ width:46px; height:46px; border-radius:14px; background:#FBE7E3; display:grid; place-items:center; flex-shrink:0; }
-  .traps-card .ic .cz-flag{ width:24px; height:24px; }
-  .traps-card .ic .cz-flag::after{ border-width:12px 0 12px 12px; }
-  .traps-card .t{ flex:1; min-width:0; }
-  .traps-card b{ display:block; font-size:15px; }
-  .traps-card small{ display:block; font-size:12.5px; color:var(--ink-soft); margin-top:2px; line-height:1.35; }
-  .traps-card .cmp-bar{ margin-top:8px; height:7px; }
+  .traps-head{ display:flex; gap:12px; align-items:center; }
+  .traps-head .ic{ width:46px; height:46px; border-radius:14px; background:#FBE7E3; display:grid; place-items:center; flex-shrink:0; }
+  .traps-head .ic .cz-flag{ width:24px; height:24px; }
+  .traps-head .ic .cz-flag::after{ border-width:12px 0 12px 12px; }
+  .traps-head .t{ flex:1; min-width:0; }
+  .traps-head b{ display:block; font-size:15px; }
+  .traps-head small{ display:block; font-size:12.5px; color:var(--ink-soft); margin-top:2px; line-height:1.35; }
+  #traps-go{ width:100%; }
   .trap-row{ cursor:pointer; text-align:left; width:100%; font:inherit; color:inherit; border:none; }
   .trap-row s{ color:#B3412B; font-weight:700; }
   .trap-row ins{ color:var(--success, #2F7A4A); text-decoration:none; font-weight:700; }
-  [data-theme="dark"] .cz-badge, [data-theme="dark"] .traps-card .ic{ background:#3A2721; color:#F0A08C; }
+  [data-theme="dark"] .cz-badge, [data-theme="dark"] .traps-head .ic{ background:#3A2721; color:#F0A08C; }
   [data-theme="dark"] .trap-row s{ color:#F0A08C; }
   /* Měsíční souhrn (docs/navrhy-vzhledu-32.html, bod 3) */
   .recap-card{ display:flex; width:100%; gap:12px; align-items:center; text-align:left; border:none; cursor:pointer; font:inherit; color:#fff;
@@ -1366,8 +1366,6 @@
     <button class="btn-primary home-cta" id="home-cta"></button>
     <button class="btn-secondary home-cta home-test" id="home-topics" data-i18n="ctaTopics">Vybrat si téma</button>
     <button class="btn-secondary home-cta home-test" id="home-test"></button>
-
-    <button class="card traps-card" id="home-traps" type="button" style="display:none"></button>
   </div>
 
   <!-- ===================== SETUP VIEW ===================== -->
@@ -1382,12 +1380,16 @@
       <div id="setup-level-body"></div>
     </div>
 
-    <details class="card fold" id="traps-fold" style="display:none">
-      <summary class="card-label" id="traps-title"></summary>
-      <p class="lvl-note" id="traps-note"></p>
-      <div class="lv-list" id="traps-list"></div>
+    <div class="card" id="traps-card" style="display:none">
+      <p class="card-label" data-i18n="trapsTitle">České pasti</p>
+      <div class="traps-head"><span class="ic"><i class="cz-flag"></i></span><div class="t"><b id="traps-count"></b><small id="traps-sub"></small></div></div>
+      <div class="cmp-bar lvl-bar"><span id="traps-bar"></span></div>
       <button class="btn-secondary near-btn" id="traps-go"></button>
-    </details>
+      <details class="lvl-pick"><summary><span id="traps-show"></span></summary>
+        <p class="lvl-note" id="traps-note"></p>
+        <div class="lv-list" id="traps-list"></div>
+      </details>
+    </div>
 
     <div class="card">
       <p class="card-label" data-i18n="labelTopic">Téma (můžeš vybrat víc)</p>
@@ -30096,6 +30098,45 @@ C("cztrap-modal-3", "modals", "basic", "Schopnost (can/could/be able to)", "„B
 F("cztrap-well-2", "adjectives-adverbs", "intermediate", "Tvorba a pozice příslovcí", "The team played really ", "good", " in the second half.", ["well"], "Jak hráli? – příslovce well. Good je přídavné jméno (a good game); „played good“ je chyba, i když se v hovorové americké angličtině občas slyší.")
 );
 
+/* ---------------- České pasti – dalších 15 pastí ---------------- */
+
+QUESTIONS.push(
+C("cztrap-ago-1", "tenses", "basic", "Past simple", "„Byli jsme tam před dvěma lety.“ Which sentence says this?", ["We were there before two years.", "We were there two years ago.", "We were there ago two years.", "We have been there two years ago."], 1, "Před dvěma lety = two years ago – ago stojí až za časovým údajem. S ago je vždy past simple, ne present perfect."),
+F("cztrap-ago-2", "tenses", "basic", "Past simple", "She moved to Brno ", "před třemi lety", ".", ["three years ago"], "Před třemi lety = three years ago. „Before three years“ je chyba podle českého slovosledu."),
+F("cztrap-ago-3", "tenses", "intermediate", "Past simple", "I saw him at the station ", "před týdnem", ".", ["a week ago", "one week ago"], "Před týdnem = a week ago. Ago se dává za časový údaj; before samo znamená „předtím“ (vzhledem k jinému ději)."),
+C("cztrap-call-1", "tenses", "basic", "Present simple", "„Jak se tomu říká anglicky?“ Which sentence says this?", ["How do you call it in English?", "What do you call it in English?", "How is it calling in English?", "What do you call it to English?"], 1, "Na pojmenování se anglicky ptáme what: What do you call it? (nebo What is it called?). „How do you call it“ je doslovný překlad z češtiny."),
+C("cztrap-call-2", "tenses", "intermediate", "Present simple", "„Jak se jmenuje ta květina?“ Which sentence says this?", ["How is that flower called?", "What is that flower called?", "How does that flower call?", "What does that flower call?"], 1, "What is it called? – na jméno věci se ptáme what a trpným tvarem be called. „How is it called“ je chyba podle češtiny."),
+F("cztrap-call-3", "tenses", "basic", "Present simple", "", "jak / you / call", " this thing in English?", ["What do you call"], "Jak se tomu říká = What do you call…? Česky „jak“, anglicky ale what – how by se ptalo na způsob."),
+F("cztrap-home-1", "articles", "basic", "Nulový člen (vč. institucí: go to school/bed/work/prison)", "I'm tired, I want to go ", "domů", ".", ["home"], "Go home – bez předložky i bez členu. Home se po slovesech pohybu (go, come, get) pojí bez to."),
+C("cztrap-home-2", "articles", "basic", "Nulový člen (vč. institucí: go to school/bed/work/prison)", "„Kdy přijdeš domů?“ Which sentence says this?", ["When will you come to home?", "When will you come home?", "When will you come at home?", "When you will come home?"], 1, "Come home bez předložky. V otázce stojí will před podmětem: When will you come home?"),
+F("cztrap-home-3", "articles", "intermediate", "Nulový člen (vč. institucí: go to school/bed/work/prison)", "She usually gets ", "domů", " at about six.", ["home"], "Get home = dostat se domů, bez to. Česky „domů“ svádí k „to home“."),
+C("cztrap-same-1", "adjectives-adverbs", "basic", "As...as / the more..., the more...", "„Mám stejný telefon jako ty.“ Which sentence says this?", ["I have the same phone like you.", "I have the same phone as you.", "I have same phone as you.", "I have the same phone than you."], 1, "The same … as: the same phone as you. Po same je vždy as, ne like ani than; a same má člen the."),
+F("cztrap-same-2", "adjectives-adverbs", "intermediate", "As...as / the more..., the more...", "Her opinion is exactly the same ", "jako", " mine.", ["as"], "The same as – po same vždy as. Česky „stejný jako“ svádí k like."),
+F("cztrap-same-3", "adjectives-adverbs", "basic", "As...as / the more..., the more...", "My bag is the same colour ", "jako", " yours.", ["as"], "The same colour as yours – po same následuje as."),
+C("cztrap-who-1", "clauses", "basic", "Určující vztažné věty (defining relative clauses)", "Which sentence is correct?", ["The man which lives next door is a doctor.", "The man who lives next door is a doctor.", "The man what lives next door is a doctor.", "The man whose lives next door is a doctor."], 1, "U lidí who (nebo that), which jen u věcí. What vztažnou větu nezačíná a whose znamená „jehož“."),
+C("cztrap-better-1", "adjectives-adverbs", "basic", "Stupňování (vč. stupňovatelných vs. absolutních přídavných jmen: very tired / absolutely exhausted)", "„Tenhle film je lepší než ten první.“ Which sentence says this?", ["This film is more better than the first one.", "This film is better than the first one.", "This film is more good than the first one.", "This film is better as the first one."], 1, "Better už je 2. stupeň od good – more se k němu nepřidává. Po 2. stupni následuje than, ne as."),
+C("cztrap-long-1", "tenses", "intermediate", "Present perfect", "„Dlouho jsme se neviděli!“ Which sentence says this?", ["We haven't seen each other for a long time!", "We don't see each other for a long time!", "We aren't seeing each other since a long time!", "We didn't see us for a long time!"], 0, "Stav trvající dodnes = present perfect: We haven't seen each other for a long time. Délka trvání s for, vzájemnost each other."),
+F("cztrap-long-2", "tenses", "basic", "Present perfect", "I ", "not / see", " my cousins for ages – we should meet up.", ["haven't seen", "have not seen"], "Nevidím je dlouho a trvá to dodnes – present perfect: I haven't seen them for ages."),
+C("cztrap-long-3", "tenses", "intermediate", "Present perfect", "„Už je to dlouho, co jsme byli v kině.“ Which sentence says this?", ["It's long time since we went to the cinema.", "It's been a long time since we went to the cinema.", "It's a long time that we went to the cinema.", "Is long time since we went to the cinema."], 1, "It's been a long time since… (britsky i It's a long time since…). Bez členu a („it's long time“) to nejde."),
+C("cztrap-swim-1", "modals", "basic", "Schopnost (can/could/be able to)", "„Umíš plavat?“ Which sentence says this?", ["Do you know to swim?", "Can you swim?", "Do you can swim?", "Can you to swim?"], 1, "Schopnost = can: Can you swim? Know se v tomto významu pojí jen s how to (Do you know how to swim?). Po can je holý infinitiv."),
+C("cztrap-swim-2", "modals", "intermediate", "Schopnost (can/could/be able to)", "„Neumím řídit.“ Which sentence says this?", ["I don't know to drive.", "I can't drive.", "I don't can drive.", "I can't to drive."], 1, "Neumím = I can't (nebo I don't know how to drive). Zápor can se tvoří bez don't."),
+C("cztrap-age-1", "tenses", "basic", "Present simple", "„Je mi dvacet let.“ Which sentence says this?", ["I have twenty years.", "I'm twenty years old.", "I have twenty years old.", "I'm twenty years."], 1, "Věk se vyjadřuje slovesem be: I'm twenty (years old). Have tu nejde a „years“ bez old také ne."),
+F("cztrap-age-2", "tenses", "basic", "Will", "My grandfather ", "bude mu 80", " next month.", ["will be 80", "will be eighty", "will be 80 years old", "will be eighty years old", "is going to be 80", "is going to be eighty", "turns 80", "turns eighty", "will turn 80", "will turn eighty"], "Bude mu 80 = he will be 80 (nebo he turns 80). Věk je vždy s be, ne s have."),
+C("cztrap-age-3", "tenses", "intermediate", "Present simple", "„Kolik je ti let?“ Which sentence says this?", ["How many years do you have?", "How old are you?", "How old do you have?", "How many years are you?"], 1, "Na věk se ptáme How old are you? – se slovesem be."),
+C("cztrap-by-1", "prepositions", "intermediate", "Místa a času", "„Pošli mi to do pátku.“ (nejpozději v pátek) Which sentence says this?", ["Send it to me until Friday.", "Send it to me by Friday.", "Send it to me to Friday.", "Send it to me till Friday."], 1, "Termín (nejpozději do) = by Friday. Until / till znamená, že něco trvá až do té doby (I'll wait until Friday)."),
+F("cztrap-by-2", "prepositions", "intermediate", "Místa a času", "The shop is open ", "by / until", " 8 p.m.", ["until", "till"], "Obchod je otevřený až do osmi – trvání, proto until (till). By by znamenalo termín: nejpozději do."),
+F("cztrap-by-3", "prepositions", "intermediate", "Místa a času", "Please finish the report ", "by / until", " Monday morning.", ["by"], "Dokonči to nejpozději do pondělí – termín, proto by. Until by znamenalo „pracuj na tom až do pondělí“."),
+C("cztrap-during-1", "prepositions", "intermediate", "Místa a času", "„Pršelo dvě hodiny.“ Which sentence says this?", ["It rained during two hours.", "It rained for two hours.", "It rained since two hours.", "It rained while two hours."], 1, "Délka trvání = for: for two hours. During se pojí s událostí nebo obdobím (during the night), ne s počtem hodin."),
+F("cztrap-during-2", "prepositions", "intermediate", "Místa a času", "I fell asleep ", "during / for", " the film.", ["during"], "Během filmu = during the film – during + událost. For by vyjadřovalo délku (for ten minutes)."),
+F("cztrap-during-3", "prepositions", "intermediate", "Místa a času", "We lived in Spain ", "during / for", " three years.", ["for"], "Tři roky jsou délka trvání, proto for. Česky „během tří let“ nebo „tři roky“ – anglicky during s počtem let nejde."),
+C("cztrap-next-1", "prepositions", "basic", "Místa a času", "„Uvidíme se příští týden.“ Which sentence says this?", ["See you in next week.", "See you next week.", "See you on next week.", "See you the next week."], 1, "Před next, last, this a every se předložka ani člen nedávají: next week, last year, this morning."),
+F("cztrap-next-2", "prepositions", "basic", "Místa a času", "We moved here ", "loni", ".", ["last year"], "Loni = last year, bez předložky in. Před last, next a this se předložka nedává."),
+F("cztrap-next-3", "prepositions", "intermediate", "Místa a času", "The results will be published ", "příští pondělí", ".", ["next Monday"], "Příští pondělí = next Monday, bez on. Samotné „on Monday“ je správně, ale s next předložka odpadá."),
+C("cztrap-photo-1", "prepositions", "basic", "Místa a času", "„Kdo je na té fotce?“ Which sentence says this?", ["Who is on that photo?", "Who is in that photo?", "Who is at that photo?", "Who are on that photo?"], 1, "Na fotce / na obrázku = in the photo, in the picture. Česky „na“, anglicky in."),
+F("cztrap-photo-2", "prepositions", "basic", "Místa a času", "Look at the man ", "na obrázku", ".", ["in the picture", "in the photo"], "Na obrázku = in the picture. Předložka on by znamenala, že je položený na obrázku."),
+C("cztrap-photo-3", "prepositions", "intermediate", "Místa a času", "„Viděl/a jsem to v televizi.“ Which sentence says this?", ["I saw it in TV.", "I saw it on TV.", "I saw it in the TV.", "I saw it at TV."], 1, "V televizi = on TV (také on the radio). Česky „v“, anglicky on – „in the TV“ by znamenalo uvnitř přístroje.")
+);
+
 /* ---------------- České pasti (docs/navrhy-vzhledu-32.html, bod 5) ----------------
    Typické chyby, které dělají Češi kvůli češtině. Past = chybná věta (w), správně (r), proč to Češi pletou (why)
    a otázky stávajících jevů, které ji testují (q). Otázky zůstávají ve svých jevech, past je jen značka navíc. */
@@ -30167,7 +30208,37 @@ const CZ_TRAPS = [
   { id: "arrive", w: "arrive to London", r: "arrive in London / at the airport", why: "Česky „dorazit do“. Arrive se ale s to nepojí: in u měst a zemí, at u budov a míst.",
     q: ["prep-verbs-basic-17", "prep-verbs-advanced-17", "cztrap-arrive-1"] },
   { id: "interested-in", w: "interested about, good in", r: "interested in, good at", why: "Česky „zajímat se o“, „být dobrý v“. Anglické vazby jsou interested in, good at, bad at – doslova se přeložit nedají.",
-    q: ["prep-adjectives-basic-01", "prep-adjectives-basic-03", "prep-adjectives-basic-19"] }
+    q: ["prep-adjectives-basic-01", "prep-adjectives-basic-03", "prep-adjectives-basic-19"] },
+  { id: "ago", w: "before two years", r: "two years ago", why: "Česky „před dvěma lety“ – předložka stojí vpředu. Anglicky je to two years ago, ago až za časovým údajem. Before samo znamená „předtím“ vzhledem k jinému ději.",
+    q: ["cztrap-ago-1", "cztrap-ago-2", "cztrap-ago-3"] },
+  { id: "if-would", w: "If I would have time…", r: "If I had time…", why: "Česky „kdybych měl/a čas“ – podmiňovací způsob v obou částech. Anglicky je v if-větě minulý čas, would patří jen do druhé části.",
+    q: ["cond-second-million-basic-01", "cond-second-grades-basic-06", "cond-second-negative-basic-04", "cond-second-government-advanced-01"] },
+  { id: "what-call", w: "How do you call it?", r: "What do you call it? / What is it called?", why: "Česky „jak se tomu říká“. Anglicky se na pojmenování ptáme what; how by se ptalo na způsob.",
+    q: ["cztrap-call-1", "cztrap-call-2", "cztrap-call-3"] },
+  { id: "go-home", w: "go to home", r: "go home", why: "Česky „jít domů“ svádí k „to home“. Home se ale po slovesech pohybu pojí bez předložky: go home, come home, get home.",
+    q: ["cztrap-home-1", "cztrap-home-2", "cztrap-home-3"] },
+  { id: "same-as", w: "the same like", r: "the same as", why: "Česky „stejný jako“ a jako = like. Po same se ale vždy říká as.",
+    q: ["cztrap-same-1", "cztrap-same-2", "cztrap-same-3"] },
+  { id: "which-who", w: "the man which…", r: "the man who…", why: "Česky „který“ platí pro lidi i věci. Anglicky which jen pro věci, pro lidi who (nebo that).",
+    q: ["clauses-defining-basic-01", "clauses-defining-basic-15", "cztrap-who-1"] },
+  { id: "more-better", w: "more better", r: "better", why: "Kdo si není jistý, jestli se stupňuje -er, nebo more, dá snadno obojí. Better, worse nebo bigger ale už jsou 2. stupeň – more se k nim nepřidává.",
+    q: ["adjadv-comparison-basic-06", "adjadv-comparison-advanced-03", "cztrap-better-1"] },
+  { id: "long-time", w: "It's long time since…", r: "It's been a long time since…", why: "Česky „už je to dlouho“ bez členu a v přítomném čase. Anglicky potřebuješ a long time a nejčastěji present perfect: It's been a long time.",
+    q: ["cztrap-long-1", "cztrap-long-2", "cztrap-long-3"] },
+  { id: "can-swim", w: "Do you know to swim?", r: "Can you swim?", why: "Česky „umíš plavat?“ svádí ke know. Schopnost se anglicky vyjadřuje can (nebo know how to): Can you swim?",
+    q: ["cztrap-swim-1", "cztrap-swim-2", "modals-ability-swim-basic-01"] },
+  { id: "age", w: "I have twenty years.", r: "I'm twenty (years old).", why: "Česky „je mi dvacet“ nebo hovorově „mám dvacet let“. Anglicky se věk vyjadřuje slovesem be: I'm twenty. Have tu nejde.",
+    q: ["cztrap-age-1", "cztrap-age-2", "cztrap-age-3"] },
+  { id: "by-until", w: "Send it until Friday. (= nejpozději)", r: "Send it by Friday.", why: "Česky „do pátku“ znamená termín i trvání. Anglicky termín (nejpozději do) = by, trvání (až do) = until.",
+    q: ["cztrap-by-1", "cztrap-by-2", "cztrap-by-3"] },
+  { id: "during-for", w: "during two hours", r: "for two hours", why: "Česky „během“ i „po dobu“. Anglicky for + délka (for two hours), during + událost nebo období (during the film).",
+    q: ["cztrap-during-1", "cztrap-during-2", "cztrap-during-3"] },
+  { id: "next-week", w: "on next week, in last year", r: "next week, last year", why: "Česky „v příštím týdnu“ nebo „v pondělí“ svádí k předložce. Před next, last, this a every se ale anglicky předložka nedává.",
+    q: ["cztrap-next-1", "cztrap-next-2", "cztrap-next-3"] },
+  { id: "in-photo", w: "on the photo, in TV", r: "in the photo, on TV", why: "Česky „na fotce“ a „v televizi“. Anglicky je to naopak: in the photo, in the picture, ale on TV, on the radio.",
+    q: ["cztrap-photo-1", "cztrap-photo-2", "cztrap-photo-3"] },
+  { id: "possessive", w: "the book of Anna", r: "Anna's book", why: "Česky „kniha Anny“ – vlastník stojí za věcí. Anglicky se u lidí a zvířat dává vlastník dopředu s 's: Anna's book, my brother's car.",
+    q: ["nouns-possessive-basic-01", "nouns-possessive-basic-04", "nouns-possessive-basic-06"] }
 ];
 
 /* ============================================================
@@ -30852,7 +30923,7 @@ const I18N = {
     masteredLabel: "Zvládnuté otázky", masteredOf: function(n, p){ return "z " + n.toLocaleString("cs-CZ") + " otázek (" + p + " %)"; },
     masteredNote: "Zvládnutá = správně 3× po sobě s odstupem dní. Tohle číslo jen roste.",
     trapsTitle: "České pasti", trapBadge: "Česká past", trapWhy: "Proč to Češi pletou:",
-    trapsNote: function(n, d){ return n + " chyb, které dělá skoro každý Čech. Zvládnuto " + d + " z " + n + "."; },
+    trapsCount: function(d, n){ return "Zvládnuto " + d + " z " + n; }, trapsSub: function(n){ return n + " chyb, které dělá skoro každý Čech."; }, trapsShow: "Zobrazit všechny pasti",
     trapsListNote: "Klepni na past a procvičíš jen ji. Past je zvládnutá, když aspoň 2 její otázky vyjdou a žádná naposledy nevyšla.",
     trapsGo: "Procvičit pasti",
     recapHome: function(m){ return m + " v posilovně"; }, recapHomeSub: "Tvůj měsíční souhrn je připravený.",
@@ -31051,7 +31122,7 @@ const I18N = {
     masteredLabel: "Mastered questions", masteredOf: function(n, p){ return "of " + n.toLocaleString("en-GB") + " questions (" + p + " %)"; },
     masteredNote: "Mastered = right 3 times in a row, days apart. This number only goes up.",
     trapsTitle: "Czech traps", trapBadge: "Czech trap", trapWhy: "Why Czechs get this wrong:",
-    trapsNote: function(n, d){ return n + " mistakes almost every Czech makes. Mastered " + d + " of " + n + "."; },
+    trapsCount: function(d, n){ return "Mastered " + d + " of " + n; }, trapsSub: function(n){ return n + " mistakes almost every Czech makes."; }, trapsShow: "Show all traps",
     trapsListNote: "Tap a trap to practise just that one.", trapsGo: "Practise traps",
     recapHome: function(m){ return m + " at the gym"; }, recapHomeSub: "Your monthly recap is ready.",
     recapPrev: function(m){ return "Recap: " + m; }, recapNow: function(m){ return m + " so far"; },
@@ -31524,7 +31595,6 @@ function currentStreak(active){
 
 function renderHome(){
   const now = new Date();
-  renderTraps();
   document.getElementById("home-day").textContent = now.toLocaleDateString(tx("dateLocale"), { weekday: "long" });
   const active = activeDays();
   const streak = currentStreak(active);
@@ -33483,13 +33553,12 @@ function startTrapsRound(only){
 }
 function renderTraps(){
   const on = lang === "cs", done = CZ_TRAPS.filter(function(t){ return trapState(t).done; }).length, n = CZ_TRAPS.length;
-  const card = document.getElementById("home-traps"), fold = document.getElementById("traps-fold");
-  card.style.display = on ? "" : "none";
-  fold.style.display = on ? "" : "none";
+  document.getElementById("traps-card").style.display = on ? "" : "none";
   if(!on) return;
-  card.innerHTML = '<span class="ic"><i class="cz-flag"></i></span><span class="t"><b>' + escapeHtml(tx("trapsTitle")) + '</b><small>' + escapeHtml(tx("trapsNote", n, done)) + '</small>' +
-    '<span class="cmp-bar" style="display:block"><span style="width:' + Math.round(done / n * 100) + '%"></span></span></span>';
-  document.getElementById("traps-title").textContent = tx("trapsTitle") + " (" + done + " / " + n + ")";
+  document.getElementById("traps-count").textContent = tx("trapsCount", done, n);
+  document.getElementById("traps-sub").textContent = tx("trapsSub", n);
+  document.getElementById("traps-bar").style.width = Math.round(done / n * 100) + "%";
+  document.getElementById("traps-show").textContent = tx("trapsShow");
   document.getElementById("traps-note").textContent = tx("trapsListNote");
   document.getElementById("traps-go").textContent = tx("trapsGo");
   document.getElementById("traps-list").innerHTML = CZ_TRAPS.map(function(t){
@@ -33498,7 +33567,6 @@ function renderTraps(){
     return '<button class="lv-row trap-row" data-trap="' + t.id + '"><span><s>' + escapeHtml(t.w) + '</s> → <ins>' + escapeHtml(t.r) + '</ins><small>' + escapeHtml(q0 ? topicName(q0.topic) : "") + '</small></span>' + badge + '</button>';
   }).join("");
 }
-document.getElementById("home-traps").addEventListener("click", function(){ startTrapsRound(); });
 document.getElementById("traps-go").addEventListener("click", function(){ startTrapsRound(); });
 document.getElementById("traps-list").addEventListener("click", function(e){
   const b = e.target.closest("[data-trap]");
@@ -33562,19 +33630,19 @@ function recapSlides(d){
     const n = (state.days || {})[d.ym + "-" + (i < 10 ? "0" : "") + i] || 0;
     cal += '<i class="' + (n >= dailyGoal ? "g" : (n > 0 ? "t" : "")) + '"></i>';
   }
-  out.push({ cls: "s1", html: '<div class="k">' + escapeHtml(tx("recapK1", name)) + '</div><div class="huge">' + d.answers.toLocaleString(tx("dateLocale")) + '</div>' +
+  out.push({ cls: "s1", bar: "#1E3A5F", html: '<div class="k">' + escapeHtml(tx("recapK1", name)) + '</div><div class="huge">' + d.answers.toLocaleString(tx("dateLocale")) + '</div>' +
     '<h2>' + escapeHtml(tx("recapAnswers")) + '</h2><p>' + tx("recapPace", Math.round(d.answers / Math.max(d.days, 1)), tx("recapWeekday")[d.wd]) + '</p>' +
     '<div class="recap-cal">' + cal + '</div><p style="font-size:13px;opacity:.75">' + escapeHtml(tx("recapDays", d.days, d.best)) + '</p>' });
-  if(d.up) out.push({ cls: "s2", html: '<div class="k">' + escapeHtml(tx("recapUpK")) + '</div><div class="badge">+' + Math.round(d.up.d * 100) + ' %</div>' +
+  if(d.up) out.push({ cls: "s2", bar: "#2F7A4A", html: '<div class="k">' + escapeHtml(tx("recapUpK")) + '</div><div class="badge">+' + Math.round(d.up.d * 100) + ' %</div>' +
     '<h2>' + escapeHtml(shortTag(d.up.tag)) + '</h2><p>' + escapeHtml(tx("recapUp", d.up.a, d.up.b)) + '</p>' +
     '<div><span class="chip">' + escapeHtml(tx("recapRounds", d.rounds)) + '</span>' + (d.perfect ? '<span class="chip">✓ ' + escapeHtml(tx("recapPerfect", d.perfect)) + '</span>' : "") + '</div>' });
-  if(d.top) out.push({ cls: "s3", html: '<div class="k">' + escapeHtml(tx("recapTopK")) + '</div><div class="badge">' + d.top.pct + ' %</div>' +
+  if(d.top) out.push({ cls: "s3", bar: "#5B3F8C", html: '<div class="k">' + escapeHtml(tx("recapTopK")) + '</div><div class="badge">' + d.top.pct + ' %</div>' +
     '<h2>' + escapeHtml(shortTag(d.top.tag)) + '</h2><p>' + escapeHtml(tx("recapTop", d.top.seen)) + '</p>' +
     (d.up ? "" : '<div><span class="chip">' + escapeHtml(tx("recapRounds", d.rounds)) + '</span>' + (d.perfect ? '<span class="chip">✓ ' + escapeHtml(tx("recapPerfect", d.perfect)) + '</span>' : "") + '</div>') });
   const ls = levelStats(), next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(state.level) + 1];
   const lvBox = next ? '<div><b>' + Math.round(ls.done[next] / ls.need[next] * 100) + ' %</b><small>' + escapeHtml(tx("recapToLevel", next)) + '</small></div>'
     : '<div><b>' + (state.level || "–") + '</b><small>' + escapeHtml(tx("labelLevel")) + '</small></div>';
-  out.push({ cls: "s4", last: true, html: '<div class="k">' + escapeHtml(tx("recapK4", name)) + '</div>' +
+  out.push({ cls: "s4", bar: "#1B2A41", last: true, html: '<div class="k">' + escapeHtml(tx("recapK4", name)) + '</div>' +
     (state.level ? '<div class="badge" style="margin-top:20px">' + state.level + '</div>' : "") +
     '<div class="recap-grid"><div><b>' + d.answers.toLocaleString(tx("dateLocale")) + '</b><small>' + escapeHtml(tx("recapAnswersS")) + '</small></div>' +
     '<div><b>' + d.days + '</b><small>' + escapeHtml(tx("recapDaysS")) + '</small></div>' +
@@ -33589,10 +33657,11 @@ function openRecap(ym){
   const el = document.createElement("div");
   function draw(){
     el.className = "recap " + slides[i].cls;
+    setBarColor(slides[i].bar);
     el.innerHTML = '<div class="recap-in"><div class="recap-dots">' + slides.map(function(x, j){ return '<i class="' + (j <= i ? "on" : "") + '"></i>'; }).join("") + '</div>' +
       '<button class="recap-x" id="recap-x" aria-label="' + escapeHtml(tx("close")) + '">✕</button>' + slides[i].html +
       (slides[i].last ? "" : '<p class="recap-hint">' + escapeHtml(tx("recapTap")) + '</p>') + '</div>';
-    document.getElementById("recap-x").addEventListener("click", function(e){ e.stopPropagation(); el.remove(); });
+    document.getElementById("recap-x").addEventListener("click", function(e){ e.stopPropagation(); el.remove(); applyTheme(); });
     const sh = document.getElementById("recap-share");
     if(sh) sh.addEventListener("click", function(e){ e.stopPropagation(); shareRecap(d, sh); });
   }
@@ -34293,13 +34362,17 @@ const CEL_SCENES = {
 // Fronta oslav: každá na celou obrazovku, klepnutím (nebo Enter/Esc) se zavře a přijde další.
 const CEL_HOLD = 6; // s – pak scéna zůstane stát (nápisy zůstávají)
 let celQueue = [];
+// iPhone barví pruh pod hodinami podle theme-color, ne podle obsahu stránky. Celoobrazovkové tmavé vrstvy
+// (oslava, měsíční souhrn) proto po dobu zobrazení nastaví vlastní barvu; applyTheme() ji vrátí.
+function setBarColor(c){ document.querySelector("meta[name=theme-color]").setAttribute("content", c); }
 function celebrate(list){
   celQueue = celQueue.concat(list);
   if(!document.querySelector(".cel")) showNextCelebration();
 }
 function showNextCelebration(){
   const c = celQueue.shift();
-  if(!c) return;
+  if(!c){ applyTheme(); return; }
+  setBarColor("#0B1018");
   if(!document.getElementById("cel-defs")){
     const d = document.createElement("div");
     d.id = "cel-defs";
