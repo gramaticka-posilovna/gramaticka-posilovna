@@ -512,11 +512,12 @@
   .near-card{ display:flex; gap:14px; align-items:center; }
   .near-big{ font-family:var(--font-display); font-size:38px; line-height:1; }
   .near-body{ flex:1; min-width:0; font-size:14px; }
-  .near-steps{ display:flex; gap:4px; margin:8px 0 6px; }
-  .near-steps i{ flex:1; height:9px; border-radius:3px; background:var(--track); }
-  .near-steps i.f{ background:#3A6FC0; }
-  .near-steps i.last{ outline:2px solid var(--accent); outline-offset:-2px; }
-  .near-body .lvl-note{ margin:0; }
+  .near-body b{ display:block; font-size:15px; }
+  .near-body .lvl-note{ margin:2px 0 0; }
+  .near-pct{ font-family:var(--font-display); font-size:34px; font-weight:700; line-height:1; white-space:nowrap; }
+  .near-pct small{ font-size:18px; }
+  .lvl-fc{ display:flex; gap:10px; align-items:center; background:var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius:14px; padding:10px 12px; margin-top:12px; font-size:13px; line-height:1.45; }
+  .lvl-fc > span{ font-size:18px; }
   .near-btn{ margin-top:10px; padding:8px 14px; font-size:13.5px; }
   .near-pnote{ margin-top:6px !important; }
   /* Rozklikávací seznam jevů úrovně (Témata i Pokrok) */
@@ -30570,8 +30571,10 @@ const I18N = {
     jevLater: function(n){ return "Další kontrola za " + n + (n >= 2 && n <= 4 ? " dny" : " dní"); },
     jevAll: "Vše upevněno 💪",
     jevStage: function(s){ return s === 6 ? "Upevněno" : (s === 5 ? "Zvládnuto" : "Stupeň " + s + " z 6"); },
-    levelGoal: function(l, k){ return "Na " + l + (k <= 3 ? " už jen " : " ještě ") + "<b>" + k + (k === 1 ? " jev" : (k <= 4 ? " jevy" : " jevů")) + "</b>"; },
-    levelGoalNote: function(d, n){ return "zvládnuto " + d + " z " + n + " · jev = aspoň 3 otázky, 80 % správně"; },
+    levelPath: function(l){ return "Cesta na " + l; },
+    levelPathNote: function(d, n){ return d + " z " + n + " jevů"; }, levelPathRule: "Jev je zvládnutý při aspoň 3 otázkách a 80 % správně.",
+    levelForecast: function(l, date){ return "Při tvém tempu <b>" + l + " kolem " + date + "</b>."; },
+    levelSooner: function(n){ const w = Math.round(n / 7); return "S 5 otázkami denně navíc o <b>" + (n < 7 ? n + (n <= 4 ? " dny" : " dní") : (w === 1 ? "týden" : w + (w <= 4 ? " týdny" : " týdnů"))) + "</b> dřív."; },
     levelPractice: "Procvičit chybějící jevy",
     levelPracticeNote: "Vybere 3 jevy, kterým do zvládnutí chybí nejméně (při shodě náhodně).",
     levelPick: function(l){ return "Vybrat jevy sám/sama (chybějící jevy " + l + ")"; }, levelPickGo: "Procvičit vybrané",
@@ -30745,8 +30748,10 @@ const I18N = {
     jevLater: function(n){ return "Next check in " + n + " days"; },
     jevAll: "All solid 💪",
     jevStage: function(s){ return s === 6 ? "Solid" : (s === 5 ? "Mastered" : "Stage " + s + " of 6"); },
-    levelGoal: function(l, k){ return "To " + l + ": <b>" + k + " more grammar point" + (k === 1 ? "" : "s") + "</b>"; },
-    levelGoalNote: function(d, n){ return d + " of " + n + " mastered · a point = at least 3 questions, 80% correct"; },
+    levelPath: function(l){ return "On the way to " + l; },
+    levelPathNote: function(d, n){ return d + " of " + n + " points"; }, levelPathRule: "A point is mastered at 3+ questions with 80% correct.",
+    levelForecast: function(l, date){ return "At your pace: <b>" + l + " around " + date + "</b>."; },
+    levelSooner: function(n){ const w = Math.round(n / 7); return "With 5 more questions a day, <b>" + (n < 7 ? n + " days" : (w === 1 ? "a week" : w + " weeks")) + "</b> sooner."; },
     levelPractice: "Practise missing points",
     levelPracticeNote: "Picks the 3 points closest to being mastered (random on ties).",
     levelPick: function(l){ return "Choose points yourself (missing " + l + " points)"; }, levelPickGo: "Practise selected",
@@ -31142,17 +31147,15 @@ function renderSetupLevel(){
   const ls = levelStats(), lv = state.level, next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(lv) + 1];
   let h = '<div class="near-card"><b class="near-big">' + (lv || "–") + '</b><div class="near-body">';
   if(next){
-    const k = Math.max(ls.need[next] - ls.done[next], 1);
-    const f = Math.min(9, Math.floor(ls.done[next] / ls.need[next] * 10));
-    let steps = "";
-    for(let i = 0; i < 10; i++) steps += '<i class="' + (i < f ? "f" : "") + (i === 9 ? " last" : "") + '"></i>';
-    h += tx("levelGoal", next, k) + '<div class="near-steps">' + steps + '</div><p class="lvl-note">' + tx("levelGoalNote", ls.done[next], ls.need[next]) + '</p>' +
+    const pct = Math.round(ls.done[next] / ls.need[next] * 100);
+    h += '<b>' + escapeHtml(tx("levelPath", next)) + '</b><p class="lvl-note">' + escapeHtml(tx("levelPathNote", ls.done[next], ls.need[next])) + '</p></div>' +
+      '<div class="near-pct">' + pct + '<small>%</small></div></div>' +
+      '<div class="cmp-bar lvl-bar"><span style="width:' + pct + '%"></span></div><p class="lvl-note">' + escapeHtml(tx("levelPathRule")) + '</p>' + levelForecastHtml(next, ls) +
       '<button class="btn-secondary near-btn" id="level-practice">' + escapeHtml(tx("levelPractice")) + '</button>' +
       '<p class="lvl-note near-pnote">' + escapeHtml(tx("levelPracticeNote")) + '</p>';
   } else {
-    h += tx("levelTopShort", lv);
+    h += tx("levelTopShort", lv) + '</div></div>';
   }
-  h += '</div></div>';
   if(next) h += '<details class="lvl-pick"><summary><span>' + escapeHtml(tx("levelPick", next)) + '</span></summary><div class="lv-list">' +
     sortMissing(ls.missing[next]).map(function(m){ return levelJevRow(m, true); }).join("") + '</div>' +
     '<button class="btn-secondary near-btn" id="level-pick-go" disabled>' + escapeHtml(tx("levelPickGo")) + '</button></details>';
@@ -32421,6 +32424,7 @@ function finishRound(){
   const doneNow = goalReached && state.doneDay !== today;
   if(doneNow) state.doneDay = today;
   const cels = collectCelebrations(goalBefore === 0);
+  logLevelProgress();
   saveState();
 
   // Skóre se ukazuje po otázkách (otázka s víc mezerami se počítá jednou), aby sedělo s délkou kola.
@@ -32644,7 +32648,7 @@ function renderLevelCards(){
     '<div class="lvl-ladder">' + PLACEMENT_LEVELS.map(function(l, j){ return '<i class="' + (j < i ? "done" : (j === i ? "now" : "")) + '">' + l + '</i>'; }).join("") + '</div>';
   if(next){
     const p = Math.min(ls.done[next] / ls.need[next], 1);
-    h += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' + tx("levelNext", next, ls.done[next], ls.need[next]) + '</p>';
+    h += '<div class="cmp-bar lvl-bar"><span style="width:' + Math.round(p * 100) + '%"></span></div><p class="lvl-note">' + tx("levelNext", next, ls.done[next], ls.need[next]) + '</p>' + levelForecastHtml(next, ls);
   } else {
     h += '<p class="lvl-note">' + tx("levelTop") + '</p>';
   }
@@ -33344,6 +33348,34 @@ function levelStats(){
     if(i <= PLACEMENT_LEVELS.indexOf(state.level) || done[l] >= need[l]) reached = l; else break;
   }
   return { reached: reached, need: need, done: done, mastered: mastered, missing: missing };
+}
+// Postup na další úroveň po dnech (pro předpověď): state.levelLog = { den: { l: úroveň, d: zvládnuté jevy } }, posledních 60 dní.
+function logLevelProgress(){
+  const next = PLACEMENT_LEVELS[PLACEMENT_LEVELS.indexOf(state.level) + 1], today = dayKey(new Date());
+  const log = state.levelLog = state.levelLog || {};
+  if(next) log[today] = { l: next, d: levelStats().done[next] };
+  Object.keys(log).forEach(function(k){ if(k < addDays(today, -60)) delete log[k]; });
+}
+// Předpověď z tempa za posledních 7–28 dní: { date, sooner } (sooner = o kolik dní dřív s 5 otázkami denně navíc),
+// nebo null, když je historie kratší než týden, postup žádný nebo cíl dál než rok.
+function levelForecast(next, done, need){
+  const log = state.levelLog || {}, today = dayKey(new Date());
+  const from = Object.keys(log).sort().filter(function(k){ return log[k].l === next && k <= addDays(today, -7) && k >= addDays(today, -28); })[0];
+  if(!from) return null;
+  const days = Math.round((Date.parse(today) - Date.parse(from)) / 864e5), gained = done - log[from].d;
+  if(gained <= 0) return null;
+  let answers = 0;
+  for(let i = 0; i < days; i++) answers += state.days[addDays(today, -i)] || 0;
+  const perDay = gained / days, eta = Math.ceil((need - done) / perDay);
+  if(eta > 365) return null;
+  const avg = answers / days, faster = avg > 0 ? Math.ceil((need - done) / (perDay * (avg + 5) / avg)) : eta;
+  return { date: addDays(today, eta), sooner: eta - faster };
+}
+function levelForecastHtml(next, ls){
+  const f = levelForecast(next, ls.done[next], ls.need[next]);
+  if(!f) return "";
+  const date = new Date(f.date + "T12:00:00").toLocaleDateString(tx("dateLocale"), { day: "numeric", month: "long" });
+  return '<div class="lvl-fc"><span>📅</span><div>' + tx("levelForecast", next, escapeHtml(date)) + (f.sooner >= 2 ? " " + tx("levelSooner", f.sooner) : "") + '</div></div>';
 }
 // Zvýší uloženou úroveň podle procvičování a testu; vrátí novou úroveň, nebo null.
 function updateLevel(){
